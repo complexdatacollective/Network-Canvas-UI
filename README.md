@@ -58,3 +58,13 @@ import '~network-canvas-ui/styles/all.scss';
 ### Styles
 
 - LIST TBC
+
+## Contributing
+
+### Components
+
+Add your components in `/src/`, link to them in the relevant `index.js`, and then run the babel build so that they can be imported: `yarn run prepublish`
+
+### Styles
+
+Just add the styles in `/styles/` and link to them in the relevant `_all.scss`, and you're done!
