@@ -22,7 +22,7 @@ $ yarn install
 ### Components
 
 ```jsx
-// in ExampleComponent.js
+// in LocalComponent.js
 
 import { ExampleComponent } from 'network-canvas-ui';
 
@@ -38,7 +38,7 @@ const LocalComponent = props => (
 You can also webpack the corresponding styles with:
 
 ```js
-// in ExampleComponent.js
+// in LocalComponent.js
 
 import 'network-canvas-ui/styles/example-component.scss';
 ```
