@@ -6,10 +6,8 @@
 // in package.json
 {
   "dependencies": {
-    "network-canvas-ui": "git+https://git@github.com/codaco/Network-Canvas-UI.git",
-    ...
+    "network-canvas-ui": "git+https://git@github.com/codaco/Network-Canvas-UI.git"
   }
-  ...
 }
 ```
 
@@ -28,7 +26,7 @@ import { ExampleComponent } from 'network-canvas-ui';
 
 const LocalComponent = props => (
   <div className="local-component">
-    <ExampleComponent /
+    <ExampleComponent />
   </div>
 );
 ```
