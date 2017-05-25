@@ -4,8 +4,9 @@
 
 `yarn add network-canvas-ui`
 
+## Usage
 
-## Components
+### Components
 
 ```
 # ExampleComponent.js
@@ -18,6 +19,8 @@ const LocalComponent = props => (
   </div>
 );
 ```
+
+### Styles
 
 You can also webpack the corresponding styles with:
 
