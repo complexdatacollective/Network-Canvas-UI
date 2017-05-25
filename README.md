@@ -2,8 +2,8 @@
 
 ## Installation
 
-```
-# in package.json
+```json
+// in package.json
 {
   "dependencies": {
     "network-canvas-ui": "git+https://git@github.com/codaco/Network-Canvas-UI.git",
@@ -13,14 +13,16 @@
 }
 ```
 
-`yarn install`
+```sh
+$ yarn install
+```
 
 ## Usage
 
 ### Components
 
-```
-# in ExampleComponent.js
+```jsx
+// in ExampleComponent.js
 
 import { ExampleComponent } from 'network-canvas-ui';
 
@@ -35,16 +37,16 @@ const LocalComponent = props => (
 
 You can also webpack the corresponding styles with:
 
-```
-# in ExampleComponent.js
+```js
+// in ExampleComponent.js
 
 import 'network-canvas-ui/styles/example-component.scss';
 ```
 
 Or alternatively include all styles in your main stylesheet:
 
-```
-# in main.scss
+```scss
+// in main.scss
 
 import '~network-canvas-ui/styles/all.scss';
 ```
@@ -63,7 +65,12 @@ import '~network-canvas-ui/styles/all.scss';
 
 ### Components
 
-Add your components in `/src/`, link to them in the relevant `index.js`, and then run the babel build so that they can be imported: `yarn run prepublish`
+- Add your components in `/src/`, link to them in the relevant `index.js`.
+- Run the babel build so that they can be imported
+
+  ```sh
+  $ yarn run prepublish
+  ````
 
 ### Styles
 
