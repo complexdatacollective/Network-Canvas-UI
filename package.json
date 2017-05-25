@@ -1,0 +1,14 @@
+{
+  "name": "network-canvas-style",
+  "version": "1.0.0",
+  "description": "Styles and React components for the Network Canvas project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "babel ./src --out-dir ./dist --source-maps --presets es2015,react --plugins babel-plugin-add-module-exports"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-plugin-add-module-exports": "^0.2.1"
+  }
+}
