@@ -1,1 +1,3 @@
-export { default as Example } from './Example';
+export Button from './Button';
+export Icon from './Icon';
+export TextInput from './Inputs/TextInput';

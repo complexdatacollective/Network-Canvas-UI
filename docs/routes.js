@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
-import { App } from 'components';
 import {
+  AppLayout,
   ButtonsPage,
   ColorPage,
   FormPage,
@@ -11,7 +11,7 @@ import {
 } from 'containers';
 
 export default (
-	<Route path="/" component={App}>
+	<Route path="/" component={AppLayout}>
 		<IndexRoute component={HomePage} />
     <Route path="/buttons" component={ButtonsPage} />
     <Route path="/color" component={ColorPage} />

@@ -1,5 +1,6 @@
-import React, { Component, PropTypes } from 'react';
-
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { SideNav } from 'components';
 
 import 'styles/main.scss';
 

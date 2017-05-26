@@ -9,22 +9,31 @@
   background: none;
 }
 
+@mixin default-button-type {
+  @include type('title-2');
+  @include type('bold');
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: color('white');
+}
+
 @mixin button (
   $button-class: 'button'
 ) {
   .#{$button-class} {
     @include reset-button;
+    @include default-button-type;
 
-    @include type('title-2');
-    @include type('bold');
+    display: flex;
+    @include vcjc; // vertical center, justify center
     font-family: inherit;
     text-align: center;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: color('white');
 
+    width: auto;
+    height: auto;
     min-width: 250px;
     min-height: 80px;
+
     border-radius: 40px;
     box-shadow: 0 3px rgba(0,0,0,0.25);
     background-color: color('sea-green');
@@ -36,5 +45,26 @@
     }
 
     @include color-modifiers($include-hover: true);
+
+    &--small {
+      min-width: inherit;
+      min-height: inherit;
+      padding: 2em 4em;
+      @include type('copy-small');
+    }
+
+    &__content {
+      margin: 0 1rem;
+    }
+
+    &__icon {
+      height: 15px;
+      width: 15px;
+
+      // use flexbox to change order of icon and content
+      &--right {
+        order: 2;
+      }
+    }
   }
 }

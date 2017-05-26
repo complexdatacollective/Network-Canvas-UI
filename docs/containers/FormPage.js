@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { TextInput } from 'components';
+import { TextInput } from 'Components';
 
 class FormPage extends Component {
   render() {

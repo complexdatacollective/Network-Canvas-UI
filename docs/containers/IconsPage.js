@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Icon } from 'components';
+import { Icon } from 'Components';
 
 import icons from 'utils/getIcons';
 

@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 import icons from 'utils/getIcons';
 
 class Icon extends Component {
   static propTypes = {
-    name: React.PropTypes.string.isRequired,
-    size: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.number
+    name: PropTypes.string.isRequired,
+    size: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
     ]),
-    color: React.PropTypes.string,
-    style: React.PropTypes.object
+    color: PropTypes.string,
+    style: PropTypes.object
   }
 
   render() {

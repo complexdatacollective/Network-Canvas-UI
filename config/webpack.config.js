@@ -16,6 +16,9 @@ const webpackConfig = {
   target: 'web',
   devtool: project.compiler_devtool,
   resolve: {
+    alias: {
+      Components: project.paths.src() + '/components/'
+    },
     root: project.paths.client(),
     extensions: ['', '.js', '.jsx', '.json']
   },
