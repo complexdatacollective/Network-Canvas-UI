@@ -1,0 +1,7 @@
+dist
+node_modules
+coverage
+docs/index.html
+config
+bin
+server
