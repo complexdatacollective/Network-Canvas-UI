@@ -1,8 +1,16 @@
 {
+<<<<<<< HEAD
   "name": "network-canvas-style",
   "version": "1.0.9",
+||||||| merged common ancestors
+  "name": "network-canvas-style",
+  "version": "1.0.8",
+=======
+  "name": "network-canvas-ui",
+  "version": "1.0.9",
+>>>>>>> [WIP] Saving in progress.
   "description": "Styles and React components for the Network Canvas project",
-  "main": "index.js",
+  "main": "lib/components/index.js",
   "scripts": {
     "lint-js": "eslint src",
     "lint-sass": "sass-lint styles",
@@ -16,14 +24,22 @@
     "lint:fix": "npm run lint -- --fix",
     "start": "better-npm-run start:prod",
     "serve": "better-npm-run start",
-    "postinstall": "better-npm-run deploy:prod",
+    "postinstall": "babel ./src --out-dir ./lib --source-maps --copy-files --presets env,react,stage-0 --plugins=add-module-exports,transform-class-properties",
     "dev": "better-npm-run dev",
     "test": "better-npm-run test",
     "test:dev": "npm run test -- --watch",
     "deploy": "better-npm-run deploy",
     "deploy:dev": "better-npm-run deploy:dev",
     "deploy:prod": "better-npm-run deploy:prod",
+<<<<<<< HEAD
     "codecov": "cat coverage/*/lcov.info | codecov"
+||||||| merged common ancestors
+    "codecov": "cat coverage/*/lcov.info | codecov",
+    "prepublish": "babel ./src --out-dir ./lib --source-maps --presets env,react,stage-0 --plugins=add-module-exports,transform-class-properties"
+=======
+    "codecov": "cat coverage/*/lcov.info | codecov",
+    "prepublish": "babel ./src --out-dir ./lib --source-maps --copy-files --presets env,react,stage-0 --plugins=add-module-exports,transform-class-properties"
+>>>>>>> [WIP] Saving in progress.
   },
   "betterScripts": {
     "compile": {
@@ -94,6 +110,7 @@
     "imports-loader": "^0.7.0",
     "ip": "^1.1.2",
     "json-loader": "^0.5.4",
+    "lodash": "^4.17.4",
     "normalize.css": "^5.0.0",
     "prop-types": "^15.5.6",
     "react": "^15.0.0",
@@ -137,10 +154,6 @@
     "sass-lint": "^1.10.2"
   },
   "dependencies": {
-    "classnames": "^2.2.5",
-    "lodash": "^4.17.4",
-    "prop-types": "^15.5.10",
-    "react": "^15.5.4",
     "better-npm-run": "0.0.13",
     "chai": "^3.4.1",
     "chai-as-promised": "^6.0.0",
