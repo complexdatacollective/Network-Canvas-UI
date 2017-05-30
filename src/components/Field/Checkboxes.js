@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { map } from 'lodash';
 
 /**
@@ -22,5 +23,11 @@ const Checkboxes = ({ name, options, onClickOption }) => (
     ))}
   </div>
 );
+
+Checkboxes.propTypes = {
+  name: PropTypes.string.isRequired,
+  options: PropTypes.array.isRequired,
+  onClickOption: PropTypes.func.isRequired,
+};
 
 export default Checkboxes;

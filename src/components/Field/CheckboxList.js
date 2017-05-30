@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { fromPairs, map, reduce, sortBy, without, zip } from 'lodash';
+import PropTypes from 'prop-types';
+import { reduce, sortBy, without } from 'lodash';
 import Checkboxes from './Checkboxes';
 
 /**
@@ -8,7 +9,7 @@ import Checkboxes from './Checkboxes';
 class CheckboxList extends Component {
 
   onClickOption = (option) => {
-    const { value, onChange } = this.props.input;
+    const { input: { value, onChange } } = this.props;
 
     if (value.indexOf(option) === -1) {
       onChange(sortBy([...value, option]));
@@ -36,5 +37,12 @@ class CheckboxList extends Component {
     );
   }
 }
+
+CheckboxList.propTypes = {
+  input: PropTypes.object.isRequired,
+  options: PropTypes.array.isRequired,
+  label: PropTypes.string.isRequired,
+  meta: PropTypes.object.isRequired,
+};
 
 export default CheckboxList;

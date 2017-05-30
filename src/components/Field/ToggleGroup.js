@@ -1,5 +1,5 @@
 import React from 'react';
-import { fromPairs, map, reduce, sortBy, without, zip } from 'lodash';
+import { map, zip } from 'lodash';
 import CheckboxGroup from './CheckboxGroup';
 
 /**
@@ -9,7 +9,9 @@ class ToggleGroup extends CheckboxGroup {
   render() {
     const { options, colors, label, meta, input: { name, value } } = this.props;
 
-    const optionsWithColor = colors ? zip(options, colors) : map(options, (option, index) => [option, index]);
+    const optionsWithColor = (
+      colors ? zip(options, colors) : map(options, (option, index) => [option, index])
+    );
 
     return (
       <div>

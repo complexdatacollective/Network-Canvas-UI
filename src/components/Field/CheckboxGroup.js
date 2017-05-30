@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { fromPairs, map, reduce, sortBy, without, zip } from 'lodash';
+import PropTypes from 'prop-types';
+import { fromPairs, map } from 'lodash';
 import Checkboxes from './Checkboxes';
 
 /**
@@ -7,7 +8,7 @@ import Checkboxes from './Checkboxes';
   */
 class CheckboxGroup extends Component {
   onClickOption = (clickedOption) => {
-    const { value, onChange } = this.props.input;
+    const { input: { value, onChange } } = this.props;
 
     onChange({
       ...fromPairs(map(this.props.options, option => [option, false])),
@@ -33,5 +34,12 @@ class CheckboxGroup extends Component {
     );
   }
 }
+
+CheckboxGroup.propTypes = {
+  input: PropTypes.object.isRequired,
+  options: PropTypes.array.isRequired,
+  label: PropTypes.string.isRequired,
+  meta: PropTypes.object.isRequired,
+};
 
 export default CheckboxGroup;
