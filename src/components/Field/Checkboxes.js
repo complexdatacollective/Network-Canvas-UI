@@ -1,6 +1,9 @@
 import React from 'react';
 import { map } from 'lodash';
 
+/**
+  * A list of checkboxes, not intended for direct use
+  */
 const Checkboxes = ({ name, options, onClickOption }) => (
   <div>
     {map(options, (value, option) => (

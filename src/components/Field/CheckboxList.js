@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { fromPairs, map, reduce, sortBy, without, zip } from 'lodash';
 import Checkboxes from './Checkboxes';
 
+/**
+  * A checkbox list that sets thes field value to a list of selected options
+  */
 class CheckboxList extends Component {
 
   onClickOption = (option) => {

@@ -1,5 +1,8 @@
 import React from 'react';
 
+/**
+  * Alphanumeric field type
+  */
 const Alphanumeric = field => (
   <div>
     <input type="text" placeholder={field.label} {...field.input} />

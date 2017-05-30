@@ -2,6 +2,9 @@ import React from 'react';
 import { fromPairs, map, reduce, sortBy, without, zip } from 'lodash';
 import CheckboxGroup from './CheckboxGroup';
 
+/**
+  * A togglable list that sets thes field value to a key/value object of boolean properties
+  */
 class ToggleGroup extends CheckboxGroup {
   render() {
     const { options, colors, label, meta, input: { name, value } } = this.props;
