@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { fromPairs, map, reduce, sortBy, without, zip } from 'lodash';
+import Checkboxes from './Checkboxes';
 
 class CheckboxGroup extends Component {
   onClickOption = (clickedOption) => {

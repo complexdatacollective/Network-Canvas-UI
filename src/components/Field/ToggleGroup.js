@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
 import { fromPairs, map, reduce, sortBy, without, zip } from 'lodash';
+import CheckboxGroup from './CheckboxGroup';
 
 class ToggleGroup extends CheckboxGroup {
   render() {

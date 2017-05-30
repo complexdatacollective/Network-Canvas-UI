@@ -1,5 +1,3 @@
-import React, { Component } from 'react';
-
 const Numeric = (field) => (
   <div>
     <input type="number" placeholder={field.label} {...field.input} />
