@@ -1,3 +1,4 @@
+import React from 'react';
 import { map } from 'lodash';
 
 const Checkboxes = ({ name, options, onClickOption }) => (

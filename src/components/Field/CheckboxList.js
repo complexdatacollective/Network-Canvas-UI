@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { fromPairs, map, reduce, sortBy, without, zip } from 'lodash';
 import Checkboxes from './Checkboxes';
 

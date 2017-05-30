@@ -1,3 +1,4 @@
+import React from 'react';
 import { fromPairs, map, reduce, sortBy, without, zip } from 'lodash';
 import CheckboxGroup from './CheckboxGroup';
 
@@ -33,3 +34,5 @@ class ToggleGroup extends CheckboxGroup {
     );
   }
 }
+
+export default ToggleGroup;
