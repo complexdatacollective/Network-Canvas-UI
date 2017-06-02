@@ -98,6 +98,7 @@
     "extract-text-webpack-plugin": "^1.0.0",
     "file-loader": "^0.9.0",
     "fs-extra": "^1.0.0",
+    "gridle": "^2.0.48",
     "html-webpack-plugin": "^2.22.0",
     "imports-loader": "^0.7.0",
     "ip": "^1.1.2",
