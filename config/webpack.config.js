@@ -144,6 +144,7 @@ webpackConfig.module.loaders.push({
   loaders: [
     'style',
     BASE_CSS_LOADER,
+    'resolve-url',
     'postcss',
     'sass?sourceMap'
   ]
@@ -159,7 +160,10 @@ webpackConfig.module.loaders.push({
 });
 
 webpackConfig.sassLoader = {
-  includePaths: project.paths.client('styles')
+  includePaths: [
+    project.paths.client('styles'),
+    project.paths.src()
+  ]
 };
 
 webpackConfig.postcss = [
