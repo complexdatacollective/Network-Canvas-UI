@@ -1,0 +1,123 @@
+// Icons
+// =============================================================================
+
+@import "../global/default";
+
+$-icon-color-modifiers: (
+  'sea-serpent',
+  'purple-pizazz',
+  'kiwi',
+  'cerulean-blue',
+  'paradise-pink'
+) !default;
+
+@mixin icon (
+  $icon-class: 'icon'
+) {
+  .#{$icon-class} {
+    .cls-1, .cls-3 {
+      fill: color('platinum--dark');
+    }
+
+    .cls-2 {
+      fill: color('platinum');
+    }
+
+    // simpler icons can be targeted with color modifiers
+    @each $color-name in $-icon-color-modifiers {
+      @if index($-icon-color-modifiers, $color-name)==null {
+        @warn "Icon: #{$color-name} is not a valid modifier.";
+      }
+
+      @include modifier('primary') {
+        .cls-1, .cls-3 {
+          fill: color('sea-green', 0.8);
+        }
+        .cls-2 {
+          fill: color('sea-green');
+        }
+      }
+
+      @include modifier(#{$color-name}) {
+        .cls-1, .cls-3 {
+          fill: color(#{$color-name}--dark);
+        }
+        .cls-2 {
+          fill: color(#{$color-name});
+        }
+      }
+    }
+
+    // action / notification icons are a bit more detailed
+    // and need to be styled individually
+    #add-a-context {
+      .cls-1 {
+        fill: color('sea-green');
+      }
+      .cls-2 {
+        fill: color('platinum--dark', .3);
+      }
+      .cls-3 {
+        fill: color('platinum--dark', .6);
+      }
+      .cls-4 {
+        fill: color('platinum');
+      }
+      .cls-5 {
+        fill: color('platinum--dark');
+      }
+      .cls-6 {
+        fill: color('platinum');
+      }
+      .cls-7 {
+        fill: color('tomato');
+      }
+      .cls-8 {
+        fill: color('tomato--dark');
+      }
+    }
+
+    #add-a-person {
+      .cls-1 {
+        fill: color('sea-green');
+      }
+      .cls-2 {
+        fill: color('platinum');
+      }
+      .cls-3 {
+        fill: color('platinum--dark');
+      }
+      .cls-4 {
+        fill: color('tomato');
+      }
+      .cls-5 {
+        fill: color('tomato--dark');
+      }
+      .cls-6 {
+        fill: color('platinum');
+      }
+    }
+
+    #add-a-place {
+      .cls-1 {
+        fill: color('sea-green');
+      }
+      .cls-2 {
+        fill: color('platinum');
+      }
+      .cls-3 {
+        fill: color('tomato');
+      }
+      .cls-4 {
+        fill: color('tomato--dark');
+      }
+      .cls-5 {
+        fill: color('platinum');
+      }
+      .cls-6 {
+        fill: color('platinum--dark');
+      }
+    }
+
+  }
+}

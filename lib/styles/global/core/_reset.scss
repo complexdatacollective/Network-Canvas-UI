@@ -1,0 +1,40 @@
+@mixin reset {
+  html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    @include type('quicksand');
+  }
+
+  *, *:before, *:after {
+    box-sizing: inherit;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    position: relative;
+    margin: 0;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5 {
+    @include type('quicksand');
+  }
+
+  a {
+    color: white;
+    @include type('title-2');
+    letter-spacing: 3px;
+    transform: all-caps;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  img {
+    max-width: 100%;
+  }
+}
