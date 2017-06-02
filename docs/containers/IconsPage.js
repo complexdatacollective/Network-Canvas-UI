@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { Icon } from 'Components';
 
-import icons from 'utils/getIcons';
+// import icons from 'src/utils/getIcons';
 
 class IconsPage extends Component {
   render() {
@@ -77,9 +77,7 @@ class IconsPage extends Component {
         })}
         <div className="grid__item">
           <h2 className="type--title-2">All Icons</h2>
-          {Object.keys(icons).map(iconName =>
-            <Icon key={iconName} name={iconName} />
-          )}
+
         </div>
       </div>
     );

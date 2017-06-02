@@ -1,7 +1,5 @@
-@import "global/default";
-@import "components/button";
-@import "components/icons";
-@import "components/inputs";
+@import 'src/styles__pre/all';
+@import 'src/styles/main';
 
 @include reset;
 @include type-classes;
