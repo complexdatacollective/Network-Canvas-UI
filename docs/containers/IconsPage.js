@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 
 import { Icon } from 'Components';
 
-// import icons from 'src/utils/getIcons';
-
 class IconsPage extends Component {
   render() {
     const colors = [

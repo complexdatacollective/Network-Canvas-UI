@@ -46,12 +46,11 @@ Or alternatively include all styles in your main stylesheet and add the mixins y
 ```scss
 // in main.scss
 
-import '~network-canvas-ui/styles/main.scss';
+@import '~network-canvas-ui/styles/all.scss';
 
 // optional mixin classes
 @include reset;
 @include type-classes;
-@include grid-classes;
 @include button;
 @include icon;
 @include input;
