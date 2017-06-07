@@ -1,0 +1,24 @@
+// Sidemenu
+// =============================================================================
+.sidemenu {
+  max-height: 100vh;
+  overflow-y: scroll;
+  padding: $spacer-3;
+
+  &__heading {
+    @include type('title-1');
+    text-align: left;
+  }
+
+  &__items {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__list-item {
+    @include type('title-4');
+    text-transform: uppercase;
+    letter-spacing: 3px;
+  }
+}

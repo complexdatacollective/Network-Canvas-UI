@@ -23,26 +23,26 @@ class SideMenu extends Component {
       onClose
     } = this.props;
 
-    const menuClassNames = cx({
-      'menu': true,
-      [`menu--${backgroundHoverColor}`]: !!backgroundHoverColor
-    });
+    const sidemenuClassNames = cx({
+      'sidemenu': true,
+      [`sidemenu--${backgroundHoverColor}`]: !!backgroundHoverColor
+    }, [this.props.className]);
 
     return (
-      <nav className={menuClassNames}>
-        <div className="menu__close">
+      <nav className={sidemenuClassNames}>
+        <div className="sidemenu__close">
           <button onClick={onClose}>
             <i className="download icon" />
             Cross
           </button>
         </div>
-        <h1 className="menu__heading">
+        <h1 className="sidemenu__heading">
           {heading}
         </h1>
-        <ul className="menu__items">
+        <ul className="sidemenu__items">
           {menuItems.map((item, idx) => {
             return (
-              <li key={idx} className="menu__list-item">
+              <li key={idx} className="sidemenu__list-item">
                 {item}
               </li>
             );
