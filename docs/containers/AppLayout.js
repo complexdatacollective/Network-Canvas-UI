@@ -10,6 +10,10 @@ class AppLayout extends Component {
     children: PropTypes.object
   }
 
+  state = {
+    sideMenuVisible: false
+  }
+
   navItems = [
     {
       title: 'Home',
@@ -96,8 +100,10 @@ class AppLayout extends Component {
           className="sidenav"
           heading="Settings"
           menuItems={menuItems}
+          visible={this.state.sideMenuVisible}
         />
         <section className="grid__section">
+          <button onClick={() => this.setState({sideMenuVisible: !this.state.sideMenuVisible })}>Toggle menu</button>
           { this.props.children }
         </section>
       </div>
