@@ -68,6 +68,10 @@ Or alternatively include all styles in your main stylesheet and add the mixins y
 
 ## Contributing / Development
 
+Docs folder is used to develop any sort of docs or to see the components exist outside of the context of Network Canvas.
+
+/src and /styles folder compile into /lib where they are then exported into the Network Canvas app.
+
 ### Components
 
 - Run `npm run dev` to run a dev server and make chnages to components and styles in `/src/`, then link to them in the relevant `index.js`.
