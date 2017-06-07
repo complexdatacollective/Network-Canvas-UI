@@ -16,15 +16,16 @@ class Icon extends Component {
   }
 
   render() {
-    const { color } = this.props;
+    const { color, name } = this.props;
 
     const iconClassNames = cx({
       'icon': true,
       [`icon--${color}`]: !!color
     });
 
+    const iconComponent = icons[name];
     return React.createElement(
-      icons[this.props.name],
+      iconComponent,
       {
         className: iconClassNames,
         style: { height: 100 }
