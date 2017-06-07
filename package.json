@@ -14,7 +14,6 @@
     "lint:fix": "npm run lint -- --fix",
     "start": "better-npm-run start:prod",
     "serve": "better-npm-run start",
-    "postinstall": "babel ./src --out-dir ./lib --source-maps --copy-files --presets env,react,stage-0 --plugins=add-module-exports,transform-class-properties",
     "dev": "better-npm-run dev",
     "test:dev": "npm run test -- --watch",
     "deploy": "better-npm-run deploy",
