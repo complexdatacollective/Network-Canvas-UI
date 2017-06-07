@@ -20,6 +20,7 @@ const config = {
   dir_src    : 'src',
   dir_public : 'public',
   dir_server : 'server',
+  dir_styles : 'styles',
   dir_test   : 'tests',
 
   // ----------------------------------
@@ -116,6 +117,7 @@ config.paths = {
   client : base.bind(null, config.dir_client),
   public : base.bind(null, config.dir_public),
   dist   : base.bind(null, config.dir_dist),
+  styles : base.bind(null, config.dir_styles),
   src    : base.bind(null, config.dir_src)
 };
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { SideNav } from 'components';
 
-import 'styles/main.scss';
+import '../styles/main.scss';
 
 class AppLayout extends Component {
   static propTypes = {

@@ -1,11 +1,8 @@
-@import "global/default";
-@import "components/button";
-@import "components/icons";
-@import "components/inputs";
+@import '../../styles/all';
+@import '_grid';
 
 @include reset;
 @include type-classes;
-@include grid-classes;
 @include button;
 @include icon;
 @include input;
@@ -14,7 +11,7 @@
   display: flex;
   min-height: 100vh;
   width: 100%;
-  background-color: color('navy-taupe');
+  background-color: palette('dark-background');
   color: color('white');
 }
 
