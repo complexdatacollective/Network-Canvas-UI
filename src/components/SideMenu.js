@@ -9,7 +9,7 @@ class SideMenu extends Component {
       PropTypes.string,
       PropTypes.element
     ]),
-    isVisible: PropTypes.bool,
+    visible: PropTypes.bool,
     menuItems: PropTypes.array,
     onClose: PropTypes.func
   }
@@ -18,13 +18,14 @@ class SideMenu extends Component {
     const {
       backgroundHoverColor,
       heading,
-      isVisible,
+      visible,
       menuItems,
       onClose
     } = this.props;
 
     const sidemenuClassNames = cx({
       'sidemenu': true,
+      'sidemenu--visible': visible,
       [`sidemenu--${backgroundHoverColor}`]: !!backgroundHoverColor
     }, [this.props.className]);
 

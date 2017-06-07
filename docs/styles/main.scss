@@ -1,6 +1,6 @@
 @import '../../styles/all';
 
-@include reset;
+@include normalize;
 @include type-classes;
 @include grid-classes;
 @include button;

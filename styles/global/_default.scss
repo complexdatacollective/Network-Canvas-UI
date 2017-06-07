@@ -4,10 +4,9 @@
 @import "core/color";
 @import "core/grid";
 @import "core/functions";
-@import "core/reset";
 @import "core/spacing";
 @import "core/type";
-
+@import "core/quicksand";
 @import "core/normalize";
 
 // Default Breakpoint Settings
@@ -60,15 +59,62 @@
 @include color-set('tomato', #E82D3F);
 @include color-set('tomato--dark', #D32B3A);
 
+$roles: (
+  'node': color('network-canvas-coral'),
+  'edge': color('mustard'),
+  'primary': color('sea-green'),
+  'menu': color('white'),
+  'selected': color('white'),
+  'settings': color('slate-blue'),
+  'background': color('navy-taupe'),
+  'text': color('white'),
+  'tex-muted': color('cyber-grape'),
+  'link': color('nc-coral'),
+  'light-background': color('cyber-grape'),
+  'dark-background': color('rich-black'),
+  'headings': color('white'),
+  'menu-headings': color('charcoal'),
+  'divider': color('platinum--dark')
+);
+
+// Collections
+$nodes: (
+  default: (
+    base:   map-get($roles, node),
+    dark:   darken(map-get($roles, node), 5%)
+  )
+);
+
+$edges: (
+  default: (
+    base:   map-get($roles, edge),
+    dark:   darken(map-get($roles, edge), 5%)
+  )
+);
+
+@function node-palette($palette: 'default', $tone: 'base') {
+  @return map-get(map-get($nodes, $palette), $tone);
+}
+
+@function palette($role) {
+  @return map-get($roles, $role);
+}
+
 // Default Copy Typography Sizes
 // =============================================================================
+
+$netcanvas-font-size: 16px;
+$line-height-base: 1.5 !default;
+$headings-font-weight:   400 !default;
+$headings-line-height:   1.1 !default;
+
 @include type-set(
   'quicksand', base,
   (
     font-family: 'Quicksand, "Open Sans", sans-serif',
     font-size: 16px,
-    line-height: 1.5,
-    font-weight: 400
+    line-height: $line-height-base,
+    font-weight: $headings-font-weight
   )
 );
 @include type-set(
@@ -89,7 +135,7 @@
   (
     font-size: 32px,
     line-height: 1.429,
-    font-weight: 400,
+    font-weight: $headings-font-weight,
     text-align: center,
     width: 100%
   )
@@ -101,8 +147,8 @@
   'title-2', base,
   (
     font-size: 32px,
-    line-height: 1.5,
-    font-weight: 400,
+    line-height: $line-height-base,
+    font-weight: $headings-font-weight,
     width: 100%
   )
 );
@@ -112,8 +158,8 @@
   'title-3', base,
   (
     font-size: 17px,
-    line-height: 1.5,
-    font-weight: 400,
+    line-height: $line-height-base,
+    font-weight: $headings-font-weight,
     text-align: center,
     width: 100%
   )
@@ -123,7 +169,7 @@
   'title-4', base,
   (
     font-size: 16px,
-    line-height: 1.5,
+    line-height: $line-height-base,
     width: 100%
   )
 );
@@ -132,7 +178,7 @@
   'title-5', base,
   (
     font-size: 12px,
-    line-height: 1.5,
+    line-height: $line-height-base,
     width: 100%
   )
 );
@@ -142,21 +188,21 @@
   'copy-large', base,
   (
     font-size: 18px,
-    line-height: 1.5
+    line-height: $line-height-base
   )
 );
 @include type-set(
   'copy-standard', base,
   (
     font-size: 16px,
-    line-height: 1.5
+    line-height: $line-height-base
   )
 );
 @include type-set(
   'copy-small', base,
   (
     font-size: 12px,
-    line-height: 1.5,
+    line-height: $line-height-base,
     font-weight: 100
   )
 );
