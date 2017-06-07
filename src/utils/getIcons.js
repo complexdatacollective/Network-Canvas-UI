@@ -1,11 +1,11 @@
 /* eslint-disable */
-const fileList = require.context('../assets/img/icons', true, /[\s\S]*$/);
+const fileList = require.context('../assets/img/icons', true, /(\.svg\.react\.js)$/);
 
 let dictionary = {};
 fileList.keys().forEach(x => {
 
   x = x.replace('./', '');
-  dictionary[x.replace('.svg', '').toLowerCase()] = require(`../assets/img/icons/${x}`).default;
+  dictionary[x.replace('.svg.react.js', '').toLowerCase()] = require(`../assets/img/icons/${x}`).default;
 });
 
 export default dictionary;
