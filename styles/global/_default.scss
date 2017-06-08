@@ -206,3 +206,68 @@ $headings-line-height:   1.1 !default;
     font-weight: 100
   )
 );
+
+// TODO - when these variables are removed, they cause breaking changes in Network Canvas app, but they are redundant, so eventually they should be deprecated from the main APP
+$network-canvas-coral: #e2215b;
+$mustard: #f2b700;
+$light-sea-green: #00c9a2;
+$white: #fff;
+$slate-blue: #6b72ec;
+$navy-taupe: #2d2955;
+$cyber-grape: #3a3a75;
+$rich-black: #16152b;
+
+$sea-serpent: #0fb2e2;
+$purple-pizazz: #d30fef;
+$paradise-pink: #ff3a8c;
+$cerulean-blue: #0f70ff;
+$kiwi: #70bf54;
+$neon-carrot: #f7891e;
+$barbie-pink: #ed008c;
+$tomato: #e82d3f;
+
+$charcoal: #6d6f76;
+$platinum: #f2f6f7;
+$divider: #f2f2f2;
+$dark-platinum: #dae3e5;
+
+$netcanvas-font-family: 'Quicksand', 'Open Sans', sans serif;
+$netcanvas-font-size: 16px;
+$line-height-base: 1.5 !default;
+
+html {
+  font-family: $netcanvas-font-family;
+  font-size: $netcanvas-font-size;
+}
+
+// Headings
+
+$headings-font-family:   inherit !default;
+$headings-font-weight:   300 !default;
+$headings-line-height:   1.1 !default;
+$headings-color:         inherit !default;
+
+// Based of px sizes in style guide (em values were inconsistent)
+$text-sizes: (
+  h1: 1.75rem,
+  h2: 1.25rem,
+  h3: 1.0625rem,
+  h4: 1rem,
+  h5: .75rem,
+);
+
+@mixin text($text-size) {
+  font-family: $headings-font-family;
+  font-size: map-get($text-sizes, $text-size);
+  font-weight: $headings-font-weight;
+  letter-spacing: .05rem;
+  line-height: $headings-line-height;
+}
+
+@each $text-size in $text-sizes {
+  $text-size-name: nth($text-size, 1);
+
+  #{$text-size-name} {
+    @include text($text-size-name);
+  }
+}
