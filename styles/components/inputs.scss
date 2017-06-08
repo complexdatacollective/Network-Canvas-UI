@@ -10,7 +10,7 @@
 }
 
 @mixin default-input-type {
-  @include type('title-2');
+  @include typography('title-2');
   font-weight: 700;
 }
 
@@ -38,7 +38,7 @@
     }
 
     &__label {
-      @include type('title-2');
+      @include typography('title-2');
       font-weight: 700;
       position: absolute;
       top: 0;

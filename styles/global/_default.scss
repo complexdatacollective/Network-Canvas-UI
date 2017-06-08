@@ -5,7 +5,7 @@
 @import "core/grid";
 @import "core/functions";
 @import "core/spacing";
-@import "core/type";
+@import "core/typography";
 @import "core/quicksand";
 @import "core/normalize";
 
@@ -211,7 +211,7 @@ $headings-line-height:   1.1 !default;
 
 @if $export-ui-classes {
   @include normalize;
-  @include type-classes;
+  @include typography-classes;
   @include grid-classes;
 }
 

@@ -8,7 +8,7 @@ $-type-map: () !default;
   $-type-map: map-merge($-type-map, ($type-name: $type-group)) !global;
 }
 
-@mixin type($type-name, $type-property: null) {
+@mixin typography($type-name, $type-property: null) {
     @if map-has-key($-type-map, $type-name) {
       $type-group: map-get($-type-map, $type-name);
       @each $breakpoint-name, $type-properties in $type-group {
@@ -25,10 +25,10 @@ $-type-map: () !default;
     }
 }
 
-@mixin type-classes($prefix: 'type--') {
+@mixin typography-classes($prefix: 'type--') {
   @each $type-name, $type-group in $-type-map {
     .#{$prefix}#{$type-name} {
-      @include type($type-name);
+      @include typography($type-name);
     }
   }
 }

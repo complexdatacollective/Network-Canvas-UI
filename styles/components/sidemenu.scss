@@ -14,8 +14,8 @@
     transition: all $animation-standard-duration;
 
     &__heading {
-      @include type('title-1');
-      @include type('medium');
+      @include typography('title-1');
+      @include typography('medium');
       color: color('charcoal');
       text-align: left;
     }
@@ -27,7 +27,7 @@
     }
 
     &__list-item {
-      @include type('title-4');
+      @include typography('title-4');
 
       text-transform: uppercase;
       letter-spacing: 3px;
