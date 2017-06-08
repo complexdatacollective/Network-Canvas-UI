@@ -15,6 +15,7 @@ $-icon-color-modifiers: (
   $icon-class: 'icon'
 ) {
   .#{$icon-class} {
+    height: 50px;
     .cls-1, .cls-3 {
       fill: color('platinum--dark');
     }
