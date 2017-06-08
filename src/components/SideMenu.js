@@ -13,7 +13,11 @@ class SideMenu extends Component {
     ]),
     visible: PropTypes.bool,
     menuItems: PropTypes.array,
-    onClose: PropTypes.func
+    onClose: PropTypes.func,
+    content: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.element
+    ]),
   }
 
   render() {
@@ -22,7 +26,8 @@ class SideMenu extends Component {
       heading,
       visible,
       menuItems,
-      onClose
+      onClose,
+      content
     } = this.props;
 
     const sidemenuClassNames = cx({
@@ -41,6 +46,12 @@ class SideMenu extends Component {
         <h1 className="sidemenu__heading">
           {heading}
         </h1>
+        {
+          content &&
+          <div className="sidemenu__content">
+            {content}
+          </div>
+        }
         <ul className="sidemenu__items">
           {menuItems.map((item, idx) => {
             return (
