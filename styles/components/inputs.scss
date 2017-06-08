@@ -61,3 +61,7 @@
     border-bottom: 1px solid color('white');
   }
 }
+
+@if $export-ui-classes {
+  @include input;
+}

@@ -1,3 +1,5 @@
+$export-ui-classes: true !default;
+
 @import "core/animation";
 @import "core/bem";
 @import "core/breakpoints";
@@ -206,6 +208,12 @@ $headings-line-height:   1.1 !default;
     font-weight: 100
   )
 );
+
+@if $export-ui-classes {
+  @include normalize;
+  @include type-classes;
+  @include grid-classes;
+}
 
 // TODO - when these variables are removed, they cause breaking changes in Network Canvas app, but they are redundant, so eventually they should be deprecated from the main APP
 $network-canvas-coral: #e2215b;

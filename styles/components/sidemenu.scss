@@ -53,3 +53,7 @@
   }
 }
 
+@if $export-ui-classes {
+  @include sidemenu;
+}
+

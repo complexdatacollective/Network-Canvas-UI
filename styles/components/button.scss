@@ -84,3 +84,7 @@
     outline: none;
   }
 }
+
+@if $export-ui-classes {
+  @include button;
+}
