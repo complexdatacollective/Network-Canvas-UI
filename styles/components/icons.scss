@@ -121,3 +121,7 @@ $-icon-color-modifiers: (
 
   }
 }
+
+@if $export-ui-classes {
+  @include icon;
+}
