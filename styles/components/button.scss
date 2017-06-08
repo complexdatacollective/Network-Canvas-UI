@@ -10,8 +10,8 @@
 }
 
 @mixin default-button-type {
-  @include type('title-2');
-  @include type('bold');
+  @include typography('title-2');
+  @include typography('bold');
   letter-spacing: 3px;
   text-transform: uppercase;
   color: color('white');
@@ -50,7 +50,7 @@
       min-width: inherit;
       min-height: inherit;
       padding: 2em 4em;
-      @include type('copy-small');
+      @include typography('copy-small');
     }
 
     &__content {
@@ -83,4 +83,8 @@
   &:focus {
     outline: none;
   }
+}
+
+@if $export-ui-classes {
+  @include button;
 }

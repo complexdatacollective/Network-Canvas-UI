@@ -41,7 +41,6 @@ class Button extends Component {
         );
       }
     }
-    console.log(icon);
     return iconElement;
   }
 

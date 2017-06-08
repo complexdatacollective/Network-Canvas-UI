@@ -1,11 +1,4 @@
 @import '../../styles/all';
-@import '_grid';
-
-@include reset;
-@include type-classes;
-@include button;
-@include icon;
-@include input;
 
 .app {
   display: flex;
@@ -13,18 +6,15 @@
   width: 100%;
   background-color: palette('dark-background');
   color: color('white');
+
+  &__content {
+    @include sidemenu-visible;
+  }
 }
 
 @include block('sidenav') {
   max-width: 250px;
   flex: 0 0 30%;
-  background-color: color('cyber-grape');
-
-  @include element('list') {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
 }
 
 .color {
