@@ -24,6 +24,8 @@ $export-ui-classes: true !default;
   display: flex;
 }
 
+// Default Palette Settings
+// =============================================================================
 @include palette-set('primary', color('sea-green'));
 @include palette-set('menu', color('white'));
 @include palette-set('selected', color('white'));
