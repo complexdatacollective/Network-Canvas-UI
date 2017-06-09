@@ -10,7 +10,7 @@
 }
 
 @mixin default-input-type {
-  @include type('title-2');
+  @include typography('title-2');
   font-weight: 700;
 }
 
@@ -38,20 +38,30 @@
     }
 
     &__label {
-      @include type('title-2');
+      @include typography('title-2');
       font-weight: 700;
       position: absolute;
+      top: 0;
+      left: 0;
+
       transition: all 250ms ease-in-out;
       transform: scale(1) translate(0, 0);
       transform-origin: left top 0px;
       pointer-events: none;
       user-select: none;
       z-index: 1;
-      top: 0;
+
+      &--active {
+        transform: scale(.6) translate(0, 60px);
+      }
     }
 
     font-family: inherit;
     color: color('white');
     border-bottom: 1px solid color('white');
   }
+}
+
+@if $export-ui-classes {
+  @include input;
 }
