@@ -1,13 +1,14 @@
-@import "core/animation";
-@import "core/bem";
-@import "core/breakpoints";
-@import "core/color";
-@import "core/grid";
-@import "core/functions";
-@import "core/spacing";
-@import "core/typography";
-@import "core/quicksand";
-@import "core/normalize";
+@import 'core/animation';
+@import 'core/bem';
+@import 'core/breakpoints';
+@import 'core/color';
+@import 'core/palette';
+@import 'core/grid';
+@import 'core/functions';
+@import 'core/spacing';
+@import 'core/typography';
+@import 'core/quicksand';
+@import 'core/normalize';
 
 $export-ui-classes: true !default;
 
@@ -23,84 +24,27 @@ $export-ui-classes: true !default;
   display: flex;
 }
 
-// Default Color Swatches
+// Default Palette Settings
 // =============================================================================
-// Primary
-@include color-set('nc-coral', #E2215B); // node color
-@include color-set('mustard', #F2B700); // connection color
-@include color-set('mustard--dark', #DBA500);
-@include color-set('sea-green', #00C9A2); // primary action color
-@include color-set('white', #FFFFFF); // type / selected color
-@include color-set('slate-blue', #6B72EC); // settings color
-@include color-set('navy-taupe', #2D2955); // background
-@include color-set('cyber-grape', #3A3A75); // light background
-@include color-set('rich-black', #16152B); // dark background
-@include color-set('charcoal', #6D6F76); // text / deselected color
-@include color-set('platinum', #F2F6F7); // panel background color
-@include color-set('platinum--dark', #DAE3E5); // divider color
-@include color-set('white', #FFFFFF);
+@include palette-set('primary', color('sea-green'));
+@include palette-set('menu', color('white'));
+@include palette-set('selected', color('white'));
+@include palette-set('settings', color('slate-blue'));
+@include palette-set('background', color('navy-taupe'));
+@include palette-set('text', color('white'));
+@include palette-set('tex-muted', color('cyber-grape'));
+@include palette-set('link', color('nc-coral'));
+@include palette-set('light-background', color('cyber-grape'));
+@include palette-set('dark-background', color('rich-black'));
+@include palette-set('headings', color('white'));
+@include palette-set('menu-headings', color('charcoal'));
+@include palette-set('divider', color('platinum--dark'));
 
-// Secondary
-@include color-set('sea-serpent', #0FB2E2);
-@include color-set('sea-serpent--dark', #0FA3CE);
-@include color-set('purple-pizazz', #D30FEF);
-@include color-set('purple-pizazz--dark', #BF0CD8);
-@include color-set('paradise-pink', #FF3A8C);
-@include color-set('paradise-pink--dark', #E8357C);
-@include color-set('cerulean-blue', #0F70FF);
-@include color-set('cerulean-blue--dark', #0F66E8);
-@include color-set('kiwi', #70BF54);
-@include color-set('kiwi--dark', #66AD4C);
+@include palette-set('node-base', color('network-canvas-coral'));
+@include palette-set('node-dark', darken(color('network-canvas-coral'), 5%));
 
-
-// Tertiary
-@include color-set('neon-carrot', #F7891E);
-@include color-set('neon-carrot--dark', #E07C1C);
-@include color-set('barbie-pink', #ED008C);
-@include color-set('barbie-pink--dark', #D6007F);
-@include color-set('tomato', #E82D3F);
-@include color-set('tomato--dark', #D32B3A);
-
-$roles: (
-  'node': color('network-canvas-coral'),
-  'edge': color('mustard'),
-  'primary': color('sea-green'),
-  'menu': color('white'),
-  'selected': color('white'),
-  'settings': color('slate-blue'),
-  'background': color('navy-taupe'),
-  'text': color('white'),
-  'tex-muted': color('cyber-grape'),
-  'link': color('nc-coral'),
-  'light-background': color('cyber-grape'),
-  'dark-background': color('rich-black'),
-  'headings': color('white'),
-  'menu-headings': color('charcoal'),
-  'divider': color('platinum--dark')
-);
-
-// Collections
-$nodes: (
-  default: (
-    base:   map-get($roles, node),
-    dark:   darken(map-get($roles, node), 5%)
-  )
-);
-
-$edges: (
-  default: (
-    base:   map-get($roles, edge),
-    dark:   darken(map-get($roles, edge), 5%)
-  )
-);
-
-@function node-palette($palette: 'default', $tone: 'base') {
-  @return map-get(map-get($nodes, $palette), $tone);
-}
-
-@function palette($role) {
-  @return map-get($roles, $role);
-}
+@include palette-set('edge-base', color('mustard'));
+@include palette-set('edge-dark', darken(color('mustard'), 5%));
 
 // Default Copy Typography Sizes
 // =============================================================================
