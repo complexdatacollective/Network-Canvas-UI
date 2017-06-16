@@ -1,0 +1,11 @@
+// Paletee setter and mixins
+// =============================================================================
+$-palette-map: () !default;
+
+@mixin palette-set($palette-name, $palette-value) {
+  $-palette-map: map-merge($-palette-map, ($palette-name: $palette-value)) !global;
+}
+
+@function palette($palette-name) {
+  @return map-get($-palette-map, $palette-name);
+}
