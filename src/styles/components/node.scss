@@ -1,0 +1,47 @@
+.node {
+  cursor: pointer;
+  position: relative;
+  margin: 1rem;
+  width: 150px;
+  height: 150px;
+  filter: drop-shadow(0 6px 6px transparentize(palette('dark-background'), .2));
+
+  &__node {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__node-base {
+    fill: palette('node-base');
+  }
+
+  &__node-flash {
+    fill: palette('node-dark');
+  }
+
+  &__node-trim {
+    fill: transparent;
+    stroke: transparent;
+    stroke-width: 3px;
+    transition: stroke $animation-default-easing $animation-fast-duration;
+  }
+
+  &__label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    font-size: 1.5em;
+  }
+
+  &--selected {
+    .node__node-trim {
+      stroke: palette('selected');
+    }
+  }
+}
