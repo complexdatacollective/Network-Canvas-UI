@@ -40,7 +40,7 @@ $-color-alpha-map: (.1, .15, .3, .6, .8, 1) !default;
 // Default Color Swatches
 // =============================================================================
 // Primary
-@include color-set('nc-coral', #e2215b); // node color
+@include color-set('neon-coral', #e2215b); // default node color
 @include color-set('mustard', #f2b700); // connection color
 @include color-set('mustard--dark', #dba500);
 @include color-set('sea-green', #00c9a2); // primary action color

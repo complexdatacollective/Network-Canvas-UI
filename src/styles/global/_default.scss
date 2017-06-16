@@ -40,8 +40,8 @@ $export-ui-classes: true !default;
 @include palette-set('menu-headings', color('charcoal'));
 @include palette-set('divider', color('platinum--dark'));
 
-@include palette-set('node-base', color('network-canvas-coral'));
-@include palette-set('node-dark', darken(color('network-canvas-coral'), 5%));
+@include palette-set('node-base', color('neon-coral'));
+@include palette-set('node-dark', darken(color('neon-coral'), 5%));
 
 @include palette-set('edge-base', color('mustard'));
 @include palette-set('edge-dark', darken(color('mustard'), 5%));
