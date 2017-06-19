@@ -39,54 +39,6 @@ class AppLayout extends Component {
     {
       title: 'Form',
       href: 'form'
-    },
-    {
-      title: 'Home',
-      href: '/'
-    },
-    {
-      title: 'Typography',
-      href: 'typography'
-    },
-    {
-      title: 'Color',
-      href: 'color'
-    },
-    {
-      title: 'Buttons',
-      href: 'buttons'
-    },
-    {
-      title: 'Icons',
-      href: 'icons'
-    },
-    {
-      title: 'Form',
-      href: 'form'
-    },
-    {
-      title: 'Home',
-      href: '/'
-    },
-    {
-      title: 'Typography',
-      href: 'typography'
-    },
-    {
-      title: 'Color',
-      href: 'color'
-    },
-    {
-      title: 'Buttons',
-      href: 'buttons'
-    },
-    {
-      title: 'Icons',
-      href: 'icons'
-    },
-    {
-      title: 'Form',
-      href: 'form'
     }
   ];
 

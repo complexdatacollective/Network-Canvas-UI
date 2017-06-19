@@ -15,6 +15,7 @@
 @include block('sidenav') {
   max-width: 250px;
   flex: 0 0 30%;
+  background-color: palette('light-background');
 }
 
 .color {

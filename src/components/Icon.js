@@ -28,7 +28,7 @@ class Icon extends Component {
       iconComponent,
       {
         className: iconClassNames,
-        props: {...this.props}
+        ...this.props
       }
     );
   }
