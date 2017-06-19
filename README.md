@@ -56,6 +56,14 @@ Or alternatively include all styles in your main stylesheet and add the mixins y
 @include input;
 ```
 
+### Icons
+
+Adding a new icon requires that we copy it over to the `lib` directory and create a corresponding react icon.
+
+When you add a new svg file to `src/assets/img/icon` run
+
+``npmbin`/svg2react filename.svg` and then run `npm run prepublish`
+
 ## What's included
 
 ### Components
