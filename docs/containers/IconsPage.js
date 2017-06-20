@@ -43,11 +43,11 @@ class IconsPage extends Component {
     ];
 
     const narrativeIcons = [
-      // 'add-a-context',
+      'add-a-context',
       'add-a-person',
-      // 'add-a-place',
-      // 'add-a-relationship',
-      // 'add-a-screen',
+      'add-a-place',
+      'add-a-relationship',
+      'add-a-screen',
       'highlighted',
       'links',
       'contexts',
@@ -55,13 +55,19 @@ class IconsPage extends Component {
       'warning'
     ];
 
-
     return (
       <div className="grid__container">
         <h1 className="type--title-1">Network Canvas | Icons</h1>
         <div className="grid__item">
           <h2 className="type--title-2">All Icons</h2>
-
+          {[...menuIcons, ...actionsIcons, ...narrativeIcons].map((iconName, idx) => {
+            return (
+              <Icon
+                key={`${iconName}-${idx}`}
+                name={`${iconName}`}
+              />
+            );
+          })}
         </div>
         <div className="grid__item">
           <h2 className="type--title-2">Icon Colours</h2>
