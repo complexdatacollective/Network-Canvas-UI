@@ -47,76 +47,110 @@ $-icon-color-modifiers: (
           fill: color(#{$color-name});
         }
       }
+
+      // action / notification icons are a bit more detailed
+      // and need to be styled individually
+      &[name="add-a-context"] {
+        .cls-1 {
+          fill: color('sea-green');
+        }
+        .cls-2 {
+          fill: color('platinum--dark', .3);
+        }
+        .cls-3 {
+          fill: color('platinum--dark', .6);
+        }
+        .cls-4 {
+          fill: color('platinum');
+        }
+        .cls-5 {
+          fill: color('platinum--dark');
+        }
+        .cls-6 {
+          fill: color('platinum');
+        }
+        .cls-7 {
+          fill: color('tomato');
+        }
+        .cls-8 {
+          fill: color('tomato--dark');
+        }
+      }
+
+      &[name="add-a-person"], &[name="add-a-relationship"] {
+        .cls-1 {
+          fill: color('sea-green');
+        }
+        .cls-2 {
+          fill: color('platinum');
+        }
+        .cls-3 {
+          fill: color('platinum--dark');
+        }
+        .cls-4 {
+          fill: color('tomato');
+        }
+        .cls-5 {
+          fill: color('tomato--dark');
+        }
+        .cls-6 {
+          fill: color('platinum');
+        }
+      }
+
+      &[name="add-a-place"] {
+        .cls-1 {
+          fill: color('sea-green');
+        }
+        .cls-2 {
+          fill: color('platinum');
+        }
+        .cls-3 {
+          fill: color('tomato');
+        }
+        .cls-4 {
+          fill: color('tomato--dark');
+        }
+        .cls-5 {
+          fill: color('platinum');
+        }
+        .cls-6 {
+          fill: color('platinum--dark');
+        }
+      }
+
+      &[name="add-a-screen"] {
+        .cls-1 {
+          fill: color('sea-green');
+        }
+        .cls-2 {
+          fill: color('platinum');
+        }
+        .cls-3 {
+          fill: color('tomato');
+        }
+        .cls-4 {
+          fill: color('tomato--dark');
+        }
+        .cls-5 {
+          fill: color('platinum--dark');
+        }
+        .cls-6 {
+          fill: color('platinum');
+        }
+      }
     }
 
-    // action / notification icons are a bit more detailed
-    // and need to be styled individually
-    #add-a-context {
+    &[name="cancel"],
+    &[name="reset"],
+    &[name="next-arrow"],
+    &[name="back-arrow"],
+    &[name="form-arrow-right"],
+    &[name="form-arrow-left"],
+    &[name="toggle-on"],
+    &[name="toggle-off"] {
       .cls-1 {
-        fill: color('sea-green');
-      }
-      .cls-2 {
-        fill: color('platinum--dark', .3);
-      }
-      .cls-3 {
-        fill: color('platinum--dark', .6);
-      }
-      .cls-4 {
-        fill: color('platinum');
-      }
-      .cls-5 {
-        fill: color('platinum--dark');
-      }
-      .cls-6 {
-        fill: color('platinum');
-      }
-      .cls-7 {
-        fill: color('tomato');
-      }
-      .cls-8 {
-        fill: color('tomato--dark');
-      }
-    }
-
-    #add-a-person {
-      .cls-1 {
-        fill: color('sea-green');
-      }
-      .cls-2 {
-        fill: color('platinum');
-      }
-      .cls-3 {
-        fill: color('platinum--dark');
-      }
-      .cls-4 {
-        fill: color('tomato');
-      }
-      .cls-5 {
-        fill: color('tomato--dark');
-      }
-      .cls-6 {
-        fill: color('platinum');
-      }
-    }
-
-    #add-a-place {
-      .cls-1 {
-        fill: color('sea-green');
-      }
-      .cls-2 {
-        fill: color('platinum');
-      }
-      .cls-3 {
-        fill: color('tomato');
-      }
-      .cls-4 {
-        fill: color('tomato--dark');
-      }
-      .cls-5 {
-        fill: color('platinum');
-      }
-      .cls-6 {
-        fill: color('platinum--dark');
+        fill: transparent;
       }
     }
 
