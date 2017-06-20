@@ -222,6 +222,15 @@ $-icon-color-modifiers: (
       fill: color('platinum--dark');
     }
   }
+
+  &[name="highlighted"] {
+    .cls-4 {
+      fill: color('#{$main-color}--dark');
+    }
+    .cls-5 {
+      fill: color('#{$main-color}');
+    }
+  }
 }
 
 @mixin icon (
@@ -296,7 +305,6 @@ $-icon-color-modifiers: (
     &[name="warning"],
     &[name="edit"],
     &[name="trash-bin"],
-    &[name="menu"],
     &[name="settings"],
     &[name="toggle-off"],
     &[name="toggle-on"] {
@@ -304,6 +312,31 @@ $-icon-color-modifiers: (
       width: $icon-medium-width;
     }
 
+    // menu icons
+    &[name="menu"],
+    &[name="menu-name-generator"],
+    &[name="menu-ordinal"],
+    &[name="menu-category"],
+    &[name="menu-sociogram"],
+    &[name="menu-map"],
+    &[name="menu-custom-interface"],
+    &[name="menu-default-interface"],
+    &[name="menu-new-session"],
+    &[name="menu-download-data"],
+    &[name="menu-purge-data"],
+    &[name="menu-quit"],
+    &[name="highlighted"],
+    &[name="links"],
+    &[name="contexts"] {
+      height: $icon-small-height;
+      width: $icon-small-width;
+    }
+
+    // other
+    &[name="cancel"],
+    &[name="reset"] {
+      height: $icon-small-height;
+    }
   }
 }
 
