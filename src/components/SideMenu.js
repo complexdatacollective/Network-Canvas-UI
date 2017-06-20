@@ -39,9 +39,9 @@ class SideMenu extends Component {
     return (
       <nav className={sidemenuClassNames}>
         <div className="sidemenu__close">
-          <button onClick={onClose}>
+          <div onClick={onClose}>
             <Icon name="close" />
-          </button>
+          </div>
         </div>
         <h1 className="sidemenu__heading">
           {heading}

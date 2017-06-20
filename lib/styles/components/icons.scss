@@ -3,6 +3,15 @@
 
 @import "../global/default";
 
+$icon-dimension-base: 35px !default;
+
+$icon-small-width: $icon-dimension-base !default;
+$icon-small-height: $icon-dimension-base !default;
+$icon-medium-width: $icon-dimension-base * 2 !default;
+$icon-medium-height: $icon-dimension-base * 2 !default;
+$icon-large-width: $icon-dimension-base * 4 !default;
+$icon-large-height: $icon-dimension-base * 4 !default;
+
 $-icon-color-modifiers: (
   'sea-serpent',
   'purple-pizazz',
@@ -10,6 +19,219 @@ $-icon-color-modifiers: (
   'cerulean-blue',
   'paradise-pink'
 ) !default;
+
+@mixin special-icon-colors(
+  $main-color: 'sea-green'
+) {
+  // action / notification icons are a bit more detailed
+  // and need to be styled individually
+  &[name="add-a-context"] {
+    .cls-1 {
+      fill: color('#{$main-color}');
+    }
+    .cls-2 {
+      fill: color('platinum--dark', .3);
+    }
+    .cls-3 {
+      fill: color('platinum--dark', .6);
+    }
+    .cls-4 {
+      fill: color('platinum');
+    }
+    .cls-5 {
+      fill: color('platinum--dark');
+    }
+    .cls-6 {
+      fill: color('platinum');
+    }
+    .cls-7 {
+      fill: color('tomato');
+    }
+    .cls-8 {
+      fill: color('tomato--dark');
+    }
+  }
+
+  &[name="add-a-person"], &[name="add-a-relationship"] {
+    .cls-1 {
+      fill: color('#{$main-color}');
+    }
+    .cls-2 {
+      fill: color('platinum');
+    }
+    .cls-3 {
+      fill: color('platinum--dark');
+    }
+    .cls-4 {
+      fill: color('tomato');
+    }
+    .cls-5 {
+      fill: color('tomato--dark');
+    }
+    .cls-6 {
+      fill: color('platinum');
+    }
+  }
+
+  &[name="add-a-place"] {
+    .cls-1 {
+      fill: color('#{$main-color}');
+    }
+    .cls-2 {
+      fill: color('platinum');
+    }
+    .cls-3 {
+      fill: color('tomato');
+    }
+    .cls-4 {
+      fill: color('tomato--dark');
+    }
+    .cls-5 {
+      fill: color('platinum');
+    }
+    .cls-6 {
+      fill: color('platinum--dark');
+    }
+  }
+
+  &[name="add-a-screen"] {
+    .cls-1 {
+      fill: color('#{$main-color}');
+    }
+    .cls-2 {
+      fill: color('platinum');
+    }
+    .cls-3 {
+      fill: color('tomato');
+    }
+    .cls-4 {
+      fill: color('tomato--dark');
+    }
+    .cls-5 {
+      fill: color('platinum--dark');
+    }
+    .cls-6 {
+      fill: color('platinum');
+    }
+  }
+
+  &[name="error"] {
+    .cls-1 {
+      fill: color('tomato');
+    }
+    .cls-2 {
+      fill: color('platinum');
+    }
+    .cls-3 {
+      fill: color('platinum');
+    }
+    .cls-4 {
+      fill: color('platinum--dark');
+    }
+    .cls-5 {
+      fill: color('tomato--dark');
+    }
+    .cls-6 {
+      fill: color('tomato');
+    }
+    .cls-8 {
+      fill: color('#{$main-color}');
+    }
+  }
+
+  &[name="info"] {
+    .cls-1 {
+      fill: color('tomato');
+    }
+    .cls-2 {
+      fill: color('tomato--dark');
+    }
+    .cls-3 {
+      fill: color('platinum');
+    }
+    .cls-4 {
+      fill: color('platinum--dark');
+    }
+    .cls-5 {
+      fill: color('#{$main-color}');
+    }
+  }
+
+  &[name="warning"] {
+    .cls-1 {
+      fill: color('platinum');
+    }
+    .cls-2 {
+      fill: color('platinum--dark');
+    }
+    .cls-3 {
+      fill: color('tomato');
+    }
+    .cls-4 {
+      fill: color('tomato--dark');
+    }
+  }
+
+  &[name="edit"] {
+    .cls-1 {
+      fill: color('#{$main-color}');
+    }
+    .cls-2 {
+      fill: color('#{$main-color}--dark');
+    }
+    .cls-3 {
+      fill: color('tomato');
+    }
+    .cls-4 {
+      fill: color('tomato--dark');
+    }
+    .cls-5 {
+      fill: color('tomato--dark');
+    }
+    .cls-6 {
+      fill: color('platinum');
+    }
+    .cls-7 {
+      fill: color('platinum--dark');
+    }
+    .cls-8 {
+      fill: color('platinum--dark');
+    }
+  }
+
+  &[name="trash-bin"] {
+    .cls-1 {
+      fill: color('platinum');
+    }
+    .cls-2 {
+      fill: color('#{$main-color}');
+    }
+    .cls-3 {
+      fill: color('#{$main-color}--dark');
+    }
+  }
+
+  &[name="settings"] {
+    .cls-3 {
+      fill: transparent;
+    }
+  }
+
+  &[name="toggle-off"] {
+    .cls-2 {
+      fill: color('platinum--dark');
+    }
+  }
+
+  &[name="highlighted"] {
+    .cls-4 {
+      fill: color('#{$main-color}--dark');
+    }
+    .cls-5 {
+      fill: color('#{$main-color}');
+    }
+  }
+}
 
 @mixin icon (
   $icon-class: 'icon'
@@ -24,6 +246,7 @@ $-icon-color-modifiers: (
       fill: color('platinum');
     }
 
+    @include special-icon-colors;
     // simpler icons can be targeted with color modifiers
     @each $color-name in $-icon-color-modifiers {
       @if index($-icon-color-modifiers, $color-name)==null {
@@ -32,7 +255,7 @@ $-icon-color-modifiers: (
 
       @include modifier('primary') {
         .cls-1, .cls-3 {
-          fill: color('sea-green', 0.8);
+          fill: color('sea-green--dark');
         }
         .cls-2 {
           fill: color('sea-green');
@@ -46,98 +269,9 @@ $-icon-color-modifiers: (
         .cls-2 {
           fill: color(#{$color-name});
         }
-      }
 
-      // action / notification icons are a bit more detailed
-      // and need to be styled individually
-      &[name="add-a-context"] {
-        .cls-1 {
-          fill: color('sea-green');
-        }
-        .cls-2 {
-          fill: color('platinum--dark', .3);
-        }
-        .cls-3 {
-          fill: color('platinum--dark', .6);
-        }
-        .cls-4 {
-          fill: color('platinum');
-        }
-        .cls-5 {
-          fill: color('platinum--dark');
-        }
-        .cls-6 {
-          fill: color('platinum');
-        }
-        .cls-7 {
-          fill: color('tomato');
-        }
-        .cls-8 {
-          fill: color('tomato--dark');
-        }
-      }
-
-      &[name="add-a-person"], &[name="add-a-relationship"] {
-        .cls-1 {
-          fill: color('sea-green');
-        }
-        .cls-2 {
-          fill: color('platinum');
-        }
-        .cls-3 {
-          fill: color('platinum--dark');
-        }
-        .cls-4 {
-          fill: color('tomato');
-        }
-        .cls-5 {
-          fill: color('tomato--dark');
-        }
-        .cls-6 {
-          fill: color('platinum');
-        }
-      }
-
-      &[name="add-a-place"] {
-        .cls-1 {
-          fill: color('sea-green');
-        }
-        .cls-2 {
-          fill: color('platinum');
-        }
-        .cls-3 {
-          fill: color('tomato');
-        }
-        .cls-4 {
-          fill: color('tomato--dark');
-        }
-        .cls-5 {
-          fill: color('platinum');
-        }
-        .cls-6 {
-          fill: color('platinum--dark');
-        }
-      }
-
-      &[name="add-a-screen"] {
-        .cls-1 {
-          fill: color('sea-green');
-        }
-        .cls-2 {
-          fill: color('platinum');
-        }
-        .cls-3 {
-          fill: color('tomato');
-        }
-        .cls-4 {
-          fill: color('tomato--dark');
-        }
-        .cls-5 {
-          fill: color('platinum--dark');
-        }
-        .cls-6 {
-          fill: color('platinum');
-        }
+        // edit the fancy icon colors
+        @include special-icon-colors($main-color: $color-name);
       }
     }
 
@@ -154,6 +288,55 @@ $-icon-color-modifiers: (
       }
     }
 
+    // icon sizes
+    // add button icons
+    &[name="add-a-person"],
+    &[name="add-a-context"],
+    &[name="add-a-relationship"],
+    &[name="add-a-screen"],
+    &[name="add-a-place"] {
+      height: $icon-large-height;
+      width: $icon-large-width;
+    }
+
+    // action icons
+    &[name="error"],
+    &[name="info"],
+    &[name="warning"],
+    &[name="edit"],
+    &[name="trash-bin"],
+    &[name="settings"],
+    &[name="toggle-off"],
+    &[name="toggle-on"] {
+      height: $icon-medium-height;
+      width: $icon-medium-width;
+    }
+
+    // menu icons
+    &[name="menu"],
+    &[name="menu-name-generator"],
+    &[name="menu-ordinal"],
+    &[name="menu-category"],
+    &[name="menu-sociogram"],
+    &[name="menu-map"],
+    &[name="menu-custom-interface"],
+    &[name="menu-default-interface"],
+    &[name="menu-new-session"],
+    &[name="menu-download-data"],
+    &[name="menu-purge-data"],
+    &[name="menu-quit"],
+    &[name="highlighted"],
+    &[name="links"],
+    &[name="contexts"] {
+      height: $icon-small-height;
+      width: $icon-small-width;
+    }
+
+    // other
+    &[name="cancel"],
+    &[name="reset"] {
+      height: $icon-small-height;
+    }
   }
 }
 
