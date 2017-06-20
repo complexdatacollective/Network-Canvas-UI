@@ -21,7 +21,8 @@
     "deploy:prod": "better-npm-run deploy:prod",
     "codecov": "cat coverage/*/lcov.info | codecov",
     "clean:publish": "rimraf lib",
-    "prepublish": "npm run clean:publish && babel ./src --out-dir ./lib --source-maps --copy-files --presets env,react,stage-0 --plugins=add-module-exports,transform-class-properties"
+    "build:dist": "babel ./src --out-dir ./lib --source-maps --copy-files --presets env,react,stage-0 --plugins=add-module-exports,transform-class-properties",
+    "prepublish": "npm run clean:publish && npm run build:dist"
   },
   "betterScripts": {
     "compile": {
