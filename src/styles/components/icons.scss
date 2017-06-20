@@ -3,6 +3,15 @@
 
 @import "../global/default";
 
+$icon-dimension-base: 35px !default;
+
+$icon-small-width: $icon-dimension-base !default;
+$icon-small-height: $icon-dimension-base !default;
+$icon-medium-width: $icon-dimension-base * 2 !default;
+$icon-medium-height: $icon-dimension-base * 2 !default;
+$icon-large-width: $icon-dimension-base * 4 !default;
+$icon-large-height: $icon-dimension-base * 4 !default;
+
 $-icon-color-modifiers: (
   'sea-serpent',
   'purple-pizazz',
@@ -152,6 +161,25 @@ $-icon-color-modifiers: (
       .cls-1 {
         fill: transparent;
       }
+    }
+
+    // icon sizes
+    &[name="add-a-person"],
+    &[name="add-a-context"],
+    &[name="add-a-relationship"],
+    &[name="add-a-screen"],
+    &[name="add-a-place"] {
+      height: $icon-large-height;
+      width: $icon-large-width;
+    }
+
+    &[name="error"],
+    &[name="add-a-context"],
+    &[name="add-a-relationship"],
+    &[name="add-a-screen"],
+    &[name="add-a-place"] {
+      height: $icon-large-height;
+      width: $icon-large-width;
     }
 
   }

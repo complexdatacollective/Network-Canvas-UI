@@ -13,46 +13,55 @@ class IconsPage extends Component {
       'cerulean-blue'
     ];
 
-    const menuIcons = [
+    const addButtonIcons = [
+      'add-a-context',
+      'add-a-person',
+      'add-a-place',
+      'add-a-relationship',
+      'add-a-screen'
+    ];
+
+    const actionsIcons = [
+      'error',
+      'info',
+      'warning',
+      'edit',
+      'trash-bin',
+      'settings',
       'menu',
-      'menu-ng',
-      'menu-ord',
-      'menu-cat',
+      'back-arrow',
+      'next-arrow',
+      'toggle-on',
+      'toggle-off',
+      'form-arrow-left',
+      'form-arrow-right',
+      'reset',
+      'cancel',
+      'close'
+    ];
+
+    const stagesMenuIcons = [
+      'menu',
+      'menu-name-generator',
+      'menu-ordinal',
+      'menu-category',
       'menu-sociogram',
       'menu-map',
       'menu-custom-interface',
-      'menu-default-interface',
+      'menu-default-interface'
+    ];
+
+    const settingsMenuIcons = [
       'menu-new-session',
       'menu-download-data',
       'menu-purge-data',
       'menu-quit'
     ];
 
-    const actionsIcons = [
-      'back-arrow',
-      'next-arrow',
-      'cancel',
-      'close',
-      'edit',
-      'form-arrow-left',
-      'form-arrow-right',
-      'reset',
-      'toggle-on',
-      'toggle-off',
-      'settings'
-    ];
-
-    const narrativeIcons = [
-      'add-a-context',
-      'add-a-person',
-      'add-a-place',
-      'add-a-relationship',
-      'add-a-screen',
+    const narrativePanelIcons = [
       'highlighted',
       'links',
-      'contexts',
-      'trash-bin',
-      'warning'
+      'contexts'
     ];
 
     return (
@@ -60,7 +69,13 @@ class IconsPage extends Component {
         <h1 className="type--title-1">Network Canvas | Icons</h1>
         <div className="grid__item">
           <h2 className="type--title-2">All Icons</h2>
-          {[...menuIcons, ...actionsIcons, ...narrativeIcons].map((iconName, idx) => {
+          {[
+            ...addButtonIcons,
+            ...actionsIcons,
+            ...stagesMenuIcons,
+            ...settingsMenuIcons,
+            ...narrativePanelIcons
+          ].map((iconName, idx) => {
             return (
               <Icon
                 key={`${iconName}-${idx}`}
@@ -76,7 +91,7 @@ class IconsPage extends Component {
               <div key={idx} className="grid__item">
                 <h2 className="type--title-2">{color}</h2>
                 <h3 className="type--title-4">Stages Menu</h3>
-                {menuIcons.map((menuIcon) => {
+                {stagesMenuIcons.map((menuIcon) => {
                   return (
                     <Icon
                       key={`${menuIcon}-${idx}`}
@@ -94,7 +109,7 @@ class IconsPage extends Component {
                   );
                 })}
                 <h3 className="type--title-4">Narrative Panel</h3>
-                {narrativeIcons.map((narrativeIcon) => {
+                {narrativePanelIcons.map((narrativeIcon) => {
                   return (
                     <Icon
                       key={`${narrativeIcon}-${idx}`}
