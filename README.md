@@ -80,6 +80,8 @@ Docs folder is used to develop any sort of docs or to see the components exist o
 
 /src and /styles folder compile into /lib where they are then exported into the Network Canvas app.
 
+Before committing, run `npm run prepublish` so that all the appropriate files are in the `/lib/` directory.
+
 ### Components
 
 - Run `npm run dev` to run a dev server and make chnages to components and styles in `/src/`, then link to them in the relevant `index.js`.
