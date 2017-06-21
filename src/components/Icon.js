@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-import icons from '../utils/getIcons';
+import icons from '../utils/getIcon';
 
 class Icon extends Component {
   static propTypes = {
@@ -23,7 +23,10 @@ class Icon extends Component {
       [`icon--${color}`]: !!color
     }, [className]);
 
-    const iconComponent = icons[name];
+    console.log(icons(name));
+
+    const iconComponent = icons(name);
+
     return React.createElement(
       iconComponent,
       {

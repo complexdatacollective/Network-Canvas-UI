@@ -22,6 +22,7 @@
     "codecov": "cat coverage/*/lcov.info | codecov",
     "dist:clean": "rimraf lib",
     "dist:build": "babel ./src --out-dir ./lib --source-maps --copy-files --presets env,react,stage-0 --plugins=add-module-exports,transform-class-properties",
+    "dist:icon-index": "node ./bin/build-icon-dictionary.js > src/assets/img/icons/index.js",
     "dist": "npm run dist:clean && npm run dist:build",
     "prepublish": "npm run dist"
   },
@@ -162,7 +163,7 @@
     "eslint-plugin-import": "^2.3.0",
     "eslint-plugin-jsx-a11y": "^5.0.3",
     "eslint-plugin-promise": "^3.0.0",
-    "eslint-plugin-react": "^7.0.1",
+    "eslint-plugin-react": "^7.1.0",
     "eslint-plugin-standard": "^2.0.0",
     "sass-lint": "^1.10.2"
   }
