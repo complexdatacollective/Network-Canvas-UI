@@ -7,11 +7,19 @@ import classNames from 'classnames';
   */
 const Node = (props) => {
   const {
-    label,
     selected,
+    placeholder,
   } = props;
 
-  const classes = classNames('node', { 'node--selected': selected });
+  const classes = classNames(
+    'node',
+    {
+      'node--selected': selected,
+      'node--placeholder': placeholder,
+    },
+  );
+
+  const label = placeholder ? '+' : props.label;
 
   return (
     <div className={classes}>
@@ -39,11 +47,13 @@ const Node = (props) => {
 Node.propTypes = {
   label: PropTypes.string,
   selected: PropTypes.bool,
+  placeholder: PropTypes.bool,
 };
 
 Node.defaultProps = {
   label: 'Node',
   selected: false,
+  placeholder: false,
 };
 
 export default Node;

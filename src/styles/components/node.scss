@@ -44,4 +44,10 @@
       stroke: palette('selected');
     }
   }
+
+  &--placeholder {
+    // sass-lint:disable no-important
+    opacity: .25 !important
+    transition: none !important;
+  }
 }
