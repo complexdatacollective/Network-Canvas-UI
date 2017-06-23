@@ -1,6 +1,6 @@
 {
   "name": "network-canvas-ui",
-  "version": "1.1.1",
+  "version": "1.2.1",
   "description": "Styles and React components for the Network Canvas project",
   "main": "lib/components/index.js",
   "scripts": {
@@ -20,9 +20,10 @@
     "deploy:dev": "better-npm-run deploy:dev",
     "deploy:prod": "better-npm-run deploy:prod",
     "codecov": "cat coverage/*/lcov.info | codecov",
-    "clean:publish": "rimraf lib",
-    "build:dist": "babel ./src --out-dir ./lib --source-maps --copy-files --presets env,react,stage-0 --plugins=add-module-exports,transform-class-properties",
-    "prepublish": "npm run clean:publish && npm run build:dist"
+    "dist:clean": "rimraf lib",
+    "dist:build": "babel ./src --out-dir ./lib --source-maps --copy-files --presets env,react,stage-0 --plugins=add-module-exports,transform-class-properties",
+    "dist": "npm run dist:clean && npm run dist:build",
+    "prepublish": "npm run dist"
   },
   "betterScripts": {
     "compile": {

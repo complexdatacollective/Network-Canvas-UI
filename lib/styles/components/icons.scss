@@ -327,7 +327,8 @@ $-icon-color-modifiers: (
     &[name="menu-quit"],
     &[name="highlighted"],
     &[name="links"],
-    &[name="contexts"] {
+    &[name="contexts"],
+    &[name="close"] {
       height: $icon-small-height;
       width: $icon-small-width;
     }
