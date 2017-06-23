@@ -47,6 +47,7 @@ $-color-alpha-map: (.1, .15, .3, .6, .8, 1) !default;
 @include color-set('sea-green--dark', #00a081);
 @include color-set('white', #fff); // type / selected color
 @include color-set('slate-blue', #6b72ec); // settings color
+@include color-set('slate-blue--dark', #555bbc); // settings color
 @include color-set('navy-taupe', #2d2955); // background
 @include color-set('cyber-grape', #3a3a75); // light background
 @include color-set('rich-black', #16152b); // dark background

@@ -234,6 +234,15 @@ $-icon-color-modifiers: (
   }
 }
 
+@mixin color-icon($color: 'sea-green') {
+  .cls-1, .cls-3 {
+    fill: color('#{$color}--dark');
+  }
+  .cls-2 {
+    fill: color('#{$color}');
+  }
+}
+
 @mixin icon (
   $icon-class: 'icon'
 ) {
@@ -255,21 +264,11 @@ $-icon-color-modifiers: (
       }
 
       @include modifier('primary') {
-        .cls-1, .cls-3 {
-          fill: color('sea-green--dark');
-        }
-        .cls-2 {
-          fill: color('sea-green');
-        }
+        @include color-icon;
       }
 
       @include modifier(#{$color-name}) {
-        .cls-1, .cls-3 {
-          fill: color(#{$color-name}--dark);
-        }
-        .cls-2 {
-          fill: color(#{$color-name});
-        }
+        @include color-icon($color-name)
 
         // edit the fancy icon colors
         @include special-icon-colors($main-color: $color-name);

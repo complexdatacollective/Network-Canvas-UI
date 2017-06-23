@@ -10,7 +10,8 @@ class IconsPage extends Component {
       'purple-pizazz',
       'paradise-pink',
       'kiwi',
-      'cerulean-blue'
+      'cerulean-blue',
+      'slate-blue'
     ];
 
     const addButtonIcons = [
