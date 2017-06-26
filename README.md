@@ -98,3 +98,15 @@ Before committing, run `npm run prepublish` so that all the appropriate files ar
 ### Styles
 
 Just add the styles in `/styles/` and link to them in the relevant `main.scss`, and you're done!
+
+## Versioning
+
+This project uses [semantic versioning](http://semver.org/):
+
+```
+AA.BB.CC
+```
+
+- AA version when you make incompatible API changes,
+- BB version when you add functionality in a backwards-compatible manner, and
+- CC version when you make backwards-compatible bug fixes.
