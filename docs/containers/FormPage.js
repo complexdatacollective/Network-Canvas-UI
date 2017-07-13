@@ -22,7 +22,7 @@ class FormPage extends Component {
         <h1>Network Canvas | Form</h1>
         <div className="grid__item">
           <TextInput
-            className="input"
+            className="input--wurm"
             name="fName"
             label="First Name"
             placeholder="Baby Wurm"

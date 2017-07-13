@@ -75,7 +75,7 @@ class TextInput extends Component {
     return (
       <div className="input__container">
         <input
-          className="input"
+          className={cx(['input', className])}
           name={name}
           type="text"
           onBlur={this.handleBlur}
@@ -86,6 +86,9 @@ class TextInput extends Component {
         <label className={inputLabelClassName} htmlFor={name}>
           {label}
         </label>
+        <div className={inputErrorClassName}>
+          "Error"
+        </div>
       </div>
     );
   }
