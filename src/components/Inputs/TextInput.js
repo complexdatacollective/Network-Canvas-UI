@@ -4,37 +4,84 @@ import cx from 'classnames';
 
 class TextInput extends Component {
   state = {
-    value: ''
+    hasValue: false,
+    isFocused: false
   }
 
   static propTypes = {
+    className: PropTypes.string,
+    errorText: PropTypes.node,
     name: PropTypes.string,
     label: PropTypes.string,
-    placeholder: PropTypes.string
+    onBlur: PropTypes.func,
+    onChange: PropTypes.func,
+    onFocus: PropTypes.func,
+    placeholder: PropTypes.string,
+    validator: PropTypes.func,
+    value: PropTypes.any
   }
 
-  handleChange = (e) => {
-    this.setState({ value: e.target.value })
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.hasOwnProperty('value')) {
+      let hasValue = Boolean(nextProps.value);
+      if (nextProps.validator) {
+        hasValue = nextProps.validator(nextProps.value);
+      }
+      this.setState({ hasValue })
+    }
+  }
+
+  handleBlur = (e) => {
+    this.setState({ isFocused: false })
+    if (this.props.onBlur) {
+      this.props.onBlur(e);
+    }
+  }
+
+  handleFocus = (e) => {
+    if (this.props.disabled) {
+      return
+    }
+    this.setState({ isFocused: true });
+    if (this.props.onFocus) {
+      this.props.onFocus(e);
+    }
   }
 
   render() {
-    const { name, label, placeholder } = this.props;
+    const {
+      className,
+      errorText,
+      name,
+      label,
+      onChange,
+      placeholder,
+      value,
+      ...rest
+    } = this.props;
 
     const inputLabelClassName = cx({
       'input__label': true,
-      'input__label--active': this.state.value
+      'input__label--active': this.state.hasValue
     })
+
+    const inputErrorClassName = cx({
+      'input__error': true,
+      'input__error--active': this.state.hasValue
+    })
+
+    const showPlaceholder = (this.state.isFocused && !this.state.hasValue) ? placeholder : null;
 
     return (
       <div className="input__container">
-        {placeholder &&
-          <div className="input__placeholder">{placeholder}</div>
-        }
         <input
           className="input"
           name={name}
           type="text"
-          onChange={this.handleChange}
+          onBlur={this.handleBlur}
+          onChange={onChange}
+          onFocus={this.handleFocus}
+          placeholder={showPlaceholder}
         />
         <label className={inputLabelClassName} htmlFor={name}>
           {label}
