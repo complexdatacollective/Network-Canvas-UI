@@ -26,6 +26,14 @@ $animation-default-easing: $animation-android-easing;
   }
 }
 
+@mixin animation($animation-name) {
+  animation-name: $animation-name;
+  animation-duration: $animation-standard-duration;
+  animation-timing-function: $animation-default-easing;
+  animation-delay: 0ms;
+  animation-iteration-count: 1;
+}
+
 $transition-presets: (
   zoom: (
     start: (transform: scale(0, 0), opacity: 0),
