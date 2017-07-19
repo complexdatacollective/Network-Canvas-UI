@@ -38,7 +38,7 @@ You can also webpack the corresponding styles with:
 ```js
 // in LocalComponent.js
 
-import 'network-canvas-ui/lib/styles/example-component';
+import '~network-canvas-ui/lib/styles/example-component';
 ```
 
 Or alternatively include all styles in your main stylesheet and add the mixins you want out of the box:
