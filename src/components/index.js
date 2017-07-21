@@ -1,6 +1,7 @@
 export Button from './Button';
 export Icon from './Icon';
 export TextInput from './Inputs/TextInput';
+export InputLabel from './Inputs/InputLabel';
 export SideMenu from './SideMenu';
 export Node from './Node';
 export Expandable from './Expandable';

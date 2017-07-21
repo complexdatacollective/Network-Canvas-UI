@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { TextInput } from 'Components';
+import { TextInput, InputLabel } from 'Components';
 
 class FormPage extends Component {
   state = {
@@ -27,6 +27,14 @@ class FormPage extends Component {
             label="First Name"
             placeholder="Baby Wurm"
             errorText="Required"
+            onChange={this.handleTextChange}
+            value={this.state.formValues.fName}
+          />
+          <TextInput
+            className="input--wurm"
+            name="fName"
+            label="First Name"
+            placeholder="Baby Wurm"
             onChange={this.handleTextChange}
             value={this.state.formValues.fName}
           />

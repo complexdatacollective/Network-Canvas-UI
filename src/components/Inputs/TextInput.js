@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
+import InputLabel from './InputLabel';
+
 class TextInput extends Component {
   state = {
     hasValue: false,
@@ -83,12 +85,12 @@ class TextInput extends Component {
           onFocus={this.handleFocus}
           placeholder={showPlaceholder}
         />
-        <label className={inputLabelClassName} htmlFor={name}>
-          {label}
-        </label>
-        <div className={inputErrorClassName}>
-          "Error"
-        </div>
+        <InputLabel
+          active={this.state.hasValue}
+          name={name}
+          label={label}
+          errorText={errorText}
+        />
       </div>
     );
   }
