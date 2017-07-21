@@ -15,7 +15,7 @@
 }
 
 
-@mixin input (
+@mixin text-input (
   $input-class: 'input'
 ) {
   .#{$input-class} {
@@ -66,6 +66,68 @@
   }
 }
 
+@mixin checkbox(
+  $checkbox-class: 'checkbox',
+  $toggle-height: 34px,
+  $switch-size: 26px
+) {
+  .#{$checkbox-class} {
+
+
+    @include default-input-type;
+    &__container {
+      position: relative;
+
+      &--toggle {
+        height: $toggle-height * .5;
+        width: $switch-size * 1.5;
+        .#{$checkbox-class} {
+          @include reset-input;
+        }
+      }
+    }
+
+    &__slider {
+      position: absolute;
+      cursor: pointer;
+      background-color: transparent;
+      border: 1px solid #ccc;
+      border-radius: $toggle-height;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      &:before {
+        position: absolute;
+        content: "";
+        border-radius: 50%;
+        height: $switch-size;
+        width: $switch-size;
+        left: $switch-size * -.5;
+        top: $switch-size * -.25;
+        background-color: white;
+        transition: .4s;
+      }
+    }
+  }
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+
 @if $export-ui-classes {
-  @include input;
+  @include text-input;
+  @include checkbox;
 }

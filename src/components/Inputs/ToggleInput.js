@@ -4,7 +4,7 @@ import cx from 'classnames';
 
 import InputLabel from './InputLabel';
 
-class TextInput extends Component {
+class ToggleInput extends Component {
   state = {
     hasValue: false,
     isFocused: false
@@ -56,7 +56,7 @@ class TextInput extends Component {
       errorText,
       name,
       label,
-      onChange,
+      onClick,
       placeholder,
       value,
       ...rest
@@ -75,17 +75,19 @@ class TextInput extends Component {
     const showPlaceholder = (this.state.isFocused && !this.state.hasValue) ? placeholder : null;
 
     return (
-      <div className="input__container">
+      <div
+        className="checkbox__container checkbox__container--toggle"
+        onClick={onClick}
+      >
         <input
-          className={cx(['input', className])}
+          className={cx(['checkbox', className])}
           name={name}
-          type="text"
+          type="checkbox"
           onBlur={this.handleBlur}
-          onChange={onChange}
           onFocus={this.handleFocus}
           placeholder={showPlaceholder}
-          {...rest}
         />
+        <span className="checkbox__slider" />
         <InputLabel
           active={this.state.hasValue}
           name={name}
@@ -97,4 +99,4 @@ class TextInput extends Component {
   }
 }
 
-export default TextInput;
+export default ToggleInput;
