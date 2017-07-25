@@ -34,12 +34,11 @@ class FormPage extends Component {
   }
 
   handleRadioChange = (e) => {
-    console.log(checkVal)
     console.log(e.target.name)
     this.setState({
       formValues: {
         ...this.state.formValues,
-        [e.target.name]: e.target.option
+        [e.target.name]: e.target.value
       }
     })
   }

@@ -65,28 +65,31 @@ class RadioInput extends Component {
     return (
       <div className="input__container">
         <div className="grid__stack">
-          <label className="label--radio">
+          <div className="radio">
+
             <input
               type="radio"
-              className="radio"
-              option="cats"
               checked={value === 'cats'}
+              value="cats"
               onChange={this.props.onChange}
               name="foo"
             />
-              cats
-          </label>
-          <label className="label--radio">
+            <label className="radio-label">
+                cats
+            </label>
+          </div>
+          <div className="radio">
             <input
               type="radio"
-              className="radio"
-              option="dogs"
               checked={value === 'dogs'}
+              value="dogs"
               onChange={this.props.onChange}
               name="foo"
             />
-              dogs
-          </label>
+            <label className="radio-label">
+                dogs
+            </label>
+          </div>
         </div>
         <InputLabel
           active={this.state.hasValue}

@@ -99,7 +99,7 @@
     }
 
     &:checked + .#{$checkbox-class}__slider {
-      background-color: color('cerulean-blue');
+      background-color: color('sea-green');
       &:before {
         transform: translateX(26px);
       }
@@ -137,62 +137,65 @@
 }
 
 @mixin radio() {
-  .label--radio {
-    position: relative;
-
-    margin: .5rem;
-
-
-    cursor: pointer;
-  }
   .radio {
-    position: relative;
-
-    margin: 0 1rem 0 0 ;
-
-    cursor: pointer;
-
-    &:before {
-      transition: transform .4s cubic-bezier(.45,1.8,.5,.75);
-      transform: scale(0,0);
-
-      content: "";
-
+    margin: 0.5rem;
+    input[type="radio"] {
       position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 1;
-
-      width: 14px;
-      height: 14px;
-
-
-      background: color('sea-green');
-
-      border-radius: 50%;
-    }
-
-    &:checked {
-      &:before {
-       transform: scale(1,1);
+      opacity: 0;
+      z-index: 50;
+      width: 100%;
+      height: auto;
+      cursor: pointer;
+      + .radio-label {
+        &:before {
+          content: '';
+          background: transparent;
+          border-radius: 100%;
+          border: 1px solid darken(#ccc, 25%);
+          display: inline-block;
+          width: 1.4em;
+          height: 1.4em;
+          position: relative;
+          top: -0.2em;
+          margin-right: 1em;
+          vertical-align: top;
+          cursor: pointer;
+          text-align: center;
+          transition: all 250ms ease;
+        }
       }
-    }
-
-    &:after {
-      content: "";
-
-      position: absolute;
-      top: -1px;
-      left: -1px;
-
-      width: 18px;
-      height: 18px;
-
-      background: #fff;
-
-      border: 2px solid color('white');
-      opacity: 0.7;
-      border-radius: 50%;
+      &:checked {
+        + .radio-label {
+          &:before {
+            background-color: color('sea-green');
+            box-shadow: inset 0 0 0 4px color('navy-taupe');
+          }
+        }
+      }
+      &:focus {
+        + .radio-label {
+          &:before {
+            outline: none;
+            border-color: color('sea-green');
+          }
+        }
+      }
+      &:disabled {
+        + .radio-label {
+          &:before {
+            box-shadow: inset 0 0 0 4px #ccc;
+            border-color: darken(#ccc, 25%);
+            background: darken(#ccc, 25%);
+          }
+        }
+      }
+      + .radio-label {
+        &:empty {
+          &:before {
+            margin-right: 0;
+          }
+        }
+      }
     }
   }
 }
