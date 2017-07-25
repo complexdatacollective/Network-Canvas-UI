@@ -11,11 +11,10 @@
 
 @mixin default-input-type {
   @include typography('title-2');
-  font-weight: 700;
 }
 
 
-@mixin input (
+@mixin text-input (
   $input-class: 'input'
 ) {
   .#{$input-class} {
@@ -35,29 +34,28 @@
 
     &__container {
       position: relative;
-    }
+      .#{$input-class}__label {
+        @include typography('title-2');
+        position: absolute;
+        top: 0;
+        left: 0;
 
-    &__label {
-      @include typography('title-2');
-      font-weight: 700;
-      position: absolute;
-      top: 0;
-      left: 0;
+        transition: all 250ms ease-in-out;
+        transform: scale(1) translate(0, 0);
+        transform-origin: left top 0px;
+        pointer-events: none;
+        user-select: none;
+        z-index: 1;
 
-      transition: all 250ms ease-in-out;
-      transform: scale(1) translate(0, 0);
-      transform-origin: left top 0px;
-      pointer-events: none;
-      user-select: none;
-      z-index: 1;
-
-      &--active {
-        transform: scale(.6) translate(0, 60px);
+        &--active {
+          transform: scale(.6) translate(0, 60px);
+        }
       }
     }
 
+
     &__error {
-      position: absolute;
+      color: color('tomato');
     }
 
     font-family: inherit;
@@ -66,6 +64,74 @@
   }
 }
 
+@mixin checkbox(
+  $checkbox-class: 'checkbox',
+  $toggle-height: 34px,
+  $switch-size: 26px
+) {
+  .#{$checkbox-class} {
+    &__container {
+      position: relative;
+      cursor: pointer;
+
+      &--toggle {
+        .#{$checkbox-class} {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+          z-index: 50;
+          cursor: pointer;
+        }
+      }
+
+      .input__label {
+        position: static;
+        cursor: pointer;
+      }
+    }
+
+    &:checked + .#{$checkbox-class}__slider {
+      background-color: color('cerulean-blue');
+      &:before {
+        transform: translateX(26px);
+      }
+    }
+
+    &__toggle {
+      height: $toggle-height * .5;
+      width: $switch-size * 1.5;
+      position: relative;
+    }
+
+    &__slider {
+      position: absolute;
+      cursor: pointer;
+      background-color: transparent;
+      border: 1px solid #ccc;
+      border-radius: $toggle-height;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      &:before {
+        position: absolute;
+        content: "";
+        border-radius: 50%;
+        height: $switch-size;
+        width: $switch-size;
+        left: $switch-size * -.5;
+        top: $switch-size * -.25;
+        background-color: white;
+        transition: .4s;
+      }
+    }
+  }
+}
+
 @if $export-ui-classes {
-  @include input;
+  @include text-input;
+  @include checkbox;
 }
