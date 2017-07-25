@@ -21,12 +21,13 @@ class FormPage extends Component {
     })
   }
 
-  handleCheckboxChange = (e) => {
-    console.log(e.target.value);
+  handleCheckboxChange = (e, checkVal) => {
+    console.log(checkVal)
+    console.log(e.target.name)
     this.setState({
       formValues: {
         ...this.state.formValues,
-        [e.target.name]: e.target.value
+        [e.target.name]: checkVal
       }
     })
   }
@@ -38,15 +39,17 @@ class FormPage extends Component {
         <div className="grid__item">
           <Checkbox
             name="likesDogs"
-            onClick={this.handleCheckboxChange}
-            value={this.state.formValues.likesDogs}
+            label="Do you like dogs?"
+            onCheck={this.handleCheckboxChange}
+            checked={this.state.formValues.likesDogs}
           />
         </div>
         <div className="grid__item">
           <ToggleInput
             name="likesCats"
-            onClick={this.handleCheckboxChange}
-            value={this.state.formValues.likesCats}
+            onCheck={this.handleCheckboxChange}
+            label="Do you like cats?"
+            checked={this.state.formValues.likesCats}
           />
         </div>
         <div className="grid__item">

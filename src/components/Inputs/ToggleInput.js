@@ -6,11 +6,11 @@ import InputLabel from './InputLabel';
 
 class ToggleInput extends Component {
   state = {
-    hasValue: false,
-    isFocused: false
+    isChecked: false
   }
 
   static propTypes = {
+    checked: PropTypes.bool,
     className: PropTypes.string,
     errorText: PropTypes.node,
     name: PropTypes.string,
@@ -18,78 +18,72 @@ class ToggleInput extends Component {
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
     onFocus: PropTypes.func,
-    placeholder: PropTypes.string,
     validator: PropTypes.func,
     value: PropTypes.any
   }
 
+  componentWillMount() {
+    const { checked } = this.props;
+    if (checked) {
+      this.setState({
+        isChecked: true
+      })
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
-    if (nextProps.hasOwnProperty('value')) {
-      let hasValue = Boolean(nextProps.value);
-      if (nextProps.validator) {
-        hasValue = nextProps.validator(nextProps.value);
-      }
-      this.setState({ hasValue })
+    const hasCheckedProp = nextProps.hasOwnProperty('checked');
+    const hasNewDefaultProp =
+      (nextProps.hasOwnProperty('defaultChecked') &&
+      (nextProps.defaultChecked !== this.props.defaultChecked));
+
+    if (hasCheckedProp || hasNewDefaultProp) {
+      const isChecked = nextProps.checked || nextProps.defaultChecked || false;
+
+      this.setState({ isChecked });
     }
   }
 
-  handleBlur = (e) => {
-    this.setState({ isFocused: false })
-    if (this.props.onBlur) {
-      this.props.onBlur(e);
-    }
+  isChecked() {
+    return this.refs.checkbox.checked;
   }
 
-  handleFocus = (e) => {
-    if (this.props.disabled) {
-      return
-    }
-    this.setState({ isFocused: true });
-    if (this.props.onFocus) {
-      this.props.onFocus(e);
+  handleCheck = (event, isInputChecked) => {
+    if (this.props.onCheck) {
+      this.props.onCheck(event, this.isChecked());
     }
   }
 
   render() {
     const {
+      checked, // eslint-disable-line no-unused-vars
       className,
       errorText,
       name,
       label,
-      onClick,
-      placeholder,
+      onCheck, // eslint-disable-line no-unused-vars
+      isChecked, // eslint-disable-line no-unused-vars
       value,
       ...rest
     } = this.props;
 
-    const inputLabelClassName = cx({
-      'input__label': true,
-      'input__label--active': this.state.hasValue
-    })
-
-    const inputErrorClassName = cx({
-      'input__error': true,
-      'input__error--active': this.state.hasValue
-    })
-
-    const showPlaceholder = (this.state.isFocused && !this.state.hasValue) ? placeholder : null;
-
     return (
       <div
         className="checkbox__container checkbox__container--toggle"
-        onClick={onClick}
+
       >
         <input
           className={cx(['checkbox', className])}
           name={name}
           type="checkbox"
-          onBlur={this.handleBlur}
-          onFocus={this.handleFocus}
-          placeholder={showPlaceholder}
+          ref="checkbox"
+          checked={this.state.isChecked}
+          onChange={this.handleCheck}
+          value={value}
+          {...rest}
         />
         <span className="checkbox__slider" />
         <InputLabel
-          active={this.state.hasValue}
           name={name}
           label={label}
           errorText={errorText}
