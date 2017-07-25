@@ -75,10 +75,7 @@
       cursor: pointer;
 
       &--toggle {
-        height: $toggle-height * .5;
-        width: $switch-size * 1.5;
         .#{$checkbox-class} {
-          // @include reset-input;
           position: absolute;
           top: 0;
           left: 0;
@@ -87,12 +84,6 @@
           opacity: 0;
           z-index: 50;
           cursor: pointer;
-          &:checked + .#{$checkbox-class}__slider {
-            background-color: color('cerulean-blue');
-            &:before {
-              transform: translateX(26px);
-            }
-          }
         }
       }
 
@@ -100,6 +91,19 @@
         position: static;
         cursor: pointer;
       }
+    }
+
+    &:checked + .#{$checkbox-class}__slider {
+      background-color: color('cerulean-blue');
+      &:before {
+        transform: translateX(26px);
+      }
+    }
+
+    &__toggle {
+      height: $toggle-height * .5;
+      width: $switch-size * 1.5;
+      position: relative;
     }
 
     &__slider {
