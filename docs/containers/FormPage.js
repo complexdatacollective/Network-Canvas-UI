@@ -4,7 +4,8 @@ import {
   TextInput,
   InputLabel,
   Checkbox,
-  ToggleInput
+  ToggleInput,
+  RadioInput
 } from 'Components';
 
 class FormPage extends Component {
@@ -32,6 +33,17 @@ class FormPage extends Component {
     })
   }
 
+  handleRadioChange = (e) => {
+    console.log(checkVal)
+    console.log(e.target.name)
+    this.setState({
+      formValues: {
+        ...this.state.formValues,
+        [e.target.name]: e.target.option
+      }
+    })
+  }
+
   render() {
     return (
       <div className="grid__container">
@@ -50,6 +62,11 @@ class FormPage extends Component {
             onCheck={this.handleCheckboxChange}
             label="Do you like cats?"
             checked={this.state.formValues.likesCats}
+          />
+        </div>
+        <div className="grid__item">
+          <RadioInput
+            onChange={this.handleRadioChange}
           />
         </div>
         <div className="grid__item">
