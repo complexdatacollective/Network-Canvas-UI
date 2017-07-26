@@ -3,35 +3,19 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 import InputLabel from './InputLabel';
+import RadioInput from './RadioInput';
 
-class RadioInput extends Component {
-  state = {
-    hasValue: false,
-    isFocused: false
-  }
-
+class RadioGroup extends Component {
   static propTypes = {
-    checked: PropTypes.bool,
     className: PropTypes.string,
     errorText: PropTypes.node,
     name: PropTypes.string,
     label: PropTypes.string,
     onBlur: PropTypes.func,
-    onChange: PropTypes.func,
+    onRadioClick: PropTypes.func,
     onFocus: PropTypes.func,
-    placeholder: PropTypes.string,
-    validator: PropTypes.func,
+    options: PropTypes.array,
     value: PropTypes.any
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.hasOwnProperty('value')) {
-      let hasValue = Boolean(nextProps.value);
-      if (nextProps.validator) {
-        hasValue = nextProps.validator(nextProps.value);
-      }
-      this.setState({ hasValue })
-    }
   }
 
   handleBlur = (e) => {
@@ -53,31 +37,32 @@ class RadioInput extends Component {
 
   render() {
     const {
-      checked,
       className,
       errorText,
       name,
       label,
-      onChange,
+      onRadioClick,
+      options,
       value,
       ...rest
     } = this.props;
 
+
+
     return (
-      <div className="radio__container">
-        <input
-          type="radio"
-          className="radio"
-          checked={checked}
-          value={value}
-          onChange={this.props.onChange}
-          name={name}
-        />
-        <label className="radio__label">
-          {value}
-        </label>
+      <div className="input__container">
+        <div className="grid__stack">
+          {options.map((option, idx) => (
+            <RadioInput
+              key={idx}
+              onChange={onRadioClick}
+              checked={value === option}
+              name={name}
+              value={option}
+            />
+          ))}
+        </div>
         <InputLabel
-          active={this.state.hasValue}
           name={name}
           label={label}
           errorText={errorText}
@@ -87,5 +72,5 @@ class RadioInput extends Component {
   }
 }
 
-export default RadioInput;
+export default RadioGroup;
 

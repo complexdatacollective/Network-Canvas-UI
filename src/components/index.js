@@ -5,6 +5,7 @@ export InputLabel from './Inputs/InputLabel';
 export Checkbox from './Inputs/Checkbox';
 export ToggleInput from './Inputs/ToggleInput';
 export RadioInput from './Inputs/RadioInput';
+export RadioGroup from './Inputs/RadioGroup';
 export SideMenu from './SideMenu';
 export Node from './Node';
 export Expandable from './Expandable';

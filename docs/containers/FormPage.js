@@ -5,7 +5,8 @@ import {
   InputLabel,
   Checkbox,
   ToggleInput,
-  RadioInput
+  RadioInput,
+  RadioGroup
 } from 'Components';
 
 class FormPage extends Component {
@@ -34,7 +35,7 @@ class FormPage extends Component {
   }
 
   handleRadioChange = (e) => {
-    console.log(e.target.name)
+    console.log(e.target)
     this.setState({
       formValues: {
         ...this.state.formValues,
@@ -66,6 +67,14 @@ class FormPage extends Component {
         <div className="grid__item">
           <RadioInput
             onChange={this.handleRadioChange}
+          />
+        </div>
+        <div className="grid__item">
+          <RadioGroup
+            name="pets"
+            value={this.state.formValues.pets}
+            options={['dogs', 'cats']}
+            onRadioClick={this.handleRadioChange}
           />
         </div>
         <div className="grid__item">
