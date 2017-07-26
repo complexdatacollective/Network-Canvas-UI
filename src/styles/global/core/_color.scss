@@ -3,7 +3,7 @@
 // Color setter and mixins
 // =============================================================================
 $-color-map: () !default;
-$-color-alpha-map: (.1, .15, .3, .6, .8, 1) !default;
+$-color-alpha-map: (.1, .15, .3, .6, .7, .8, 1) !default;
 
 @mixin color-set($color-name, $color-value) {
   $-color-map: map-merge($-color-map, ($color-name: $color-value)) !global;
