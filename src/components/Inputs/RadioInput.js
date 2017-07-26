@@ -11,46 +11,13 @@ class RadioInput extends Component {
     errorText: PropTypes.node,
     name: PropTypes.string,
     label: PropTypes.string,
-    onBlur: PropTypes.func,
-    onChange: PropTypes.func,
-    onFocus: PropTypes.func,
-    placeholder: PropTypes.string,
-    validator: PropTypes.func,
     value: PropTypes.any
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.hasOwnProperty('value')) {
-      let hasValue = Boolean(nextProps.value);
-      if (nextProps.validator) {
-        hasValue = nextProps.validator(nextProps.value);
-      }
-      this.setState({ hasValue })
-    }
-  }
-
-  handleBlur = (e) => {
-    this.setState({ isFocused: false })
-    if (this.props.onBlur) {
-      this.props.onBlur(e);
-    }
-  }
-
-  handleFocus = (e) => {
-    if (this.props.disabled) {
-      return
-    }
-    this.setState({ isFocused: true });
-    if (this.props.onFocus) {
-      this.props.onFocus(e);
-    }
   }
 
   render() {
     const {
       checked,
       className,
-      errorText,
       name,
       label,
       onChange,

@@ -6,9 +6,6 @@ import InputLabel from './InputLabel';
 import RadioInput from './RadioInput';
 
 class RadioGroup extends Component {
-  state = {
-    isFocused: false
-  }
 
   static propTypes = {
     className: PropTypes.string,
@@ -16,9 +13,7 @@ class RadioGroup extends Component {
     errorText: PropTypes.node,
     name: PropTypes.string,
     label: PropTypes.string,
-    onBlur: PropTypes.func,
     onRadioClick: PropTypes.func,
-    onFocus: PropTypes.func,
     options: PropTypes.array,
     value: PropTypes.any
   }
@@ -42,23 +37,6 @@ class RadioGroup extends Component {
         break;
       default:
         break;
-    }
-  }
-
-  handleBlur = (e) => {
-    this.setState({ isFocused: false })
-    if (this.props.onBlur) {
-      this.props.onBlur(e);
-    }
-  }
-
-  handleFocus = (e) => {
-    if (this.props.disabled) {
-      return
-    }
-    this.setState({ isFocused: true });
-    if (this.props.onFocus) {
-      this.props.onFocus(e);
     }
   }
 
