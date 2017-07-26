@@ -5,11 +5,6 @@ import cx from 'classnames';
 import InputLabel from './InputLabel';
 
 class RadioInput extends Component {
-  state = {
-    hasValue: false,
-    isFocused: false
-  }
-
   static propTypes = {
     checked: PropTypes.bool,
     className: PropTypes.string,
@@ -74,14 +69,8 @@ class RadioInput extends Component {
           name={name}
         />
         <label className="radio__label">
-          {value}
+          {label || value}
         </label>
-        <InputLabel
-          active={this.state.hasValue}
-          name={name}
-          label={label}
-          errorText={errorText}
-        />
       </div>
     );
   }

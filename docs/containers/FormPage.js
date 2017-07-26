@@ -65,17 +65,28 @@ class FormPage extends Component {
           />
         </div>
         <div className="grid__item">
-          <RadioInput
-            onChange={this.handleRadioChange}
-          />
-        </div>
-        <div className="grid__item">
           <RadioGroup
             name="pets"
             value={this.state.formValues.pets}
             options={['dogs', 'cats']}
             onRadioClick={this.handleRadioChange}
           />
+        </div>
+        <div className="grid__item">
+          <RadioGroup
+            name="food"
+            value={this.state.formValues.food}
+            onRadioClick={this.handleRadioChange}
+          >
+            <RadioInput
+              label="I like pizza"
+              value="pizza"
+            />
+            <RadioInput
+              label="I like hamburgers"
+              value="hamburgers"
+            />
+          </RadioGroup>
         </div>
         <div className="grid__item">
           <TextInput
