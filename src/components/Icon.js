@@ -25,7 +25,7 @@ class Icon extends Component {
 
     const iconComponent = icons(name);
     return React.createElement(
-      iconComponent.default,
+      iconComponent.default ? iconComponent.default : iconComponent,
       {
         className: iconClassNames,
         ...this.props
