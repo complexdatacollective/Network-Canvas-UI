@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 var fs = require('fs');
+var changeCase = require('change-case');
 
 const buildDictionary = (icons) =>
   icons
@@ -11,9 +12,13 @@ const buildDictionary = (icons) =>
     }, {});
 
 const buildModule = (dictionary) => {
-  console.log('module.exports = {');
   Object.keys(dictionary).forEach((icon) => {
-    console.log(`  '${icon}': require('${dictionary[icon]}'),`);
+    console.log(`import ${changeCase.camel(icon)} from '${dictionary[icon]}';`);
+  });
+
+  console.log('export default {');
+  Object.keys(dictionary).forEach((icon) => {
+    console.log(`  ${changeCase.camel(icon)},`);
   });
   console.log('};');
 };
