@@ -18,7 +18,7 @@ const buildModule = (dictionary) => {
 
   console.log('export default {');
   Object.keys(dictionary).forEach((icon) => {
-    console.log(`  ${changeCase.camel(icon)},`);
+    console.log(`  '${icon}': ${changeCase.camel(icon)},`);
   });
   console.log('};');
 };

@@ -2,6 +2,7 @@
 import icons from '../assets/img/icons';
 
 const getIcon = (name) => {
+  if (!Object.prototype.hasOwnProperty.call(icons, name)) { return null; }
   return icons[name];
 };
 
