@@ -5,6 +5,7 @@ import {
   InputLabel,
   Checkbox,
   ToggleInput,
+  ContextInput,
   RadioInput,
   RadioGroup
 } from 'Components';
@@ -62,6 +63,14 @@ class FormPage extends Component {
             onCheck={this.handleCheckboxChange}
             label="Do you like cats?"
             checked={this.state.formValues.likesCats}
+          />
+        </div>
+        <div className="grid__item">
+          <ContextInput
+            name="likesPets"
+            onCheck={this.handleCheckboxChange}
+            label="Pets!"
+            checked={this.state.formValues.likesPets}
           />
         </div>
         <div className="grid__item">
