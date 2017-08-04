@@ -11,3 +11,4 @@ export Node from './Node';
 export Expandable from './Expandable';
 export NarrativePanel from './NarrativePanel';
 export animation from './animation';
+export colorDictionary from './colorDictionary';
