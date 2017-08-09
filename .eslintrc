@@ -28,6 +28,8 @@
       "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
       "react/forbid-prop-types": "off",
       "react/no-array-index-key": "off",
-      "import/no-extraneous-dependencies": "off"
+      "react/require-default-props": "off",
+      "import/no-extraneous-dependencies": "off",
+      "no-prototype-builtins": "off"
     }
 }

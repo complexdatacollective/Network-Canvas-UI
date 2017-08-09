@@ -5,10 +5,6 @@ import cx from 'classnames';
 import InputLabel from './InputLabel';
 
 class Checkbox extends Component {
-  state = {
-    isChecked: false,
-  }
-
   static propTypes = {
     checked: PropTypes.bool,
     className: PropTypes.string,
@@ -21,6 +17,11 @@ class Checkbox extends Component {
     validator: PropTypes.func,
     value: PropTypes.any,
   }
+
+  state = {
+    isChecked: false,
+  }
+
 
   componentWillMount() {
     const { checked } = this.props;
