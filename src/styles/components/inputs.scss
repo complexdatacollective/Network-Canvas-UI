@@ -253,7 +253,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      transition: all .3s linear;
+      transition: all $animation-standard-duration $animation-default-easing;
 
       @each $color-name, $color-group in $-color-map {
         @include modifier($color-name) {
@@ -262,7 +262,7 @@
       }
 
       &:after {
-        transition: all .3s linear;
+        transition: all $animation-standard-duration $animation-default-easing;
         position: absolute;
         top: 6%;
         left: 6%;
@@ -284,7 +284,7 @@
       background-color: transparent;
 
       &:after {
-        transition: all .3s linear;
+        transition: all $animation-standard-duration $animation-default-easing;
         opacity: 1;
         background-color: color('sea-green');
       }
