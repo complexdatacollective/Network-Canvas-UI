@@ -15,7 +15,7 @@ class RadioGroup extends Component {
     label: PropTypes.string,
     onRadioClick: PropTypes.func,
     options: PropTypes.array,
-    value: PropTypes.any
+    value: PropTypes.any,
   }
 
   handleKeyDown = (e) => {
@@ -56,7 +56,7 @@ class RadioGroup extends Component {
     return (
       <div className="radio-group__container" onKeyDown={this.handleKeyDown}>
         <div className="grid__stack">
-        {
+          {
           options ? options.map((option, idx) => (
             <RadioInput
               key={idx}
@@ -69,13 +69,12 @@ class RadioGroup extends Component {
           React.Children.map(children, (child, index) => {
             if (child.type === RadioInput) {
               return React.cloneElement(child, {
-                name: name,
+                name,
                 checked: child.props.value === value,
-                onChange: onRadioClick
-              })
-            } else {
-              return child
+                onChange: onRadioClick,
+              });
             }
+            return child;
           })
         }
         </div>

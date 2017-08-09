@@ -6,7 +6,7 @@ import InputLabel from './InputLabel';
 
 class ToggleInput extends Component {
   state = {
-    isChecked: false
+    isChecked: false,
   }
 
   static propTypes = {
@@ -20,15 +20,15 @@ class ToggleInput extends Component {
     onChange: PropTypes.func,
     onFocus: PropTypes.func,
     validator: PropTypes.func,
-    value: PropTypes.any
+    value: PropTypes.any,
   }
 
   componentWillMount() {
     const { checked } = this.props;
     if (checked) {
       this.setState({
-        isChecked: true
-      })
+        isChecked: true,
+      });
     }
   }
 
@@ -70,8 +70,8 @@ class ToggleInput extends Component {
     } = this.props;
 
     const toggleButtonClassName = cx({
-      'toggle__button': true,
-      [`toggle__button--${color}`]: !!color
+      toggle__button: true,
+      [`toggle__button--${color}`]: !!color,
     });
 
     return (

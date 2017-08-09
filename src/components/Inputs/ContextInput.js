@@ -6,7 +6,7 @@ import InputLabel from './InputLabel';
 
 class ContextInput extends Component {
   state = {
-    isChecked: false
+    isChecked: false,
   }
 
   static propTypes = {
@@ -19,15 +19,15 @@ class ContextInput extends Component {
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
     onFocus: PropTypes.func,
-    value: PropTypes.any
+    value: PropTypes.any,
   }
 
   componentWillMount() {
     const { checked } = this.props;
     if (checked) {
       this.setState({
-        isChecked: true
-      })
+        isChecked: true,
+      });
     }
   }
 
@@ -68,8 +68,8 @@ class ContextInput extends Component {
     } = this.props;
 
     const buttonClassName = cx({
-      'context__button': true,
-      [`context__button--${color}`]: !!color
+      context__button: true,
+      [`context__button--${color}`]: !!color,
     });
 
     return (

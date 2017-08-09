@@ -8,7 +8,7 @@ class InputLabel extends Component {
     className: PropTypes.string,
     errorText: PropTypes.node,
     name: PropTypes.string,
-    label: PropTypes.string
+    label: PropTypes.string,
   }
 
   render() {
@@ -16,18 +16,18 @@ class InputLabel extends Component {
       active,
       errorText,
       name,
-      label
+      label,
     } = this.props;
 
     const inputLabelClassName = cx({
-      'input__label': true,
-      'input__label--active': this.props.active
-    })
+      input__label: true,
+      'input__label--active': this.props.active,
+    });
 
     const inputErrorClassName = cx({
-      'input__error': true,
-      'input__error--active': this.props.active
-    })
+      input__error: true,
+      'input__error--active': this.props.active,
+    });
 
     return (
       <label className={inputLabelClassName} htmlFor={name}>

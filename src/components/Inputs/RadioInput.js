@@ -11,7 +11,7 @@ class RadioInput extends Component {
     errorText: PropTypes.node,
     name: PropTypes.string,
     label: PropTypes.string,
-    value: PropTypes.any
+    value: PropTypes.any,
   }
 
   render() {

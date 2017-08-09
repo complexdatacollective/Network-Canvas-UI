@@ -6,7 +6,7 @@ import InputLabel from './InputLabel';
 
 class Checkbox extends Component {
   state = {
-    isChecked: false
+    isChecked: false,
   }
 
   static propTypes = {
@@ -19,15 +19,15 @@ class Checkbox extends Component {
     onChange: PropTypes.func,
     onFocus: PropTypes.func,
     validator: PropTypes.func,
-    value: PropTypes.any
+    value: PropTypes.any,
   }
 
   componentWillMount() {
     const { checked } = this.props;
     if (checked) {
       this.setState({
-        isChecked: true
-      })
+        isChecked: true,
+      });
     }
   }
 
