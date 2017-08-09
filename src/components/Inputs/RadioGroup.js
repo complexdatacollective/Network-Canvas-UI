@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
 
 import InputLabel from './InputLabel';
 import RadioInput from './RadioInput';
@@ -13,6 +12,7 @@ class RadioGroup extends Component {
     errorText: PropTypes.node,
     name: PropTypes.string,
     label: PropTypes.string,
+    onChange: PropTypes.func,
     onRadioClick: PropTypes.func,
     options: PropTypes.array,
     value: PropTypes.any,
@@ -27,6 +27,7 @@ class RadioGroup extends Component {
         break;
       case 'ArrowRight':
       case 'ArrowDown':
+        // es-lint-disable-next-line
         const nextIndex = currentIndex === children.length - 1 ? 0 : currentIndex + 1;
         this.props.onChange(children[nextIndex].props.value);
         break;
