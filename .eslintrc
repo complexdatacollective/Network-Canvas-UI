@@ -29,6 +29,8 @@
       "react/forbid-prop-types": "off",
       "react/no-array-index-key": "off",
       "react/require-default-props": "off",
+      "react/no-string-refs": "off",
+      "react/prefer-stateless-function": "warn",
       "import/no-extraneous-dependencies": "off",
       "no-prototype-builtins": "off"
     }

@@ -14,6 +14,7 @@ class InputLabel extends Component {
   render() {
     const {
       active,
+      className,
       errorText,
       name,
       label,
@@ -21,12 +22,12 @@ class InputLabel extends Component {
 
     const inputLabelClassName = cx({
       input__label: true,
-      'input__label--active': this.props.active,
-    });
+      'input__label--active': active,
+    }, [className]);
 
     const inputErrorClassName = cx({
       input__error: true,
-      'input__error--active': this.props.active,
+      'input__error--active': active,
     });
 
     return (

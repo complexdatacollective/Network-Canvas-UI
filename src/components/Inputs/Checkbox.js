@@ -8,10 +8,12 @@ class Checkbox extends Component {
   static propTypes = {
     checked: PropTypes.bool,
     className: PropTypes.string,
+    defaultChecked: PropTypes.bool,
     errorText: PropTypes.node,
     name: PropTypes.string,
     label: PropTypes.string,
     onBlur: PropTypes.func,
+    onCheck: PropTypes.func,
     onChange: PropTypes.func,
     onFocus: PropTypes.func,
     validator: PropTypes.func,
@@ -46,10 +48,10 @@ class Checkbox extends Component {
   }
 
   isChecked() {
-    return this.refs.checkbox.checked;
+    return this.refs.checkbox.checked; // eslint-disable-line
   }
 
-  handleCheck = (event, isInputChecked) => {
+  handleCheck = (event) => {
     if (this.props.onCheck) {
       this.props.onCheck(event, this.isChecked());
     }
@@ -63,7 +65,7 @@ class Checkbox extends Component {
       name,
       label,
       onCheck, // eslint-disable-line no-unused-vars
-      isChecked, // eslint-disable-line no-unused-vars
+      isChecked, // eslint-disable-line
       value,
       ...rest
     } = this.props;

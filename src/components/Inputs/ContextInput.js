@@ -2,24 +2,24 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-import InputLabel from './InputLabel';
-
 class ContextInput extends Component {
-  state = {
-    isChecked: false,
-  }
-
   static propTypes = {
     checked: PropTypes.bool,
     className: PropTypes.string,
     color: PropTypes.string,
+    defaultChecked: PropTypes.bool,
     errorText: PropTypes.node,
     name: PropTypes.string,
     label: PropTypes.string,
     onBlur: PropTypes.func,
+    onCheck: PropTypes.func,
     onChange: PropTypes.func,
     onFocus: PropTypes.func,
     value: PropTypes.any,
+  }
+
+  state = {
+    isChecked: false,
   }
 
   componentWillMount() {
@@ -48,7 +48,7 @@ class ContextInput extends Component {
     return this.refs.checkbox.checked;
   }
 
-  handleCheck = (event, isInputChecked) => {
+  handleCheck = (event) => {
     if (this.props.onCheck) {
       this.props.onCheck(event, this.isChecked());
     }
@@ -62,8 +62,8 @@ class ContextInput extends Component {
       errorText,
       label,
       value,
-      onCheck, // eslint-disable-line no-unused-vars
-      isChecked, // eslint-disable-line no-unused-vars
+      onCheck, // eslint-disable-line
+      isChecked, // eslint-disable-line
       ...rest
     } = this.props;
 
