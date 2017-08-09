@@ -12,6 +12,7 @@ class ToggleInput extends Component {
   static propTypes = {
     checked: PropTypes.bool,
     className: PropTypes.string,
+    color: PropTypes.string,
     errorText: PropTypes.node,
     name: PropTypes.string,
     label: PropTypes.string,
@@ -58,6 +59,7 @@ class ToggleInput extends Component {
     const {
       checked, // eslint-disable-line no-unused-vars
       className,
+      color,
       errorText,
       name,
       label,
@@ -67,30 +69,11 @@ class ToggleInput extends Component {
       ...rest
     } = this.props;
 
-    // return (
-    //   <div
-    //     className="checkbox__container checkbox__container--toggle"
-    //   >
-    //     <div className="checkbox__toggle">
-    //       <input
-    //         className={cx(['checkbox', className])}
-    //         name={name}
-    //         type="checkbox"
-    //         ref="checkbox"
-    //         checked={this.state.isChecked}
-    //         onChange={this.handleCheck}
-    //         value={value}
-    //         {...rest}
-    //       />
-    //       <span className="checkbox__slider" />
-    //     </div>
-    //     <InputLabel
-    //       name={name}
-    //       label={label}
-    //       errorText={errorText}
-    //     />
-    //   </div>
-    // );
+    const toggleButtonClassName = cx({
+      'toggle__button': true,
+      [`toggle__button--${color}`]: !!color
+    });
+
     return (
       <div className="toggle__container">
         <input
@@ -104,7 +87,7 @@ class ToggleInput extends Component {
           {...rest}
         />
         <div className="toggle__slider">
-          <span className="toggle__button" />
+          <span className={toggleButtonClassName} />
         </div>
         <InputLabel
           name={name}

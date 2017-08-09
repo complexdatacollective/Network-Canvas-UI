@@ -119,6 +119,7 @@
         transition: all 250ms ease;
       }
     }
+
     &:checked {
       + .#{$radio-class}__label {
         color: color('white');
@@ -128,6 +129,7 @@
         }
       }
     }
+
     &:focus {
       + .#{$radio-class}__label {
         &:before {
@@ -136,6 +138,7 @@
         }
       }
     }
+
     &:disabled {
       + .#{$radio-class}__label {
         &:before {
@@ -198,6 +201,13 @@
 
     &:checked + .#{$toggle-class}__slider .#{$toggle-class}__button {
       background-color: color('sea-green');
+
+      @each $color-name, $color-group in $-color-map {
+        @include modifier($color-name) {
+          background-color: color($color-name);
+        }
+      }
+
       &:before {
         transform: translateX(26px);
       }
@@ -241,6 +251,12 @@
       align-items: center;
       transition: all .3s linear;
 
+      @each $color-name, $color-group in $-color-map {
+        @include modifier($color-name) {
+          border: 3px solid color($color-name);
+        }
+      }
+
       &:after {
         transition: all .3s linear;
         position: absolute;
@@ -266,6 +282,14 @@
         transition: all .3s linear;
         opacity: 1;
         background-color: color('sea-green');
+      }
+
+      @each $color-name, $color-group in $-color-map {
+        @include modifier($color-name) {
+          &:after {
+            background-color: color($color-name);
+          }
+        }
       }
     }
   }

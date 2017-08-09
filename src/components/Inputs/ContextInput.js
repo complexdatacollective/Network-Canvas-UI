@@ -12,6 +12,7 @@ class ContextInput extends Component {
   static propTypes = {
     checked: PropTypes.bool,
     className: PropTypes.string,
+    color: PropTypes.string,
     errorText: PropTypes.node,
     name: PropTypes.string,
     label: PropTypes.string,
@@ -57,6 +58,7 @@ class ContextInput extends Component {
     const {
       checked, // eslint-disable-line no-unused-vars
       className,
+      color,
       errorText,
       label,
       value,
@@ -64,6 +66,11 @@ class ContextInput extends Component {
       isChecked, // eslint-disable-line no-unused-vars
       ...rest
     } = this.props;
+
+    const buttonClassName = cx({
+      'context__button': true,
+      [`context__button--${color}`]: !!color
+    });
 
     return (
       <div className="context__container">
@@ -77,7 +84,7 @@ class ContextInput extends Component {
           onChange={this.handleCheck}
           {...rest}
         />
-        <div className="context__button">
+        <div className={buttonClassName}>
           <span>{label}</span>
         </div>
       </div>
