@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
-
-import InputLabel from './InputLabel';
 
 class RadioInput extends Component {
   static propTypes = {
@@ -10,6 +7,7 @@ class RadioInput extends Component {
     className: PropTypes.string,
     errorText: PropTypes.node,
     name: PropTypes.string,
+    onChange: PropTypes.func,
     label: PropTypes.string,
     value: PropTypes.any,
   }
@@ -22,7 +20,7 @@ class RadioInput extends Component {
       label,
       onChange,
       value,
-      ...rest
+      ...rest // eslint-disable-line
     } = this.props;
 
     return (
@@ -35,7 +33,7 @@ class RadioInput extends Component {
           onChange={this.props.onChange}
           name={name}
         />
-        <label className="radio__label">
+        <label className="radio__label" htmlFor={name}>
           {label || value}
         </label>
       </div>

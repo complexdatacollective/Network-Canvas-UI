@@ -5,14 +5,10 @@ import cx from 'classnames';
 import InputLabel from './InputLabel';
 
 class TextInput extends Component {
-  state = {
-    hasValue: false,
-    isFocused: false,
-  }
-
   static propTypes = {
     className: PropTypes.string,
     errorText: PropTypes.node,
+    disabled: PropTypes.bool,
     name: PropTypes.string,
     label: PropTypes.string,
     onBlur: PropTypes.func,
@@ -22,6 +18,12 @@ class TextInput extends Component {
     validator: PropTypes.func,
     value: PropTypes.any,
   }
+
+  state = {
+    hasValue: false,
+    isFocused: false,
+  }
+
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.hasOwnProperty('value')) {
@@ -67,11 +69,6 @@ class TextInput extends Component {
       'input__label--active': this.state.hasValue,
     });
 
-    const inputErrorClassName = cx({
-      input__error: true,
-      'input__error--active': this.state.hasValue,
-    });
-
     const showPlaceholder = (this.state.isFocused && !this.state.hasValue) ? placeholder : null;
 
     return (
@@ -90,6 +87,7 @@ class TextInput extends Component {
           active={this.state.hasValue}
           name={name}
           label={label}
+          className={inputLabelClassName}
           errorText={errorText}
         />
       </div>

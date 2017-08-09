@@ -22,22 +22,26 @@ class RadioGroup extends Component {
     const { children } = this.props;
     const currentIndex = [...e.currentTarget.children].indexOf(e.target);
     switch (e.key) {
-      case 'Enter':
+      case 'Enter': {
         this.props.onChange(children[currentIndex].props.value);
         break;
+      }
       case 'ArrowRight':
-      case 'ArrowDown':
-        // es-lint-disable-next-line
+      case 'ArrowDown': {
         const nextIndex = currentIndex === children.length - 1 ? 0 : currentIndex + 1;
         this.props.onChange(children[nextIndex].props.value);
         break;
+      }
+
       case 'ArrowLeft':
-      case 'ArrowUp':
+      case 'ArrowUp': {
         const prevIndex = currentIndex === 0 ? children.length - 1 : currentIndex - 1;
         this.props.onChange(children[prevIndex].props.value);
         break;
-      default:
+      }
+      default: {
         break;
+      }
     }
   }
 
@@ -51,7 +55,7 @@ class RadioGroup extends Component {
       onRadioClick,
       options,
       value,
-      ...rest
+      ...rest // eslint-disable-line
     } = this.props;
 
     return (
@@ -67,7 +71,7 @@ class RadioGroup extends Component {
               value={option}
             />
           )) :
-          React.Children.map(children, (child, index) => {
+          React.Children.map(children, (child) => {
             if (child.type === RadioInput) {
               return React.cloneElement(child, {
                 name,

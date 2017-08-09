@@ -5,22 +5,24 @@ import cx from 'classnames';
 import InputLabel from './InputLabel';
 
 class ToggleInput extends Component {
-  state = {
-    isChecked: false,
-  }
-
   static propTypes = {
     checked: PropTypes.bool,
     className: PropTypes.string,
     color: PropTypes.string,
+    defaultChecked: PropTypes.bool,
     errorText: PropTypes.node,
     name: PropTypes.string,
     label: PropTypes.string,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
+    onCheck: PropTypes.func,
     onFocus: PropTypes.func,
     validator: PropTypes.func,
     value: PropTypes.any,
+  }
+
+  state = {
+    isChecked: false,
   }
 
   componentWillMount() {
@@ -49,7 +51,7 @@ class ToggleInput extends Component {
     return this.refs.checkbox.checked;
   }
 
-  handleCheck = (event, isInputChecked) => {
+  handleCheck = (event) => {
     if (this.props.onCheck) {
       this.props.onCheck(event, this.isChecked());
     }
@@ -57,14 +59,14 @@ class ToggleInput extends Component {
 
   render() {
     const {
-      checked, // eslint-disable-line no-unused-vars
+      checked, // eslint-disable-line
       className,
       color,
       errorText,
       name,
       label,
-      onCheck, // eslint-disable-line no-unused-vars
-      isChecked, // eslint-disable-line no-unused-vars
+      onCheck, // eslint-disable-line
+      isChecked, // eslint-disable-line
       value,
       ...rest
     } = this.props;

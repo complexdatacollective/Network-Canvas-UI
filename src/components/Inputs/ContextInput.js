@@ -56,7 +56,7 @@ class ContextInput extends Component {
 
   render() {
     const {
-      checked, // eslint-disable-line no-unused-vars
+      checked, // eslint-disable-line
       className,
       color,
       errorText,
