@@ -3,6 +3,7 @@
 @import 'core/breakpoints';
 @import 'core/color';
 @import 'core/palette';
+@import 'core/color-dictionary';
 @import 'core/grid';
 @import 'core/functions';
 @import 'core/spacing';
@@ -23,28 +24,6 @@ $export-ui-classes: true !default;
 @include breakpoint-classes(show--flex) {
   display: flex;
 }
-
-// Default Palette Settings
-// =============================================================================
-@include palette-set('primary', color('sea-green'));
-@include palette-set('menu', color('white'));
-@include palette-set('selected', color('white'));
-@include palette-set('settings', color('slate-blue'));
-@include palette-set('background', color('navy-taupe'));
-@include palette-set('text', color('white'));
-@include palette-set('tex-muted', color('cyber-grape'));
-@include palette-set('link', color('nc-coral'));
-@include palette-set('light-background', color('cyber-grape'));
-@include palette-set('dark-background', color('rich-black'));
-@include palette-set('headings', color('white'));
-@include palette-set('menu-headings', color('charcoal'));
-@include palette-set('divider', color('platinum--dark'));
-
-@include palette-set('node-base', color('neon-coral'));
-@include palette-set('node-dark', darken(color('neon-coral'), 5%));
-
-@include palette-set('edge-base', color('mustard'));
-@include palette-set('edge-dark', darken(color('mustard'), 5%));
 
 // Default Copy Typography Sizes
 // =============================================================================

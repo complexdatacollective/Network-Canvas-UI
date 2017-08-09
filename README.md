@@ -64,6 +64,20 @@ When you add a new svg file to `src/assets/img/icon` run
 
 ``npmbin`/svg2react filename.svg` and then run `npm run prepublish`
 
+### Colors
+
+To add a new color or palette, edit the lists in `bin/build-color-dictionary.js`. Then, to add the updates to scss and js, run
+
+```sh
+$ npm run dist:color-palette
+````
+
+and to copy the updates to the `lib` directory run
+
+```sh
+$ npm run prepublish
+````
+
 ## What's included
 
 ### Components
