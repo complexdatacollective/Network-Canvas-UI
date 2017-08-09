@@ -6,7 +6,7 @@ export Checkbox from './Inputs/Checkbox';
 export ToggleInput from './Inputs/ToggleInput';
 export RadioInput from './Inputs/RadioInput';
 export RadioGroup from './Inputs/RadioGroup';
-export SideMenu from './SideMenu';
+export ContextInput from './Inputs/ContextInput';
 export Node from './Node';
 export Expandable from './Expandable';
 export NarrativePanel from './NarrativePanel';

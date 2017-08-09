@@ -6,38 +6,48 @@ class Button extends Component {
   static propTypes = {
     content: PropTypes.oneOfType([
       PropTypes.string,
-      PropTypes.element
+      PropTypes.element,
     ]),
     children: PropTypes.node,
     icon: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.element,
-      PropTypes.object
+      PropTypes.object,
     ]),
     iconPosition: PropTypes.oneOf([
-      'left', 'right'
+      'left', 'right',
     ]),
     size: PropTypes.string,
-    color: PropTypes.string
+    color: PropTypes.string,
+  }
+
+  static defaultProps = {
+    content: '',
+    children: null,
+    icon: '',
+    iconPosition: 'left',
+    size: '',
+    color: '',
   }
 
   renderButtonIcon() {
     const { icon, iconPosition } = this.props;
 
     const iconClassNames = cx({
-      'button__icon': true,
-      'button__icon--right': iconPosition === 'right'
+      button__icon: true,
+      'button__icon--right': iconPosition === 'right',
     });
 
     let iconElement = null;
     if (icon) {
       if (typeof icon === 'string') {
+        // eslint-disable-next-line
         const Icon = require('./Icon').default;
         iconElement = <Icon name={icon} className={iconClassNames} />;
       } else {
         iconElement = React.cloneElement(
           this.props.icon,
-          { className: iconClassNames }
+          { className: iconClassNames },
         );
       }
     }
@@ -48,9 +58,9 @@ class Button extends Component {
     const { color, size } = this.props;
 
     const buttonClassNames = cx({
-      'button': true,
+      button: true,
       [`button--${color}`]: !!color,
-      [`button--${size}`]: !!size
+      [`button--${size}`]: !!size,
     });
 
     return (

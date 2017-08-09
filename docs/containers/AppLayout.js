@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { Link } from 'react-router';
-import { SideMenu } from 'Components';
+import { SideMenu, MediaQuery, MobileNav } from '../components';
 
 import '../styles/main.scss';
 
@@ -51,26 +51,34 @@ class AppLayout extends Component {
       return <Link to={item.href}>{item.title}</Link>
     });
 
-    const appContentClassNames = cx({
-      'grid__section': true,
-      'app__content': true,
-      'app__content--pushed': this.state.sideMenuVisible
-    });
-
     return (
-      <div className="app">
-        <SideMenu
-          className="sidenav"
-          heading="Settings"
-          menuItems={menuItems}
-          visible={this.state.sideMenuVisible}
-          onClose={this.toggleSideNav}
-        />
-        <section className={appContentClassNames}>
-          <button onClick={this.toggleSideNav}>Toggle menu</button>
-          { this.props.children }
-        </section>
-      </div>
+      <MediaQuery query="medium-up">
+        {matches => {
+          const appContentClassName = cx({
+            'app__content': true,
+            'app__content--pushed': matches
+          });
+
+          return (
+            <div className="app">
+              <MobileNav
+                onMenuClick={this.toggleSideNav}
+              />
+              <SideMenu
+                className="sidenav"
+                heading="Settings"
+                menuItems={menuItems}
+                visible={this.state.sideMenuVisible || matches}
+              />
+              <section className={appContentClassName}>
+                <div className="app__main">
+                  { this.props.children }
+                </div>
+              </section>
+            </div>
+          );
+        }}
+      </MediaQuery>
     );
   }
 }

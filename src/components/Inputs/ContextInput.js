@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-import InputLabel from './InputLabel';
-
-class ToggleInput extends Component {
+class ContextInput extends Component {
   static propTypes = {
     checked: PropTypes.bool,
     className: PropTypes.string,
@@ -14,10 +12,9 @@ class ToggleInput extends Component {
     name: PropTypes.string,
     label: PropTypes.string,
     onBlur: PropTypes.func,
-    onChange: PropTypes.func,
     onCheck: PropTypes.func,
+    onChange: PropTypes.func,
     onFocus: PropTypes.func,
-    validator: PropTypes.func,
     value: PropTypes.any,
   }
 
@@ -63,42 +60,36 @@ class ToggleInput extends Component {
       className,
       color,
       errorText,
-      name,
       label,
+      value,
       onCheck, // eslint-disable-line
       isChecked, // eslint-disable-line
-      value,
       ...rest
     } = this.props;
 
-    const toggleButtonClassName = cx({
-      toggle__button: true,
-      [`toggle__button--${color}`]: !!color,
+    const buttonClassName = cx({
+      context__button: true,
+      [`context__button--${color}`]: !!color,
     });
 
     return (
-      <div className="toggle__container">
+      <div className="context__container">
         <input
-          className={cx(['toggle', className])}
+          className={cx(['context', className])}
           name={name}
           type="checkbox"
           ref="checkbox"
+          value={value}
           checked={this.state.isChecked}
           onChange={this.handleCheck}
-          value={value}
           {...rest}
         />
-        <div className="toggle__slider">
-          <span className={toggleButtonClassName} />
+        <div className={buttonClassName}>
+          <span>{label}</span>
         </div>
-        <InputLabel
-          name={name}
-          label={label}
-          errorText={errorText}
-        />
       </div>
     );
   }
 }
 
-export default ToggleInput;
+export default ContextInput;
