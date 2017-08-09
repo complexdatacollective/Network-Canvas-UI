@@ -14,7 +14,7 @@
 }
 
 @mixin default-input-type {
-  @include typography('title-2');
+  @include typography('title-5');
 }
 
 @mixin text-input (
@@ -174,6 +174,7 @@
       height: $toggle-height * .5;
       width: $switch-size * 1.5;
       position: relative;
+      margin: .5em .75em;
     }
 
     &__button {
@@ -236,6 +237,9 @@
     }
 
     &__button {
+      @include typography('title-5');
+      font-weight: 700;
+
       position: absolute;
       top: 0;
       left: 0;
@@ -275,7 +279,8 @@
       }
     }
 
-    &:checked + .#{$context-class}__button {
+    &:checked + .#{$context-class}__button,
+    &:hover + .#{$context-class}__button {
       background-color: transparent;
 
       &:after {

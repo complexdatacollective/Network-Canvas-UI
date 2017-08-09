@@ -71,7 +71,6 @@ class AppLayout extends Component {
                 visible={this.state.sideMenuVisible || matches}
               />
               <section className={appContentClassName}>
-                <button onClick={this.toggleSideNav}>Toggle menu</button>
                 <div className="app__main">
                   { this.props.children }
                 </div>
