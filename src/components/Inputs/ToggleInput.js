@@ -67,22 +67,44 @@ class ToggleInput extends Component {
       ...rest
     } = this.props;
 
+    // return (
+    //   <div
+    //     className="checkbox__container checkbox__container--toggle"
+    //   >
+    //     <div className="checkbox__toggle">
+    //       <input
+    //         className={cx(['checkbox', className])}
+    //         name={name}
+    //         type="checkbox"
+    //         ref="checkbox"
+    //         checked={this.state.isChecked}
+    //         onChange={this.handleCheck}
+    //         value={value}
+    //         {...rest}
+    //       />
+    //       <span className="checkbox__slider" />
+    //     </div>
+    //     <InputLabel
+    //       name={name}
+    //       label={label}
+    //       errorText={errorText}
+    //     />
+    //   </div>
+    // );
     return (
-      <div
-        className="checkbox__container checkbox__container--toggle"
-      >
-        <div className="checkbox__toggle">
-          <input
-            className={cx(['checkbox', className])}
-            name={name}
-            type="checkbox"
-            ref="checkbox"
-            checked={this.state.isChecked}
-            onChange={this.handleCheck}
-            value={value}
-            {...rest}
-          />
-          <span className="checkbox__slider" />
+      <div className="toggle__container">
+        <input
+          className={cx(['toggle', className])}
+          name={name}
+          type="checkbox"
+          ref="checkbox"
+          checked={this.state.isChecked}
+          onChange={this.handleCheck}
+          value={value}
+          {...rest}
+        />
+        <div className="toggle__slider">
+          <span className="toggle__button" />
         </div>
         <InputLabel
           name={name}

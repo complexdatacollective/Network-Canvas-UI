@@ -66,11 +66,9 @@ class ContextInput extends Component {
     } = this.props;
 
     return (
-      <div
-        className="checkbox__container checkbox__container--context"
-      >
+      <div className="context__container">
         <input
-          className={cx(['checkbox', className])}
+          className={cx(['context', className])}
           name={name}
           type="checkbox"
           ref="checkbox"
@@ -79,7 +77,7 @@ class ContextInput extends Component {
           onChange={this.handleCheck}
           {...rest}
         />
-        <div className="checkbox__context-button">
+        <div className="context__button">
           <span>{label}</span>
         </div>
       </div>

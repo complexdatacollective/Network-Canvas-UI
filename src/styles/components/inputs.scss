@@ -4,23 +4,26 @@
 @import "../global/default";
 
 @mixin reset-input {
-  -webkit-appearance: none;
-  border: 0;
-  background: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 50;
+  opacity: 0;
 }
 
 @mixin default-input-type {
   @include typography('title-2');
 }
 
-
 @mixin text-input (
   $input-class: 'input'
 ) {
   .#{$input-class} {
-
-    @include reset-input;
-    @include default-input-type;
+    -webkit-appearance: none;
+    border: 0;
+    background: none;
     position: relative;
     width: 100%;
     height: 100%;
@@ -35,7 +38,6 @@
     &__container {
       position: relative;
       .#{$input-class}__label {
-        @include typography('title-2');
         position: absolute;
         top: 0;
         left: 0;
@@ -53,7 +55,6 @@
       }
     }
 
-
     &__error {
       color: color('tomato');
     }
@@ -65,9 +66,7 @@
 }
 
 @mixin checkbox(
-  $checkbox-class: 'checkbox',
-  $toggle-height: 34px,
-  $switch-size: 26px
+  $checkbox-class: 'checkbox'
 ) {
   .#{$checkbox-class} {
     position: absolute;
@@ -88,102 +87,6 @@
         padding-left: 25px;
         margin: 0;
       }
-
-      &--toggle,
-      &--context {
-        .#{$checkbox-class} {
-          opacity: 0;
-        }
-
-        .input__label {
-          padding-left: 0;
-        }
-      }
-
-      &--context {
-        min-height: 100px;
-        min-width: 100px;
-      }
-    }
-
-    &:checked + .#{$checkbox-class}__slider {
-      background-color: color('sea-green');
-      &:before {
-        transform: translateX(26px);
-      }
-    }
-
-    &__context-button {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100px;
-      width: 100px;
-      background-color: transparent;
-      border-radius: 50%;
-      padding: 2px;
-      border: 3px solid color('sea-green');
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: all .3s linear;
-
-      &:after {
-        transition: all .3s linear;
-        position: absolute;
-        top: 6%;
-        left: 6%;
-        content: '';
-        height: 88%;
-        width: 88%;
-        opacity: 0;
-        border-radius: 50%;
-      }
-
-      span {
-        z-index: 5;
-        pointer-events: none;
-      }
-    }
-
-    &:checked + .#{$checkbox-class}__context-button {
-      background-color: transparent;
-
-      &:after {
-        transition: all .3s linear;
-        opacity: 1;
-        background-color: color('sea-green');
-      }
-    }
-
-    &__toggle {
-      height: $toggle-height * .5;
-      width: $switch-size * 1.5;
-      position: relative;
-    }
-
-    &__slider {
-      position: absolute;
-      cursor: pointer;
-      background-color: transparent;
-      border: 1px solid #ccc;
-      border-radius: $toggle-height;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      &:before {
-        position: absolute;
-        content: "";
-        border-radius: 50%;
-        height: $switch-size;
-        width: $switch-size;
-        left: $switch-size * -.5;
-        top: $switch-size * -.25;
-        background-color: white;
-        transition: .4s;
-      }
     }
   }
 }
@@ -193,12 +96,12 @@
   $radio-button-size: 1.5em
 ) {
   .#{$radio-class} {
-    position: absolute;
-    opacity: 0;
-    z-index: 50;
-    width: 100%;
-    height: auto;
+    @include reset-input;
     cursor: pointer;
+
+    &__container {
+      position: relative;
+    }
 
     &__label {
       color: color('white', 0.7);
@@ -245,8 +148,133 @@
   }
 }
 
+@mixin toggle(
+  $toggle-class: 'toggle',
+  $toggle-height: 1.5em,
+  $switch-size: 1.5em
+) {
+  .#{$toggle-class} {
+    @include reset-input;
+    cursor: pointer;
+
+    &__container {
+      position: relative;
+
+      .input__label {
+        position: static;
+        cursor: pointer;
+        margin: 0;
+      }
+    }
+
+    &__slider {
+      height: $toggle-height * .5;
+      width: $switch-size * 1.5;
+      position: relative;
+    }
+
+    &__button {
+      position: absolute;
+      cursor: pointer;
+      background-color: transparent;
+      border: 1px solid #ccc;
+      border-radius: $toggle-height;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      &:before {
+        position: absolute;
+        content: "";
+        border-radius: 50%;
+        height: $switch-size;
+        width: $switch-size;
+        left: $switch-size * -.5;
+        top: $switch-size * -.25;
+        background-color: white;
+        transition: .4s;
+      }
+    }
+
+    &:checked + .#{$toggle-class}__slider .#{$toggle-class}__button {
+      background-color: color('sea-green');
+      &:before {
+        transform: translateX(26px);
+      }
+    }
+  }
+}
+
+@mixin context(
+  $context-class: 'context'
+) {
+  .#{$context-class} {
+    @include reset-input;
+    cursor: pointer;
+
+
+    &__container {
+      position: relative;
+      min-height: 100px;
+      min-width: 100px;
+
+      .input__label {
+        position: static;
+        cursor: pointer;
+        margin: 0;
+      }
+    }
+
+    &__button {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100px;
+      width: 100px;
+      background-color: transparent;
+      border-radius: 50%;
+      padding: 2px;
+      border: 3px solid color('sea-green');
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all .3s linear;
+
+      &:after {
+        transition: all .3s linear;
+        position: absolute;
+        top: 6%;
+        left: 6%;
+        content: '';
+        height: 88%;
+        width: 88%;
+        opacity: 0;
+        border-radius: 50%;
+      }
+
+      span {
+        z-index: 5;
+        pointer-events: none;
+      }
+    }
+
+    &:checked + .#{$context-class}__button {
+      background-color: transparent;
+
+      &:after {
+        transition: all .3s linear;
+        opacity: 1;
+        background-color: color('sea-green');
+      }
+    }
+  }
+}
+
 @if $export-ui-classes {
   @include text-input;
   @include checkbox;
   @include radio;
+  @include toggle;
+  @include context;
 }
