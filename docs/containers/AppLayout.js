@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { Link } from 'react-router';
-import { SideMenu, MediaQuery } from '../components';
+import { SideMenu, MediaQuery, MobileNav } from '../components';
 
 import '../styles/main.scss';
 
@@ -61,12 +61,14 @@ class AppLayout extends Component {
 
           return (
             <div className="app">
+              <MobileNav
+                onMenuClick={this.toggleSideNav}
+              />
               <SideMenu
                 className="sidenav"
                 heading="Settings"
                 menuItems={menuItems}
                 visible={this.state.sideMenuVisible || matches}
-                onClose={this.toggleSideNav}
               />
               <section className={appContentClassName}>
                 <button onClick={this.toggleSideNav}>Toggle menu</button>

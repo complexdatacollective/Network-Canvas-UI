@@ -67,6 +67,9 @@ $headings-line-height:   1.1 !default;
   'light', base, (font-weight: 300)
 );
 @include type-set(
+  'medium', base, (font-weight: 500)
+);
+@include type-set(
   'bold', base, (font-weight: 700)
 );
 @include type-set(
