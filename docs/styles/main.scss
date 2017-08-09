@@ -1,20 +1,48 @@
 @import '../../src/styles/all';
 
+$sidenav-width: 200px;
+$sidenav-padding: spacing-get-value('small');
+$app-content-padding: 70px;
+
 .app {
-  display: flex;
-  min-height: 100vh;
   width: 100%;
-  background-color: palette('dark-background');
-  color: color('white');
+  min-height: 100vh;
+  display: flex;
+  overflow: hidden;
+  position: relative;
 
   &__content {
-    @include sidemenu-visible;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+    transition: left .2s cubic-bezier(.17,.67,.83,.67);
+
+    @include breakpoint('medium') {
+      width: calc( 100% - #{$sidenav-width});
+    }
+
+    &--pushed {
+      left: $sidenav-width;
+    }
+  }
+
+  &__main {
+    padding-top: 24px;
+    padding-left: $app-content-padding / 2;
+    padding-right: $app-content-padding / 2;
+    @include breakpoint('medium') {
+      padding-left: $app-content-padding;
+    }
   }
 }
 
 @include block('sidenav') {
-  max-width: 250px;
-  flex: 0 0 30%;
+  height: 100%;
+  width: $sidenav-width;
+  padding: 0 $sidenav-padding;
   background-color: palette('light-background');
 }
 

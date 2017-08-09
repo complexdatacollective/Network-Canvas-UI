@@ -15,7 +15,6 @@
 
     &__heading {
       @include typography('title-1');
-      @include typography('medium');
       color: color('charcoal');
       text-align: left;
     }

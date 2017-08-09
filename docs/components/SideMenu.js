@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-import { Icon } from '.';
-
 class SideMenu extends Component {
   static propTypes = {
     backgroundHoverColor: PropTypes.string,
@@ -40,7 +38,6 @@ class SideMenu extends Component {
       <nav className={sidemenuClassNames}>
         <div className="sidemenu__close">
           <div onClick={onClose}>
-            <Icon name="close" />
           </div>
         </div>
         <h1 className="sidemenu__heading">
