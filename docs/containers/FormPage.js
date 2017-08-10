@@ -121,6 +121,15 @@ class FormPage extends Component {
             onChange={this.handleTextChange}
             value={this.state.formValues.fName}
           />
+          <TextInput
+            name="age"
+            label="Age"
+            placeholder="Baby Wurm Age"
+            isNumericOnly={true}
+            errorText={this.state.formValues.age ? '' : 'Required'}
+            onChange={this.handleTextChange}
+            value={this.state.formValues.age}
+          />
         </div>
       </div>
     );

@@ -1,6 +1,6 @@
 {
   "name": "network-canvas-ui",
-  "version": "1.6.4",
+  "version": "1.6.5",
   "description": "Styles and React components for the Network Canvas project",
   "main": "lib/components/index.js",
   "scripts": {
