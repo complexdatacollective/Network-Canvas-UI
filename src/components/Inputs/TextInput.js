@@ -60,6 +60,7 @@ class TextInput extends Component {
       name,
       label,
       onChange,
+      isNumericOnly,
       placeholder,
       value,
       ...rest
