@@ -76,7 +76,7 @@ if (!jsOutput) {
 
 const buildScssColorDictionary = () =>
   Object.keys(colors).reduce((result, key) =>
-    result.concat(`@include color-set('${key}', ${colors[key]});\n`), "// AUTO GENERATED\n");
+    result.concat(`@include color-set('${key}', ${colors[key]});\n`), "/* eslint-disable */\n// AUTO GENERATED\n");
 
 const buildJsColorDictionary = () =>
   Object.keys(colors).reduce((result, key) =>
