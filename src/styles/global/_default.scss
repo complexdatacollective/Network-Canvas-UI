@@ -15,8 +15,8 @@ $export-ui-classes: true !default;
 
 // Default Breakpoint Settings
 // =============================================================================
-@include breakpoint-set(small, 'min-aspect-ratio: 16/10');
-@include breakpoint-set(full, 'min-aspect-ratio: 16/10');
+@include breakpoint-set(small, 'min-aspect-ratio: 16/9');
+@include breakpoint-set(full, 'min-aspect-ratio: 16/9');
 @include breakpoint-classes(hide) {
   display: none;
 }
