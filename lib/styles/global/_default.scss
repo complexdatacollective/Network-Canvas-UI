@@ -15,8 +15,8 @@ $export-ui-classes: true !default;
 
 // Default Breakpoint Settings
 // =============================================================================
-@include breakpoint-set(medium, 768px);
-@include breakpoint-set(large, 1024px);
+@include breakpoint-set(small, 'min-aspect-ratio: 16/10');
+@include breakpoint-set(full, 'min-aspect-ratio: 16/10');
 @include breakpoint-classes(hide) {
   display: none;
 }
@@ -56,28 +56,38 @@ $headings-line-height:   1.1 !default;
 );
 // H1  - questions, form, and menu headlines
 @include type-set(
+  'main-title', base,
+  (
+    font-size: 45px,
+    line-height: 1.429,
+    font-weight: 700,
+    text-align: center,
+  )
+);
+
+@include type-set(
   'title-1', base,
   (
     font-size: 32px,
     line-height: 1.429,
-    font-weight: $headings-font-weight,
+    font-weight: 700,
     text-align: center,
     width: 100%
   )
 );
-@include type-set('title-1', medium, (font-size: 28px));
+
+@include type-set('title-1', full, (font-size: 28px));
 
 // H2 - Form question headlines, buttons, text links
 @include type-set(
   'title-2', base,
   (
-    font-size: 32px,
+    font-size: 20px,
     line-height: $line-height-base,
-    font-weight: $headings-font-weight,
-    width: 100%
+    font-weight: 500,
   )
 );
-@include type-set('title-2', medium, (font-size: 20px));
+@include type-set('title-2', full, (font-size: 20px));
 // H3 - Large nodes, name generator panel, ordinal bins, categorial bins
 @include type-set(
   'title-3', base,
@@ -86,7 +96,6 @@ $headings-line-height:   1.1 !default;
     line-height: $line-height-base,
     font-weight: $headings-font-weight,
     text-align: center,
-    width: 100%
   )
 );
 // H4 - Menu items, error message headline, body copy
@@ -95,7 +104,6 @@ $headings-line-height:   1.1 !default;
   (
     font-size: 16px,
     line-height: $line-height-base,
-    width: 100%
   )
 );
 // H5 - Small nodes, context bins, number counter, form field label
@@ -104,7 +112,6 @@ $headings-line-height:   1.1 !default;
   (
     font-size: 12px,
     line-height: $line-height-base,
-    width: 100%
   )
 );
 
@@ -137,30 +144,6 @@ $headings-line-height:   1.1 !default;
   @include typography-classes;
   @include grid-classes;
 }
-
-// TODO - when these variables are removed, they cause breaking changes in Network Canvas app, but they are redundant, so eventually they should be deprecated from the main APP
-$network-canvas-coral: #e2215b;
-$mustard: #f2b700;
-$light-sea-green: #00c9a2;
-$white: #fff;
-$slate-blue: #6b72ec;
-$navy-taupe: #2d2955;
-$cyber-grape: #3a3a75;
-$rich-black: #16152b;
-
-$sea-serpent: #0fb2e2;
-$purple-pizazz: #d30fef;
-$paradise-pink: #ff3a8c;
-$cerulean-blue: #0f70ff;
-$kiwi: #70bf54;
-$neon-carrot: #f7891e;
-$barbie-pink: #ed008c;
-$tomato: #e82d3f;
-
-$charcoal: #6d6f76;
-$platinum: #f2f6f7;
-$divider: #f2f2f2;
-$dark-platinum: #dae3e5;
 
 $netcanvas-font-family: 'Quicksand', 'Open Sans', sans serif;
 $netcanvas-font-size: 16px;

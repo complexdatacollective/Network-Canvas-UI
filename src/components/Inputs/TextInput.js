@@ -10,6 +10,7 @@ class TextInput extends Component {
     errorText: PropTypes.node,
     disabled: PropTypes.bool,
     name: PropTypes.string,
+    isNumericOnly: PropTypes.bool,
     label: PropTypes.string,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
@@ -59,6 +60,7 @@ class TextInput extends Component {
       name,
       label,
       onChange,
+      isNumericOnly,
       placeholder,
       value,
       ...rest
@@ -76,7 +78,7 @@ class TextInput extends Component {
         <input
           className={cx(['input', className])}
           name={name}
-          type="text"
+          type={isNumericOnly ? 'tel' : 'text'}
           onBlur={this.handleBlur}
           onChange={onChange}
           onFocus={this.handleFocus}

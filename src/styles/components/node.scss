@@ -4,7 +4,7 @@
   margin: 1rem;
   width: 150px;
   height: 150px;
-  filter: drop-shadow(0 6px 6px transparentize(palette('dark-background'), .2));
+  filter: drop-shadow(0 4px 0 transparentize(palette('dark-background'), .25));
 
   &__node {
     width: 100%;
