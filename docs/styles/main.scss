@@ -95,11 +95,11 @@ $app-content-padding: 70px;
     top: 0;
     left: 0;
     height: 100%;
-    width: 100%;
+    width: 80%;
     overflow-y: scroll;
     transition: left .2s cubic-bezier(.17,.67,.83,.67);
 
-    @include breakpoint('medium') {
+    @include breakpoint('small') {
       width: calc( 100% - #{$sidenav-width});
     }
 
@@ -112,7 +112,7 @@ $app-content-padding: 70px;
     padding-top: 24px;
     padding-left: $app-content-padding / 2;
     padding-right: $app-content-padding / 2;
-    @include breakpoint('medium') {
+    @include breakpoint('small') {
       padding-left: $app-content-padding;
     }
   }
@@ -145,8 +145,9 @@ $app-content-padding: 70px;
     color: palette('white');
   }
 
-  @include breakpoint('medium') {
+  @include breakpoint('small') {
     display: none;
+    opacity: 0;
   }
 }
 
