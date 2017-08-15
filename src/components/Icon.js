@@ -32,7 +32,7 @@ class Icon extends Component {
       name,
       className,
       size,
-      ...rest,
+      ...rest
     } = this.props;
 
     const iconClassNames = cx({
@@ -45,8 +45,8 @@ class Icon extends Component {
       iconComponent,
       {
         className: iconClassNames,
-        name: name,
-        ...this.rest,
+        name,
+        ...rest,
       },
     );
   }

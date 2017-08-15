@@ -1,3 +1,4 @@
+/* eslint-disable */
 // AUTO GENERATED
 module.exports = {
   'neon-coral': '#e2215b',
