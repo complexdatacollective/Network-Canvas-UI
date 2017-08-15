@@ -27,7 +27,13 @@ class Icon extends Component {
   }
 
   render() {
-    const { color, name, className } = this.props;
+    const {
+      color,
+      name,
+      className,
+      size,
+      ...rest,
+    } = this.props;
 
     const iconClassNames = cx({
       icon: true,
@@ -39,7 +45,8 @@ class Icon extends Component {
       iconComponent,
       {
         className: iconClassNames,
-        ...this.props,
+        name: name,
+        ...this.rest,
       },
     );
   }
