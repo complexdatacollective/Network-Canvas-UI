@@ -19,6 +19,7 @@ class Button extends Component {
     ]),
     size: PropTypes.string,
     color: PropTypes.string,
+    onClick: PropTypes.func,
   }
 
   static defaultProps = {
@@ -28,6 +29,7 @@ class Button extends Component {
     iconPosition: 'left',
     size: '',
     color: '',
+    onClick: '',
   }
 
   renderButtonIcon() {
@@ -64,7 +66,7 @@ class Button extends Component {
     });
 
     return (
-      <button className={buttonClassNames}>
+      <button className={buttonClassNames} onClick={this.props.onClick}>
         {this.renderButtonIcon()}
         <span className="button__content">{this.props.children || this.props.content}</span>
       </button>
