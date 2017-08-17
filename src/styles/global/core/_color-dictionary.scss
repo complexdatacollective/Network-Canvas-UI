@@ -41,6 +41,9 @@
 @include palette-set('link', color('neon-coral'));
 @include palette-set('light-background', color('cyber-grape'));
 @include palette-set('dark-background', color('rich-black'));
+@include palette-set('modal-main-panel', palette('light-background'));
+@include palette-set('modal-button-panel', palette('background'));
+@include palette-set('modal-overlay', palette('dark-background'));
 @include palette-set('headings', color('white'));
 @include palette-set('menu-headings', color('charcoal'));
 @include palette-set('divider', color('platinum--dark'));
