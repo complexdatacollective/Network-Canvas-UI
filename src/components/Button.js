@@ -26,7 +26,7 @@ class Button extends Component {
     content: '',
     children: null,
     icon: '',
-    iconPosition: 'left',
+    iconPosition: 'right',
     size: '',
     color: '',
     onClick: '',

@@ -23,7 +23,7 @@
     @include reset-button;
     @include default-button-type;
 
-    display: flex;
+    display: inline-flex;
     @include vcjc; // vertical center, justify center
     font-family: inherit;
     text-align: center;
@@ -57,8 +57,8 @@
     }
 
     &__icon {
-      height: 15px;
-      width: 15px;
+      height: 10px;
+      width: 10px;
 
       // use flexbox to change order of icon and content
       &--right {

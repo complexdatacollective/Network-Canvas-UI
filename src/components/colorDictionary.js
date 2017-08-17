@@ -1,4 +1,3 @@
-/* eslint-disable */
 // AUTO GENERATED
 module.exports = {
   'neon-coral': '#e2215b',
@@ -43,6 +42,8 @@ module.exports = {
   'link': '#e2215b',
   'light-background': '#3a3a75',
   'dark-background': '#16152b',
+  'modal-main-panel': '#3a3a75',
+  'modal-overlay': '#16152b',
   'headings': '#fff',
   'menu-headings': '#6d6f76',
   'divider': '#dae3e5',
