@@ -23,7 +23,7 @@
     @include reset-button;
     @include default-button-type;
 
-    display: flex;
+    display: inline-flex;
     @include vcjc; // vertical center, justify center
     font-family: inherit;
     text-align: center;
