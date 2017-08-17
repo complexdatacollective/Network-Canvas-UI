@@ -56,6 +56,11 @@
       margin: 0 3rem;
     }
 
+    // light color variations
+    &--white, &--platinum, &--platinum--dark {
+      color: palette('text-dark');
+    }
+
     &__icon {
       height: 25px !important;
       width: 25px !important;

@@ -46,6 +46,7 @@ const palette = {
   "settings": "slate-blue",
   "background": "navy-taupe",
   "text": "white",
+  "text-dark": "charcoal",
   "tex-muted": "cyber-grape",
   "link": "neon-coral",
   "light-background": "cyber-grape",

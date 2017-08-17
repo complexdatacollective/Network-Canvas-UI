@@ -38,6 +38,7 @@ module.exports = {
   'settings': '#6b72ec',
   'background': '#2d2955',
   'text': '#fff',
+  'text-dark': '#6d6f76',
   'tex-muted': '#3a3a75',
   'link': '#e2215b',
   'light-background': '#3a3a75',

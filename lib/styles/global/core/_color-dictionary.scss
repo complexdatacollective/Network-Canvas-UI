@@ -1,3 +1,4 @@
+/* eslint-disable */
 // AUTO GENERATED
 @include color-set('neon-coral', #e2215b);
 @include color-set('neon-coral--dark', #ce1c54);
@@ -37,13 +38,13 @@
 @include palette-set('settings', color('slate-blue'));
 @include palette-set('background', color('navy-taupe'));
 @include palette-set('text', color('white'));
+@include palette-set('text-dark', color('charcoal'));
 @include palette-set('tex-muted', color('cyber-grape'));
 @include palette-set('link', color('neon-coral'));
 @include palette-set('light-background', color('cyber-grape'));
 @include palette-set('dark-background', color('rich-black'));
-@include palette-set('modal-main-panel', palette('light-background'));
-@include palette-set('modal-button-panel', palette('background'));
-@include palette-set('modal-overlay', palette('dark-background'));
+@include palette-set('modal-main-panel', color('cyber-grape'));
+@include palette-set('modal-overlay', color('rich-black'));
 @include palette-set('headings', color('white'));
 @include palette-set('menu-headings', color('charcoal'));
 @include palette-set('divider', color('platinum--dark'));

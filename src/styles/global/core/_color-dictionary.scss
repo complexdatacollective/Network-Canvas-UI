@@ -38,6 +38,7 @@
 @include palette-set('settings', color('slate-blue'));
 @include palette-set('background', color('navy-taupe'));
 @include palette-set('text', color('white'));
+@include palette-set('text-dark', color('charcoal'));
 @include palette-set('tex-muted', color('cyber-grape'));
 @include palette-set('link', color('neon-coral'));
 @include palette-set('light-background', color('cyber-grape'));
