@@ -55,6 +55,7 @@ module.exports = {
   'node-dark': '#ce1c54',
   'edge-base': '#f2b700',
   'edge-dark': '#dba500',
+  'ring': '#3a3a75',
   'graph-tooltip': '#6d6f76',
   'graph-data-1': '#00c9a2',
   'graph-data-2': '#6b72ec',
