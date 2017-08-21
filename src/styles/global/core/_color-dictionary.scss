@@ -55,6 +55,15 @@
 @include palette-set('node-dark', color('neon-coral--dark'));
 @include palette-set('edge-base', color('mustard'));
 @include palette-set('edge-dark', color('mustard--dark'));
+@include palette-set('edge-alt-1', color('purple-pizazz'));
+@include palette-set('edge-alt-2', color('neon-coral'));
+@include palette-set('edge-alt-3', color('kiwi'));
+@include palette-set('edge-alt-4', color('paradise-pink'));
+@include palette-set('edge-alt-5', color('tomato'));
+@include palette-set('edge-alt-6', color('sea-serpent'));
+@include palette-set('edge-alt-7', color('barbie-pink'));
+@include palette-set('edge-alt-8', color('neon-coral'));
+@include palette-set('edge-alt-9', color('cerulean-blue'));
 @include palette-set('ring', color('cyber-grape'));
 @include palette-set('graph-tooltip', color('charcoal'));
 @include palette-set('graph-data-1', color('sea-green'));
