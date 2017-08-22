@@ -1,7 +1,7 @@
 .node {
   cursor: pointer;
   position: relative;
-  margin: 0 0 2rem 2rem;
+  margin: 0;
   width: 150px;
   height: 150px;
   filter: drop-shadow(0 4px 0 transparentize(palette('dark-background'), .25));
@@ -26,6 +26,14 @@
     transition: stroke $animation-default-easing $animation-fast-duration;
   }
 
+  &__node-outer-trim {
+    fill: transparent;
+    stroke: transparent;
+    stroke-width: 25px;
+    // transition: stroke $animation-default-easing $animation-slow-duration;
+
+  }
+
   &__label {
     position: absolute;
     top: 0;
@@ -36,12 +44,16 @@
     justify-content: center;
     align-items: center;
     flex-wrap: nowrap;
-    font-size: 1.5em;
   }
 
   &--selected {
     .node__node-trim {
       stroke: palette('selected');
+    }
+
+    .node__node-outer-trim {
+      stroke: transparentize(palette('selected'), .75);
+      animation: bounce $animation-fast-duration $animation-default-easing;
     }
   }
 

@@ -24,12 +24,13 @@ const Node = (props) => {
   return (
     <div className={classes}>
       <svg
-        viewBox="-1.05 -1.05 2.1 2.1"
+        viewBox="-1.5 -1.5 3 3"
         xmlns="http://www.w3.org/2000/svg"
         width="100"
         height="100"
         className="node__node"
       >
+        <circle vectorEffect="non-scaling-stroke" cx="0" cy="0" r="1" className="node__node-outer-trim" />
         <circle cx="0" cy="0" r="1" fill="silver" className="node__node-base" />
         <path
           className="node__node-flash"
