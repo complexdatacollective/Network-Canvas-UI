@@ -6,6 +6,7 @@ import {
   Checkbox,
   ToggleInput,
   ContextInput,
+  ToggleGroup,
   RadioInput,
   RadioGroup
 } from 'Components';
@@ -45,10 +46,43 @@ class FormPage extends Component {
     })
   }
 
+  handleToggleGroupChange = (e, checked, option) => {
+
+    const groupName = e.target.name;
+    this.setState({
+      formValues: {
+        ...this.state.formValues,
+        [groupName]: {
+          ...this.state.formValues[groupName],
+          [option]: checked
+        }
+      }
+    })
+  }
+
   render() {
     return (
       <div className="grid__container">
         <h1>Network Canvas | Form</h1>
+        <div className="grid__item">
+          <RadioGroup
+            label="So many toggles, pick yours"
+            name="toggle_group_type"
+            value={this.state.formValues.toggle_group_type}
+            options={['context', 'checkbox', 'toggle']}
+            onRadioClick={this.handleRadioChange}
+          />
+        </div>
+        <div className="grid__item">
+          <ToggleGroup
+            name="pets_toggle"
+            value={this.state.formValues.pets_toggle}
+            options={['dogs', 'cats']}
+            colors={['neon-carrot']}
+            toggleComponent={this.state.formValues.toggle_group_type}
+            onOptionClick={this.handleToggleGroupChange}
+          />
+        </div>
         <div className="grid__item">
           <Checkbox
             name="likesDogs"
@@ -87,6 +121,7 @@ class FormPage extends Component {
             checked={this.state.formValues.likesPizza}
           />
         </div>
+
         <div className="grid__item">
           <RadioGroup
             name="pets"

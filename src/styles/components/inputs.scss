@@ -160,6 +160,12 @@
     @include reset-input;
     cursor: pointer;
 
+    &-group {
+      &__inputs {
+        display: flex;
+      }
+    }
+
     &__container {
       position: relative;
 
