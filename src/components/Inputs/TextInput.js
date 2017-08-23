@@ -53,6 +53,20 @@ class TextInput extends Component {
     }
   }
 
+  handleKeyDown = (e) => {
+    if (this.props.isNumericOnly) {
+      if (!(
+        e.metaKey || // cmd/ctrl
+        e.key in ['ArrowRight', 'ArrowLeft'] || // arrow keys
+        e.which === 8 || // delete key
+        /[0-9]/.test(String.fromCharCode(e.which)) // numbers
+      )) {
+        e.preventDefault();
+      }
+    }
+    this.props.onKeyDown && this.props.onKeyDown(e);
+  }
+
   render() {
     const {
       className,
@@ -77,6 +91,7 @@ class TextInput extends Component {
           onBlur={this.handleBlur}
           onChange={onChange}
           onFocus={this.handleFocus}
+          onKeyDown={this.handleKeyDown}
           placeholder={showPlaceholder}
           {...rest}
         />
