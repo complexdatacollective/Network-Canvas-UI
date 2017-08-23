@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { map, zip } from 'lodash';
 
-import colorDict from '../colorDictionary';
 import ContextInput from './ContextInput';
 import Checkbox from './Checkbox';
 import ToggleInput from './ToggleInput';
@@ -12,7 +11,6 @@ const isChecked = (value, option) => (value ? !!value[option] : false);
 
 class ToggleGroup extends Component {
   static propTypes = {
-    children: PropTypes.node,
     errorText: PropTypes.node,
     name: PropTypes.string,
     label: PropTypes.string,
@@ -20,7 +18,7 @@ class ToggleGroup extends Component {
     value: PropTypes.any,
     options: PropTypes.array.isRequired,
     colors: PropTypes.array,
-    toggleComponent: PropTypes.oneOf(['toggle', 'checkbox', 'context'])
+    toggleComponent: PropTypes.oneOf(['toggle', 'checkbox', 'context']),
   }
 
   render() {
@@ -31,7 +29,7 @@ class ToggleGroup extends Component {
       name,
       value,
       errorText,
-      toggleComponent
+      toggleComponent,
     } = this.props;
 
     const optionsWithColor = (
@@ -41,8 +39,7 @@ class ToggleGroup extends Component {
     let ToggleComponent = ToggleInput;
     if (toggleComponent === 'checkbox') {
       ToggleComponent = Checkbox;
-    }
-    else if (toggleComponent === 'context') {
+    } else if (toggleComponent === 'context') {
       ToggleComponent = ContextInput;
     }
 
