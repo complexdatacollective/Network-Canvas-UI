@@ -145,7 +145,7 @@ $app-content-padding: 70px;
     color: palette('white');
   }
 
-  @include breakpoint('small') {
+  @media all and (min-width: 768px) {
     display: none;
     opacity: 0;
   }

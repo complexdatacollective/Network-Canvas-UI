@@ -17,7 +17,7 @@
   @include typography('title-5');
 }
 
-@mixin text-input (
+@mixin input-global (
   $input-class: 'input'
 ) {
   .#{$input-class} {
@@ -29,15 +29,41 @@
     height: 100%;
     &:focus, &:active {
       outline: 0;
+    }
 
-      & + .#{$input-class}__label {
+    &__error {
+      color: color('tomato');
+    }
+
+    font-family: inherit;
+    color: color('white');
+    border-bottom: 1px solid color('white');
+  }
+}
+
+@mixin text-input (
+  $text-class: 'text'
+) {
+  .#{$text-class} {
+    -webkit-appearance: none;
+    border: 0;
+    background: none;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    &:focus, &:active {
+      outline: 0;
+
+      & + .#{$text-class}__label {
         transform: scale(.6) translate(0, 60px);
       }
     }
 
     &__container {
       position: relative;
-      .#{$input-class}__label {
+      margin: .5em 0 3em;
+
+      .#{$text-class}__label {
         position: absolute;
         top: 0;
         left: 0;
@@ -48,16 +74,12 @@
         pointer-events: none;
         user-select: none;
         z-index: 1;
-
-        &--active {
-          transform: scale(.6) translate(0, 60px);
-        }
+      }
+      .input__label--active {
+        transform: scale(.6) translate(0, 60px);
       }
     }
 
-    &__error {
-      color: color('tomato');
-    }
 
     font-family: inherit;
     color: color('white');
@@ -159,6 +181,12 @@
   .#{$toggle-class} {
     @include reset-input;
     cursor: pointer;
+
+    &-group {
+      &__inputs {
+        display: flex;
+      }
+    }
 
     &__container {
       position: relative;
@@ -301,6 +329,7 @@
 }
 
 @if $export-ui-classes {
+  @include input-global;
   @include text-input;
   @include checkbox;
   @include radio;

@@ -60,6 +60,11 @@ class RadioGroup extends Component {
 
     return (
       <div className="radio-group__container" onKeyDown={this.handleKeyDown}>
+        <InputLabel
+          name={name}
+          label={label}
+          errorText={errorText}
+        />
         <div className="grid__stack">
           {
           options ? options.map((option, idx) => (
@@ -83,11 +88,6 @@ class RadioGroup extends Component {
           })
         }
         </div>
-        <InputLabel
-          name={name}
-          label={label}
-          errorText={errorText}
-        />
       </div>
     );
   }

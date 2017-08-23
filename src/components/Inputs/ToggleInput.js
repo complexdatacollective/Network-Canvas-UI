@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
+import colorDict from '../colorDictionary';
 import InputLabel from './InputLabel';
 
 class ToggleInput extends Component {
   static propTypes = {
     checked: PropTypes.bool,
     className: PropTypes.string,
-    color: PropTypes.string,
+    color: PropTypes.oneOf(Object.keys(colorDict)),
     defaultChecked: PropTypes.bool,
     errorText: PropTypes.node,
     name: PropTypes.string,
