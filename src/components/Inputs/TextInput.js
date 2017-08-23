@@ -66,17 +66,12 @@ class TextInput extends Component {
       ...rest
     } = this.props;
 
-    const inputLabelClassName = cx({
-      input__label: true,
-      'input__label--active': this.state.hasValue,
-    });
-
     const showPlaceholder = (this.state.isFocused && !this.state.hasValue) ? placeholder : null;
 
     return (
-      <div className="input__container">
+      <div className="input__container text__container">
         <input
-          className={cx(['input', className])}
+          className={cx(['text', className])}
           name={name}
           type={isNumericOnly ? 'tel' : 'text'}
           onBlur={this.handleBlur}
@@ -86,10 +81,10 @@ class TextInput extends Component {
           {...rest}
         />
         <InputLabel
+          className={'text__label'}
           active={this.state.hasValue}
           name={name}
           label={label}
-          className={inputLabelClassName}
           errorText={errorText}
         />
       </div>
