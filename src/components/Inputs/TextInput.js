@@ -14,6 +14,7 @@ class TextInput extends Component {
     label: PropTypes.string,
     hasFocus: PropTypes.bool,
     onChange: PropTypes.func,
+    onKeyDown: PropTypes.func,
     placeholder: PropTypes.string,
     value: PropTypes.any,
   }
@@ -29,7 +30,9 @@ class TextInput extends Component {
         e.preventDefault();
       }
     }
-    this.props.onKeyDown && this.props.onKeyDown(e);
+    if (this.props.onKeyDown) {
+      this.props.onKeyDown(e);
+    }
   }
 
   render() {

@@ -67,7 +67,7 @@ class RadioGroup extends Component {
           label={label}
           errorText={errorText}
         />
-        <div className={inline ? "grid__container grid--x-bookend" : "grid__stack"}>
+        <div className={inline ? 'grid__container grid--x-bookend' : 'grid__stack'}>
           {
           options ? options.map((option, idx) => (
             <RadioInput
