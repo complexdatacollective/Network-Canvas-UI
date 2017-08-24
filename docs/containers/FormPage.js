@@ -156,12 +156,21 @@ class FormPage extends Component {
           </div>
         </div>
 
-        <h3 className="type--page-divider--small">Radio groups can be rendered as separate children or as an array of options</h3>
+        <h3 className="type--page-divider--small">Radio groups can be rendered as separate children or as an array of options. They can be displayed inline or stacked.</h3>
+        <div className="grid__item">
+          <Checkbox
+            name="radioGroupInline"
+            label="Display inline?"
+            onCheck={this.handleCheckboxChange}
+            checked={this.state.formValues.radioGroupInline}
+          />
+        </div>
         <div className="grid__item">
           <RadioGroup
             name="pets"
             value={this.state.formValues.pets}
             options={['dogs', 'cats']}
+            inline={this.state.formValues.radioGroupInline}
             onRadioClick={this.handleRadioChange}
           />
         </div>
@@ -169,6 +178,7 @@ class FormPage extends Component {
           <RadioGroup
             name="food"
             value={this.state.formValues.food}
+            inline={this.state.formValues.radioGroupInline}
             onRadioClick={this.handleRadioChange}
           >
             <RadioInput
@@ -178,6 +188,30 @@ class FormPage extends Component {
             <RadioInput
               label="I like hamburgers"
               value="hamburgers"
+            />
+            <RadioInput
+              label="I like soda"
+              value="soda"
+            />
+            <RadioInput
+              label="I like french fries"
+              value="french-fries"
+            />
+            <RadioInput
+              label="I like chips"
+              value="chips"
+            />
+            <RadioInput
+              label="I like potatoes"
+              value="potatoes"
+            />
+            <RadioInput
+              label="I like bread"
+              value="bread"
+            />
+            <RadioInput
+              label="I like cheese"
+              value="cheese"
             />
           </RadioGroup>
         </div>
