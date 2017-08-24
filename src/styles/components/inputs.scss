@@ -103,6 +103,7 @@
     &__label {
       position: static;
       cursor: pointer;
+      padding-right: 1em;
       display: flex;
       align-items: center;
 
@@ -231,7 +232,7 @@
 
     &__container {
       position: relative;
-
+      padding-right: 1em;
       .input__label {
         position: static;
         cursor: pointer;
