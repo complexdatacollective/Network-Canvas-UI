@@ -83,6 +83,7 @@ class Checkbox extends Component {
           {...rest}
         />
         <InputLabel
+          className="checkbox__label"
           name={name}
           label={label}
           errorText={errorText}

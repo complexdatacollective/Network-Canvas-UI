@@ -16,6 +16,7 @@ class RadioGroup extends Component {
     onRadioClick: PropTypes.func,
     options: PropTypes.array,
     value: PropTypes.any,
+    inline: PropTypes.bool,
   }
 
   handleKeyDown = (e) => {
@@ -55,6 +56,7 @@ class RadioGroup extends Component {
       onRadioClick,
       options,
       value,
+      inline,
       ...rest // eslint-disable-line
     } = this.props;
 
@@ -65,7 +67,7 @@ class RadioGroup extends Component {
           label={label}
           errorText={errorText}
         />
-        <div className="grid__stack">
+        <div className={inline ? 'grid__container grid--x-bookend' : 'grid__stack'}>
           {
           options ? options.map((option, idx) => (
             <RadioInput
