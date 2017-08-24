@@ -12,45 +12,10 @@ class TextInput extends Component {
     name: PropTypes.string,
     isNumericOnly: PropTypes.bool,
     label: PropTypes.string,
-    onBlur: PropTypes.func,
+    hasFocus: PropTypes.bool,
     onChange: PropTypes.func,
-    onFocus: PropTypes.func,
     placeholder: PropTypes.string,
-    validator: PropTypes.func,
     value: PropTypes.any,
-  }
-
-  state = {
-    hasValue: false,
-    isFocused: false,
-  }
-
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.hasOwnProperty('value')) {
-      let hasValue = Boolean(nextProps.value);
-      if (nextProps.validator) {
-        hasValue = nextProps.validator(nextProps.value);
-      }
-      this.setState({ hasValue });
-    }
-  }
-
-  handleBlur = (e) => {
-    this.setState({ isFocused: false });
-    if (this.props.onBlur) {
-      this.props.onBlur(e);
-    }
-  }
-
-  handleFocus = (e) => {
-    if (this.props.disabled) {
-      return;
-    }
-    this.setState({ isFocused: true });
-    if (this.props.onFocus) {
-      this.props.onFocus(e);
-    }
   }
 
   handleKeyDown = (e) => {
@@ -75,12 +40,13 @@ class TextInput extends Component {
       label,
       onChange,
       isNumericOnly,
+      hasFocus,
       placeholder,
       value,
       ...rest
     } = this.props;
 
-    const showPlaceholder = (this.state.isFocused && !this.state.hasValue) ? placeholder : null;
+    const showPlaceholder = (hasFocus && !value) ? placeholder : null;
 
     return (
       <div className="input__container text__container">
@@ -88,16 +54,14 @@ class TextInput extends Component {
           className={cx(['text', className])}
           name={name}
           type={isNumericOnly ? 'tel' : 'text'}
-          onBlur={this.handleBlur}
           onChange={onChange}
-          onFocus={this.handleFocus}
           onKeyDown={this.handleKeyDown}
           placeholder={showPlaceholder}
           {...rest}
         />
         <InputLabel
           className={'text__label'}
-          active={this.state.hasValue}
+          active={value}
           name={name}
           label={label}
           errorText={errorText}
