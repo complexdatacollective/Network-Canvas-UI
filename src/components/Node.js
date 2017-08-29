@@ -7,6 +7,7 @@ import classNames from 'classnames';
   */
 const Node = (props) => {
   const {
+    inactive,
     selected,
     placeholder,
   } = props;
@@ -14,6 +15,7 @@ const Node = (props) => {
   const classes = classNames(
     'node',
     {
+      'node--inactive': inactive,
       'node--selected': selected,
       'node--placeholder': placeholder,
     },
@@ -46,12 +48,14 @@ const Node = (props) => {
 };
 
 Node.propTypes = {
+  inactive: PropTypes.bool,
   label: PropTypes.string,
   selected: PropTypes.bool,
   placeholder: PropTypes.bool,
 };
 
 Node.defaultProps = {
+  inactive: false,
   label: 'Node',
   selected: false,
   placeholder: false,

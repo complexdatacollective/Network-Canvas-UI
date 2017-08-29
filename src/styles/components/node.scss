@@ -46,6 +46,10 @@
     flex-wrap: nowrap;
   }
 
+  &--inactive {
+    opacity: .5;
+  }
+
   &--selected {
     .node__node-trim {
       stroke: palette('selected');
