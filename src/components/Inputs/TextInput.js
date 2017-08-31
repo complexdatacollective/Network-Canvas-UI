@@ -60,11 +60,12 @@ class TextInput extends Component {
           onChange={onChange}
           onKeyDown={this.handleKeyDown}
           placeholder={showPlaceholder}
+          value={value}
           {...rest}
         />
         <InputLabel
           className={'text__label'}
-          active={value}
+          active={!!value}
           name={name}
           label={label}
           errorText={errorText}
