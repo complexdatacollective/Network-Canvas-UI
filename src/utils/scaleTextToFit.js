@@ -1,15 +1,27 @@
 /* eslint-disable no-param-reassign */
 
+// The window width and heights are just an arbitrary upper limit
 const textOutOfBounds = (containerElement, textElement) => {
   const containerBounds = containerElement.getBoundingClientRect();
   const textBounds = textElement.getBoundingClientRect();
-  return textBounds.height > containerBounds.height || textBounds.width > containerBounds.width;
+  return (
+    textBounds.height > containerBounds.height ||
+    textBounds.width > containerBounds.width
+  );
 };
 
-const scaleIncrement = 1;
+const defaultOptions = {
+  increment: 1,
+  units: 'px',
+};
 
 // TODO move padding: 33% into stylesheet
-const scaleTextToFit = (element) => {
+const scaleTextToFit = (element, options) => {
+  const {
+    increment,
+    unit,
+  } = { ...defaultOptions, ...options };
+
   element.setAttribute('style', 'position: relative;');
   const text = element.textContent;
   element.innerHTML = '';
@@ -19,17 +31,17 @@ const scaleTextToFit = (element) => {
   element.appendChild(textElement);
 
   const findFontSize = (size) => {
-    textElement.setAttribute('style', `position: absolute; font-size: ${size}px;`);
+    textElement.setAttribute('style', `position: absolute; font-size: ${size}${unit};`);
 
     return !textOutOfBounds(element, textElement) ?
-      findFontSize(size + scaleIncrement) :
-      size - scaleIncrement;
+      findFontSize(size + increment) :
+      size - increment;
   };
 
-  const fontSize = findFontSize(8);
+  const fontSize = findFontSize(0);
 
   element.innerHTML = text;
-  element.setAttribute('style', `font-size: ${fontSize}px; overflow: hidden;`);
+  element.setAttribute('style', `font-size: ${fontSize}${unit}; overflow: hidden;`);
 };
 
 export default scaleTextToFit;
