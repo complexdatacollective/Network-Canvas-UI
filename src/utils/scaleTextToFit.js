@@ -6,9 +6,7 @@ const textOutOfBounds = (containerElement, textElement) => {
   const textBounds = textElement.getBoundingClientRect();
   return (
     textBounds.height > containerBounds.height ||
-    textBounds.width > containerBounds.width ||
-    textBounds.height > window.innerHeight ||
-    textBounds.width > window.innerWidth
+    textBounds.width > containerBounds.width
   );
 };
 
