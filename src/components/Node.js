@@ -10,12 +10,12 @@ import scaleTextToFit from '../utils/scaleTextToFit';
 class Node extends Component {
 
   componentDidMount() {
-    scaleTextToFit(this.labelText);
+    scaleTextToFit(this.labelText, { unit: 'em', increment: 0.0625 });
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.label !== this.props.label) {
-      scaleTextToFit(this.labelText);
+      scaleTextToFit(this.labelText, { unit: 'em', increment: 0.0625 });
     }
   }
 
