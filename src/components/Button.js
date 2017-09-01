@@ -29,7 +29,7 @@ class Button extends Component {
     iconPosition: 'right',
     size: '',
     color: '',
-    onClick: '',
+    onClick: () => {},
   }
 
   renderButtonIcon() {
