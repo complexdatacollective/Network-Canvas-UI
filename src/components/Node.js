@@ -1,23 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import scaleTextToFit from '../utils/scaleTextToFit';
 
 /**
   * Renders a Node.
   */
 
 class Node extends Component {
-
-  componentDidMount() {
-    scaleTextToFit(this.labelText, { unit: 'em', increment: 0.0005 });
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.label !== this.props.label) {
-      scaleTextToFit(this.labelText, { unit: 'em', increment: 0.0005 });
-    }
-  }
 
   render() {
     const {
@@ -34,6 +23,11 @@ class Node extends Component {
         'node--placeholder': placeholder,
       },
     );
+
+    const labelClasses = () => {
+      const labelLength = this.props.label.length;
+      return `node__label-text len-${labelLength}`;
+    };
 
     const label = placeholder ? '+' : this.props.label;
 
@@ -57,7 +51,12 @@ class Node extends Component {
           <circle vectorEffect="non-scaling-stroke" cx="0" cy="0" r="1" className="node__node-trim" />
         </svg>
         <div className="node__label">
-          <div className="node__label-text" ref={(labelText) => { this.labelText = labelText; }}>{label}</div>
+          <div
+            className={labelClasses()}
+            ref={(labelText) => { this.labelText = labelText; }}
+          >
+            {label}
+          </div>
         </div>
       </div>
     );
