@@ -2,6 +2,28 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
+const renderButtonIcon = ({ icon, iconPosition }) => {
+  const iconClassNames = cx({
+    button__icon: true,
+    'button__icon--right': iconPosition === 'right',
+  });
+
+  let iconElement = null;
+  if (icon) {
+    if (typeof icon === 'string') {
+      // eslint-disable-next-line
+      const Icon = require('./Icon').default;
+      iconElement = <Icon name={icon} className={iconClassNames} />;
+    } else {
+      iconElement = React.cloneElement(
+        icon,
+        { className: iconClassNames },
+      );
+    }
+  }
+  return iconElement;
+};
+
 class Button extends Component {
   static propTypes = {
     content: PropTypes.oneOfType([
@@ -32,32 +54,17 @@ class Button extends Component {
     onClick: () => {},
   }
 
-  renderButtonIcon() {
-    const { icon, iconPosition } = this.props;
-
-    const iconClassNames = cx({
-      button__icon: true,
-      'button__icon--right': iconPosition === 'right',
-    });
-
-    let iconElement = null;
-    if (icon) {
-      if (typeof icon === 'string') {
-        // eslint-disable-next-line
-        const Icon = require('./Icon').default;
-        iconElement = <Icon name={icon} className={iconClassNames} />;
-      } else {
-        iconElement = React.cloneElement(
-          this.props.icon,
-          { className: iconClassNames },
-        );
-      }
-    }
-    return iconElement;
-  }
-
   render() {
-    const { color, size } = this.props;
+    const {
+      color,
+      size,
+      children,
+      content,
+      onClick,
+      icon,
+      iconPosition,
+      ...rest
+    } = this.props;
 
     const buttonClassNames = cx({
       button: true,
@@ -66,9 +73,9 @@ class Button extends Component {
     });
 
     return (
-      <button className={buttonClassNames} onClick={this.props.onClick}>
-        {this.renderButtonIcon()}
-        <span className="button__content">{this.props.children || this.props.content}</span>
+      <button className={buttonClassNames} onClick={onClick} {...rest}>
+        {renderButtonIcon({ icon, iconPosition })}
+        <span className="button__content">{children || content}</span>
       </button>
     );
   }
