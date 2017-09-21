@@ -3,10 +3,9 @@ os:
 language: node_js
 node_js:
   - "8.5"
-cache: yarn
 jobs:
   include:
     - stage: build
-      script: yarn run build
+      script: node run build
     - stage: prepublish
-      script: yarn run prepublish
+      script: node run prepublish
