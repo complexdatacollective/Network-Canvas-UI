@@ -2,11 +2,10 @@ os:
   - osx
 language: node_js
 node_js:
-  - "6.9"
-cache: yarn
+  - "8.5"
 jobs:
   include:
     - stage: build
-      script: yarn run build
+      script: npm run build
     - stage: prepublish
-      script: yarn run prepublish
+      script: npm run prepublish
