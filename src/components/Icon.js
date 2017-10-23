@@ -9,11 +9,6 @@ class Icon extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
     className: PropTypes.string,
-    // eslint-disable-next-line
-    size: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
     color: PropTypes.string,
     // eslint-disable-next-line
     style: PropTypes.object,
@@ -21,7 +16,6 @@ class Icon extends Component {
 
   static defaultProps = {
     className: '',
-    size: '',
     color: '',
     style: {},
   }
@@ -31,7 +25,6 @@ class Icon extends Component {
       color,
       name,
       className,
-      size,
       ...rest
     } = this.props;
 
