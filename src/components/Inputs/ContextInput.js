@@ -1,3 +1,5 @@
+/* eslint-disable react/require-default-props */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
@@ -17,6 +19,7 @@ class ContextInput extends Component {
     onCheck: PropTypes.func,
     onChange: PropTypes.func,
     onFocus: PropTypes.func,
+    isChecked: PropTypes.func,
     value: PropTypes.any,
   }
 
@@ -47,7 +50,7 @@ class ContextInput extends Component {
   }
 
   isChecked() {
-    return this.refs.checkbox.checked;
+    return this.checkbox.checked;
   }
 
   handleCheck = (event) => {
@@ -58,14 +61,14 @@ class ContextInput extends Component {
 
   render() {
     const {
-      checked, // eslint-disable-line
+      checked,
       className,
       color,
       errorText,
       label,
       value,
-      onCheck, // eslint-disable-line
-      isChecked, // eslint-disable-line
+      onCheck,
+      isChecked,
       ...rest
     } = this.props;
 
@@ -80,7 +83,7 @@ class ContextInput extends Component {
           className={cx(['context', className])}
           name={name}
           type="checkbox"
-          ref="checkbox"
+          ref={(checkbox) => { this.checkbox = checkbox; }}
           value={value}
           checked={this.state.isChecked}
           onChange={this.handleCheck}

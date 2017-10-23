@@ -98,7 +98,7 @@ const buildScssColorDictionary = () =>
 
 const buildJsColorDictionary = () =>
   Object.keys(colors).reduce((result, key) =>
-    result.concat(`  '${key}': '${colors[key]}',\n`), "// AUTO GENERATED\nmodule.exports = {\n");
+    result.concat(`  '${key}': '${colors[key]}',\n`), "/* eslint-disable quote-props */\n// AUTO GENERATED\nmodule.exports = {\n");
 
 const buildScssPaletteDictionary = () =>
   Object.keys(palette).reduce((result, key) =>

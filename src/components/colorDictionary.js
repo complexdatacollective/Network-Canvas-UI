@@ -1,3 +1,4 @@
+/* eslint-disable quote-props */
 // AUTO GENERATED
 module.exports = {
   'neon-coral': '#e2215b',

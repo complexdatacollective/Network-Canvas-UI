@@ -1,3 +1,5 @@
+/* eslint-disable react/require-default-props */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';

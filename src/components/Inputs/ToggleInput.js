@@ -1,3 +1,5 @@
+/* eslint-disable react/require-default-props */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
@@ -49,7 +51,7 @@ class ToggleInput extends Component {
   }
 
   isChecked() {
-    return this.refs.checkbox.checked;
+    return this.checkbox.checked;
   }
 
   handleCheck = (event) => {
@@ -83,7 +85,7 @@ class ToggleInput extends Component {
           className={cx(['toggle', className])}
           name={name}
           type="checkbox"
-          ref="checkbox"
+          ref={(checkbox) => { this.checkbox = checkbox; }}
           checked={this.state.isChecked}
           onChange={this.handleCheck}
           value={value}

@@ -1,3 +1,5 @@
+/* eslint-disable react/require-default-props */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
@@ -48,7 +50,7 @@ class Checkbox extends Component {
   }
 
   isChecked() {
-    return this.refs.checkbox.checked; // eslint-disable-line
+    return this.checkbox.checked;
   }
 
   handleCheck = (event) => {
@@ -76,7 +78,7 @@ class Checkbox extends Component {
           className={cx(['checkbox', className])}
           name={name}
           type="checkbox"
-          ref="checkbox"
+          ref={(checkbox) => { this.checkbox = checkbox; }}
           checked={this.state.isChecked}
           onChange={this.handleCheck}
           value={value}

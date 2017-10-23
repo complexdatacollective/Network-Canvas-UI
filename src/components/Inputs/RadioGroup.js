@@ -1,3 +1,5 @@
+/* eslint-disable react/require-default-props */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
@@ -96,4 +98,3 @@ class RadioGroup extends Component {
 }
 
 export default RadioGroup;
-
