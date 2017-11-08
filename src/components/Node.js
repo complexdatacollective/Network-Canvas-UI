@@ -10,6 +10,7 @@ class Node extends Component {
 
   render() {
     const {
+      color,
       inactive,
       selected,
       placeholder,
@@ -23,6 +24,16 @@ class Node extends Component {
         'node--placeholder': placeholder,
       },
     );
+
+    const nodeBaseClasses = classNames({
+      'node__node-base': true,
+      [`node__node-base--${color}`]: !!color,
+    });
+
+    const nodeFlashClasses = classNames({
+      'node__node-flash': true,
+      [`node__node-flash--${color}--dark`]: !!color,
+    });
 
     const labelClasses = () => {
       const labelLength = this.props.label.length;
@@ -41,9 +52,9 @@ class Node extends Component {
           className="node__node"
         >
           <circle vectorEffect="non-scaling-stroke" cx="0" cy="0" r="1" className="node__node-outer-trim" />
-          <circle cx="0" cy="0" r="1" fill="silver" className="node__node-base" />
+          <circle cx="0" cy="0" r="1" fill="silver" className={nodeBaseClasses} />
           <path
-            className="node__node-flash"
+            className={nodeFlashClasses}
             d="M -1 0 A 0.2,0.2 0 1,1 1,0"
             fill="grey"
             transform="rotate(135)"
@@ -64,6 +75,7 @@ class Node extends Component {
 }
 
 Node.propTypes = {
+  color: PropTypes.string,
   inactive: PropTypes.bool,
   label: PropTypes.string,
   selected: PropTypes.bool,
@@ -71,6 +83,7 @@ Node.propTypes = {
 };
 
 Node.defaultProps = {
+  color: '',
   inactive: false,
   label: 'Node',
   selected: false,

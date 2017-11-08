@@ -15,10 +15,12 @@
 
   &__node-base {
     fill: palette('node-base');
+    @include palette-modifiers($include-fill: true);
   }
 
   &__node-flash {
     fill: palette('node-dark');
+    @include palette-modifiers($include-fill: true);
   }
 
   &__node-trim {
