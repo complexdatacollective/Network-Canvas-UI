@@ -9,3 +9,16 @@ $-palette-map: () !default;
 @function palette($palette-name) {
   @return map-get($-palette-map, $palette-name);
 }
+
+@mixin palette-modifiers($include-fill: false) {
+  @each $palette-name, $palette-group in $-palette-map {
+    @include modifier($palette-name) {
+      background-color: palette($palette-name);
+
+      @if $include-fill {
+        background-color: initial;
+        fill: palette($palette-name);
+      }
+    }
+  }
+}
