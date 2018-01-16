@@ -45,7 +45,7 @@ class Node extends Component {
     return (
       <div className={classes}>
         <svg
-          viewBox="-1.4 -1.4 2.8 2.8"
+          viewBox="-1.2 -1.2 2.4 2.4"
           xmlns="http://www.w3.org/2000/svg"
           width="100"
           height="100"

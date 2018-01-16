@@ -1,6 +1,7 @@
 .node {
   cursor: pointer;
   position: relative;
+  overflow:visible;
   margin: 0;
   font-size: 150px;
   width: 1em;
@@ -11,6 +12,7 @@
     width: 100%;
     height: 100%;
     position: absolute;
+    overflow:visible;
   }
 
   &__node-base {
@@ -33,7 +35,7 @@
   &__node-outer-trim {
     fill: transparent;
     stroke: transparent;
-    stroke-width: 25px;
+    stroke-width: 27px;
     // transition: stroke $animation-default-easing $animation-slow-duration;
 
   }
