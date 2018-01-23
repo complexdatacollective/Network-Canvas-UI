@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Spinner } from 'Components';
 
 class TypographyPage extends Component {
   render() {
@@ -6,6 +7,7 @@ class TypographyPage extends Component {
       <div className="grid__container">
         <h1>Network Canvas | Typography</h1>
         <div className="grid__container">
+          <Spinner />
           <h2 className="type--page-divider">Typefaces</h2>
           <h3 className="type--page-title-large">Primary Typeface</h3>
           <h3 className="type--page-title--large">Circular Pro</h3>

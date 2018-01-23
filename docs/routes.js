@@ -7,16 +7,16 @@ import {
   FormPage,
   HomePage,
   IconsPage,
-  TypographyPage
-} from 'containers';
+  TypographyPage,
+} from './containers';
 
 export default (
-	<Route path="/" component={AppLayout}>
-		<IndexRoute component={HomePage} />
+  <Route path="/" component={AppLayout}>
+    <IndexRoute component={HomePage} />
     <Route path="/buttons" component={ButtonsPage} />
     <Route path="/color" component={ColorPage} />
     <Route path="/icons" component={IconsPage} />
-		<Route path="/typography" component={TypographyPage} />
+    <Route path="/typography" component={TypographyPage} />
     <Route path="/form" component={FormPage} />
-	</Route>
+  </Route>
 );

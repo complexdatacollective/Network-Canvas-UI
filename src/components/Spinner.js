@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Spinner = props => (
-  <div className="nc-spinner">
+const Spinner = ({name}) => (
+  <div className="spinner">
     <div className="circle-container">
       <div className="half-circle" />
       <div className="half-circle rot" />

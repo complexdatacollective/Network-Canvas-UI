@@ -1,25 +1,13 @@
-$circle-size: 10px;
+$circle-size: 20px;
 $container-size: $circle-size * 3;
-$animation-time: 1.7s;
+$animation-time: 1.5s;
 
-$network-canvas-coral: #e2215b;
-$light-sea-green: #00c9a2;
-$mustard: #f2b700;
-$sea-serpent: #0fb2e2;
-$navy-taupe: #2d2955;
-
-$color-list: ($sea-serpent, $mustard, $network-canvas-coral, $light-sea-green);
-
-body {
-  background: $navy-taupe;
-}
-
-.nc-spinner {
-  position: absolute;
+$light-color-list: (color('sea-serpent'), color('mustard'), color('neon-coral'), color('sea-green'));
+$dark-color-list: (color('sea-serpent--dark'), color('mustard--dark'), color('neon-coral--dark'), color('sea-green--dark'));
+.spinner {
   width: $container-size;
   height: $container-size;
-  top: calc(50% - #{$container-size/2});
-  left: calc(50% - #{$container-size/2});
+  margin: $circle-size;
   animation: spin $animation-time cubic-bezier(0.77, 0, 0.175, 1) infinite;
   transform: rotate(45deg);
 }
@@ -66,32 +54,32 @@ body {
 
 @keyframes spin {
   0% {
-    transform: rotate(45deg) scale(1.4);
+    transform: rotate(45deg) scale(1);
   }
 
   40% {
-    transform: rotate(45deg) scale(1);
+    transform: rotate(45deg) scale(0.8);
   }
   100% {
-    transform: rotate(405deg) scale(1.4);
+    transform: rotate(405deg) scale(1);
   }
 }
 
-@each $color in $color-list {
-  
-  $color-index: index($color-list, $color);
- 
+@each $color in $light-color-list {
+
+  $color-index: index($light-color-list, $color);
+
   @keyframes circle-color-#{$color-index} {
     0% {
       transform: translateX($circle-size);
-      background: darken($color, 10%);
+      background: item($dark-color-list, $color-index);
     }
     100% {
       trasform: translateX(0px);
       background: $color;
     }
   }
-  
+
   .circle-container {
 
     &:nth-child(#{$color-index}) {
@@ -104,5 +92,5 @@ body {
       }
     }
   }
-  
+
 }
