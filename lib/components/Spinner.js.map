@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/components/Spinner.js"],"names":["Spinner"],"mappings":";;;;;;AAAA;;;;;;AAEA,IAAMA,UACJ;AAAA;AAAA;AAAA;AAAA,CADF;;kBAIeA,O","file":"Spinner.js","sourcesContent":["import React from 'react';\n\nconst Spinner = (\n  <h1>Yo</h1>\n);\n\nexport default Spinner;\n"]}

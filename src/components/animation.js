@@ -1,10 +1,13 @@
 // TODO: This is going to be used to generate the respective variables in sass
 // at a later date
+
+const animationScaleFactor = 1;
+
 export default {
   duration: {  // in ms
-    fast: 300,
-    standard: 500,
-    slow: 1000,
+    fast: animationScaleFactor * 300,
+    standard: animationScaleFactor * 500,
+    slow: animationScaleFactor * 1000,
   },
   easing: {
     ios: [0.23, 1, 0.32, 1],

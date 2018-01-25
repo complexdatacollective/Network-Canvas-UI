@@ -89,6 +89,8 @@ $app-content-padding: 70px;
   display: flex;
   overflow: hidden;
   position: relative;
+  color: palette('text');
+  background: palette('background');
 
   &__content {
     position: absolute;

@@ -22,24 +22,28 @@ class AppLayout extends Component {
     },
     {
       title: 'Typography',
-      href: 'typography'
+      href: 'typography',
+    },
+    {
+      title: 'Spinners',
+      href: 'spinners',
     },
     {
       title: 'Color',
-      href: 'color'
+      href: 'color',
     },
     {
       title: 'Buttons',
-      href: 'buttons'
+      href: 'buttons',
     },
     {
       title: 'Icons',
-      href: 'icons'
+      href: 'icons',
     },
     {
       title: 'Form',
-      href: 'form'
-    }
+      href: 'form',
+    },
   ];
 
   toggleSideNav = () => {
