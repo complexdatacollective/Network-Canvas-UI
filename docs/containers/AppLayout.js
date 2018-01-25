@@ -25,6 +25,10 @@ class AppLayout extends Component {
       href: 'typography',
     },
     {
+      title: 'Spinners',
+      href: 'spinners',
+    },
+    {
       title: 'Color',
       href: 'color',
     },

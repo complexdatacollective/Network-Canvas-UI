@@ -8,6 +8,7 @@ import {
   HomePage,
   IconsPage,
   TypographyPage,
+  SpinnerPage,
 } from './containers';
 
 export default (
@@ -18,5 +19,6 @@ export default (
     <Route path="/icons" component={IconsPage} />
     <Route path="/typography" component={TypographyPage} />
     <Route path="/form" component={FormPage} />
+    <Route path="/spinners" component={SpinnerPage} />
   </Route>
 );

@@ -50,7 +50,6 @@ $dark-color-list: (color('sea-serpent--dark'), color('mustard--dark'), color('ne
     .half-circle {
       height: var(--circle-size);
       width: calc(var(--circle-size) * 2);
-      background: #9e978e;
       border-top-left-radius: calc(var(--circle-size) * 2);
       border-top-right-radius: calc(var(--circle-size) * 2);
 
