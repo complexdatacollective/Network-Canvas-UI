@@ -1,55 +1,95 @@
-$circle-size: 20px;
-$container-size: $circle-size * 3;
-$animation-time: 1.5s;
 
 $light-color-list: (color('sea-serpent'), color('mustard'), color('neon-coral'), color('sea-green'));
 $dark-color-list: (color('sea-serpent--dark'), color('mustard--dark'), color('neon-coral--dark'), color('sea-green--dark'));
+
 .spinner {
-  width: $container-size;
-  height: $container-size;
-  margin: $circle-size;
-  animation: spin $animation-time cubic-bezier(0.77, 0, 0.175, 1) infinite;
+  --circle-size: 20px;
+  --container-size: calc(var(--circle-size) * 3);
+  --animation-duration: 1.5s;
+
+  &--small {
+    --circle-size: 10px;
+  }
+
+  &--large {
+    --circle-size: 40px;
+  }
+
+  width: var(--container-size);
+  height: var(--container-size);
+  margin: var(--circle-size);
+  animation: spin var(--animation-duration) cubic-bezier(0.77, 0, 0.175, 1) infinite;
   transform: rotate(45deg);
-}
 
-.circle-container {
-  position: absolute;
+  .circle {
+    position: absolute;
 
-  &:nth-child(1) {
-    top: -#{$circle-size};
-    left: 0px;
+    &:nth-child(1) {
+      top: calc(var(--circle-size) * -1);
+      left: 0px;
+    }
+
+    &:nth-child(2) {
+      top: 0px;
+      left: calc(var(--circle-size) * 2);
+      transform: rotate(90deg);
+    }
+
+    &:nth-child(3) {
+      top: var(--circle-size);
+      left: calc(var(--circle-size) * -1);
+      transform: rotate(-90deg);
+    }
+
+    &:nth-child(4) {
+      top: calc(var(--circle-size) * 2);
+      left: var(--circle-size);
+      transform: rotate(-180deg);
+    }
+
+    .half-circle {
+      height: var(--circle-size);
+      width: calc(var(--circle-size) * 2);
+      background: #9e978e;
+      border-top-left-radius: calc(var(--circle-size) * 2);
+      border-top-right-radius: calc(var(--circle-size) * 2);
+
+      &--rotated {
+        transform: rotate(180deg);
+        position: relative;
+        top: -1px;
+      }
+    }
   }
 
-  &:nth-child(2) {
-    top: 0px;
-    left: #{$circle-size * 2};
-    transform: rotate(90deg);
+  @each $color in $light-color-list {
+
+    $color-index: index($light-color-list, $color);
+
+    @keyframes circle-color-#{$color-index} {
+      0% {
+        transform: translateX(var(--circle-size));
+        background: item($dark-color-list, $color-index);
+      }
+      100% {
+        trasform: translateX(0px);
+        background: $color;
+      }
+    }
+
+    .circle {
+      &:nth-child(#{$color-index}) {
+        :nth-child(1) {
+          background: darken($color, 10%);
+          animation: circle-color-#{$color-index} calc(var(--animation-duration) / 2) cubic-bezier(0.77, 0, 0.175, 1) alternate infinite;
+        }
+        :nth-child(2) {
+          background: $color;
+        }
+      }
+    }
   }
 
-  &:nth-child(3) {
-    top: #{$circle-size};
-    left: -#{$circle-size};
-    transform: rotate(-90deg);
-  }
-
-  &:nth-child(4) {
-    top: #{$circle-size * 2};
-    left: #{$circle-size};
-    transform: rotate(-180deg);
-  }
-}
-
-.half-circle {
-  height: $circle-size;
-  width: $circle-size * 2;
-  background: #9e978e;
-  border-top-left-radius: $circle-size * 2;
-  border-top-right-radius: $circle-size * 2;
-  &.rot {
-    transform: rotate(180deg);
-    position: relative;
-    top: -1px;
-  }
 }
 
 @keyframes spin {
@@ -65,32 +105,4 @@ $dark-color-list: (color('sea-serpent--dark'), color('mustard--dark'), color('ne
   }
 }
 
-@each $color in $light-color-list {
 
-  $color-index: index($light-color-list, $color);
-
-  @keyframes circle-color-#{$color-index} {
-    0% {
-      transform: translateX($circle-size);
-      background: item($dark-color-list, $color-index);
-    }
-    100% {
-      trasform: translateX(0px);
-      background: $color;
-    }
-  }
-
-  .circle-container {
-
-    &:nth-child(#{$color-index}) {
-      :nth-child(1) {
-        background: darken($color, 10%);
-        animation: circle-color-#{$color-index} #{$animation-time / 2} cubic-bezier(0.77, 0, 0.175, 1) alternate infinite;
-      }
-      :nth-child(2) {
-        background: $color;
-      }
-    }
-  }
-
-}

@@ -8,6 +8,9 @@ class TypographyPage extends Component {
         <h1>Network Canvas | Typography</h1>
         <div className="grid__container">
           <Spinner />
+          <Spinner small />
+          <Spinner large />
+          <Spinner plain />
           <h2 className="type--page-divider">Typefaces</h2>
           <h3 className="type--page-title-large">Primary Typeface</h3>
           <h3 className="type--page-title--large">Circular Pro</h3>
