@@ -98,6 +98,8 @@ const palette = {
   "graph-data-2": "slate-blue",
   "graph-data-3": "neon-carrot",
   "graph-data-4": "sea-serpent",
+  "ordinalbin-title": "sea-green",
+  "ordinalbin-content": "cyber-grape",
 };
 
 if (!scssOutput) {
