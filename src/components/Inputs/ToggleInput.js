@@ -14,6 +14,7 @@ class ToggleInput extends Component {
     color: PropTypes.oneOf(Object.keys(colorDict)),
     defaultChecked: PropTypes.bool,
     errorText: PropTypes.node,
+    tooltip: PropTypes.string,
     name: PropTypes.string,
     label: PropTypes.string,
     onBlur: PropTypes.func,
@@ -66,6 +67,7 @@ class ToggleInput extends Component {
       className,
       color,
       errorText,
+      tooltip,
       name,
       label,
       onCheck, // eslint-disable-line
@@ -98,6 +100,7 @@ class ToggleInput extends Component {
           name={name}
           label={label}
           errorText={errorText}
+          tooltip={tooltip}
         />
       </div>
     );

@@ -18,6 +18,7 @@ const ToggleGroup = ({
   name,
   value,
   errorText,
+  tooltip,
   toggleComponent,
   onOptionClick,
 }) => {
@@ -38,6 +39,7 @@ const ToggleGroup = ({
         name={name}
         label={label}
         errorText={errorText}
+        tooltip={tooltip}
       />
       <div className="toggle-group__inputs">
         {map(optionsWithColor, ([option, color]) => (
@@ -57,6 +59,7 @@ const ToggleGroup = ({
 
 ToggleGroup.propTypes = {
   errorText: PropTypes.node,
+  tooltip: PropTypes.string,
   name: PropTypes.string,
   label: PropTypes.string,
   onOptionClick: PropTypes.func,

@@ -10,6 +10,7 @@ class TextInput extends Component {
   static propTypes = {
     className: PropTypes.string,
     errorText: PropTypes.node,
+    tooltip: PropTypes.string,
     disabled: PropTypes.bool,
     name: PropTypes.string,
     isNumericOnly: PropTypes.bool,
@@ -41,6 +42,7 @@ class TextInput extends Component {
     const {
       className,
       errorText,
+      tooltip,
       name,
       label,
       onChange,
@@ -71,6 +73,7 @@ class TextInput extends Component {
           name={name}
           label={label}
           errorText={errorText}
+          tooltip={tooltip}
         />
       </div>
     );
