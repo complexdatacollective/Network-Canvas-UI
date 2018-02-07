@@ -14,7 +14,7 @@
 }
 
 @mixin default-input-type {
-  @include typography('title-5');
+  @include typography('title-2');
 }
 
 @mixin input-global (
@@ -129,6 +129,8 @@
   $text-class: 'text'
 ) {
   .#{$text-class} {
+    @include default-input-type;
+
     -webkit-appearance: none;
     border: 0;
     background: none;
@@ -148,6 +150,9 @@
       margin: 3em 0;
 
       .#{$text-class}__label {
+        @include default-input-type;
+        opacity: .7;
+
         position: absolute;
         top: 0;
         left: 0;
