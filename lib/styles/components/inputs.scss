@@ -14,7 +14,7 @@
 }
 
 @mixin default-input-type {
-  @include typography('title-5');
+  @include typography('title-2');
 }
 
 @mixin input-global (
@@ -35,6 +35,90 @@
       color: color('tomato');
     }
 
+    &__tooltip-right,
+    &__tooltip-bottom {
+      display: inline-block;
+
+      .#{$input-class}__error {
+        align-items: center;
+        color: palette('text');
+        display: flex;
+        margin-top: 30px;
+        padding: 20px 20px 0;
+
+        > svg[name=error] {
+          height: 100%;
+          margin-right: 10px;
+          padding-top: 0px;
+          width: 100px;
+        }
+
+        h4:first-of-type {
+          font-weight: bold;
+          letter-spacing: .15rem;
+          text-transform: uppercase;
+        }
+
+        h4 {
+          padding: 5px;
+        }
+
+        &::after {
+          border: 15px solid transparent;
+          content: '';
+          height: 0;
+          position: absolute;
+          width: 0;
+        }
+      }
+    }
+
+    &__tooltip-right {
+      display: inline-block;
+
+      .#{$input-class}__label {
+        width: 100%;
+      }
+
+      .#{$input-class}__error {
+        background: palette('background');
+        border-right: 10px solid palette('error');
+        height: 5rem;
+        margin-left: 15px;
+        position: absolute;
+        right: 0;
+        top: -300%;
+
+        &::after {
+          border-right-color: palette('background');
+          border-left: 0;
+          left: -15px; /* To the left of the tooltip */
+          margin-left: 0px;
+          top: calc(50% - 15px);
+        }
+      }
+    }
+
+    &__tooltip-bottom {
+      display: inline-block;
+
+      .#{$input-class}__error {
+        background: palette('light-background');
+        border-left: 10px solid palette('error');
+        height: 130px;
+        position: relative;
+
+        &::after {
+          border-bottom-color: palette('light-background');
+          border-top: 0;
+          margin-left: -15px;
+          margin-top: -15px;
+          right: 5%;
+          top: 0;
+        }
+      }
+    }
+
     font-family: inherit;
     color: color('white');
     border-bottom: 1px solid color('white');
@@ -45,6 +129,8 @@
   $text-class: 'text'
 ) {
   .#{$text-class} {
+    @include default-input-type;
+
     -webkit-appearance: none;
     border: 0;
     background: none;
@@ -54,16 +140,19 @@
     &:focus, &:active {
       outline: 0;
 
-      & + .#{$text-class}__label {
+      & + * .#{$text-class}__label {
         transform: scale(.6) translate(0, 60px);
       }
     }
 
     &__container {
       position: relative;
-      margin: .5em 0 3em;
+      margin: 3em 0;
 
       .#{$text-class}__label {
+        @include default-input-type;
+        opacity: .7;
+
         position: absolute;
         top: 0;
         left: 0;

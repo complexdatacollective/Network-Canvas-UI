@@ -12,6 +12,7 @@ class RadioGroup extends Component {
     className: PropTypes.string,
     children: PropTypes.node,
     errorText: PropTypes.node,
+    tooltip: PropTypes.string,
     name: PropTypes.string,
     label: PropTypes.string,
     onChange: PropTypes.func,
@@ -53,6 +54,7 @@ class RadioGroup extends Component {
       className,
       children,
       errorText,
+      tooltip,
       name,
       label,
       onRadioClick,
@@ -68,6 +70,7 @@ class RadioGroup extends Component {
           name={name}
           label={label}
           errorText={errorText}
+          tooltip={tooltip}
         />
         <div className={inline ? 'grid__container grid--x-bookend' : 'grid__stack'}>
           {

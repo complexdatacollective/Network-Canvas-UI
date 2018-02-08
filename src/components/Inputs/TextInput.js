@@ -10,6 +10,7 @@ class TextInput extends Component {
   static propTypes = {
     className: PropTypes.string,
     errorText: PropTypes.node,
+    tooltip: PropTypes.string,
     disabled: PropTypes.bool,
     name: PropTypes.string,
     isNumericOnly: PropTypes.bool,
@@ -18,6 +19,7 @@ class TextInput extends Component {
     onChange: PropTypes.func,
     onKeyDown: PropTypes.func,
     placeholder: PropTypes.string,
+    type: PropTypes.string,
     value: PropTypes.any,
   }
 
@@ -41,6 +43,7 @@ class TextInput extends Component {
     const {
       className,
       errorText,
+      tooltip,
       name,
       label,
       onChange,
@@ -48,6 +51,7 @@ class TextInput extends Component {
       hasFocus,
       placeholder,
       value,
+      type,
       ...rest
     } = this.props;
 
@@ -58,20 +62,21 @@ class TextInput extends Component {
         <input
           className={cx(['text', className])}
           name={name}
-          type={isNumericOnly ? 'tel' : 'text'}
+          type={type}
           onChange={onChange}
           onKeyDown={this.handleKeyDown}
           placeholder={showPlaceholder}
           value={value}
           {...rest}
         />
-        <InputLabel
+        {type !== 'hidden' && <InputLabel
           className={'text__label'}
           active={!!value}
           name={name}
           label={label}
           errorText={errorText}
-        />
+          tooltip={tooltip}
+        />}
       </div>
     );
   }

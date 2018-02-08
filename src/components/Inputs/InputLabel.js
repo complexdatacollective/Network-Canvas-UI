@@ -3,6 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import { Icon } from '..';
 
 const InputLabel = ({
   active,
@@ -10,6 +11,7 @@ const InputLabel = ({
   errorText,
   name,
   label,
+  tooltip,
 }) => {
   const inputLabelClassName = cx({
     input__label: true,
@@ -21,15 +23,26 @@ const InputLabel = ({
     'input__error--active': active,
   });
 
+  const wrapperClassName = cx({
+    'input__tooltip-right': tooltip === 'right',
+    'input__tooltip-bottom': tooltip === 'bottom',
+  });
+
   return (
-    <label className={inputLabelClassName} htmlFor={name}>
-      {label}
+    <div className={wrapperClassName}>
+      <label className={inputLabelClassName} htmlFor={name}>
+        {label}
+      </label>
       {errorText &&
         <div className={inputErrorClassName}>
-          {errorText}
+          {tooltip && <Icon name="error" />}
+          <div className="input__error-text">
+            {tooltip && <h4>Error!</h4>}
+            <h4>{errorText}</h4>
+          </div>
         </div>
       }
-    </label>
+    </div>
   );
 };
 
@@ -39,6 +52,7 @@ InputLabel.propTypes = {
   errorText: PropTypes.node,
   name: PropTypes.string,
   label: PropTypes.string,
+  tooltip: PropTypes.string,
 };
 
 export default InputLabel;

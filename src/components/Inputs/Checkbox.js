@@ -12,6 +12,7 @@ class Checkbox extends Component {
     className: PropTypes.string,
     defaultChecked: PropTypes.bool,
     errorText: PropTypes.node,
+    tooltip: PropTypes.string,
     name: PropTypes.string,
     label: PropTypes.string,
     onBlur: PropTypes.func,
@@ -64,6 +65,7 @@ class Checkbox extends Component {
       checked, // eslint-disable-line no-unused-vars
       className,
       errorText,
+      tooltip,
       name,
       label,
       onCheck, // eslint-disable-line no-unused-vars
@@ -89,6 +91,7 @@ class Checkbox extends Component {
           name={name}
           label={label}
           errorText={errorText}
+          tooltip={tooltip}
         />
       </div>
     );
