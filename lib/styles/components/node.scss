@@ -104,7 +104,7 @@
     }
   }
 
-  &--placeholder {
-    opacity: .25;
+  &--linking {
+    animation: linking $animation-slow-duration $animation-default-easing infinite;
   }
 }
