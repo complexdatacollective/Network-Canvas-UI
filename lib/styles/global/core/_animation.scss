@@ -47,6 +47,18 @@ $animation-default-easing: $animation-android-easing;
   }
 }
 
+@keyframes linking {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255,255,255, 0.4);
+  }
+  70% {
+      box-shadow: 0 0 0 10px rgba(255,255,255, 0);
+  }
+  100% {
+      box-shadow: 0 0 0 0 rgba(255,255,255, 0);
+  }
+}
+
 @mixin animation($animation-name) {
   animation-name: $animation-name;
   animation-duration: $animation-standard-duration;

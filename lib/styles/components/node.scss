@@ -1,5 +1,5 @@
 :root {
-  --node-base-size: 160px;
+  --node-base-size: 180px;
   @include breakpoint('full') {
     --node-base-size: 200px;
   }
@@ -104,7 +104,7 @@
     }
   }
 
-  &--placeholder {
-    opacity: .25;
+  &--linking {
+    animation: linking $animation-slow-duration $animation-default-easing infinite;
   }
 }

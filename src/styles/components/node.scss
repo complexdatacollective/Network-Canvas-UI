@@ -1,5 +1,5 @@
 :root {
-  --node-base-size: 160px;
+  --node-base-size: 180px;
   @include breakpoint('full') {
     --node-base-size: 200px;
   }
@@ -104,7 +104,18 @@
     }
   }
 
-  &--placeholder {
-    opacity: .25;
+  &--linking {
+    .node__node-trim {
+      stroke: palette('selected');
+
+    }
+
+    .node__node-outer-trim {
+      stroke: transparentize(palette('selected'), .75);
+      animation: linking $animation-slow-duration ease-in-out infinite;
+
+    }
+    animation: linking $animation-slow-duration ease-in-out infinite;
+
   }
 }

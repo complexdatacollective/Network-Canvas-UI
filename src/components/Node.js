@@ -13,7 +13,7 @@ class Node extends Component {
       color,
       inactive,
       selected,
-      placeholder,
+      linking,
     } = this.props;
 
     const classes = classNames(
@@ -21,7 +21,7 @@ class Node extends Component {
       {
         'node--inactive': inactive,
         'node--selected': selected,
-        'node--placeholder': placeholder,
+        'node--linking': linking,
       },
     );
 
@@ -40,7 +40,7 @@ class Node extends Component {
       return `node__label-text len-${labelLength}`;
     };
 
-    const label = placeholder ? '+' : this.props.label;
+    const label = this.props.label;
 
     return (
       <div className={classes}>
@@ -79,7 +79,7 @@ Node.propTypes = {
   inactive: PropTypes.bool,
   label: PropTypes.string,
   selected: PropTypes.bool,
-  placeholder: PropTypes.bool,
+  linking: PropTypes.bool,
 };
 
 Node.defaultProps = {
@@ -87,7 +87,7 @@ Node.defaultProps = {
   inactive: false,
   label: 'Node',
   selected: false,
-  placeholder: false,
+  linking: false,
 };
 
 export default Node;

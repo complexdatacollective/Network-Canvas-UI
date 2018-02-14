@@ -47,6 +47,18 @@ $animation-default-easing: $animation-android-easing;
   }
 }
 
+@keyframes linking {
+  0% {
+    transform:scale(0.8);
+  }
+  50% {
+    transform:scale(1.1);
+  }
+  100% {
+    transform:scale(0.8);
+  }
+}
+
 @mixin animation($animation-name) {
   animation-name: $animation-name;
   animation-duration: $animation-standard-duration;
