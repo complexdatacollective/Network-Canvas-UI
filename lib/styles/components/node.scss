@@ -5,6 +5,18 @@
   }
 }
 
+@keyframes linking {
+  0% {
+    transform:scale(0.8);
+  }
+  50% {
+    transform:scale(1.1);
+  }
+  100% {
+    transform:scale(0.8);
+  }
+}
+
 .node {
   cursor: pointer;
   position: relative;
@@ -105,6 +117,14 @@
   }
 
   &--linking {
-    animation: linking $animation-slow-duration $animation-default-easing infinite;
+    .node__node-trim {
+      stroke: palette('selected');
+    }
+
+    .node__node-outer-trim {
+      stroke: transparentize(palette('selected'), .75);
+      animation: linking $animation-slow-duration $animation-default-easing infinite;
+    }
+
   }
 }
