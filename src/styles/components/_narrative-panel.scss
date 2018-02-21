@@ -4,7 +4,7 @@ $module-name: 'narrative-panel';
   display: flex;
   flex-direction: column;
   background-color: palette('light-background');
-  border-bottom: transparentize(palette('dark-background'), 0.85) 2px solid;
+  border-bottom: transparentize(color('rich-black', $use-mapped-value: true), 0.85) 2px solid;
 
   &__heading {
     @include typography('title-4');
@@ -16,7 +16,7 @@ $module-name: 'narrative-panel';
     padding: spacing(1.5) spacing(1.25);
     cursor: pointer;
     background-color: transparent;
-    color: transparentize(palette('selected'), 0.3);
+    color: transparentize(color('white', $use-mapped-value: true), 0.3);
 
     &::after {
       display: block;
@@ -25,7 +25,7 @@ $module-name: 'narrative-panel';
     }
 
     &:hover {
-      background-color: transparentize(palette('dark-background'), 0.85);
+      background-color: transparentize(color('rich-black', $use-mapped-value: true), 0.85);
       color: palette('selected');
     }
   }
