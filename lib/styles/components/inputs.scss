@@ -249,6 +249,15 @@
     @include reset-input;
     cursor: pointer;
 
+    &-group__container {
+      margin: 3em 0;
+      position: relative;
+
+      .input__tooltip-right .input__error {
+        top: -4rem;
+      }
+    }
+
     &__container {
       position: relative;
     }
@@ -320,6 +329,8 @@
     }
 
     &__container {
+      margin: 3em 0;
+
       position: relative;
       padding-right: 1em;
       .input__label {
@@ -333,7 +344,7 @@
       height: $toggle-height * .5;
       width: $switch-size * 1.5;
       position: relative;
-      margin: .5em .75em;
+      margin: .5em 1em;
     }
 
     &__button {
