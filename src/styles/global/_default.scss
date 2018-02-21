@@ -285,3 +285,11 @@ $text-sizes: (
     --#{$name}: $palette;
   }
 }
+
+// to export out into css modules for js
+:export {
+  @each $name,
+  $color in $-color-map {
+    #{$name}: $color;
+  }
+}

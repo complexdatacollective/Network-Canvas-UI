@@ -4,13 +4,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
-import colorDict from '../colorDictionary';
+import colors from '../../styles/global/_default.scss';
 
 class ContextInput extends Component {
   static propTypes = {
     checked: PropTypes.bool,
     className: PropTypes.string,
-    color: PropTypes.oneOf(Object.keys(colorDict)),
+    color: PropTypes.oneOf(Object.keys(colors)),
     defaultChecked: PropTypes.bool,
     errorText: PropTypes.node,
     name: PropTypes.string,

@@ -10,9 +10,8 @@ class ButtonsPage extends Component {
       <div className="grid__container">
         <h1>Network Canvas | Buttons</h1>
         <div className="grid__item">
-          {colors.map((color, idx) => {
-            return (
-              <div key={idx}>
+          {colors.map((color, idx) => (
+            <div key={idx}>
                 <Button
                   size="small"
                   color={color.color}
@@ -32,8 +31,7 @@ class ButtonsPage extends Component {
                   Links
                 </Button>
               </div>
-            );
-          })}
+            ))}
 
         </div>
         <i className="icon" />
