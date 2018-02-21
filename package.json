@@ -23,7 +23,6 @@
     "dist:clean": "rimraf lib",
     "dist:build": "babel ./src --out-dir ./lib --source-maps --copy-files --presets env,react,stage-0 --plugins=add-module-exports,transform-class-properties",
     "dist:icon-index": "node ./bin/build-icon-dictionary.js > src/assets/img/icons/index.js",
-    "dist:color-palette": "node ./bin/build-color-dictionary.js src/styles/global/core/_color-dictionary.scss src/components/colorDictionary.js",
     "dist": "npm run dist:clean && npm run dist:build",
     "prepublish": "npm run dist"
   },

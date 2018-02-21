@@ -184,3 +184,16 @@ $text-sizes: (
     @include text($text-size-name);
   }
 }
+
+// Default Color Settings
+// =============================================================================
+:root {
+  // each item in color map
+  @each $name, $color in $-color-map {
+    --color-#{$name}: $color;
+  }
+}
+
+#root {
+  background-color: var(--color-nc-coral);
+}
