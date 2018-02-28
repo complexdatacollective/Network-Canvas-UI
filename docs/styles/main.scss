@@ -3,7 +3,6 @@
 $sidenav-width: 200px;
 $sidenav-padding: 16px;
 $app-content-padding: 70px;
-
 @include type-set(
   'page-title--large', base,
   (
@@ -101,7 +100,6 @@ html {
   position: relative;
   color: palette('text');
   background: palette('background');
-
 
   &__content {
     position: absolute;
