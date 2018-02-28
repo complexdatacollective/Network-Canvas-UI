@@ -83,6 +83,16 @@ $app-content-padding: 70px;
 
 @include typography-classes;
 
+html {
+  a {
+    color: color('white');
+    text-decoration: none;
+    &:hover {
+      color: color('platinum--dark');
+    }
+  }
+}
+
 .app {
   width: 100%;
   min-height: 100vh;
@@ -91,6 +101,7 @@ $app-content-padding: 70px;
   position: relative;
   color: palette('text');
   background: palette('background');
+
 
   &__content {
     position: absolute;

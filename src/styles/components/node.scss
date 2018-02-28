@@ -25,7 +25,7 @@
   font-size: var(--node-base-size);
   width: 1em;
   height: 1em;
-  filter: drop-shadow(0 4px 0 transparentize(color('rich-black', $use-mapped-value: true), .25));
+  filter: drop-shadow(0 4px 0 var(--node-filter-shadow));
 
   &__node {
     width: 100%;
@@ -111,7 +111,7 @@
     }
 
     .node__node-outer-trim {
-      stroke: transparentize(color('white', $use-mapped-value: true), .75);
+      stroke: var(--node-outer-trim-stroke);
       animation: bounce $animation-fast-duration $animation-default-easing;
     }
   }
@@ -122,7 +122,7 @@
     }
 
     .node__node-outer-trim {
-      stroke: transparentize(color('white', $use-mapped-value: true), .75);
+      stroke: var(--node-outer-trim-stroke);
       animation: linking $animation-slow-duration $animation-default-easing infinite;
     }
 
