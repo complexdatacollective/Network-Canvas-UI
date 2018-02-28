@@ -300,6 +300,9 @@ $text-sizes: (
   --modal-window-box-shadow: transparentize(rgb(22, 21, 43), .25);
 
   --panel-selected-node-bg-color: transparentize(rgb(255, 255, 255), .95);
+
+  --menu-item-hover: darken(rgb(0, 201, 162), 5%);
+  --menu-item-hover-settings: darken(rgb(107, 114, 236), 5%);
 }
 
 // to export out into css modules for js
