@@ -30,17 +30,21 @@ $export-ui-classes: true !default;
 
 $line-height-base: 1.5 !default;
 
-$netcanvas-font-family: 'Quicksand', 'Open Sans', sans-serif;
+$display-font-family: 'Quicksand', 'Open Sans', sans-serif;
+$system-font-family: 'system-ui', sans-serif;
+
+$netcanvas-font-family: $system-font-family !default;
 $netcanvas-font-size: 18px;
 
-$headings-font-family:   inherit !default;
-$headings-font-weight:   400 !default;
-$headings-line-height:   1.1 !default;
+$headings-primary-font-family: $display-font-family !default;
+$headings-font-family: inherit !default;
+$headings-font-weight: 400 !default;
+$headings-line-height: 1.1 !default;
 
 @include type-set(
   'quicksand', base,
   (
-    font-family: 'Quicksand, "Open Sans", sans-serif',
+    font-family: $display-font-family,
     font-size: 16px,
     line-height: $line-height-base,
     font-weight: $headings-font-weight
@@ -62,6 +66,7 @@ $headings-line-height:   1.1 !default;
 @include type-set(
   'main-title', base,
   (
+    font-family: $headings-primary-font-family,
     font-size: 45px,
     line-height: 1.429,
     font-weight: 700,
@@ -72,6 +77,7 @@ $headings-line-height:   1.1 !default;
 @include type-set(
   'title-1', base,
   (
+    font-family: $headings-primary-font-family,
     font-size: 32px,
     line-height: 1.429,
     font-weight: 700,
@@ -157,26 +163,27 @@ html {
 // Headings
 
 // Based of px sizes in style guide (em values were inconsistent)
-$text-sizes: (
-  h1: 1.75rem,
-  h2: 1.25rem,
-  h3: 1.0625rem,
-  h4: 1rem,
-  h5: .75rem,
+$headings: (
+  h1: (1.75rem, $headings-primary-font-family),
+  h2: (1.25rem, $headings-font-family),
+  h3: (1.0625rem, $headings-font-family),
+  h4: (1rem, $headings-font-family),
+  h5: (.75rem, $headings-font-family),
 );
 
-@mixin text($text-size) {
-  font-family: $headings-font-family;
-  font-size: map-get($text-sizes, $text-size);
+@mixin text($font-size, $font-family) {
+  font-family: $font-family;
+  font-size: $font-size;
   font-weight: $headings-font-weight;
   letter-spacing: .05rem;
   line-height: $headings-line-height;
 }
 
-@each $text-size in $text-sizes {
-  $text-size-name: nth($text-size, 1);
+@each $heading-tag, $heading-properties in $headings {
+  #{$heading-tag} {
+    $font-size: nth($heading-properties, 1);
+    $font-family: nth($heading-properties, 2);
 
-  #{$text-size-name} {
-    @include text($text-size-name);
+    @include text($font-size, $font-family);
   }
 }
