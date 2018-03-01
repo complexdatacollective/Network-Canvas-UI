@@ -28,8 +28,12 @@ $export-ui-classes: true !default;
 // Default Copy Typography Sizes
 // =============================================================================
 
-$netcanvas-font-size: 16px;
 $line-height-base: 1.5 !default;
+
+$netcanvas-font-family: 'Quicksand', 'Open Sans', sans-serif;
+$netcanvas-font-size: 18px;
+
+$headings-font-family:   inherit !default;
 $headings-font-weight:   400 !default;
 $headings-line-height:   1.1 !default;
 
@@ -145,20 +149,12 @@ $headings-line-height:   1.1 !default;
   @include grid-classes;
 }
 
-$netcanvas-font-family: 'Quicksand', 'Open Sans', sans serif;
-$netcanvas-font-size: 18px;
-$line-height-base: 1.5 !default;
-
 html {
   font-family: $netcanvas-font-family;
   font-size: $netcanvas-font-size;
 }
 
 // Headings
-
-$headings-font-family:   inherit !default;
-$headings-line-height:   1.1 !default;
-$headings-color:         inherit !default;
 
 // Based of px sizes in style guide (em values were inconsistent)
 $text-sizes: (
