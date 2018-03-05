@@ -79,7 +79,11 @@ $dark-color-list: (color('sea-serpent--dark'), color('mustard--dark'), color('ne
     .circle {
       &:nth-child(#{$color-index}) {
         :nth-child(1) {
-          background: darken($color, 10%);
+          background: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 0.1),
+            rgba(0, 0, 0, 0.1)
+          ) $color;
           animation: circle-color-#{$color-index} calc(var(--animation-duration) / 2) cubic-bezier(0.77, 0, 0.175, 1) alternate infinite;
         }
         :nth-child(2) {

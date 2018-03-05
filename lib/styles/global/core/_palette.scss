@@ -6,8 +6,12 @@ $-palette-map: () !default;
   $-palette-map: map-merge($-palette-map, ($palette-name: $palette-value)) !global;
 }
 
-@function palette($palette-name) {
-  @return map-get($-palette-map, $palette-name);
+@function palette($palette-name, $use-mapped-value: false) {
+  @if $use-mapped-value == true {
+    @return map-get($-palette-map, $palette-name);
+  } @else {
+    @return var(--#{$palette-name})
+  }
 }
 
 @mixin palette-modifiers($include-fill: false) {

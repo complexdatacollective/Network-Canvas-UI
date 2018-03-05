@@ -40,7 +40,7 @@
     &:hover {
       text-decoration: none;
       cursor: pointer;
-      background-color: color('sea-green', 0.8);
+      opacity: 0.8;
     }
 
     @include color-modifiers($include-hover: true);
