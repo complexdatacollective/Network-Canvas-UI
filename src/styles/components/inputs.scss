@@ -31,6 +31,10 @@
       outline: 0;
     }
 
+    &__container--hidden {
+      flex-basis: 0;
+    }
+
     &__error {
       color: color('tomato');
     }

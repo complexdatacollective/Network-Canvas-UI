@@ -57,8 +57,14 @@ class TextInput extends Component {
 
     const showPlaceholder = (hasFocus && !value) ? placeholder : null;
 
+    const inputContainerClassName = cx({
+      input__container: true,
+      text__container: true,
+      'input__container--hidden': type === 'hidden',
+    });
+
     return (
-      <div className="input__container text__container">
+      <div className={inputContainerClassName}>
         <input
           className={cx(['text', className])}
           name={name}
