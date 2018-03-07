@@ -8,7 +8,7 @@ $module-name: 'narrative-panel';
 
   &__heading {
     @include typography('title-4');
-    @include transition-properties((background-color, color), ease, $animation-fast-duration);
+    @include transition-properties((background-color, color), ease, var(--animation-fast-duration));
     text-transform: uppercase;  // Should this be part of typography?
     letter-spacing: spacing(0.15);  // Should this be part of typography?
     border: none;

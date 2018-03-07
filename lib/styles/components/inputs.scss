@@ -428,7 +428,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      transition: all $animation-standard-duration $animation-default-easing;
+      transition: all var(--animation-standard-duration) var(--animation-default-easing);
 
       @each $color-name, $color-group in $-color-map {
         @include modifier($color-name) {
@@ -437,7 +437,7 @@
       }
 
       &:after {
-        transition: all $animation-standard-duration $animation-default-easing;
+        transition: all var(--animation-standard-duration) var(--animation-default-easing);
         position: absolute;
         top: 6%;
         left: 6%;
@@ -459,7 +459,7 @@
       background-color: transparent;
 
       &:after {
-        transition: all $animation-standard-duration $animation-default-easing;
+        transition: all var(--animation-standard-duration) var(--animation-default-easing);
         opacity: 1;
         background-color: color('sea-green');
       }

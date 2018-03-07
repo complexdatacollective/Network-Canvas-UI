@@ -1,6 +1,5 @@
 
 $light-color-list: (color('sea-serpent'), color('mustard'), color('neon-coral'), color('sea-green'));
-$dark-color-list: (color('sea-serpent--dark'), color('mustard--dark'), color('neon-coral--dark'), color('sea-green--dark'));
 
 .spinner {
   --circle-size: 20px;
@@ -18,7 +17,7 @@ $dark-color-list: (color('sea-serpent--dark'), color('mustard--dark'), color('ne
   width: var(--container-size);
   height: var(--container-size);
   margin: var(--circle-size);
-  animation: spin var(--animation-duration) cubic-bezier(0.77, 0, 0.175, 1) infinite;
+  animation: spin var(--animation-duration) var(--animation-default-easing) infinite;
   transform: rotate(45deg);
 
   .circle {
@@ -68,7 +67,6 @@ $dark-color-list: (color('sea-serpent--dark'), color('mustard--dark'), color('ne
     @keyframes circle-color-#{$color-index} {
       0% {
         transform: translateX(var(--circle-size));
-        background: item($dark-color-list, $color-index);
       }
       100% {
         trasform: translateX(0px);
