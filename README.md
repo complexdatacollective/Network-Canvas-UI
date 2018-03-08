@@ -33,28 +33,14 @@ const LocalComponent = props => (
 
 ### Styles
 
-You can also webpack the corresponding styles with:
-
-```js
-// in LocalComponent.js
-
-import '~network-canvas-ui/lib/styles/example-component';
-```
-
-Or alternatively include all styles in your main stylesheet and add the mixins you want out of the box:
+You can include all styles in your main stylesheet:
 
 ```scss
 // in main.scss
-
 @import '~network-canvas-ui/lib/styles/all';
-
-// optional mixin classes
-@include reset;
-@include type-classes;
-@include button;
-@include icon;
-@include input;
 ```
+
+Importing styles for only certain components may work but is not supported at this time.
 
 ### Icons
 
