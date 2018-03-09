@@ -9,16 +9,23 @@ $-color-alpha-map: (.1, .15, .3, .6, .7, .8, 1) !default;
   $-color-map: map-merge($-color-map, ($color-name: $color-value)) !global;
 }
 
-@function color($color-name, $alpha: 1) {
+@function color($color-name, $alpha: 1, $use-mapped-value: false) {
   $color: #fff;
-  @if index($-color-alpha-map, $alpha) == null {
-    @warn 'color: Only use #{$-color-alpha-map} for alpha values.';
-  }
-  @if map-has-key($-color-map, $color-name) {
-    $color: map-get($-color-map, $color-name);
-    @return rgba($color, $alpha);
+  @if $use-mapped-value==true {
+    @if index($-color-alpha-map, $alpha)==null {
+      @warn 'color: Only use #{$-color-alpha-map} for alpha values.';
+    }
+
+    @if map-has-key($-color-map, $color-name) {
+      $color: map-get($-color-map, $color-name);
+      @return rgba($color, $alpha);
+    }
+
+    @else {
+      @return $color;
+    }
   } @else {
-    @return $color;
+    @return var(--color-#{$color-name})
   }
 }
 

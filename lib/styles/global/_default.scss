@@ -3,7 +3,6 @@
 @import 'core/breakpoints';
 @import 'core/color';
 @import 'core/palette';
-@import 'core/color-dictionary';
 @import 'core/grid';
 @import 'core/functions';
 @import 'core/spacing';
@@ -12,6 +11,136 @@
 @import 'core/normalize';
 
 $export-ui-classes: true !default;
+
+// Default Color Settings
+// =============================================================================
+@include color-set('neon-coral', rgb(226, 33, 91));
+@include color-set('neon-coral--dark', rgb(206, 28, 84));
+@include color-set('mustard', rgb(242, 183, 0));
+@include color-set('mustard--dark', rgb(219, 165, 0));
+@include color-set('sea-green', rgb(0, 201, 162));
+@include color-set('sea-green--dark', rgb(0, 160, 129));
+@include color-set('white', rgb(255, 255, 255));
+@include color-set('slate-blue', rgb(107, 114, 236));
+@include color-set('slate-blue--dark', rgb(85, 91, 188));
+@include color-set('navy-taupe', rgb(45, 41, 85));
+@include color-set('cyber-grape', rgb(58, 58, 117));
+@include color-set('rich-black', rgb(22, 21, 43));
+@include color-set('charcoal', rgb(109, 111, 118));
+@include color-set('platinum', rgb(242, 246, 247));
+@include color-set('platinum--dark', rgb(218, 227, 229));
+@include color-set('sea-serpent', rgb(15, 178, 226));
+@include color-set('sea-serpent--dark', rgb(15, 163, 206));
+@include color-set('purple-pizazz', rgb(211, 15, 239));
+@include color-set('purple-pizazz--dark', rgb(191, 12, 216));
+@include color-set('paradise-pink', rgb(255, 58, 140));
+@include color-set('paradise-pink--dark', rgb(232, 53, 124));
+@include color-set('cerulean-blue', rgb(15, 112, 255));
+@include color-set('cerulean-blue--dark', rgb(15, 102, 232));
+@include color-set('kiwi', rgb(112, 191, 84));
+@include color-set('kiwi--dark', rgb(102, 173, 76));
+@include color-set('neon-carrot', rgb(247, 137, 30));
+@include color-set('neon-carrot--dark', rgb(224, 124, 28));
+@include color-set('barbie-pink', rgb(237, 0, 140));
+@include color-set('barbie-pink--dark', rgb(214, 0, 127));
+@include color-set('tomato', rgb(232, 45, 63));
+@include color-set('tomato--dark', rgb(211, 43, 58));
+
+@include palette-set('primary', color('sea-green'));
+@include palette-set('menu', color('white'));
+@include palette-set('selected', color('white'));
+@include palette-set('settings', color('slate-blue'));
+@include palette-set('background', color('navy-taupe'));
+@include palette-set('text', color('white'));
+@include palette-set('text-dark', color('charcoal'));
+@include palette-set('tex-muted', color('cyber-grape'));
+@include palette-set('link', color('neon-coral'));
+@include palette-set('light-background', color('cyber-grape'));
+@include palette-set('dark-background', color('rich-black'));
+@include palette-set('modal-main-panel', color('cyber-grape'));
+@include palette-set('modal-overlay', color('rich-black'));
+@include palette-set('info', color('sea-green'));
+@include palette-set('warning', color('mustard'));
+@include palette-set('error', color('neon-coral'));
+@include palette-set('headings', color('white'));
+@include palette-set('menu-headings', color('charcoal'));
+@include palette-set('divider', color('platinum--dark'));
+@include palette-set('node-base', color('neon-coral'));
+@include palette-set('node-dark', color('neon-coral--dark'));
+@include palette-set('node-alt-1', color('purple-pizazz'));
+@include palette-set('node-alt-1--dark', color('purple-pizazz--dark'));
+@include palette-set('node-alt-2', color('paradise-pink'));
+@include palette-set('node-alt-2--dark', color('paradise-pink--dark'));
+@include palette-set('node-alt-3', color('barbie-pink'));
+@include palette-set('node-alt-3--dark', color('barbie-pink--dark'));
+@include palette-set('node-alt-4', color('tomato'));
+@include palette-set('node-alt-4--dark', color('tomato--dark'));
+@include palette-set('node-alt-5', color('neon-carrot'));
+@include palette-set('node-alt-5--dark', color('neon-carrot--dark'));
+@include palette-set('node-alt-6', color('mustard'));
+@include palette-set('node-alt-6--dark', color('mustard--dark'));
+@include palette-set('node-alt-7', color('kiwi'));
+@include palette-set('node-alt-7--dark', color('kiwi--dark'));
+@include palette-set('node-alt-8', color('sea-serpent'));
+@include palette-set('node-alt-8--dark', color('sea-serpent--dark'));
+@include palette-set('node-alt-9', color('cerulean-blue'));
+@include palette-set('node-alt-9--dark', color('cerulean-blue--dark'));
+@include palette-set('edge-base', color('mustard'));
+@include palette-set('edge-dark', color('mustard--dark'));
+@include palette-set('edge-alt-1', color('purple-pizazz'));
+@include palette-set('edge-alt-2', color('neon-coral'));
+@include palette-set('edge-alt-3', color('kiwi'));
+@include palette-set('edge-alt-4', color('paradise-pink'));
+@include palette-set('edge-alt-5', color('tomato'));
+@include palette-set('edge-alt-6', color('sea-serpent'));
+@include palette-set('edge-alt-7', color('barbie-pink'));
+@include palette-set('edge-alt-8', color('neon-coral'));
+@include palette-set('edge-alt-9', color('cerulean-blue'));
+@include palette-set('ring', color('cyber-grape'));
+@include palette-set('graph-tooltip', color('charcoal'));
+@include palette-set('graph-data-1', color('sea-green'));
+@include palette-set('graph-data-2', color('slate-blue'));
+@include palette-set('graph-data-3', color('neon-carrot'));
+@include palette-set('graph-data-4', color('sea-serpent'));
+
+
+:root {
+  // each item in color map
+  @each $name, $color in $-color-map {
+    --color-#{$name}: $color;
+  }
+  // each item in palette
+  @each $name, $palette in $-palette-map {
+    --#{$name}: $palette;
+  }
+
+  // additional palette values
+  --narrative-heading-color: transparentize(rgb(255, 255, 255), 0.3);
+  --narrative-heading-bg-hover : transparentize(rgb(22, 21, 43), 0.85);
+  --narrative-border-bottom-color: transparentize(rgb(22, 21, 43), 0.85);
+
+  --node-outer-trim-stroke: transparentize(rgb(255, 255, 255), .75);
+  --node-bucket-bg: radial-gradient( ellipse at center, transparentize(rgb(45, 41, 85), .5) 0%, transparentize(rgb(58, 58, 117), .5) 100%);
+  --node-list-action-bg: transparentize(rgb(58, 58, 117), .5);
+
+  --drop-shadow-color: transparentize(rgb(22, 21, 43), .25);
+
+  --modal-overlay-bg-color: transparentize(rgb(22, 21, 43), .05);
+  --modal-window-box-shadow: transparentize(rgb(22, 21, 43), .25);
+
+  --panel-selected-node-bg-color: transparentize(rgb(255, 255, 255), .95);
+
+  --menu-item-hover: darken(rgb(0, 201, 162), 5%);
+  --menu-item-hover-settings: darken(rgb(107, 114, 236), 5%);
+}
+
+// to export out into css modules for js
+:export {
+  @each $name,
+  $color in $-color-map {
+    #{$name}: $color;
+  }
+}
 
 // Default Breakpoint Settings
 // =============================================================================

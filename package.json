@@ -1,11 +1,11 @@
 {
   "name": "network-canvas-ui",
-  "version": "1.12.3",
+  "version": "1.13.0",
   "description": "Styles and React components for the Network Canvas project",
   "main": "lib/components/index.js",
   "engines": {
-      "node": "8.9.3",
-      "npm": "5.5.1"
+    "node": "8.9.3",
+    "npm": "5.5.1"
   },
   "scripts": {
     "lint-js": "eslint src",
@@ -27,7 +27,6 @@
     "dist:clean": "rimraf lib",
     "dist:build": "babel ./src --out-dir ./lib --source-maps --copy-files --presets env,react,stage-0 --plugins=add-module-exports,transform-class-properties",
     "dist:icon-index": "node ./bin/build-icon-dictionary.js > src/assets/img/icons/index.js",
-    "dist:color-palette": "node ./bin/build-color-dictionary.js src/styles/global/core/_color-dictionary.scss src/components/colorDictionary.js",
     "dist": "npm run dist:clean && npm run dist:build",
     "prepublish": "npm run dist"
   },

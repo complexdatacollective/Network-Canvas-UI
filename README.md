@@ -52,17 +52,12 @@ When you add a new svg file to `src/assets/img/icon` run
 
 ### Colors
 
-To add a new color or palette, edit the lists in `bin/build-color-dictionary.js`. Then, to add the updates to scss and js, run
-
-```sh
-$ npm run dist:color-palette
-````
-
-and to copy the updates to the `lib` directory run
-
-```sh
-$ npm run prepublish
-````
+To add a new color or palette, you can add a new css variable to the root selector:
+```
+:root {
+  --my-new-color: blue;
+}
+```
 
 ## What's included
 

@@ -3,7 +3,6 @@
 $sidenav-width: 200px;
 $sidenav-padding: 16px;
 $app-content-padding: 70px;
-
 @include type-set(
   'page-title--large', base,
   (
@@ -82,6 +81,16 @@ $app-content-padding: 70px;
 @include type-set('section-header--small', medium, (font-size: 24px));
 
 @include typography-classes;
+
+html {
+  a {
+    color: color('white');
+    text-decoration: none;
+    &:hover {
+      color: color('platinum--dark');
+    }
+  }
+}
 
 .app {
   width: 100%;

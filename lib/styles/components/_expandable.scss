@@ -1,6 +1,6 @@
 .expandable {
   max-height: 0;
-  @include transition-properties(max-height, ease, $animation-fast-duration);
+  @include transition-properties(max-height, ease, var(--animation-fast-duration));
   overflow: hidden;
 
   &--open {
