@@ -11,5 +11,4 @@ export ToggleGroup from './Inputs/ToggleGroup';
 export Node from './Node';
 export Expandable from './Expandable';
 export NarrativePanel from './NarrativePanel';
-export animation from './animation';
 export Spinner from './Spinner';
