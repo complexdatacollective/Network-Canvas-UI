@@ -25,6 +25,10 @@ $export-ui-classes: true !default;
   display: flex;
 }
 
+@if $export-ui-classes {
+  @include normalize;
+}
+
 // Default Copy Typography Sizes
 // =============================================================================
 
@@ -183,7 +187,6 @@ $headings: (
 );
 
 @if $export-ui-classes {
-  @include normalize;
   @include typography-classes;
   @include grid-classes;
 }
