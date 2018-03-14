@@ -12,9 +12,11 @@ class ToggleInput extends Component {
   static propTypes = {
     checked: PropTypes.bool,
     className: PropTypes.string,
+    containerClassName: PropTypes.string,
     color: PropTypes.oneOf(Object.keys(colors)),
     defaultChecked: PropTypes.bool,
     errorText: PropTypes.node,
+    inline: PropTypes.bool,
     tooltip: PropTypes.string,
     name: PropTypes.string,
     label: PropTypes.string,
@@ -24,11 +26,11 @@ class ToggleInput extends Component {
     onFocus: PropTypes.func,
     validator: PropTypes.func,
     value: PropTypes.any,
-  }
+  };
 
   state = {
     isChecked: false,
-  }
+  };
 
   componentWillMount() {
     const { checked } = this.props;
@@ -42,8 +44,8 @@ class ToggleInput extends Component {
   componentWillReceiveProps(nextProps) {
     const hasCheckedProp = nextProps.hasOwnProperty('checked');
     const hasNewDefaultProp =
-      (nextProps.hasOwnProperty('defaultChecked') &&
-      (nextProps.defaultChecked !== this.props.defaultChecked));
+      nextProps.hasOwnProperty('defaultChecked') &&
+      nextProps.defaultChecked !== this.props.defaultChecked;
 
     if (hasCheckedProp || hasNewDefaultProp) {
       const isChecked = nextProps.checked || nextProps.defaultChecked || false;
@@ -60,14 +62,16 @@ class ToggleInput extends Component {
     if (this.props.onCheck) {
       this.props.onCheck(event, this.isChecked());
     }
-  }
+  };
 
   render() {
     const {
       checked, // eslint-disable-line
       className,
+      containerClassName,
       color,
       errorText,
+      inline,
       tooltip,
       name,
       label,
@@ -82,13 +86,20 @@ class ToggleInput extends Component {
       [`toggle__button--${color}`]: !!color,
     });
 
+    const toggleContainerClassName = cx({
+      toggle__container: true,
+      'toggle__container--inline': !!inline,
+    }, [containerClassName]);
+
     return (
-      <div className="toggle__container">
+      <div className={toggleContainerClassName}>
         <input
           className={cx(['toggle', className])}
           name={name}
           type="checkbox"
-          ref={(checkbox) => { this.checkbox = checkbox; }}
+          ref={(checkbox) => {
+            this.checkbox = checkbox;
+          }}
           checked={this.state.isChecked}
           onChange={this.handleCheck}
           value={value}
@@ -97,12 +108,7 @@ class ToggleInput extends Component {
         <div className="toggle__slider">
           <span className={toggleButtonClassName} />
         </div>
-        <InputLabel
-          name={name}
-          label={label}
-          errorText={errorText}
-          tooltip={tooltip}
-        />
+        <InputLabel name={name} label={label} errorText={errorText} tooltip={tooltip} />
       </div>
     );
   }
