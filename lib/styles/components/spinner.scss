@@ -1,17 +1,22 @@
 
 $light-color-list: (color('sea-serpent'), color('mustard'), color('neon-coral'), color('sea-green'));
+$dark-color-list: (color('sea-serpent--dark'), color('mustard--dark'), color('neon-coral--dark'), color('sea-green--dark'));
 
 .spinner {
-  --circle-size: 20px;
+  --circle-size: 30px;
   --container-size: calc(var(--circle-size) * 3);
-  --animation-duration: 1.5s;
+  --animation-duration: 1.8s;
+
+  transform: translate3d(0,0,0);
+  transform: translateZ(0);
+  backface-visibility: hidden;
 
   &--small {
     --circle-size: 10px;
   }
 
   &--large {
-    --circle-size: 40px;
+    --circle-size: 60px;
   }
 
   width: var(--container-size);
@@ -66,23 +71,21 @@ $light-color-list: (color('sea-serpent'), color('mustard'), color('neon-coral'),
 
     @keyframes circle-color-#{$color-index} {
       0% {
-        transform: translateX(var(--circle-size));
-      }
-      100% {
         trasform: translateX(0px);
         background: $color;
+      }
+      100% {
+
+        transform: translateX(var(--circle-size));
+        background: nth($dark-color-list, $color-index);
       }
     }
 
     .circle {
       &:nth-child(#{$color-index}) {
         :nth-child(1) {
-          background: linear-gradient(
-            to top,
-            rgba(0, 0, 0, 0.1),
-            rgba(0, 0, 0, 0.1)
-          ) $color;
-          animation: circle-color-#{$color-index} calc(var(--animation-duration) / 2) cubic-bezier(0.77, 0, 0.175, 1) alternate infinite;
+          background: nth($dark-color-list, $color-index);
+          animation: circle-color-#{$color-index} calc(var(--animation-duration)/2) var(--animation-android-easing) alternate infinite;
         }
         :nth-child(2) {
           background: $color;
@@ -95,14 +98,18 @@ $light-color-list: (color('sea-serpent'), color('mustard'), color('neon-coral'),
 
 @keyframes spin {
   0% {
-    transform: rotate(45deg) scale(1);
+    transform: rotate(45deg) scale(0.8);
   }
 
   40% {
-    transform: rotate(45deg) scale(0.8);
+    transform: rotate(45deg) scale(1);
+  }
+
+  57% {
+    transform: rotate(45deg) scale(1);
   }
   100% {
-    transform: rotate(405deg) scale(1);
+    transform: rotate(405deg) scale(0.8);
   }
 }
 
