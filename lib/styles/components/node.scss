@@ -48,14 +48,14 @@
     fill: transparent;
     stroke: transparent;
     stroke-width: 3px;
-    transition: stroke var(--animation-default-easing) var(--animation-fast-duration);
+    transition: stroke var(--animation-easing) var(--animation-duration-fast);
   }
 
   &__node-outer-trim {
     fill: transparent;
     stroke: transparent;
     stroke-width: 27px;
-    // transition: stroke var(--animation-default-easing) var(--animation-slow-duration);
+    // transition: stroke var(--animation-easing) var(--animation-duration-slow);
 
   }
 
@@ -112,7 +112,7 @@
 
     .node__node-outer-trim {
       stroke: var(--node-outer-trim-stroke);
-      animation: bounce var(--animation-fast-duration) var(--animation-default-easing);
+      animation: bounce var(--animation-duration-fast) var(--animation-easing);
     }
   }
 
@@ -123,7 +123,7 @@
 
     .node__node-outer-trim {
       stroke: var(--node-outer-trim-stroke);
-      animation: linking var(--animation-slow-duration) var(--animation-default-easing) infinite;
+      animation: linking var(--animation-duration-slow) var(--animation-easing) infinite;
     }
 
   }

@@ -24,6 +24,7 @@ const InputLabel = ({
   });
 
   const wrapperClassName = cx({
+    'input__label-wrapper': true,
     'input__tooltip-right': tooltip === 'right',
     'input__tooltip-bottom': tooltip === 'bottom',
   });

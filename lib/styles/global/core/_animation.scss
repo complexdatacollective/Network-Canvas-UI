@@ -1,25 +1,22 @@
-// NOTE: These values should be manually synchronized with ./src/components/animation.js!
+
+$animation-default-scale-factor: 1;
+$animation-default-scale-factor-ms: 1000;
+$animation-easing-ios: cubic-bezier(.23, 1, .32, 1);
+$animation-easing-android: cubic-bezier(.4, 0, .2, 1);
 
 :root {
-  // Scale factor
-  --animation-default-scale-factor: 1;
-
-  // Durations
-  --animation-fast-duration: calc(var(--animation-default-scale-factor) * 300ms);
-  --animation-standard-duration: calc(var(--animation-default-scale-factor) * 500ms);
-  --animation-slow-duration: calc(var(--animation-default-scale-factor) * 1s);
-
-  // Curves
-  --animation-ios-easing: cubic-bezier(.23, 1, .32, 1);
-  --animation-android-easing: cubic-bezier(.4, 0, .2, 1);
-
-  --animation-default-easing: var(--animation-android-easing);
-
+  --animation-scale-factor: $animation-default-scale-factor;
+  --animation-duration-fast: $animation-default-scale-factor * .3s;
+  --animation-duration-fast-ms: $animation-default-scale-factor-ms * .3;
+  --animation-duration-standard: $animation-default-scale-factor * .5s;
+  --animation-duration-standard-ms: $animation-default-scale-factor-ms * .5;
+  --animation-duration-slow: $animation-default-scale-factor * 1s;
+  --animation-duration-slow-ms: $animation-default-scale-factor-ms * 1;
+  --animation-easing: $animation-easing-android;
+  --animation-easing-js: [0.4, 0, 0.2, 1];
 }
 
-
 // Preset animations **********************************************************/
-
 @keyframes zoom {
   0% {
     transform: scale(0, 0);
@@ -34,27 +31,30 @@
 
 @keyframes bounce {
   0% {
-    transform:scale(0);
-    opacity:0;
+    transform: scale(0);
+    opacity: 0;
   }
+
   50% {
-    transform:scale(1.1);
-    opacity:0.4;
+    transform: scale(1.1);
+    opacity: .4;
   }
+
   75% {
-    transform:scale(0.9);
-    opacity:0.7;
+    transform: scale(.9);
+    opacity: .7;
   }
+
   100% {
-    transform:scale(1);
-    opacity:1;
+    transform: scale(1);
+    opacity: 1;
   }
 }
 
 @mixin animation($animation-name) {
   animation-name: $animation-name;
-  animation-duration: var(--animation-standard-duration);
-  animation-timing-function: var(--animation-default-easing);
+  animation-duration: var(--animation-duration-standard);
+  animation-timing-function: var(--animation-easing);
   animation-delay: 0ms;
   animation-iteration-count: 1;
 }
@@ -75,7 +75,6 @@ $transition-presets: (
 );
 
 // Animation helpers **********************************************************/
-
 @mixin transition-properties($properties, $easing, $duration) {
   $transitions: ();
   @each $value in $properties {
@@ -110,7 +109,7 @@ $transition-presets: (
   }
 }
 
-@mixin group-transition($transition-name, $duration: var(--animation-standard-duration)) {
+@mixin group-transition($transition-name, $duration: var(--animation-duration-standard)) {
   $transition: map-get($transition-presets, $transition-name);
   $properties: map-keys(map-get($transition, 'start'));
 
@@ -123,7 +122,7 @@ $transition-presets: (
 
     &-active {
 
-      @include transition-properties($properties, var(--animation-default-easing), $duration);
+      @include transition-properties($properties, var(--animation-easing), $duration);
       @each $key, $value in map-get($transition, 'end') {
         #{$key}: $value;
       }
@@ -137,7 +136,7 @@ $transition-presets: (
 
 
     &-active {
-      @include transition-properties($properties, var(--animation-default-easing), $duration);
+      @include transition-properties($properties, var(--animation-easing), $duration);
       @each $key, $value in map-get($transition, 'start') {
         #{$key}: $value;
       }
@@ -155,7 +154,7 @@ $transition-presets: (
     }
 
     &-active {
-      @include transition-properties-with-delay($properties, var(--animation-default-easing), $duration, $delay);
+      @include transition-properties-with-delay($properties, var(--animation-easing), $duration, $delay);
       @each $key, $value in map-get($transition, 'end') {
         #{$key}: $value;
       }
@@ -168,7 +167,7 @@ $transition-presets: (
     }
 
     &-active {
-      @include transition-properties-with-delay($properties, var(--animation-default-easing), $duration, $delay);
+      @include transition-properties-with-delay($properties, var(--animation-easing), $duration, $delay);
       @each $key, $value in map-get($transition, 'end') {
         #{$key}: $value;
       }
@@ -181,7 +180,7 @@ $transition-presets: (
     }
 
     &-active {
-      @include transition-properties($properties, var(--animation-default-easing), $duration);
+      @include transition-properties($properties, var(--animation-easing), $duration);
       @each $key, $value in map-get($transition, 'start') {
         #{$key}: $value;
       }

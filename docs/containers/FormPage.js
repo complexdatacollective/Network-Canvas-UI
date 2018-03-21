@@ -8,56 +8,52 @@ import {
   ContextInput,
   ToggleGroup,
   RadioInput,
-  RadioGroup
+  RadioGroup,
 } from 'Components';
 
 class FormPage extends Component {
   state = {
-    formValues: {}
+    formValues: {},
   }
 
   handleTextChange = (e) => {
     this.setState({
       formValues: {
         ...this.state.formValues,
-        [e.target.name]: e.target.value
-      }
-    })
+        [e.target.name]: e.target.value,
+      },
+    });
   }
 
   handleCheckboxChange = (e, checkVal) => {
-    console.log(checkVal)
-    console.log(e.target.name)
     this.setState({
       formValues: {
         ...this.state.formValues,
-        [e.target.name]: checkVal
-      }
-    })
+        [e.target.name]: checkVal,
+      },
+    });
   }
 
   handleRadioChange = (e) => {
-    console.log(e.target)
     this.setState({
       formValues: {
         ...this.state.formValues,
-        [e.target.name]: e.target.value
-      }
-    })
+        [e.target.name]: e.target.value,
+      },
+    });
   }
 
   handleToggleGroupChange = (e, checked, option) => {
-
     const groupName = e.target.name;
     this.setState({
       formValues: {
         ...this.state.formValues,
         [groupName]: {
           ...this.state.formValues[groupName],
-          [option]: checked
-        }
-      }
-    })
+          [option]: checked,
+        },
+      },
+    });
   }
 
   render() {
@@ -84,6 +80,15 @@ class FormPage extends Component {
               color="neon-carrot"
               checked={this.state.formValues.likesHedgehogs}
             />
+            <ToggleInput
+              name="likesHedgehogs"
+              containerClassName="custom"
+              onCheck={this.handleCheckboxChange}
+              label="Do you like them next to you?"
+              color="neon-carrot"
+              inline
+              checked={this.state.formValues.likesHedgehogs}
+            />
           </div>
           <h3 className="type--page-title-large">Context</h3>
           <div className="grid__item">
@@ -97,7 +102,7 @@ class FormPage extends Component {
               name="likesPizza"
               onCheck={this.handleCheckboxChange}
               label="Pizza"
-              color='kiwi'
+              color="kiwi"
               checked={this.state.formValues.likesPizza}
             />
           </div>
@@ -126,7 +131,7 @@ class FormPage extends Component {
               name="age"
               label="Age"
               placeholder="Baby Wurm Age"
-              isNumericOnly={true}
+              isNumericOnly
               errorText={this.state.formValues.age ? '' : 'Required'}
               onChange={this.handleTextChange}
               value={this.state.formValues.age}
