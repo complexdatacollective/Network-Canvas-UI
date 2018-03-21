@@ -93,6 +93,7 @@ class ToggleInput extends Component {
 
     return (
       <div className={toggleContainerClassName}>
+        <InputLabel name={name} label={label} errorText={errorText} tooltip={tooltip} />
         <input
           className={cx(['toggle', className])}
           name={name}
@@ -108,7 +109,6 @@ class ToggleInput extends Component {
         <div className="toggle__slider">
           <span className={toggleButtonClassName} />
         </div>
-        <InputLabel name={name} label={label} errorText={errorText} tooltip={tooltip} />
       </div>
     );
   }
