@@ -6,6 +6,7 @@ $dark-color-list: (color('sea-serpent--dark'), color('mustard--dark'), color('ne
   --circle-size: 30px;
   --container-size: calc(var(--circle-size) * 3);
   --animation-duration: 1.8s;
+  --circle-easing: cubic-bezier(.4, 0, .2, 1);
 
   transform: translate3d(0,0,0);
   transform: translateZ(0);
@@ -85,7 +86,7 @@ $dark-color-list: (color('sea-serpent--dark'), color('mustard--dark'), color('ne
       &:nth-child(#{$color-index}) {
         :nth-child(1) {
           background: nth($dark-color-list, $color-index);
-          animation: circle-color-#{$color-index} calc(var(--animation-duration)/2) var(--animation-android-easing) alternate infinite;
+          animation: circle-color-#{$color-index} calc(var(--animation-duration)/2) var(--circle-easing) alternate infinite;
         }
         :nth-child(2) {
           background: $color;
