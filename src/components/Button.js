@@ -39,6 +39,7 @@ class Button extends Component {
     iconPosition: PropTypes.oneOf([
       'left', 'right',
     ]),
+    className: PropTypes.string,
     size: PropTypes.string,
     color: PropTypes.string,
     onClick: PropTypes.func,
@@ -61,16 +62,20 @@ class Button extends Component {
       children,
       content,
       onClick,
+      className,
       icon,
       iconPosition,
       ...rest
     } = this.props;
 
-    const buttonClassNames = cx({
-      button: true,
-      [`button--${color}`]: !!color,
-      [`button--${size}`]: !!size,
-    });
+    const buttonClassNames = cx(
+      {
+        button: true,
+        [`button--${color}`]: !!color,
+        [`button--${size}`]: !!size,
+      },
+      className,
+    );
 
     return (
       <button className={buttonClassNames} onClick={onClick} {...rest}>
