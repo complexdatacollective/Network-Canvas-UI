@@ -6,14 +6,12 @@ import cx from 'classnames';
 
 import InputLabel from './InputLabel';
 
-import colors from '../../styles/global/_default.scss';
-
 class ToggleInput extends Component {
   static propTypes = {
     checked: PropTypes.bool,
     className: PropTypes.string,
     containerClassName: PropTypes.string,
-    color: PropTypes.oneOf(Object.keys(colors)),
+    color: PropTypes.string,
     defaultChecked: PropTypes.bool,
     errorText: PropTypes.node,
     inline: PropTypes.bool,
