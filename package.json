@@ -1,11 +1,11 @@
 {
   "name": "network-canvas-ui",
-  "version": "1.13.2",
+  "version": "1.13.3",
   "description": "Styles and React components for the Network Canvas project",
   "main": "lib/components/index.js",
   "engines": {
     "node": "8.9.3",
-    "npm": "5.5.1"
+    "npm": "5.8.0"
   },
   "scripts": {
     "lint-js": "eslint src",
