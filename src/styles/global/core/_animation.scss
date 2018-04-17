@@ -5,14 +5,14 @@ $animation-easing-ios: cubic-bezier(.23, 1, .32, 1);
 $animation-easing-android: cubic-bezier(.4, 0, .2, 1);
 
 :root {
-  --animation-scale-factor: $animation-default-scale-factor;
-  --animation-duration-fast: $animation-default-scale-factor * .3s;
-  --animation-duration-fast-ms: $animation-default-scale-factor-ms * .3;
-  --animation-duration-standard: $animation-default-scale-factor * .5s;
-  --animation-duration-standard-ms: $animation-default-scale-factor-ms * .5;
-  --animation-duration-slow: $animation-default-scale-factor * 1s;
-  --animation-duration-slow-ms: $animation-default-scale-factor-ms * 1;
-  --animation-easing: $animation-easing-android;
+  --animation-scale-factor: #{$animation-default-scale-factor};
+  --animation-duration-fast: #{$animation-default-scale-factor * .3s};
+  --animation-duration-fast-ms: #{$animation-default-scale-factor-ms * .3};
+  --animation-duration-standard: #{$animation-default-scale-factor * .5s};
+  --animation-duration-standard-ms: #{$animation-default-scale-factor-ms * .5};
+  --animation-duration-slow: #{$animation-default-scale-factor * 1s};
+  --animation-duration-slow-ms: #{$animation-default-scale-factor-ms * 1};
+  --animation-easing: #{$animation-easing-android};
   --animation-easing-js: [0.4, 0, 0.2, 1];
 }
 
