@@ -107,11 +107,11 @@ $export-ui-classes: true !default;
 :root {
   // each item in color map
   @each $name, $color in $-color-map {
-    --color-#{$name}: $color;
+    --color-#{$name}: #{$color};
   }
   // each item in palette
   @each $name, $palette in $-palette-map {
-    --#{$name}: $palette;
+    --#{$name}: #{$palette};
   }
 
   // additional palette values
@@ -136,9 +136,8 @@ $export-ui-classes: true !default;
 
 // to export out into css modules for js
 :export {
-  @each $name,
-  $color in $-color-map {
-    #{$name}: $color;
+  @each $name, $color in $-color-map {
+    #{$name}: #{$color};
   }
 }
 
@@ -167,8 +166,8 @@ $system-font-stack: 'system-ui', sans-serif;
 
 :root {
   --base-font-size: 18px;
-  --heading-font-family: $netcanvas-font-stack;
-  --body-font-family: $system-font-stack;
+  --heading-font-family: #{$netcanvas-font-stack};
+  --body-font-family: #{$system-font-stack};
 }
 
 html {
