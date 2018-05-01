@@ -48,12 +48,12 @@ class Node extends Component {
           xmlns="http://www.w3.org/2000/svg"
           width="100"
           height="100"
-         className="node__node"
+          className="node__node"
         >
           <circle vectorEffect="non-scaling-stroke" cx="0" cy="0" r="1" className="node__node-outer-trim" />
           <circle cx="0" cy="0" r="1" fill="silver" className={nodeBaseClasses} />
           <path
-           className={nodeFlashClasses}
+            className={nodeFlashClasses}
             d="M -1 0 A 0.2,0.2 0 1,1 1,0"
             fill="grey"
             transform="rotate(135)"
@@ -62,7 +62,7 @@ class Node extends Component {
         </svg>
         <div className="node__label">
           <div
-           className={labelClasses()}
+            className={labelClasses()}
             ref={(labelText) => { this.labelText = labelText; }}
           >
             {label}

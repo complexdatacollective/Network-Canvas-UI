@@ -8,14 +8,14 @@ import icons from '../utils/getIcon';
 class Icon extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
-   className: PropTypes.string,
+    className: PropTypes.string,
     color: PropTypes.string,
     // eslint-disable-next-line
     style: PropTypes.object,
   }
 
   static defaultProps = {
-   className: '',
+    className: '',
     color: '',
     style: {},
   }
@@ -24,7 +24,7 @@ class Icon extends Component {
     const {
       color,
       name,
-     className,
+      className,
       ...rest
     } = this.props;
 
@@ -37,7 +37,7 @@ class Icon extends Component {
     return React.createElement(
       iconComponent,
       {
-       className: iconClassNames,
+        className: iconClassNames,
         name,
         ...rest,
       },

@@ -8,7 +8,7 @@ import RadioInput from './RadioInput';
 
 class RadioGroup extends Component {
   static propTypes = {
-   className: PropTypes.string,
+    className: PropTypes.string,
     children: PropTypes.node,
     errorText: PropTypes.node,
     tooltip: PropTypes.string,
@@ -50,7 +50,7 @@ class RadioGroup extends Component {
 
   render() {
     const {
-     className,
+      className,
       children,
       errorText,
       tooltip,

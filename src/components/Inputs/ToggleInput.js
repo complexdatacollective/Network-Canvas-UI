@@ -9,7 +9,7 @@ import InputLabel from './InputLabel';
 class ToggleInput extends Component {
   static propTypes = {
     checked: PropTypes.bool,
-   className: PropTypes.string,
+    className: PropTypes.string,
     containerClassName: PropTypes.string,
     color: PropTypes.string,
     defaultChecked: PropTypes.bool,
@@ -65,7 +65,7 @@ class ToggleInput extends Component {
   render() {
     const {
       checked, // eslint-disable-line
-     className,
+      className,
       containerClassName,
       color,
       errorText,
@@ -93,7 +93,7 @@ class ToggleInput extends Component {
       <div className={toggleContainerClassName}>
         <InputLabel name={name} label={label} errorText={errorText} tooltip={tooltip} />
         <input
-         className={cx(['toggle', className])}
+          className={cx(['toggle', className])}
           name={name}
           type="checkbox"
           ref={(checkbox) => {

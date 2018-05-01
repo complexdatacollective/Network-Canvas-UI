@@ -7,7 +7,7 @@ import cx from 'classnames';
 class ContextInput extends Component {
   static propTypes = {
     checked: PropTypes.bool,
-   className: PropTypes.string,
+    className: PropTypes.string,
     color: PropTypes.string,
     defaultChecked: PropTypes.bool,
     errorText: PropTypes.node,
@@ -60,7 +60,7 @@ class ContextInput extends Component {
   render() {
     const {
       checked,
-     className,
+      className,
       color,
       errorText,
       label,
@@ -78,7 +78,7 @@ class ContextInput extends Component {
     return (
       <div className="context__container">
         <input
-         className={cx(['context', className])}
+          className={cx(['context', className])}
           name={name}
           type="checkbox"
           ref={(checkbox) => { this.checkbox = checkbox; }}

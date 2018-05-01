@@ -29,7 +29,7 @@ class NarrativePanel extends Component {
     return (
       <div className={cx('narrative-panel', { 'narrative-panel--open': state.open })}>
         <div
-         className="narrative-panel__heading"
+          className="narrative-panel__heading"
           role="button"
           tabIndex={0}
           onClick={toggleOpen}
@@ -37,7 +37,7 @@ class NarrativePanel extends Component {
           {title}
         </div>
         <Expandable
-         className="narrative-panel__options"
+          className="narrative-panel__options"
           open={state.open}
         >
           <div className="narrative-panel__options-content">
