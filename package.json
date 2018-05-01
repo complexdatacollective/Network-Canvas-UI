@@ -1,8 +1,8 @@
 {
   "name": "network-canvas-ui",
-  "version": "1.13.4",
+  "version": "2.0.0",
   "description": "Styles and React components for the Network Canvas project",
-  "main": "lib/components/index.js",
+  "main": "src/components/index.js",
   "engines": {
     "node": "8.11.1",
     "npm": "5.8.0"
