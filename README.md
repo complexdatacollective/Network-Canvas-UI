@@ -22,7 +22,7 @@ yarn install
 ```jsx
 // in LocalComponent.js
 
-import { ExampleComponent } from '../ui/src/components';
+import { ExampleComponent } from '../ui/components';
 
 const LocalComponent = props => (
   <div className="local-component">
