@@ -1,8 +1,0 @@
-dist
-node_modules
-coverage
-docs/index.html
-src/assets
-config
-bin
-server

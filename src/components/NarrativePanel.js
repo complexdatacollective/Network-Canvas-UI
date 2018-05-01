@@ -4,7 +4,6 @@ import cx from 'classnames';
 import Expandable from './Expandable';
 
 class NarrativePanel extends Component {
-
   constructor() {
     super();
 
@@ -48,7 +47,6 @@ class NarrativePanel extends Component {
       </div>
     );
   }
-
 }
 
 NarrativePanel.propTypes = {

@@ -7,7 +7,6 @@ import classNames from 'classnames';
   */
 
 class Node extends Component {
-
   render() {
     const {
       color,

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 
@@ -24,7 +24,7 @@ const renderButtonIcon = ({ icon, iconPosition }) => {
   return iconElement;
 };
 
-class Button extends Component {
+class Button extends PureComponent {
   static propTypes = {
     content: PropTypes.oneOfType([
       PropTypes.string,

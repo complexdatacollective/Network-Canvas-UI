@@ -7,7 +7,6 @@ import InputLabel from './InputLabel';
 import RadioInput from './RadioInput';
 
 class RadioGroup extends Component {
-
   static propTypes = {
     className: PropTypes.string,
     children: PropTypes.node,
@@ -74,26 +73,26 @@ class RadioGroup extends Component {
         />
         <div className={inline ? 'grid__container grid--x-bookend' : 'grid__stack'}>
           {
-          options ? options.map((option, idx) => (
-            <RadioInput
-              key={idx}
-              onChange={onRadioClick}
-              checked={value === option}
-              name={name}
-              value={option}
-            />
-          )) :
-          React.Children.map(children, (child) => {
-            if (child.type === RadioInput) {
-              return React.cloneElement(child, {
-                name,
-                checked: child.props.value === value,
-                onChange: onRadioClick,
-              });
-            }
-            return child;
-          })
-        }
+            options ? options.map((option, idx) => (
+              <RadioInput
+                key={idx}
+                onChange={onRadioClick}
+                checked={value === option}
+                name={name}
+                value={option}
+              />
+            )) :
+              React.Children.map(children, (child) => {
+                if (child.type === RadioInput) {
+                  return React.cloneElement(child, {
+                    name,
+                    checked: child.props.value === value,
+                    onChange: onRadioClick,
+                  });
+                }
+                return child;
+              })
+          }
         </div>
       </div>
     );

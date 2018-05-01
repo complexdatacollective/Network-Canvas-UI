@@ -22,7 +22,7 @@ $ yarn install
 ```jsx
 // in LocalComponent.js
 
-import { ExampleComponent } from 'network-canvas-ui';
+import { ExampleComponent } from '../ui/src/components';
 
 const LocalComponent = props => (
   <div className="local-component">

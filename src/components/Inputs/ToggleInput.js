@@ -40,9 +40,9 @@ class ToggleInput extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const hasCheckedProp = nextProps.hasOwnProperty('checked');
+    const hasCheckedProp = Object.prototype.hasOwnProperty.call(nextProps, 'checked');
     const hasNewDefaultProp =
-      nextProps.hasOwnProperty('defaultChecked') &&
+    Object.prototype.hasOwnProperty.call(nextProps, 'defaultChecked') &&
       nextProps.defaultChecked !== this.props.defaultChecked;
 
     if (hasCheckedProp || hasNewDefaultProp) {
