@@ -2,7 +2,7 @@
 // =============================================================================
 
 @mixin reset-button {
-  -webkit-appearance: none;
+  -webkit-appearance: none; //sass-lint:disable-line no-vendor-prefixes
   border: 0;
   background: none;
 }
@@ -20,9 +20,9 @@
   .#{$button-class} {
     @include reset-button;
     @include default-button-type;
+    @include vcjc; // vertical center, justify center
 
     display: inline-flex;
-    @include vcjc; // vertical center, justify center
     font-family: inherit;
     text-align: center;
 
@@ -32,13 +32,13 @@
     min-height: 80px;
 
     border-radius: 40px;
-    box-shadow: 0 3px rgba(0,0,0,0.25);
+    box-shadow: 0 3px rgba(0, 0, 0, .25); //sass-lint:disable-line no-color-literals
     background-color: color('sea-green');
 
     &:hover {
       text-decoration: none;
       cursor: pointer;
-      opacity: 0.8;
+      opacity: .8;
     }
 
     @include color-modifiers($include-hover: true);
@@ -59,11 +59,14 @@
     }
 
     // light color variations
-    &--white, &--platinum, &--platinum--dark {
+    &--white,
+    &--platinum,
+    &--platinum--dark {
       color: palette('text-dark');
     }
 
     &__icon {
+      // sass-lint:disable-block no-important
       height: 25px !important;
       width: 25px !important;
 

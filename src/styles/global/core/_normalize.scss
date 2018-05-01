@@ -1,5 +1,4 @@
-// scss-lint:disable QualifyingElement, DuplicateProperty, VendorPrefix
-
+// sass-lint:disable-all
 // Reboot
 //
 // Normalization of HTML elements, manually forked from Normalize.css to remove
@@ -18,14 +17,14 @@
 //    we force a non-overlapping, non-auto-hiding scrollbar to counteract.
 // 6. Change the default tap highlight to be completely transparent in iOS.
 
-@mixin normalize() {
+@mixin normalize {
   html {
     box-sizing: border-box; // 1
     line-height: 1.15; // 3
     -webkit-text-size-adjust: 100%; // 4
     -ms-text-size-adjust: 100%; // 4
     -ms-overflow-style: scrollbar; // 5
-    -webkit-tap-highlight-color: rgba(0,0,0,0); // 6
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0); // 6
   }
 
   *,
@@ -47,7 +46,12 @@
   //
   // By default, `<h1>`-`<h6>` all receive top and bottom margins. We nuke the top
   // margin for easier control within type scales as it avoids margin collapsing.
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     margin-top: 0;
     // margin-bottom: .5rem;
   }
@@ -200,8 +204,8 @@
   }
 
   // Correct the cursor style of increment and decrement buttons in Chrome.
-  [type="number"]::-webkit-inner-spin-button,
-  [type="number"]::-webkit-outer-spin-button {
+  [type='number']::-webkit-inner-spin-button,
+  [type='number']::-webkit-outer-spin-button {
     height: auto;
   }
 

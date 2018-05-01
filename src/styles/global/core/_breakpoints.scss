@@ -10,16 +10,15 @@ $-breakpoint-map: (base: 'min-width: 0') !default;
 }
 
 @mixin breakpoint($name) {
-    @media (map-get($-breakpoint-map, $name)) {
-      @content;
-    }
+  @media (map-get($-breakpoint-map, $name)) {
+    @content;
+  }
 }
 
 @function _breakpoint-is-zero($breakpoint-name) {
   @if nth(map-keys($-breakpoint-map), 1) == $breakpoint-name {
     @return true;
-  }
-  @else {
+  } @else {
     @return false;
   }
 }

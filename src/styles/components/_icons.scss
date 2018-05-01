@@ -24,208 +24,255 @@ $-icon-color-modifiers: (
 ) {
   // action / notification icons are a bit more detailed
   // and need to be styled individually
-  &[name="add-a-context"] {
+  &[name='add-a-context'] {
     .cls-1 {
       fill: color('#{$main-color}');
     }
+
     .cls-2 {
       fill: color('platinum--dark', .3);
     }
+
     .cls-3 {
       fill: color('platinum--dark', .6);
     }
+
     .cls-4 {
       fill: color('platinum');
     }
+
     .cls-5 {
       fill: color('platinum--dark');
     }
+
     .cls-6 {
       fill: color('platinum');
     }
+
     .cls-7 {
       fill: color('tomato');
     }
+
     .cls-8 {
       fill: color('tomato--dark');
     }
   }
 
-  &[name="add-a-person"], &[name="add-a-relationship"] {
+  &[name='add-a-person'],
+  &[name='add-a-relationship'] {
     .cls-1 {
       fill: color('#{$main-color}');
     }
+
     .cls-2 {
       fill: color('platinum');
     }
+
     .cls-3 {
       fill: color('platinum--dark');
     }
+
     .cls-4 {
       fill: color('tomato');
     }
+
     .cls-5 {
       fill: color('tomato--dark');
     }
+
     .cls-6 {
       fill: color('platinum');
     }
   }
 
-  &[name="add-a-place"] {
+  &[name='add-a-place'] {
     .cls-1 {
       fill: color('#{$main-color}');
     }
+
     .cls-2 {
       fill: color('platinum');
     }
+
     .cls-3 {
       fill: color('tomato');
     }
+
     .cls-4 {
       fill: color('tomato--dark');
     }
+
     .cls-5 {
       fill: color('platinum');
     }
+
     .cls-6 {
       fill: color('platinum--dark');
     }
   }
 
-  &[name="add-a-screen"] {
+  &[name='add-a-screen'] {
     .cls-1 {
       fill: color('#{$main-color}');
     }
+
     .cls-2 {
       fill: color('platinum');
     }
+
     .cls-3 {
       fill: color('tomato');
     }
+
     .cls-4 {
       fill: color('tomato--dark');
     }
+
     .cls-5 {
       fill: color('platinum--dark');
     }
+
     .cls-6 {
       fill: color('platinum');
     }
   }
 
-  &[name="error"] {
+  &[name='error'] {
     .cls-1 {
       fill: color('tomato');
     }
+
     .cls-2 {
       fill: color('platinum');
     }
+
     .cls-3 {
       fill: color('platinum');
     }
+
     .cls-4 {
       fill: color('platinum--dark');
     }
+
     .cls-5 {
       fill: color('tomato--dark');
     }
+
     .cls-6 {
       fill: color('tomato');
     }
+
     .cls-8 {
       fill: color('#{$main-color}');
     }
   }
 
-  &[name="info"] {
+  &[name='info'] {
     .cls-1 {
       fill: color('tomato');
     }
+
     .cls-2 {
       fill: color('tomato--dark');
     }
+
     .cls-3 {
       fill: color('platinum');
     }
+
     .cls-4 {
       fill: color('platinum--dark');
     }
+
     .cls-5 {
       fill: color('#{$main-color}');
     }
   }
 
-  &[name="warning"] {
+  &[name='warning'] {
     .cls-1 {
       fill: color('platinum');
     }
+
     .cls-2 {
       fill: color('platinum--dark');
     }
+
     .cls-3 {
       fill: color('tomato');
     }
+
     .cls-4 {
       fill: color('tomato--dark');
     }
   }
 
-  &[name="edit"] {
+  &[name='edit'] {
     .cls-1 {
       fill: color('#{$main-color}');
     }
+
     .cls-2 {
       fill: color('#{$main-color}--dark');
     }
+
     .cls-3 {
       fill: color('tomato');
     }
+
     .cls-4 {
       fill: color('tomato--dark');
     }
+
     .cls-5 {
       fill: color('tomato--dark');
     }
+
     .cls-6 {
       fill: color('platinum');
     }
+
     .cls-7 {
       fill: color('platinum--dark');
     }
+
     .cls-8 {
       fill: color('platinum--dark');
     }
   }
 
-  &[name="trash-bin"] {
+  &[name='trash-bin'] {
     .cls-1 {
       fill: color('platinum');
     }
+
     .cls-2 {
       fill: color('#{$main-color}');
     }
+
     .cls-3 {
       fill: color('#{$main-color}--dark');
     }
+
   }
 
-  &[name="settings"] {
+  &[name='settings'] {
     .cls-3 {
       fill: transparent;
     }
   }
 
-  &[name="toggle-off"] {
+  &[name='toggle-off'] {
     .cls-2 {
       fill: color('platinum--dark');
     }
   }
 
-  &[name="highlighted"] {
+  &[name='highlighted'] {
     .cls-4 {
       fill: color('#{$main-color}--dark');
     }
+
     .cls-5 {
       fill: color('#{$main-color}');
     }
@@ -233,9 +280,11 @@ $-icon-color-modifiers: (
 }
 
 @mixin color-icon($color: 'sea-green') {
-  .cls-1, .cls-3 {
+  .cls-1,
+  .cls-3 {
     fill: color('#{$color}--dark');
   }
+
   .cls-2 {
     fill: color('#{$color}');
   }
@@ -244,9 +293,12 @@ $-icon-color-modifiers: (
 @mixin icon (
   $icon-class: 'icon'
 ) {
+
   .#{$icon-class} {
     height: 50px;
-    .cls-1, .cls-3 {
+
+    .cls-1,
+    .cls-3 {
       fill: color('platinum--dark');
     }
 
@@ -257,30 +309,27 @@ $-icon-color-modifiers: (
     @include special-icon-colors;
     // simpler icons can be targeted with color modifiers
     @each $color-name in $-icon-color-modifiers {
-      @if index($-icon-color-modifiers, $color-name)==null {
-        @warn "Icon: #{$color-name} is not a valid modifier.";
-      }
 
       @include modifier('primary') {
         @include color-icon;
       }
 
       @include modifier(#{$color-name}) {
-        @include color-icon($color-name)
+        @include color-icon($color-name);
 
         // edit the fancy icon colors
         @include special-icon-colors($main-color: $color-name);
       }
     }
 
-    &[name="cancel"],
-    &[name="reset"],
-    &[name="next-arrow"],
-    &[name="back-arrow"],
-    &[name="form-arrow-right"],
-    &[name="form-arrow-left"],
-    &[name="toggle-on"],
-    &[name="toggle-off"] {
+    &[name='cancel'],
+    &[name='reset'],
+    &[name='next-arrow'],
+    &[name='back-arrow'],
+    &[name='form-arrow-right'],
+    &[name='form-arrow-left'],
+    &[name='toggle-on'],
+    &[name='toggle-off'] {
       .cls-1 {
         fill: transparent;
       }
@@ -288,52 +337,52 @@ $-icon-color-modifiers: (
 
     // icon sizes
     // add button icons
-    &[name="add-a-person"],
-    &[name="add-a-context"],
-    &[name="add-a-relationship"],
-    &[name="add-a-screen"],
-    &[name="add-a-place"] {
+    &[name='add-a-person'],
+    &[name='add-a-context'],
+    &[name='add-a-relationship'],
+    &[name='add-a-screen'],
+    &[name='add-a-place'] {
       height: $icon-large-height;
       width: $icon-large-width;
     }
 
     // action icons
-    &[name="error"],
-    &[name="info"],
-    &[name="warning"],
-    &[name="edit"],
-    &[name="trash-bin"],
-    &[name="settings"],
-    &[name="toggle-off"],
-    &[name="toggle-on"] {
+    &[name='error'],
+    &[name='info'],
+    &[name='warning'],
+    &[name='edit'],
+    &[name='trash-bin'],
+    &[name='settings'],
+    &[name='toggle-off'],
+    &[name='toggle-on'] {
       height: $icon-medium-height;
       width: $icon-medium-width;
     }
 
     // menu icons
-    &[name="menu"],
-    &[name="menu-name-generator"],
-    &[name="menu-ordinal"],
-    &[name="menu-category"],
-    &[name="menu-sociogram"],
-    &[name="menu-map"],
-    &[name="menu-custom-interface"],
-    &[name="menu-default-interface"],
-    &[name="menu-new-session"],
-    &[name="menu-download-data"],
-    &[name="menu-purge-data"],
-    &[name="menu-quit"],
-    &[name="highlighted"],
-    &[name="links"],
-    &[name="contexts"],
-    &[name="close"] {
+    &[name='menu'],
+    &[name='menu-name-generator'],
+    &[name='menu-ordinal'],
+    &[name='menu-category'],
+    &[name='menu-sociogram'],
+    &[name='menu-map'],
+    &[name='menu-custom-interface'],
+    &[name='menu-default-interface'],
+    &[name='menu-new-session'],
+    &[name='menu-download-data'],
+    &[name='menu-purge-data'],
+    &[name='menu-quit'],
+    &[name='highlighted'],
+    &[name='links'],
+    &[name='contexts'],
+    &[name='close'] {
       height: $icon-small-height;
       width: $icon-small-width;
     }
 
     // other
-    &[name="cancel"],
-    &[name="reset"] {
+    &[name='cancel'],
+    &[name='reset'] {
       height: $icon-small-height;
     }
   }

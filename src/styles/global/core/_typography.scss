@@ -9,20 +9,18 @@ $-type-map: () !default;
 }
 
 @mixin typography($type-name, $type-property: null) {
-    @if map-has-key($-type-map, $type-name) {
-      $type-group: map-get($-type-map, $type-name);
-      @each $breakpoint-name, $type-properties in $type-group {
-        @include breakpoint($breakpoint-name) {
-          @each $property, $value in $type-properties {
-            @if not $type-property or $type-property == $property {
-              #{$property}: #{$value};
-            }
+  @if map-has-key($-type-map, $type-name) {
+    $type-group: map-get($-type-map, $type-name);
+    @each $breakpoint-name, $type-properties in $type-group {
+      @include breakpoint($breakpoint-name) {
+        @each $property, $value in $type-properties {
+          @if not $type-property or $type-property == $property {
+            #{$property}: #{$value};
           }
         }
       }
-    } @else {
-        @warn "No #{$type-name} found in #{$-type-map}.";
     }
+  }
 }
 
 @mixin typography-classes($prefix: 'type--') {

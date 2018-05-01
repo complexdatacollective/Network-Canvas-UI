@@ -114,7 +114,7 @@ $export-ui-classes: true !default;
     --#{$name}: #{$palette};
   }
 
-  // additional palette values
+  // additional one-off palette values
   --narrative-heading-color: #{transparentize(rgb(255, 255, 255), 0.3)};
   --narrative-heading-bg-hover : #{transparentize(rgb(22, 21, 43), 0.85)};
   --narrative-border-bottom-color: #{transparentize(rgb(22, 21, 43), 0.85)};
@@ -129,6 +129,8 @@ $export-ui-classes: true !default;
   --modal-window-box-shadow: #{transparentize(rgb(22, 21, 43), .25)};
 
   --panel-selected-node-bg-color: #{transparentize(rgb(255, 255, 255), .95)};
+
+  --panel-bg-muted: rgba(255, 255, 255, 0.05);
 
   --menu-item-hover: #{darken(rgb(0, 201, 162), 5%)};
   --menu-item-hover-settings: #{darken(rgb(107, 114, 236), 5%)};

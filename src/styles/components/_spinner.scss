@@ -8,9 +8,13 @@ $dark-color-list: (color('sea-serpent--dark'), color('mustard--dark'), color('ne
   --animation-duration: 1.8s;
   --circle-easing: cubic-bezier(.4, 0, .2, 1);
 
-  transform: translate3d(0,0,0);
-  transform: translateZ(0);
+  will-change: transform;
   backface-visibility: hidden;
+  width: var(--container-size);
+  height: var(--container-size);
+  margin: var(--circle-size);
+  animation: spin var(--animation-duration) ease-in-out infinite;
+  transform: rotate(45deg);
 
   &--small {
     --circle-size: 10px;
@@ -20,22 +24,16 @@ $dark-color-list: (color('sea-serpent--dark'), color('mustard--dark'), color('ne
     --circle-size: 60px;
   }
 
-  width: var(--container-size);
-  height: var(--container-size);
-  margin: var(--circle-size);
-  animation: spin var(--animation-duration) ease-in-out infinite;
-  transform: rotate(45deg);
-
   .circle {
     position: absolute;
 
     &:nth-child(1) {
       top: calc(var(--circle-size) * -1);
-      left: 0px;
+      left: 0;
     }
 
     &:nth-child(2) {
-      top: 0px;
+      top: 0;
       left: calc(var(--circle-size) * 2);
       transform: rotate(90deg);
     }
@@ -72,11 +70,11 @@ $dark-color-list: (color('sea-serpent--dark'), color('mustard--dark'), color('ne
 
     @keyframes circle-color-#{$color-index} {
       0% {
-        trasform: translateX(0px);
+        transform: translateX(0);
         background: $color;
       }
-      100% {
 
+      100% {
         transform: translateX(var(--circle-size));
         background: nth($dark-color-list, $color-index);
       }
@@ -88,6 +86,7 @@ $dark-color-list: (color('sea-serpent--dark'), color('mustard--dark'), color('ne
           background: nth($dark-color-list, $color-index);
           animation: circle-color-#{$color-index} calc(var(--animation-duration)/2) var(--circle-easing) alternate infinite;
         }
+
         :nth-child(2) {
           background: $color;
         }
@@ -99,7 +98,7 @@ $dark-color-list: (color('sea-serpent--dark'), color('mustard--dark'), color('ne
 
 @keyframes spin {
   0% {
-    transform: rotate(45deg) scale(0.8);
+    transform: rotate(45deg) scale(.8);
   }
 
   40% {
@@ -109,8 +108,9 @@ $dark-color-list: (color('sea-serpent--dark'), color('mustard--dark'), color('ne
   57% {
     transform: rotate(45deg) scale(1);
   }
+
   100% {
-    transform: rotate(405deg) scale(0.8);
+    transform: rotate(405deg) scale(.8);
   }
 }
 

@@ -84,30 +84,23 @@ $flex-align-self: (auto: auto, stretch: stretch, center: center, middle: center,
   @if $x {
     @if map-has-key($flex-align-x, $x) {
       $x: map-get($flex-align-x, $x);
-    } @else {
-      @warn 'flex-align(): #{$x} is not a valid value for horizontal alignment. Use bookend, center, left, right, or spaced.'
     }
   }
   @if $y {
     @if map-has-key($flex-align-y, $y) {
       $y: map-get($flex-align-y, $y);
-    } @else {
-      @warn 'flex-align(): #{$y} is not a valid value for vertical alignment. Use baseline, bottom, middle, stretch, or top.'
     }
   }
   @if $self {
     @if map-has-key($flex-align-self, $self) {
       $self: map-get($flex-align-self, $self);
-    } @else {
-      @warn 'flex-align(): #{$self} is not a valid value for self alignment. Use auto, baseline, bottom, center, end, middle, start, stretch, or top.'
     }
   }
-  @if $flow=='column' {
+  @if $flow == 'column' {
     justify-content: $y;
     align-items: $x;
     align-content: $y;
-  }
-  @else {
+  } @else {
     justify-content: $x;
     align-items: $y;
     align-content: $y;
@@ -131,16 +124,13 @@ $flex-align-stack: (
   @if map-has-key($flex-align-stack, $align-name) {
     $align-prop: map-get($flex-align-stack, $align-name);
   }
-  @if $align-name  == 'left' {
+  @if $align-name == 'left' {
     align-items: $align-prop;
-  }
-  @else if $align-name == 'right' {
+  } @else if $align-name == 'right' {
     align-items: $align-prop;
-  }
-  @else if $align-name == 'center' {
+  } @else if $align-name == 'center' {
     align-items: $align-prop;
-  }
-  @else {
+  } @else {
     justify-content: $align-prop;
   }
 }
@@ -167,7 +157,7 @@ $flex-align-stack: (
     }
 
     &__#{$block-class} {
-      display: block
+      display: block;
     }
 
     &__#{$container-class} {
@@ -176,6 +166,7 @@ $flex-align-stack: (
         $width: $container-width,
         $max-width: $container-max-width
       );
+
       & & {
         @include grid-container;
       }
@@ -185,17 +176,17 @@ $flex-align-stack: (
       @include grid-item;
     } @each $breakpoint-name, $min-width in $-breakpoint-map {
       @include breakpoint($breakpoint-name) {
-        $breakpoint-class: "--#{$breakpoint-name}";
+        $breakpoint-class: '--#{$breakpoint-name}';
         @if _breakpoint-is-zero($breakpoint-name) {
           $breakpoint-class: null;
         }
+
         // vertical center, justify center
         &#{$breakpoint-class}--vcjc {
           @include vcjc;
         }
         // x align, assuming row flow
-        @each $align-name,
-        $alignment in $flex-align-x {
+        @each $align-name, $alignment in $flex-align-x {
           &#{$breakpoint-class}--x-#{$align-name} {
             @include flex-align($x: $align-name);
           }
@@ -205,10 +196,12 @@ $flex-align-stack: (
           &#{$breakpoint-class}--y-#{$align-name} {
             @include flex-align($y: $align-name);
           }
+
           &#{$breakpoint-class}--self-#{$align-name} {
             @include flex-align($self: $align-name);
           }
         }
+
         // grid sizes for column
         &__#{$item-class}#{$breakpoint-class} {
           @for $i from 1 through $columns {
@@ -220,21 +213,26 @@ $flex-align-stack: (
             &--#{$i}-#{$columns} {
               @include grid-item-percent($pct: $percent);
             }
+
             &--margin-left--#{$fraction},
             &--margin-left--#{$i}-#{$columns} {
               @include grid-item-margin($i, $columns, 'left');
             }
+
             &--margin-right--#{$fraction},
             &--margin-right--#{$i}-#{$columns} {
               @include grid-item-margin($i, $columns, 'right');
             }
           }
+
           &--expand {
             @include grid-item;
           }
+
           &--shrink {
             @include grid-item($shrink: true);
           }
+
           &--fluid {
             @include grid-item-fluid;
           }
@@ -248,8 +246,7 @@ $flex-align-stack: (
 
         &__stack#{$breakpoint-class} {
           @include flex-stack;
-          @each $align-name,
-          $alignment in $flex-align-stack {
+          @each $align-name, $alignment in $flex-align-stack {
             &--#{$align-name} {
               @include flex-align-stack($align-name: $align-name);
             }
