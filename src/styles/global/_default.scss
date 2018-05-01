@@ -103,24 +103,34 @@ $export-ui-classes: true !default;
 @include palette-set('graph-data-3', color('neon-carrot'));
 @include palette-set('graph-data-4', color('sea-serpent'));
 
+$base-line-height: 1.5;
+$netcanvas-font-stack: 'Quicksand', 'Open Sans', sans-serif;
+$system-font-stack: 'system-ui', sans-serif;
 
 :root {
+  // Typographic base styles
+  --base-font-size: 18px;
+  --heading-font-family: #{$netcanvas-font-stack};
+  --body-font-family: #{$system-font-stack};
+
   // each item in color map
+  $spacer: '--'; // Needed because sass doesn't properly support CSS variables.
   @each $name, $color in $-color-map {
-    --color-#{$name}: #{$color};
+    #{$spacer}color-#{$name}: #{$color};
   }
+
   // each item in palette
   @each $name, $palette in $-palette-map {
-    --#{$name}: #{$palette};
+    #{$spacer}#{$name}: #{$palette};
   }
 
   // additional one-off palette values
-  --narrative-heading-color: #{transparentize(rgb(255, 255, 255), 0.3)};
-  --narrative-heading-bg-hover : #{transparentize(rgb(22, 21, 43), 0.85)};
-  --narrative-border-bottom-color: #{transparentize(rgb(22, 21, 43), 0.85)};
+  --narrative-heading-color: #{transparentize(rgb(255, 255, 255), .3)};
+  --narrative-heading-bg-hover: #{transparentize(rgb(22, 21, 43), .85)};
+  --narrative-border-bottom-color: #{transparentize(rgb(22, 21, 43), .85)};
 
   --node-outer-trim-stroke: #{transparentize(rgb(255, 255, 255), .75)};
-  --node-bucket-bg: #{radial-gradient( ellipse at center, transparentize(rgb(45, 41, 85), .5) 0%, transparentize(rgb(58, 58, 117), .5) 100%)};
+  --node-bucket-bg: #{radial-gradient(ellipse at center, transparentize(rgb(45, 41, 85), .5) 0%, transparentize(rgb(58, 58, 117), .5) 100%)};
   --node-list-action-bg: #{transparentize(rgb(58, 58, 117), .5)};
 
   --drop-shadow-color: #{transparentize(rgb(22, 21, 43), .25)};
@@ -130,7 +140,7 @@ $export-ui-classes: true !default;
 
   --panel-selected-node-bg-color: #{transparentize(rgb(255, 255, 255), .95)};
 
-  --panel-bg-muted: rgba(255, 255, 255, 0.05);
+  --panel-bg-muted: rgba(255, 255, 255, .05); //sass-lint:disable-line no-color-literals
 
   --menu-item-hover: #{darken(rgb(0, 201, 162), 5%)};
   --menu-item-hover-settings: #{darken(rgb(107, 114, 236), 5%)};
@@ -157,19 +167,6 @@ $export-ui-classes: true !default;
 
 @if $export-ui-classes {
   @include normalize;
-}
-
-// Default Copy Typography Sizes
-// =============================================================================
-
-$base-line-height: 1.5;
-$netcanvas-font-stack: 'Quicksand', 'Open Sans', sans-serif;
-$system-font-stack: 'system-ui', sans-serif;
-
-:root {
-  --base-font-size: 18px;
-  --heading-font-family: #{$netcanvas-font-stack};
-  --body-font-family: #{$system-font-stack};
 }
 
 html {
