@@ -69,7 +69,7 @@ class AppLayout extends Component {
                 onMenuClick={this.toggleSideNav}
               />
               <SideMenu
-                className="sidenav"
+               className="sidenav"
                 heading="Settings"
                 menuItems={menuItems}
                 visible={this.state.sideMenuVisible || matches}

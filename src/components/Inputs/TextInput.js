@@ -8,7 +8,7 @@ import InputLabel from './InputLabel';
 
 class TextInput extends Component {
   static propTypes = {
-    className: PropTypes.string,
+   className: PropTypes.string,
     errorText: PropTypes.node,
     tooltip: PropTypes.string,
     disabled: PropTypes.bool,
@@ -41,7 +41,7 @@ class TextInput extends Component {
 
   render() {
     const {
-      className,
+     className,
       errorText,
       tooltip,
       name,
@@ -66,7 +66,7 @@ class TextInput extends Component {
     return (
       <div className={inputContainerClassName}>
         <input
-          className={cx(['text', className])}
+         className={cx(['text', className])}
           name={name}
           type={type}
           onChange={onChange}
@@ -76,7 +76,7 @@ class TextInput extends Component {
           {...rest}
         />
         {type !== 'hidden' && <InputLabel
-          className={'text__label'}
+         className={'text__label'}
           active={!!value}
           name={name}
           label={label}

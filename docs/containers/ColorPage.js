@@ -10,7 +10,7 @@ class ColorPage extends Component {
           {colors.map((item, idx) => (
             <div
               key={idx}
-              className={`color__blob color--${item.color}`}
+             className={`color__blob color--${item.color}`}
             />
             ))}
         </div>

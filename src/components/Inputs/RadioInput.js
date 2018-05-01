@@ -13,7 +13,7 @@ const RadioInput = ({
   <div className="radio__container">
     <input
       type="radio"
-      className="radio"
+     className="radio"
       checked={checked}
       value={value}
       onChange={onChange}

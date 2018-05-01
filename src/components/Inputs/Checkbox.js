@@ -9,7 +9,7 @@ import InputLabel from './InputLabel';
 class Checkbox extends Component {
   static propTypes = {
     checked: PropTypes.bool,
-    className: PropTypes.string,
+   className: PropTypes.string,
     defaultChecked: PropTypes.bool,
     errorText: PropTypes.node,
     tooltip: PropTypes.string,
@@ -63,7 +63,7 @@ class Checkbox extends Component {
   render() {
     const {
       checked, // eslint-disable-line no-unused-vars
-      className,
+     className,
       errorText,
       tooltip,
       name,
@@ -77,7 +77,7 @@ class Checkbox extends Component {
     return (
       <div className="checkbox__container">
         <input
-          className={cx(['checkbox', className])}
+         className={cx(['checkbox', className])}
           name={name}
           type="checkbox"
           ref={(checkbox) => { this.checkbox = checkbox; }}
@@ -87,7 +87,7 @@ class Checkbox extends Component {
           {...rest}
         />
         <InputLabel
-          className="checkbox__label"
+         className="checkbox__label"
           name={name}
           label={label}
           errorText={errorText}

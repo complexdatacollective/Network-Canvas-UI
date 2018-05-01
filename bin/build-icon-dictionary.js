@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 
-var fs = require('fs');
-var changeCase = require('change-case');
+const fs = require('fs');
+const changeCase = require('change-case');
 
-const buildDictionary = (icons) =>
+const buildDictionary = icons =>
   icons
-    .reduce(function(memo, icon) {
-      var name = icon.replace('.svg.react.js', '').toLowerCase();
-      var file = `./${icon}`;
-      return Object.assign(memo, {[name]: file});
+    .reduce((memo, icon) => {
+      const name = icon.replace('.svg.react.js', '').toLowerCase();
+      const file = `./${icon}`;
+      return Object.assign(memo, { [name]: file });
     }, {});
 
 const buildModule = (dictionary) => {
@@ -23,8 +23,7 @@ const buildModule = (dictionary) => {
   console.log('};');
 };
 
-fs.readdir('./lib/assets/img/icons', function(err, items) {
-  var icons = items.filter(function(item) { return item.match(/\.svg\.react\.js$/); });
-
+fs.readdir('./lib/assets/img/icons', (err, items) => {
+  const icons = items.filter(item => item.match(/\.svg\.react\.js$/));
   buildModule(buildDictionary(icons));
 });

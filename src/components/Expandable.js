@@ -4,7 +4,7 @@ import cx from 'classnames';
 
 const Expandable = ({ open, children, className }) => {
   const classes = cx(
-    className,
+   className,
     'expandable',
     { 'expandable--open': open },
   );
@@ -18,13 +18,13 @@ const Expandable = ({ open, children, className }) => {
 
 Expandable.propTypes = {
   open: PropTypes.bool,
-  className: PropTypes.string,
+ className: PropTypes.string,
   children: PropTypes.any,
 };
 
 Expandable.defaultProps = {
   open: false,
-  className: null,
+ className: null,
   children: null,
 };
 

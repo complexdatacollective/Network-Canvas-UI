@@ -7,7 +7,7 @@ import { Icon } from '..';
 
 const InputLabel = ({
   active,
-  className,
+ className,
   errorText,
   name,
   label,
@@ -49,7 +49,7 @@ const InputLabel = ({
 
 InputLabel.propTypes = {
   active: PropTypes.bool,
-  className: PropTypes.string,
+ className: PropTypes.string,
   errorText: PropTypes.node,
   name: PropTypes.string,
   label: PropTypes.string,

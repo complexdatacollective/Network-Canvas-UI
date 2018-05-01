@@ -116,7 +116,7 @@ class FormPage extends Component {
           <h3 className="type--page-title-large">Text Input</h3>
           <div className="grid__item">
             <TextInput
-              className="input--wurm"
+             className="input--wurm"
               name="fName"
               label="First Name"
               placeholder="Baby Wurm"
