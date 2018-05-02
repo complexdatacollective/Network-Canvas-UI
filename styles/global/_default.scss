@@ -58,7 +58,6 @@ $export-ui-classes: true !default;
 @include palette-set('light-background', color('cyber-grape'));
 @include palette-set('dark-background', color('rich-black'));
 @include palette-set('modal-main-panel', color('cyber-grape'));
-@include palette-set('modal-overlay', color('rich-black'));
 @include palette-set('info', color('sea-green'));
 @include palette-set('warning', color('mustard'));
 @include palette-set('error', color('neon-coral'));
@@ -135,7 +134,7 @@ $system-font-stack: 'system-ui', sans-serif;
 
   --drop-shadow-color: #{transparentize(rgb(22, 21, 43), .25)};
 
-  --modal-overlay-bg-color: #{transparentize(rgb(22, 21, 43), .05)};
+  --modal-overlay: #{transparentize(rgb(0, 0, 0), .20)};
   --modal-window-box-shadow: #{transparentize(rgb(22, 21, 43), .25)};
 
   --panel-selected-node-bg-color: #{transparentize(rgb(255, 255, 255), .95)};
@@ -155,8 +154,8 @@ $system-font-stack: 'system-ui', sans-serif;
 
 // Default Breakpoint Settings
 // =============================================================================
-@include breakpoint-set('small', 'max-aspect-ratio: 1.6');
-@include breakpoint-set('full', 'min-aspect-ratio: 1.6');
+@include breakpoint-set('small', 'max-aspect-ratio: 0.625');
+@include breakpoint-set('full', 'min-aspect-ratio: 0.625');
 @include breakpoint-classes(hide) {
   display: none;
 }
