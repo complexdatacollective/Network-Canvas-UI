@@ -7,8 +7,13 @@
     "node": "8.11.1",
     "npm": "5.8.0"
   },
-  "dependencies": {
+  "scripts": {
+    "lint": "eslint ./",
+    "sass-lint": "sass-lint -vc .sass-lint.yml"
   },
+  "dependencies": {},
   "devDependencies": {
+    "eslint": "^4.19.1",
+    "sass-lint": "^1.12.1"
   }
 }

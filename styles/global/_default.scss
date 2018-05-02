@@ -134,7 +134,7 @@ $system-font-stack: 'system-ui', sans-serif;
 
   --drop-shadow-color: #{transparentize(rgb(22, 21, 43), .25)};
 
-  --modal-overlay: #{transparentize(rgb(0, 0, 0), .20)};
+  --modal-overlay: #{transparentize(rgb(0, 0, 0), .2)};
   --modal-window-box-shadow: #{transparentize(rgb(22, 21, 43), .25)};
 
   --panel-selected-node-bg-color: #{transparentize(rgb(255, 255, 255), .95)};
