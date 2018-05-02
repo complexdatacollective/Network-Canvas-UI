@@ -60,14 +60,14 @@
           width: 100px;
         }
 
-        h4:first-of-type {
-          font-weight: bold;
-          letter-spacing: .15rem;
-          text-transform: uppercase;
-        }
-
         h4 {
           padding: 5px;
+
+          &:first-of-type {
+            font-weight: bold;
+            letter-spacing: .15rem;
+            text-transform: uppercase;
+          }
         }
 
         &::after {
@@ -258,8 +258,10 @@
       margin: 3em 0;
       position: relative;
 
-      .input__tooltip-right .input__error {
-        top: -4rem;
+      .input__tooltip-right {
+        .input__error {
+          top: -4rem;
+        }
       }
     }
 
@@ -391,17 +393,19 @@
       }
     }
 
-    &:checked + .#{$toggle-class}__slider .#{$toggle-class}__button {
-      background-color: color('sea-green');
+    &:checked + .#{$toggle-class}__slider {
+      .#{$toggle-class}__button {
+        background-color: color('sea-green');
 
-      @each $color-name, $color-group in $-color-map {
-        @include modifier($color-name) {
-          background-color: color($color-name);
+        @each $color-name, $color-group in $-color-map {
+          @include modifier($color-name) {
+            background-color: color($color-name);
+          }
         }
-      }
 
-      &::before {
-        transform: translateX($switch-size * 1.5);
+        &::before {
+          transform: translateX($switch-size * 1.5);
+        }
       }
     }
   }
