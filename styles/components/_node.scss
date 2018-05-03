@@ -1,8 +1,5 @@
 :root {
-  --base-node-size: 180px;
-  @include breakpoint('full') {
-    --base-node-size: 200px;
-  }
+  --base-node-size: calc(var(--base-font-size) * 10);
 }
 
 @keyframes linking {
