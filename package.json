@@ -7,13 +7,23 @@
     "node": "8.11.1",
     "npm": "5.8.0"
   },
+  "repository": {
+    "type": "git"
+  },
   "scripts": {
     "lint": "eslint ./",
     "sass-lint": "sass-lint -vc .sass-lint.yml"
   },
   "dependencies": {},
   "devDependencies": {
+    "babel-eslint": "^8.2.3",
+    "classnames": "^2.2.5",
     "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "react": "^16.3.2",
     "sass-lint": "^1.12.1"
   }
 }
