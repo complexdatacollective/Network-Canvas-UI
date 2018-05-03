@@ -1,0 +1,136 @@
+:root {
+  --base-node-size: calc(var(--base-font-size) * 10);
+}
+
+@keyframes linking {
+  0% {
+    transform: scale(.8);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(.8);
+  }
+}
+
+.node {
+  cursor: pointer;
+  position: relative;
+  overflow: visible;
+  margin: 0;
+  font-size: var(--base-node-size);
+  width: 1em;
+  height: 1em;
+  filter: drop-shadow(0 4px 0 var(--drop-shadow-color));
+
+  &__node {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: visible;
+  }
+
+  &__node-base {
+    @include palette-modifiers($include-fill: true);
+    fill: palette('node-base');
+  }
+
+  &__node-flash {
+    @include palette-modifiers($include-fill: true);
+    fill: palette('node-dark');
+  }
+
+  &__node-trim {
+    fill: transparent;
+    stroke: transparent;
+    stroke-width: 3px;
+    transition: stroke var(--animation-easing) var(--animation-duration-fast);
+  }
+
+  &__node-outer-trim {
+    fill: transparent;
+    stroke: transparent;
+    stroke-width: 27px;
+    // transition: stroke var(--animation-easing) var(--animation-duration-slow);
+
+  }
+
+  &__label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 33%;
+
+    &-text {
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: nowrap;
+      text-align: center;
+      font-size: .1em;
+
+      &.len-1 {
+        font-size: .35em;
+      }
+
+      &.len-2 {
+        font-size: .25em;
+      }
+
+      &.len-3 {
+        font-size: .22em;
+      }
+
+      &.len-4 {
+        font-size: .2em;
+      }
+
+      &.len-5 {
+        font-size: .15em;
+      }
+
+      &.len-6 {
+        font-size: .125em;
+      }
+
+      &.len-7 {
+        font-size: .12em;
+      }
+    }
+  }
+
+  &--inactive {
+    opacity: .5;
+  }
+
+  &--selected {
+    .node__node-trim {
+      stroke: palette('selected');
+    }
+
+    .node__node-outer-trim {
+      stroke: var(--node-outer-trim-stroke);
+      animation: bounce var(--animation-duration-fast) var(--animation-easing);
+    }
+  }
+
+  &--linking {
+    .node__node-trim {
+      stroke: palette('selected');
+    }
+
+    .node__node-outer-trim {
+      stroke: var(--node-outer-trim-stroke);
+      animation: linking var(--animation-duration-slow) var(--animation-easing) infinite;
+    }
+
+  }
+}
