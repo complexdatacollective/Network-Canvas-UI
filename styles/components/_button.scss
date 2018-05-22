@@ -23,7 +23,7 @@
     @include vcjc; // vertical center, justify center
 
     display: inline-flex;
-    font-family: inherit;
+    font-family: var(--heading-font-family);
     text-align: center;
 
     width: auto;
