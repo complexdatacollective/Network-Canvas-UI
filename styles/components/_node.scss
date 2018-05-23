@@ -35,12 +35,12 @@
 
   &__node-base {
     @include palette-modifiers($include-fill: true);
-    fill: palette('node-base');
+    fill: palette('node-color-seq-1');
   }
 
   &__node-flash {
     @include palette-modifiers($include-fill: true);
-    fill: palette('node-dark');
+    fill: palette('node-color-seq-1--dark');
   }
 
   &__node-trim {
