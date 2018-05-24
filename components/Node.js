@@ -24,20 +24,13 @@ class Node extends Component {
       },
     );
 
-    const nodeBaseClasses = classNames({
-      'node__node-base': true,
-      [`node__node-base--${color}`]: !!color,
-    });
-
-    const nodeFlashClasses = classNames({
-      'node__node-flash': true,
-      [`node__node-flash--${color}--dark`]: !!color,
-    });
-
     const labelClasses = () => {
       const labelLength = this.props.label.length;
       return `node__label-text len-${labelLength}`;
     };
+
+    const nodeBaseColor = `var(--${color})`;
+    const nodeFlashColor = `var(--${color}--dark)`;
 
     const label = this.props.label;
 
@@ -51,11 +44,11 @@ class Node extends Component {
           className="node__node"
         >
           <circle vectorEffect="non-scaling-stroke" cx="0" cy="0" r="1" className="node__node-outer-trim" />
-          <circle cx="0" cy="0" r="1" fill="silver" className={nodeBaseClasses} />
+          <circle cx="0" cy="0" r="1" fill={nodeBaseColor} className="node__node-base" />
           <path
-            className={nodeFlashClasses}
+            className="node__node-flash"
             d="M -1 0 A 0.2,0.2 0 1,1 1,0"
-            fill="grey"
+            fill={nodeFlashColor}
             transform="rotate(135)"
           />
           <circle vectorEffect="non-scaling-stroke" cx="0" cy="0" r="1" className="node__node-trim" />
@@ -82,7 +75,7 @@ Node.propTypes = {
 };
 
 Node.defaultProps = {
-  color: '',
+  color: 'node-color-seq-1',
   inactive: false,
   label: 'Node',
   selected: false,
