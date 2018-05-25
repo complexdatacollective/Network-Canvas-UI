@@ -35,19 +35,19 @@
 
   &__node-base {
     @include palette-modifiers($include-fill: true);
-    fill: palette('node-base');
+    // fill: palette('node-color-seq-1');
   }
 
   &__node-flash {
     @include palette-modifiers($include-fill: true);
-    fill: palette('node-dark');
+    // fill: palette('node-color-seq-1--dark');
   }
 
   &__node-trim {
     fill: transparent;
     stroke: transparent;
     stroke-width: 3px;
-    transition: stroke var(--animation-easing) var(--animation-duration-fast);
+    transition: stroke var(--animation-duration-standard) ease-in-out;
   }
 
   &__node-outer-trim {
@@ -118,7 +118,7 @@
 
     .node__node-outer-trim {
       stroke: var(--node-outer-trim-stroke);
-      animation: bounce var(--animation-duration-fast) var(--animation-easing);
+      animation: bounce var(--animation-duration-standard) ease-in-out;
     }
   }
 
@@ -129,7 +129,7 @@
 
     .node__node-outer-trim {
       stroke: var(--node-outer-trim-stroke);
-      animation: linking var(--animation-duration-slow) var(--animation-easing) infinite;
+      animation: linking var(--animation-duration-slow) ease-in-out infinite;
     }
 
   }
