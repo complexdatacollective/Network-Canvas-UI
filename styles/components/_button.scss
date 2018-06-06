@@ -65,8 +65,10 @@
       color: palette('text-dark');
 
       // icons
-      .icon .cls-2 {
-        fill: palette('text-dark');
+      .icon {
+        .cls-2 {
+          fill: palette('text-dark');
+        }
       }
     }
 
