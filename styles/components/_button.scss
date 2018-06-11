@@ -63,6 +63,13 @@
     &--platinum,
     &--platinum--dark {
       color: palette('text-dark');
+
+      // icons
+      .icon {
+        .cls-2 {
+          fill: palette('text-dark');
+        }
+      }
     }
 
     &__icon {
