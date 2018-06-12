@@ -2,18 +2,17 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { map, zip } from 'lodash';
+import { map } from 'lodash';
 
 import ContextInput from './ContextInput';
 import Checkbox from './Checkbox';
-import ToggleInput from './ToggleInput';
+// import ToggleInput from './ToggleInput';
 import InputLabel from './InputLabel';
 
 const isChecked = (value, option) => (value ? !!value[option] : false);
 
 const ToggleGroup = ({
-  options,
-  colors,
+  values,
   label,
   name,
   value,
@@ -22,11 +21,7 @@ const ToggleGroup = ({
   toggleComponent,
   onOptionClick,
 }) => {
-  const optionsWithColor = (
-    colors ? zip(options, colors) : map(options, (option, index) => [option, index])
-  );
-
-  let ToggleComponent = ToggleInput;
+  let ToggleComponent = ContextInput;
   if (toggleComponent === 'checkbox') {
     ToggleComponent = Checkbox;
   } else if (toggleComponent === 'context') {
@@ -42,14 +37,13 @@ const ToggleGroup = ({
         tooltip={tooltip}
       />
       <div className="toggle-group__inputs">
-        {map(optionsWithColor, ([option, color]) => (
+        {map(values, (option, index) => (
           <ToggleComponent
-            key={option}
-            name={name}
-            label={option}
-            color={color || null}
-            onCheck={(e, checked) => onOptionClick(e, checked, option)}
-            checked={isChecked(value, option)}
+            key={index}
+            label={option.label}
+            color={`cat-color-seq-${index + 1}`}
+            onCheck={(e, checked) => onOptionClick(e, checked, option.value)}
+            checked={isChecked(value, option.value)}
           />
         ))}
       </div>
@@ -64,8 +58,7 @@ ToggleGroup.propTypes = {
   label: PropTypes.string,
   onOptionClick: PropTypes.func,
   value: PropTypes.any,
-  options: PropTypes.array.isRequired,
-  colors: PropTypes.array,
+  values: PropTypes.array.isRequired,
   toggleComponent: PropTypes.oneOf(['toggle', 'checkbox', 'context']),
 };
 

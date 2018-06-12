@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 const RadioInput = ({
   checked,
   name,
-  label,
   onChange,
   value,
 }) => (
@@ -20,7 +19,7 @@ const RadioInput = ({
       name={name}
     />
     <label className="radio__label" htmlFor={name}>
-      {label || value}
+      {name || value}
     </label>
   </div>
 );
@@ -29,7 +28,6 @@ RadioInput.propTypes = {
   checked: PropTypes.bool,
   name: PropTypes.string,
   onChange: PropTypes.func,
-  label: PropTypes.string,
   value: PropTypes.any,
 };
 

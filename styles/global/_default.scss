@@ -126,6 +126,13 @@ $export-ui-classes: true !default;
 @include palette-set('ord-color-seq-7', color('paradise-pink'));
 @include palette-set('ord-color-seq-8', color('mustard'));
 
+// Categorical Bin Sequence
+@include palette-set('cat-color-seq-1', color('sea-serpent'));
+@include palette-set('cat-color-seq-2', color('purple-pizazz'));
+@include palette-set('cat-color-seq-3', color('paradise-pink'));
+@include palette-set('cat-color-seq-4', color('kiwi'));
+@include palette-set('cat-color-seq-5', color('cerulean-blue'));
+
 $base-line-height: 1.5;
 $netcanvas-font-stack: 'Quicksand', 'Open Sans', sans-serif;
 $system-font-stack: 'system-ui', sans-serif;
