@@ -12,7 +12,7 @@ import InputLabel from './InputLabel';
 const isChecked = (value, option) => (value ? !!value[option] : false);
 
 const ToggleGroup = ({
-  values,
+  options,
   label,
   name,
   value,
@@ -37,7 +37,7 @@ const ToggleGroup = ({
         tooltip={tooltip}
       />
       <div className="toggle-group__inputs">
-        {map(values, (option, index) => (
+        {map(options, (option, index) => (
           <ToggleComponent
             key={index}
             label={option.label}
@@ -58,7 +58,7 @@ ToggleGroup.propTypes = {
   label: PropTypes.string,
   onOptionClick: PropTypes.func,
   value: PropTypes.any,
-  values: PropTypes.array.isRequired,
+  options: PropTypes.array.isRequired,
   toggleComponent: PropTypes.oneOf(['toggle', 'checkbox', 'context']),
 };
 
