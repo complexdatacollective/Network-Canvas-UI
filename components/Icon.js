@@ -28,6 +28,8 @@ class Icon extends Component {
       ...rest
     } = this.props;
 
+    console.log(icons);
+
     const iconClassNames = cx({
       icon: true,
       [`icon--${color}`]: !!color,

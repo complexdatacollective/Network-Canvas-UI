@@ -37,6 +37,10 @@ import toggleOff from './toggle-off.svg.react';
 import toggleOn from './toggle-on.svg.react';
 import trashBin from './trash-bin.svg.react';
 import warning from './warning.svg.react';
+import chevronLeft from './chevron-left.svg.react';
+import chevronRight from './chevron-right.svg.react';
+import chevronUp from './chevron-up.svg.react';
+import chevronDown from './chevron-down.svg.react';
 
 export default {
   'add-a-context': addAContext,
@@ -78,4 +82,8 @@ export default {
   'toggle-on': toggleOn,
   'trash-bin': trashBin,
   warning,
+  'chevron-left': chevronLeft,
+  'chevron-right': chevronRight,
+  'chevron-up': chevronUp,
+  'chevron-down': chevronDown,
 };
