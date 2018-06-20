@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import uuid from 'uuid';
 
-class Checkbox extends PureComponent {
+class Toggle extends PureComponent {
   static propTypes = {
     label: PropTypes.string,
     className: PropTypes.string,
@@ -32,10 +32,10 @@ class Checkbox extends PureComponent {
 
     const componentClasses = cx(
       'form-field',
-      'form-field-checkbox',
+      'form-field-toggle',
       className,
       {
-        'form-field-checkbox--disabled': disabled,
+        'form-field-toggle--disabled': disabled,
       },
     );
 
@@ -47,14 +47,16 @@ class Checkbox extends PureComponent {
         <label className={componentClasses} htmlFor={this.id}>
           <div>
             <input
-              className="form-field-checkbox__input"
+              className="form-field-toggle__input"
               id={this.id}
               {...input}
               {...rest}
               type="checkbox"
             />
-            <div className="form-field-checkbox__checkbox" />
-            <div className="form-field-checkbox__label">
+            <div className="form-field-toggle__toggle">
+              <span className="form-field-toggle__button" />
+            </div>
+            <div className="form-field-toggle__label">
               {label || this.props.input.value}
             </div>
           </div>
@@ -64,4 +66,4 @@ class Checkbox extends PureComponent {
   }
 }
 
-export default Checkbox;
+export default Toggle;

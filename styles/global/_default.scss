@@ -75,6 +75,17 @@ $export-ui-classes: true !default;
 @include palette-set('graph-data-4', color('sea-serpent'));
 
 
+// Form elements and inputs
+@include palette-set('input-border', palette('text'));
+@include palette-set('input-text', palette('text'));
+@include palette-set('input-accent', palette('primary'));
+@include palette-set('input-disabled', color('charcoal'));
+
+// Text inputs
+
+// Checknox/radio
+@include palette-set('input-radio--fill', palette('input-accent'));
+
 // Color sequences
 
 // Root sequence
@@ -166,7 +177,10 @@ $system-font-stack: 'system-ui', sans-serif;
 
   --drop-shadow-color: #{transparentize(rgb(22, 21, 43), .25)};
 
-  --input-background: #{transparentize(rgb(255, 255, 255), .5)};
+  // Inputs
+  --input-background: rgba(0, 0, 0, .33);
+  --input-label: rgba(255, 255, 255, 1);
+  --input-placeholder: rgba(255, 255, 255, .25);
 
   --modal-overlay: #{transparentize(rgb(0, 0, 0), .2)};
   --modal-window-box-shadow: #{transparentize(rgb(22, 21, 43), .25)};

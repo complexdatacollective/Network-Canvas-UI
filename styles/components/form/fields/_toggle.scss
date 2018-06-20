@@ -1,0 +1,57 @@
+$size: 2rem;
+$border: 2px;
+$border-space: 3px;
+
+.form-field-toggle {
+  display: inline-block;
+  cursor: pointer;
+
+  &__input {
+    display: none;
+  }
+
+  &__toggle {
+    position: relative;
+    width: $size * 2;
+    height: $size;
+    display: inline-block;
+  }
+
+  &__button {
+    position: absolute;
+    cursor: pointer;
+    background-color: var(--input-background);
+    border-radius: $size;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    &::before {
+      position: absolute;
+      content: '';
+      border-radius: 50%;
+      height: $size;
+      width: $size;
+      background-color: var(--input-border);
+      transition: .4s;
+    }
+  }
+
+  &__input:checked + &__toggle { // sass-lint:disable-line force-pseudo-nesting
+    .form-field-toggle__button {
+      background-color: var(--input-radio--fill);
+
+      &::before {
+        transform: translateX($size);
+      }
+    }
+  }
+
+  &__label {
+    display: inline-block;
+    margin-left: unit(1);
+    vertical-align: top;
+    line-height: $size;
+  }
+}

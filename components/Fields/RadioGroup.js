@@ -13,12 +13,12 @@ const getLabel = option => get(option, 'label', toString(getValue(option)));
 class RadioGroup extends Component {
   static propTypes = {
     options: PropTypes.array,
-    label: PropTypes.string,
+    // label: PropTypes.string,
     ...fieldPropTypes,
   };
 
   static defaultProps = {
-    label: null,
+    // label: null,
     options: [],
   };
 
@@ -34,12 +34,15 @@ class RadioGroup extends Component {
       input: { value },
     } = this.props;
 
+    console.log(this.props);
+
     const optionValue = getValue(option);
     const optionLabel = getLabel(option);
     const selected = optionValue === value;
 
     return (
       <Radio
+        key={index}
         input={{
           value: index,
           checked: selected,
@@ -54,20 +57,23 @@ class RadioGroup extends Component {
     const {
       options,
       className,
-      label,
+      // label,
     } = this.props;
 
     const classNames = cx(
-      'form-fields-radio-group',
+      'form-field',
+      'form-field-radio-group',
       className,
     );
 
     return (
-      <div className={classNames}>
-        { label &&
-          <div className="form-fields-radio-group__label">{label}</div>
-        }
-        { options.map(this.renderOption) }
+      <div className="form-field-container">
+        <h4>
+          What could be more important than this?
+        </h4>
+        <div className={classNames}>
+          { options.map(this.renderOption) }
+        </div>
       </div>
     );
   }

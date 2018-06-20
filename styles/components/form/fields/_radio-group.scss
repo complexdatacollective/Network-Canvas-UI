@@ -1,6 +1,6 @@
-$component-name: form-fields-radio-group;
+$component-name: form-field-radio-group;
 
 .#{$component-name} {
   @include form-field;
-  display: block;
+  // display: block;
 }

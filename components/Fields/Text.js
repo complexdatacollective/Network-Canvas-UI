@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import uuid from 'uuid';
-import { Icon } from '../../../ui/components';
 
 class TextInput extends PureComponent {
   static propTypes = {
@@ -33,34 +32,37 @@ class TextInput extends PureComponent {
       meta: { error, active },
       label,
       className,
-      placeholder,
+      // placeholder,
       type,
     } = this.props;
 
     const seamlessClasses = cx(
       className,
-      'form-fields-text',
+      'form-field',
+      'form-field-text',
       {
-        'form-fields-text--has-focus': active,
-        'form-fields-text--has-error': error,
+        'form-field-text--has-focus': active,
+        'form-field-text--has-error': error,
       },
     );
 
     return (
-      <div className={seamlessClasses}>
-        { label &&
-          <label htmlFor={this.id} className="form-fields-text__label">{label}</label>
-        }
-        <input
-          id={this.id}
-          className="form-fields-text__input"
-          placeholder={placeholder}
-          type={type}
-          {...input}
-        />
-        <Icon name="close" className="form-fields-text__icon form-fields-text__icon--error" />
-        <p className="form-fields-text__error">{error}</p>
+      <div className="form-field-container">
+        <h4>
+          What could be more important than this?
+        </h4>
+        <div className={seamlessClasses}>
+          <input
+            id={this.id}
+            className="form-field-text__input"
+            placeholder={label}
+            type={type}
+            {...input}
+          />
+          <p className="form-field-text__error">{error}</p>
+        </div>
       </div>
+
     );
   }
 }

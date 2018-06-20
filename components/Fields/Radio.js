@@ -31,10 +31,10 @@ class Radio extends PureComponent {
     } = this.props;
 
     const componentClasses = cx(
-      'form-fields-radio',
+      'form-field-radio',
       className,
       {
-        'form-fields-radio--disabled': disabled,
+        'form-field-radio--disabled': disabled,
       },
     );
 
@@ -42,13 +42,13 @@ class Radio extends PureComponent {
       <label className={componentClasses} htmlFor={this.id}>
         <input
           type="radio"
-          className="form-fields-radio__input"
+          className="form-field-radio__input"
           id={this.id}
           {...input}
           {...rest}
         />
-        <div className="form-fields-radio__radio" />
-        <div className="form-fields-radio__label">
+        <div className="form-field-radio__radio" />
+        <div className="form-field-radio__label">
           {label || this.props.input.value}
         </div>
       </label>
