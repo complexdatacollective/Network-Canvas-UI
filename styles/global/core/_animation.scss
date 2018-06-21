@@ -6,8 +6,8 @@ $animation-easing-android: cubic-bezier(.4, 0, .2, 1);
 
 :root {
   --animation-scale-factor: #{$animation-default-scale-factor};
-  --animation-duration-fast: #{$animation-default-scale-factor * .15s};
-  --animation-duration-fast-ms: #{$animation-default-scale-factor-ms * .15};
+  --animation-duration-fast: #{$animation-default-scale-factor * .25s};
+  --animation-duration-fast-ms: #{$animation-default-scale-factor-ms * .25};
   --animation-duration-standard: #{$animation-default-scale-factor * .35s};
   --animation-duration-standard-ms: #{$animation-default-scale-factor-ms * .35};
   --animation-duration-slow: #{$animation-default-scale-factor * .55s};

@@ -31,7 +31,6 @@ class Checkbox extends PureComponent {
     } = this.props;
 
     const componentClasses = cx(
-      'form-field',
       'form-field-checkbox',
       className,
       {
@@ -40,26 +39,21 @@ class Checkbox extends PureComponent {
     );
 
     return (
-      <div className="form-field-container">
-        <h4>
-          What could be more important than this?
-        </h4>
-        <label className={componentClasses} htmlFor={this.id}>
-          <div>
-            <input
-              className="form-field-checkbox__input"
-              id={this.id}
-              {...input}
-              {...rest}
-              type="checkbox"
-            />
-            <div className="form-field-checkbox__checkbox" />
-            <div className="form-field-checkbox__label">
-              {label || this.props.input.value}
-            </div>
+      <label className={componentClasses} htmlFor={this.id}>
+        <div>
+          <input
+            className="form-field-checkbox__input"
+            id={this.id}
+            {...input}
+            {...rest}
+            type="checkbox"
+          />
+          <div className="form-field-checkbox__checkbox" />
+          <div className="form-field-checkbox__label">
+            {label || this.props.input.value}
           </div>
-        </label>
-      </div>
+        </div>
+      </label>
     );
   }
 }

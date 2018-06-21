@@ -34,8 +34,6 @@ class RadioGroup extends Component {
       input: { value },
     } = this.props;
 
-    console.log(this.props);
-
     const optionValue = getValue(option);
     const optionLabel = getLabel(option);
     const selected = optionValue === value;
