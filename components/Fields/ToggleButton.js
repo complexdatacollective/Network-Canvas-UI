@@ -9,12 +9,14 @@ class ToggleButton extends PureComponent {
     className: PropTypes.string,
     disabled: PropTypes.bool,
     input: PropTypes.object.isRequired,
+    color: PropTypes.string,
   };
 
   static defaultProps = {
     className: '',
     label: null,
     disabled: false,
+    color: 'cat-color-seq-1',
   };
 
   componentWillMount() {
@@ -27,41 +29,34 @@ class ToggleButton extends PureComponent {
       className,
       input,
       disabled,
+      color,
       ...rest
     } = this.props;
 
     const componentClasses = cx(
-      'form-field',
-      'form-field-toggle-button',
+      'form-field-togglebutton',
+      `form-field-togglebutton-${color}`,
       className,
       {
-        'form-field-toggle-button--disabled': disabled,
+        'form-field-togglebutton--disabled': disabled,
       },
     );
 
     return (
-      <div className="form-field-container">
-        <h4>
-          What could be more important than this?
-        </h4>
-        <label className={componentClasses} htmlFor={this.id}>
-          <div>
-            <input
-              className="form-field-toggle-button__input"
-              id={this.id}
-              {...input}
-              {...rest}
-              type="checkbox"
-            />
-            <div className="form-field-toggle-button__button">
-              <span className="form-field-toggle-button__button" />
-            </div>
-            <div className="form-field-toggle-button__label">
-              {label || this.props.input.value}
-            </div>
+      <label className={componentClasses} htmlFor={this.id}>
+        <div>
+          <input
+            className="form-field-togglebutton__input"
+            id={this.id}
+            {...input}
+            {...rest}
+            type="checkbox"
+          />
+          <div className="form-field-togglebutton__checkbox">
+            {label || this.props.input.value}
           </div>
-        </label>
-      </div>
+        </div>
+      </label>
     );
   }
 }

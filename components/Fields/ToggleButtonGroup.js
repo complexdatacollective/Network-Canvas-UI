@@ -2,14 +2,14 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { get, isString } from 'lodash';
-import Checkbox from './Checkbox';
+import ToggleButton from './ToggleButton';
 
 const toString = value => (isString(value) ? value : JSON.stringify(value));
 const getValue = option => get(option, 'value', option);
 const getLabel = option => get(option, 'label', toString(getValue(option)));
 
 
-class CheckboxGroup extends PureComponent {
+class ToggleButtonGroup extends PureComponent {
   static propTypes = {
     options: PropTypes.array,
     className: PropTypes.string,
@@ -29,10 +29,13 @@ class CheckboxGroup extends PureComponent {
 
   handleClickOption = (event) => {
     const option = event.target.value;
+    console.log(option);
+    console.log(this.isOptionChecked(option));
     const newValue = this.isOptionChecked(option) ?
       this.value.filter(value => value !== option) :
       [...this.value, option];
 
+    console.log(newValue);
     this.props.input.onChange(newValue);
   }
 
@@ -47,8 +50,8 @@ class CheckboxGroup extends PureComponent {
     const optionValue = getValue(option);
 
     return (
-      <Checkbox
-        className="form-field-checkbox-group__option"
+      <ToggleButton
+        className="form-field-togglebutton-group__option"
         key={index}
         input={{
           value: optionValue,
@@ -56,6 +59,7 @@ class CheckboxGroup extends PureComponent {
           onChange: this.handleClickOption,
         }}
         label={optionLabel}
+        color={`cat-color-seq-${index + 1}`}
       />
     );
   };
@@ -67,7 +71,7 @@ class CheckboxGroup extends PureComponent {
     } = this.props;
 
     const classNames = cx(
-      'form-field-checkbox-group',
+      'form-field-togglebutton-group',
       'form-field-container',
       className,
     );
@@ -77,7 +81,7 @@ class CheckboxGroup extends PureComponent {
         <h4>
           What could be more important than this?
         </h4>
-        <div className="form-field">
+        <div className="form-field form-field__inline">
           { options.map(this.renderOption) }
         </div>
       </div>
@@ -85,4 +89,4 @@ class CheckboxGroup extends PureComponent {
   }
 }
 
-export default CheckboxGroup;
+export default ToggleButtonGroup;

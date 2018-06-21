@@ -144,6 +144,11 @@ $export-ui-classes: true !default;
 @include palette-set('cat-color-seq-3', color('paradise-pink'));
 @include palette-set('cat-color-seq-4', color('kiwi'));
 @include palette-set('cat-color-seq-5', color('cerulean-blue'));
+@include palette-set('cat-color-seq-6', color('mustard'));
+@include palette-set('cat-color-seq-7', color('neon-carrot'));
+@include palette-set('cat-color-seq-8', color('barbie-pink'));
+@include palette-set('cat-color-seq-9', color('tomato'));
+@include palette-set('cat-color-seq-10', color('slate-blue'));
 
 $base-line-height: 1.5;
 $netcanvas-font-stack: 'Quicksand', 'Open Sans', sans-serif;

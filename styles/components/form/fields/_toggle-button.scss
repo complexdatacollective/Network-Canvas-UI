@@ -1,8 +1,10 @@
-$size: 2rem;
-$border: 2px;
-$border-space: 3px;
+$size: 7rem;
+$border: .2rem;
+$border-space: .3rem;
 
-.form-field-toggle-button {
+$component-name: form-field-togglebutton;
+
+.#{$component-name} {
   display: inline-block;
   cursor: pointer;
 
@@ -10,43 +12,46 @@ $border-space: 3px;
     display: none;
   }
 
-  &__toggle {
+  &__checkbox {
     position: relative;
-    width: $size * 2;
+    width: $size;
     height: $size;
-    display: inline-block;
-  }
-
-  &__button {
-    position: absolute;
-    cursor: pointer;
-    background-color: var(--input-background);
-    transition: background var(--animation-duration-fast) var(--animation-easing);
-    border-radius: $size;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 0;
+    font-weight: 500;
+    text-align: center;
+    padding: 0.5rem;
 
     &::before {
       position: absolute;
+      top: 0;
+      left: 0;
       content: '';
+      width: 100%;
+      height: 100%;
+      border-color: var(--input-radio--fill);
+      border-width: $border;
+      border-style: solid;
       border-radius: 50%;
-      height: $size;
-      width: $size;
-      background-color: var(--input-border);
-      transition: transform var(--animation-duration-fast) var(--animation-easing);
+      transition: border-color var(--animation-easing) var(--animation-duration-standard);
     }
-  }
 
-  &__input:checked + &__toggle { // sass-lint:disable-line force-pseudo-nesting
-    .form-field-toggle__button {
+    &::after {
+      position: absolute;
+      content: '';
+      top: $border + $border-space;
+      left: $border + $border-space;
+      width: calc(100% - #{($border + $border-space) * 2});
+      height: calc(100% - #{($border + $border-space) * 2});
       background-color: var(--input-radio--fill);
-
-      &::before {
-        transform: translateX($size);
-      }
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity var(--animation-easing) var(--animation-duration-standard);
+      z-index: -1;
     }
+
   }
 
   &__label {
@@ -54,5 +59,64 @@ $border-space: 3px;
     margin-left: unit(1);
     vertical-align: top;
     line-height: $size;
+  }
+
+  &:hover {
+    .form-field-checkbox__checkbox {
+      &::before {
+        border-color: var(--input-radio--fill);
+      }
+    }
+  }
+
+  &__input:checked + &__checkbox { // sass-lint:disable-line force-pseudo-nesting
+    &::before {
+      // border-color: var(--input-border);
+    }
+
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  &--disabled {
+    cursor: default;
+    pointer-events: none;
+
+    .form-field-checkbox__checkbox {
+      &::before {
+        border-color: var(--color-charcoal);
+      }
+
+      &::after {
+        opacity: 0;
+      }
+    }
+
+    &:hover {
+      .form-field-checkbox__checkbox {
+        &::before {
+          border-color: var(--color-charcoal);
+        }
+
+        &::after {
+          opacity: 0;
+        }
+      }
+    }
+  }
+}
+
+@for $i from 1 through 10 {
+  .form-field-togglebutton-cat-color-seq-#{$i} {
+    .form-field-togglebutton__checkbox {
+      &::before {
+        border-color: var(--cat-color-seq-#{$i});
+      }
+
+      &::after {
+        background-color: var(--cat-color-seq-#{$i});
+      }
+    }
   }
 }
