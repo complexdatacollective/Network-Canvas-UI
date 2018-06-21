@@ -4,7 +4,7 @@ $component-name: form-field-checkbox-group;
   @include form-field;
   display: block;
 
-  &__option {
-    margin: 0 unit(2) unit(2) 0;
+  &__option:last-child {
+    margin: 0;
   }
 }

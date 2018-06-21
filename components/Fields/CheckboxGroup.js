@@ -13,12 +13,15 @@ class CheckboxGroup extends PureComponent {
   static propTypes = {
     options: PropTypes.array,
     className: PropTypes.string,
+    label: PropTypes.string,
+    fieldLabel: PropTypes.string,
     input: PropTypes.object.isRequired,
   };
 
   static defaultProps = {
     className: null,
     label: null,
+    fieldLabel: null,
     options: [],
     disabled: false,
   };
@@ -64,6 +67,8 @@ class CheckboxGroup extends PureComponent {
     const {
       options,
       className,
+      fieldLabel,
+      label,
     } = this.props;
 
     const classNames = cx(
@@ -75,7 +80,7 @@ class CheckboxGroup extends PureComponent {
     return (
       <div className={classNames}>
         <h4>
-          What could be more important than this?
+          {fieldLabel || label || ''}
         </h4>
         <div className="form-field">
           { options.map(this.renderOption) }

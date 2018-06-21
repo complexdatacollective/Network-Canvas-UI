@@ -13,12 +13,14 @@ const getLabel = option => get(option, 'label', toString(getValue(option)));
 class RadioGroup extends Component {
   static propTypes = {
     options: PropTypes.array,
-    // label: PropTypes.string,
+    label: PropTypes.string,
+    fieldLabel: PropTypes.string,
     ...fieldPropTypes,
   };
 
   static defaultProps = {
-    // label: null,
+    label: null,
+    fieldLabel: null,
     options: [],
   };
 
@@ -55,7 +57,8 @@ class RadioGroup extends Component {
     const {
       options,
       className,
-      // label,
+      label,
+      fieldLabel,
     } = this.props;
 
     const classNames = cx(
@@ -67,7 +70,7 @@ class RadioGroup extends Component {
     return (
       <div className="form-field-container">
         <h4>
-          What could be more important than this?
+          {fieldLabel || label || ''}
         </h4>
         <div className={classNames}>
           { options.map(this.renderOption) }

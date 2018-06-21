@@ -6,6 +6,7 @@ import uuid from 'uuid';
 class Toggle extends PureComponent {
   static propTypes = {
     label: PropTypes.string,
+    fieldLabel: PropTypes.string,
     className: PropTypes.string,
     disabled: PropTypes.bool,
     input: PropTypes.object.isRequired,
@@ -14,6 +15,7 @@ class Toggle extends PureComponent {
   static defaultProps = {
     className: '',
     label: null,
+    fieldLabel: null,
     disabled: false,
   };
 
@@ -24,6 +26,7 @@ class Toggle extends PureComponent {
   render() {
     const {
       label,
+      fieldLabel,
       className,
       input,
       disabled,
@@ -42,7 +45,7 @@ class Toggle extends PureComponent {
     return (
       <div className="form-field-container">
         <h4>
-          What could be more important than this?
+          {fieldLabel || label || ''}
         </h4>
         <label className={componentClasses} htmlFor={this.id}>
           <div>

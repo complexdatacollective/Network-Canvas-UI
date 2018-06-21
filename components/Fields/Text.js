@@ -8,6 +8,7 @@ class TextInput extends PureComponent {
     input: PropTypes.object,
     meta: PropTypes.object,
     label: PropTypes.string,
+    fieldLabel: PropTypes.string,
     className: PropTypes.string,
     type: PropTypes.string,
     placeholder: PropTypes.string,
@@ -18,6 +19,7 @@ class TextInput extends PureComponent {
     meta: {},
     type: 'text',
     label: null,
+    fieldLabel: null,
     placeholder: '',
     className: '',
   };
@@ -31,6 +33,7 @@ class TextInput extends PureComponent {
       input,
       meta: { error, active },
       label,
+      fieldLabel,
       className,
       // placeholder,
       type,
@@ -49,7 +52,7 @@ class TextInput extends PureComponent {
     return (
       <div className="form-field-container">
         <h4>
-          What could be more important than this?
+          {fieldLabel || label || ''}
         </h4>
         <div className={seamlessClasses}>
           <input

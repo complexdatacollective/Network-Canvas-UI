@@ -13,12 +13,15 @@ class ToggleButtonGroup extends PureComponent {
   static propTypes = {
     options: PropTypes.array,
     className: PropTypes.string,
+    label: PropTypes.string,
+    fieldLabel: PropTypes.string,
     input: PropTypes.object.isRequired,
   };
 
   static defaultProps = {
     className: null,
     label: null,
+    fieldLabel: null,
     options: [],
     disabled: false,
   };
@@ -29,13 +32,10 @@ class ToggleButtonGroup extends PureComponent {
 
   handleClickOption = (event) => {
     const option = event.target.value;
-    console.log(option);
-    console.log(this.isOptionChecked(option));
     const newValue = this.isOptionChecked(option) ?
       this.value.filter(value => value !== option) :
       [...this.value, option];
 
-    console.log(newValue);
     this.props.input.onChange(newValue);
   }
 
@@ -68,6 +68,8 @@ class ToggleButtonGroup extends PureComponent {
     const {
       options,
       className,
+      label,
+      fieldLabel,
     } = this.props;
 
     const classNames = cx(
@@ -79,7 +81,7 @@ class ToggleButtonGroup extends PureComponent {
     return (
       <div className={classNames}>
         <h4>
-          What could be more important than this?
+          {fieldLabel || label || ''}
         </h4>
         <div className="form-field form-field__inline">
           { options.map(this.renderOption) }

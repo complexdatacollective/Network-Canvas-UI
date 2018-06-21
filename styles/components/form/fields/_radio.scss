@@ -6,6 +6,10 @@ $border-space: 3px;
   display: inline-block;
   cursor: pointer;
 
+  &:last-child {
+    margin: 0;
+  }
+
   &__input {
     display: none;
   }
@@ -45,8 +49,6 @@ $border-space: 3px;
   }
 
   &__label {
-    @include typography(copy-standard, font-size);
-    font-weight: 200;
     display: inline-block;
     margin-left: unit(1);
     vertical-align: top;
