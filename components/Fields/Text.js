@@ -8,6 +8,7 @@ class TextInput extends PureComponent {
     input: PropTypes.object,
     meta: PropTypes.object,
     label: PropTypes.string,
+    autoFocus: PropTypes.bool,
     fieldLabel: PropTypes.string,
     className: PropTypes.string,
     type: PropTypes.string,
@@ -18,6 +19,7 @@ class TextInput extends PureComponent {
     input: {},
     meta: {},
     type: 'text',
+    autoFocus: false,
     label: null,
     fieldLabel: null,
     placeholder: '',
@@ -35,8 +37,8 @@ class TextInput extends PureComponent {
       label,
       fieldLabel,
       className,
-      // placeholder,
       type,
+      autoFocus,
     } = this.props;
 
     const seamlessClasses = cx(
@@ -59,6 +61,7 @@ class TextInput extends PureComponent {
             id={this.id}
             className="form-field-text__input"
             placeholder={label}
+            autoFocus={autoFocus} // eslint-disable-line
             type={type}
             {...input}
           />

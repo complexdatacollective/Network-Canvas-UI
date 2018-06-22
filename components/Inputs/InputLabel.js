@@ -29,6 +29,9 @@ const InputLabel = ({
     'input__tooltip-bottom': tooltip === 'bottom',
   });
 
+  /* eslint-disable-next-line */
+  console.warn('DEPRECATED: You are using a deprecated input component, located in ui/components/Inputs. Please update your component to use the new inputs found in ui/components/Fields.');
+
   return (
     <div className={wrapperClassName}>
       <label className={inputLabelClassName} htmlFor={name}>
