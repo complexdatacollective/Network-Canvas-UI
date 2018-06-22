@@ -70,9 +70,6 @@ $component-name: form-field-togglebutton;
   }
 
   &__input:checked + &__checkbox { // sass-lint:disable-line force-pseudo-nesting
-    &::before {
-      // border-color: var(--input-border);
-    }
 
     &::after {
       opacity: 1;
