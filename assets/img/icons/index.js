@@ -41,6 +41,9 @@ import chevronLeft from './chevron-left.svg.react';
 import chevronRight from './chevron-right.svg.react';
 import chevronUp from './chevron-up.svg.react';
 import chevronDown from './chevron-down.svg.react';
+import add from './add.svg.react';
+import remove from './delete.svg.react';
+import move from './move.svg.react';
 
 export default {
   'add-a-context': addAContext,
@@ -86,4 +89,7 @@ export default {
   'chevron-right': chevronRight,
   'chevron-up': chevronUp,
   'chevron-down': chevronDown,
+  add,
+  delete: remove,
+  move,
 };
