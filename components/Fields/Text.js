@@ -33,7 +33,7 @@ class TextInput extends PureComponent {
   render() {
     const {
       input,
-      meta: { error, active },
+      meta: { error, active, invalid, touched },
       label,
       fieldLabel,
       className,
@@ -47,7 +47,7 @@ class TextInput extends PureComponent {
       'form-field-text',
       {
         'form-field-text--has-focus': active,
-        'form-field-text--has-error': error,
+        'form-field-text--has-error': invalid && touched && error,
       },
     );
 
@@ -65,7 +65,7 @@ class TextInput extends PureComponent {
             type={type}
             {...input}
           />
-          <p className="form-field-text__error">{error}</p>
+          {invalid && touched && <p className="form-field-text__error">{error}</p>}
         </div>
       </div>
 

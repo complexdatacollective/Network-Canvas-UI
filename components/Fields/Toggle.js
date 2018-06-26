@@ -54,6 +54,7 @@ class Toggle extends PureComponent {
               id={this.id}
               {...input}
               {...rest}
+              checked={!!this.props.input.value}
               type="checkbox"
             />
             <div className="form-field-toggle__toggle">
