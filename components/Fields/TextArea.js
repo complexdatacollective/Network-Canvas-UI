@@ -20,7 +20,7 @@ class TextArea extends PureComponent {
 
   render() {
     const {
-      meta: { active },
+      meta: { active, error, invalid, touched },
       label,
     } = this.props;
 
@@ -38,6 +38,7 @@ class TextArea extends PureComponent {
             id={this.id}
             {...this.props.input}
           />
+          {invalid && touched && <p className="form-field-radio-group__error">{error}</p>}
         </div>
       </label>
     );

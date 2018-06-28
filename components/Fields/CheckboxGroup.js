@@ -16,6 +16,7 @@ class CheckboxGroup extends PureComponent {
     label: PropTypes.string,
     fieldLabel: PropTypes.string,
     input: PropTypes.object.isRequired,
+    meta: PropTypes.object,
   };
 
   static defaultProps = {
@@ -24,6 +25,7 @@ class CheckboxGroup extends PureComponent {
     fieldLabel: null,
     options: [],
     disabled: false,
+    meta: {},
   };
 
   get value() {
@@ -69,11 +71,15 @@ class CheckboxGroup extends PureComponent {
       className,
       fieldLabel,
       label,
+      meta: { error, invalid, touched },
     } = this.props;
 
     const classNames = cx(
       'form-field-checkbox-group',
       'form-field-container',
+      {
+        'form-field-checkbox-group--has-error': invalid && touched && error,
+      },
       className,
     );
 
@@ -82,6 +88,7 @@ class CheckboxGroup extends PureComponent {
         <h4>
           {fieldLabel || label || ''}
         </h4>
+        {invalid && touched && <p className="form-field-checkbox-group__error">{error}</p>}
         <div className="form-field">
           { options.map(this.renderOption) }
         </div>

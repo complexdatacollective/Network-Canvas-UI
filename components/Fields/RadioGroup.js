@@ -15,6 +15,7 @@ class RadioGroup extends Component {
     options: PropTypes.array,
     label: PropTypes.string,
     fieldLabel: PropTypes.string,
+    meta: PropTypes.object,
     ...fieldPropTypes,
   };
 
@@ -22,6 +23,7 @@ class RadioGroup extends Component {
     label: null,
     fieldLabel: null,
     options: [],
+    meta: {},
   };
 
   componentWillMount() {
@@ -59,7 +61,15 @@ class RadioGroup extends Component {
       className,
       label,
       fieldLabel,
+      meta: { error, invalid, touched },
     } = this.props;
+
+    const containerClassNames = cx(
+      'form-field-container',
+      {
+        'form-field-radio-group--has-error': invalid && touched && error,
+      },
+    );
 
     const classNames = cx(
       'form-field',
@@ -68,10 +78,11 @@ class RadioGroup extends Component {
     );
 
     return (
-      <div className="form-field-container">
+      <div className={containerClassNames}>
         <h4>
           {fieldLabel || label || ''}
         </h4>
+        {invalid && touched && <p className="form-field-radio-group__error">{error}</p>}
         <div className={classNames}>
           { options.map(this.renderOption) }
         </div>

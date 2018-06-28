@@ -13,6 +13,7 @@ class TextInput extends PureComponent {
     className: PropTypes.string,
     type: PropTypes.string,
     placeholder: PropTypes.string,
+    hidden: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -24,6 +25,7 @@ class TextInput extends PureComponent {
     fieldLabel: null,
     placeholder: '',
     className: '',
+    hidden: false,
   };
 
   componentWillMount() {
@@ -39,6 +41,7 @@ class TextInput extends PureComponent {
       className,
       type,
       autoFocus,
+      hidden,
     } = this.props;
 
     const seamlessClasses = cx(
@@ -52,7 +55,7 @@ class TextInput extends PureComponent {
     );
 
     return (
-      <div className="form-field-container">
+      <div className="form-field-container" hidden={hidden}>
         <h4>
           {fieldLabel || label || ''}
         </h4>

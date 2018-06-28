@@ -10,6 +10,7 @@ class Toggle extends PureComponent {
     className: PropTypes.string,
     disabled: PropTypes.bool,
     input: PropTypes.object.isRequired,
+    meta: PropTypes.object,
   };
 
   static defaultProps = {
@@ -17,6 +18,7 @@ class Toggle extends PureComponent {
     label: null,
     fieldLabel: null,
     disabled: false,
+    meta: {},
   };
 
   componentWillMount() {
@@ -30,8 +32,16 @@ class Toggle extends PureComponent {
       className,
       input,
       disabled,
+      meta: { error, invalid, touched },
       ...rest
     } = this.props;
+
+    const containerClassNames = cx(
+      'form-field-container',
+      {
+        'form-field-toggle--has-error': invalid && touched && error,
+      },
+    );
 
     const componentClasses = cx(
       'form-field',
@@ -39,14 +49,16 @@ class Toggle extends PureComponent {
       className,
       {
         'form-field-toggle--disabled': disabled,
+        'form-field-toggle--has-error': invalid && touched && error,
       },
     );
 
     return (
-      <div className="form-field-container">
+      <div className={containerClassNames}>
         <h4>
           {fieldLabel || label || ''}
         </h4>
+        {invalid && touched && <p className="form-field-toggle__error">{error}</p>}
         <label className={componentClasses} htmlFor={this.id}>
           <div>
             <input

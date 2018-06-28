@@ -16,6 +16,7 @@ class ToggleButtonGroup extends PureComponent {
     label: PropTypes.string,
     fieldLabel: PropTypes.string,
     input: PropTypes.object.isRequired,
+    meta: PropTypes.object,
   };
 
   static defaultProps = {
@@ -24,6 +25,7 @@ class ToggleButtonGroup extends PureComponent {
     fieldLabel: null,
     options: [],
     disabled: false,
+    meta: {},
   };
 
   get value() {
@@ -70,12 +72,16 @@ class ToggleButtonGroup extends PureComponent {
       className,
       label,
       fieldLabel,
+      meta: { error, invalid, touched },
     } = this.props;
 
     const classNames = cx(
       'form-field-togglebutton-group',
       'form-field-container',
       className,
+      {
+        'form-field-togglebutton-group--has-error': invalid && touched && error,
+      },
     );
 
     return (
@@ -83,6 +89,7 @@ class ToggleButtonGroup extends PureComponent {
         <h4>
           {fieldLabel || label || ''}
         </h4>
+        {invalid && touched && <p className="form-field-togglebutton-group__error">{error}</p>}
         <div className="form-field form-field__inline">
           { options.map(this.renderOption) }
         </div>
