@@ -16,12 +16,14 @@ class RadioGroup extends Component {
     label: PropTypes.string,
     fieldLabel: PropTypes.string,
     meta: PropTypes.object,
+    component: PropTypes.component,
     ...fieldPropTypes,
   };
 
   static defaultProps = {
     label: null,
     fieldLabel: null,
+    component: Radio,
     options: [],
     meta: {},
   };
@@ -36,6 +38,7 @@ class RadioGroup extends Component {
   renderOption = (option, index) => {
     const {
       input: { value },
+      component: RadioComponent,
     } = this.props;
 
     const optionValue = getValue(option);
@@ -43,7 +46,7 @@ class RadioGroup extends Component {
     const selected = optionValue === value;
 
     return (
-      <Radio
+      <RadioComponent
         key={index}
         input={{
           value: index,
