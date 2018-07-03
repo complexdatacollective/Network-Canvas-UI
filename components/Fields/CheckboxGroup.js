@@ -1,13 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import { get, isString } from 'lodash';
 import Checkbox from './Checkbox';
-
-const toString = value => (isString(value) ? value : JSON.stringify(value));
-const getValue = option => get(option, 'value', option);
-const getLabel = option => get(option, 'label', toString(getValue(option)));
-
+import { asOptionObject, getValue } from './utils/options';
 
 class CheckboxGroup extends PureComponent {
   static propTypes = {
@@ -48,8 +43,7 @@ class CheckboxGroup extends PureComponent {
   }
 
   renderOption = (option, index) => {
-    const optionLabel = getLabel(option);
-    const optionValue = getValue(option);
+    const { value: optionValue, label: optionLabel, ...optionRest } = asOptionObject(option);
 
     return (
       <Checkbox
@@ -61,6 +55,7 @@ class CheckboxGroup extends PureComponent {
           onChange: this.handleClickOption,
         }}
         label={optionLabel}
+        {...optionRest}
       />
     );
   };
