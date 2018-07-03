@@ -13,7 +13,7 @@ class Node extends Component {
       inactive,
       selected,
       linking,
-      ...rest,
+      ...rest
     } = this.props;
 
     const classes = classNames(
