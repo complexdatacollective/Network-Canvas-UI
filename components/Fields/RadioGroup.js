@@ -12,14 +12,14 @@ class RadioGroup extends Component {
     label: PropTypes.string,
     fieldLabel: PropTypes.string,
     meta: PropTypes.object,
-    component: PropTypes.component,
+    optionComponent: PropTypes.component,
     ...fieldPropTypes,
   };
 
   static defaultProps = {
     label: null,
     fieldLabel: null,
-    component: Radio,
+    optionComponent: Radio,
     options: [],
     meta: {},
   };
@@ -28,25 +28,25 @@ class RadioGroup extends Component {
     this.id = uuid();
   }
 
-  onChange = ({ target: { value: index } }) =>
+  onChange = index =>
     this.props.input.onChange(getValue(this.props.options[index]));
 
   renderOption = (option, index) => {
     const {
       input: { value },
-      component: RadioComponent,
+      optionComponent: OptionComponent,
     } = this.props;
 
     const { value: optionValue, label: optionLabel, ...optionRest } = asOptionObject(option);
     const selected = optionValue === value;
 
     return (
-      <RadioComponent
+      <OptionComponent
         key={index}
         input={{
           value: index,
           checked: selected,
-          onChange: this.onChange,
+          onChange: () => this.onChange(index),
         }}
         label={optionLabel}
         {...optionRest}

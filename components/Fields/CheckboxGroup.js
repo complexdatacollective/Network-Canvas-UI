@@ -11,6 +11,7 @@ class CheckboxGroup extends PureComponent {
     label: PropTypes.string,
     fieldLabel: PropTypes.string,
     input: PropTypes.object.isRequired,
+    optionComponent: PropTypes.component,
     meta: PropTypes.object,
   };
 
@@ -20,6 +21,7 @@ class CheckboxGroup extends PureComponent {
     fieldLabel: null,
     options: [],
     disabled: false,
+    optionComponent: Checkbox,
     meta: {},
   };
 
@@ -27,8 +29,8 @@ class CheckboxGroup extends PureComponent {
     return this.props.input.value;
   }
 
-  handleClickOption = (event) => {
-    const option = event.target.value;
+  handleClickOption = (index) => {
+    const option = getValue(this.props.options[index]);
     const newValue = this.isOptionChecked(option) ?
       this.value.filter(value => value !== option) :
       [...this.value, option];
@@ -43,16 +45,17 @@ class CheckboxGroup extends PureComponent {
   }
 
   renderOption = (option, index) => {
+    const OptionComponent = this.props.optionComponent;
     const { value: optionValue, label: optionLabel, ...optionRest } = asOptionObject(option);
 
     return (
-      <Checkbox
+      <OptionComponent
         className="form-field-checkbox-group__option"
         key={index}
         input={{
-          value: optionValue,
+          value: index,
           checked: this.isOptionChecked(optionValue),
-          onChange: this.handleClickOption,
+          onChange: () => this.handleClickOption(index),
         }}
         label={optionLabel}
         {...optionRest}
