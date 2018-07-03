@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import { fieldPropTypes } from 'redux-form';
 import PropTypes from 'prop-types';
-import { get, isString } from 'lodash';
 import cx from 'classnames';
 import uuid from 'uuid';
 import Radio from './Radio';
-
-const toString = value => (isString(value) ? value : JSON.stringify(value));
-const getValue = option => get(option, 'value', option);
-const getLabel = option => get(option, 'label', toString(getValue(option)));
+import { asOptionObject, getValue } from './utils/options';
 
 class RadioGroup extends Component {
   static propTypes = {
@@ -41,8 +37,7 @@ class RadioGroup extends Component {
       component: RadioComponent,
     } = this.props;
 
-    const optionValue = getValue(option);
-    const optionLabel = getLabel(option);
+    const { value: optionValue, label: optionLabel, ...optionRest } = asOptionObject(option);
     const selected = optionValue === value;
 
     return (
@@ -54,6 +49,7 @@ class RadioGroup extends Component {
           onChange: this.onChange,
         }}
         label={optionLabel}
+        {...optionRest}
       />
     );
   }
