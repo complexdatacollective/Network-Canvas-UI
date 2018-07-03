@@ -33,14 +33,16 @@ class Icon extends Component {
       [`icon--${color}`]: !!color,
     }, [className]);
 
-    const iconComponent = icons(name);
-    return React.createElement(
-      iconComponent,
-      {
-        className: iconClassNames,
-        name,
-        ...rest,
-      },
+    const IconComponent = icons(name);
+
+    if (!IconComponent) { return null; }
+
+    return (
+      <IconComponent
+        className={iconClassNames}
+        name={name}
+        {...rest}
+      />
     );
   }
 }
