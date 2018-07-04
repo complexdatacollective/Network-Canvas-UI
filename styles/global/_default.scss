@@ -99,6 +99,7 @@ $export-ui-classes: true !default;
 @include palette-set('edge-color-seq-10', color('cerulean-blue'));
 
 // Node Sequence
+@include palette-set('node-label', color('white'));
 @include palette-set('node-color-seq-1', color('neon-coral'));
 @include palette-set('node-color-seq-1--dark', color('neon-coral--dark'));
 @include palette-set('node-color-seq-2', color('sea-serpent'));
