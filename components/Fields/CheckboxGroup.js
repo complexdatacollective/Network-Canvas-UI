@@ -11,7 +11,7 @@ class CheckboxGroup extends PureComponent {
     label: PropTypes.string,
     fieldLabel: PropTypes.string,
     input: PropTypes.object.isRequired,
-    optionComponent: PropTypes.component,
+    optionComponent: PropTypes.node,
     meta: PropTypes.object,
   };
 

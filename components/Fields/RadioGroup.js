@@ -12,7 +12,7 @@ class RadioGroup extends Component {
     label: PropTypes.string,
     fieldLabel: PropTypes.string,
     meta: PropTypes.object,
-    optionComponent: PropTypes.component,
+    optionComponent: PropTypes.node,
     ...fieldPropTypes,
   };
 
