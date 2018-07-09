@@ -6,30 +6,32 @@ import PropTypes from 'prop-types';
 const RadioInput = ({
   checked,
   name,
-  label,
   onChange,
   value,
-}) => (
-  <div className="radio__container">
-    <input
-      type="radio"
-      className="radio"
-      checked={checked}
-      value={value}
-      onChange={onChange}
-      name={name}
-    />
-    <label className="radio__label" htmlFor={name}>
-      {label || value}
-    </label>
-  </div>
-);
+}) => {
+  /* eslint-disable-next-line */
+  console.warn('DEPRECATED: You are using a deprecated input component, located in ui/components/Inputs. Please update your component to use the new inputs found in ui/components/Fields.');
+  return (
+    <div className="radio__container">
+      <input
+        type="radio"
+        className="radio"
+        checked={checked}
+        value={value}
+        onChange={onChange}
+        name={name}
+      />
+      <label className="radio__label" htmlFor={name}>
+        {name || value}
+      </label>
+    </div>
+  );
+};
 
 RadioInput.propTypes = {
   checked: PropTypes.bool,
   name: PropTypes.string,
   onChange: PropTypes.func,
-  label: PropTypes.string,
   value: PropTypes.any,
 };
 

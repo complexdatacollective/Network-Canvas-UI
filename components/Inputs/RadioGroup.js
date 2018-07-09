@@ -16,7 +16,7 @@ class RadioGroup extends Component {
     label: PropTypes.string,
     onChange: PropTypes.func,
     onRadioClick: PropTypes.func,
-    options: PropTypes.array,
+    values: PropTypes.array,
     value: PropTypes.any,
     inline: PropTypes.bool,
   }
@@ -57,12 +57,14 @@ class RadioGroup extends Component {
       name,
       label,
       onRadioClick,
-      options,
+      values,
       value,
       inline,
       ...rest // eslint-disable-line
     } = this.props;
 
+    /* eslint-disable-next-line */
+    console.warn('DEPRECATED: You are using a deprecated input component, located in ui/components/Inputs. Please update your component to use the new inputs found in ui/components/Fields.');
     return (
       <div className="radio-group__container" onKeyDown={this.handleKeyDown}>
         <InputLabel
@@ -73,13 +75,13 @@ class RadioGroup extends Component {
         />
         <div className={inline ? 'grid__container grid--x-bookend' : 'grid__stack'}>
           {
-            options ? options.map((option, idx) => (
+            values ? values.map((option, index) => (
               <RadioInput
-                key={idx}
+                key={index}
                 onChange={onRadioClick}
-                checked={value === option}
-                name={name}
-                value={option}
+                checked={value === option.value}
+                name={option.label}
+                value={option.value}
               />
             )) :
               React.Children.map(children, (child) => {

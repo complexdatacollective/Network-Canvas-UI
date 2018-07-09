@@ -1,0 +1,97 @@
+$size: 2rem;
+$border: 2px;
+$border-space: 3px;
+
+.form-field-checkbox {
+  display: inline-block;
+  cursor: pointer;
+
+  &__input {
+    opacity: 0;
+    position: absolute;
+  }
+
+  &__checkbox {
+    position: relative;
+    width: $size;
+    height: $size;
+    display: inline-block;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      content: '';
+      width: 100%;
+      height: 100%;
+      border-color: var(--input-border);
+      border-width: $border;
+      border-style: solid;
+      transition: border-color var(--animation-easing) var(--animation-duration-standard);
+    }
+
+    &::after {
+      position: absolute;
+      content: '';
+      top: $border + $border-space;
+      left: $border + $border-space;
+      width: calc(100% - #{($border + $border-space) * 2});
+      height: calc(100% - #{($border + $border-space) * 2});
+      background-color: var(--input-radio--fill);
+      opacity: 0;
+      transition: opacity var(--animation-easing) var(--animation-duration-standard);
+    }
+  }
+
+  &__label {
+    display: inline-block;
+    margin-left: unit(1);
+    vertical-align: top;
+    line-height: $size;
+  }
+
+  &:hover {
+    .form-field-checkbox__checkbox {
+      &::before {
+        border-color: var(--input-radio--fill);
+      }
+    }
+  }
+
+  &__input:checked + &__checkbox { // sass-lint:disable-line force-pseudo-nesting
+    &::before {
+      border-color: var(--input-border);
+    }
+
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  &--disabled {
+    cursor: default;
+    pointer-events: none;
+
+    .form-field-checkbox__checkbox {
+      &::before {
+        border-color: var(--color-charcoal);
+      }
+
+      &::after {
+        opacity: 0;
+      }
+    }
+
+    &:hover {
+      .form-field-checkbox__checkbox {
+        &::before {
+          border-color: var(--color-charcoal);
+        }
+
+        &::after {
+          opacity: 0;
+        }
+      }
+    }
+  }
+}

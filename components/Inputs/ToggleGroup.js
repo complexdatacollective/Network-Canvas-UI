@@ -2,18 +2,17 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { map, zip } from 'lodash';
+import { map } from 'lodash';
 
 import ContextInput from './ContextInput';
 import Checkbox from './Checkbox';
-import ToggleInput from './ToggleInput';
+// import ToggleInput from './ToggleInput';
 import InputLabel from './InputLabel';
 
 const isChecked = (value, option) => (value ? !!value[option] : false);
 
 const ToggleGroup = ({
   options,
-  colors,
   label,
   name,
   value,
@@ -22,16 +21,15 @@ const ToggleGroup = ({
   toggleComponent,
   onOptionClick,
 }) => {
-  const optionsWithColor = (
-    colors ? zip(options, colors) : map(options, (option, index) => [option, index])
-  );
-
-  let ToggleComponent = ToggleInput;
+  let ToggleComponent = ContextInput;
   if (toggleComponent === 'checkbox') {
     ToggleComponent = Checkbox;
   } else if (toggleComponent === 'context') {
     ToggleComponent = ContextInput;
   }
+
+  /* eslint-disable-next-line */
+  console.warn('DEPRECATED: You are using a deprecated input component, located in ui/components/Inputs. Please update your component to use the new inputs found in ui/components/Fields.');
 
   return (
     <div className="toggle-group">
@@ -42,14 +40,13 @@ const ToggleGroup = ({
         tooltip={tooltip}
       />
       <div className="toggle-group__inputs">
-        {map(optionsWithColor, ([option, color]) => (
+        {map(options, (option, index) => (
           <ToggleComponent
-            key={option}
-            name={name}
-            label={option}
-            color={color || null}
-            onCheck={(e, checked) => onOptionClick(e, checked, option)}
-            checked={isChecked(value, option)}
+            key={index}
+            label={option.label}
+            color={`cat-color-seq-${index + 1}`}
+            onCheck={(e, checked) => onOptionClick(e, checked, option.value)}
+            checked={isChecked(value, option.value)}
           />
         ))}
       </div>
@@ -65,7 +62,6 @@ ToggleGroup.propTypes = {
   onOptionClick: PropTypes.func,
   value: PropTypes.any,
   options: PropTypes.array.isRequired,
-  colors: PropTypes.array,
   toggleComponent: PropTypes.oneOf(['toggle', 'checkbox', 'context']),
 };
 

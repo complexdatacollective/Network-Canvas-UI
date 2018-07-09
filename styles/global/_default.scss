@@ -1,4 +1,5 @@
 @import 'core/animation';
+@import 'core/units';
 @import 'core/bem';
 @import 'core/breakpoints';
 @import 'core/color';
@@ -74,6 +75,17 @@ $export-ui-classes: true !default;
 @include palette-set('graph-data-4', color('sea-serpent'));
 
 
+// Form elements and inputs
+@include palette-set('input-border', palette('text'));
+@include palette-set('input-text', palette('text'));
+@include palette-set('input-accent', palette('primary'));
+@include palette-set('input-disabled', color('charcoal'));
+
+// Text inputs
+
+// Checknox/radio
+@include palette-set('input-radio--fill', palette('input-accent'));
+
 // Color sequences
 
 // Root sequence
@@ -127,6 +139,18 @@ $export-ui-classes: true !default;
 @include palette-set('ord-color-seq-7', color('paradise-pink'));
 @include palette-set('ord-color-seq-8', color('mustard'));
 
+// Categorical Bin Sequence
+@include palette-set('cat-color-seq-1', color('sea-serpent'));
+@include palette-set('cat-color-seq-2', color('purple-pizazz'));
+@include palette-set('cat-color-seq-3', color('paradise-pink'));
+@include palette-set('cat-color-seq-4', color('kiwi'));
+@include palette-set('cat-color-seq-5', color('cerulean-blue'));
+@include palette-set('cat-color-seq-6', color('mustard'));
+@include palette-set('cat-color-seq-7', color('neon-carrot'));
+@include palette-set('cat-color-seq-8', color('barbie-pink'));
+@include palette-set('cat-color-seq-9', color('tomato'));
+@include palette-set('cat-color-seq-10', color('slate-blue'));
+
 $base-line-height: 1.5;
 $netcanvas-font-stack: 'Quicksand', 'Open Sans', sans-serif;
 $system-font-stack: 'system-ui', sans-serif;
@@ -159,7 +183,10 @@ $system-font-stack: 'system-ui', sans-serif;
 
   --drop-shadow-color: #{transparentize(rgb(22, 21, 43), .25)};
 
-  --input-background: #{transparentize(rgb(255, 255, 255), .5)};
+  // Inputs
+  --input-background: rgba(0, 0, 0, .33);
+  --input-label: rgba(255, 255, 255, 1);
+  --input-placeholder: rgba(255, 255, 255, .25);
 
   --modal-overlay: #{transparentize(rgb(0, 0, 0), .2)};
   --modal-window-box-shadow: #{transparentize(rgb(22, 21, 43), .25)};
