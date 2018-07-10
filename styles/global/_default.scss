@@ -172,6 +172,10 @@ $system-font-stack: 'system-ui', sans-serif;
     #{'--'}#{$name}: #{$palette};
   }
 
+  // Top level transparentised values
+  --transparent-light: #{transparentize(rgb(255, 255, 255), .7)};
+  --transparent-dark: #{transparentize(rgb(0, 0, 0), .3)};
+
   // additional one-off palette values
   --narrative-heading-color: #{transparentize(rgb(255, 255, 255), .3)};
   --narrative-heading-bg-hover: #{transparentize(rgb(22, 21, 43), .85)};
