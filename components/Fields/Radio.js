@@ -44,12 +44,16 @@ class Radio extends PureComponent {
           type="radio"
           className="form-field-radio__input"
           id={this.id}
+          // input.checked is only provided by redux form if type="checkbox" or type="radio" is
+          // provided to <Field />, so for the case that it isn't we can rely on the more reliable
+          // input.value
+          checked={!!input.value}
           {...input}
           {...rest}
         />
         <div className="form-field-radio__radio" />
         <div className="form-field-radio__label">
-          {label || this.props.input.value}
+          {label || input.value}
         </div>
       </label>
     );
