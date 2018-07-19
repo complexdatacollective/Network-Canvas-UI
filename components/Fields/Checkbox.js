@@ -5,7 +5,7 @@ import uuid from 'uuid';
 
 class Checkbox extends PureComponent {
   static propTypes = {
-    label: PropTypes.string,
+    label: PropTypes.node,
     className: PropTypes.string,
     disabled: PropTypes.bool,
     input: PropTypes.object.isRequired,
