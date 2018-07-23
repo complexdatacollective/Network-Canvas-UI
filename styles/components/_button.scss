@@ -25,6 +25,7 @@
     display: inline-flex;
     font-family: var(--heading-font-family);
     text-align: center;
+    text-decoration: none; // in the case that this is used on a link
 
     width: auto;
     height: auto;
