@@ -4,6 +4,7 @@ menu: Inputs
 ---
 
 import { Playground, PropsTable } from 'docz'
+import Field from './Field';
 import { Toggle } from './'
 import '../../styles/_all.scss';
 
@@ -11,6 +12,11 @@ import '../../styles/_all.scss';
 
 <Playground>
   <Toggle label="Toggle input" />
+
+  <Field
+    component={Toggle}
+    label="Toggle input"
+  />
 </Playground>
 
 <PropsTable of={Toggle} />
