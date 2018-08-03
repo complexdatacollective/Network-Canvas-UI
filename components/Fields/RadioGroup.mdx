@@ -1,0 +1,29 @@
+---
+name: RadioGroup
+menu: Inputs
+---
+
+import { Playground, PropsTable } from 'docz'
+import { RadioGroup } from './'
+import '../../styles/_all.scss';
+
+# RadioGroup
+
+<Playground>
+  <RadioGroup 
+    label="RadioGroup input" 
+    options={[
+      {label: "Option 1", value:"1"},
+      {label: "Option 2", value:"2"},
+      {label: "Option 3", value:"3"}
+    ]}
+    meta={
+      {
+        active: true
+      }
+    }
+  />
+</Playground>
+
+<PropsTable of={RadioGroup} />
+

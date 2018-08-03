@@ -10,7 +10,7 @@ class CheckboxGroup extends PureComponent {
     className: PropTypes.string,
     label: PropTypes.string,
     fieldLabel: PropTypes.string,
-    input: PropTypes.object.isRequired,
+    input: PropTypes.object,
     optionComponent: PropTypes.func,
     meta: PropTypes.object,
   };
@@ -23,6 +23,7 @@ class CheckboxGroup extends PureComponent {
     disabled: false,
     optionComponent: Checkbox,
     meta: {},
+    input: {},
   };
 
   get value() {

@@ -48,7 +48,7 @@ $export-ui-classes: true !default;
 @include color-set('tomato--dark', '211, 43, 58');
 
 
-// Palettes
+// Palettes 
 @include palette-set('primary', color('sea-green'));
 @include palette-set('menu', color('white'));
 @include palette-set('selected', color('white'));
@@ -57,7 +57,7 @@ $export-ui-classes: true !default;
 @include palette-set('text', color('white'));
 @include palette-set('text-dark', color('charcoal'));
 @include palette-set('tex-muted', color('cyber-grape'));
-@include palette-set('link', color('neon-coral'));
+@include palette-set('link', color('mustard'));
 @include palette-set('light-background', color('cyber-grape'));
 @include palette-set('dark-background', color('rich-black'));
 @include palette-set('modal-main-panel', color('cyber-grape'));

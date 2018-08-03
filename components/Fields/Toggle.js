@@ -9,7 +9,7 @@ class Toggle extends PureComponent {
     fieldLabel: PropTypes.string,
     className: PropTypes.string,
     disabled: PropTypes.bool,
-    input: PropTypes.object.isRequired,
+    input: PropTypes.object,
     meta: PropTypes.object,
   };
 
@@ -19,6 +19,7 @@ class Toggle extends PureComponent {
     fieldLabel: null,
     disabled: false,
     meta: {},
+    input: {},
   };
 
   componentWillMount() {

@@ -15,7 +15,7 @@ class ToggleButtonGroup extends PureComponent {
     className: PropTypes.string,
     label: PropTypes.string,
     fieldLabel: PropTypes.string,
-    input: PropTypes.object.isRequired,
+    input: PropTypes.object,
     meta: PropTypes.object,
   };
 
@@ -26,6 +26,7 @@ class ToggleButtonGroup extends PureComponent {
     options: [],
     disabled: false,
     meta: {},
+    input: {},
   };
 
   get value() {

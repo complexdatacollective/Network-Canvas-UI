@@ -1,0 +1,161 @@
+{
+  "config": {
+    "title": "Network Canvas Ui",
+    "description": "Styles and React components for the Network Canvas project",
+    "themeConfig": {
+      "logo": {
+        "src": "assets/images/logo.png"
+      },
+      "styles": {
+        "body": {
+          "fontFamily": "Quicksand, Open Sans, sans-serif",
+          "fontSize": "16px",
+          "lineHeight": 1.5
+        }
+      }
+    },
+    "ordering": "descending",
+    "version": "3.0.0",
+    "plugins": [
+      {}
+    ]
+  },
+  "entries": {
+    "components/Button.mdx": {
+      "name": "Button",
+      "id": "01CKZNTFAQW5R67DPS5MBEEYHN",
+      "filepath": "components/Button.mdx",
+      "link": null,
+      "slug": "components-button",
+      "route": "/components-button",
+      "order": 0,
+      "menu": null,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "button",
+          "value": "Button"
+        }
+      ]
+    },
+    "components/Node.mdx": {
+      "name": "Node",
+      "id": "01CKZNTFASWZRKY7PMZ5CY7MBH",
+      "filepath": "components/Node.mdx",
+      "link": null,
+      "slug": "components-node",
+      "route": "/components-node",
+      "order": 0,
+      "menu": null,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "node",
+          "value": "Node"
+        }
+      ]
+    },
+    "components/Spinner.mdx": {
+      "name": "Spinner",
+      "id": "01CKZNTFASN1TR3VSRGDTW8VYJ",
+      "filepath": "components/Spinner.mdx",
+      "link": null,
+      "slug": "components-spinner",
+      "route": "/components-spinner",
+      "order": 0,
+      "menu": null,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "spinner",
+          "value": "Spinner"
+        }
+      ]
+    },
+    "components/Fields/CheckboxGroup.mdx": {
+      "name": "CheckboxGroup",
+      "menu": "Inputs",
+      "id": "01CKZNTFATWDK2H4BKNM3TWCFT",
+      "filepath": "components/Fields/CheckboxGroup.mdx",
+      "link": null,
+      "slug": "components-fields-checkbox-group",
+      "route": "/components-fields-checkbox-group",
+      "order": 0,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "checkboxgroup",
+          "value": "Checkboxgroup"
+        }
+      ]
+    },
+    "components/Fields/RadioGroup.mdx": {
+      "name": "RadioGroup",
+      "menu": "Inputs",
+      "id": "01CKZNTFATHXRPQX4AGTJPXJTM",
+      "filepath": "components/Fields/RadioGroup.mdx",
+      "link": null,
+      "slug": "components-fields-radio-group",
+      "route": "/components-fields-radio-group",
+      "order": 0,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "radiogroup",
+          "value": "Radiogroup"
+        }
+      ]
+    },
+    "components/Fields/Text.mdx": {
+      "name": "Text",
+      "menu": "Inputs",
+      "id": "01CKZNTFAT9CEFRMDMBWB694N4",
+      "filepath": "components/Fields/Text.mdx",
+      "link": null,
+      "slug": "components-fields-text",
+      "route": "/components-fields-text",
+      "order": 0,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "text",
+          "value": "Text"
+        }
+      ]
+    },
+    "components/Fields/Toggle.mdx": {
+      "name": "Toggle",
+      "menu": "Inputs",
+      "id": "01CKZNTFATW1VDP2GASSE7FAZC",
+      "filepath": "components/Fields/Toggle.mdx",
+      "link": null,
+      "slug": "components-fields-toggle",
+      "route": "/components-fields-toggle",
+      "order": 0,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "toggle",
+          "value": "Toggle"
+        }
+      ]
+    },
+    "components/Fields/ToggleButtonGroup.mdx": {
+      "name": "ToggleButtonGroup",
+      "menu": "Inputs",
+      "id": "01CKZNTFATMBPD535FEV3YRTJN",
+      "filepath": "components/Fields/ToggleButtonGroup.mdx",
+      "link": null,
+      "slug": "components-fields-toggle-button-group",
+      "route": "/components-fields-toggle-button-group",
+      "order": 0,
+      "headings": [
+        {
+          "depth": 1,
+          "slug": "togglebuttongroup",
+          "value": "Togglebuttongroup"
+        }
+      ]
+    }
+  }
+}

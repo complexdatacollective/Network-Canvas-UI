@@ -3,29 +3,29 @@ $light-color-list: (color('sea-serpent'), color('mustard'), color('neon-coral'),
 $dark-color-list: (color('sea-serpent--dark'), color('mustard--dark'), color('neon-coral--dark'), color('sea-green--dark'));
 
 .spinner {
-  --circle-size: 30px;
+  --circle-size: 3em;
   --container-size: calc(var(--circle-size) * 3);
-  --animation-duration: 1.8s;
-  --circle-easing: cubic-bezier(.4, 0, .2, 1);
+  --animation-duration: 2.5s;
 
   will-change: transform;
-  backface-visibility: hidden;
   width: var(--container-size);
   height: var(--container-size);
   margin: var(--circle-size);
   animation: spin var(--animation-duration) ease-in-out infinite;
   transform: rotate(45deg);
+  display: inline-block;
 
   &--small {
-    --circle-size: 10px;
+    --circle-size: 1em;
   }
 
   &--large {
-    --circle-size: 60px;
+    --circle-size: 5em;
   }
 
   .circle {
     position: absolute;
+    will-change: transform;
 
     &:nth-child(1) {
       top: calc(var(--circle-size) * -1);
@@ -84,7 +84,8 @@ $dark-color-list: (color('sea-serpent--dark'), color('mustard--dark'), color('ne
       &:nth-child(#{$color-index}) {
         :nth-child(1) {
           background: nth($dark-color-list, $color-index);
-          animation: circle-color-#{$color-index} calc(var(--animation-duration)/2) var(--circle-easing) alternate infinite;
+          animation: circle-color-#{$color-index} calc(var(--animation-duration)/2) ease-in-out alternate infinite;
+          // animation-delay: 100ms;
         }
 
         :nth-child(2) {
@@ -98,19 +99,19 @@ $dark-color-list: (color('sea-serpent--dark'), color('mustard--dark'), color('ne
 
 @keyframes spin {
   0% {
-    transform: rotate(45deg) scale(.8);
+    transform: rotate(45deg) scale(.6);
   }
 
-  40% {
+  45% {
     transform: rotate(45deg) scale(1);
   }
 
-  57% {
+  55% {
     transform: rotate(45deg) scale(1);
   }
 
   100% {
-    transform: rotate(405deg) scale(.8);
+    transform: rotate(405deg) scale(.6);
   }
 }
 

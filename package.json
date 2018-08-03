@@ -1,6 +1,6 @@
 {
   "name": "network-canvas-ui",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "description": "Styles and React components for the Network Canvas project",
   "main": "components/index.js",
   "engines": {
@@ -12,20 +12,27 @@
   },
   "scripts": {
     "lint": "eslint ./",
-    "sass-lint": "sass-lint -vc .sass-lint.yml"
+    "sass-lint": "sass-lint -vc .sass-lint.yml",
+    "docz:dev": "docz dev",
+    "docz:build": "docz build"
   },
-  "dependencies": {},
+  "dependencies": {
+    "npm": "^6.3.0"
+  },
   "devDependencies": {
     "babel-eslint": "^8.2.3",
     "classnames": "^2.2.5",
+    "docz": "^0.9.2",
+    "docz-plugin-css": "^0.9.2",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^15.0.1",
     "eslint-plugin-import": "2.7.0",
     "eslint-plugin-jsx-a11y": "5.1.1",
     "eslint-plugin-react": "^7.7.0",
+    "react": "^16.4.2",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
     "redux-form": "^7.4.2",
-    "react": "^16.3.2",
-    "sass-lint": "^1.12.1",
-    "uuid": "^3.2.1"
+    "sass-lint": "^1.12.1"
   }
 }

@@ -8,13 +8,14 @@ class Radio extends PureComponent {
     label: PropTypes.node,
     className: PropTypes.string,
     disabled: PropTypes.bool,
-    input: PropTypes.object.isRequired,
+    input: PropTypes.object,
   };
 
   static defaultProps = {
     className: '',
     label: null,
     disabled: false,
+    input: {},
   };
 
   componentWillMount() {

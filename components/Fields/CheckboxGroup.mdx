@@ -1,0 +1,24 @@
+---
+name: CheckboxGroup
+menu: Inputs
+---
+
+import { Playground, PropsTable } from 'docz'
+import { CheckboxGroup } from './'
+import '../../styles/_all.scss';
+
+# CheckboxGroup
+
+<Playground>
+  <CheckboxGroup 
+    label="CheckboxGroup input" 
+    options={[
+      {label: "Option 1", value:"1"},
+      {label: "Option 2", value:"2"},
+      {label: "Option 3", value:"3"}
+    ]}
+  />
+</Playground>
+
+<PropsTable of={CheckboxGroup} />
+
