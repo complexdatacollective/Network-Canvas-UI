@@ -4,14 +4,16 @@ menu: Inputs
 ---
 
 import { Playground, PropsTable } from 'docz'
+import Field from '../../utils/docz/Field';
 import { RadioGroup } from './'
 import '../../styles/_all.scss';
 
 # RadioGroup
 
 <Playground>
-  <RadioGroup 
-    label="RadioGroup input" 
+  <Field
+    component={RadioGroup}
+    label="RadioGroup input"
     options={[
       {label: "Option 1", value:"1"},
       {label: "Option 2", value:"2"},

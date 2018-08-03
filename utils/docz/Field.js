@@ -1,5 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component, SyntheticEvent } from 'react';
 import PropTypes from 'prop-types';
+
+const getValue = (event) => {
+  if (event.constructor.name !== 'SyntheticEvent') {
+    return event;
+  }
+
+  const target = event.target;
+
+  return ['checkbox', 'radio'].includes(target.type) ?
+    target.checked : target.value;
+};
 
 class Field extends Component {
   static propTypes = {
@@ -16,11 +27,7 @@ class Field extends Component {
   }
 
   onChange = (event) => {
-    const target = event.target;
-    const value = ['checkbox', 'radio'].includes(target.type) ?
-      target.checked : target.value;
-
-    this.setState({ value });
+    this.setState({ value: getValue(event) });
   }
 
   get input() {
