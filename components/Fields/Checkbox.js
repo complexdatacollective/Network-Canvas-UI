@@ -50,6 +50,7 @@ class Checkbox extends PureComponent {
             checked={!!input.value}
             {...input}
             {...rest}
+            checked={!!this.props.input.value}
             type="checkbox"
           />
           <div className="form-field-checkbox__checkbox" />
