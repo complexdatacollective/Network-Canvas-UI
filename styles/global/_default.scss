@@ -188,9 +188,9 @@ $system-font-stack: 'system-ui', sans-serif;
   --drop-shadow-color: #{transparentize(rgb(22, 21, 43), .25)};
 
   // Inputs
-  --input-background: rgba(0, 0, 0, .33);
-  --input-label: rgba(255, 255, 255, 1);
-  --input-placeholder: rgba(255, 255, 255, .25);
+  --input-background: #{transparentize(rgb(0, 0, 0), .67)};
+  --input-label: #{transparentize(rgb(255, 255, 255), 0)};
+  --input-placeholder: #{transparentize(rgb(255, 255, 255), .75)};
 
   --modal-overlay: #{transparentize(rgb(0, 0, 0), .2)};
   --modal-window-box-shadow: #{transparentize(rgb(22, 21, 43), .25)};
