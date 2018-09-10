@@ -60,7 +60,7 @@ $border-space: 3px;
     opacity: 0;
     max-height: 0;
     color: var(--error);
-    margin: unit(.5) 0 unit(.5) 0;
+    margin: unit(.5) 0;
     transition: opacity var(--animation-easing) var(--animation-duration-standard),
     max-height var(--animation-easing) var(--animation-duration-standard);
   }

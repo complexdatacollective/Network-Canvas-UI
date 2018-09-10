@@ -4,7 +4,7 @@ $module-name: form-field-text;
   @include form-field;
   display: block;
   position: relative;
-  padding: 0.5em 1em;
+  padding: .5em 1em;
 
   &__input {
     @include typography('copy-large', font-size);
@@ -28,7 +28,7 @@ $module-name: form-field-text;
     opacity: 0;
     max-height: 0;
     color: var(--error);
-    margin: unit(.5) 0 unit(.5) 0;
+    margin: unit(.5) 0;
     transition: opacity var(--animation-easing) var(--animation-duration-standard),
     max-height var(--animation-easing) var(--animation-duration-standard);
   }
