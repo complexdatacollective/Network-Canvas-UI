@@ -13,7 +13,6 @@ class Node extends Component {
       inactive,
       selected,
       linking,
-      ...rest
     } = this.props;
 
     const classes = classNames(
@@ -36,7 +35,7 @@ class Node extends Component {
     const label = this.props.label;
 
     return (
-      <div className={classes} {...rest}>
+      <div className={classes}>
         <svg
           viewBox="-1.2 -1.2 2.4 2.4"
           xmlns="http://www.w3.org/2000/svg"
