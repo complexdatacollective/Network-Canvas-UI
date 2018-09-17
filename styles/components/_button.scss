@@ -9,7 +9,6 @@
 
 @mixin default-button-type {
   @include typography('title-2');
-  letter-spacing: 3px;
   text-transform: uppercase;
   color: palette('text');
 }
@@ -29,10 +28,10 @@
 
     width: auto;
     height: auto;
-    min-width: 250px;
-    min-height: 80px;
+    min-width: 3rem;
+    min-height: 2rem;
 
-    border-radius: 40px;
+    border-radius: 2rem;
     box-shadow: 0 3px rgba(0, 0, 0, .25); //sass-lint:disable-line no-color-literals
     background-color: color('sea-green');
 
@@ -48,7 +47,7 @@
       min-width: inherit;
       min-height: inherit;
       padding: 1.35rem 0;
-      font-size: 12px;
+      font-size: 1rem;
 
       > .button__content {
         margin: 0 2rem;
@@ -75,8 +74,8 @@
 
     &__icon {
       // sass-lint:disable-block no-important
-      height: 25px !important;
-      width: 25px !important;
+      height: 1.5rem !important;
+      width: 1.5rem !important;
 
       // use flexbox to change order of icon and content
       &--right {
