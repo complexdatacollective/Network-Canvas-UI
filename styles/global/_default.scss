@@ -299,15 +299,13 @@ $headings: (
   'title-1', base,
   (
     font-family: var(--heading-font-family),
-    font-size: 2.5rem,
+    font-size: 2.3rem,
     line-height: 1.429,
     font-weight: 700,
     text-align: center,
     width: 100%
   )
 );
-
-@include type-set('title-1', full, (font-size: 28px));
 
 // H2 - Form question headlines, buttons, text links
 @include type-set(
@@ -318,7 +316,7 @@ $headings: (
     font-weight: 500,
   )
 );
-@include type-set('title-2', full, (font-size: 20px));
+
 // H3 - Large nodes, name generator panel, ordinal bins, categorial bins
 @include type-set(
   'title-3', base,
