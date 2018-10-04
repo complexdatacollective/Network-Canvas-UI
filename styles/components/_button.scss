@@ -4,7 +4,7 @@
 @mixin reset-button {
   -webkit-appearance: none; //sass-lint:disable-line no-vendor-prefixes
   border: 0;
-  padding: 0;
+  padding: 0 1rem;
   background: none;
 }
 
@@ -52,7 +52,7 @@
     }
 
     &__content {
-      margin: 0 3rem;
+      margin: 0 2rem;
     }
 
     // light color variations
@@ -71,8 +71,8 @@
 
     &__icon {
       // sass-lint:disable-block no-important
-      height: 1.5rem !important;
-      width: 1.5rem !important;
+      height: 1rem !important;
+      width: 1rem !important;
 
       // use flexbox to change order of icon and content
       &--right {

@@ -187,6 +187,7 @@ $-icon-color-modifiers: (
 
     .cls-3 {
       fill: color('tomato');
+      clip-path:url(#clip-path);
     }
 
     .cls-4 {
