@@ -1,4 +1,5 @@
 import addAContext from './add-a-context.svg.react';
+import addAProtocol from './add-a-protocol.svg.react';
 import addAPerson from './add-a-person.svg.react';
 import addAPlace from './add-a-place.svg.react';
 import addARelationship from './add-a-relationship.svg.react';
@@ -30,7 +31,9 @@ import menuQuit from './menu-quit.svg.react';
 import menuSociogram from './menu-sociogram.svg.react';
 import menu from './menu.svg.react';
 import nextArrow from './next-arrow.svg.react';
+import pairAServer from './pair-a-server.svg.react';
 import primaryButton from './primary-button.svg.react';
+import protocolCard from './protocol-card.svg.react';
 import reset from './reset.svg.react';
 import settings from './settings.svg.react';
 import toggleOff from './toggle-off.svg.react';
@@ -47,6 +50,7 @@ import move from './move.svg.react';
 
 export default {
   'add-a-context': addAContext,
+  'add-a-protocol': addAProtocol,
   'add-a-person': addAPerson,
   'add-a-place': addAPlace,
   'add-a-relationship': addARelationship,
@@ -78,7 +82,9 @@ export default {
   'menu-sociogram': menuSociogram,
   menu,
   'next-arrow': nextArrow,
+  'pair-a-server': pairAServer,
   'primary-button': primaryButton,
+  'protocol-card': protocolCard,
   reset,
   settings,
   'toggle-off': toggleOff,
