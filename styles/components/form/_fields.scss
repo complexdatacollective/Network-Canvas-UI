@@ -9,17 +9,21 @@
 }
 
 .form-field-container {
-  margin-bottom: 2em;
+  margin-bottom: 3rem;
+
+  h4 {
+    font-weight: 400;
+  }
 }
 
 .form-field {
   background: var(--input-background);
   color: var(--input-text);
-  border-radius: 15px 15px 0 0;
-  margin-bottom: 2em;
+  border-radius: 1rem 1rem 0 0;
+  margin-bottom: 2rem;
   padding: 1rem 1.5rem;
   width: 100%;
-  min-height: 4em;
+  min-height: 4rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
