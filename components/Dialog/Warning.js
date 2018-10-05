@@ -1,28 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Dialog from './Dialog';
+import Button from '../Button';
 
-const Warning = ({ title, text, onConfirm, show }) => (
+/*
+ * Designed to present warnings to the user. Unlike some other Dialog types user
+ * must explicitly click Acknowledge to close.
+ */
+const Warning = ({ title, message, onConfirm, show }) => (
   <Dialog
     type="warning"
-    title={`WARNING: ${title}`}
     show={show}
-    options={[<button key="confirm" onClick={onConfirm}>OK</button>]}
-    onBlur={onConfirm}
-  >
-    {text}
-  </Dialog>
+    title={title}
+    message={message}
+    options={[
+      <Button key="confirm" onClick={onConfirm} color="primary" content="Acknowledge" />,
+    ]}
+  />
 );
 
 Warning.propTypes = {
-  title: PropTypes.string,
-  text: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  message: PropTypes.node,
   onConfirm: PropTypes.func.isRequired,
   show: PropTypes.bool,
 };
 
 Warning.defaultProps = {
-  title: null,
+  message: null,
   show: false,
 };
 

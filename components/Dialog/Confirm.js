@@ -1,32 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Dialog from './Dialog';
+import Button from '../Button';
 
-const Confirm = ({ title, text, onConfirm, onCancel, show }) => (
+/*
+ * Designed to present yes/no choices to the user.
+ */
+const Confirm = ({ title, message, onConfirm, onCancel, show }) => (
   <Dialog
     type="confirm"
-    title={`CONFIRM: ${title}`}
     show={show}
-    options={[
-      <button key="confirm" onClick={onConfirm}>OK</button>,
-      <button key="cancel" onClick={onCancel}>CANCEL</button>,
-    ]}
+    title={title}
+    message={message}
     onBlur={onCancel}
-  >
-    {text}
-  </Dialog>
+    options={[
+      <Button key="confirm" onClick={onConfirm} color="mustard" content="Confirm" />,
+      <Button key="cancel" onClick={onCancel} color="primary" content="Cancel" />,
+    ]}
+  />
 );
 
 Confirm.propTypes = {
-  title: PropTypes.string,
-  text: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  message: PropTypes.node,
   onConfirm: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
   show: PropTypes.bool,
 };
 
 Confirm.defaultProps = {
-  title: null,
+  message: null,
   show: false,
 };
 

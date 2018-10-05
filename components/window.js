@@ -4,6 +4,10 @@ import ReactDOM from 'react-dom';
 const getDisplayName = WrappedComponent =>
   WrappedComponent.displayName || WrappedComponent.name || 'Component';
 
+/*
+ * HOC which will cause a component to be rendered outside of the main ReactDOM,
+ * useful for modals and other windowed components.
+ */
 const window = WrappedComponent =>
   class Window extends Component {
     constructor(props) {

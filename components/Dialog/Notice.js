@@ -1,28 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Dialog from './Dialog';
+import Button from '../Button';
 
-const Notice = ({ title, text, onConfirm, show }) => (
+/*
+ * Designed to present notices to the user.
+ */
+const Notice = ({ title, message, onConfirm, show }) => (
   <Dialog
-    type="notice"
-    title={`NOTICE: ${title}`}
+    type="info"
     show={show}
-    options={[<button key="confirm" onClick={onConfirm}>OK</button>]}
+    title={title}
+    message={message}
     onBlur={onConfirm}
-  >
-    {text}
-  </Dialog>
+    options={[
+      <Button key="confirm" onClick={onConfirm} color="primary" content="Acknowledge" />,
+    ]}
+  />
 );
 
 Notice.propTypes = {
-  title: PropTypes.string,
-  text: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  message: PropTypes.node,
   onConfirm: PropTypes.func.isRequired,
   show: PropTypes.bool,
 };
 
 Notice.defaultProps = {
-  title: null,
+  message: null,
   show: false,
 };
 

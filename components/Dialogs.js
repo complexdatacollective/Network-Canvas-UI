@@ -3,6 +3,49 @@ import PropTypes from 'prop-types';
 import { omit } from 'lodash';
 import * as DialogVariants from './Dialog';
 
+/*
+ * Displays a stack of Dialogs.
+ *
+ * <Dialogs dialogs closeDialog />
+ *
+ * `closeDialog` called when Dialog is cancelled or confirmed, may be used to track
+ * state.
+ *
+ * `dialogs` prop in the format (note many of the props simple map
+ * to the specific Dialog type):
+ *
+ * dialogs: [
+ *   {
+ *     id: '1234-1234-1',
+ *     type: 'Confirm',
+ *     title: 'Something to confirm',
+ *     message: 'More detail about confirmation',
+ *     confirm: () => {},
+ *     cancel: () => {},
+ *   },
+ *   {
+ *     id: '1234-1234-2',
+ *     type: 'Notice',
+ *     title: 'Something info for the user',
+ *     message: 'More detail...',
+ *     confirm: () => {},
+ *   },
+*   {
+ *     id: '1234-1234-3',
+ *     type: 'Warning',
+ *     title: 'Something to warn the user about, maybe a non-failing error',
+ *     message: 'More detail...',
+ *     confirm: () => {},
+ *   },
+ *   {
+ *     id: '1234-1234-4',
+ *     type: 'Error',
+ *     error: new Error('message and title are automatic'),
+ *     confirm: () => {},
+ *     cancel: () => {},
+ *   },
+ * ]
+ */
 class Dialogs extends Component {
   static propTypes = {
     dialogs: PropTypes.array,
