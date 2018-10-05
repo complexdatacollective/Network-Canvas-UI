@@ -12,3 +12,6 @@ export { default as Node } from './Node';
 export { default as Expandable } from './Expandable';
 export { default as NarrativePanel } from './NarrativePanel';
 export { default as Spinner } from './Spinner';
+export { default as Dialog } from './Dialog';
+export { default as Modal } from './Modal';
+export { default as window } from './window';
