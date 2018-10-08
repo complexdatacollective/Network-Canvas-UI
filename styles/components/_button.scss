@@ -4,14 +4,8 @@
 @mixin reset-button {
   -webkit-appearance: none; //sass-lint:disable-line no-vendor-prefixes
   border: 0;
+  padding: 0 1rem;
   background: none;
-}
-
-@mixin default-button-type {
-  @include typography('title-2');
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: palette('text');
 }
 
 @mixin button (
@@ -19,8 +13,13 @@
 ) {
   .#{$button-class} {
     @include reset-button;
-    @include default-button-type;
     @include vcjc; // vertical center, justify center
+
+    font-weight: 700;
+    font-size: .8rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: palette('text');
 
     display: inline-flex;
     font-family: var(--heading-font-family);
@@ -29,12 +28,14 @@
 
     width: auto;
     height: auto;
-    min-width: 250px;
-    min-height: 80px;
+    min-width: 3rem;
+    min-height: 3.5rem;
 
-    border-radius: 40px;
-    box-shadow: 0 3px rgba(0, 0, 0, .25); //sass-lint:disable-line no-color-literals
+    border-radius: 2rem;
+    box-shadow: 0 .15rem rgba(0, 0, 0, .25); //sass-lint:disable-line no-color-literals
     background-color: color('sea-green');
+
+    margin-bottom: .15rem;
 
     &:hover {
       text-decoration: none;
@@ -46,17 +47,12 @@
 
     &--small {
       min-width: inherit;
-      min-height: inherit;
-      padding: 1.35rem 0;
-      font-size: 12px;
-
-      > .button__content {
-        margin: 0 2rem;
-      }
+      min-height: 2.5rem;
+      font-size: .5rem;
     }
 
     &__content {
-      margin: 0 3rem;
+      margin: 0 2rem;
     }
 
     // light color variations
@@ -75,8 +71,8 @@
 
     &__icon {
       // sass-lint:disable-block no-important
-      height: 25px !important;
-      width: 25px !important;
+      height: 1rem !important;
+      width: 1rem !important;
 
       // use flexbox to change order of icon and content
       &--right {
