@@ -8,7 +8,8 @@ import Button from '../Button';
  */
 const Notice = ({ title, message, onConfirm, confirmLabel, show }) => (
   <Dialog
-    type="info"
+    type="notice"
+    icon="info"
     show={show}
     title={title}
     message={message}

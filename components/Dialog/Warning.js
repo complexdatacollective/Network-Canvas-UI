@@ -10,6 +10,7 @@ import Button from '../Button';
 const Warning = ({ title, message, onConfirm, onCancel, confirmLabel, cancelLabel, show }) => (
   <Dialog
     type="warning"
+    icon="warning"
     show={show}
     title={title}
     message={message}

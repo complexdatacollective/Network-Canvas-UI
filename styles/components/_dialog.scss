@@ -1,32 +1,42 @@
 .dialog {
-  width: 750px;
+  max-width: 90vw;
   background: var(--modal-main-panel);
   color: var(--text-light);
-  box-shadow: 0 0 4px 0 var(--modal-window-box-shadow);
+  box-shadow: 0 0 .25rem 0 var(--modal-window-box-shadow);
   position: relative;
-  border-left: 15px solid palette('primary');
-  border-radius: 15px;
+  border-color: var(--primary);
+  border-style: solid;
+  border-width: 0;
+  border-left-width: .5rem;
+  border-radius: .75rem;
+  max-height: 80vh;
+  overflow-x: hidden;
+  overflow-y: auto;
 
-  &--info {
-    border-color: palette('info');
+  &--notice {
+    border-color: var(--info);
+  }
+
+  &--confirm {
+    border-color: var(--notice);
   }
 
   &--warning {
-    border-color: palette('warning');
+    border-color: var(--warning);
   }
 
   &--error {
-    border-color: palette('error');
+    border-color: var(--error);
   }
 
   &__main {
     display: flex;
-    max-height: 80vh;
-    margin: 25px 40px;
+    width: 100%;
+    padding: 1.5rem 3rem;
 
     &-content {
       order: 1;
-      flex: 2;
+      flex-grow: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -35,17 +45,16 @@
     &-title {
       text-transform: uppercase;
       font-weight: 700;
-      margin-bottom: 20px;
+      margin-bottom: 1.5rem;
     }
 
     &-icon {
       order: 1;
-      flex: 1;
+      flex: 0 0 10rem;
 
       .icon {
-        height: 170px;
-        width: 170px;
-        margin-right: 20px;
+        height: 7.5rem;
+        width: 7.5rem;
       }
     }
   }
@@ -53,15 +62,15 @@
   &__additional {
 
     &-box {
-      height: 200px;
-      padding: 20px;
-      margin-top: 20px;
+      height: 15rem;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
       border: 1px solid var(--modal-overlay);
       background: var(--modal-background);
       user-select: initial;
       overflow-y: auto;
       overflow-x: hidden;
-      margin: 25px 40px;
+      margin: 1.5rem 3rem;
 
       h1,
       h2,
@@ -76,33 +85,13 @@
   }
 
   &__footer {
-    margin: 25px 40px;
+    margin: 1.5rem 3rem;
     text-align: center;
 
     .button {
       &:last-child {
-        margin-left: 20px;
+        margin-left: 1.5rem;
       }
-    }
-  }
-
-  &__close {
-    background: transparent;
-    // background-image: url('../images/close.svg');
-    background-repeat: no-repeat;
-    background-size: 15px;
-    background-position: 0 50%;
-    padding-left: 25px;
-    text-transform: uppercase;
-    border: 0;
-    position: absolute;
-    right: 35px;
-    top: 35px;
-    color: palette('text');
-    cursor: pointer;
-
-    &:focus {
-      outline: none;
     }
   }
 }

@@ -9,13 +9,14 @@ import Button from '../Button';
 const Confirm = ({ title, message, onConfirm, onCancel, confirmLabel, cancelLabel, show }) => (
   <Dialog
     type="confirm"
+    icon="info"
     show={show}
     title={title}
     message={message}
     onBlur={onCancel}
     options={[
       onCancel ? <Button key="cancel" onClick={onCancel} color="navy-taupe" content={cancelLabel} /> : null,
-      <Button key="confirm" onClick={onConfirm} color="primary" content={confirmLabel} />,
+      <Button key="confirm" onClick={onConfirm} color="slate-blue" content={confirmLabel} />,
     ]}
   />
 );

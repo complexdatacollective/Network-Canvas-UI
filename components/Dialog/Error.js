@@ -23,6 +23,7 @@ const ErrorDialog = ({ error, onConfirm, show, confirmLabel }) => {
   return (
     <Dialog
       type="error"
+      icon="error"
       show={show}
       title="Something went wrong!"
       message={getErrorMessage(error)}
