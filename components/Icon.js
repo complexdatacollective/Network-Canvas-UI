@@ -35,7 +35,10 @@ class Icon extends Component {
 
     const IconComponent = icons(name);
 
-    if (!IconComponent) { return null; }
+    if (!IconComponent) {
+      console.warn('Invalid icon name:', name); // eslint-disable-line no-console
+      return null;
+    }
 
     return (
       <IconComponent
