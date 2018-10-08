@@ -1,5 +1,5 @@
 .dialog {
-  max-width: 90vw;
+  max-width: 50rem;
   background: var(--modal-main-panel);
   color: var(--text-light);
   box-shadow: 0 0 .25rem 0 var(--modal-window-box-shadow);
@@ -32,7 +32,7 @@
   &__main {
     display: flex;
     width: 100%;
-    padding: 1.5rem 3rem;
+    padding: 2rem 3rem;
 
     &-content {
       order: 1;
@@ -85,7 +85,7 @@
   }
 
   &__footer {
-    margin: 1.5rem 3rem;
+    margin: 0 3rem 2rem 3rem;
     text-align: center;
 
     .button {
