@@ -6,7 +6,7 @@ import Button from '../Button';
 /*
  * Designed to present notices to the user.
  */
-const Notice = ({ title, message, onConfirm, show }) => (
+const Notice = ({ title, message, onConfirm, confirmLabel, show }) => (
   <Dialog
     type="info"
     show={show}
@@ -14,7 +14,7 @@ const Notice = ({ title, message, onConfirm, show }) => (
     message={message}
     onBlur={onConfirm}
     options={[
-      <Button key="confirm" onClick={onConfirm} color="primary" content="Acknowledge" />,
+      <Button key="confirm" onClick={onConfirm} color="primary" content={confirmLabel} />,
     ]}
   />
 );
@@ -23,11 +23,13 @@ Notice.propTypes = {
   title: PropTypes.string.isRequired,
   message: PropTypes.node,
   onConfirm: PropTypes.func.isRequired,
+  confirmLabel: PropTypes.text,
   show: PropTypes.bool,
 };
 
 Notice.defaultProps = {
   message: null,
+  confirmLabel: 'OK',
   show: false,
 };
 

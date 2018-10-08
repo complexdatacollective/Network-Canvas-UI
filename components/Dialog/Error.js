@@ -17,7 +17,7 @@ const renderAdditionalInformation = stack => ([
  * Designed to present errors to the user. Unlike some other Dialog types user must
  * explicitly click Acknowledge to close.
  */
-const ErrorDialog = ({ error, onConfirm, show }) => {
+const ErrorDialog = ({ error, onConfirm, show, confirmLabel }) => {
   const stack = getStack(error);
 
   return (
@@ -27,7 +27,7 @@ const ErrorDialog = ({ error, onConfirm, show }) => {
       title="Something went wrong!"
       message={getErrorMessage(error)}
       options={[
-        <Button key="confirm" onClick={onConfirm} color="neon-coral" content="Acknowledge" />,
+        <Button key="confirm" onClick={onConfirm} color="neon-coral" content={confirmLabel} />,
       ]}
     >
       {stack && renderAdditionalInformation(stack)}
@@ -41,10 +41,12 @@ ErrorDialog.propTypes = {
     PropTypes.shape({ friendlyMessage: PropTypes.string }),
   ]),
   onConfirm: PropTypes.func.isRequired,
+  confirmLabel: PropTypes.text,
   show: PropTypes.bool,
 };
 
 ErrorDialog.defaultProps = {
+  confirmLabel: 'OK',
   error: null,
   show: false,
 };

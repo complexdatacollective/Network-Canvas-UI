@@ -20,29 +20,29 @@ import * as DialogVariants from './Dialog';
  *     type: 'Confirm',
  *     title: 'Something to confirm',
  *     message: 'More detail about confirmation',
- *     confirm: () => {},
- *     cancel: () => {},
+ *     onConfirm: () => {},
+ *     onCancel: () => {},
  *   },
  *   {
  *     id: '1234-1234-2',
  *     type: 'Notice',
  *     title: 'Something info for the user',
  *     message: 'More detail...',
- *     confirm: () => {},
+ *     onConfirm: () => {},
  *   },
 *   {
  *     id: '1234-1234-3',
  *     type: 'Warning',
  *     title: 'Something to warn the user about, maybe a non-failing error',
  *     message: 'More detail...',
- *     confirm: () => {},
+ *     onConfirm: () => {},
  *   },
  *   {
  *     id: '1234-1234-4',
  *     type: 'Error',
  *     error: new Error('message and title are automatic'),
- *     confirm: () => {},
- *     cancel: () => {},
+ *     onConfirm: () => {},
+ *     onCancel: () => {},
  *   },
  * ]
  */
@@ -61,25 +61,28 @@ class Dialogs extends Component {
   }
 
   handleConfirm = (dialog) => {
-    if (dialog.confirm) { dialog.confirm(dialog); }
+    if (dialog.onConfirm) { dialog.onConfirm(dialog); }
     this.props.closeDialog(dialog.id);
   }
 
   handleCancel = (dialog) => {
-    if (dialog.cancel) { dialog.cancel(dialog); }
+    if (dialog.onCancel) { dialog.onCancel(dialog); }
     this.props.closeDialog(dialog.id);
   }
 
   renderDialog = (dialog) => {
     const Dialog = DialogVariants[dialog.type];
 
+    const onConfirm = () => this.handleConfirm(dialog);
+    const onCancel = dialog.onCancel ? () => this.handleCancel(dialog) : null;
+
     return (
       <Dialog
         show
         key={dialog.id}
-        onConfirm={() => this.handleConfirm(dialog)}
-        onCancel={() => this.handleCancel(dialog)}
-        {...omit(dialog, ['confirm', 'cancel'])}
+        onConfirm={onConfirm}
+        onCancel={onCancel}
+        {...omit(dialog, ['onConfirm', 'onCancel'])}
       />
     );
   }
