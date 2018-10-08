@@ -46,7 +46,7 @@ $module-name: form-field-text;
 
   &--has-error {
     .#{$module-name}__input {
-      border-bottom-color: var(--error) !important;
+      border-bottom-color: var(--error) !important; //sass-lint:disable-line no-important
     }
 
     .#{$module-name}__error {
@@ -59,7 +59,7 @@ $module-name: form-field-text;
     }
 
     .#{$module-name}__icon--edit {
-      opacity: 0 !important; // sass-lint:disable-line no-important
+      opacity: 0 !important; //sass-lint:disable-line no-important
     }
   }
 }

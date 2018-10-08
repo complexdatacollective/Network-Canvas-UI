@@ -3,7 +3,7 @@ $light-color-list: (color('sea-serpent'), color('mustard'), color('neon-coral'),
 $dark-color-list: (color('sea-serpent--dark'), color('mustard--dark'), color('neon-coral--dark'), color('sea-green--dark'));
 
 .spinner {
-  --circle-size: 30px;
+  --circle-size: 2rem;
   --container-size: calc(var(--circle-size) * 3);
   --animation-duration: 1.8s;
   --circle-easing: cubic-bezier(.4, 0, .2, 1);
@@ -17,11 +17,11 @@ $dark-color-list: (color('sea-serpent--dark'), color('mustard--dark'), color('ne
   transform: rotate(45deg);
 
   &--small {
-    --circle-size: 10px;
+    --circle-size: 1rem;
   }
 
   &--large {
-    --circle-size: 60px;
+    --circle-size: 3rem;
   }
 
   .circle {
