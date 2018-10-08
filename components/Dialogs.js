@@ -74,7 +74,7 @@ class Dialogs extends Component {
     const Dialog = DialogVariants[dialog.type];
 
     const onConfirm = () => this.handleConfirm(dialog);
-    const onCancel = dialog.onCancel ? () => this.handleCancel(dialog) : null;
+    const onCancel = () => this.handleCancel(dialog);
 
     return (
       <Dialog
