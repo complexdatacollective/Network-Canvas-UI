@@ -35,8 +35,8 @@ Warning.propTypes = {
   message: PropTypes.node,
   onConfirm: PropTypes.func.isRequired,
   onCancel: PropTypes.func,
-  confirmLabel: PropTypes.text,
-  cancelLabel: PropTypes.text,
+  confirmLabel: PropTypes.string,
+  cancelLabel: PropTypes.string,
   canCancel: PropTypes.bool,
   show: PropTypes.bool,
 };

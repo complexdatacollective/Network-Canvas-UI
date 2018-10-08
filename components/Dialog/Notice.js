@@ -24,7 +24,7 @@ Notice.propTypes = {
   title: PropTypes.string.isRequired,
   message: PropTypes.node,
   onConfirm: PropTypes.func.isRequired,
-  confirmLabel: PropTypes.text,
+  confirmLabel: PropTypes.string,
   show: PropTypes.bool,
 };
 
