@@ -42,7 +42,7 @@ ErrorDialog.propTypes = {
     PropTypes.shape({ friendlyMessage: PropTypes.string }),
   ]),
   onConfirm: PropTypes.func.isRequired,
-  confirmLabel: PropTypes.text,
+  confirmLabel: PropTypes.string,
   show: PropTypes.bool,
 };
 

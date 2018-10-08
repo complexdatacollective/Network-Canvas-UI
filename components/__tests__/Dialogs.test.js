@@ -11,7 +11,8 @@ const warningDialog = () => ({
   type: 'Warning',
   title: 'Warning!',
   text: 'Something happened',
-  confirm: jest.fn(),
+  onConfirm: jest.fn(),
+  onCancel: jest.fn(),
 });
 
 const confirmDialog = () => ({
@@ -19,8 +20,8 @@ const confirmDialog = () => ({
   type: 'Confirm',
   title: 'Do you want to confirm the thing?',
   text: 'We might have more details here',
-  confirm: jest.fn(),
-  cancel: jest.fn(),
+  onConfirm: jest.fn(),
+  onCancel: jest.fn(),
 });
 
 const noticeDialog = () => ({
@@ -28,7 +29,7 @@ const noticeDialog = () => ({
   type: 'Notice',
   title: 'Hi',
   text: 'Notice me',
-  confirm: jest.fn(),
+  onConfirm: jest.fn(),
 });
 
 const makeDialogs = () => ([
@@ -62,9 +63,15 @@ describe('<Dialogs />', () => {
       const mockWarningDialog = warningDialog();
       const component = mount(<Dialogs {...mockProps} dialogs={[mockWarningDialog]} />);
 
-      component.find('Warning button').at(0).simulate('click');
-      expect(mockWarningDialog.confirm.mock.calls.length).toBe(1);
+      component.find('Warning button').at(1)
+        .simulate('click');
+      expect(mockWarningDialog.onConfirm.mock.calls.length).toBe(1);
       expect(mockProps.closeDialog.mock.calls.length).toBe(1);
+
+      component.find('Warning button').at(0)
+        .simulate('click');
+      expect(mockWarningDialog.onCancel.mock.calls.length).toBe(1);
+      expect(mockProps.closeDialog.mock.calls.length).toBe(2);
     });
 
     it('Wires up <Notice /> Dialog', () => {
@@ -73,7 +80,7 @@ describe('<Dialogs />', () => {
       const component = mount(<Dialogs {...mockProps} dialogs={[mockNoticeDialog]} />);
 
       component.find('Notice button').at(0).simulate('click');
-      expect(mockNoticeDialog.confirm.mock.calls.length).toBe(1);
+      expect(mockNoticeDialog.onConfirm.mock.calls.length).toBe(1);
       expect(mockProps.closeDialog.mock.calls.length).toBe(1);
     });
 
@@ -82,14 +89,14 @@ describe('<Dialogs />', () => {
       const mockConfirmDialog = confirmDialog();
       const component = mount(<Dialogs {...mockProps} dialogs={[mockConfirmDialog]} />);
 
-      component.find('Confirm button').at(0)
-        .simulate('click');
-      expect(mockConfirmDialog.confirm.mock.calls.length).toBe(1);
-      expect(mockProps.closeDialog.mock.calls.length).toBe(1);
-
       component.find('Confirm button').at(1)
         .simulate('click');
-      expect(mockConfirmDialog.cancel.mock.calls.length).toBe(1);
+      expect(mockConfirmDialog.onConfirm.mock.calls.length).toBe(1);
+      expect(mockProps.closeDialog.mock.calls.length).toBe(1);
+
+      component.find('Confirm button').at(0)
+        .simulate('click');
+      expect(mockConfirmDialog.onCancel.mock.calls.length).toBe(1);
       expect(mockProps.closeDialog.mock.calls.length).toBe(2);
     });
   });

@@ -6,7 +6,16 @@ import Button from '../Button';
 /*
  * Designed to present yes/no choices to the user.
  */
-const Confirm = ({ title, message, onConfirm, onCancel, confirmLabel, cancelLabel, show }) => (
+const Confirm = ({
+  title,
+  message,
+  canCancel,
+  onConfirm,
+  onCancel,
+  confirmLabel,
+  cancelLabel,
+  show,
+}) => (
   <Dialog
     type="confirm"
     icon="info"
@@ -15,7 +24,7 @@ const Confirm = ({ title, message, onConfirm, onCancel, confirmLabel, cancelLabe
     message={message}
     onBlur={onCancel}
     options={[
-      onCancel ? <Button key="cancel" onClick={onCancel} color="navy-taupe" content={cancelLabel} /> : null,
+      canCancel ? <Button key="cancel" onClick={onCancel} color="navy-taupe" content={cancelLabel} /> : null,
       <Button key="confirm" onClick={onConfirm} color="slate-blue" content={confirmLabel} />,
     ]}
   />
@@ -25,16 +34,19 @@ Confirm.propTypes = {
   title: PropTypes.string.isRequired,
   message: PropTypes.node,
   onConfirm: PropTypes.func.isRequired,
-  onCancel: PropTypes.func.isRequired,
-  confirmLabel: PropTypes.text,
-  cancelLabel: PropTypes.text,
+  onCancel: PropTypes.func,
+  confirmLabel: PropTypes.string,
+  cancelLabel: PropTypes.string,
+  canCancel: PropTypes.bool,
   show: PropTypes.bool,
 };
 
 Confirm.defaultProps = {
   message: null,
+  onCancel: null,
   confirmLabel: 'OK',
   cancelLabel: 'Cancel',
+  canCancel: true,
   show: false,
 };
 
