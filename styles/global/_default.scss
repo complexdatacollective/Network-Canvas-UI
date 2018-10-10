@@ -50,8 +50,8 @@ $export-ui-classes: true !default;
 
 // Palettes
 @include palette-set('primary', color('sea-green'));
-@include palette-set('stages-menu-panel', color('white'));
-@include palette-set('settings-menu-panel', color('cyber-grape'));
+@include palette-set('menu-panel--active', color('white'));
+@include palette-set('menu-panel', color('cyber-grape'));
 @include palette-set('selected', color('white'));
 @include palette-set('settings', color('mustard'));
 @include palette-set('background', color('navy-taupe'));
