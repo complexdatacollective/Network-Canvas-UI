@@ -6,6 +6,9 @@ import Button from '../Button';
 const getErrorMessage = error =>
   !!error && (error.friendlyMessage ? error.friendlyMessage : error.toString());
 
+const getMessage = ({ error, message }) =>
+  (error ? getErrorMessage(error) : message);
+
 const getStack = error => !!error && error.stack;
 
 const renderAdditionalInformation = stack => ([
@@ -17,7 +20,7 @@ const renderAdditionalInformation = stack => ([
  * Designed to present errors to the user. Unlike some other Dialog types user must
  * explicitly click Acknowledge to close.
  */
-const ErrorDialog = ({ error, onConfirm, show, confirmLabel }) => {
+const ErrorDialog = ({ error, message, onConfirm, show, confirmLabel }) => {
   const stack = getStack(error);
 
   return (
@@ -26,7 +29,7 @@ const ErrorDialog = ({ error, onConfirm, show, confirmLabel }) => {
       icon="error"
       show={show}
       title="Something went wrong!"
-      message={getErrorMessage(error)}
+      message={getMessage({ error, message })}
       options={[
         <Button key="confirm" onClick={onConfirm} color="neon-coral" content={confirmLabel} />,
       ]}
@@ -41,6 +44,7 @@ ErrorDialog.propTypes = {
     PropTypes.instanceOf(Error),
     PropTypes.shape({ friendlyMessage: PropTypes.string }),
   ]),
+  message: PropTypes.string,
   onConfirm: PropTypes.func.isRequired,
   confirmLabel: PropTypes.string,
   show: PropTypes.bool,
@@ -48,6 +52,7 @@ ErrorDialog.propTypes = {
 
 ErrorDialog.defaultProps = {
   confirmLabel: 'OK',
+  message: null,
   error: null,
   show: false,
 };
