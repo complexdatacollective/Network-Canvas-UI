@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { fieldPropTypes } from 'redux-form';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import uuid from 'uuid';
@@ -13,7 +12,6 @@ class RadioGroup extends Component {
     fieldLabel: PropTypes.string,
     meta: PropTypes.object,
     optionComponent: PropTypes.func,
-    ...fieldPropTypes,
   };
 
   static defaultProps = {
