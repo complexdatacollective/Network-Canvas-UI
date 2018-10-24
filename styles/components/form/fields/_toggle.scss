@@ -1,6 +1,6 @@
 $size: 2rem;
-$border: 2px;
-$border-space: 3px;
+$border: .05rem;
+$border-space: .1rem;
 
 .form-field-toggle {
   display: inline-block;
@@ -68,7 +68,7 @@ $border-space: 3px;
   &--has-error {
     .form-field-toggle__error {
       opacity: 1;
-      max-height: 50px;
+      max-height: 3rem;
     }
   }
 }
