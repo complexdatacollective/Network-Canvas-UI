@@ -7,7 +7,9 @@ $module-name: form-field-text;
   padding: .5em 1em;
 
   &__input {
-    @include typography('copy-large', font-size);
+    font-family: var(--body-font-family);
+    font-size: inherit;
+    font-weight: inherit;
     background-color: transparent;
     width: 100%;
     color: var(--input-text);
