@@ -13,7 +13,7 @@ $animation-easing-android: cubic-bezier(.4, 0, .2, 1);
   --animation-duration-slow: #{$animation-default-scale-factor * .55s};
   --animation-duration-slow-ms: #{$animation-default-scale-factor-ms * .5};
   --animation-easing: #{$animation-easing-android};
-  --animation-easing-js: [.4, 0, .2, 1];
+  --animation-easing-js: [0.4, 0, 0.2, 1];
 }
 
 // Preset animations **********************************************************/
