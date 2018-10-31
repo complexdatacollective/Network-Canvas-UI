@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
+const getRoot = () =>
+  document.querySelector('#window') || document.body;
+
 const getDisplayName = WrappedComponent =>
   WrappedComponent.displayName || WrappedComponent.name || 'Component';
 
@@ -17,11 +20,12 @@ const window = WrappedComponent =>
     }
 
     componentDidMount() {
-      document.body.appendChild(this.portal);
+      this.root = getRoot();
+      this.root.appendChild(this.portal);
     }
 
     componentWillUnmount() {
-      document.body.removeChild(this.portal);
+      this.root.removeChild(this.portal);
     }
 
     static get displayName() {
