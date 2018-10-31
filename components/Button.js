@@ -70,6 +70,7 @@ class Button extends PureComponent {
       button: true,
       [`button--${color}`]: !!color,
       [`button--${size}`]: !!size,
+      'button--has-icon': !!icon,
     });
 
     return (

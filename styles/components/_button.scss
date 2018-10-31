@@ -51,6 +51,12 @@
       font-size: .5rem;
     }
 
+    &--has-icon {
+      .#{$button-class}__content {
+        margin: 0 0 0 2rem;
+      }
+    }
+
     &__content {
       margin: 0 2rem;
     }
@@ -73,6 +79,7 @@
       // sass-lint:disable-block no-important
       height: 1rem !important;
       width: 1rem !important;
+      margin: 0 1rem;
 
       // use flexbox to change order of icon and content
       &--right {
