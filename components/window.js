@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
-
-const getRoot = () =>
-  document.querySelector('#window') || document.body;
+import { getContext } from 'recompose';
 
 const getDisplayName = WrappedComponent =>
   WrappedComponent.displayName || WrappedComponent.name || 'Component';
@@ -12,33 +11,40 @@ const getDisplayName = WrappedComponent =>
  * useful for modals and other windowed components.
  */
 const window = WrappedComponent =>
-  class Window extends Component {
-    constructor(props) {
-      super(props);
+  getContext({
+    windowRef: PropTypes.instanceOf(Element),
+  })(
+    class Window extends Component {
+      constructor(props) {
+        super(props);
 
-      this.portal = document.createElement('div');
-    }
+        this.portal = document.createElement('div');
+      }
 
-    componentDidMount() {
-      this.root = getRoot();
-      this.root.appendChild(this.portal);
-    }
+      get root() {
+        return this.props.windowRef || document.body;
+      }
 
-    componentWillUnmount() {
-      this.root.removeChild(this.portal);
-    }
+      componentDidMount() {
+        this.root.appendChild(this.portal);
+      }
 
-    static get displayName() {
-      return `Window(${getDisplayName(WrappedComponent)})`;
-    }
+      componentWillUnmount() {
+        this.root.removeChild(this.portal);
+      }
 
-    render() {
-      return ReactDOM.createPortal(
-        <WrappedComponent {...this.props} />,
-        this.portal,
-      );
+      static get displayName() {
+        return `Window(${getDisplayName(WrappedComponent)})`;
+      }
+
+      render() {
+        return ReactDOM.createPortal(
+          <WrappedComponent {...this.props} />,
+          this.portal,
+        );
+      }
     }
-  };
+  );
 
 export { window };
 
