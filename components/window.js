@@ -18,18 +18,18 @@ const window = WrappedComponent =>
       this.portal = document.createElement('div');
     }
 
-    get root() {
-      // If a root reference element is provided by windowRootConsumer() use that,
-      // otherwise default to document.body
-      return this.props.windowRoot || document.body;
-    }
-
     componentDidMount() {
       this.root.appendChild(this.portal);
     }
 
     componentWillUnmount() {
       this.root.removeChild(this.portal);
+    }
+
+    get root() {
+      // If a root reference element is provided by windowRootConsumer() use that,
+      // otherwise default to document.body
+      return this.props.windowRoot || document.body;
     }
 
     static get displayName() {
@@ -42,7 +42,7 @@ const window = WrappedComponent =>
         this.portal,
       );
     }
-  }
+  };
 
 export { window };
 
