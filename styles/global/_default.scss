@@ -64,8 +64,8 @@ $export-ui-classes: true !default;
 @include palette-set('dark-background', color('rich-black'));
 @include palette-set('modal-main-panel', color('cyber-grape'));
 @include palette-set('modal-background', color('navy-taupe'));
-@include palette-set('info', color('sea-green'));
-@include palette-set('notice', color('slate-blue'));
+@include palette-set('info', color('sea-serpent'));
+@include palette-set('notice', color('sea-green'));
 @include palette-set('warning', color('mustard'));
 @include palette-set('error', color('neon-coral'));
 @include palette-set('headings', color('white'));
@@ -244,7 +244,7 @@ $headings-line-height: 1.1 !default;
 $headings: (
   h1: (1.75rem, var(--heading-font-family)),
   h2: (1.25rem, var(--heading-font-family)),
-  h3: (1.0625rem, var(--heading-font-family)),
+  h3: (1.1625rem, var(--heading-font-family)),
   h4: (1rem, var(--heading-font-family)),
   h5: (.75rem, var(--heading-font-family)),
 );

@@ -25,7 +25,7 @@ const Confirm = ({
     onBlur={onCancel}
     options={[
       canCancel ? <Button key="cancel" onClick={onCancel} color="navy-taupe" content={cancelLabel} /> : null,
-      <Button key="confirm" onClick={onConfirm} color="slate-blue" content={confirmLabel} />,
+      <Button key="confirm" onClick={onConfirm} color="sea-green" content={confirmLabel} />,
     ]}
   />
 );

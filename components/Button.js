@@ -74,7 +74,7 @@ class Button extends PureComponent {
     });
 
     return (
-      <button className={buttonClassNames} onClick={onClick} {...rest}>
+      <button type="button" className={buttonClassNames} onClick={onClick} {...rest}>
         {renderButtonIcon({ icon, iconPosition })}
         <span className="button__content">{children || content}</span>
       </button>
