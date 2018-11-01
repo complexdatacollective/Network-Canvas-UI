@@ -7,10 +7,10 @@ import PropTypes from 'prop-types';
  * This makes an element referenece accessable without needing to pass it down through the props
  * by using windowRootConsumer(), which will attach `windowRoot` to a component's props.
  *
- * Inside the wrapped component we can use `this.props.setWindowRoot(Element)` to change the value
+ * Inside the wrapped component we can use `props.setWindowRoot(Element)` to change the value
  * stored inside the context.
  *
- * Mainly use in window() to determine the root Element to attach portals to.
+ * Mainly intended for use by window() to determine the root Element to attach portals to.
  *
  * Usage:
  *

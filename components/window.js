@@ -19,7 +19,7 @@ const window = WrappedComponent =>
     }
 
     get root() {
-      // If a root reference element is provided in context, use that,
+      // If a root reference element is provided by windowRootConsumer() use that,
       // otherwise default to document.body
       return this.props.windowRoot || document.body;
     }

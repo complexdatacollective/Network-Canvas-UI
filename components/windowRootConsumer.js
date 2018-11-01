@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 /**
  * A `windowRoot` (Element) context consumer
  *
- * Using windowRootConsumer(), will attach the `windowRoot` context (provided by
- * `windowRootProvider()`) to a component's props.
+ * Using windowRootConsumer() will attach the `windowRoot` context (provided by
+ * `windowRootProvider()`) to a component's props as `props.windowRoot`.
  *
- * Also consumes the setter method `this.props.setWindowRoot(Element)`.
+ * Also adds the setter method to props as `props.setWindowRoot(Element)`.
  *
  * Usage as a HOC:
  *
@@ -25,9 +25,8 @@ import PropTypes from 'prop-types';
  *   }
  * }
  *
+ * // This is where we attach the consumer
  * export WindowRootConsumer(MyConsumingComponent);
- *
- * Usage with windowRootProvider;
  */
 const windowRootConsumer = getContext({
   windowRoot: PropTypes.instanceOf(Element),
