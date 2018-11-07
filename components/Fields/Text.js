@@ -37,6 +37,7 @@ class TextInput extends PureComponent {
       input,
       meta: { error, active, invalid, touched },
       label,
+      placeholder,
       fieldLabel,
       className,
       type,
@@ -56,14 +57,18 @@ class TextInput extends PureComponent {
 
     return (
       <div className="form-field-container" hidden={hidden}>
-        <h4>
-          {fieldLabel || label || ''}
-        </h4>
+        {
+          (fieldLabel || label) ?
+            (<h4>
+              {fieldLabel || label || ''}
+            </h4>)
+            : ''
+        }
         <div className={seamlessClasses}>
           <input
             id={this.id}
             className="form-field-text__input"
-            placeholder={label}
+            placeholder={label || placeholder}
             autoFocus={autoFocus} // eslint-disable-line
             type={type}
             {...input}

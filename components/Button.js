@@ -41,6 +41,9 @@ class Button extends PureComponent {
     ]),
     size: PropTypes.string,
     color: PropTypes.string,
+    type: PropTypes.oneOf([
+      'button', 'submit', 'reset',
+    ]),
     onClick: PropTypes.func,
   }
 
@@ -51,6 +54,7 @@ class Button extends PureComponent {
     iconPosition: 'right',
     size: '',
     color: '',
+    type: 'button',
     onClick: () => {},
   }
 
@@ -62,6 +66,7 @@ class Button extends PureComponent {
       content,
       onClick,
       icon,
+      type,
       iconPosition,
       ...rest
     } = this.props;
@@ -70,10 +75,11 @@ class Button extends PureComponent {
       button: true,
       [`button--${color}`]: !!color,
       [`button--${size}`]: !!size,
+      'button--has-icon': !!icon,
     });
 
     return (
-      <button className={buttonClassNames} onClick={onClick} {...rest}>
+      <button type={type} className={buttonClassNames} onClick={onClick} {...rest}>
         {renderButtonIcon({ icon, iconPosition })}
         <span className="button__content">{children || content}</span>
       </button>

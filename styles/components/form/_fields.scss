@@ -11,6 +11,10 @@
 .form-field-container {
   margin-bottom: 3rem;
 
+  &--inline {
+    margin-bottom: 0;
+  }
+
   h4 {
     font-weight: 400;
   }

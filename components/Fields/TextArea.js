@@ -34,7 +34,7 @@ class TextArea extends PureComponent {
         }
         <div className="form-fields-textarea__edit">
           <textarea
-            className={cx('form-fields-textarea__input')}
+            className={cx('form-fields-textarea__input', this.props.className)}
             id={this.id}
             {...this.props.input}
           />
