@@ -37,6 +37,7 @@ class TextInput extends PureComponent {
       input,
       meta: { error, active, invalid, touched },
       label,
+      placeholder,
       fieldLabel,
       className,
       type,
@@ -67,7 +68,7 @@ class TextInput extends PureComponent {
           <input
             id={this.id}
             className="form-field-text__input"
-            placeholder={label}
+            placeholder={label || placeholder}
             autoFocus={autoFocus} // eslint-disable-line
             type={type}
             {...input}
