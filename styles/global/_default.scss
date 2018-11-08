@@ -178,29 +178,29 @@ $system-font-stack: 'system-ui', sans-serif;
   }
 
   // Top level transparentised values
-  --transparent-light: #{transparentize(rgb(255, 255, 255), .7)};
-  --transparent-dark: #{transparentize(rgb(0, 0, 0), .3)};
+  --transparent-light: #{transparentize(rgb(255, 255, 255), 0.7)};
+  --transparent-dark: #{transparentize(rgb(0, 0, 0), 0.3)};
 
   // additional one-off palette values
-  --narrative-heading-color: #{transparentize(rgb(255, 255, 255), .3)};
-  --narrative-heading-bg-hover: #{transparentize(rgb(22, 21, 43), .85)};
-  --narrative-border-bottom-color: #{transparentize(rgb(22, 21, 43), .85)};
+  --narrative-heading-color: #{transparentize(rgb(255, 255, 255), 0.3)};
+  --narrative-heading-bg-hover: #{transparentize(rgb(22, 21, 43), 0.85)};
+  --narrative-border-bottom-color: #{transparentize(rgb(22, 21, 43), 0.85)};
 
-  --node-outer-trim-stroke: #{transparentize(rgb(255, 255, 255), .75)};
-  --node-bucket-bg: #{radial-gradient(ellipse at center, transparentize(rgb(45, 41, 85), .5) 0%, transparentize(rgb(58, 58, 117), .5) 100%)};
-  --node-list-action-bg: #{transparentize(rgb(58, 58, 117), .5)};
+  --node-outer-trim-stroke: #{transparentize(rgb(255, 255, 255), 0.75)};
+  --node-bucket-bg: #{radial-gradient(ellipse at center, transparentize(rgb(45, 41, 85), 0.5) 0%, transparentize(rgb(58, 58, 117), 0.5) 100%)};
+  --node-list-action-bg: #{transparentize(rgb(58, 58, 117), 0.5)};
 
-  --drop-shadow-color: #{transparentize(rgb(22, 21, 43), .25)};
+  --drop-shadow-color: #{transparentize(rgb(22, 21, 43), 0.25)};
 
   // Inputs
-  --input-background: #{transparentize(rgb(0, 0, 0), .67)};
+  --input-background: #{transparentize(rgb(0, 0, 0), 0.67)};
   --input-label: #{transparentize(rgb(255, 255, 255), 0)};
-  --input-placeholder: #{transparentize(rgb(255, 255, 255), .75)};
+  --input-placeholder: #{transparentize(rgb(255, 255, 255), 0.75)};
 
-  --modal-overlay: #{transparentize(rgb(0, 0, 0), .2)};
-  --modal-window-box-shadow: #{transparentize(rgb(22, 21, 43), .25)};
+  --modal-overlay: #{transparentize(rgb(0, 0, 0), 0.2)};
+  --modal-window-box-shadow: #{transparentize(rgb(22, 21, 43), 0.25)};
 
-  --panel-selected-node-bg-color: #{transparentize(rgb(255, 255, 255), .95)};
+  --panel-selected-node-bg-color: #{transparentize(rgb(255, 255, 255), 0.95)};
 
   --panel-bg-muted: #36315f; //sass-lint:disable-line no-color-literals
 
@@ -247,14 +247,14 @@ $headings: (
   h2: (1.25rem, var(--heading-font-family)),
   h3: (1.1625rem, var(--heading-font-family)),
   h4: (1rem, var(--heading-font-family)),
-  h5: (.75rem, var(--heading-font-family)),
+  h5: (0.75rem, var(--heading-font-family)),
 );
 
 @mixin text($font-size, $font-family) {
   font-family: $font-family;
   font-size: $font-size;
   font-weight: $headings-font-weight;
-  letter-spacing: .05rem;
+  letter-spacing: 0.05rem;
   line-height: $headings-line-height;
 }
 
@@ -344,7 +344,7 @@ $headings: (
 @include type-set(
   'title-5', base,
   (
-    font-size: .8rem,
+    font-size: 0.8rem,
     line-height: $base-line-height,
   )
 );
@@ -367,7 +367,7 @@ $headings: (
 @include type-set(
   'copy-small', base,
   (
-    font-size: .7rem,
+    font-size: 0.7rem,
     line-height: $base-line-height,
     font-weight: 100
   )
