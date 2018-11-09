@@ -11,7 +11,10 @@ class TextInput extends PureComponent {
     autoFocus: PropTypes.bool,
     fieldLabel: PropTypes.string,
     className: PropTypes.string,
-    type: PropTypes.string,
+    type: PropTypes.oneOf([
+      'text',
+      'number',
+    ]),
     placeholder: PropTypes.string,
     hidden: PropTypes.bool,
   };

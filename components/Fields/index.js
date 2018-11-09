@@ -1,5 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 export { default as Text } from './Text';
+export { default as Number } from './Number';
 export { default as TextArea } from './TextArea';
 export { default as Radio } from './Radio';
 export { default as RadioGroup } from './RadioGroup';
