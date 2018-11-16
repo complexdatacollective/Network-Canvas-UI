@@ -16,8 +16,8 @@
     @include vcjc; // vertical center, justify center
 
     font-weight: 700;
-    font-size: .8rem;
-    letter-spacing: .15em;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
     color: palette('text');
 
@@ -32,15 +32,15 @@
     min-height: 3.5rem;
 
     border-radius: 2rem;
-    box-shadow: 0 .15rem rgba(0, 0, 0, .25); //sass-lint:disable-line no-color-literals
+    box-shadow: 0 0.15rem rgba(0, 0, 0, 0.25); //sass-lint:disable-line no-color-literals
     background-color: color('sea-green');
 
-    margin-bottom: .15rem;
+    margin-bottom: 0.15rem;
 
     &:hover {
       text-decoration: none;
       cursor: pointer;
-      opacity: .8;
+      opacity: 0.8;
     }
 
     @include color-modifiers($include-hover: true);
@@ -48,7 +48,7 @@
     &--small {
       min-width: inherit;
       min-height: 2.5rem;
-      font-size: .5rem;
+      font-size: 0.5rem;
     }
 
     &--has-icon {

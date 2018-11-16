@@ -1,6 +1,6 @@
 $size: 2rem;
-$border: .05rem;
-$border-space: .1rem;
+$border: 0.05rem;
+$border-space: 0.1rem;
 
 .form-field-toggle {
   display: inline-block;
@@ -60,7 +60,7 @@ $border-space: .1rem;
     opacity: 0;
     max-height: 0;
     color: var(--error);
-    margin: unit(.5) 0;
+    margin: unit(0.5) 0;
     transition: opacity var(--animation-easing) var(--animation-duration-standard),
     max-height var(--animation-easing) var(--animation-duration-standard);
   }

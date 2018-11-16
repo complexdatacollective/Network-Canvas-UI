@@ -6,7 +6,7 @@ $dark-color-list: (color('sea-serpent--dark'), color('mustard--dark'), color('ne
   --circle-size: 2rem;
   --container-size: calc(var(--circle-size) * 3);
   --animation-duration: 1.8s;
-  --circle-easing: cubic-bezier(.4, 0, .2, 1);
+  --circle-easing: cubic-bezier(0.4, 0, 0.2, 1);
 
   will-change: transform;
   backface-visibility: hidden;
@@ -98,7 +98,7 @@ $dark-color-list: (color('sea-serpent--dark'), color('mustard--dark'), color('ne
 
 @keyframes spin {
   0% {
-    transform: rotate(45deg) scale(.8);
+    transform: rotate(45deg) scale(0.8);
   }
 
   40% {
@@ -110,7 +110,7 @@ $dark-color-list: (color('sea-serpent--dark'), color('mustard--dark'), color('ne
   }
 
   100% {
-    transform: rotate(405deg) scale(.8);
+    transform: rotate(405deg) scale(0.8);
   }
 }
 
