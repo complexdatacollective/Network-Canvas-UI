@@ -3,7 +3,7 @@
 // Color setter and mixins
 // =============================================================================
 $-color-map: () !default;
-$-color-alpha-map: (.1, .15, .3, .6, .7, .8, 1) !default;
+$-color-alpha-map: (0.1, 0.15, 0.3, 0.6, 0.7, 0.8, 1) !default;
 
 @mixin color-set($color-name, $color-value) {
   $-color-map: map-merge($-color-map, ($color-name: $color-value)) !global;
@@ -34,7 +34,7 @@ $-color-alpha-map: (.1, .15, .3, .6, .7, .8, 1) !default;
 
       @if $include-hover {
         &:hover {
-          background-color: color($color-name, .8);
+          background-color: color($color-name, 0.8);
         }
       }
     }

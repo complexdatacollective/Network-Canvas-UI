@@ -4,7 +4,7 @@
 
 @keyframes linking {
   0% {
-    transform: scale(.8);
+    transform: scale(0.8);
   }
 
   50% {
@@ -12,7 +12,7 @@
   }
 
   100% {
-    transform: scale(.8);
+    transform: scale(0.8);
   }
 }
 
@@ -25,7 +25,7 @@
   width: 1em;
   height: 1em;
   //sass-lint:disable no-color-literals
-  filter: drop-shadow(0 .25rem 0 rgba(0, 0, 0, .25));
+  filter: drop-shadow(0 0.25rem 0 rgba(0, 0, 0, 0.25));
   display: inline-flex;
 
   &__node {
@@ -77,42 +77,42 @@
       align-items: center;
       flex-wrap: nowrap;
       text-align: center;
-      font-size: .1em;
+      font-size: 0.1em;
       font-family: $netcanvas-font-stack;
       color: palette('text');
 
       &.len-1 {
-        font-size: .35em;
+        font-size: 0.35em;
       }
 
       &.len-2 {
-        font-size: .25em;
+        font-size: 0.25em;
       }
 
       &.len-3 {
-        font-size: .22em;
+        font-size: 0.22em;
       }
 
       &.len-4 {
-        font-size: .2em;
+        font-size: 0.2em;
       }
 
       &.len-5 {
-        font-size: .18em;
+        font-size: 0.18em;
       }
 
       &.len-6 {
-        font-size: .155em;
+        font-size: 0.155em;
       }
 
       &.len-7 {
-        font-size: .13em;
+        font-size: 0.13em;
       }
     }
   }
 
   &--inactive {
-    opacity: .5;
+    opacity: 0.5;
   }
 
   &--selected {

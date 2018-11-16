@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { compose } from 'recompose';
+import windowRootConsumer from './windowRootConsumer';
 
 const getDisplayName = WrappedComponent =>
   WrappedComponent.displayName || WrappedComponent.name || 'Component';
 
 /*
- * HOC which will cause a component to be rendered outside of the main ReactDOM,
+ * HOC which will cause a component to be rendered outside of the main ReactDOM hierachy,
  * useful for modals and other windowed components.
  */
 const window = WrappedComponent =>
@@ -17,11 +19,17 @@ const window = WrappedComponent =>
     }
 
     componentDidMount() {
-      document.body.appendChild(this.portal);
+      this.root.appendChild(this.portal);
     }
 
     componentWillUnmount() {
-      document.body.removeChild(this.portal);
+      this.root.removeChild(this.portal);
+    }
+
+    get root() {
+      // If a root reference element is provided by windowRootConsumer() use that,
+      // otherwise default to document.body
+      return this.props.windowRoot || document.body;
     }
 
     static get displayName() {
@@ -38,4 +46,7 @@ const window = WrappedComponent =>
 
 export { window };
 
-export default window;
+export default compose(
+  windowRootConsumer,
+  window,
+);

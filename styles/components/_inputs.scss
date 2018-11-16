@@ -65,7 +65,7 @@
 
           &:first-of-type {
             font-weight: bold;
-            letter-spacing: .15rem;
+            letter-spacing: 0.15rem;
             text-transform: uppercase;
           }
         }
@@ -149,7 +149,7 @@
       outline: 0;
 
       & + * .#{$text-class}__label {
-        transform: scale(.6) translate(0, 60px);
+        transform: scale(0.6) translate(0, 60px);
       }
     }
 
@@ -159,7 +159,7 @@
 
       .#{$text-class}__label {
         @include default-input-type;
-        opacity: .7;
+        opacity: 0.7;
 
         position: absolute;
         top: 0;
@@ -173,7 +173,7 @@
       }
 
       .input__label--active {
-        transform: scale(.6) translate(0, 60px);
+        transform: scale(0.6) translate(0, 60px);
       }
     }
   }
@@ -202,7 +202,7 @@
       &::before {
         content: '';
         background: transparent;
-        border: 1px solid color('white', .7);
+        border: 1px solid color('white', 0.7);
         display: inline-block;
         width: $checkbox-button-size;
         height: $checkbox-button-size;
@@ -238,8 +238,8 @@
       + .#{$checkbox-class}__label {
         &::before {
           box-shadow: inset 0 0 0 4px color('white');
-          border-color: color('white', .7);
-          background: color('white', .7);
+          border-color: color('white', 0.7);
+          background: color('white', 0.7);
         }
       }
     }
@@ -273,13 +273,13 @@
       display: flex;
       align-items: center;
       padding-right: 1em;
-      color: color('white', .7);
+      color: color('white', 0.7);
 
       &::before {
         content: '';
         background: transparent;
         border-radius: 100%;
-        border: 1px solid color('white', .7);
+        border: 1px solid color('white', 0.7);
         display: inline-block;
         width: $radio-button-size;
         height: $radio-button-size;
@@ -316,8 +316,8 @@
 
         &::before {
           box-shadow: inset 0 0 0 4px color('white');
-          border-color: color('white', .7);
-          background: color('white', .7);
+          border-color: color('white', 0.7);
+          background: color('white', 0.7);
         }
       }
     }
@@ -354,7 +354,7 @@
       &--inline {
         .#{$toggle-class}__slider {
           display: inline-block;
-          margin: .5em 1.5em 0 2em;
+          margin: 0.5em 1.5em 0 2em;
         }
 
         .input__label-wrapper {
@@ -364,10 +364,10 @@
     }
 
     &__slider {
-      height: $toggle-height * .5;
+      height: $toggle-height * 0.5;
       width: $switch-size * 1.5;
       position: relative;
-      margin: .5em 1em;
+      margin: 0.5em 1em;
     }
 
     &__button {
@@ -386,10 +386,10 @@
         border-radius: 50%;
         height: $switch-size;
         width: $switch-size;
-        left: $switch-size * -.5;
-        top: $switch-size * -.25;
+        left: $switch-size * -0.5;
+        top: $switch-size * -0.25;
         background-color: palette('text');
-        transition: .4s;
+        transition: 0.4s;
       }
     }
 
