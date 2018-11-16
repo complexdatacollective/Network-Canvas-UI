@@ -1,10 +1,11 @@
 $size: 2rem;
-$border: 2px;
-$border-space: 3px;
+$border: 0.1rem;
+$border-space: 0.25rem;
 
 .form-field-radio {
   display: inline-block;
   cursor: pointer;
+  margin-bottom: 1rem;
 
   &:last-child {
     margin: 0;

@@ -1,11 +1,16 @@
 $size: 2rem;
-$border: 2px;
-$border-space: 3px;
+$border: 0.1rem;
+$border-space: 0.25rem;
 
 .form-field-checkbox {
   display: inline-block;
   cursor: pointer;
   position: relative;
+  margin-bottom: 1rem;
+
+  &:last-child {
+    margin: 0;
+  }
 
   &__input {
     opacity: 0;
