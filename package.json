@@ -28,6 +28,7 @@
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-transition-group": "^2.5.0",
+    "recompose": "^0.30.0",
     "redux-form": "^7.4.2",
     "sass-lint": "^1.12.1",
     "uuid": "^3.2.1"
