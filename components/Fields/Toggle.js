@@ -56,7 +56,7 @@ class Toggle extends PureComponent {
     return (
       <div className={containerClassNames}>
         <h4>
-          {fieldLabel || label || ''}
+          {fieldLabel || ''}
         </h4>
         {invalid && touched && <p className="form-field-toggle__error">{error}</p>}
         <label className={componentClasses} htmlFor={this.id}>
