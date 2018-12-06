@@ -43,6 +43,12 @@
       opacity: 0.8;
     }
 
+    &:disabled,
+    &[disabled] {
+      opacity: 0.5;
+      cursor: default;
+    }
+
     @include color-modifiers($include-hover: true);
 
     &--small {
