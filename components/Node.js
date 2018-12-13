@@ -37,21 +37,25 @@ class Node extends Component {
     return (
       <div className={classes}>
         <svg
-          viewBox="-1.2 -1.2 2.4 2.4"
+          viewBox="0 0 500 500"
           xmlns="http://www.w3.org/2000/svg"
-          width="100"
-          height="100"
           className="node__node"
+          preserveAspectRatio="xMidYMid meet"
         >
-          <circle vectorEffect="non-scaling-stroke" cx="0" cy="0" r="1" className="node__node-outer-trim" />
-          <circle cx="0" cy="0" r="1" fill={nodeBaseColor} className="node__node-base" />
-          <path
-            className="node__node-flash"
-            d="M -1 0 A 0.2,0.2 0 1,1 1,0"
-            fill={nodeFlashColor}
-            transform="rotate(135)"
-          />
-          <circle vectorEffect="non-scaling-stroke" cx="0" cy="0" r="1" className="node__node-trim" />
+          <filter id="shadow">
+            <feDropShadow dx="0" dy="20" floodColor="#000000" floodOpacity="0.15" stdDeviation="0" />
+          </filter>
+          <g filter="url(#shadow)">
+            <circle cx="250" cy="250" r="250" className="node__node-outer-trim" />
+            <circle cx="250" cy="250" r="200" fill={nodeBaseColor} className="node__node-base" />
+            <path
+              d="m50,250 a1,1 0 0,0 400,0"
+              fill={nodeFlashColor}
+              className="node__node-flash"
+              transform="rotate(-35 250 250)"
+            />
+            <circle cx="250" cy="250" r="200" className="node__node-trim" />
+          </g>
         </svg>
         <div className="node__label">
           <div
