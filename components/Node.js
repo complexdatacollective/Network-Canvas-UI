@@ -33,7 +33,7 @@ class Node extends Component {
     const nodeFlashColor = `var(--${color}--dark)`;
 
     const label = this.props.label;
-    // filter: drop-shadow(0 0.25rem 0 rgba(0, 0, 0, 0.25));
+
     return (
       <div className={classes}>
         <svg
