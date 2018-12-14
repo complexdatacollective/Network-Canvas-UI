@@ -117,6 +117,7 @@
 
     .node__node-outer-trim {
       fill: var(--node-outer-trim-stroke);
+      transform-origin: 250px 250px;
       animation: bounce var(--animation-duration-standard) ease-in-out;
     }
   }
