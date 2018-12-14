@@ -42,20 +42,16 @@ class Node extends Component {
           className="node__node"
           preserveAspectRatio="xMidYMid meet"
         >
-          <filter id="shadow">
-            <feDropShadow dx="0" dy="20" floodColor="#000000" floodOpacity="0.15" stdDeviation="0" />
-          </filter>
-          <g filter="url(#shadow)">
-            <circle cx="250" cy="250" r="250" className="node__node-outer-trim" />
-            <circle cx="250" cy="250" r="200" fill={nodeBaseColor} className="node__node-base" />
-            <path
-              d="m50,250 a1,1 0 0,0 400,0"
-              fill={nodeFlashColor}
-              className="node__node-flash"
-              transform="rotate(-35 250 250)"
-            />
-            <circle cx="250" cy="250" r="200" className="node__node-trim" />
-          </g>
+          <circle cx="250" cy="270" r="200" className="node__node-shadow" opacity="0.25" />
+          <circle cx="250" cy="250" r="250" className="node__node-outer-trim" />
+          <circle cx="250" cy="250" r="200" fill={nodeBaseColor} className="node__node-base" />
+          <path
+            d="m50,250 a1,1 0 0,0 400,0"
+            fill={nodeFlashColor}
+            className="node__node-flash"
+            transform="rotate(-35 250 250)"
+          />
+          <circle cx="250" cy="250" r="200" className="node__node-trim" />
         </svg>
         <div className="node__label">
           <div
