@@ -20,8 +20,8 @@
   display: inline-block;
   position: relative;
   width: 1em;
+  height: 1em;
   font-size: var(--base-node-size);
-  padding-bottom: 100%;
   vertical-align: middle;
 
   &__node {
