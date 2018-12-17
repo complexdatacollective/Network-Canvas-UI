@@ -2,6 +2,7 @@ import { isEmpty } from 'lodash';
 
 const CSSVariable = (variableName) => {
   if (document.readyState !== 'complete') {
+    // eslint-disable-next-line no-console
     console.error('You attempted to read the value of a CSS variable before all app resources were loaded! Move calls to getCSSVariableAs* outside of the top level scope of your components.');
   }
 
