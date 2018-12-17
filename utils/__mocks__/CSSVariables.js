@@ -1,4 +1,4 @@
-import { get } from 'lodash';
+import { get, isEmpty } from 'lodash';
 
 const mockCSSVariables = {
   '--light-background': '#227733',
@@ -18,17 +18,42 @@ const mockCSSVariables = {
   '--animation-easing-js': '[0.4, 0, 0.2, 1]',
 };
 
-const getCSSVariable = (cssVariableName) => {
-  const variable = get(mockCSSVariables, cssVariableName);
-  if (!variable) throw new Error(`CSS variable "${cssVariableName}" not found`);
+const CSSVariable = (variableName) => {
+  if (document.readyState !== 'complete') {
+    // eslint-disable-next-line no-console
+    console.error('You attempted to read the value of a CSS variable before all app resources were loaded! Move calls to getCSSVariableAs* outside of the top level scope of your components.');
+  }
+
+  const variable = get(mockCSSVariables, variableName);
+
+  if (isEmpty(variable)) {
+    // In development and production, we issue a warning here.
+    // This is removed in the mock to avoid console noise for components that don't depend on a
+    // specific CSS variable value for their test.
+    return null;
+  }
   return variable;
 };
 
 export const getCSSVariableAsString = variableName =>
-  getCSSVariable(variableName);
+  CSSVariable(variableName);
 
 export const getCSSVariableAsNumber = variableName =>
-  parseInt(getCSSVariable(variableName), 10);
+  parseInt(CSSVariable(variableName), 10);
 
 export const getCSSVariableAsObject = variableName =>
-  JSON.parse(getCSSVariable(variableName));
+  JSON.parse(CSSVariable(variableName));
+
+export const getCSSVariable = (variableName) => {
+  const variable = CSSVariable(variableName);
+
+  try {
+    return JSON.parse(variable);
+  } catch (e) {
+    if (parseInt(variable, 10).toString() === variable) {
+      return parseInt(variable, 10);
+    }
+
+    return variable;
+  }
+};
