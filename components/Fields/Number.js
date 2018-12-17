@@ -1,12 +1,20 @@
 import { withProps, compose } from 'recompose';
 import TextInput from './Text';
 
+const toInt = (value) => {
+  const int = parseInt(value, 10);
+  if (isNaN(int)) {
+    return null;
+  }
+  return int;
+};
+
 const withNumericChangeHandler = withProps(props => ({
   type: 'number',
   input: {
     ...props.input,
-    onChange: e => props.input.onChange(parseInt(e.target.value, 10)),
-    onBlur: e => props.input.onBlur(parseInt(e.target.value, 10)),
+    onChange: e => props.input.onChange(toInt(e.target.value)),
+    onBlur: e => props.input.onBlur(toInt(e.target.value)),
   },
 }));
 
