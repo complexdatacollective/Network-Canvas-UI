@@ -1,12 +1,23 @@
-import React, { PureComponent } from 'react';
+import { withProps, compose } from 'recompose';
 import TextInput from './Text';
 
-class NumberInput extends PureComponent {
-  render() {
-    return (
-      <TextInput type="number" {...this.props} />
-    );
+const toInt = (value) => {
+  const int = parseInt(value, 10);
+  if (isNaN(int)) {
+    return null;
   }
-}
+  return int;
+};
 
-export default NumberInput;
+const withNumericChangeHandler = withProps(props => ({
+  type: 'number',
+  input: {
+    ...props.input,
+    onChange: e => props.input.onChange(toInt(e.target.value)),
+    onBlur: e => props.input.onBlur(toInt(e.target.value)),
+  },
+}));
+
+export default compose(
+  withNumericChangeHandler,
+)(TextInput);
