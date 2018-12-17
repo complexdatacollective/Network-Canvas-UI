@@ -24,7 +24,7 @@ const Drop = ({ children, ...props }) => {
       { children }
     </Transition>
   );
-}
+};
 
 
 Drop.propTypes = {

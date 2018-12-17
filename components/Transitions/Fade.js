@@ -11,7 +11,7 @@ const Fade = ({ children, ...props }) => {
     easing: 'easeInOutQuad',
     duration: getCSSVariableAsNumber('--animation-duration-standard-ms'),
   };
-  
+
   const disappear = {
     opacity: [1, 0],
     elasticity: 0,
@@ -31,8 +31,7 @@ const Fade = ({ children, ...props }) => {
     >
       { children }
     </Transition>
-  )
-
+  );
 };
 
 Fade.propTypes = {
