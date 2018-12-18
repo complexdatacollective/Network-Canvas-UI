@@ -30,6 +30,7 @@ class ToggleButton extends PureComponent {
       input,
       disabled,
       color,
+      fieldLabel,
       ...rest
     } = this.props;
 
