@@ -12,6 +12,7 @@ class Node extends Component {
       color,
       inactive,
       selected,
+      selectedColor,
       linking,
     } = this.props;
 
@@ -21,6 +22,7 @@ class Node extends Component {
         'node--inactive': inactive,
         'node--selected': selected,
         'node--linking': linking,
+        [`node--${selectedColor}`]: selected && selectedColor,
       },
     );
 
@@ -71,6 +73,7 @@ Node.propTypes = {
   inactive: PropTypes.bool,
   label: PropTypes.string,
   selected: PropTypes.bool,
+  selectedColor: PropTypes.string,
   linking: PropTypes.bool,
 };
 
@@ -79,6 +82,7 @@ Node.defaultProps = {
   inactive: false,
   label: 'Node',
   selected: false,
+  selectedColor: '',
   linking: false,
 };
 

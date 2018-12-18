@@ -122,6 +122,16 @@
     }
   }
 
+  @each $ordinal-color in $ordinal-colors {
+    $i: index($ordinal-colors, $ordinal-color);
+
+    &--node-highlight-seq-#{$i} {
+      .node__node-trim {
+        stroke: color($ordinal-color);
+      }
+    }
+  }
+
   &--linking {
     .node__node-trim {
       stroke: palette('selected');
