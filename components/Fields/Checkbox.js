@@ -27,6 +27,7 @@ class Checkbox extends PureComponent {
       className,
       input,
       disabled,
+      fieldLabel,
       ...rest
     } = this.props;
 

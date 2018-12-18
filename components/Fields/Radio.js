@@ -27,6 +27,7 @@ class Radio extends PureComponent {
       className,
       input,
       disabled,
+      fieldLabel,
       ...rest
     } = this.props;
 
