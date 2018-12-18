@@ -364,11 +364,50 @@ $-icon-color-modifiers: (
 
   &[name='highlighted'] {
     .cls-4 {
-      fill: color('#{$main-color}--dark');
+      fill: var(--node-color-seq-1);
     }
 
     .cls-5 {
-      fill: color('#{$main-color}');
+      fill: var(--node-color-seq-1--dark);
+    }
+
+    .cls-7 {
+      fill: rgba(255, 255, 255, 0.2);
+    }
+
+    @each $ordinal-color in $ordinal-colors {
+      $i: index($ordinal-colors, $ordinal-color);
+      &.icon--node-highlight-seq-#{$i} {
+        @include color-icon($ordinal-color);
+      }
+    }
+
+  }
+
+  &[name='contexts'] {
+
+    .cls-6 {
+      fill: var(--color-cyber-grape);
+    }
+
+    .cls-7 {
+      fill: rgba(255, 255, 255, 0.2);
+    }
+
+    @each $categorical-color in $categorical-colors {
+      $i: index($categorical-colors, $categorical-color);
+      &.icon--cat-color-seq-#{$i} {
+        @include color-icon($categorical-color);
+      }
+    }
+  }
+
+  &[name='links'] {
+    @each $edge-color in $edge-colors {
+      $i: index($edge-colors, $edge-color);
+      &.icon--edge-color-seq-#{$i} {
+        @include color-icon($edge-color);
+      }
     }
   }
 }
