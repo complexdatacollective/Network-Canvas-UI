@@ -92,12 +92,12 @@ $export-ui-classes: true !default;
 @include palette-set('input-radio--fill', palette('input-accent'));
 
 // Color sequences
-@mixin color-sequence($name, $color_list, $with-dark: true) {
-  @each $current_color in $color_list {
-    $i: index($color_list, $current_color);
-    @include palette-set('#{$name}-#{$i}', color($current_color));
+@mixin color-sequence($name, $color-list, $with-dark: true) {
+  @each $current-color in $color-list {
+    $i: index($color-list, $current-color);
+    @include palette-set('#{$name}-#{$i}', color($current-color));
     @if $with-dark {
-      @include palette-set('#{$name}-#{$i}--dark', color('#{$current_color}--dark'));
+      @include palette-set('#{$name}-#{$i}--dark', color('#{$current-color}--dark'));
     }
   }
 }

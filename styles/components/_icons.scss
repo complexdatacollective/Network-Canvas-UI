@@ -377,6 +377,7 @@ $-icon-color-modifiers: (
 
     @each $ordinal-color in $ordinal-colors {
       $i: index($ordinal-colors, $ordinal-color);
+
       &.icon--node-highlight-seq-#{$i} {
         @include color-icon($ordinal-color);
       }
@@ -396,6 +397,7 @@ $-icon-color-modifiers: (
 
     @each $categorical-color in $categorical-colors {
       $i: index($categorical-colors, $categorical-color);
+
       &.icon--cat-color-seq-#{$i} {
         @include color-icon($categorical-color);
       }
@@ -405,6 +407,7 @@ $-icon-color-modifiers: (
   &[name='links'] {
     @each $edge-color in $edge-colors {
       $i: index($edge-colors, $edge-color);
+
       &.icon--edge-color-seq-#{$i} {
         @include color-icon($edge-color);
       }
