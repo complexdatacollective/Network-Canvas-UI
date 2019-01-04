@@ -1,4 +1,5 @@
 import { withProps, compose } from 'recompose';
+import { has } from 'lodash';
 import TextInput from './Text';
 
 const toInt = (value) => {
@@ -9,15 +10,19 @@ const toInt = (value) => {
   return int;
 };
 
-const withNumericChangeHandler = withProps(props => ({
+const withNumericChangeHandlers = withProps(props => ({
   type: 'number',
   input: {
     ...props.input,
-    onChange: e => props.input.onChange(toInt(e.target.value)),
-    onBlur: e => props.input.onBlur(toInt(e.target.value)),
+    onChange: e =>
+      has(props, 'input.onChange') &&
+      props.input.onChange(toInt(e.target.value)),
+    onBlur: e =>
+      has(props, 'input.onBlur') &&
+      props.input.onBlur(toInt(e.target.value)),
   },
 }));
 
 export default compose(
-  withNumericChangeHandler,
+  withNumericChangeHandlers,
 )(TextInput);
