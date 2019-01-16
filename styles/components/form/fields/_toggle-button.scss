@@ -23,6 +23,7 @@ $component-name: form-field-togglebutton;
     font-weight: 500;
     text-align: center;
     padding: 0.5rem;
+    word-break: break-word;
 
     &::before {
       position: absolute;
