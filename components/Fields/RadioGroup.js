@@ -4,6 +4,7 @@ import cx from 'classnames';
 import uuid from 'uuid';
 import Radio from './Radio';
 import { asOptionObject, getValue } from './utils/options';
+import Icon from '../Icon';
 
 class RadioGroup extends Component {
   static propTypes = {
@@ -79,10 +80,10 @@ class RadioGroup extends Component {
         <h4>
           {fieldLabel || label || ''}
         </h4>
-        {invalid && touched && <p className="form-field-radio-group__error">{error}</p>}
         <div className={classNames}>
           { options.map(this.renderOption) }
         </div>
+        {invalid && touched && <div className="form-field-radio-group__error"><Icon name="warning" />{error}</div>}
       </div>
     );
   }

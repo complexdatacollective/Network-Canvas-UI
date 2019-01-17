@@ -2,15 +2,21 @@ $component-name: form-field-radio-group;
 
 .#{$component-name} {
   @include form-field;
-  // display: block;
 
   &__error {
     opacity: 0;
     max-height: 0;
-    color: var(--error);
-    margin: unit(0.5) 0;
+    background: var(--error);
+    color: var(--text);
     transition: opacity var(--animation-easing) var(--animation-duration-standard),
     max-height var(--animation-easing) var(--animation-duration-standard);
+    background: var(--error);
+    padding: 0.5rem 0.25rem;
+    display: flex;
+
+    svg {
+      max-height: 1.2rem;
+    }
   }
 
   &--has-error {
@@ -18,5 +24,11 @@ $component-name: form-field-radio-group;
       opacity: 1;
       max-height: 50px;
     }
+
+    .#{$component-name} {
+      border: 0.1rem solid var(--error);
+      margin-bottom: 0;
+    }
+
   }
 }

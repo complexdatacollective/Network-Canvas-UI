@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { get, isString } from 'lodash';
 import ToggleButton from './ToggleButton';
+import Icon from '../Icon';
 
 const toString = value => (isString(value) ? value : JSON.stringify(value));
 const getValue = option => get(option, 'value', option);
@@ -89,10 +90,10 @@ class ToggleButtonGroup extends PureComponent {
         <h4>
           {fieldLabel || label || ''}
         </h4>
-        {invalid && touched && <p className="form-field-togglebutton-group__error">{error}</p>}
         <div className="form-field form-field__inline">
           { options.map(this.renderOption) }
         </div>
+        {invalid && touched && <div className="form-field-togglebutton-group__error"><Icon name="warning" />{error}</div>}
       </div>
     );
   }

@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import uuid from 'uuid';
+import Icon from '../Icon';
 
 class TextInput extends PureComponent {
   static propTypes = {
@@ -50,7 +51,6 @@ class TextInput extends PureComponent {
 
     const seamlessClasses = cx(
       className,
-      'form-field',
       'form-field-text',
       {
         'form-field-text--has-focus': active,
@@ -70,14 +70,15 @@ class TextInput extends PureComponent {
         <div className={seamlessClasses}>
           <input
             id={this.id}
-            className="form-field-text__input"
+            className="form-field form-field-text form-field-text__input"
             placeholder={label || placeholder}
             autoFocus={autoFocus} // eslint-disable-line
             type={type}
             {...input}
           />
-          {invalid && touched && <p className="form-field-text__error">{error}</p>}
+          {invalid && touched && <div className="form-field-text__error"><Icon name="warning" />{error}</div>}
         </div>
+
       </div>
 
     );

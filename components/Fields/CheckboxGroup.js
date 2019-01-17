@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Checkbox from './Checkbox';
 import { asOptionObject, getValue } from './utils/options';
+import Icon from '../Icon';
 
 class CheckboxGroup extends PureComponent {
   static propTypes = {
@@ -86,10 +87,10 @@ class CheckboxGroup extends PureComponent {
         <h4>
           {fieldLabel || label || ''}
         </h4>
-        {invalid && touched && <p className="form-field-checkbox-group__error">{error}</p>}
         <div className="form-field">
           { options.map(this.renderOption) }
         </div>
+        {invalid && touched && <div className="form-field-checkbox-group__error"><Icon name="warning" />{error}</div>}
       </div>
     );
   }
