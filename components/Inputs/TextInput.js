@@ -60,7 +60,6 @@ class TextInput extends Component {
     const inputContainerClassName = cx({
       input__container: true,
       text__container: true,
-      'input__container--hidden': type === 'hidden',
     });
 
     /* eslint-disable-next-line */
@@ -78,14 +77,14 @@ class TextInput extends Component {
           value={value}
           {...rest}
         />
-        {type !== 'hidden' && <InputLabel
+        <InputLabel
           className={'text__label'}
           active={!!value}
           name={name}
           label={label}
           errorText={errorText}
           tooltip={tooltip}
-        />}
+        />
       </div>
     );
   }
