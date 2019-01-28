@@ -78,7 +78,17 @@ $export-ui-classes: true !default;
 @include palette-set('graph-data-2', color('slate-blue'));
 @include palette-set('graph-data-3', color('neon-carrot'));
 @include palette-set('graph-data-4', color('sea-serpent'));
-
+@include palette-set('graph-data-5', color('barbie-pink--dark'));
+@include palette-set('graph-data-6', color('cyber-grape'));
+@include palette-set('graph-data-7', color('kiwi'));
+@include palette-set('graph-data-8', color('tomato--dark'));
+@include palette-set('graph-data-9', color('mustard'));
+@include palette-set('graph-data-10', color('purple-pizazz'));
+@include palette-set('graph-data-11', color('paradise-pink'));
+@include palette-set('graph-data-12', color('cerulean-blue'));
+@include palette-set('graph-data-13', color('platinum--dark'));
+@include palette-set('graph-data-14', color('charcoal'));
+@include palette-set('graph-data-15', color('navy-taupe'));
 
 // Form elements and inputs
 @include palette-set('input-border', palette('text'));
