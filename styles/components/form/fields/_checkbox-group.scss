@@ -12,13 +12,13 @@ $component-name: form-field-checkbox-group;
 
   &__error {
     opacity: 0;
-    max-height: 0;
     background: var(--error);
     color: var(--text);
     transition: opacity var(--animation-easing) var(--animation-duration-standard),
     max-height var(--animation-easing) var(--animation-duration-standard);
     padding: 0.5rem 0.25rem;
     display: flex;
+    align-items: center;
 
     svg {
       max-height: 1.2rem;
@@ -28,7 +28,6 @@ $component-name: form-field-checkbox-group;
   &--has-error {
     .#{$component-name}__error {
       opacity: 1;
-      max-height: 50px;
     }
 
     .form-field {
