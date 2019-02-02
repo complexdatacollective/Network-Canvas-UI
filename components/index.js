@@ -14,5 +14,6 @@ export { default as NarrativePanel } from './NarrativePanel';
 export { default as Progress } from './Progress';
 export { default as Spinner } from './Spinner';
 export { default as Dialog } from './Dialog';
+export { default as AnimatedBackground } from './Art/AnimatedBackground';
 export { default as Modal } from './Modal';
 export { default as window } from './window';
