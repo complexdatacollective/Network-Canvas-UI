@@ -8,8 +8,8 @@ const BasicDialog = ({ children, show, options, title, onBlur, zIndex  }) => {
   return (
     <Modal show={show} onBlur={onBlur}>
       <div
-        className="dialog"
-        styles={styles}
+        className="dialog dialog--generic"
+        style={styles}
       >
         <div className="dialog__main">
           <div className="dialog__main-content">

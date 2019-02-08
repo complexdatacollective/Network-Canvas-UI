@@ -13,6 +13,10 @@
   overflow-x: hidden;
   overflow-y: auto;
 
+  &--generic {
+    max-width: none;
+  }
+
   &--notice {
     border-color: var(--info);
   }
