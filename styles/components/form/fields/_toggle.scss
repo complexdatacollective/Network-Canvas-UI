@@ -1,8 +1,9 @@
+$component-name: form-field-toggle;
 $size: 2rem;
 $border: 0.05rem;
 $border-space: 0.1rem;
 
-.form-field-toggle {
+.#{$component-name} {
   display: inline-block;
   cursor: pointer;
 
