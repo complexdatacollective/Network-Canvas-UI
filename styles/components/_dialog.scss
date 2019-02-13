@@ -14,7 +14,8 @@
   overflow-y: auto;
 
   &--generic {
-    max-width: none;
+    max-width: 90vw;
+    max-height: 95vh;
   }
 
   &--notice {
