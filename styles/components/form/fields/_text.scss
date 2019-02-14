@@ -50,6 +50,11 @@ $module-name: form-field-text;
     }
   }
 
+  &--area {
+    display: block;
+    width: 100%;
+  }
+
   &--has-error {
     .#{$module-name}__error {
       opacity: 1;
