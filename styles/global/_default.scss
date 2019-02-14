@@ -95,6 +95,7 @@ $export-ui-classes: true !default;
 @include palette-set('input-text', palette('text'));
 @include palette-set('input-accent', palette('primary'));
 @include palette-set('input-disabled', color('charcoal'));
+@include palette-set('form-error-text', color('white'));
 
 // Text inputs
 
