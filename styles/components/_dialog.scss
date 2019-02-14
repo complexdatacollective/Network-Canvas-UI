@@ -1,6 +1,6 @@
 .dialog {
   max-width: 50rem;
-  background: var(--cyber-grape);
+  background: var(--modal-background);
   color: var(--text-light);
   box-shadow: 0 0 4rem 0 var(--modal-window-box-shadow);
   position: relative;
@@ -13,7 +13,7 @@
   overflow-x: hidden;
   overflow-y: auto;
 
-  &--generic {
+  &--simple {
     max-width: 90vw;
     max-height: 95vh;
   }
