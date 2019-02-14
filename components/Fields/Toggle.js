@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import uuid from 'uuid';
+import Icon from '../Icon';
 
 class Toggle extends PureComponent {
   static propTypes = {
@@ -54,11 +55,10 @@ class Toggle extends PureComponent {
     );
 
     return (
-      <div className={containerClassNames}>
+      <div className={containerClassNames} name={input.name}>
         <h4>
           {fieldLabel || ''}
         </h4>
-        {invalid && touched && <p className="form-field-toggle__error">{error}</p>}
         <label className={componentClasses} htmlFor={this.id}>
           <div>
             <input
@@ -77,6 +77,7 @@ class Toggle extends PureComponent {
             </div>
           </div>
         </label>
+        {invalid && touched && <div className="form-field-toggle__error"><Icon name="warning" />{error}</div>}
       </div>
     );
   }

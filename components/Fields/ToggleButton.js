@@ -49,6 +49,7 @@ class ToggleButton extends PureComponent {
           <input
             className="form-field-togglebutton__input"
             id={this.id}
+            checked={!!this.props.input.value}
             {...input}
             {...rest}
             type="checkbox"
