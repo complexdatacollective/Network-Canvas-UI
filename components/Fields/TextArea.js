@@ -22,7 +22,6 @@ class TextArea extends PureComponent {
   render() {
     const {
       meta: { active, error, invalid, touched },
-      input: { name },
       label,
       placeholder,
       fieldLabel,
@@ -30,6 +29,7 @@ class TextArea extends PureComponent {
       type,
       autoFocus,
       hidden,
+      input,
     } = this.props;
 
     const seamlessClasses = cx(
@@ -46,7 +46,7 @@ class TextArea extends PureComponent {
         htmlFor={this.id}
         className={'form-field-container'}
         hidden={hidden}
-        name={name}
+        name={input.name}
       >
         {
           (fieldLabel || label) ?
