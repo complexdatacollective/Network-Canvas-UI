@@ -70,6 +70,7 @@ class TextInput extends PureComponent {
         <div className={seamlessClasses}>
           <input
             id={this.id}
+            name={input.name}
             className="form-field form-field-text form-field-text__input"
             placeholder={label || placeholder}
             autoFocus={autoFocus} // eslint-disable-line

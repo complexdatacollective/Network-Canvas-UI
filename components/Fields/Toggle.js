@@ -55,7 +55,7 @@ class Toggle extends PureComponent {
     );
 
     return (
-      <div className={containerClassNames}>
+      <div className={containerClassNames} name={input.name}>
         <h4>
           {fieldLabel || ''}
         </h4>

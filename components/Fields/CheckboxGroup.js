@@ -70,6 +70,7 @@ class CheckboxGroup extends PureComponent {
       className,
       fieldLabel,
       label,
+      input: { name },
       meta: { error, invalid, touched },
     } = this.props;
 
@@ -87,7 +88,7 @@ class CheckboxGroup extends PureComponent {
         <h4>
           {fieldLabel || label || ''}
         </h4>
-        <div className="form-field">
+        <div className="form-field" name={name}>
           { options.map(this.renderOption) }
         </div>
         {invalid && touched && <div className="form-field-checkbox-group__error"><Icon name="warning" />{error}</div>}
