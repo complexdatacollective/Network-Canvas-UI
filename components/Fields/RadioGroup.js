@@ -56,6 +56,7 @@ class RadioGroup extends Component {
   render() {
     const {
       options,
+      input: { name },
       className,
       label,
       fieldLabel,
@@ -80,7 +81,7 @@ class RadioGroup extends Component {
         <h4>
           {fieldLabel || label || ''}
         </h4>
-        <div className={classNames}>
+        <div className={classNames} name={name}>
           { options.map(this.renderOption) }
         </div>
         {invalid && touched && <div className="form-field-radio-group__error"><Icon name="warning" />{error}</div>}

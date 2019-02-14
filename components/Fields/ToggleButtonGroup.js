@@ -73,6 +73,7 @@ class ToggleButtonGroup extends PureComponent {
       className,
       label,
       fieldLabel,
+      input: { name },
       meta: { error, invalid, touched },
     } = this.props;
 
@@ -90,7 +91,7 @@ class ToggleButtonGroup extends PureComponent {
         <h4>
           {fieldLabel || label || ''}
         </h4>
-        <div className="form-field form-field__inline">
+        <div className="form-field form-field__inline" name={name}>
           { options.map(this.renderOption) }
         </div>
         {invalid && touched && <div className="form-field-togglebutton-group__error"><Icon name="warning" />{error}</div>}

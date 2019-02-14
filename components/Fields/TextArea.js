@@ -21,12 +21,14 @@ class TextArea extends PureComponent {
   render() {
     const {
       meta: { active, error, invalid, touched },
+      input: { name },
       label,
     } = this.props;
 
     return (
       <label
         htmlFor={this.id}
+        name={name}
         className={cx('form-fields-textarea', { 'form-fields-textarea--is-focussed': active })}
       >
         { label &&
