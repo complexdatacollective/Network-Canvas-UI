@@ -13,7 +13,7 @@ class Fade extends PureComponent {
   defaultEasing = getCSSVariableAsObject('--animation-easing-js');
 
   render() {
-    const { children, customDuration, customEasing, enter } = this.props;
+    const { children, customDuration, customEasing, enter, onExited } = this.props;
 
     const duration = customDuration || this.defaultDuration;
     const easing = customEasing || this.defaultEasing;
@@ -47,6 +47,7 @@ class Fade extends PureComponent {
         in={this.props.in}
         appear
         unmountOnExit
+        onExited={onExited}
       >
         { children }
       </Transition>
@@ -60,6 +61,7 @@ Fade.propTypes = {
   customEasing: PropTypes.array,
   enter: PropTypes.bool,
   in: PropTypes.bool.isRequired,
+  onExited: PropTypes.func,
 };
 
 Fade.defaultProps = {
@@ -67,6 +69,7 @@ Fade.defaultProps = {
   customDuration: null,
   customEasing: null,
   enter: true,
+  onExited: () => { },
 };
 
 export default Fade;
