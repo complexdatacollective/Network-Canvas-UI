@@ -40,7 +40,7 @@ SimpleDialog.propTypes = {
   options: PropTypes.arrayOf(PropTypes.element),
   onBlur: PropTypes.func,
   style: PropTypes.object,
-  className: PropTypes.oneOfType(PropTypes.string, PropTypes.object),
+  className: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 };
 
 SimpleDialog.defaultProps = {
