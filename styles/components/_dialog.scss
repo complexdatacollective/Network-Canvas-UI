@@ -13,27 +13,6 @@
   overflow-x: hidden;
   overflow-y: auto;
 
-  &--simple {
-    max-width: 90vw;
-    max-height: 95vh;
-  }
-
-  &--notice {
-    border-color: var(--info);
-  }
-
-  &--confirm {
-    border-color: var(--notice);
-  }
-
-  &--warning {
-    border-color: var(--warning);
-  }
-
-  &--error {
-    border-color: var(--error);
-  }
-
   &__main {
     display: flex;
     width: 100%;
@@ -99,4 +78,21 @@
       }
     }
   }
+
+  &--notice {
+    border-color: var(--info);
+  }
+
+  &--confirm {
+    border-color: var(--notice);
+  }
+
+  &--warning {
+    border-color: var(--warning);
+  }
+
+  &--error {
+    border-color: var(--error);
+  }
+
 }
