@@ -9,6 +9,7 @@
 }
 
 .form-field-container {
+  display: block;
   margin-bottom: 2rem;
 
   &--inline {
@@ -48,7 +49,5 @@
 @import './fields/toggle';
 @import './fields/toggle-button';
 @import './fields/toggle-button-group';
-@import './fields/select';
 @import './fields/text';
-@import './fields/textarea';
 @import './fields/range';
