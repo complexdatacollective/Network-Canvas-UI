@@ -1,4 +1,4 @@
-import { compose, withContext, withStateHandlers } from 'recompose';
+import { compose, withContext, withState } from 'recompose';
 import PropTypes from 'prop-types';
 
 /**
@@ -23,27 +23,18 @@ import PropTypes from 'prop-types';
  *         <MyConsumingComponent />
  *
  *         // https://reactjs.org/docs/refs-and-the-dom.html#callback-refs
- *         <div ref={this.setWindowRoot} />
+ *         <div ref={this.props.setWindowRoot} />
  *       </div>
  *     );
  *   }
  * }
  *
  * // This is where we attach the provider
- * export WindowRootProvider(Foo);
+ * export windowRootProvider(Foo);
  */
 
 const windowRootProvider = compose(
-  withStateHandlers(
-    () => ({
-      windowRoot: document.body,
-    }),
-    {
-      setWindowRoot: () => windowRoot => ({
-        windowRoot,
-      }),
-    },
-  ),
+  withState('windowRoot', 'setWindowRoot', document.body),
   withContext(
     {
       windowRoot: PropTypes.instanceOf(Element),

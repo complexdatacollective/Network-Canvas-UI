@@ -22,6 +22,13 @@ const window = WrappedComponent =>
       this.root.appendChild(this.portal);
     }
 
+    componentDidUpdate(prevProps) {
+      if (prevProps.windowRoot && prevProps.windowRoot !== this.root) {
+        prevProps.windowRoot.removeChild(this.portal);
+        this.root.appendChild(this.portal);
+      }
+    }
+
     componentWillUnmount() {
       this.root.removeChild(this.portal);
     }
