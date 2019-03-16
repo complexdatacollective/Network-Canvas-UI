@@ -11,10 +11,12 @@ const getMessage = ({ error, message }) =>
 
 const getStack = error => !!error && error.stack;
 
-const renderAdditionalInformation = stack => ([
-  <p><strong>Detailed information:</strong></p>,
-  <code>{stack}</code>,
-]);
+const renderAdditionalInformation = stack => (
+  <React.Fragment>
+    <p><strong>Detailed information:</strong></p>
+    <code>{stack}</code>
+  </React.Fragment>
+);
 
 /*
  * Designed to present errors to the user. Unlike some other Dialog types user must

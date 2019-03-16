@@ -49,12 +49,12 @@
       height: 15rem;
       padding: 1.5rem;
       margin-top: 1.5rem;
-      border: 1px solid var(--modal-overlay);
-      background: var(--modal-background);
+      background: var(--background);
       user-select: initial;
       overflow-y: auto;
       overflow-x: hidden;
       margin: 1.5rem 3rem;
+      border-radius: var(--border-radius);
 
       h1,
       h2,
