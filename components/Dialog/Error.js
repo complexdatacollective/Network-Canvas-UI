@@ -14,7 +14,7 @@ const getStack = error => !!error && error.stack;
 const renderAdditionalInformation = stack => (
   <React.Fragment>
     <p><strong>Detailed information:</strong></p>
-    <code>{stack}</code>
+    <pre className="error__stack-trace">{stack}</pre>
   </React.Fragment>
 );
 
@@ -23,7 +23,7 @@ const renderAdditionalInformation = stack => (
  * explicitly click Acknowledge to close.
  */
 const ErrorDialog = ({ error, message, onConfirm, show, confirmLabel }) => {
-  const stack = getStack(error);
+  const stack = error instanceof Error ? getStack(error) : error;
 
   return (
     <Dialog
