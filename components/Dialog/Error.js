@@ -23,7 +23,7 @@ const renderAdditionalInformation = stack => (
  * explicitly click Acknowledge to close.
  */
 const ErrorDialog = ({ error, message, onConfirm, show, confirmLabel }) => {
-  const stack = error instanceof Error ? getStack(error) : error;
+  const stack = getStack(error);
 
   return (
     <Dialog
