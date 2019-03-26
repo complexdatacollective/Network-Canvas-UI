@@ -8,9 +8,9 @@ import Icon from '../Icon';
  * Top level Dialog component, not intended to be used directly, if you need
  * a specific type of Dialog, create in the pattern of Notice
  */
-const Dialog = ({ children, type, icon, show, options, title, message, onBlur }) => (
+const Dialog = ({ children, type, icon, show, options, title, message, onBlur, classNames }) => (
   <Modal show={show} onBlur={onBlur}>
-    <div className={cx('dialog', { [`dialog--${type}`]: type })}>
+    <div className={cx('dialog', { [`dialog--${type}`]: type }, classNames)}>
       <div className="dialog__main">
         { icon &&
           <div className="dialog__main-icon">
@@ -45,6 +45,7 @@ Dialog.propTypes = {
   children: PropTypes.node,
   options: PropTypes.arrayOf(PropTypes.element),
   onBlur: PropTypes.func,
+  classNames: PropTypes.string,
 };
 
 Dialog.defaultProps = {
@@ -55,6 +56,7 @@ Dialog.defaultProps = {
   children: null,
   options: [],
   onBlur: () => {},
+  classNames: null,
 };
 
 export { Dialog };
