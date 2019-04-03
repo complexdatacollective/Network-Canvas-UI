@@ -7,6 +7,7 @@ import Icon from '../Icon';
 class Toggle extends PureComponent {
   static propTypes = {
     label: PropTypes.string,
+    title: PropTypes.string,
     fieldLabel: PropTypes.string,
     className: PropTypes.string,
     disabled: PropTypes.bool,
@@ -17,6 +18,7 @@ class Toggle extends PureComponent {
   static defaultProps = {
     className: '',
     label: null,
+    title: "",
     fieldLabel: null,
     disabled: false,
     meta: {},
@@ -33,6 +35,7 @@ class Toggle extends PureComponent {
       className,
       input,
       disabled,
+      title,
       meta: { error, invalid, touched },
       ...rest
     } = this.props;
@@ -59,7 +62,7 @@ class Toggle extends PureComponent {
         <h4>
           {fieldLabel || ''}
         </h4>
-        <label className={componentClasses} htmlFor={this.id}>
+        <label className={componentClasses} htmlFor={this.id} title={title}>
           <div>
             <input
               className="form-field-toggle__input"
