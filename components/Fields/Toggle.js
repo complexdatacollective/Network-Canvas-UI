@@ -18,7 +18,7 @@ class Toggle extends PureComponent {
   static defaultProps = {
     className: '',
     label: null,
-    title: "",
+    title: '',
     fieldLabel: null,
     disabled: false,
     meta: {},
