@@ -83,4 +83,12 @@ $border-space: 0.1rem;
     }
 
   }
+
+  &--disabled {
+    .#{$component-name} {
+      &__button {
+        opacity: 0.5;
+      }
+    }
+  }
 }
