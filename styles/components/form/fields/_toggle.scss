@@ -87,7 +87,7 @@ $border-space: 0.1rem;
   &--disabled {
     .#{$component-name} {
       &__button {
-        opacity: .5;
+        opacity: 0.5;
       }
     }
   }
