@@ -58,14 +58,12 @@ class TextInput extends PureComponent {
       },
     );
 
+    const anyLabel = fieldLabel || label;
+
     return (
       <div className="form-field-container" hidden={hidden}>
-        {
-          (fieldLabel || label) ?
-            (<h4>
-              {fieldLabel || label || ''}
-            </h4>)
-            : ''
+        { anyLabel &&
+          <h4>{anyLabel}</h4>
         }
         <div className={seamlessClasses}>
           <input
