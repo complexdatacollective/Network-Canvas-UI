@@ -57,11 +57,13 @@ class Toggle extends PureComponent {
       },
     );
 
+    const anyLabel = fieldLabel || label;
+
     return (
       <div className={containerClassNames} name={input.name}>
-        <h4>
-          {fieldLabel || ''}
-        </h4>
+        { anyLabel &&
+          <h4>{anyLabel}</h4>
+        }
         <label className={componentClasses} htmlFor={this.id} title={title}>
           <div>
             <input
