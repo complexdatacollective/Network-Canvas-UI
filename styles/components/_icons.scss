@@ -203,6 +203,12 @@ $-icon-color-modifiers: (
     }
   }
 
+  &[name='tick'] {
+    .cls-1 {
+      fill: color('#{$main-color}');
+    }
+  }
+
   &[name='error'] {
     .cls-1 {
       fill: color('tomato');
