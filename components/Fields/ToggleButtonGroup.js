@@ -1,13 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import { get, isString } from 'lodash';
 import ToggleButton from './ToggleButton';
 import Icon from '../Icon';
-
-const toString = value => (isString(value) ? value : JSON.stringify(value));
-const getValue = option => get(option, 'value', option);
-const getLabel = option => get(option, 'label', toString(getValue(option)));
+import { asOptionObject, getValue } from './utils/options';
 
 
 class ToggleButtonGroup extends PureComponent {
@@ -34,7 +30,7 @@ class ToggleButtonGroup extends PureComponent {
   }
 
   handleClickOption = (event) => {
-    const option = event.target.value;
+    const option = getValue(this.props.options[event.target.value]);
     const newValue = this.isOptionChecked(option) ?
       this.value.filter(value => value !== option) :
       [...this.value, option];
@@ -49,15 +45,14 @@ class ToggleButtonGroup extends PureComponent {
   }
 
   renderOption = (option, index) => {
-    const optionLabel = getLabel(option);
-    const optionValue = getValue(option);
+    const { value: optionValue, label: optionLabel } = asOptionObject(option);
 
     return (
       <ToggleButton
         className="form-field-togglebutton-group__option"
         key={index}
         input={{
-          value: optionValue,
+          value: index,
           checked: this.isOptionChecked(optionValue),
           onChange: this.handleClickOption,
         }}

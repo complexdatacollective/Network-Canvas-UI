@@ -118,15 +118,15 @@ $-icon-color-modifiers: (
 
   &[name='add-a-protocol'] {
     .cls-1 {
-      fill: color('#{$main-color}');
+      fill: color('white');
     }
 
     .cls-2 {
-      fill: color('platinum');
+      fill: color('#{$main-color}');
     }
 
     .cls-3 {
-      fill: color('#{$main-color}');
+      fill: color('platinum');
     }
 
     .cls-4 {
@@ -147,6 +147,10 @@ $-icon-color-modifiers: (
 
     .cls-7 {
       fill: color('slate-blue');
+    }
+
+    .cls-9 {
+      fill: color('white');
     }
   }
 
@@ -196,6 +200,12 @@ $-icon-color-modifiers: (
 
     .cls-5 {
       fill: color('platinum--dark');
+    }
+  }
+
+  &[name='tick'] {
+    .cls-1 {
+      fill: color('#{$main-color}');
     }
   }
 
