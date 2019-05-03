@@ -1,12 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import { get, isString } from 'lodash';
 import ToggleButton from './ToggleButton';
-
-const toString = value => (isString(value) ? value : JSON.stringify(value));
-const getValue = option => get(option, 'value', option);
-const getLabel = option => get(option, 'label', toString(getValue(option)));
+import Icon from '../Icon';
+import { asOptionObject, getValue } from './utils/options';
 
 
 class ToggleButtonGroup extends PureComponent {
@@ -33,7 +30,7 @@ class ToggleButtonGroup extends PureComponent {
   }
 
   handleClickOption = (event) => {
-    const option = event.target.value;
+    const option = getValue(this.props.options[event.target.value]);
     const newValue = this.isOptionChecked(option) ?
       this.value.filter(value => value !== option) :
       [...this.value, option];
@@ -48,15 +45,14 @@ class ToggleButtonGroup extends PureComponent {
   }
 
   renderOption = (option, index) => {
-    const optionLabel = getLabel(option);
-    const optionValue = getValue(option);
+    const { value: optionValue, label: optionLabel } = asOptionObject(option);
 
     return (
       <ToggleButton
         className="form-field-togglebutton-group__option"
         key={index}
         input={{
-          value: optionValue,
+          value: index,
           checked: this.isOptionChecked(optionValue),
           onChange: this.handleClickOption,
         }}
@@ -72,6 +68,7 @@ class ToggleButtonGroup extends PureComponent {
       className,
       label,
       fieldLabel,
+      input: { name },
       meta: { error, invalid, touched },
     } = this.props;
 
@@ -84,15 +81,17 @@ class ToggleButtonGroup extends PureComponent {
       },
     );
 
+    const anyLabel = fieldLabel || label;
+
     return (
       <div className={classNames}>
-        <h4>
-          {fieldLabel || label || ''}
-        </h4>
-        {invalid && touched && <p className="form-field-togglebutton-group__error">{error}</p>}
-        <div className="form-field form-field__inline">
+        { anyLabel &&
+          <h4>{anyLabel}</h4>
+        }
+        <div className="form-field form-field__inline" name={name}>
           { options.map(this.renderOption) }
         </div>
+        {invalid && touched && <div className="form-field-togglebutton-group__error"><Icon name="warning" />{error}</div>}
       </div>
     );
   }

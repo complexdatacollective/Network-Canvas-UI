@@ -9,6 +9,7 @@
 }
 
 .form-field-container {
+  display: block;
   margin-bottom: 2rem;
 
   &--inline {
@@ -17,6 +18,7 @@
 
   h4 {
     font-weight: 400;
+    margin-top: 0;
   }
 }
 
@@ -48,7 +50,5 @@
 @import './fields/toggle';
 @import './fields/toggle-button';
 @import './fields/toggle-button-group';
-@import './fields/select';
 @import './fields/text';
-@import './fields/textarea';
 @import './fields/range';

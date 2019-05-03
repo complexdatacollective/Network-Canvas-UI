@@ -1,6 +1,6 @@
 .dialog {
   max-width: 50rem;
-  background: var(--modal-main-panel);
+  background: var(--modal-background);
   color: var(--text-light);
   box-shadow: 0 0 4rem 0 var(--modal-window-box-shadow);
   position: relative;
@@ -13,26 +13,10 @@
   overflow-x: hidden;
   overflow-y: auto;
 
-  &--notice {
-    border-color: var(--info);
-  }
-
-  &--confirm {
-    border-color: var(--notice);
-  }
-
-  &--warning {
-    border-color: var(--warning);
-  }
-
-  &--error {
-    border-color: var(--error);
-  }
-
   &__main {
     display: flex;
     width: 100%;
-    padding: 2rem 3rem;
+    padding: 2rem 3rem 0;
 
     &-content {
       order: 1;
@@ -65,12 +49,12 @@
       height: 15rem;
       padding: 1.5rem;
       margin-top: 1.5rem;
-      border: 1px solid var(--modal-overlay);
-      background: var(--modal-background);
+      background: var(--background);
       user-select: initial;
       overflow-y: auto;
       overflow-x: hidden;
       margin: 1.5rem 3rem;
+      border-radius: var(--border-radius);
 
       h1,
       h2,
@@ -86,7 +70,7 @@
 
   &__footer {
     margin: 0 3rem 2rem;
-    text-align: center;
+    text-align: right;
 
     .button {
       &:last-child {
@@ -94,4 +78,25 @@
       }
     }
   }
+
+  &--notice {
+    border-color: var(--info);
+  }
+
+  &--confirm {
+    border-color: var(--notice);
+  }
+
+  &--warning {
+    border-color: var(--warning);
+  }
+
+  &--error {
+    border-color: var(--error);
+
+    .error__stack-trace {
+      white-space: pre-wrap;
+    }
+  }
+
 }

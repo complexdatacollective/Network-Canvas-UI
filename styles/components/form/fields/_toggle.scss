@@ -1,8 +1,9 @@
+$component-name: form-field-toggle;
 $size: 2rem;
 $border: 0.05rem;
 $border-space: 0.1rem;
 
-.form-field-toggle {
+.#{$component-name} {
   display: inline-block;
   cursor: pointer;
 
@@ -58,17 +59,36 @@ $border-space: 0.1rem;
 
   &__error {
     opacity: 0;
-    max-height: 0;
-    color: var(--error);
-    margin: unit(0.5) 0;
+    background: var(--error);
+    color: var(--text);
     transition: opacity var(--animation-easing) var(--animation-duration-standard),
     max-height var(--animation-easing) var(--animation-duration-standard);
+    padding: 0.5rem 0.25rem;
+    display: flex;
+    align-items: center;
+
+    svg {
+      max-height: 1.2rem;
+    }
   }
 
   &--has-error {
-    .form-field-toggle__error {
+    .#{$component-name}__error {
       opacity: 1;
-      max-height: 3rem;
+    }
+
+    .#{$component-name} {
+      border: 0.1rem solid var(--error);
+      margin-bottom: 0;
+    }
+
+  }
+
+  &--disabled {
+    .#{$component-name} {
+      &__button {
+        opacity: 0.5;
+      }
     }
   }
 }

@@ -16,6 +16,7 @@ import formArrowLeft from './form-arrow-left.svg.react';
 import formArrowRight from './form-arrow-right.svg.react';
 import highlighted from './highlighted.svg.react';
 import info from './info.svg.react';
+import tick from './tick.svg.react';
 import links from './links.svg.react';
 import menuCategory from './menu-category.svg.react';
 import menuCustomInterface from './menu-custom-interface.svg.react';
@@ -68,6 +69,7 @@ export default {
   highlighted,
   info,
   links,
+  tick,
   'menu-category': menuCategory,
   'menu-custom-interface': menuCustomInterface,
   'menu-default-interface': menuDefaultInterface,

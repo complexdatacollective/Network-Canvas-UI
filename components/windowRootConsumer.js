@@ -26,7 +26,7 @@ import PropTypes from 'prop-types';
  * }
  *
  * // This is where we attach the consumer
- * export WindowRootConsumer(MyConsumingComponent);
+ * export windowRootConsumer(MyConsumingComponent);
  */
 const windowRootConsumer = getContext({
   windowRoot: PropTypes.instanceOf(Element),

@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { uniqueId } from 'lodash';
 import cx from 'classnames';
 import { fieldPropTypes } from 'redux-form';
+import Icon from '../Icon';
 
 class TextArea extends PureComponent {
   static propTypes = {
@@ -22,23 +23,48 @@ class TextArea extends PureComponent {
     const {
       meta: { active, error, invalid, touched },
       label,
+      placeholder,
+      fieldLabel,
+      className,
+      type,
+      autoFocus,
+      hidden,
+      input,
     } = this.props;
+
+    const seamlessClasses = cx(
+      className,
+      'form-field-text',
+      {
+        'form-field-text--has-focus': active,
+        'form-field-text--has-error': invalid && touched && error,
+      },
+    );
 
     return (
       <label
         htmlFor={this.id}
-        className={cx('form-fields-textarea', { 'form-fields-textarea--is-focussed': active })}
+        className={'form-field-container'}
+        hidden={hidden}
+        name={input.name}
       >
-        { label &&
-          <div className="form-fields-textarea__label">{label}</div>
+        {
+          (fieldLabel || label) ?
+            (<h4>
+              {fieldLabel || label || ''}
+            </h4>)
+            : ''
         }
-        <div className="form-fields-textarea__edit">
+        <div className={seamlessClasses}>
           <textarea
-            className={cx('form-fields-textarea__input', this.props.className)}
             id={this.id}
-            {...this.props.input}
+            className="form-field form-field-text form-field-text--area form-field-text__input"
+            placeholder={label || placeholder}
+            autoFocus={autoFocus} // eslint-disable-line
+            type={type}
+            {...input}
           />
-          {invalid && touched && <p className="form-field-radio-group__error">{error}</p>}
+          {invalid && touched && <div className="form-field-text__error"><Icon name="warning" />{error}</div>}
         </div>
       </label>
     );

@@ -62,8 +62,8 @@ $export-ui-classes: true !default;
 @include palette-set('link', color('neon-coral'));
 @include palette-set('light-background', color('cyber-grape'));
 @include palette-set('dark-background', color('rich-black'));
-@include palette-set('modal-main-panel', color('cyber-grape'));
-@include palette-set('modal-background', color('navy-taupe'));
+@include palette-set('modal-main-panel', color('navy-taupe'));
+@include palette-set('modal-background', color('cyber-grape'));
 @include palette-set('info', color('sea-serpent'));
 @include palette-set('notice', color('sea-green'));
 @include palette-set('warning', color('mustard'));
@@ -95,6 +95,7 @@ $export-ui-classes: true !default;
 @include palette-set('input-text', palette('text'));
 @include palette-set('input-accent', palette('primary'));
 @include palette-set('input-disabled', color('charcoal'));
+@include palette-set('form-error-text', color('white'));
 
 // Text inputs
 
@@ -194,7 +195,7 @@ $system-font-stack: 'system-ui', sans-serif;
 
 :root {
   // Typographic base styles
-  --base-font-size: 18px;
+  --base-font-size: 16px;
   --heading-font-family: #{$netcanvas-font-stack};
   --body-font-family: #{$system-font-stack};
 
@@ -229,7 +230,7 @@ $system-font-stack: 'system-ui', sans-serif;
   --input-label: #{transparentize(rgb(255, 255, 255), 0)};
   --input-placeholder: #{transparentize(rgb(255, 255, 255), 0.75)};
 
-  --modal-overlay: #{transparentize(rgb(39, 32, 76), 0.26)};
+  --modal-overlay: #{transparentize(rgb(39, 32, 76), 0.1)};
   --modal-window-box-shadow: #{transparentize(rgb(22, 21, 43), 0.25)};
 
   --panel-selected-node-bg-color: #{transparentize(rgb(255, 255, 255), 0.95)};

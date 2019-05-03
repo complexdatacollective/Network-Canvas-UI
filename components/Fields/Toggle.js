@@ -2,10 +2,12 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import uuid from 'uuid';
+import Icon from '../Icon';
 
 class Toggle extends PureComponent {
   static propTypes = {
     label: PropTypes.string,
+    title: PropTypes.string,
     fieldLabel: PropTypes.string,
     className: PropTypes.string,
     disabled: PropTypes.bool,
@@ -16,6 +18,7 @@ class Toggle extends PureComponent {
   static defaultProps = {
     className: '',
     label: null,
+    title: '',
     fieldLabel: null,
     disabled: false,
     meta: {},
@@ -32,6 +35,7 @@ class Toggle extends PureComponent {
       className,
       input,
       disabled,
+      title,
       meta: { error, invalid, touched },
       ...rest
     } = this.props;
@@ -54,12 +58,11 @@ class Toggle extends PureComponent {
     );
 
     return (
-      <div className={containerClassNames}>
-        <h4>
-          {fieldLabel || ''}
-        </h4>
-        {invalid && touched && <p className="form-field-toggle__error">{error}</p>}
-        <label className={componentClasses} htmlFor={this.id}>
+      <div className={containerClassNames} name={input.name}>
+        { fieldLabel &&
+          <h4>{fieldLabel}</h4>
+        }
+        <label className={componentClasses} htmlFor={this.id} title={title}>
           <div>
             <input
               className="form-field-toggle__input"
@@ -67,6 +70,7 @@ class Toggle extends PureComponent {
               {...input}
               {...rest}
               checked={!!this.props.input.value}
+              disabled={disabled}
               type="checkbox"
             />
             <div className="form-field-toggle__toggle">
@@ -77,6 +81,7 @@ class Toggle extends PureComponent {
             </div>
           </div>
         </label>
+        {invalid && touched && <div className="form-field-toggle__error"><Icon name="warning" />{error}</div>}
       </div>
     );
   }
