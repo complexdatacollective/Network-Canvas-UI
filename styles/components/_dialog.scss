@@ -95,7 +95,9 @@
     border-color: var(--error);
 
     .error__stack-trace {
+      width: 100%;
       white-space: pre-wrap;
+      word-break: break-all;
     }
   }
 
