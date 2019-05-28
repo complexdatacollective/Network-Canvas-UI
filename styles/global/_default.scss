@@ -225,6 +225,8 @@ $system-font-stack: 'system-ui', sans-serif;
 
   --drop-shadow-color: #{transparentize(rgb(22, 21, 43), 0.25)};
 
+  --session-management-screen-bg: #{transparentize(rgb(58, 58, 117), 0.5)};
+
   // Inputs
   --input-background: #{transparentize(rgb(0, 0, 0), 0.67)};
   --input-label: #{transparentize(rgb(255, 255, 255), 0)};
