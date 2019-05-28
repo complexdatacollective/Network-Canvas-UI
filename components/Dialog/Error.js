@@ -44,6 +44,7 @@ const ErrorDialog = ({ error, message, onConfirm, show, confirmLabel }) => {
 ErrorDialog.propTypes = {
   error: PropTypes.oneOfType([
     PropTypes.instanceOf(Error),
+    PropTypes.string,
     PropTypes.shape({ friendlyMessage: PropTypes.string }),
   ]),
   message: PropTypes.string,
