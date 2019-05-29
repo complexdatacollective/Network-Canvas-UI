@@ -6,10 +6,10 @@ import { getCSSVariableAsNumber, getCSSVariableAsObject } from '../../utils/CSSV
 
 const Drop = ({ children, ...props }) => {
   const appear = {
-    translateY: ['-20vh', 0],
+    translateY: ['-5vh', 0],
     elasticity: 0,
     easing: getCSSVariableAsObject('--animation-easing-js'),
-    duration: getCSSVariableAsNumber('--animation-duration-standard-ms'),
+    duration: getCSSVariableAsNumber('--animation-duration-fast-ms'),
   };
 
   return (
@@ -17,7 +17,7 @@ const Drop = ({ children, ...props }) => {
       mountOnEnter
       unmountOnExit
       appear
-      timeout={getCSSVariableAsNumber('--animation-duration-standard-ms')}
+      timeout={getCSSVariableAsNumber('--animation-duration-fast-ms')}
       onEntering={el => anime({ targets: el, ...appear })}
       {...props}
     >

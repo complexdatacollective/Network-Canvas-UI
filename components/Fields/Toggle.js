@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import { isBoolean } from 'lodash';
 import uuid from 'uuid';
 import Icon from '../Icon';
 
@@ -26,6 +27,13 @@ class Toggle extends PureComponent {
 
   componentWillMount() {
     this.id = uuid();
+
+    // Because redux forms will just not pass on this
+    // field if it was never touched and we need it to
+    // return `false`.
+    if (!isBoolean(this.props.input.value)) {
+      this.props.input.onChange(false);
+    }
   }
 
   render() {
@@ -72,6 +80,7 @@ class Toggle extends PureComponent {
               checked={!!this.props.input.value}
               disabled={disabled}
               type="checkbox"
+              value="true"
             />
             <div className="form-field-toggle__toggle">
               <span className="form-field-toggle__button" />
