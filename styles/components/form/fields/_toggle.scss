@@ -4,7 +4,7 @@ $border: 0.05rem;
 $border-space: 0.1rem;
 
 .#{$component-name} {
-  display: inline-block;
+  display: flex;
   cursor: pointer;
 
   &__input {
