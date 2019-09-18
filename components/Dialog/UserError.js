@@ -9,37 +9,22 @@ const getErrorMessage = error =>
 const getMessage = ({ error, message }) =>
   (error ? getErrorMessage(error) : message);
 
-const getStack = error => !!error && error.stack;
-
-const renderAdditionalInformation = stack => (
-  <React.Fragment>
-    <p><strong>Detailed information:</strong></p>
-    <pre className="error__stack-trace">{stack}</pre>
-  </React.Fragment>
-);
-
 /*
  * Designed to present errors to the user. Unlike some other Dialog types user must
  * explicitly click Acknowledge to close.
  */
-const ErrorDialog = ({ error, message, onConfirm, show, confirmLabel, title }) => {
-  const stack = getStack(error);
-
-  return (
-    <Dialog
-      type="error"
-      icon="error"
-      show={show}
-      title={title}
-      message={getMessage({ error, message })}
-      options={[
-        <Button key="confirm" onClick={onConfirm} color="neon-coral" content={confirmLabel} />,
-      ]}
-    >
-      {stack && renderAdditionalInformation(stack)}
-    </Dialog>
-  );
-};
+const ErrorDialog = ({ error, message, onConfirm, show, confirmLabel, title }) => (
+  <Dialog
+    type="error"
+    icon="error"
+    show={show}
+    title={title}
+    message={getMessage({ error, message })}
+    options={[
+      <Button key="confirm" onClick={onConfirm} color="neon-coral" content={confirmLabel} />,
+    ]}
+  />
+);
 
 ErrorDialog.propTypes = {
   error: PropTypes.oneOfType([
