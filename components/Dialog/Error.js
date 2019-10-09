@@ -48,7 +48,10 @@ ErrorDialog.propTypes = {
     PropTypes.shape({ friendlyMessage: PropTypes.string }),
   ]),
   title: PropTypes.string,
-  message: PropTypes.string,
+  message: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+  ]),
   onConfirm: PropTypes.func.isRequired,
   confirmLabel: PropTypes.string,
   show: PropTypes.bool,
