@@ -1,5 +1,6 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { Transition } from 'react-transition-group';
+import PropTypes from 'prop-types';
 import anime from 'animejs';
 import { getCSSVariableAsNumber, getCSSVariableAsObject } from '../../utils/CSSVariables';
 
@@ -51,5 +52,22 @@ function Fade(props) {
     </Transition>
   );
 }
+
+Fade.propTypes = {
+  children: PropTypes.any,
+  customDuration: PropTypes.object,
+  customEasing: PropTypes.array,
+  enter: PropTypes.bool,
+  in: PropTypes.bool.isRequired,
+  onExited: PropTypes.func,
+};
+
+Fade.defaultProps = {
+  children: null,
+  customDuration: null,
+  customEasing: null,
+  enter: true,
+  onExited: () => {},
+};
 
 export default Fade;
