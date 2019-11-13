@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import uuid from 'uuid';
+import { first, last, round } from 'lodash';
 import { Slider, Rail, Handles, Tracks, Ticks } from "react-compound-slider";
 
 const sliderStyle = {
@@ -20,44 +21,95 @@ const railStyle = {
   backgroundColor: '#8B9CB6',
 };
 
-const Handle = ({
-  handle: { id, value, percent },
-  getHandleProps,
-}) => {
-  return (
-    <div
-      style={{
-        left: `${percent}%`,
-        position: 'absolute',
-        marginLeft: -15,
-        marginTop: 25,
-        zIndex: 2,
-        width: 30,
-        height: 30,
-        border: 0,
-        textAlign: 'center',
-        cursor: 'pointer',
-        borderRadius: '50%',
-        backgroundColor: '#2C4870',
-        color: '#333',
-      }}
-      {...getHandleProps(id)}
-    >
-      <div style={{ fontFamily: 'Roboto', fontSize: 11, marginTop: -35 }}>
-        {value}
-      </div>
-    </div>
-  )
+class Handle extends Component {
+  state = {
+    mouseOver: false,
+  }
+
+  onMouseEnter = () => {
+    this.setState({ mouseOver: true })
+  }
+
+  onMouseLeave = () => {
+    this.setState({ mouseOver: false })
+  }
+
+  render() {
+    const {
+      domain: [min, max],
+      handle: { id, value, percent },
+      isActive,
+      disabled,
+      getHandleProps,
+    } = this.props;
+    const { mouseOver } = this.state;
+
+    return (
+      <React.Fragment>
+        {(mouseOver || isActive) && !disabled ? (
+          <div
+            style={{
+              left: `${percent}%`,
+              position: 'absolute',
+              marginLeft: '-11px',
+              marginTop: '-35px',
+            }}
+          >
+            <div className="tooltip">
+              <span className="tooltiptext">Value: {value}</span>
+            </div>
+          </div>
+        ) : null}
+        <div
+          style={{
+            left: `${percent}%`,
+            position: 'absolute',
+            transform: 'translate(-50%, -50%)',
+            WebkitTapHighlightColor: 'rgba(0,0,0,0)',
+            zIndex: 400,
+            width: 26,
+            height: 42,
+            cursor: 'pointer',
+            // border: '1px solid grey',
+            backgroundColor: 'none',
+          }}
+          {...getHandleProps(id, {
+            onMouseEnter: this.onMouseEnter,
+            onMouseLeave: this.onMouseLeave,
+          })}
+        />
+        <div
+          role="slider"
+          aria-valuemin={min}
+          aria-valuemax={max}
+          aria-valuenow={value}
+          style={{
+            left: `${percent}%`,
+            position: 'absolute',
+            transform: 'translate(-50%, -50%)',
+            WebkitTapHighlightColor: 'rgba(0,0,0,0)',
+            zIndex: 300,
+            width: 24,
+            height: 24,
+            border: 0,
+            borderRadius: '50%',
+            boxShadow: '1px 1px 1px 1px rgba(0, 0, 0, 0.2)',
+            backgroundColor: disabled ? '#666' : '#8b6068',
+          }}
+        />
+      </React.Fragment>
+    )
+  }
 }
 
 const Track = ({ source, target, getTrackProps }) => (
   <div
     style={{
       position: 'absolute',
-      height: 10,
+      height: 20,
       zIndex: 1,
       marginTop: 35,
-      backgroundColor: '#546C91',
+      backgroundColor: 'red',
       borderRadius: 5,
       cursor: 'pointer',
       left: `${source.percent}%`,
@@ -67,44 +119,87 @@ const Track = ({ source, target, getTrackProps }) => (
   />
 );
 
-const SliderInput = () => (
-  <Slider
-    rootStyle={sliderStyle}
-    domain={[0, 100]}
-    step={1}
-    mode={2}
-    values={[30]}
-  >
-    <div style={railStyle} />
-    <Handles>
-      {({ handles, getHandleProps }) => (
-        <div className="slider-handles">
-          {handles.map(handle => (
-            <Handle
-              key={handle.id}
-              handle={handle}
-              getHandleProps={getHandleProps}
-            />
-          ))}
-        </div>
-      )}
-    </Handles>
-    <Tracks right={false}>
-      {({ tracks, getTrackProps }) => (
-        <div className="slider-tracks">
-          {tracks.map(({ id, source, target }) => (
-            <Track
-              key={id}
-              source={source}
-              target={target}
-              getTrackProps={getTrackProps}
-            />
-          ))}
-        </div>
-      )}
-    </Tracks>
-  </Slider>
-);
+const SliderInput = ({
+  options,
+  value,
+  onChange,
+}) => {
+  const domain = options ?
+    [0, options.length - 1] :
+    [0, 1];
+  const step = options ? 1 : 0.0005;
+  const values = options ?
+    [options.findIndex(option => option.value === value)] :
+    [value];
+
+  const handleChange = ([value]) => {
+    const normalizedValue = round(value, 3);
+    const savedValue = options ?
+      options[value].value :
+      normalizedValue;
+
+    onChange(savedValue);
+  };
+
+  const ticks = options ?
+    options.map(({ label }) => label) :
+    null;
+
+  return (
+    <Slider
+      rootStyle={sliderStyle}
+      domain={domain}
+      step={step}
+      values={values}
+      onChange={handleChange}
+    >
+      <div style={railStyle} />
+      <Handles>
+        {({ handles, activeHandleID, getHandleProps }) => (
+          <div className="slider-handles">
+            {handles.map(handle => (
+              <Handle
+                // key={handle.id}
+                // handle={handle}
+                // getHandleProps={getHandleProps}
+                key={handle.id}
+                handle={handle}
+                domain={domain}
+                isActive={handle.id === activeHandleID}
+                getHandleProps={getHandleProps}
+              />
+            ))}
+          </div>
+        )}
+      </Handles>
+      <Tracks>
+        {({ tracks, getTrackProps }) => (
+          <div className="slider-tracks">
+            {tracks.map(({ id, source, target }) => (
+              <Track
+                key={id}
+                source={source}
+                target={target}
+                getTrackProps={getTrackProps}
+              />
+            ))}
+          </div>
+        )}
+      </Tracks>
+      { ticks &&
+        <Ticks values={ticks}>
+          {({ ticks: sticks }) => (
+            <div className="slider-ticks">
+              {sticks.map(({ value, percent }) => (
+                <div>{value}</div>
+              ))}
+            </div>
+          )}
+        </Ticks>
+      }
+    </Slider>
+  );
+};
 
 class SliderField extends Component {
   constructor(props) {
@@ -128,6 +223,8 @@ class SliderField extends Component {
       hidden,
     } = this.props;
 
+    console.log(this.props);
+
     const seamlessClasses = cx(
       className,
       'form-field-slider',
@@ -141,7 +238,10 @@ class SliderField extends Component {
           <h4>{anyLabel}</h4>
         }
         <div className={seamlessClasses}>
-          <SliderInput />
+          <SliderInput
+            options={this.props.options}
+            {...this.props.input}
+          />
           {invalid && touched && <div className="form-field-text__error"><Icon name="warning" />{error}</div>}
         </div>
 
