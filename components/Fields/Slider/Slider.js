@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { round } from 'lodash';
+import { round, get } from 'lodash';
 import cx from 'classnames';
 import { Slider, Handles, Tracks, Ticks } from 'react-compound-slider';
 import Handle from './Handle';
@@ -9,6 +9,7 @@ import Tick from './Tick';
 class SliderInput extends Component {
   getSliderProps = () => {
     const { options, value } = this.props;
+
     const domain = this.isLikert() ?
       [0, options.length - 1] :
       [0, 1];
@@ -27,9 +28,11 @@ class SliderInput extends Component {
   };
 
   getTickCount = () => {
-    switch (this.props.type) {
+    const { type, options } = this.props;
+
+    switch (type) {
       case 'LIKERT':
-        return this.props.options.length;
+        return options.length - 1;
       case 'VAS':
         return 1;
       default:
@@ -38,10 +41,11 @@ class SliderInput extends Component {
   };
 
   getLabelForValue = (value) => {
-    if (this.isLikert()) { return this.props.options[value].label; }
+    const { options } = this.props;
+    if (this.isLikert()) { return get(options, [value, 'label']); }
     if (this.isVisualAnalogScale()) {
       const index = value === 0 ? 'minLabel' : 'maxLabel';
-      return this.props.options[index];
+      return get(options, index);
     }
     return round(value * 100);
   }
@@ -67,12 +71,12 @@ class SliderInput extends Component {
   render() {
     const {
       options,
-      value,
-      type,
     } = this.props;
 
-    const sliderProps = this.getSliderProps(type, options, value);
-    const tickCount = this.getTickCount(type, options);
+    const sliderProps = this.getSliderProps();
+    const tickCount = this.getTickCount();
+
+    console.log({ tickCount, options });
     const showTooltips = !this.isVisualAnalogScale();
 
     const className = cx(

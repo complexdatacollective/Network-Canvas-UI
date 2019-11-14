@@ -12,8 +12,19 @@
   --active-color: var(--color-sea-green);
   --slider-color: var(--color-platinum);
   --disabled-color: var(--color-charcoal);
+  --tooltip-color: var(--color-cyber-grape);
+  --label-color: var(--color-white);
 
   // @include grid($touch-height);
+
+  &__tracks {
+    position: absolute;
+    height: $touch-height;
+    width: 100%;
+    z-index: 1;
+    top: $height * 0.5;
+    transform: translate(0, -50%);
+  }
 
   &__track-line {
     position: absolute;
@@ -30,12 +41,18 @@
     position: absolute;
     height: $touch-height;
     z-index: 1;
-    top: $height * 0.5;
+    top: 50%;
     transform: translate(0, -50%);
+    box-sizing: content-box;
     cursor: pointer;
 
     &:first-child {
+      padding-left: $touch-height * .5;
+      transform: translate(-($touch-height * .5), -50%);
+
       .form-field-slider__track-line {
+        left: $touch-height * .5;
+        width: calc(100% - #{$touch-height * .5});
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
         background-color: var(--active-color);
@@ -43,7 +60,10 @@
     }
 
     &:last-child {
+      padding-right: $touch-height * .5;
+
       .form-field-slider__track-line {
+        width: calc(100% - #{$touch-height * .5});
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
       }
@@ -59,8 +79,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: white;
-    color: black;
+    background: var(--tooltip-color);
+    color: var(--label-color);
     border-radius: 50% 50% 50% 0;
     transform: translate(-50%, -.25 * $tooltip-size) rotate(-45deg);
     opacity: 0;
@@ -69,6 +89,14 @@
     &-label {
       transform: rotate(45deg);
       font-size: 0.8rem;
+      white-space: nowrap;
+      background: var(--tooltip-color);
+      height: $tooltip-size;
+      border-radius: $tooltip-size;
+      padding: 0 ($tooltip-size * 0.3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     &--is-active {
@@ -94,8 +122,10 @@
     align-items: center;
 
     &-label {
+      white-space: nowrap;
       transform: translate(0, $touch-height);
       font-size: 0.75rem;
+      color: var(--label-color);
     }
 
     &::after {
@@ -140,7 +170,7 @@
     transition: transform var(--animation-duration-fast) ease;
 
     &--is-disabled {
-      background-color: --disabled-color;
+      background-color: var(--disabled-color);
     }
 
     &--is-active {
