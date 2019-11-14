@@ -1,0 +1,173 @@
+@mixin grid($size, $color: rgba(0, 0, 0, 0.1), $color2: rgba(255, 255, 255, 0.1)) {
+  background-image: linear-gradient(45deg, $color 25%, $color2 25%, $color2 75%, $color 75%, $color),
+                  linear-gradient(45deg, $color 25%, $color2 25%, $color2 75%, $color 75%, $color);
+  background-size: $size*2 $size*2;
+  background-position: 0 0, $size $size;
+}
+
+.form-field-slider {
+  $touch-height: 36px;
+  $height: $touch-height * 3;
+
+  --active-color: var(--color-sea-green);
+  --slider-color: var(--color-platinum);
+  --disabled-color: var(--color-charcoal);
+
+  @include grid($touch-height);
+
+  &__track-line {
+    position: absolute;
+    background-color: var(--slider-color);
+    height: $touch-height * 0.5;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%);
+    border-radius: $touch-height * 0.5;
+  }
+
+  &__track {
+    position: absolute;
+    height: $touch-height;
+    z-index: 1;
+    top: $height * 0.5;
+    transform: translate(0, -50%);
+    cursor: pointer;
+
+    &:first-child {
+      .form-field-slider__track-line {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        background-color: var(--active-color);
+      }
+    }
+
+    &:last-child {
+      .form-field-slider__track-line {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+      }
+    }
+  }
+
+  &__tooltip {
+    $tooltip-size: $touch-height;
+    position: absolute;
+    top: 0;
+    height: $tooltip-size;
+    width: $tooltip-size;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    color: black;
+    border-radius: 50% 50% 50% 0;
+    transform: translate(-50%, -.25 * $tooltip-size) rotate(-45deg);
+    opacity: 0;
+    transition: opacity var(--animation-duration-fast) ease;
+
+    &-label {
+      transform: rotate(45deg);
+      font-size: 0.8rem;
+    }
+
+    &--is-active {
+      opacity: 1;
+    }
+  }
+
+  &__ticks {
+    position: relative;
+    top: $height * .5;
+    left: 0;
+    width: 100%;
+  }
+
+  &__tick {
+    position: absolute;
+    top: 0;
+    width: $touch-height;
+    height: $touch-height;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &-label {
+      transform: translate(0, $touch-height);
+      font-size: 0.75rem;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      border-left: 2px solid var(--slider-color);
+      height: $touch-height;
+      width: 0;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  // interactive element of handle/marker
+  &__handle {
+    position: absolute;
+    top: $height * 0.5;
+    transform: translate(-50%, -50%);
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    z-index: 400;
+    width: $height;
+    height: $height;
+    cursor: pointer;
+    background-color: none;
+  }
+
+  // visual element of handle/marker
+  &__marker {
+    $scale: 1.2; // needs to result in a whole number for smooth animation
+    position: absolute;
+    top: $height * 0.5;
+    transform: translate(-50%, -50%);
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    z-index: 300;
+    width: $touch-height / $scale;
+    height: $touch-height / $scale;
+    border: 0px;
+    border-radius: 50%;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+    background-color: var(--active-color);
+    transition: transform var(--animation-duration-fast) ease;
+
+    &--is-disabled {
+      background-color: --disabled-color;
+    }
+
+    &--is-active {
+      transform: translate(-50%, -50%) scale($scale);
+    }
+  }
+
+  &__slider {
+    position: relative;
+    width: calc(100% - #{$touch-height});
+    height: $height;
+    margin-left: $touch-height * .5;
+    margin-right: $touch-height * .5;
+
+    &--vas,
+    &--likert {
+      .form-field-slider__track-line {
+        border-radius: 0;
+      }
+
+      .form-field-slider__track {
+        &:first-child {
+          .form-field-slider__track-line {
+            background-color: var(--slider-color);
+          }
+        }
+      }
+    }
+  }
+}

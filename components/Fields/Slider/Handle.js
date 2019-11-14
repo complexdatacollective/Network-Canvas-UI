@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
+import cx from 'classnames';
 
 class Handle extends Component {
   state = {
     mouseOver: false,
   }
 
-  onMouseEnter = () => {
+  handleMouseOver = () => {
     this.setState({ mouseOver: true });
   }
 
-  onMouseLeave = () => {
+  handleMouseLeave = () => {
     this.setState({ mouseOver: false });
   }
 
@@ -18,63 +19,57 @@ class Handle extends Component {
       domain: [min, max],
       handle: { id, value, percent },
       isActive,
-      disabled,
+      isDisabled,
+      showTooltips,
       getHandleProps,
+      getLabelForValue,
     } = this.props;
     const { mouseOver } = this.state;
 
+    const showTooltip = showTooltips && (mouseOver || isActive) && !isDisabled;
+    const handleProps = getHandleProps(
+      id,
+      {
+        onMouseEnter: this.handleMouseEnter,
+        onMouseLeave: this.handleMouseLeave,
+      },
+    );
+
+    const markerClasses = cx(
+      'form-field-slider__marker',
+      { 'form-field-slider__marker--is-active': isActive },
+      { 'form-field-slider__marker--is-disabled': isDisabled },
+    );
+
+    const tooltipClasses = cx(
+      'form-field-slider__tooltip',
+      { 'form-field-slider__tooltip--is-active': showTooltip },
+    );
+
+    const label = getLabelForValue(value);
+
     return (
       <React.Fragment>
-        {(mouseOver || isActive) && !disabled ? (
-          <div
-            style={{
-              left: `${percent}%`,
-              position: 'absolute',
-              marginLeft: '-11px',
-              marginTop: '-35px',
-            }}
-          >
-            <div className="tooltip">
-              <span className="tooltiptext">Value: {value}</span>
-            </div>
-          </div>
-        ) : null}
         <div
-          style={{
-            left: `${percent}%`,
-            position: 'absolute',
-            transform: 'translate(-50%, -50%)',
-            WebkitTapHighlightColor: 'rgba(0,0,0,0)',
-            zIndex: 400,
-            width: 26,
-            height: 42,
-            cursor: 'pointer',
-            // border: '1px solid grey',
-            backgroundColor: 'none',
-          }}
-          {...getHandleProps(id, {
-            onMouseEnter: this.onMouseEnter,
-            onMouseLeave: this.onMouseLeave,
-          })}
+          className={tooltipClasses}
+          style={{ left: `${percent}%` }}
+        >
+          <div className="form-field-slider__tooltip-label">
+            {label}
+          </div>
+        </div>
+        <div
+          className="form-field-slider__handle"
+          style={{ left: `${percent}%` }}
+          {...handleProps}
         />
         <div
           role="slider"
           aria-valuemin={min}
           aria-valuemax={max}
           aria-valuenow={value}
-          style={{
-            left: `${percent}%`,
-            position: 'absolute',
-            transform: 'translate(-50%, -50%)',
-            WebkitTapHighlightColor: 'rgba(0,0,0,0)',
-            zIndex: 300,
-            width: 24,
-            height: 24,
-            border: 0,
-            borderRadius: '50%',
-            boxShadow: '1px 1px 1px 1px rgba(0, 0, 0, 0.2)',
-            backgroundColor: disabled ? '#666' : '#8b6068',
-          }}
+          className={markerClasses}
+          style={{ left: `${percent}%` }}
         />
       </React.Fragment>
     );

@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
 import { round } from 'lodash';
+import cx from 'classnames';
 import { Slider, Handles, Tracks, Ticks } from 'react-compound-slider';
-import Rail from './Rail';
 import Handle from './Handle';
 import Track from './Track';
 import Tick from './Tick';
-
-const sliderStyle = {
-  position: 'relative',
-  width: '100%',
-  height: 80,
-  border: '1px solid steelblue',
-};
 
 const getSliderProps = (options, value) => {
   const domain = options ?
@@ -28,17 +21,21 @@ const getSliderProps = (options, value) => {
     domain,
     step,
     values,
-    rootStyle: sliderStyle,
   };
 };
 
-const getTickValues = (options) => {
+const getTickCount = (options) => {
   if (!options) { return null; }
 
-  return options.map(({ label }) => label);
+  return options.length;
 };
 
 class SliderInput extends Component {
+  getLabelForValue = (value) => {
+    if (!this.props.options) { return value; }
+    return this.props.options[value].label;
+  }
+
   normalizeValue = (value) => {
     const options = this.props.options;
     if (options) { return options[value].value; }
@@ -57,24 +54,35 @@ class SliderInput extends Component {
     } = this.props;
 
     const sliderProps = getSliderProps(options, value);
-    const tickValues = getTickValues(options);
+    const tickCount = getTickCount(options);
+    const isLikert = !!options;
+    const isVisualAnalogScale = !options;
+    const showTooltips = !isVisualAnalogScale;
+
+    const className = cx(
+      'form-field-slider__slider',
+      { 'form-field-slider__slider--likert': isLikert },
+      { 'form-field-slider__slider--vas': isVisualAnalogScale },
+    );
 
     return (
       <Slider
         {...sliderProps}
+        className={className}
         onChange={this.handleChange}
       >
-        <Rail />
         <Handles>
           {({ handles, activeHandleID, getHandleProps }) => (
-            <div className="slider-handles">
+            <div className="form-field-slider__handles">
               {handles.map(handle => (
                 <Handle
                   key={handle.id}
                   handle={handle}
+                  getLabelForValue={this.getLabelForValue}
                   domain={sliderProps.domain}
                   isActive={handle.id === activeHandleID}
                   getHandleProps={getHandleProps}
+                  showTooltips={showTooltips}
                 />
               ))}
             </div>
@@ -82,7 +90,7 @@ class SliderInput extends Component {
         </Handles>
         <Tracks>
           {({ tracks, getTrackProps }) => (
-            <div className="slider-tracks">
+            <div className="form-field-slider__tracks">
               {tracks.map(({ id, source, target }) => (
                 <Track
                   key={id}
@@ -94,11 +102,13 @@ class SliderInput extends Component {
             </div>
           )}
         </Tracks>
-        { tickValues &&
-          <Ticks values={tickValues}>
-            {({ ticks: sticks }) => (
-              <div className="slider-ticks">
-                {sticks.map(Tick)}
+        { tickCount &&
+          <Ticks count={tickCount}>
+            {({ ticks }) => (
+              <div className="form-field-slider__ticks">
+                {ticks.map(tick => (
+                  <Tick tick={tick} getLabelForValue={this.getLabelForValue} />
+                ))}
               </div>
             )}
           </Ticks>
