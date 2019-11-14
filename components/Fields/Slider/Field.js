@@ -4,6 +4,17 @@ import uuid from 'uuid';
 import Icon from '../../Icon';
 import Slider from './Slider';
 
+const getSliderType = (variableType) => {
+  switch (variableType) {
+    case 'ordinal':
+      return 'LIKERT';
+    case 'scalar':
+      return 'VAS';
+    default:
+      return null;
+  }
+};
+
 class SliderField extends Component {
   constructor(props) {
     super(props);
@@ -22,6 +33,7 @@ class SliderField extends Component {
       fieldLabel,
       className,
       hidden,
+      type,
     } = this.props;
 
     const seamlessClasses = cx(
@@ -30,6 +42,7 @@ class SliderField extends Component {
     );
 
     const anyLabel = fieldLabel || label;
+    const sliderType = getSliderType(type);
 
     return (
       <div className="form-field-container" hidden={hidden}>
@@ -39,6 +52,7 @@ class SliderField extends Component {
         <div className={seamlessClasses}>
           <Slider
             options={options}
+            type={sliderType}
             {...input}
           />
           {invalid && touched && <div className="form-field-text__error"><Icon name="warning" />{error}</div>}

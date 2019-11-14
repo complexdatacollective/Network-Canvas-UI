@@ -6,39 +6,50 @@ import Handle from './Handle';
 import Track from './Track';
 import Tick from './Tick';
 
-const getSliderProps = (options, value) => {
-  const domain = options ?
-    [0, options.length - 1] :
-    [0, 1];
-
-  const step = options ? 1 : 0.0005;
-
-  const values = options ?
-    [options.findIndex(option => option.value === value)] :
-    [value];
-
-  return {
-    domain,
-    step,
-    values,
-  };
-};
-
-const getTickCount = (options) => {
-  if (!options) { return null; }
-
-  return options.length;
-};
-
 class SliderInput extends Component {
+  getSliderProps = () => {
+    const { options, value } = this.props;
+    const domain = this.isLikert() ?
+      [0, options.length - 1] :
+      [0, 1];
+
+    const step = this.isLikert() ? 1 : 0.0005;
+
+    const values = this.isLikert() ?
+      [options.findIndex(option => option.value === value)] :
+      [value];
+
+    return {
+      domain,
+      step,
+      values,
+    };
+  };
+
+  getTickCount = () => {
+    switch (this.props.type) {
+      case 'LIKERT':
+        return this.props.options.length;
+      case 'VAS':
+        return 1;
+      default:
+        return null;
+    }
+  };
+
   getLabelForValue = (value) => {
-    if (!this.props.options) { return value; }
-    return this.props.options[value].label;
+    if (this.isLikert()) { return this.props.options[value].label; }
+    if (this.isVisualAnalogScale()) {
+      const index = value === 0 ? 'minLabel' : 'maxLabel';
+      return this.props.options[index];
+    }
+    return round(value * 100);
   }
 
   normalizeValue = (value) => {
-    const options = this.props.options;
-    if (options) { return options[value].value; }
+    if (this.isLikert()) {
+      return this.props.options[value].value;
+    }
     return round(value, 3);
   }
 
@@ -47,22 +58,27 @@ class SliderInput extends Component {
     this.props.onChange(normalizedValue);
   }
 
+  isLikert = () =>
+    this.props.type === 'LIKERT';
+
+  isVisualAnalogScale = () =>
+    this.props.type === 'VAS';
+
   render() {
     const {
       options,
       value,
+      type,
     } = this.props;
 
-    const sliderProps = getSliderProps(options, value);
-    const tickCount = getTickCount(options);
-    const isLikert = !!options;
-    const isVisualAnalogScale = !options;
-    const showTooltips = !isVisualAnalogScale;
+    const sliderProps = this.getSliderProps(type, options, value);
+    const tickCount = this.getTickCount(type, options);
+    const showTooltips = !this.isVisualAnalogScale();
 
     const className = cx(
       'form-field-slider__slider',
-      { 'form-field-slider__slider--likert': isLikert },
-      { 'form-field-slider__slider--vas': isVisualAnalogScale },
+      { 'form-field-slider__slider--likert': this.isLikert() },
+      { 'form-field-slider__slider--vas': this.isVisualAnalogScale() },
     );
 
     return (

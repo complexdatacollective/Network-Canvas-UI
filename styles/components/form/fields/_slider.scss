@@ -13,7 +13,7 @@
   --slider-color: var(--color-platinum);
   --disabled-color: var(--color-charcoal);
 
-  @include grid($touch-height);
+  // @include grid($touch-height);
 
   &__track-line {
     position: absolute;
@@ -150,10 +150,10 @@
 
   &__slider {
     position: relative;
-    width: calc(100% - #{$touch-height});
+    width: calc(100% - #{$touch-height * 2});
     height: $height;
-    margin-left: $touch-height * .5;
-    margin-right: $touch-height * .5;
+    margin-left: $touch-height;
+    margin-right: $touch-height;
 
     &--vas,
     &--likert {
