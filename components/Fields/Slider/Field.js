@@ -36,7 +36,7 @@ class SliderField extends Component {
       type,
     } = this.props;
 
-    const seamlessClasses = cx(
+    const formFieldClasses = cx(
       className,
       'form-field-slider',
     );
@@ -49,7 +49,7 @@ class SliderField extends Component {
         { anyLabel &&
           <h4>{anyLabel}</h4>
         }
-        <div className={seamlessClasses}>
+        <div className={formFieldClasses}>
           <Slider
             options={options}
             type={sliderType}
