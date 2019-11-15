@@ -69,14 +69,8 @@ class SliderInput extends Component {
     this.props.type === 'VAS';
 
   render() {
-    const {
-      options,
-    } = this.props;
-
     const sliderProps = this.getSliderProps();
     const tickCount = this.getTickCount();
-
-    console.log({ tickCount, options });
     const showTooltips = !this.isVisualAnalogScale();
 
     const className = cx(
