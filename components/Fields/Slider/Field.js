@@ -15,6 +15,20 @@ const getSliderType = (variableType) => {
   }
 };
 
+const hasValue = value =>
+  value !== '';
+
+/**
+ * Empty string value should be treated as `null`
+ * because redux-forms turns `null` values (e.g.
+ * unset values) into empty strings when
+ * building the input object...
+ */
+const getValue = (value) => {
+  if (!hasValue(value)) { return null; }
+  return value;
+};
+
 class SliderField extends Component {
   constructor(props) {
     super(props);
@@ -54,6 +68,7 @@ class SliderField extends Component {
             options={options}
             type={sliderType}
             {...input}
+            value={getValue(input.value)}
           />
           {invalid && touched && <div className="form-field-text__error"><Icon name="warning" />{error}</div>}
         </div>

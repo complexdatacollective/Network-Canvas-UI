@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { round, get } from 'lodash';
+import { round, get, isNil } from 'lodash';
 import cx from 'classnames';
 import { Slider, Handles, Tracks, Ticks } from 'react-compound-slider';
 import Handle from './Handle';
@@ -7,6 +7,14 @@ import Track from './Track';
 import Tick from './Tick';
 
 class SliderInput extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      touched: false,
+    };
+  }
+
   getSliderProps = () => {
     const { options, value } = this.props;
 
@@ -57,7 +65,12 @@ class SliderInput extends Component {
     return round(value, 3);
   }
 
-  handleChange = ([value]) => {
+  /**
+   * The onChange property is called on initialization, so
+   * we are using handleSlideEnd() to capture changes.
+   */
+  handleSlideEnd = (value) => {
+    this.setState({ touched: true });
     const normalizedValue = this.normalizeValue(value);
     this.props.onChange(normalizedValue);
   }
@@ -72,18 +85,20 @@ class SliderInput extends Component {
     const sliderProps = this.getSliderProps();
     const tickCount = this.getTickCount();
     const showTooltips = !this.isVisualAnalogScale();
+    const isNotSet = isNil(this.props.value);
 
     const className = cx(
       'form-field-slider__slider',
       { 'form-field-slider__slider--likert': this.isLikert() },
       { 'form-field-slider__slider--vas': this.isVisualAnalogScale() },
+      { 'form-field-slider__slider--not-set': isNotSet },
     );
 
     return (
       <Slider
         {...sliderProps}
         className={className}
-        onChange={this.handleChange}
+        onSlideEnd={this.handleSlideEnd}
       >
         <Handles>
           {({ handles, activeHandleID, getHandleProps }) => (
