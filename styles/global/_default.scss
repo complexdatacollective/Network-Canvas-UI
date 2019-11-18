@@ -189,6 +189,22 @@ $categorical-colors: (
 
 @include color-sequence('cat-color-seq', $categorical-colors, true);
 
+
+// Protocol Schema Sequence
+$schema-colors: (
+  'sea-serpent',
+  'cyber-grape',
+  'slate-blue',
+  'paradise-pink',
+  'cerulean-blue',
+  'mustard',
+  'neon-carrot',
+  'barbie-pink',
+  'tomato'
+);
+
+@include color-sequence('schema-color-seq', $schema-colors, true);
+
 $base-line-height: 1.5;
 $netcanvas-font-stack: 'Quicksand', 'Open Sans', sans-serif;
 $system-font-stack: 'system-ui', sans-serif;
