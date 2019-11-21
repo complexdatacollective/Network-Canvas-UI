@@ -49,11 +49,11 @@ class SliderInput extends Component {
   };
 
   getLabelForValue = (value) => {
-    const { options } = this.props;
+    const { options, parameters } = this.props;
     if (this.isLikert()) { return get(options, [value, 'label']); }
     if (this.isVisualAnalogScale()) {
       const index = value === 0 ? 'minLabel' : 'maxLabel';
-      return get(options, index);
+      return get(parameters, index);
     }
     return round(value * 100);
   }

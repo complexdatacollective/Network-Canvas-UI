@@ -43,6 +43,7 @@ class SliderField extends Component {
       input,
       meta: { error, invalid, touched },
       label,
+      parameters,
       options,
       fieldLabel,
       className,
@@ -66,6 +67,7 @@ class SliderField extends Component {
         <div className={formFieldClasses}>
           <Slider
             options={options}
+            parameters={parameters}
             type={sliderType}
             {...input}
             value={getValue(input.value)}
@@ -81,6 +83,7 @@ class SliderField extends Component {
 
 SliderField.defaultProps = {
   options: null,
+  parameters: null,
 };
 
 export default SliderField;
