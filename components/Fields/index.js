@@ -9,6 +9,5 @@ export { default as Toggle } from './Toggle';
 export { default as ToggleButton } from './ToggleButton';
 export { default as ToggleButtonGroup } from './ToggleButtonGroup';
 export { default as CheckboxGroup } from './CheckboxGroup';
-export { default as Slider } from './Slider';
 export { default as LikertScale } from './LikertScale';
 export { default as VisualAnalogScale } from './VisualAnalogScale';
