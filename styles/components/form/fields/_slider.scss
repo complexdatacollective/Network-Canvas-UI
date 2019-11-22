@@ -1,5 +1,6 @@
+$module-name: form-field-slider;
 
-.form-field-slider {
+.#{$module-name} {
   $touch-height: 36px;
   $height: $touch-height * 3;
   $align-margin: $touch-height; // left-right margins
@@ -9,6 +10,12 @@
   --disabled-color: var(--color-charcoal);
   --tooltip-color: var(--color-cyber-grape);
   --label-color: var(--color-white);
+
+  border-radius: 1rem 1rem 0 0;
+  background-color: var(--input-background);
+  border-width: 0.1rem;
+  border-style: solid;
+  border-color: transparent;
 
   &__tracks {
     position: absolute;
@@ -175,13 +182,13 @@
 
     &--vas,
     &--likert {
-      .form-field-slider__track-line {
+      .#{$module-name}__track-line {
         border-radius: 0;
       }
 
-      .form-field-slider__track {
+      .#{$module-name}__track {
         &:first-child {
-          .form-field-slider__track-line {
+          .#{$module-name}__track-line {
             background-color: var(--slider-color);
           }
         }
@@ -189,7 +196,7 @@
     }
 
     &--not-set {
-      .form-field-slider__marker {
+      .#{$module-name}__marker {
         opacity: 0.8;
         filter: saturate(0);
 
@@ -198,6 +205,37 @@
           filter: initial;
         }
       }
+    }
+  }
+
+  &__error {
+    opacity: 0;
+    background: var(--error);
+    max-height: 0;
+    display: flex;
+    transition: opacity var(--animation-easing) var(--animation-duration-standard),
+    max-height var(--animation-easing) var(--animation-duration-standard);
+  }
+
+  &__error-message {
+    color: var(--form-error-text);
+    padding: 0.5rem 0.25rem;
+    display: flex;
+    align-items: center;
+
+    svg {
+      max-height: 1.2rem;
+    }
+  }
+
+  &--has-error {
+    border-width: 0.1rem;
+    border-style: solid;
+    border-color: var(--error);
+
+    .#{$module-name}__error {
+      opacity: 1;
+      max-height: 2.5rem;
     }
   }
 }

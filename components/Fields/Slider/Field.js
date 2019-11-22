@@ -54,6 +54,7 @@ class SliderField extends Component {
     const formFieldClasses = cx(
       className,
       'form-field-slider',
+      { 'form-field-slider--has-error': invalid && touched },
     );
 
     const anyLabel = fieldLabel || label;
@@ -72,7 +73,11 @@ class SliderField extends Component {
             {...input}
             value={getValue(input.value)}
           />
-          {invalid && touched && <div className="form-field-text__error"><Icon name="warning" />{error}</div>}
+          <div className="form-field-slider__error">
+            <div className="form-field-slider__error-message">
+              <Icon name="warning" />{error}
+            </div>
+          </div>
         </div>
 
       </div>

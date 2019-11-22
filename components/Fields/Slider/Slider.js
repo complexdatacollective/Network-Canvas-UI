@@ -72,7 +72,8 @@ class SliderInput extends Component {
   handleSlideEnd = (value) => {
     this.setState({ touched: true });
     const normalizedValue = this.normalizeValue(value);
-    this.props.onChange(normalizedValue);
+    // Use input.onBlur rather than input.onChange so that we can set 'touched'
+    this.props.onBlur(normalizedValue);
   }
 
   isLikert = () =>
