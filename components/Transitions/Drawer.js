@@ -5,7 +5,6 @@ import anime from 'animejs';
 import { getCSSVariableAsNumber, getCSSVariableAsObject } from '../../utils/CSSVariables';
 
 const FolderTransition = ({ children, ...props }) => {
-
   const defaultEasing = getCSSVariableAsObject('--animation-easing-js');
 
   const appear = () => ({
