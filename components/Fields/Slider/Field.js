@@ -64,7 +64,7 @@ class SliderField extends Component {
         { anyLabel &&
           <h4>{anyLabel}</h4>
         }
-        <div className={formFieldClasses}>
+        <div className={formFieldClasses} name={input.name}>
           <Slider
             options={options}
             parameters={parameters}
