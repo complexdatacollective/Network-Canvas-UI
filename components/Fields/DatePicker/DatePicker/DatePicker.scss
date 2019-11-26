@@ -1,0 +1,62 @@
+.date-picker {
+
+  &__panels {
+    display: flex;
+    width: 100%;
+  }
+
+  &__panel {
+    background: pink;
+    display: flex;
+    flex-direction: column;
+    flex: 0 1 33%;
+  }
+
+  &__panel-content {
+    display: flex;
+    flex-direction: row;
+    max-height: 250px;
+    background: green;
+  }
+
+  &__years {
+    background: yellow;
+    flex: 0 1 100%;
+    overflow-y: scroll;
+  }
+
+  &__months,
+  &__days {
+    background: orange;
+    flex: 0 1 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__year,
+  &__month,
+  &__day {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    cursor: pointer;
+
+    &--active {
+      background: red;
+      border-radius: 50%;
+    }
+  }
+
+  &__year {
+    flex: 0 1 100%;
+  }
+
+  &__month {
+    flex: 0 1 33%;
+  }
+
+  &__day {
+    flex: 0 1 14%;
+  }
+}

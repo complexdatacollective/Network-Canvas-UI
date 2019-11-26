@@ -11,3 +11,4 @@ export { default as ToggleButtonGroup } from './ToggleButtonGroup';
 export { default as CheckboxGroup } from './CheckboxGroup';
 export { default as LikertScale } from './LikertScale';
 export { default as VisualAnalogScale } from './VisualAnalogScale';
+export { default as DatePicker } from './DatePicker';
