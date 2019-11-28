@@ -1,5 +1,10 @@
 import React from 'react';
 import { DatePicker, Years, Months, Days } from './DatePicker/';
+import Panels from './Panels';
+import Panel from './Panel';
+
+const isRFEmpty = value =>
+  value === null || value === '';
 
 const Day = ({ day, active, onChange }) => (
   <div
@@ -25,38 +30,15 @@ const Year = ({ year, active, onChange }) => (
   >{year}</div>
 );
 
-// must understand dates, must paginate for year
-const PickerPanel = ({ current, children }) => {
-  return (
-    <div className="date-picker__panel">
-      { current &&
-        <div>
-          <div>
-            {current}
-          </div>
-        </div>
-      }
-      <div className="date-picker__panel-content">
-        {children}
-      </div>
-    </div>
-  );
-};
-
-const PickerPanels = ({ children }) => {
-  return (
-    <div className="date-picker__panels">
-      {children}
-    </div>
-  );
-};
-
 const DatePickerInput = ({
   onChange,
-  min,
-  max,
-  date,
+  parameters,
+  value,
 }) => {
+  const { min, max } = parameters;
+  // treat empty string as no value
+  const date = isRFEmpty(value) ? null : value;
+
   return (
     <DatePicker
       onChange={onChange}
@@ -64,8 +46,8 @@ const DatePickerInput = ({
       min={min}
       max={max}
     >
-      <PickerPanels>
-        <PickerPanel>
+      <Panels>
+        <Panel>
           <Years>
             {({ years, current, ...yearsProps }) => (
               <div className="date-picker__years">
@@ -79,8 +61,8 @@ const DatePickerInput = ({
               </div>
             )}
           </Years>
-        </PickerPanel>
-        <PickerPanel>
+        </Panel>
+        <Panel>
           <Months>
             {({ months, current, ...monthsProps }) => (
               <div className="date-picker__months">
@@ -94,10 +76,10 @@ const DatePickerInput = ({
               </div>
             )}
           </Months>
-        </PickerPanel>
-        <PickerPanel>
+        </Panel>
+        <Panel>
           <Days>
-            {({ days, current, daysProps }) => (
+            {({ days, current, ...daysProps }) => (
               <div className="date-picker__days">
                 {days.map(day => (
                   <Day
@@ -109,16 +91,18 @@ const DatePickerInput = ({
               </div>
             )}
           </Days>
-        </PickerPanel>
-      </PickerPanels>
+        </Panel>
+      </Panels>
     </DatePicker>
   );
 };
 
 DatePickerInput.defaultProps = {
-  date: null,
-  min: '1980-01-01',
-  max: '2019-12-01',
+  value: null,
+  parameters: {
+    min: '1970-01-01',
+    max: '2019-12-01',
+  },
 };
 
 export default DatePickerInput;
