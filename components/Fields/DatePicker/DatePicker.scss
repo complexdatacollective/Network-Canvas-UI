@@ -1,0 +1,97 @@
+.date-picker {
+
+  &__panels {
+    display: flex;
+    width: 100%;
+  }
+
+  &__panel {
+    display: flex;
+    flex-direction: column;
+    flex: 0 1 33%;
+  }
+
+  &__panel-navigation {
+    display: none;
+  }
+
+  &__panel-content {
+    display: flex;
+    flex-direction: row;
+    max-height: 250px;
+  }
+
+  &__years {
+    flex: 0 1 100%;
+    overflow-y: scroll;
+  }
+
+  &__months,
+  &__days {
+    flex: 0 1 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__year,
+  &__month,
+  &__day {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    cursor: pointer;
+    border-radius: 50%;
+
+    &--active {
+      background: red;
+      display: inline-block;
+    }
+  }
+
+  &__year {
+    flex: 0 1 100%;
+  }
+
+  &__month {
+    flex: 0 1 33%;
+  }
+
+  &__day {
+    flex: 0 1 14%;
+  }
+
+  @media only screen and (max-width: 10000px) {
+    &__panels {
+      display: block;
+      width: 100%;
+      overflow: hidden;
+      height: 400px;
+      position: relative;
+    }
+
+    &__panel {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform ease 300ms;
+
+      &--is-active {
+        transform: translateX(0);
+      }
+
+      &--is-complete {
+        transform: translateX(-100%);
+      }
+    }
+
+    &__panel-navigation {
+      display: block;
+    }
+  }
+}

@@ -4,10 +4,17 @@ import { DateTime } from 'luxon';
 import DatePickerContext from './DatePickerContext';
 
 const Days = ({ children }) => {
-  const { onChange, date } = useContext(DatePickerContext);
-  const changeHandler = day => onChange({ day });
+  const { onChange, onReset, date, set } = useContext(DatePickerContext);
   const days = range(1, DateTime.fromObject(date).daysInMonth + 1);
-  return children({ days, current: date.day, onChange: changeHandler });
+  const props = {
+    days,
+    day: date.day,
+    onReset,
+    onChange,
+    date,
+    set,
+  };
+  return children(props);
 };
 
 export default Days;

@@ -1,32 +1,33 @@
 import React from 'react';
 import { DatePicker, Years, Months, Days } from './DatePicker/';
-import Panels from './DatePicker/Panels';
+import Panels from './Panels';
 import Panel from './Panel';
+import './DatePicker.scss';
 
 const isRFEmpty = value =>
   value === null || value === '';
 
-const Day = ({ day, active, onChange }) => (
+const Day = ({ day, isActive, onChange }) => (
   <div
     className="date-picker__day"
-    style={{ backgroundColor: active && 'red' }}
-    onClick={() => onChange(day)}
+    style={{ backgroundColor: isActive && 'red' }}
+    onClick={() => onChange({ day })}
   >{day}</div>
 );
 
-const Month = ({ month, active, onChange }) => (
+const Month = ({ month, isActive, onChange }) => (
   <div
     className="date-picker__month"
-    style={{ backgroundColor: active && 'red' }}
-    onClick={() => onChange(month)}
+    style={{ backgroundColor: isActive && 'red' }}
+    onClick={() => onChange({ month, day: null })}
   >{month}</div>
 );
 
-const Year = ({ year, active, onChange }) => (
+const Year = ({ year, isActive, onChange }) => (
   <div
     className="date-picker__year"
-    style={{ backgroundColor: active && 'red' }}
-    onClick={() => onChange(year)}
+    style={{ backgroundColor: isActive && 'red' }}
+    onClick={() => onChange({ year, month: null, day: null })}
   >{year}</div>
 );
 
@@ -37,65 +38,73 @@ const DatePickerInput = ({
 }) => {
   const { min, max } = parameters;
   // treat empty string as no value
-  const date = isRFEmpty(value) ? null : value;
+  const initialDate = isRFEmpty(value) ? null : value;
 
   return (
     <DatePicker
       onChange={onChange}
-      date={date}
+      date={initialDate}
       min={min}
       max={max}
     >
       <Panels>
-        {({ lastChange }) => (
-          <div className="date-picker__panels">
-            <Panel active={!lastChange}>
-              <Years>
-                {({ years, current, ...yearsProps }) => (
-                  <div className="date-picker__years">
-                    {years.map(year => (
-                      <Year
-                        year={year}
-                        active={current === year}
-                        {...yearsProps}
-                      />
-                    ))}
-                  </div>
-                )}
-              </Years>
+        <Years>
+          {({ years, year, set, ...props }) => (
+            <Panel
+              isActive={!set.includes('year')}
+              isComplete={set.includes('year')}
+            >
+              <div className="date-picker__years">
+                {years.map(y => (
+                  <Year
+                    year={y}
+                    isActive={y === year}
+                    {...props}
+                  />
+                ))}
+              </div>
             </Panel>
-            <Panel active={lastChange === 'year'}>
-              <Months>
-                {({ months, current, ...monthsProps }) => (
-                  <div className="date-picker__months">
-                    {months.map(month => (
-                      <Month
-                        month={month}
-                        active={current === month}
-                        {...monthsProps}
-                      />
-                    ))}
-                  </div>
-                )}
-              </Months>
+          )}
+        </Years>
+        <Months>
+          {({ months, month, set, date, onReset, ...props }) => (
+            <Panel
+              isActive={set.includes('year') && !set.includes('month')}
+              isComplete={set.includes('month')}
+              label={date.year}
+              onBack={() => onReset(['year', 'month', 'day'])}
+            >
+              <div className="date-picker__months">
+                {months.map(m => (
+                  <Month
+                    month={m}
+                    isActive={m === month}
+                    {...props}
+                  />
+                ))}
+              </div>
             </Panel>
-            <Panel active={lastChange === 'month'}>
-              <Days>
-                {({ days, current, ...daysProps }) => (
-                  <div className="date-picker__days">
-                    {days.map(day => (
-                      <Day
-                        day={day}
-                        active={current === day}
-                        {...daysProps}
-                      />
-                    ))}
-                  </div>
-                )}
-              </Days>
+          )}
+        </Months>
+        <Days>
+          {({ days, day, set, date, onReset, ...props }) => (
+            <Panel
+              isActive={set.includes('year') && set.includes('month')}
+              label={`${date.year} ${date.month}`}
+              onBack={() => onReset(['month', 'day'])}
+            >
+              <div className="date-picker__days">
+                {days.map(d => (
+                  <Day
+                    day={d}
+                    isActive={d === day}
+                    {...props}
+                  />
+                ))}
+              </div>
             </Panel>
-          </div>
-        )}
+          )}
+        </Days>
       </Panels>
     </DatePicker>
   );
