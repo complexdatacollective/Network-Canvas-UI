@@ -1,4 +1,6 @@
 import React from 'react';
+import { Info } from 'luxon';
+import { get } from 'lodash';
 import { DatePicker, Years, Months, Days } from './DatePicker/';
 import Panels from './Panels';
 import Panel from './Panel';
@@ -7,6 +9,9 @@ import './DatePicker.scss';
 
 const isRFEmpty = value =>
   value === null || value === '';
+
+const formatMonth = value =>
+  get(Info.months(), value - 1, value);
 
 const DatePickerInput = ({
   onChange: onChangeInput,
@@ -52,6 +57,7 @@ const DatePickerInput = ({
                 type="month"
                 range={months}
                 value={month}
+                format={formatMonth}
                 onChange={m => onChange({ month: m, day: null })}
               />
             </Panel>
@@ -61,7 +67,7 @@ const DatePickerInput = ({
           {({ days, day, set, date, onReset, onChange }) => (
             <Panel
               isActive={set.includes('year') && set.includes('month')}
-              label={`${date.year} ${date.month}`}
+              label={date.month && `${date.year} ${formatMonth(date.month)}`}
               onBack={() => onReset(['month', 'day'])}
             >
               <RangePicker

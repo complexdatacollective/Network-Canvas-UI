@@ -6,7 +6,7 @@ const RangePicker = ({
   range,
   value,
   onChange,
-  render,
+  format,
 }) => {
   const classes = cx(
     'date-picker__range-picker',
@@ -14,23 +14,26 @@ const RangePicker = ({
   );
   return (
     <div className={classes}>
-      {range.map(x => (
-        <div
-          className={
-            cx(
-              'date-picker__range-item',
-              { 'date-picker__range-item--is-active': value === x },
-            )
-          }
-          onClick={() => onChange(x)}
-        >{render(x)}</div>
-      ))}
+      {range.map((x) => {
+        const itemStyle = cx(
+          'date-picker__range-item',
+          { 'date-picker__range-item--is-active': value === x },
+        );
+        return (
+          <div
+            className={itemStyle}
+            onClick={() => onChange(x)}
+          >
+            <div className="date-picker__highlight">{format(x)}</div>
+          </div>
+        );
+      })}
     </div>
   );
 };
 
 RangePicker.defaultProps = {
-  render: x => x,
+  format: x => x,
 };
 
 export default RangePicker;
