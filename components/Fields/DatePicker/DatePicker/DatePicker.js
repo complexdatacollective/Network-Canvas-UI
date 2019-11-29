@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { DateTime } from 'luxon';
 import DatePickerContext from './DatePickerContext';
 import './DatePicker.scss';
@@ -9,6 +9,7 @@ const DatePicker = ({
   children,
   ...props,
 }) => {
+  const [lastChange, setLastChange] = useState(null);
   const now = DateTime.local();
   const min = props.min ?
     DateTime.fromISO(props.min) :
@@ -17,10 +18,17 @@ const DatePicker = ({
     DateTime.fromISO(props.max) :
     now;
   const date = props.date ?
-    DateTime.fromISO(props.date) : null;
+    DateTime.fromISO(props.date).toObject() : now.toObject();
 
-  const onChange = (newDate) => {
+  console.log(date);
+
+  // const onChange = (newDate) => {
+  //   props.onChange(newDate.toFormat(DATE_FORMAT));
+  // };
+  const onChange = (values) => {
+    const newDate = DateTime.fromObject(date).set(values);
     props.onChange(newDate.toFormat(DATE_FORMAT));
+    setLastChange(values, newDate);
   };
 
   const context = {
@@ -28,6 +36,7 @@ const DatePicker = ({
     date,
     min,
     max,
+    lastChange,
   };
 
   return (

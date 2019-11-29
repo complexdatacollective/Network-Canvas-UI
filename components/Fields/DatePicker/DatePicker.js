@@ -1,6 +1,6 @@
 import React from 'react';
 import { DatePicker, Years, Months, Days } from './DatePicker/';
-import Panels from './Panels';
+import Panels from './DatePicker/Panels';
 import Panel from './Panel';
 
 const isRFEmpty = value =>
@@ -47,51 +47,55 @@ const DatePickerInput = ({
       max={max}
     >
       <Panels>
-        <Panel>
-          <Years>
-            {({ years, current, ...yearsProps }) => (
-              <div className="date-picker__years">
-                {years.map(year => (
-                  <Year
-                    year={year}
-                    active={current === year}
-                    {...yearsProps}
-                  />
-                ))}
-              </div>
-            )}
-          </Years>
-        </Panel>
-        <Panel>
-          <Months>
-            {({ months, current, ...monthsProps }) => (
-              <div className="date-picker__months">
-                {months.map(month => (
-                  <Month
-                    month={month}
-                    active={current === month}
-                    {...monthsProps}
-                  />
-                ))}
-              </div>
-            )}
-          </Months>
-        </Panel>
-        <Panel>
-          <Days>
-            {({ days, current, ...daysProps }) => (
-              <div className="date-picker__days">
-                {days.map(day => (
-                  <Day
-                    day={day}
-                    active={current === day}
-                    {...daysProps}
-                  />
-                ))}
-              </div>
-            )}
-          </Days>
-        </Panel>
+        {({ lastChange }) => (
+          <div className="date-picker__panels">
+            <Panel active={!lastChange}>
+              <Years>
+                {({ years, current, ...yearsProps }) => (
+                  <div className="date-picker__years">
+                    {years.map(year => (
+                      <Year
+                        year={year}
+                        active={current === year}
+                        {...yearsProps}
+                      />
+                    ))}
+                  </div>
+                )}
+              </Years>
+            </Panel>
+            <Panel active={lastChange === 'year'}>
+              <Months>
+                {({ months, current, ...monthsProps }) => (
+                  <div className="date-picker__months">
+                    {months.map(month => (
+                      <Month
+                        month={month}
+                        active={current === month}
+                        {...monthsProps}
+                      />
+                    ))}
+                  </div>
+                )}
+              </Months>
+            </Panel>
+            <Panel active={lastChange === 'month'}>
+              <Days>
+                {({ days, current, ...daysProps }) => (
+                  <div className="date-picker__days">
+                    {days.map(day => (
+                      <Day
+                        day={day}
+                        active={current === day}
+                        {...daysProps}
+                      />
+                    ))}
+                  </div>
+                )}
+              </Days>
+            </Panel>
+          </div>
+        )}
       </Panels>
     </DatePicker>
   );
