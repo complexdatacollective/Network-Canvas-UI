@@ -46,8 +46,6 @@ const DatePicker = ({
   const onChange = (values) => {
     const newDate = Object.assign({}, pickerState.date, values);
 
-    console.log({ newDate, values });
-
     const set = Object.keys(newDate)
       .reduce((acc, key) => {
         if (!newDate[key]) { return acc; }
