@@ -52,6 +52,8 @@ const DatePicker = ({
         return [...acc, key];
       }, []);
 
+    debugger;
+
     const changed = Object.keys(values);
 
     setPickerState(state => ({
@@ -68,18 +70,8 @@ const DatePicker = ({
     }
   };
 
-  const onReset = keys =>
-    onChange(
-      keys.reduce(
-        (acc, key) =>
-          ({ ...acc, [key]: null }),
-        {},
-      ),
-    );
-
   const context = {
     onChange,
-    onReset,
     min,
     max,
     ...pickerState,

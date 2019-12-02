@@ -1,8 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 
-// must understand dates, must paginate for year
-const Panel = ({ label, onBack, isComplete, isActive, children }) => {
+const Panel = ({ preview, onSelect, isComplete, isActive, children }) => {
   const className = cx(
     'date-picker__panel',
     {
@@ -12,9 +11,9 @@ const Panel = ({ label, onBack, isComplete, isActive, children }) => {
   );
   return (
     <div className={className}>
-      { label &&
-        <div className="date-picker__panel-navigation" onClick={onBack}>
-          {label}
+      { preview &&
+        <div className="date-picker__panel-preview" onClick={onSelect}>
+          {preview}
         </div>
       }
       <div className="date-picker__panel-content">

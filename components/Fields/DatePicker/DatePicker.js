@@ -7,11 +7,14 @@ import Panel from './Panel';
 import RangePicker from './RangePicker';
 import './DatePicker.scss';
 
-const isRFEmpty = value =>
+const isEmpty = value =>
   value === null || value === '';
 
-const formatMonth = value =>
-  get(Info.months(), value - 1, value);
+const formatMonth = numericMonth =>
+  get(Info.months(), numericMonth - 1, numericMonth);
+
+const asNullObject = keys =>
+  keys.reduce((acc, key) => ({ ...acc, [key]: null }), {});
 
 const DatePickerInput = ({
   onChange: onChangeInput,
@@ -19,8 +22,8 @@ const DatePickerInput = ({
   value,
 }) => {
   const { min, max } = parameters;
-  // treat empty string as no value
-  const initialDate = isRFEmpty(value) ? null : value;
+  // treat empty string as no value (for Redux Forms)
+  const initialDate = isEmpty(value) ? null : value;
 
   return (
     <DatePicker
@@ -31,10 +34,12 @@ const DatePickerInput = ({
     >
       <Panels>
         <Years>
-          {({ years, year, set, onChange }) => (
+          {({ years, year, set, date, onChange }) => (
             <Panel
               isActive={!set.includes('year')}
               isComplete={set.includes('year')}
+              onSelect={() => onChange(asNullObject(['year', 'month', 'day']))}
+              preview={date.year}
             >
               <RangePicker
                 type="year"
@@ -46,12 +51,12 @@ const DatePickerInput = ({
           )}
         </Years>
         <Months>
-          {({ months, month, set, date, onReset, onChange }) => (
+          {({ months, month, set, date, onChange }) => (
             <Panel
               isActive={set.includes('year') && !set.includes('month')}
               isComplete={set.includes('month')}
-              label={date.year}
-              onBack={() => onReset(['year', 'month', 'day'])}
+              preview={date.month}
+              onSelect={() => onChange(asNullObject(['month', 'day']))}
             >
               <RangePicker
                 type="month"
@@ -64,11 +69,11 @@ const DatePickerInput = ({
           )}
         </Months>
         <Days>
-          {({ days, day, set, date, onReset, onChange }) => (
+          {({ days, day, set, date, onChange }) => (
             <Panel
               isActive={set.includes('year') && set.includes('month')}
-              label={date.month && `${date.year} ${formatMonth(date.month)}`}
-              onBack={() => onReset(['month', 'day'])}
+              preview={date.day}
+              onSelect={() => onChange(asNullObject(['day']))}
             >
               <RangePicker
                 type="day"
