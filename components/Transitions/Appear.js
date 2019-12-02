@@ -6,32 +6,33 @@ import { getCSSVariableAsNumber, getCSSVariableAsObject } from '../../utils/CSSV
 
 const AppearTransition = ({ children, ...props }) => {
   const defaultEasing = getCSSVariableAsObject('--animation-easing-js');
+  const standardDuration = getCSSVariableAsNumber('--animation-duration-standard-ms');
 
-  const appear = () => ({
+  const appear = {
     opacity: [0, 1],
     scale: [0, 1],
     elasticity: 0,
     easing: defaultEasing,
-    duration: getCSSVariableAsNumber('--animation-duration-standard-ms'),
-  });
+    duration: standardDuration,
+  };
 
-  const disappear = () => ({
+  const disappear = {
     opacity: [1, 0],
     scale: [1, 0],
     height: 0,
     margin: 0,
     elasticity: 0,
     easing: defaultEasing,
-    duration: getCSSVariableAsNumber('--animation-duration-standard-ms'),
-  });
+    duration: standardDuration,
+  };
 
   return (
     <Transition
       mountOnEnter
       unmountOnExit
-      timeout={getCSSVariableAsNumber('--animation-duration-standard-ms')}
-      onEntering={el => anime({ targets: el, ...appear() })}
-      onExiting={el => anime({ targets: el, ...disappear() })}
+      timeout={standardDuration}
+      onEntering={el => anime({ targets: el, ...appear })}
+      onExiting={el => anime({ targets: el, ...disappear })}
       {...props}
     >
       { children }

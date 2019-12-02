@@ -6,33 +6,35 @@ import { getCSSVariableAsNumber, getCSSVariableAsObject } from '../../utils/CSSV
 
 const FolderTransition = ({ children, ...props }) => {
   const defaultEasing = getCSSVariableAsObject('--animation-easing-js');
+  const standardDuration = getCSSVariableAsNumber('--animation-duration-standard-ms');
+  const slowDuration = getCSSVariableAsNumber('--animation-duration-slow-ms');
 
-  const appear = () => ({
+  const appear = {
     opacity: {
       value: [0, 1],
-      duration: getCSSVariableAsNumber('--animation-duration-standard-ms'),
+      duration: standardDuration,
       easing: defaultEasing,
     },
     scaleY: {
       value: [0, 1],
-      duration: getCSSVariableAsNumber('--animation-duration-slow-ms'),
+      duration: slowDuration,
       easing: defaultEasing,
     },
-  });
+  };
 
-  const disappear = () => ({
+  const disappear = {
     opacity: 0,
     scaleY: 0,
     margin: 0,
     maxHeight: 0,
-    duration: getCSSVariableAsNumber('--animation-duration-standard-ms'),
-  });
+    duration: standardDuration,
+  };
 
   return (
     <Transition
       mountOnEnter
       unmountOnExit
-      timeout={getCSSVariableAsNumber('--animation-duration-slow-ms')}
+      timeout={slowDuration}
       onEntering={
         (el) => {
           const { height } = el.getBoundingClientRect();
@@ -44,9 +46,9 @@ const FolderTransition = ({ children, ...props }) => {
             maxHeight: {
               value: [0, `${height}px`],
               easing: 'easeInOutQuad',
-              duration: getCSSVariableAsNumber('--animation-duration-standard-ms'),
+              duration: standardDuration,
             },
-            ...appear(),
+            ...appear,
           });
         }
       }
@@ -56,7 +58,7 @@ const FolderTransition = ({ children, ...props }) => {
             targets: el,
             elasticity: 0,
             easing: 'easeInOutQuad',
-            ...disappear(),
+            ...disappear,
           });
         }
       }
