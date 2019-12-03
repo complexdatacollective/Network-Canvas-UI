@@ -41,6 +41,7 @@ class DatePickerField extends Component {
           <DatePicker
             parameters={parameters}
             {...input}
+            onChange={input.onBlur}
           />
           <div className="form-field-date-picker__error">
             <div className="form-field-date-picker__error-message">

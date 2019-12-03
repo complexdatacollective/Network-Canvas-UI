@@ -14,7 +14,7 @@ const Panel = ({ preview, type, onSelect, isComplete, isActive, children }) => {
     <div className={className}>
       { preview &&
         <div className="date-picker__panel-preview" onClick={onSelect}>
-          {preview}
+          <span>{preview}</span>
         </div>
       }
       <div className="date-picker__panel-content">
