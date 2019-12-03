@@ -40,6 +40,7 @@ const DatePickerInput = ({
               isComplete={set.includes('year')}
               onSelect={() => onChange(asNullObject(['year', 'month', 'day']))}
               preview={date.year}
+              type="year"
             >
               <RangePicker
                 type="year"
@@ -55,6 +56,7 @@ const DatePickerInput = ({
             <Panel
               isActive={set.includes('year') && !set.includes('month')}
               isComplete={set.includes('month')}
+              type="month"
               preview={date.month}
               onSelect={() => onChange(asNullObject(['month', 'day']))}
             >
@@ -71,8 +73,10 @@ const DatePickerInput = ({
         <Days>
           {({ days, day, set, date, onChange }) => (
             <Panel
-              isActive={set.includes('year') && set.includes('month')}
+              isActive={set.includes('year') && set.includes('month') && !set.includes('day')}
+              isComplete={set.includes('day')}
               preview={date.day}
+              type="day"
               onSelect={() => onChange(asNullObject(['day']))}
             >
               <RangePicker

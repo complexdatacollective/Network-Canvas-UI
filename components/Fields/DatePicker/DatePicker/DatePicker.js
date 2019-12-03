@@ -52,8 +52,6 @@ const DatePicker = ({
         return [...acc, key];
       }, []);
 
-    debugger;
-
     const changed = Object.keys(values);
 
     setPickerState(state => ({

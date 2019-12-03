@@ -1,10 +1,11 @@
 import React from 'react';
 import cx from 'classnames';
 
-const Panel = ({ preview, onSelect, isComplete, isActive, children }) => {
+const Panel = ({ preview, type, onSelect, isComplete, isActive, children }) => {
   const className = cx(
     'date-picker__panel',
     {
+      [`date-picker__panel--${type}`]: type,
       'date-picker__panel--is-complete': isComplete,
       'date-picker__panel--is-active': isActive,
     },
