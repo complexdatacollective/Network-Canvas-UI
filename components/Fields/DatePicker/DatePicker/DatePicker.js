@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { DateTime } from 'luxon';
 import DatePickerContext from './DatePickerContext';
 import { DATE_FORMATS, DEFAULT_TYPE, DEFAULT_MIN_DATE } from './config';
-import { now } from './helpers';
+import { now, isComplete } from './helpers';
 
 /**
  * Get date object from an ISO string
@@ -18,21 +18,6 @@ const getDate = (dateString) => {
     };
   return { year, month, day };
 };
-
-/**
- * Is date object fully complete?
- */
-const isComplete = type =>
-  ({ day, month, year }) => {
-    switch (type) {
-      case 'year':
-        return !!year;
-      case 'month':
-        return !!year && !!month;
-      default:
-        return !!year && !!month && !!day;
-    }
-  };
 
 const DatePicker = ({
   children,

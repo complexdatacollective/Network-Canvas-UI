@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { range } from 'lodash';
 import { DateTime } from 'luxon';
 import DatePickerContext from './DatePickerContext';
+import { isComplete, isEmpty } from './helpers';
 
 const Date = ({ children }) => {
   const { onChange, date, min, max, type } = useContext(DatePickerContext);
@@ -17,6 +18,8 @@ const Date = ({ children }) => {
     months,
     days,
     type,
+    isComplete: isComplete(type)(date),
+    isEmpty: isEmpty(type)(date),
   };
   return children(props);
 };

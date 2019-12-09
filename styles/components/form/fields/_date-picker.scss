@@ -46,21 +46,42 @@ $height: 18rem;
     padding: 0 1rem;
     line-height: 4rem;
     display: flex;
+    align-items: center;
 
     &-divider {
       color: var(--active-color);
+      padding: 0 0.5rem;
+    }
+
+    &-part,
+    &-clear {
+      display: inline-block;
+      transition: opacity var(--animation-easing) var(--animation-duration-standard);
     }
 
     &-part {
-      padding: 0 0.5rem;
-      display: inline-block;
-      cursor: pointer;
       opacity: 0.33;
-      transition: opacity var(--animation-easing) var(--animation-duration-standard);
-
       &--is-set {
+        cursor: pointer;
         opacity: 1;
       }
+    }
+
+    &-clear {
+      border-bottom: 1px solid var(--active-color);
+      line-height: 1.4rem;
+      height: 1.4rem;
+      margin-left: auto;
+      opacity: 0;
+
+      &--is-visible {
+        opacity: 1;
+        cursor: pointer;
+      }
+    }
+
+    &--is-empty {
+      cursor: pointer;
     }
   }
 
