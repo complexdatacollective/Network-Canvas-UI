@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 
-const Panel = ({ preview, type, onSelect, isComplete, isActive, children }) => {
+const Panel = ({ type, isComplete, isActive, children }) => {
   const className = cx(
     'date-picker__panel',
     {
@@ -12,11 +12,6 @@ const Panel = ({ preview, type, onSelect, isComplete, isActive, children }) => {
   );
   return (
     <div className={className}>
-      { preview &&
-        <div className="date-picker__panel-preview" onClick={onSelect}>
-          <span>{preview}</span>
-        </div>
-      }
       <div className="date-picker__panel-content">
         {children}
       </div>

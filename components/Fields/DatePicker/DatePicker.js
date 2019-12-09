@@ -1,22 +1,10 @@
-import React from 'react';
-import { DateTime, Info } from 'luxon';
-import { get } from 'lodash';
+import React, { useState } from 'react';
 import { DatePicker, Years, Months, Days } from './DatePicker/';
 import Panels from './Panels';
 import Panel from './Panel';
 import RangePicker from './RangePicker';
-
-const isEmpty = value =>
-  value === null || value === '';
-
-const formatMonth = numericMonth =>
-  get(Info.months(), numericMonth - 1, numericMonth);
-
-const getFirstDayOfMonth = dateObj =>
-  DateTime.fromObject({ ...dateObj, day: 1 }).toFormat('c');
-
-const asNullObject = keys =>
-  keys.reduce((acc, key) => ({ ...acc, [key]: null }), {});
+import DatePreview from './DatePreview';
+import { isEmpty, formatMonth, getFirstDayOfMonth } from './helpers';
 
 const DatePickerInput = ({
   onChange: onChangeInput,
@@ -26,6 +14,7 @@ const DatePickerInput = ({
   const { min, max } = parameters;
   // treat empty string as no value (for Redux Forms)
   const initialDate = isEmpty(value) ? null : value;
+  const [isOpen, toggleOpen] = useState(true);
 
   return (
     <div className="date-picker">
@@ -35,14 +24,13 @@ const DatePickerInput = ({
         min={min}
         max={max}
       >
+        <DatePreview />
         <Panels>
           <Years>
             {({ years, year, set, date, onChange }) => (
               <Panel
                 isActive={!set.includes('year')}
                 isComplete={set.includes('year')}
-                onSelect={() => onChange(asNullObject(['year', 'month', 'day']))}
-                preview={date.year}
                 type="year"
               >
                 <RangePicker
@@ -61,8 +49,6 @@ const DatePickerInput = ({
                 isActive={set.includes('year') && !set.includes('month')}
                 isComplete={set.includes('month')}
                 type="month"
-                preview={formatMonth(date.month)}
-                onSelect={() => onChange(asNullObject(['month', 'day']))}
               >
                 <RangePicker
                   type="month"
@@ -77,11 +63,9 @@ const DatePickerInput = ({
           <Days>
             {({ days, day, set, date, onChange }) => (
               <Panel
-                isActive={set.includes('year') && set.includes('month') && !set.includes('day')}
+                isActive={set.includes('year') && set.includes('month')}
                 isComplete={set.includes('day')}
-                preview={date.day}
                 type="day"
-                onSelect={() => onChange(asNullObject(['day']))}
               >
                 <RangePicker
                   type="day"

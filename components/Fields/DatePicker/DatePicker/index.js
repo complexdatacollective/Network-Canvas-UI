@@ -6,5 +6,6 @@ const now = DateTime.local().toFormat(DATE_FORMAT);
 export { default as Years } from './Years';
 export { default as Months } from './Months';
 export { default as Days } from './Days';
+export { default as Date } from './Date';
 export { default as DatePicker } from './DatePicker';
 export { DATE_FORMAT, now };
