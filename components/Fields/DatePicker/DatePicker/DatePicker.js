@@ -32,7 +32,6 @@ const DatePicker = ({
 }) => {
   const [pickerState, setPickerState] = useState({
     date: getDate(props.date),
-    set: [],
     changed: [],
   });
   const now = DateTime.local();
@@ -46,18 +45,11 @@ const DatePicker = ({
   const onChange = (values) => {
     const newDate = Object.assign({}, pickerState.date, values);
 
-    const set = Object.keys(newDate)
-      .reduce((acc, key) => {
-        if (!newDate[key]) { return acc; }
-        return [...acc, key];
-      }, []);
-
     const changed = Object.keys(values);
 
     setPickerState(state => ({
       ...state,
       changed,
-      set,
       date: newDate,
     }));
 

@@ -1,22 +1,51 @@
 import React from 'react';
+import cx from 'classnames';
 import { Date } from './DatePicker/';
-import { formatMonth, asNullObject } from './helpers';
+import { formatMonth } from './helpers';
 
-const DatePreview = () => (
+const DatePreview = ({ openEditor }) => (
   <Date>
-    {({ date, onChange }) => (
-      <div className="date-picker__preview">
-        <div onClick={() => onChange(asNullObject(['year', 'month', 'day']))}>
-          {date.year || 'year'}
+    {({ date, onChange }) => {
+      const resetYear = () => {
+        openEditor();
+        onChange({ year: null, month: null, day: null });
+      };
+
+      const resetMonth = () => {
+        openEditor();
+        onChange({ month: null, day: null });
+      };
+
+      const resetDay = () => {
+        openEditor();
+        onChange({ day: null });
+      };
+
+      return (
+        <div className="date-picker__preview">
+          <div
+            className={cx('date-picker__preview-part', { 'date-picker__preview-part--is-set': date.year })}
+            onClick={resetYear}
+          >
+            {date.year || 'year'}
+          </div>
+          <span>/</span>
+          <div
+            className={cx('date-picker__preview-part', { 'date-picker__preview-part--is-set': date.month })}
+            onClick={resetMonth}
+          >
+            {formatMonth(date.month) || 'month'}
+          </div>
+          <span>/</span>
+          <div
+            className={cx('date-picker__preview-part', { 'date-picker__preview-part--is-set': date.day })}
+            onClick={resetDay}
+          >
+            {date.day || 'day'}
+          </div>
         </div>
-        <div onClick={() => onChange(asNullObject(['month', 'day']))}>
-          {formatMonth(date.month) || 'month'}
-        </div>
-        <div onClick={() => onChange(asNullObject(['day']))}>
-          {date.day || 'day'}
-        </div>
-      </div>
-    )}
+      );
+    }}
   </Date>
 );
 

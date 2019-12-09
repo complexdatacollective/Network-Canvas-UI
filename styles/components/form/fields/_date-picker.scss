@@ -1,5 +1,6 @@
 $module-name: date-picker;
 $animation-speed: var(--animation-duration-standard);
+$height: 18rem;
 
 .form-field-date-picker {
   &__error {
@@ -34,6 +35,7 @@ $animation-speed: var(--animation-duration-standard);
 
 .#{$module-name} {
   --active-color: var(--color-sea-green);
+  --background: var(--input-background);
   max-width: 100%;
   overflow: hidden;
   // --slider-color: var(--color-platinum);
@@ -44,13 +46,24 @@ $animation-speed: var(--animation-duration-standard);
 
   &__preview {
     font-size: 1.5rem;
+    background-color: var(--background);
+    border-radius: 1rem 1rem 0 0;
+    padding: 1rem;
 
-    div {
-      background-color: var(--active-color);
-      padding: 0.5rem 1rem;
-      border-radius: 1rem;
+    span {
+      color: var(--active-color);
+    }
+
+    &-part {
+      padding: 0 0.5rem;
       cursor: pointer;
       display: inline-block;
+      opacity: 0.33;
+      transition: opacity var(--animation-easing) var(--animation-duration-standard);
+
+      &--is-set {
+        opacity: 1;
+      }
     }
   }
 
@@ -58,8 +71,13 @@ $animation-speed: var(--animation-duration-standard);
     display: block;
     width: 100%;
     overflow: hidden;
-    height: 300px;
+    height: 0;
     position: relative;
+    transition: height var(--animation-easing) var(--animation-duration-standard);
+
+    &--is-open {
+      height: $height;
+    }
   }
 
   &__panel {
