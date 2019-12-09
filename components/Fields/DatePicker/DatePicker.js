@@ -57,7 +57,7 @@ const DatePickerInput = ({
                         range={years}
                         value={date.year}
                         offset={years % 5}
-                        onChange={y => onChange({ year: y, month: null, day: null })}
+                        onSelect={y => onChange({ year: y, month: null, day: null })}
                       />
                     )}
                   </Years>
@@ -75,7 +75,7 @@ const DatePickerInput = ({
                           range={months}
                           value={date.month}
                           format={formatMonth}
-                          onChange={m => onChange({ month: m, day: null })}
+                          onSelect={m => onChange({ month: m, day: null })}
                         />
                       )}
                     </Months>
@@ -94,7 +94,7 @@ const DatePickerInput = ({
                           range={days}
                           value={date.day}
                           offset={getFirstDayOfMonth(date) - 1}
-                          onChange={d => onChange({ day: d })}
+                          onSelect={d => onChange({ day: d })}
                         />
                       )}
                     </Days>

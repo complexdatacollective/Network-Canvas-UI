@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { times } from 'lodash';
 
@@ -6,7 +7,7 @@ const RangePicker = ({
   type,
   range,
   value,
-  onChange,
+  onSelect,
   format,
   offset,
 }) => {
@@ -31,7 +32,7 @@ const RangePicker = ({
         return (
           <div
             className={itemStyle}
-            onClick={() => onChange(x)}
+            onClick={() => onSelect(x)}
           >
             <div className="date-picker__highlight">{format(x)}</div>
           </div>
@@ -41,7 +42,19 @@ const RangePicker = ({
   );
 };
 
+RangePicker.propTypes = {
+  type: PropTypes.string,
+  range: PropTypes.array.isRequired,
+  value: PropTypes.string,
+  onSelect: PropTypes.func,
+  format: PropTypes.func,
+  offset: PropTypes.number,
+};
+
 RangePicker.defaultProps = {
+  value: null,
+  type: null,
+  onSelect: () => {},
   format: x => x,
   offset: 0,
 };

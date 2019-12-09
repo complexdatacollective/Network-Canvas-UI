@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 const Panels = ({ children, isOpen }) => {
@@ -14,6 +15,16 @@ const Panels = ({ children, isOpen }) => {
       {children}
     </div>
   );
-}
+};
+
+Panels.propTypes = {
+  children: PropTypes.node,
+  isOpen: PropTypes.bool,
+};
+
+Panels.defaultProps = {
+  children: null,
+  isOpen: true,
+};
 
 export default Panels;

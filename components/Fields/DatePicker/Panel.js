@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 const Panel = ({ type, isComplete, isActive, children }) => {
@@ -17,6 +18,20 @@ const Panel = ({ type, isComplete, isActive, children }) => {
       </div>
     </div>
   );
+};
+
+Panel.propTypes = {
+  type: PropTypes.string,
+  isComplete: PropTypes.bool,
+  isActive: PropTypes.bool,
+  children: PropTypes.node,
+};
+
+Panel.defaultProps = {
+  type: null,
+  isComplete: false,
+  isActive: false,
+  children: null,
 };
 
 export default Panel;
