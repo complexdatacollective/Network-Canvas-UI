@@ -1,17 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { DatePicker, Years, Months, Days } from './DatePicker/';
+import PropTypes from 'prop-types';
+import { DatePicker, Years, Months, Days, Date } from './DatePicker/';
 import Panels from './Panels';
 import Panel from './Panel';
 import RangePicker from './RangePicker';
 import DatePreview from './DatePreview';
 import { isEmpty, formatMonth, getFirstDayOfMonth, hasProperties } from './helpers';
 
+const defaultParameters = {
+  year: true,
+  month: true,
+  day: true,
+};
+
 const DatePickerInput = ({
   onChange: onChangeInput,
   parameters,
   value,
 }) => {
-  const { min, max } = parameters;
+  const { min, max, year, month, day } = Object.assign(
+    {},
+    defaultParameters,
+    parameters,
+  );
   // treat empty string as no value (for Redux Forms)
   const initialDate = isEmpty(value) ? null : value;
   const [panelsOpen, setPanelsOpen] = useState(false);
@@ -20,6 +31,8 @@ const DatePickerInput = ({
     setPanelsOpen(false);
   }, [value]);
 
+  const handleClickDate = () => setPanelsOpen(true);
+
   return (
     <div className="date-picker">
       <DatePicker
@@ -27,61 +40,66 @@ const DatePickerInput = ({
         date={initialDate}
         min={min}
         max={max}
+        set={{ year, month, day }}
       >
-        <DatePreview openEditor={() => setPanelsOpen(true)} />
-        <Panels isOpen={panelsOpen}>
-          <Years>
-            {({ years, year, date, onChange }) => (
+        <DatePreview onClickDate={handleClickDate} />
+        <Date>
+          {({ date, onChange }) => (
+            <Panels isOpen={panelsOpen}>
               <Panel
                 isActive={hasProperties([], ['year'])(date)}
                 isComplete={hasProperties(['year'])(date)}
                 type="year"
               >
-                <RangePicker
-                  type="year"
-                  range={years}
-                  value={year}
-                  offset={years % 5}
-                  onChange={y => onChange({ year: y, month: null, day: null })}
-                />
+                <Years>
+                  {({ years }) => (
+                    <RangePicker
+                      type="year"
+                      range={years}
+                      value={date.year}
+                      offset={years % 5}
+                      onChange={y => onChange({ year: y, month: null, day: null })}
+                    />
+                  )}
+                </Years>
               </Panel>
-            )}
-          </Years>
-          <Months>
-            {({ months, month, date, onChange }) => (
               <Panel
                 isActive={hasProperties(['year'], ['month'])(date)}
                 isComplete={hasProperties(['month'])(date)}
                 type="month"
               >
-                <RangePicker
-                  type="month"
-                  range={months}
-                  value={month}
-                  format={formatMonth}
-                  onChange={m => onChange({ month: m, day: null })}
-                />
+                <Months>
+                  {({ months }) => (
+                    <RangePicker
+                      type="month"
+                      range={months}
+                      value={date.month}
+                      format={formatMonth}
+                      onChange={m => onChange({ month: m, day: null })}
+                    />
+                  )}
+                </Months>
               </Panel>
-            )}
-          </Months>
-          <Days>
-            {({ days, day, date, onChange }) => (
               <Panel
                 isActive={hasProperties(['year', 'month'])(date)}
                 isComplete={hasProperties(['day'])(date)}
                 type="day"
               >
-                <RangePicker
-                  type="day"
-                  range={days}
-                  value={day}
-                  offset={getFirstDayOfMonth(date) - 1}
-                  onChange={d => onChange({ day: d })}
-                />
+                <Days>
+                  {({ days }) => (
+                    <RangePicker
+                      type="day"
+                      range={days}
+                      value={date.day}
+                      offset={getFirstDayOfMonth(date) - 1}
+                      onChange={d => onChange({ day: d })}
+                    />
+                  )}
+                </Days>
               </Panel>
-            )}
-          </Days>
-        </Panels>
+            </Panels>
+          )}
+        </Date>
       </DatePicker>
     </div>
   );
@@ -89,10 +107,14 @@ const DatePickerInput = ({
 
 DatePickerInput.defaultProps = {
   value: null,
-  parameters: {
-    min: '1973-01-01',
-    max: '2019-12-01',
-  },
+  parameters: {},
+  onChange: () => {},
+};
+
+DatePickerInput.propTypes = {
+  onChange: PropTypes.func,
+  parameters: PropTypes.object,
+  value: PropTypes.string,
 };
 
 export default DatePickerInput;

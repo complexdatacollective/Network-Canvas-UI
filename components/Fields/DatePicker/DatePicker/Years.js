@@ -2,15 +2,17 @@ import { useContext } from 'react';
 import { range } from 'lodash';
 import DatePickerContext from './DatePickerContext';
 
+/**
+ * Supplies `years` range based on min/max props.
+ */
 const Years = ({ children }) => {
-  const { onChange, date, min, max } = useContext(DatePickerContext);
+  const { min, max } = useContext(DatePickerContext);
   const years = range(min.year, max.year + 1);
+
   const props = {
     years,
-    year: date.year,
-    onChange,
-    date,
   };
+
   return children(props);
 };
 

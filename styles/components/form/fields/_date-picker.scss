@@ -38,26 +38,23 @@ $height: 18rem;
   --background: var(--input-background);
   max-width: 100%;
   overflow: hidden;
-  // --slider-color: var(--color-platinum);
-  // --disabled-color: var(--color-charcoal);
-  // --label-color: var(--color-white);
-  // --tooltip-color: var(--color-white);
-  // --tooltip-label: var(--text-dark);
 
   &__preview {
-    font-size: 1.5rem;
+    font-size: 1rem;
     background-color: var(--background);
     border-radius: 1rem 1rem 0 0;
-    padding: 1rem;
+    padding: 0 1rem;
+    line-height: 4rem;
+    display: flex;
 
-    span {
+    &-divider {
       color: var(--active-color);
     }
 
     &-part {
       padding: 0 0.5rem;
-      cursor: pointer;
       display: inline-block;
+      cursor: pointer;
       opacity: 0.33;
       transition: opacity var(--animation-easing) var(--animation-duration-standard);
 
@@ -71,12 +68,17 @@ $height: 18rem;
     display: block;
     width: 100%;
     overflow: hidden;
+    transform: scale3d(1, 1, 1);
+    box-sizing: border-box;
+    border-top: 2px solid transparent;
     height: 0;
     position: relative;
-    transition: height var(--animation-easing) var(--animation-duration-standard);
+    transition: height var(--animation-easing) var(--animation-duration-standard),
+      border-top-color var(--animation-easing) var(--animation-duration-standard);
 
     &--is-open {
       height: $height;
+      border-top-color: var(--active-color);
     }
   }
 
@@ -103,18 +105,6 @@ $height: 18rem;
       transform: translateX(-100%);
     }
   }
-
-  // &__panel-preview {
-  //   display: none;
-  //   font-size: 1.5rem;
-
-  //   span {
-  //     background-color: var(--active-color);
-  //     padding: 0.5rem 1rem;
-  //     border-radius: 1rem;
-  //     cursor: pointer;
-  //   }
-  // }
 
   &__panel-content {
     display: flex;
@@ -163,11 +153,11 @@ $height: 18rem;
       .#{$module-name}__range-item {
         padding: 1rem 0;
 
-        &:nth-child(10n - 4),
-        &:nth-child(10n - 3),
-        &:nth-child(10n - 2),
-        &:nth-child(10n - 1),
-        &:nth-child(10n) {
+        &:nth-child(10n - 9),
+        &:nth-child(10n - 8),
+        &:nth-child(10n - 7),
+        &:nth-child(10n - 6),
+        &:nth-child(10n - 5) {
           background-color: rgba(255, 255, 255, 0.05);
         }
       }
@@ -176,9 +166,9 @@ $height: 18rem;
     &--month {
       grid-template-columns: 1fr 1fr 1fr;
       .#{$module-name}__range-item {
-        &:nth-child(6n - 2),
-        &:nth-child(6n - 1),
-        &:nth-child(6n) {
+        &:nth-child(6n - 5),
+        &:nth-child(6n - 4),
+        &:nth-child(6n - 3) {
           background-color: rgba(255, 255, 255, 0.05);
         }
       }
@@ -187,13 +177,13 @@ $height: 18rem;
     &--day {
       grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
       .#{$module-name}__range-item {
-        &:nth-child(14n - 6),
-        &:nth-child(14n - 5),
-        &:nth-child(14n - 4),
-        &:nth-child(14n - 3),
-        &:nth-child(14n - 2),
-        &:nth-child(14n - 1),
-        &:nth-child(14n) {
+        &:nth-child(14n - 13),
+        &:nth-child(14n - 12),
+        &:nth-child(14n - 11),
+        &:nth-child(14n - 10),
+        &:nth-child(14n - 9),
+        &:nth-child(14n - 8),
+        &:nth-child(14n - 7) {
           background-color: rgba(255, 255, 255, 0.05);
         }
       }

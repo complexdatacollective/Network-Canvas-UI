@@ -1,30 +1,33 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { DateTime } from 'luxon';
 import DatePickerContext from './DatePickerContext';
+import { DATE_FORMAT, DEFAULT_MIN_DATE } from './config';
+import { now } from './helpers';
 
-export const DATE_FORMAT = 'yyyy-MM-dd';
-
-const trimDate = (dateObject) => {
-  const { year, month, day } = dateObject;
-  return { year, month, day };
-};
-
+/**
+ * Get date object from an ISO string
+ */
 const getDate = (dateString) => {
-  const date = dateString ?
+  const { year, month, day } = dateString ?
     DateTime.fromISO(dateString).toObject() :
     {
       month: null,
       day: null,
       year: null,
     };
-  return trimDate(date);
+  return { year, month, day };
 };
 
-const isComplete = ({ day, month, year }, { setDay, setMonth, setYear }) => (
-  (!setDay || day) &&
-  (!setMonth || month) &&
-  (!setYear || year)
-);
+/**
+ * Is date object fully complete?
+ */
+const isComplete = ({ set }) =>
+  ({ day, month, year }) => (
+    (!set.day || day) &&
+    (!set.month || month) &&
+    (!set.year || year)
+  );
 
 const DatePicker = ({
   children,
@@ -32,28 +35,25 @@ const DatePicker = ({
 }) => {
   const [pickerState, setPickerState] = useState({
     date: getDate(props.date),
-    changed: [],
   });
-  const now = DateTime.local();
+
   const min = props.min ?
     DateTime.fromISO(props.min) :
-    DateTime.fromISO('1970-01-01');
+    DateTime.fromISO(DEFAULT_MIN_DATE);
+
   const max = props.max ?
     DateTime.fromISO(props.max) :
-    now;
+    now().toFormat(DATE_FORMAT);
 
   const onChange = (values) => {
     const newDate = Object.assign({}, pickerState.date, values);
 
-    const changed = Object.keys(values);
-
     setPickerState(state => ({
       ...state,
-      changed,
       date: newDate,
     }));
 
-    if (isComplete(newDate, props)) {
+    if (isComplete(props)(newDate)) {
       const dateString = DateTime.fromObject(newDate)
         .toFormat(DATE_FORMAT);
       props.onChange(dateString);
@@ -64,6 +64,7 @@ const DatePicker = ({
     onChange,
     min,
     max,
+    set: props.set,
     ...pickerState,
   };
 
@@ -75,9 +76,21 @@ const DatePicker = ({
 };
 
 DatePicker.defaultProps = {
+  children: null,
   setYear: true,
   setMonth: true,
   setDay: true,
+  min: null,
+  max: null,
+  onChange: () => {},
+};
+
+DatePicker.propTypes = {
+  children: PropTypes.node,
+  date: PropTypes.string.isRequired,
+  min: PropTypes.string,
+  max: PropTypes.string,
+  onChange: PropTypes.func,
 };
 
 export default DatePicker;
