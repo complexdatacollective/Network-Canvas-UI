@@ -24,15 +24,13 @@ const DatePreview = ({ onClickDate }) => (
 
       return (
         <div className="date-picker__preview">
-          { set.year &&
-            <div
-              className={cx('date-picker__preview-part', { 'date-picker__preview-part--is-set': date.year })}
-              onClick={handleClickYear}
-            >
-              {date.year || 'year'}
-            </div>
-          }
-          { set.year && set.month &&
+          <div
+            className={cx('date-picker__preview-part', { 'date-picker__preview-part--is-set': date.year })}
+            onClick={handleClickYear}
+          >
+            {date.year || 'year'}
+          </div>
+          { set.month &&
             <div className="date-picker__preview-divider">/</div>
           }
           { set.month &&

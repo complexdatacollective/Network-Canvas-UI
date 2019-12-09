@@ -5,6 +5,11 @@ import DatePickerContext from './DatePickerContext';
 import { DATE_FORMAT, DEFAULT_MIN_DATE } from './config';
 import { now } from './helpers';
 
+const defaultSet = {
+  month: true,
+  day: true,
+};
+
 /**
  * Get date object from an ISO string
  */
@@ -22,11 +27,11 @@ const getDate = (dateString) => {
 /**
  * Is date object fully complete?
  */
-const isComplete = ({ set }) =>
+const isComplete = set =>
   ({ day, month, year }) => (
     (!set.day || day) &&
     (!set.month || month) &&
-    (!set.year || year)
+    year
   );
 
 const DatePicker = ({
@@ -45,6 +50,11 @@ const DatePicker = ({
     DateTime.fromISO(props.max) :
     now().toFormat(DATE_FORMAT);
 
+  const set = Object.assign({}, defaultSet, props.set);
+
+  // If day is required, month cannot be omitted.
+  if (set.day) { set.month = true; }
+
   const onChange = (values) => {
     const newDate = Object.assign({}, pickerState.date, values);
 
@@ -53,7 +63,7 @@ const DatePicker = ({
       date: newDate,
     }));
 
-    if (isComplete(props)(newDate)) {
+    if (isComplete(set)(newDate)) {
       const dateString = DateTime.fromObject(newDate)
         .toFormat(DATE_FORMAT);
       props.onChange(dateString);
@@ -64,7 +74,7 @@ const DatePicker = ({
     onChange,
     min,
     max,
-    set: props.set,
+    set,
     ...pickerState,
   };
 
@@ -77,9 +87,7 @@ const DatePicker = ({
 
 DatePicker.defaultProps = {
   children: null,
-  setYear: true,
-  setMonth: true,
-  setDay: true,
+  set: {},
   min: null,
   max: null,
   onChange: () => {},
@@ -88,6 +96,7 @@ DatePicker.defaultProps = {
 DatePicker.propTypes = {
   children: PropTypes.node,
   date: PropTypes.string.isRequired,
+  set: PropTypes.object,
   min: PropTypes.string,
   max: PropTypes.string,
   onChange: PropTypes.func,
