@@ -141,7 +141,6 @@ $height: 18rem;
   }
 
   &__range-picker {
-    @extend .scrollable;
     padding-top: 0 !important;
     flex: 0 1 100%;
     display: grid;
@@ -149,6 +148,7 @@ $height: 18rem;
     width: 100%;
 
     &--year {
+      @extend .scrollable;
       grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
       .#{$module-name}__range-item {
         padding: 1rem 0;
