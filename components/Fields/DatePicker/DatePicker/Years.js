@@ -7,7 +7,7 @@ import DatePickerContext from './DatePickerContext';
  */
 const Years = ({ children }) => {
   const { min, max } = useContext(DatePickerContext);
-  const years = range(min.year, max.year + 1);
+  const years = range(max.year, min.year - 1);
 
   const props = {
     years,

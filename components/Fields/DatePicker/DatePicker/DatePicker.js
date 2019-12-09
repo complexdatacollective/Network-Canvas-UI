@@ -48,7 +48,7 @@ const DatePicker = ({
 
   const max = props.max ?
     DateTime.fromISO(props.max) :
-    now().toFormat(DATE_FORMAT);
+    now();
 
   const set = Object.assign({}, defaultSet, props.set);
 
