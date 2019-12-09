@@ -6,7 +6,7 @@ import { formatMonth } from './helpers';
 
 const DatePreview = ({ onClickDate }) => (
   <Date>
-    {({ date, set, onChange }) => {
+    {({ date, type, onChange }) => {
       const handleClickYear = () => {
         onClickDate();
         onChange({ year: null, month: null, day: null });
@@ -30,10 +30,10 @@ const DatePreview = ({ onClickDate }) => (
           >
             {date.year || 'year'}
           </div>
-          { set.month &&
+          { ['full', 'month'].includes(type) &&
             <div className="date-picker__preview-divider">/</div>
           }
-          { set.month &&
+          { ['full', 'month'].includes(type) &&
             <div
               className={cx('date-picker__preview-part', { 'date-picker__preview-part--is-set': date.month })}
               onClick={handleClickMonth}
@@ -41,10 +41,10 @@ const DatePreview = ({ onClickDate }) => (
               {formatMonth(date.month) || 'month'}
             </div>
           }
-          { set.month && set.day &&
+          { ['full'].includes(type) &&
             <div className="date-picker__preview-divider">/</div>
           }
-          { set.day &&
+          { ['full'].includes(type) &&
             <div
               className={cx('date-picker__preview-part', { 'date-picker__preview-part--is-set': date.day })}
               onClick={handleClickDay}

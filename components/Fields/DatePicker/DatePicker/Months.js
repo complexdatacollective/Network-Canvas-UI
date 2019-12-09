@@ -5,10 +5,7 @@ import { range } from 'lodash';
  */
 const Months = ({ children }) => {
   const months = range(1, 13);
-  const props = {
-    months,
-  };
-  return children(props);
+  return children({ months });
 };
 
 export default Months;

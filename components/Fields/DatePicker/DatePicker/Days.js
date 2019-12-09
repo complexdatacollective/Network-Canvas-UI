@@ -9,10 +9,7 @@ import DatePickerContext from './DatePickerContext';
 const Days = ({ children }) => {
   const { date } = useContext(DatePickerContext);
   const days = range(1, DateTime.fromObject(date).daysInMonth + 1);
-  const props = {
-    days,
-  };
-  return children(props);
+  return children({ days });
 };
 
 export default Days;

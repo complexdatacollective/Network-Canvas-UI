@@ -4,7 +4,7 @@ import { DateTime } from 'luxon';
 import DatePickerContext from './DatePickerContext';
 
 const Date = ({ children }) => {
-  const { onChange, date, min, max, set } = useContext(DatePickerContext);
+  const { onChange, date, min, max, type } = useContext(DatePickerContext);
 
   const years = range(min.year, max.year + 1);
   const months = range(1, 13);
@@ -16,7 +16,7 @@ const Date = ({ children }) => {
     years,
     months,
     days,
-    set,
+    type,
   };
   return children(props);
 };

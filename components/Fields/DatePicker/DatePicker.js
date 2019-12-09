@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { pick } from 'lodash';
 import { DatePicker, Years, Months, Days, Date } from './DatePicker/';
 import Panels from './Panels';
 import Panel from './Panel';
@@ -13,9 +12,6 @@ const DatePickerInput = ({
   parameters,
   value,
 }) => {
-  const { min, max } = parameters;
-  const setParameter = pick(parameters, ['month', 'day']);
-
   // treat empty string as no value (for Redux Forms)
   const initialDate = isEmpty(value) ? null : value;
   const [panelsOpen, setPanelsOpen] = useState(false);
@@ -31,15 +27,15 @@ const DatePickerInput = ({
       <DatePicker
         onChange={onChangeInput}
         date={initialDate}
-        min={min}
-        max={max}
-        set={setParameter}
+        min={parameters.min}
+        max={parameters.max}
+        type={parameters.type}
       >
         <DatePreview onClickDate={handleClickDate} />
         <Date>
-          {({ date, set, onChange }) => {
-            const canSetMonth = set.month;
-            const canSetDay = set.day;
+          {({ date, type, onChange }) => {
+            const canSetMonth = ['full', 'month'].includes(type);
+            const canSetDay = ['full'].includes(type);
             const isYearActive = hasProperties([], ['year'])(date);
             const isYearComplete = hasProperties(['year'])(date);
             const isMonthActive = hasProperties(['year'], ['month'])(date);
