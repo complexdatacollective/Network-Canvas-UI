@@ -4,7 +4,8 @@ const DatePickerContext = React.createContext({
   onChange: () => {},
   min: null,
   max: null,
-  date: null,
+  date: {},
+  type: null,
 });
 
 export default DatePickerContext;
