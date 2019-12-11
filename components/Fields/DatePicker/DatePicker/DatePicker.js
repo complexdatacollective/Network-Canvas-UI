@@ -31,7 +31,7 @@ const DatePicker = ({
 
   const min = props.min ?
     DateTime.fromISO(props.min) :
-    DateTime.fromISO(DEFAULT_MIN_DATE);
+    now().minus(DEFAULT_MIN_DATE);
 
   const max = props.max ?
     DateTime.fromISO(props.max) :
