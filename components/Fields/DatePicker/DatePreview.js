@@ -2,39 +2,57 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { Date } from './DatePicker/';
-import { formatMonth } from './helpers';
+import { getMonthName } from './helpers';
 
-const DatePreview = ({ onClickDate }) => (
+const DatePreview = ({ onClick, onFocus }) => (
   <Date>
     {({ date, type, onChange, isComplete, isEmpty }) => {
-      const handleClickYear = () => {
-        onClickDate();
+      const handleClickYear = (e) => {
+        e.stopPropagation();
         onChange({ year: null, month: null, day: null });
+        onClick();
       };
 
-      const handleClickMonth = () => {
-        onClickDate();
+      const handleClickMonth = (e) => {
+        e.stopPropagation();
         onChange({ month: null, day: null });
+        onClick();
       };
 
-      const handleClickDay = () => {
-        onClickDate();
+      const handleClickDay = (e) => {
+        e.stopPropagation();
         onChange({ day: null });
+        onClick();
       };
 
       const handleClickPreview = () => {
         if (isComplete) { return; }
-        onClickDate();
+        onClick();
       };
 
-      const handleClear = () => {
-        onChange({ year: null, month: null, day: null });
+      const handleFocus = () => {
+        if (isComplete) { return; }
+        onFocus();
       };
+
+      const handleClear = (e) => {
+        e.stopPropagation();
+        onChange({ year: null, month: null, day: null });
+        onClick(false);
+      };
+
+      const previewClass = cx(
+        'date-picker__preview',
+        { 'date-picker__preview--is-empty': isEmpty },
+      );
 
       return (
         <div
-          className={cx('date-picker__preview', { 'date-picker__preview--is-empty': isEmpty })}
+          className={previewClass}
           onClick={handleClickPreview}
+          onFocus={handleFocus}
+          tabIndex="0"
+          role="button"
         >
           <div
             className={cx('date-picker__preview-part', { 'date-picker__preview-part--is-set': date.year })}
@@ -50,7 +68,7 @@ const DatePreview = ({ onClickDate }) => (
               className={cx('date-picker__preview-part', { 'date-picker__preview-part--is-set': date.month })}
               onClick={handleClickMonth}
             >
-              {formatMonth(date.month) || 'month'}
+              {getMonthName(date.month) || 'month'}
             </div>
           }
           { ['full'].includes(type) &&
@@ -65,7 +83,7 @@ const DatePreview = ({ onClickDate }) => (
             </div>
           }
           <div
-            className={cx('date-picker__preview-clear', { 'date-picker__preview-clear--is-visible': isComplete })}
+            className={cx('date-picker__preview-clear', { 'date-picker__preview-clear--is-visible': !isEmpty })}
             onClick={handleClear}
           >
             clear
@@ -77,11 +95,13 @@ const DatePreview = ({ onClickDate }) => (
 );
 
 DatePreview.propTypes = {
-  onClickDate: PropTypes.func,
+  onClick: PropTypes.func,
+  onFocus: PropTypes.func,
 };
 
 DatePreview.defaultProps = {
-  onClickDate: () => {},
+  onClick: () => {},
+  onFocus: () => {},
 };
 
 export default DatePreview;

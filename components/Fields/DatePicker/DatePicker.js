@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 import { DatePicker, Years, Months, Days, Date } from './DatePicker/';
 import Panels from './Panels';
 import Panel from './Panel';
 import RangePicker from './RangePicker';
 import DatePreview from './DatePreview';
-import { now, isEmpty, formatMonth, getFirstDayOfMonth, hasProperties } from './helpers';
+import { now, isEmpty, getFirstDayOfMonth, hasProperties } from './helpers';
 
 const DatePickerInput = ({
   onChange: onChangeInput,
@@ -21,11 +22,20 @@ const DatePickerInput = ({
 
   // treat empty string as no value (for Redux Forms)
   const initialDate = isEmpty(value) ? null : value;
-  const handleClickDate = () => setPanelsOpen(true);
+  const handleClickPreview = (open = true) => {
+    console.log(open);
+    setPanelsOpen(open);
+  }
+  const handleFocusPreview = () => setPanelsOpen(true);
   const today = now().toObject();
 
+  const datePickerClasses = cx(
+    'date-picker',
+    { 'date-picker--is-active': panelsOpen },
+  );
+
   return (
-    <div className="date-picker">
+    <div className={datePickerClasses}>
       <DatePicker
         onChange={onChangeInput}
         date={initialDate}
@@ -33,7 +43,11 @@ const DatePickerInput = ({
         max={parameters.max}
         type={parameters.type}
       >
-        <DatePreview onClickDate={handleClickDate} />
+        <DatePreview
+          onFocus={handleFocusPreview}
+          onClick={handleClickPreview}
+          isActive={panelsOpen}
+        />
         <Date>
           {({ date, type, onChange }) => {
             const canSetMonth = ['full', 'month'].includes(type);
@@ -78,7 +92,6 @@ const DatePickerInput = ({
                           today={today.month}
                           range={months}
                           value={date.month}
-                          format={formatMonth}
                           onSelect={m => onChange({ month: m, day: null })}
                         />
                       )}

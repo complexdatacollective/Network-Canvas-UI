@@ -47,6 +47,8 @@ $height: 18rem;
     line-height: 4rem;
     display: flex;
     align-items: center;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom-color var(--animation-easing) var(--animation-duration-standard);
 
     &-divider {
       color: var(--active-color);
@@ -83,6 +85,10 @@ $height: 18rem;
     &--is-empty {
       cursor: pointer;
     }
+
+    &:focus {
+      border-bottom-color: var(--active-color);
+    }
   }
 
   &__panels {
@@ -91,21 +97,17 @@ $height: 18rem;
     overflow: hidden;
     transform: scale3d(1, 1, 1) scaleY(0);
     box-sizing: border-box;
-    border-top: 2px solid transparent;
     height: 0;
     position: relative;
     transform-origin: top left;
     transition: height var(--animation-easing) var(--animation-duration-slow) var(--animation-duration-standard),
-    transform var(--animation-easing) var(--animation-duration-slow) var(--animation-duration-standard),
-    border-top-color var(--animation-easing) var(--animation-duration-standard);
+    transform var(--animation-easing) var(--animation-duration-slow) var(--animation-duration-standard);
 
     &--is-open {
       height: $height;
       transform: scaleY(1);
-      border-top-color: var(--active-color);
       transition: height var(--animation-easing) var(--animation-duration-slow),
-      transform var(--animation-easing) var(--animation-duration-slow),
-      border-top-color var(--animation-easing) var(--animation-duration-standard);
+      transform var(--animation-easing) var(--animation-duration-slow);
     }
   }
 
@@ -164,6 +166,17 @@ $height: 18rem;
         background-color: var(--active-color);
       }
     }
+
+    &--is-today {
+      .#{$module-name}__highlight {
+        font-weight: bold;
+      }
+    }
+
+    &--is-disabled {
+      pointer-events: none;
+      opacity: 0.15;
+    }
   }
 
   &__range-picker {
@@ -213,6 +226,12 @@ $height: 18rem;
           background-color: rgba(255, 255, 255, 0.05);
         }
       }
+    }
+  }
+
+  &--is-active {
+    .#{$module-name}__preview {
+      border-bottom-color: var(--active-color);
     }
   }
 }
