@@ -4,9 +4,11 @@ import cx from 'classnames';
 import { Date } from './DatePicker/';
 import { getMonthName } from './helpers';
 
-const DatePreview = ({ onClick, onFocus }) => (
+const DatePreview = ({ onClick, onFocus, isActive }) => (
   <Date>
     {({ date, type, onChange, isComplete, isEmpty }) => {
+      const previewRef = React.createRef();
+
       const handleClickYear = (e) => {
         e.stopPropagation();
         onChange({ year: null, month: null, day: null });
@@ -37,6 +39,7 @@ const DatePreview = ({ onClick, onFocus }) => (
 
       const handleClear = (e) => {
         e.stopPropagation();
+        if (previewRef.current) { previewRef.current.blur(); }
         onChange({ year: null, month: null, day: null });
         onClick(false);
       };
@@ -53,6 +56,7 @@ const DatePreview = ({ onClick, onFocus }) => (
           onFocus={handleFocus}
           tabIndex="0"
           role="button"
+          ref={previewRef}
         >
           <div
             className={cx('date-picker__preview-part', { 'date-picker__preview-part--is-set': date.year })}
@@ -83,7 +87,7 @@ const DatePreview = ({ onClick, onFocus }) => (
             </div>
           }
           <div
-            className={cx('date-picker__preview-clear', { 'date-picker__preview-clear--is-visible': !isEmpty })}
+            className={cx('date-picker__preview-clear', { 'date-picker__preview-clear--is-visible': !isEmpty || isActive })}
             onClick={handleClear}
           >
             clear

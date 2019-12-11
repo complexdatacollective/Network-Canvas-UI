@@ -159,7 +159,6 @@ $height: 18rem;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    padding: 0 1rem;
 
     &--is-active {
       .#{$module-name}__highlight {

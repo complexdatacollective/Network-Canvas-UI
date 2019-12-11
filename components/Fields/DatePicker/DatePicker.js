@@ -22,10 +22,8 @@ const DatePickerInput = ({
 
   // treat empty string as no value (for Redux Forms)
   const initialDate = isEmpty(value) ? null : value;
-  const handleClickPreview = (open = true) => {
-    console.log(open);
+  const handleClickPreview = (open = true) =>
     setPanelsOpen(open);
-  }
   const handleFocusPreview = () => setPanelsOpen(true);
   const today = now().toObject();
 
