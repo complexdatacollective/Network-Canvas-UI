@@ -101,11 +101,13 @@ const DatePreview = ({ onClick, onFocus, isActive }) => (
 DatePreview.propTypes = {
   onClick: PropTypes.func,
   onFocus: PropTypes.func,
+  isActive: PropTypes.bool,
 };
 
 DatePreview.defaultProps = {
   onClick: () => {},
   onFocus: () => {},
+  isActive: false,
 };
 
 export default DatePreview;
