@@ -21,11 +21,14 @@ describe('<Months>', () => {
   it('provides months', () => {
     const subject = getSubject();
 
-    expect(subject.mock.calls[0][0]).toMatchObject({
-      months: [
-        1, 2, 3, 4, 5, 6, 7,
-        8, 9, 10, 11, 12,
-      ],
-    });
+    expect(subject.mock.calls[0][0])
+      .toMatchSnapshot();
+  });
+
+  it('marks months as out of range', () => {
+    const shortMonth = getSubject({ min: '2019-05-01', max: '2019-08-01' });
+
+    expect(shortMonth.mock.calls[0][0])
+      .toMatchSnapshot();
   });
 });

@@ -65,21 +65,19 @@ describe('<DatePicker>', () => {
     expect(mockOnChange.mock.calls[0][0]).toEqual('2020');
   });
 
-  it('default min is 1970-01-1', () => {
+  it('default min is 100 years ago', () => {
+    const { year, month, day } = DateTime.local().minus({ years: 100 }).toObject();
     const subject = getSubject();
     const context = subject.mock.calls[0][0];
-    expect(context.min.toObject()).toMatchObject({
-      year: 1970,
-      month: 1,
-      day: 1,
-    });
+    expect(context.range.start.toObject())
+      .toMatchObject({ year, month, day });
   });
 
   it('default max is now', () => {
     const { year, month, day } = DateTime.local().toObject();
     const subject = getSubject();
     const context = subject.mock.calls[0][0];
-    expect(context.max.toObject())
+    expect(context.range.end.toObject())
       .toMatchObject({ year, month, day });
   });
 });
