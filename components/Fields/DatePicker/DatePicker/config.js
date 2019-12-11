@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 
-export const DEFAULT_MIN_DATE = { year: 1 }; // DateTime.minus(DEFAULT_MIN_DATE);
+export const DEFAULT_MIN_DATE = { years: 100 }; // DateTime.minus(DEFAULT_MIN_DATE);
 
 export const DEFAULT_TYPE = 'full';
 

@@ -5,22 +5,24 @@ import Panels from './Panels';
 import Panel from './Panel';
 import RangePicker from './RangePicker';
 import DatePreview from './DatePreview';
-import { isEmpty, formatMonth, getFirstDayOfMonth, hasProperties } from './helpers';
+import { now, isEmpty, formatMonth, getFirstDayOfMonth, hasProperties } from './helpers';
 
 const DatePickerInput = ({
   onChange: onChangeInput,
   parameters,
   value,
 }) => {
-  // treat empty string as no value (for Redux Forms)
-  const initialDate = isEmpty(value) ? null : value;
   const [panelsOpen, setPanelsOpen] = useState(false);
 
+  // when the value is changed (probably set via onChange), close the panels.
   useEffect(() => {
     setPanelsOpen(false);
   }, [value]);
 
+  // treat empty string as no value (for Redux Forms)
+  const initialDate = isEmpty(value) ? null : value;
   const handleClickDate = () => setPanelsOpen(true);
+  const today = now().toObject();
 
   return (
     <div className="date-picker">
@@ -54,6 +56,7 @@ const DatePickerInput = ({
                     {({ years }) => (
                       <RangePicker
                         type="year"
+                        today={today.year}
                         range={years}
                         value={date.year}
                         offset={years % 5}
@@ -72,6 +75,7 @@ const DatePickerInput = ({
                       {({ months }) => (
                         <RangePicker
                           type="month"
+                          today={today.month}
                           range={months}
                           value={date.month}
                           format={formatMonth}
@@ -91,6 +95,7 @@ const DatePickerInput = ({
                       {({ days }) => (
                         <RangePicker
                           type="day"
+                          today={today.day}
                           range={days}
                           value={date.day}
                           offset={getFirstDayOfMonth(date) - 1}

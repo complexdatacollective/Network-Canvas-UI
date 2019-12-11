@@ -1,6 +1,9 @@
 import { DateTime, Info } from 'luxon';
 import { get, difference, intersection } from 'lodash';
 
+export const now = () =>
+  DateTime.local();
+
 export const isEmpty = value =>
   value === null || value === '';
 
