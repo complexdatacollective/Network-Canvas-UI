@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { DateTime } from 'luxon';
+import { DateTime, Interval } from 'luxon';
 import DatePickerContext from './DatePickerContext';
 import { DATE_FORMATS, DEFAULT_TYPE, DEFAULT_MIN_DATE } from './config';
 import { now, isComplete } from './helpers';
@@ -37,6 +37,8 @@ const DatePicker = ({
     DateTime.fromISO(props.max) :
     now();
 
+  const range = Interval.fromDateTimes(min.startOf('day'), max.endOf('day'));
+
   const onChange = (values) => {
     const newDate = Object.assign({}, pickerState.date, values);
 
@@ -53,8 +55,7 @@ const DatePicker = ({
 
   const context = {
     onChange,
-    min,
-    max,
+    range,
     type: props.type,
     ...pickerState,
   };

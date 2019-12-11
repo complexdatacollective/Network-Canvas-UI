@@ -1,14 +1,11 @@
 import { DateTime, Info } from 'luxon';
-import { get, difference, intersection } from 'lodash';
+import { difference, intersection, get } from 'lodash';
 
 export const now = () =>
   DateTime.local();
 
 export const isEmpty = value =>
   value === null || value === '';
-
-export const formatMonth = numericMonth =>
-  get(Info.months(), numericMonth - 1, numericMonth);
 
 export const getFirstDayOfMonth = dateObj =>
   DateTime.fromObject({ ...dateObj, day: 1 }).toFormat('c');
@@ -30,3 +27,6 @@ export const hasProperties = (includes = [], excludes = []) =>
     const noExcludes = intersection(props, excludes).length === 0;
     return hasIncludes && noExcludes;
   };
+
+export const getMonthName = numericMonth =>
+  get(Info.months(), numericMonth - 1, numericMonth);

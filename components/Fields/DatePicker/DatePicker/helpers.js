@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 
-import { DateTime } from 'luxon';
-import { isEqual } from 'lodash';
+import { DateTime, Info } from 'luxon';
+import { isEqual, get } from 'lodash';
 
 export const now = () =>
   DateTime.local();
@@ -26,3 +26,12 @@ export const isComplete = type =>
  */
 export const isEmpty = () =>
   date => isEqual(date, { year: null, month: null, day: null });
+
+export const getMonthName = numericMonth =>
+  get(Info.months(), numericMonth - 1, numericMonth);
+
+export const formatRangeItem = (value, props = {}) => ({
+  value,
+  label: value,
+  ...props,
+});
