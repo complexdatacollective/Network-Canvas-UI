@@ -24,7 +24,6 @@ const DatePickerInput = ({
   const initialDate = isEmpty(value) ? null : value;
   const handleClickPreview = (open = true) =>
     setPanelsOpen(open);
-  const handleFocusPreview = () => setPanelsOpen(true);
   const today = now().toObject();
 
   const datePickerClasses = cx(
@@ -32,35 +31,55 @@ const DatePickerInput = ({
     { 'date-picker--is-active': panelsOpen },
   );
 
-  return (
-    <div className={datePickerClasses}>
-      <DatePicker
-        onChange={onChangeInput}
-        date={initialDate}
-        min={parameters.min}
-        max={parameters.max}
-        type={parameters.type}
-      >
-        <DatePreview
-          onFocus={handleFocusPreview}
-          onClick={handleClickPreview}
-          isActive={panelsOpen}
-        />
-        <Date>
-          {({ date, range: dateRange, type, onChange }) => {
-            const canSetMonth = ['full', 'month'].includes(type);
-            const canSetDay = ['full'].includes(type);
-            const isYearActive = hasProperties([], ['year'])(date);
-            const isYearComplete = hasProperties(['year'])(date);
-            const isMonthActive = hasProperties(['year'], ['month'])(date);
-            const isMonthComplete = hasProperties(['month'])(date);
-            const isDayActive = hasProperties(['year', 'month'], ['day'])(date);
-            const isDayComplete = hasProperties(['day'])(date);
-            const todayYear = today.year;
-            const todayMonth = date.year === today.year && today.month;
-            const todayDay = date.year === today.year && date.month === today.month && today.day;
+  const handleFocus = () => {
+    if (isEmpty(value)) {
+      setPanelsOpen(true);
+    }
+  };
 
-            return (
+  return (
+    <DatePicker
+      onChange={onChangeInput}
+      date={initialDate}
+      min={parameters.min}
+      max={parameters.max}
+      type={parameters.type}
+    >
+      <Date>
+        {({ date, range: dateRange, isComplete, type, onChange }) => {
+          const canSetMonth = ['full', 'month'].includes(type);
+          const canSetDay = ['full'].includes(type);
+          const isYearActive = hasProperties([], ['year'])(date);
+          const isYearComplete = hasProperties(['year'])(date);
+          const isMonthActive = hasProperties(['year'], ['month'])(date);
+          const isMonthComplete = hasProperties(['month'])(date);
+          const isDayActive = hasProperties(['year', 'month'], ['day'])(date);
+          const isDayComplete = hasProperties(['day'])(date);
+          const todayYear = today.year;
+          const todayMonth = date.year === today.year && today.month;
+          const todayDay = date.year === today.year && date.month === today.month && today.day;
+
+          const handleBlur = (e) => {
+            if (!e.target.classList.contains('date-picker')) { return; }
+            // dump incomplete state
+            if (!isComplete) {
+              onChange({ year: null, month: null, day: null });
+            }
+            setPanelsOpen(false);
+          };
+
+          return (
+            <div
+              className={datePickerClasses}
+              onBlur={handleBlur}
+              onFocus={handleFocus}
+              tabIndex="0"
+              role="button"
+            >
+              <DatePreview
+                onClick={handleClickPreview}
+                isActive={panelsOpen}
+              />
               <Panels isOpen={panelsOpen}>
                 <Panel
                   isActive={isYearActive}
@@ -120,11 +139,11 @@ const DatePickerInput = ({
                   </Panel>
                 }
               </Panels>
-            );
-          }}
-        </Date>
-      </DatePicker>
-    </div>
+            </div>
+          );
+        }}
+      </Date>
+    </DatePicker>
   );
 };
 

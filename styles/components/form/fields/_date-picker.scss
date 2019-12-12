@@ -231,6 +231,7 @@ $height: 18rem;
     }
   }
 
+  &:focus,
   &--is-active {
     .#{$module-name}__preview {
       border-bottom-color: var(--active-color);

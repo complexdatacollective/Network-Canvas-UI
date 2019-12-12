@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { DateTime, Interval } from 'luxon';
 import DatePickerContext from './DatePickerContext';
 import { DATE_FORMATS, DEFAULT_TYPE, DEFAULT_MIN_DATE } from './config';
-import { now, isComplete } from './helpers';
+import { now, isComplete, isEmpty } from './helpers';
 
 /**
  * Get date object from an ISO string
@@ -46,6 +46,11 @@ const DatePicker = ({
       ...state,
       date: newDate,
     }));
+
+    if (isEmpty(props.type)(newDate)) {
+      props.onChange('');
+      return;
+    }
 
     if (isComplete(props.type)(newDate)) {
       const dateString = DateTime.fromObject(newDate).toFormat(format);

@@ -4,7 +4,7 @@ import cx from 'classnames';
 import { Date } from './DatePicker/';
 import { getMonthName } from './helpers';
 
-const DatePreview = ({ onClick, onFocus, isActive }) => (
+const DatePreview = ({ onClick, isActive }) => (
   <Date>
     {({ date, type, onChange, isComplete, isEmpty }) => {
       const previewRef = React.createRef();
@@ -32,14 +32,8 @@ const DatePreview = ({ onClick, onFocus, isActive }) => (
         onClick();
       };
 
-      const handleFocus = () => {
-        if (isComplete) { return; }
-        onFocus();
-      };
-
       const handleClear = (e) => {
         e.stopPropagation();
-        if (previewRef.current) { previewRef.current.blur(); }
         onChange({ year: null, month: null, day: null });
         onClick(false);
       };
@@ -53,9 +47,6 @@ const DatePreview = ({ onClick, onFocus, isActive }) => (
         <div
           className={previewClass}
           onClick={handleClickPreview}
-          onFocus={handleFocus}
-          tabIndex="0"
-          role="button"
           ref={previewRef}
         >
           <div
