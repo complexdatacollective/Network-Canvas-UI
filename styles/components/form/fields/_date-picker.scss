@@ -188,8 +188,11 @@ $height: 18rem;
     &--year {
       @extend .scrollable !optional;
       grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      grid-template-rows: minmax(auto, 5rem);
       .#{$module-name}__range-item {
         padding: 1rem 0;
+        max-height: 5rem;
+        box-sizing: border-box;
 
         &:nth-child(10n - 9),
         &:nth-child(10n - 8),
