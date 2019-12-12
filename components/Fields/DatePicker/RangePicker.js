@@ -16,13 +16,16 @@ const RangePicker = ({
 
   const datePickerKey = !!datePickerRef.current;
   const scrollRefKey = scrollRef.current && scrollRef.current.getAttribute('data-value');
+  const rangeKey = range.toString();
 
   useEffect(() => {
+    // only scroll when value is empty
+    if (value !== null) { return; }
     if (!datePickerRef.current || !scrollRef.current) { return; }
     const offsetTop = scrollRef.current.offsetTop;
     const offsetHeight = scrollRef.current.offsetHeight;
     datePickerRef.current.scrollTop = offsetTop - (offsetHeight * 0.5);
-  }, [range, datePickerKey, scrollRefKey]);
+  }, [rangeKey, datePickerKey, scrollRefKey, value]);
 
   const classes = cx(
     'date-picker__range-picker',
