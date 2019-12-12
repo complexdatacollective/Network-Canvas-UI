@@ -51,7 +51,9 @@ const RangePicker = ({
 
   const padding = times(
     offset,
-    () => (<div className="date-picker__range-item" />),
+    index => (
+      <div key={`padding${index}`} className="date-picker__range-item" />
+    ),
   );
 
   const scrollToValue = getScrollToValue(range, today);
@@ -74,6 +76,7 @@ const RangePicker = ({
             onClick={() => onSelect(d.value)}
             ref={ref}
             data-value={d.value}
+            key={`item${d.value}`}
           >
             <div className="date-picker__highlight">{d.label}</div>
           </div>
@@ -85,9 +88,9 @@ const RangePicker = ({
 
 RangePicker.propTypes = {
   type: PropTypes.string,
-  today: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  today: PropTypes.number,
   range: PropTypes.array.isRequired,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  value: PropTypes.number,
   onSelect: PropTypes.func,
   offset: PropTypes.number,
 };

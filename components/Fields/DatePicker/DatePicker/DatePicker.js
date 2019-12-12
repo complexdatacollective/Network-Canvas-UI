@@ -75,6 +75,7 @@ const DatePicker = ({
 DatePicker.defaultProps = {
   children: null,
   type: DEFAULT_TYPE,
+  date: null,
   min: null,
   max: null,
   onChange: () => {},
@@ -82,7 +83,7 @@ DatePicker.defaultProps = {
 
 DatePicker.propTypes = {
   children: PropTypes.node,
-  date: PropTypes.string.isRequired,
+  date: PropTypes.string,
   type: PropTypes.string,
   min: PropTypes.string,
   max: PropTypes.string,

@@ -56,8 +56,9 @@ const DatePickerInput = ({
           const isDayActive = hasProperties(['year', 'month'], ['day'])(date);
           const isDayComplete = hasProperties(['day'])(date);
           const todayYear = today.year;
-          const todayMonth = date.year === today.year && today.month;
-          const todayDay = date.year === today.year && date.month === today.month && today.day;
+          const todayMonth = date.year === today.year ? today.month : null;
+          const todayDay = date.year === today.year && date.month === today.month ?
+            today.day : null;
 
           const handleBlur = (e) => {
             if (!e.target.classList.contains('date-picker')) { return; }
