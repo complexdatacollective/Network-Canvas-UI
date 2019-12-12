@@ -47,7 +47,7 @@ const DatePickerInput = ({
           isActive={panelsOpen}
         />
         <Date>
-          {({ date, type, onChange }) => {
+          {({ date, range: dateRange, type, onChange }) => {
             const canSetMonth = ['full', 'month'].includes(type);
             const canSetDay = ['full'].includes(type);
             const isYearActive = hasProperties([], ['year'])(date);
@@ -71,7 +71,7 @@ const DatePickerInput = ({
                         today={today.year}
                         range={years}
                         value={date.year}
-                        offset={years % 5}
+                        offset={(dateRange.start.year) % 5}
                         onSelect={y => onChange({ year: y, month: null, day: null })}
                       />
                     )}

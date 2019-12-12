@@ -3,6 +3,20 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { times } from 'lodash';
 
+// If today's date isn't in range, what's the closest value?
+const getScrollToValue = (range = [], today = 0) => {
+  const findToday = find(range, ({ value }) => value === today);
+  if (findToday) { return findToday; }
+  const first = range[0].value;
+  const last = range[range.length - 1].value;
+
+  if (Math.abs(today - first) < Math.abs(today - last)) {
+    return first;
+  }
+
+  return last;
+};
+
 const RangePicker = ({
   type,
   range,
@@ -37,6 +51,8 @@ const RangePicker = ({
     () => (<div className="date-picker__range-item" />),
   );
 
+  const scrollToValue = getScrollToValue(range, today);
+
   return (
     <div className={classes} ref={datePickerRef}>
       {padding}
@@ -47,7 +63,7 @@ const RangePicker = ({
           { 'date-picker__range-item--is-today': today === d.value },
           { 'date-picker__range-item--is-disabled': d.isOutOfRange },
         );
-        const ref = today === d.value ? scrollRef : null;
+        const ref = scrollToValue === d.value ? scrollRef : null;
 
         return (
           <div
