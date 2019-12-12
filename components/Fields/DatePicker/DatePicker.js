@@ -56,6 +56,9 @@ const DatePickerInput = ({
             const isMonthComplete = hasProperties(['month'])(date);
             const isDayActive = hasProperties(['year', 'month'], ['day'])(date);
             const isDayComplete = hasProperties(['day'])(date);
+            const todayYear = today.year;
+            const todayMonth = date.year === today.year && today.month;
+            const todayDay = date.year === today.year && date.month === today.month && today.day;
 
             return (
               <Panels isOpen={panelsOpen}>
@@ -68,7 +71,7 @@ const DatePickerInput = ({
                     {({ years }) => (
                       <RangePicker
                         type="year"
-                        today={today.year}
+                        today={todayYear}
                         range={years}
                         value={date.year}
                         offset={(dateRange.start.year) % 5}
@@ -87,7 +90,7 @@ const DatePickerInput = ({
                       {({ months }) => (
                         <RangePicker
                           type="month"
-                          today={today.month}
+                          today={todayMonth}
                           range={months}
                           value={date.month}
                           onSelect={m => onChange({ month: m, day: null })}
@@ -106,7 +109,7 @@ const DatePickerInput = ({
                       {({ days }) => (
                         <RangePicker
                           type="day"
-                          today={today.day}
+                          today={todayDay}
                           range={days}
                           value={date.day}
                           offset={getFirstDayOfMonth(date) - 1}

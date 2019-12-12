@@ -4,7 +4,8 @@ import cx from 'classnames';
 import { times } from 'lodash';
 
 // If today's date isn't in range, what's the closest value?
-const getScrollToValue = (range = [], today = 0) => {
+const getScrollToValue = (range = [], today) => {
+  if (today !== 0 && !today) { return null; }
   const findToday = find(range, ({ value }) => value === today);
   if (findToday) { return findToday; }
   const first = range[0].value;
@@ -33,6 +34,8 @@ const RangePicker = ({
   const rangeKey = range.toString();
 
   useEffect(() => {
+    // only scroll year
+    if (type !== 'year') { return; }
     // only scroll when value is empty
     if (value !== null) { return; }
     if (!datePickerRef.current || !scrollRef.current) { return; }
