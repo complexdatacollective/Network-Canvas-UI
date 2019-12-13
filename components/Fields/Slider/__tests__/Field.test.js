@@ -58,8 +58,8 @@ describe('Slider/Field', () => {
 
     const handle = subject.find(Handle);
     handle.find('.form-field-slider__handle').simulate('mousedown');
-    const tooltip = handle.find('.form-field-slider__tooltip');
-    expect(tooltip.html()).toMatchSnapshot();
+
+    expect(handle.exists('.form-field-slider__tooltip')).toBe(false);
   });
 
   it('Correctly renders slider (number variable)', () => {

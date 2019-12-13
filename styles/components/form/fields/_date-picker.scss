@@ -1,6 +1,8 @@
 $module-name: date-picker;
 $animation-speed: var(--animation-duration-standard);
 $height: 18rem;
+$lighten: rgba(255, 255, 255, 0.05);
+$darken: rgba(0, 0, 0, 0.2);
 
 .form-field-date-picker {
   &__error {
@@ -36,6 +38,8 @@ $height: 18rem;
 .#{$module-name} {
   --active-color: var(--color-sea-green);
   --background: var(--input-background);
+  --lighten: $lighten;
+  --darken: $darken;
   max-width: 100%;
   overflow: hidden;
 
@@ -63,6 +67,7 @@ $height: 18rem;
 
     &-part {
       opacity: 0.33;
+
       &--is-set {
         cursor: pointer;
         opacity: 1;
@@ -123,7 +128,7 @@ $height: 18rem;
     flex-direction: column;
     transform: translateX(100%);
     transition: transform var(--animation-easing) var(--animation-duration-slow) var(--animation-duration-standard);
-    border-color: rgba(0, 0, 0, 0.2);
+    border-color: var(--darken);
     border-style: solid;
     border-width: 0 2px 0 0;
 
@@ -179,16 +184,17 @@ $height: 18rem;
   }
 
   &__range-picker {
-    padding-top: 0 !important;
+    padding-top: 0 !important; // sass-lint:disable-line no-important
     flex: 0 1 100%;
     display: grid;
     overflow-y: auto;
     width: 100%;
 
     &--year {
-      @extend .scrollable !optional;
+      @extend .scrollable !optional; // sass-lint:disable-line placeholder-in-extend
       grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
       grid-template-rows: minmax(auto, 5rem);
+
       .#{$module-name}__range-item {
         padding: 1rem 0;
         max-height: 5rem;
@@ -199,24 +205,26 @@ $height: 18rem;
         &:nth-child(10n - 7),
         &:nth-child(10n - 6),
         &:nth-child(10n - 5) {
-          background-color: rgba(255, 255, 255, 0.05);
+          background-color: var(--lighten);
         }
       }
     }
 
     &--month {
       grid-template-columns: 1fr 1fr 1fr;
+
       .#{$module-name}__range-item {
         &:nth-child(6n - 5),
         &:nth-child(6n - 4),
         &:nth-child(6n - 3) {
-          background-color: rgba(255, 255, 255, 0.05);
+          background-color: var(--lighten);
         }
       }
     }
 
     &--day {
       grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+
       .#{$module-name}__range-item {
         &:nth-child(14n - 13),
         &:nth-child(14n - 12),
@@ -225,7 +233,7 @@ $height: 18rem;
         &:nth-child(14n - 9),
         &:nth-child(14n - 8),
         &:nth-child(14n - 7) {
-          background-color: rgba(255, 255, 255, 0.05);
+          background-color: var(--lighten);
         }
       }
     }
