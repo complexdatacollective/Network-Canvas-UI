@@ -7,7 +7,7 @@ const DATE_FORMAT = DATE_FORMATS.full;
 /**
  * A relative version of the date picker.
  *
- * Selectable range is determined as months relative to
+ * Selectable range is determined as days relative to
  * an anchor date (defaults to 'today' e.g. interview date,
  * when not set).
  */
@@ -15,11 +15,9 @@ const RelativeDatePicker = ({ parameters, ...rest }) => {
   const anchor = parameters.anchor ?
     DateTime.fromISO(parameters.anchor) :
     DateTime.local();
-  const min = anchor.minus({ months: parameters.before || 6 })
-    .startOf('month')
+  const min = anchor.minus({ days: parameters.before || 180 })
     .toFormat(DATE_FORMAT);
-  const max = anchor.plus({ months: parameters.after || 0 })
-    .endOf('month')
+  const max = anchor.plus({ days: parameters.after || 0 })
     .toFormat(DATE_FORMAT);
   const newParameters = {
     min,
