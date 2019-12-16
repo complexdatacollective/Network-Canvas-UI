@@ -25,6 +25,7 @@
     "eslint-plugin-import": "2.7.0",
     "eslint-plugin-jsx-a11y": "5.1.1",
     "eslint-plugin-react": "^7.11.1",
+    "luxon": "^1.21.3",
     "react": "16.11.0",
     "react-compound-slider": "^2.4.0",
     "react-dom": "16.11.0",
