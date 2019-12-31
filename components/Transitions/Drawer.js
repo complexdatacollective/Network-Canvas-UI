@@ -20,13 +20,18 @@ const FolderTransition = ({ children, ...props }) => {
       duration: slowDuration,
       easing: defaultEasing,
     },
+    height: {
+      value: [0, '100%'],
+      duration: slowDuration,
+      easing: defaultEasing,
+    },
   };
 
   const disappear = {
     opacity: 0,
     scaleY: 0,
     margin: 0,
-    maxHeight: 0,
+    height: 0,
     duration: standardDuration,
   };
 
