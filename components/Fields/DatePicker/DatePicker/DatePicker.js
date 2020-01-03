@@ -27,7 +27,9 @@ const DatePicker = ({
     date: getDate(props.date),
   });
 
-  const format = DATE_FORMATS[props.type];
+  const type = props.type || DEFAULT_TYPE;
+
+  const format = DATE_FORMATS[type];
 
   const min = props.min ?
     DateTime.fromISO(props.min) :
@@ -47,12 +49,12 @@ const DatePicker = ({
       date: newDate,
     }));
 
-    if (isEmpty(props.type)(newDate)) {
+    if (isEmpty(type)(newDate)) {
       props.onChange('');
       return;
     }
 
-    if (isComplete(props.type)(newDate)) {
+    if (isComplete(type)(newDate)) {
       const dateString = DateTime.fromObject(newDate).toFormat(format);
       props.onChange(dateString);
     }
@@ -61,7 +63,7 @@ const DatePicker = ({
   const context = {
     onChange,
     range,
-    type: props.type,
+    type,
     ...pickerState,
   };
 

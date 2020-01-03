@@ -10,8 +10,8 @@ import { now, isEmpty, getFirstDayOfMonth, hasProperties } from './helpers';
 
 const DatePickerInput = ({
   onChange: onChangeInput,
-  parameters,
   value,
+  parameters,
 }) => {
   const [panelsOpen, setPanelsOpen] = useState(false);
 
@@ -41,9 +41,7 @@ const DatePickerInput = ({
     <DatePicker
       onChange={onChangeInput}
       date={initialDate}
-      min={parameters.min}
-      max={parameters.max}
-      type={parameters.type}
+      {...parameters}
     >
       <Date>
         {({ date, range: dateRange, isComplete, type, onChange }) => {
