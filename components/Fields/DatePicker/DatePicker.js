@@ -17,7 +17,7 @@ const DatePickerInput = ({
 
   // when the value is changed (probably set via onChange), close the panels.
   useEffect(() => {
-    setPanelsOpen(false);
+    if (value !== '') { setPanelsOpen(false); }
   }, [value]);
 
   // treat empty string as no value (for Redux Forms)
