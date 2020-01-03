@@ -183,17 +183,30 @@ $darken: rgba(0, 0, 0, 0.2);
     }
   }
 
-  &__range-picker {
-    padding-top: 0 !important; // sass-lint:disable-line no-important
-    flex: 0 1 100%;
+  &__range-picker-items {
     display: grid;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__range-picker {
+    @extend .scrollable !optional; // sass-lint:disable-line placeholder-in-extend
+    padding-top: 0 !important; // sass-lint:disable-line no-important
+    position: absolute;
+    top: 0;
+    left: 0;
     overflow-y: auto;
     width: 100%;
+    height: 100%;
 
     &--year {
-      @extend .scrollable !optional; // sass-lint:disable-line placeholder-in-extend
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-      grid-template-rows: minmax(auto, 5rem);
+      .date-picker__range-picker-items {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: minmax(auto, 5rem);
+      }
 
       .#{$module-name}__range-item {
         padding: 1rem 0;
@@ -211,7 +224,9 @@ $darken: rgba(0, 0, 0, 0.2);
     }
 
     &--month {
-      grid-template-columns: 1fr 1fr 1fr;
+      .date-picker__range-picker-items {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
 
       .#{$module-name}__range-item {
         &:nth-child(6n - 5),
@@ -223,7 +238,9 @@ $darken: rgba(0, 0, 0, 0.2);
     }
 
     &--day {
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      .date-picker__range-picker-items {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      }
 
       .#{$module-name}__range-item {
         &:nth-child(14n - 13),

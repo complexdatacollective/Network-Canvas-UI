@@ -60,28 +60,30 @@ const RangePicker = ({
 
   return (
     <div className={classes} ref={datePickerRef}>
-      {padding}
-      {range.map((d) => {
-        const itemStyle = cx(
-          'date-picker__range-item',
-          { 'date-picker__range-item--is-active': value === d.value },
-          { 'date-picker__range-item--is-today': today === d.value },
-          { 'date-picker__range-item--is-disabled': d.isOutOfRange },
-        );
-        const ref = scrollToValue === d.value ? scrollRef : null;
+      <div className="date-picker__range-picker-items">
+        {padding}
+        {range.map((d) => {
+          const itemStyle = cx(
+            'date-picker__range-item',
+            { 'date-picker__range-item--is-active': value === d.value },
+            { 'date-picker__range-item--is-today': today === d.value },
+            { 'date-picker__range-item--is-disabled': d.isOutOfRange },
+          );
+          const ref = scrollToValue === d.value ? scrollRef : null;
 
-        return (
-          <div
-            className={itemStyle}
-            onClick={() => onSelect(d.value)}
-            ref={ref}
-            data-value={d.value}
-            key={`item${d.value}`}
-          >
-            <div className="date-picker__highlight">{d.label}</div>
-          </div>
-        );
-      })}
+          return (
+            <div
+              className={itemStyle}
+              onClick={() => onSelect(d.value)}
+              ref={ref}
+              data-value={d.value}
+              key={`item${d.value}`}
+            >
+              <div className="date-picker__highlight">{d.label}</div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
