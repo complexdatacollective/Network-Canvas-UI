@@ -16,10 +16,10 @@ const Months = ({ children }) => {
       const m = Interval.after({ ...date, month, day: 1 }, { months: 1 });
       const label = getMonthName(month);
       // if it overlaps min/max period, then this month is valid
-      if (dateRange.overlaps(m)) {
-        return formatRangeItem(month, { label });
+      if (!dateRange.overlaps(m) || !date.year) {
+        return formatRangeItem(month, { label, isOutOfRange: true });
       }
-      return formatRangeItem(month, { label, isOutOfRange: true });
+      return formatRangeItem(month, { label });
     });
 
   return children({ months });

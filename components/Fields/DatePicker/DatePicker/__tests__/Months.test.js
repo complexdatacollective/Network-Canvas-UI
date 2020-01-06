@@ -25,8 +25,15 @@ describe('<Months>', () => {
       .toMatchSnapshot();
   });
 
-  it('marks months as out of range', () => {
+  it('for empty date, marks all months as out of range', () => {
     const shortMonth = getSubject({ min: '2019-05-01', max: '2019-08-01' });
+
+    expect(shortMonth.mock.calls[0][0])
+      .toMatchSnapshot();
+  });
+
+  it('marks months as out of range', () => {
+    const shortMonth = getSubject({ date: '2019-06-01', min: '2019-05-01', max: '2019-08-01' });
 
     expect(shortMonth.mock.calls[0][0])
       .toMatchSnapshot();
