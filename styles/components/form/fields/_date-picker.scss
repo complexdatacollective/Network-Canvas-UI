@@ -15,7 +15,6 @@ $darken: rgba(0, 0, 0, 0.2);
   &__error-message {
     color: var(--form-error-text);
     background: var(--error);
-    margin-top: 0.5rem;
     padding: 0.5rem 0.25rem;
 
     svg {
@@ -27,8 +26,10 @@ $darken: rgba(0, 0, 0, 0.2);
     border-width: 0.1rem;
     border-style: solid;
     border-color: var(--error);
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
 
-    .#{$module-name}__error {
+    .form-field-date-picker__error {
       opacity: 1;
       max-height: 2.5rem;
     }
