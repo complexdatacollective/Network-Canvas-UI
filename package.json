@@ -1,6 +1,6 @@
 {
   "name": "@codaco/ui",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Styles and React components for the Network Canvas project",
   "main": "lib/components/index.js",
   "type": "module",
@@ -15,33 +15,35 @@
     "lint": "eslint ./src",
     "sass-lint": "sass-lint -vc .sass-lint.yml",
     "build": "./scripts/build",
-    "prepublish": "npm run lint && npm run build"
+    "preflight": "npm run lint && npm run sass-lint",
+    "prepublishOnly": "npm run preflight && npm run build"
   },
-  "dependencies": {},
+  "dependencies": {
+    "animejs": "^2.2.0",
+    "classnames": "^2.2.6",
+    "luxon": "^1.21.3",
+    "prop-types": "^15.7.2",
+    "react": "16.11.0",
+    "react-compound-slider": "^2.4.0",
+    "react-transition-group": "^4.3.0",
+    "recompose": "^0.30.0",
+    "uuid": "^3.2.1"
+  },
   "devDependencies": {
     "@babel/cli": "^7.7.7",
     "@babel/core": "^7.7.7",
     "@babel/plugin-proposal-class-properties": "^7.7.4",
     "@babel/preset-react": "^7.7.4",
-    "animejs": "^2.2.0",
     "babel-eslint": "^8.2.6",
-    "classnames": "^2.2.6",
     "enzyme": "^3.7.0",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^15.0.1",
     "eslint-plugin-import": "2.7.0",
     "eslint-plugin-jsx-a11y": "5.1.1",
     "eslint-plugin-react": "^7.11.1",
-    "luxon": "^1.21.3",
     "mkdirp": "^0.5.1",
     "ncp": "^2.0.0",
-    "react": "16.11.0",
-    "react-compound-slider": "^2.4.0",
     "react-dom": "16.11.0",
-    "react-transition-group": "^4.3.0",
-    "recompose": "^0.30.0",
-    "redux-form": "^7.4.2",
-    "sass-lint": "^1.12.1",
-    "uuid": "^3.2.1"
+    "sass-lint": "^1.12.1"
   }
 }
