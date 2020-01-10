@@ -2,17 +2,19 @@
 
 ## Installation
 
-```json
+Install with npm or link to git in package.json:
+
+```sh
+npm install --save @codaco/ui
+```
+
+```js
 // in package.json
 {
   "dependencies": {
-    "network-canvas-ui": "git+https://git@github.com/codaco/Network-Canvas-UI.git"
+    "@codaco/ui": "git+https://git@github.com/codaco/Network-Canvas-UI.git"
   }
 }
-```
-
-```sh
-yarn install
 ```
 
 ## Usage
@@ -22,7 +24,10 @@ yarn install
 ```jsx
 // in LocalComponent.js
 
-import { ExampleComponent } from '../ui/components';
+import { ExampleComponent } from '@codaco/ui';
+
+// To directly link to a component use:
+// `import ComponentName from '@codaco/ui/lib/components/ComponentName'`;
 
 const LocalComponent = props => (
   <div className="local-component">
@@ -37,7 +42,7 @@ You can include all styles in your main stylesheet:
 
 ```scss
 // in main.scss
-@import '~network-canvas-ui/lib/styles/all';
+@import '~@codaco/ui/lib/styles/all';
 ```
 
 Importing styles for only certain components may work but is not supported at this time.

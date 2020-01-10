@@ -1,12 +1,31 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { uniqueId } from 'lodash';
 import cx from 'classnames';
-import { fieldPropTypes } from 'redux-form';
 import Icon from '../Icon';
 
 class TextArea extends PureComponent {
   static propTypes = {
-    ...fieldPropTypes,
+    input: PropTypes.object,
+    meta: PropTypes.object,
+    label: PropTypes.string,
+    autoFocus: PropTypes.bool,
+    fieldLabel: PropTypes.string,
+    className: PropTypes.string,
+    placeholder: PropTypes.string,
+    hidden: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    input: {},
+    meta: {},
+    type: 'text',
+    autoFocus: false,
+    label: null,
+    fieldLabel: null,
+    placeholder: '',
+    className: '',
+    hidden: false,
   };
 
   constructor(props) {

@@ -50,14 +50,16 @@ class Handle extends Component {
 
     return (
       <React.Fragment>
-        <div
-          className={tooltipClasses}
-          style={{ left: `${percent}%` }}
-        >
-          <div className="form-field-slider__tooltip-label">
-            {label}
+        { showTooltips &&
+          <div
+            className={tooltipClasses}
+            style={{ left: `${percent}%` }}
+          >
+            <div className="form-field-slider__tooltip-label">
+              {label}
+            </div>
           </div>
-        </div>
+        }
         <div
           className="form-field-slider__handle"
           style={{ left: `${percent}%` }}

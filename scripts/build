@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+npx mkdirp lib
+npx ncp src/assets lib/assets
+npx ncp src/styles lib/styles
+npx babel src --out-dir lib

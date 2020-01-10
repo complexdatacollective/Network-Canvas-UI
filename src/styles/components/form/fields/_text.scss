@@ -56,6 +56,7 @@ $module-name: form-field-text;
     min-height: 14rem;
     padding-top: 2rem;
     padding-bottom: 2rem;
+    resize: vertical;
   }
 
   &--has-error {
