@@ -27,7 +27,7 @@ const DatePicker = ({
     date: getDate(props.date),
   });
 
-  // Correctly update component state when passed new date prop 
+  // Correctly update component state when passed new date prop
   useEffect(() => {
     setPickerState(state => ({
       ...state,
