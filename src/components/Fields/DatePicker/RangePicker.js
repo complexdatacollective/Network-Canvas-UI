@@ -1,13 +1,21 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import { times } from 'lodash';
+import { times, find } from 'lodash';
 
 // If today's date isn't in range, what's the closest value?
 const getScrollToValue = (range = [], today) => {
-  if (today !== 0 && !today) { return null; }
+  // range: 100: {value: 1100, label: 1100}
+  // today: 2020
+  if (today !== 0 && !today) {
+    return null;
+  }
+
   const findToday = find(range, ({ value }) => value === today);
-  if (findToday) { return findToday; }
+  if (findToday) {
+    return findToday.value;
+  }
+
   const first = range[0].value;
   const last = range[range.length - 1].value;
 
@@ -57,7 +65,6 @@ const RangePicker = ({
   );
 
   const scrollToValue = getScrollToValue(range, today);
-
   return (
     <div className={classes} ref={datePickerRef}>
       <div className="date-picker__range-picker-items">
