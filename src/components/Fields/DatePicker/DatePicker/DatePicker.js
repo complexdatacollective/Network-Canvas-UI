@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { DateTime, Interval } from 'luxon';
 import DatePickerContext from './DatePickerContext';
@@ -26,6 +26,14 @@ const DatePicker = ({
   const [pickerState, setPickerState] = useState({
     date: getDate(props.date),
   });
+
+  // new bit
+  useEffect(() => {
+    setPickerState(state => ({
+      ...state,
+      date: getDate(props.date),
+    }));
+  }, [props.date]);
 
   const type = props.type || DEFAULT_TYPE;
 
