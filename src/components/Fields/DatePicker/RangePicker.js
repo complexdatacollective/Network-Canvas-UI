@@ -5,8 +5,6 @@ import { times, find } from 'lodash';
 
 // If today's date isn't in range, what's the closest value?
 const getScrollToValue = (range = [], today) => {
-  // range: 100: {value: 1100, label: 1100}
-  // today: 2020
   if (today !== 0 && !today) {
     return null;
   }
