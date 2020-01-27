@@ -11,7 +11,7 @@ const DATE_FORMAT = DATE_FORMATS.full;
  * an anchor date (defaults to 'today' e.g. interview date,
  * when not set).
  */
-const RelativeDatePicker = ({ parameters, ...rest }) => {
+const RelativeDatePicker = ({ parameters = {}, ...rest }) => {
   const anchor = parameters.anchor ?
     DateTime.fromISO(parameters.anchor) :
     DateTime.local();

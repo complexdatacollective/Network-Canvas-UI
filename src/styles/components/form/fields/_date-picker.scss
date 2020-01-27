@@ -129,9 +129,7 @@ $darken: rgba(0, 0, 0, 0.2);
     flex-direction: column;
     transform: translateX(100%);
     transition: transform var(--animation-easing) var(--animation-duration-standard) var(--animation-duration-fast);
-    border-color: var(--darken);
-    border-style: solid;
-    border-width: 0 2px 0 0;
+    border: 0;
 
     &--is-active {
       transform: translateX(0);
@@ -154,8 +152,8 @@ $darken: rgba(0, 0, 0, 0.2);
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
-    padding: 0.5rem 1rem;
-    border-radius: 1rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5rem;
     background-color: transparent;
     transition: background-color ease $animation-speed;
   }
@@ -194,7 +192,6 @@ $darken: rgba(0, 0, 0, 0.2);
   }
 
   &__range-picker {
-    @extend .scrollable !optional; // sass-lint:disable-line placeholder-in-extend
     padding-top: 0 !important; // sass-lint:disable-line no-important
     position: absolute;
     top: 0;
@@ -204,9 +201,12 @@ $darken: rgba(0, 0, 0, 0.2);
     height: 100%;
 
     &--year {
+      @extend .scrollable !optional; // sass-lint:disable-line placeholder-in-extend
       .date-picker__range-picker-items {
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         grid-template-rows: minmax(auto, 5rem);
+        padding: 1.5rem 0;
+        height: calc(100% - 3rem); // double padding
       }
 
       .#{$module-name}__range-item {
