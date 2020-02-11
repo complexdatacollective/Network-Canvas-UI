@@ -84,7 +84,7 @@ const TruchetBackground = (props) => {
     <div
       className="TruchetBackground"
     >
-      <Grid rows={12} columns={12} level={0} />
+      <Grid rows={16} columns={16} level={0} />
     </div>
   );
 };
