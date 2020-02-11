@@ -1,0 +1,161 @@
+$image-path: '..//assets/images' !default;
+
+.TruchetBackground {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+
+.grid {
+  display: grid;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  min-width: 0;
+  min-height: 0;
+
+  &.level-0 {
+    height: 100%;
+    width: 100%;    
+  }
+
+  &.level-1 {
+    // height: 100px;
+    // width: 100px;    
+  }
+
+  &.level-2 {
+    // height: 50px;
+    // width: 50px;    
+  }
+}
+
+.tile {
+
+  svg {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: visible;
+    display: block;
+  }
+
+
+  &.level-0 {
+    // height: 200px;
+    // width: 200px;
+
+    svg {
+      z-index: 1;
+    }
+
+    .cls-1 {
+      fill:black;
+      fill-opacity: 1;
+      stroke:none
+    }
+    
+    .cls-2 {
+      fill:white;
+      fill-opacity: 1;
+      stroke:none
+    }
+  }
+
+  &.level-1 {
+    // height: 100px;
+    // width: 100px;
+
+    svg {
+      z-index: 2;
+    }
+
+    .cls-1 {
+      fill:white;
+      fill-opacity: 1;
+      stroke:none
+    }
+    
+    .cls-2 {
+      fill:black;
+      fill-opacity: 1;
+      stroke:none
+    }
+  }
+
+
+  &.level-2 {
+    // height: 50px;
+    // width: 50px;
+
+    svg {
+      z-index: 3;
+    }
+
+    .cls-1 {
+      fill:black;
+      fill-opacity: 1;
+      stroke:none
+    }
+    
+    .cls-2 {
+      fill:white;
+      fill-opacity: 1;
+      stroke:none
+    }
+  }
+
+  &.level-3 {
+    // height: 50px;
+    // width: 50px;
+
+    svg {
+      z-index: 4;
+    }
+
+    .cls-1 {
+      fill:white;
+      fill-opacity: 1;
+      stroke:none
+    }
+    
+    .cls-2 {
+      fill:black;
+      fill-opacity: 1;
+      stroke:none
+    }
+  }
+  
+
+  &--cross {
+    background-image: url('#{$image-path}/tiles/cross.svg');  
+  }
+
+  &--frown {
+    background-image: url('#{$image-path}/tiles/frown.svg');  
+  }
+
+  &--line {
+    background-image: url('#{$image-path}/tiles/line.svg');  
+  }
+
+  &--line {
+    background-image: url('#{$image-path}/tiles/line.svg');  
+  }
+
+  &--plus {
+    background-image: url('#{$image-path}/tiles/plus.svg');  
+  }
+
+  &--slash {
+    background-image: url('#{$image-path}/tiles/slash.svg');  
+  }
+
+  &--star {
+    background-image: url('#{$image-path}/tiles/star.svg');  
+  }
+
+  &--tee {
+    background-image: url('#{$image-path}/tiles/tee.svg');  
+  }
+  
+}

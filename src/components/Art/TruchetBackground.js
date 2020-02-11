@@ -1,46 +1,82 @@
 /* eslint-disable no-plusplus, no-param-reassign */
 import React from 'react';
+import cross from '../../assets/images/tiles/cross';
+import frown from '../../assets/images/tiles/frown';
+import line from '../../assets/images/tiles/line';
+import plus from '../../assets/images/tiles/plus';
+import slash from '../../assets/images/tiles/slash';
+import star from '../../assets/images/tiles/star';
+import tee from '../../assets/images/tiles/tee';
 
-
-// import tiles from '../img/tiles';
-const TruchetBackground = (props) => {
-  // 25% chance when level less than 3.
-  const isGridItem = level => (level < 3 ? (Math.random() > 0.75) : false);
-
+const Tile = ({ level }) => {
   const tiles = [
-    'cross',
-    'frown',
-    'line',
-    'plus',
-    'slash',
-    'star',
-    'tee',
+    cross,
+    frown,
+    line,
+    plus,
+    slash,
+    star,
+    tee,
   ];
 
   const getRandomTile = () => tiles[Math.floor(Math.random() * tiles.length)];
+  const Element = getRandomTile();
+  return (
+    <div
+      className={`tile level-${level}`}
+    >
+      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+        <Element />
+      </svg>
+    </div>
+  );
+};
 
-  const constructGrid = (rows = 4, columns = 4, level = 1) => {
+const Grid = ({ rows, columns, level }) => {
+  const isGridItem = () => (level < 3 ? (Math.random() > 0.75) : false);
+  console.log('grid:', rows, columns, level);
+  const gridContent = () => {
+    const test = [];
     for (let i = 0; i < rows; i++) {
+      console.log('i:', i);
       for (let j = 0; j < columns; j++) {
-        const element =
-          isGridItem(level) ? constructGrid(rows, columns, level++) : getRandomTile();
-
-        console.log(`Row: ${i}, Col: ${j}, Element: ${element} \n`);
+        console.log('j:', j);
+        const key = `${i}-${j}`;
+        if (isGridItem()) {
+          const newLevel = level + 1;
+          test.push(<Grid key={key} rows={2} columns={2} level={newLevel} />);
+        } else {
+          test.push(<Tile key={key} level={level} />);
+        }
       }
     }
+
+    return test;
   };
-  console.log('truchet props:', props);
+
+  const styles = {
+    gridTemplateColumns: `repeat(${columns}, 1fr)`,
+    gridTemplateRows: `repeat(${rows}, 1fr)`,
+  };
+
   return (
-    <svg
-      version="1.1"
-      width="1600"
-      height="1600"
-      xmlnsXlink="http://www.w3.org/1999/xlink"
-      xmlns="http://www.w3.org/2000/svg"
+    <div
+      className={`grid level-${level}`}
+      style={styles}
     >
-      <rect width="1600" height="1600" x="0" y="0" fill="black" />
-      { constructGrid() }
-    </svg>
+      {gridContent()}
+    </div>
+  );
+};
+
+const TruchetBackground = (props) => {
+  console.log('Truchet', props);
+  return (
+    <div
+      className="TruchetBackground"
+    >
+      <Grid rows={8} columns={8} level={0} />
+    </div>
   );
 };
 
