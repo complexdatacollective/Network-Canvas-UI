@@ -15,6 +15,7 @@ class TextInput extends PureComponent {
     type: PropTypes.oneOf([
       'text',
       'number',
+      'search',
     ]),
     placeholder: PropTypes.string,
     hidden: PropTypes.bool,
@@ -70,7 +71,7 @@ class TextInput extends PureComponent {
             id={this.id}
             name={input.name}
             className="form-field form-field-text form-field-text__input"
-            placeholder={label || placeholder}
+            placeholder={placeholder || label}
             autoFocus={autoFocus} // eslint-disable-line
             type={type}
             {...input}
