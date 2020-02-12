@@ -78,7 +78,7 @@ class TextArea extends PureComponent {
           <textarea
             id={this.id}
             className="form-field form-field-text form-field-text--area form-field-text__input"
-            placeholder={label || placeholder}
+            placeholder={placeholder || label}
             autoFocus={autoFocus} // eslint-disable-line
             type={type}
             {...input}
