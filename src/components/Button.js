@@ -51,7 +51,7 @@ class Button extends PureComponent {
     content: '',
     children: null,
     icon: '',
-    iconPosition: 'right',
+    iconPosition: 'left',
     size: '',
     color: '',
     type: 'button',
@@ -81,7 +81,9 @@ class Button extends PureComponent {
     return (
       <button type={type} className={buttonClassNames} onClick={onClick} {...rest}>
         {renderButtonIcon({ icon, iconPosition })}
-        <span className="button__content">{children || content}</span>
+        <span className="button__content">
+          {children || content}
+        </span>
       </button>
     );
   }
