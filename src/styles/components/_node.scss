@@ -60,7 +60,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    padding: 33%;
+    padding: 15%;
     color: var(--node-label);
 
     &-text {
@@ -72,36 +72,35 @@
       align-items: center;
       flex-wrap: nowrap;
       text-align: center;
-      font-size: 0.1em;
+      font-size: 0.15em;
       font-family: $netcanvas-font-stack;
       color: palette('text');
+      hyphens: auto;
+      overflow: hidden;
+      white-space: pre-line;
 
       &.len-1 {
-        font-size: 0.35em;
+        font-size: 0.17em;
       }
 
       &.len-2 {
-        font-size: 0.25em;
+        font-size: 0.17em;
       }
 
       &.len-3 {
-        font-size: 0.22em;
+        font-size: 0.17em;
       }
 
       &.len-4 {
-        font-size: 0.2em;
+        font-size: 0.17em;
       }
 
       &.len-5 {
-        font-size: 0.18em;
+        font-size: 0.17em;
       }
 
       &.len-6 {
-        font-size: 0.155em;
-      }
-
-      &.len-7 {
-        font-size: 0.13em;
+        font-size: 0.17em;
       }
     }
   }

@@ -34,7 +34,7 @@ class Node extends Component {
     const nodeBaseColor = `var(--${color})`;
     const nodeFlashColor = `var(--${color}--dark)`;
 
-    const label = this.props.label;
+    const label = this.props.label.length < 22 ? this.props.label : `${this.props.label.substring(0, 18)}\u{AD}...`; // Add ellipsis for really long labels
 
     return (
       <div className={classes}>

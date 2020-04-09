@@ -80,8 +80,8 @@ class Button extends PureComponent {
 
     return (
       <button type={type} className={buttonClassNames} onClick={onClick} {...rest}>
+        {renderButtonIcon({ icon, iconPosition })}
         <span className="button__content">
-          {renderButtonIcon({ icon, iconPosition })}
           {children || content}
         </span>
       </button>
