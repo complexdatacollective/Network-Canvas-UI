@@ -14,42 +14,24 @@
   .#{$button-class} {
     @include reset-button;
     @include vcjc; // vertical center, justify center
+    @include clickable;
 
     font-weight: 700;
     font-size: 0.8rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: palette('text');
-
     display: inline-flex;
     font-family: var(--heading-font-family);
     text-align: center;
     text-decoration: none; // in the case that this is used on a link
-
     width: auto;
     height: auto;
     min-width: 3rem;
     min-height: 3.5rem;
-
     border-radius: 2rem;
-    box-shadow: 0 0.15rem rgba(0, 0, 0, 0.25); //sass-lint:disable-line no-color-literals
     background-color: color('sea-green');
-
     margin-bottom: 0.15rem;
-
-    transition: all 0.2s ease;
-
-    &:hover {
-      text-decoration: none;
-      cursor: pointer;
-      transform: translateY(-0.25rem);
-      box-shadow: 0 0.5rem 0.2rem 0 rgba(0, 0, 0, 0.35);
-    }
-
-    &:active {
-      box-shadow: unset;
-      transform: translateY(0.25rem);
-    }
 
     &:disabled,
     &[disabled] {

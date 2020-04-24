@@ -1,12 +1,24 @@
 
-@mixin grid-container($contain: false, $width: 100%, $max-width: $grid-container-max-width) {
-  display: flex;
-  flex-flow: row wrap;
-  width: $width;
-  height: auto;
-  @if $contain {
-    max-width: $max-width;
-    margin-left: auto;
-    margin-right: auto;
+@mixin clickable($depth: 1) {
+  $base-shadow: 0.2rem;
+  $base-blur: 0.2rem;
+
+  $adjusted-shadow-size: $base-shadow * $depth;
+  $adjusted-blur: $base-blur * $depth;
+
+
+  box-shadow: 0 $adjusted-shadow-size rgba(0, 0, 0, 0.35); //sass-lint:disable-line no-color-literals
+  transition: transform var(--animation-duration-fast) var(--animation-easing), box-shadow var(--animation-duration-fast) var(--animation-easing);
+
+  &:hover {
+    text-decoration: none;
+    cursor: pointer;
+    transform: translateY(-#{$adjusted-shadow-size});
+    box-shadow: 0 #{$adjusted-shadow-size * 2} $adjusted-blur 0 rgba(0, 0, 0, 0.35);
+  }
+
+  &:active {
+    box-shadow: unset;
+    transform: translateY($adjusted-shadow-size);
   }
 }
