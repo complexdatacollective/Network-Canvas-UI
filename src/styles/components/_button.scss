@@ -37,16 +37,24 @@
 
     margin-bottom: 0.15rem;
 
+    transition: all 0.2s ease;
+
     &:hover {
       text-decoration: none;
       cursor: pointer;
-      opacity: 0.8;
+      transform: translateY(-0.25rem);
+      box-shadow: 0 0.5rem 0.2rem 0 rgba(0, 0, 0, 0.35);
+    }
+
+    &:active {
+      box-shadow: unset;
+      transform: translateY(0.25rem);
     }
 
     &:disabled,
     &[disabled] {
       opacity: 0.5;
-      cursor: default;
+      cursor: not-allowed;
     }
 
     @include color-modifiers($include-hover: true);

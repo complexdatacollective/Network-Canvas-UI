@@ -1,0 +1,12 @@
+
+@mixin grid-container($contain: false, $width: 100%, $max-width: $grid-container-max-width) {
+  display: flex;
+  flex-flow: row wrap;
+  width: $width;
+  height: auto;
+  @if $contain {
+    max-width: $max-width;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
