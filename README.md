@@ -21,7 +21,7 @@ npm install --save @codaco/ui
 
 In this repo:
 
-`npm link` then in consuming app ``
+`npm link` then in consuming app `npm link @codaco/ui`
 
 After each change:
 
