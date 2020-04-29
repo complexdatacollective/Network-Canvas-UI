@@ -16,6 +16,7 @@
 // 5. Setting @viewport causes scrollbars to overlap content in IE11 and Edge, so
 //    we force a non-overlapping, non-auto-hiding scrollbar to counteract.
 // 6. Change the default tap highlight to be completely transparent in iOS.
+// 7. Prevent any text selection, except for when an element has a specific class
 
 @mixin normalize {
   html {
@@ -25,6 +26,17 @@
     -ms-text-size-adjust: 100%; // 4
     -ms-overflow-style: scrollbar; // 5
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0); // 6
+  }
+
+
+  // Prevent text selection except when an element has a given class.
+  * {
+    user-select: none;
+
+    .allow-text-selection,
+    .allow-text-selection * {
+      user-select: text;
+    }
   }
 
   *,
@@ -41,20 +53,6 @@
   //
   // Typography
   //
-
-  // // Remove top margins from headings
-  // //
-  // // By default, `<h1>`-`<h6>` all receive top and bottom margins. We nuke the top
-  // // margin for easier control within type scales as it avoids margin collapsing.
-  // h1,
-  // h2,
-  // h3,
-  // h4,
-  // h5,
-  // h6 {
-  //   margin-top: 0;
-  //   // margin-bottom: 0.5rem;
-  // }
 
   // Reset margins on paragraphs
   //
