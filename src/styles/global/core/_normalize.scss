@@ -159,6 +159,7 @@
   img {
     vertical-align: middle;
     border-style: none; // Remove the border on images inside links in IE 10-.
+    -webkit-user-drag: none; // Prevent ability to drag image outside the app.
   }
 
   //
