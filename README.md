@@ -17,7 +17,17 @@ npm install --save @codaco/ui
 }
 ```
 
-## Usage
+## Development
+
+In this repo:
+
+`npm link` then in consuming app `npm link @codaco/ui`
+
+After each change:
+
+`npm install; npm run build; npm install --only=production`
+
+To revert in consuming app: `npm install`
 
 ### Components
 
