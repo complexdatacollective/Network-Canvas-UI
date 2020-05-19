@@ -17,7 +17,9 @@
     "sass-lint": "sass-lint -vc .sass-lint.yml",
     "build": "./scripts/build",
     "preflight": "npm run lint && npm run sass-lint",
-    "prepublishOnly": "npm run preflight && npm run build"
+    "prepublishOnly": "npm run preflight && npm run build",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "animejs": "^2.2.0",
@@ -38,7 +40,12 @@
     "@babel/core": "^7.7.7",
     "@babel/plugin-proposal-class-properties": "^7.7.4",
     "@babel/preset-react": "^7.7.4",
+    "@storybook/addon-actions": "^5.3.18",
+    "@storybook/addon-links": "^5.3.18",
+    "@storybook/addons": "^5.3.18",
+    "@storybook/react": "^5.3.18",
     "babel-eslint": "^8.2.6",
+    "babel-loader": "^8.1.0",
     "enzyme": "^3.7.0",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^15.0.1",
@@ -47,8 +54,10 @@
     "eslint-plugin-react": "^7.11.1",
     "mkdirp": "^0.5.1",
     "ncp": "^2.0.0",
+    "node-sass": "^4.14.1",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "sass-lint": "^1.12.1"
+    "sass-lint": "^1.12.1",
+    "sass-loader": "^8.0.2"
   }
 }
