@@ -17,7 +17,23 @@ npm install --save @codaco/ui
 }
 ```
 
-## Development
+## Deployment
+
+This is an org package hosted on npmjs.
+
+1. Update the version number in package.json
+1. `npm run publish`
+
+## Development (using Storybook)
+
+Run:
+`npm run storybook`
+
+A browser window will open with a live-updating view of components.
+
+This is a new feature so not all components are defined.
+
+## Development (using Network Canvas)
 
 In this repo:
 
