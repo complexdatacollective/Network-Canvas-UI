@@ -35,13 +35,18 @@ This is a new feature so not all components are defined.
 
 ## Development (using Network Canvas)
 
-In this repo:
+```sh
+# In UI
+$ npm link
 
-`npm link` then in consuming app `npm link @codaco/ui`
+# In consuming app
+$ npm link @codaco/ui
 
-After each change:
-
-`npm install; npm run build; npm install --only=production`
+# After each change (in UI):
+$ npm install
+$ npm run build
+$ npm install --production # potentially also rm -rf node_modules
+```
 
 To revert in consuming app: `npm install`
 
