@@ -11,7 +11,7 @@ const requiredProps = {
 export default { title: 'ToggleButtonGroup' };
 
 export const interaction = () => {
-  const [value, setValue] = useState('foo');
+  const [value, setValue] = useState(['foo']);
   const handleChange = (...args) => {
     setValue(...args);
     action('change')(...args);
