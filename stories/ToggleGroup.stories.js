@@ -20,11 +20,12 @@ export const interaction = () => {
   return (
     <Harness
       requiredProps={requiredProps}
-      label="What do you make of that?"
+      label="What is your occupation?"
       options={[
-        { label: 'foo', value: 'foo' },
-        { label: 'bar', value: 'bar' },
-        { label: 'bazz', value: 'bazz' },
+        { label: 'Epidemiologist', value: 1 },
+        { label: 'Telecommunications Technician', value: 2 },
+        { label: 'Manufacturing', value: 3 },
+        { label: 'Industrial-Organization Psychologist', value: 4 },
       ]}
       input={{
         onChange: handleChange,
