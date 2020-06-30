@@ -20,15 +20,15 @@ const Dialog = ({ children, type, icon, show, options, title, message, onBlur, c
         <div className="dialog__main-content">
           <h2 className="dialog__main-title">{title}</h2>
           {message}
+          { children &&
+          <div className="dialog__additional-content">
+            <div className="dialog__additional-box">
+              {children}
+            </div>
+          </div>
+          }
         </div>
       </div>
-      { children &&
-        <div className="dialog__additional-content">
-          <div className="dialog__additional-box">
-            {children}
-          </div>
-        </div>
-      }
       <footer className="dialog__footer">
         {options}
       </footer>

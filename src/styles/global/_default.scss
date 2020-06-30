@@ -216,6 +216,9 @@ $system-font-stack: 'system-ui', sans-serif;
   --heading-font-family: #{$netcanvas-font-stack};
   --body-font-family: #{$system-font-stack};
 
+  // Default border radius
+  --border-radius: .75rem;
+
   // each item in color map
   @each $name, $color in $-color-map {
     #{'--'}color-#{$name}: #{'rgb('}#{$color}#{')'};
