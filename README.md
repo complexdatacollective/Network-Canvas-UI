@@ -17,15 +17,36 @@ npm install --save @codaco/ui
 }
 ```
 
-## Development
+## Deployment
 
-In this repo:
+This is an org package hosted on npmjs.
 
-`npm link` then in consuming app `npm link @codaco/ui`
+1. Update the version number in package.json
+1. `npm run publish`
 
-After each change:
+## Development (using Storybook)
 
-`npm install; npm run build; npm install --only=production`
+Run:
+`npm run storybook`
+
+A browser window will open with a live-updating view of components.
+
+This is a new feature so not all components are defined.
+
+## Development (using Network Canvas)
+
+```sh
+# In UI
+$ npm link
+
+# In consuming app
+$ npm link @codaco/ui
+
+# After each change (in UI):
+$ npm install
+$ npm run build
+$ npm install --production # potentially also rm -rf node_modules
+```
 
 To revert in consuming app: `npm install`
 
