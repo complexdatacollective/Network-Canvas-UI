@@ -79,11 +79,16 @@ class Button extends PureComponent {
       [`button--${color}`]: !!color,
       [`button--${size}`]: !!size,
       'button--has-icon': !!icon,
-      'button--disabled': !!disabled,
     });
 
     return (
-      <button type={type} className={buttonClassNames} onClick={onClick} disabled {...rest}>
+      <button
+        type={type}
+        className={buttonClassNames}
+        onClick={onClick}
+        disabled={disabled}
+        {...rest}
+      >
         {renderButtonIcon({ icon, iconPosition })}
         <span className="button__content">
           {children || content}
