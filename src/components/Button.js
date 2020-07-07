@@ -45,6 +45,7 @@ class Button extends PureComponent {
       'button', 'submit', 'reset',
     ]),
     onClick: PropTypes.func,
+    disabled: PropTypes.bool,
   }
 
   static defaultProps = {
@@ -56,6 +57,7 @@ class Button extends PureComponent {
     color: '',
     type: 'button',
     onClick: () => {},
+    disabled: false,
   }
 
   render() {
@@ -68,6 +70,7 @@ class Button extends PureComponent {
       icon,
       type,
       iconPosition,
+      disabled,
       ...rest
     } = this.props;
 
@@ -79,7 +82,13 @@ class Button extends PureComponent {
     });
 
     return (
-      <button type={type} className={buttonClassNames} onClick={onClick} {...rest}>
+      <button
+        type={type}
+        className={buttonClassNames}
+        onClick={onClick}
+        disabled={disabled}
+        {...rest}
+      >
         {renderButtonIcon({ icon, iconPosition })}
         <span className="button__content">
           {children || content}
