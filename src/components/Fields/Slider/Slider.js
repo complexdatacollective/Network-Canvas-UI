@@ -136,8 +136,12 @@ class SliderInput extends Component {
           <Ticks count={tickCount}>
             {({ ticks }) => (
               <div className="form-field-slider__ticks">
-                {ticks.map(tick => (
-                  <Tick tick={tick} getLabelForValue={this.getLabelForValue} />
+                {ticks.map((tick, index) => (
+                  <Tick
+                    tick={tick}
+                    key={`${this.getLabelForValue}_${index}`}
+                    getLabelForValue={this.getLabelForValue}
+                  />
                 ))}
               </div>
             )}
