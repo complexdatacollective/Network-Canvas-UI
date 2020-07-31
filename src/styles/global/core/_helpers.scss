@@ -5,7 +5,7 @@
   $adjusted-shadow-size: $base-shadow * $depth;
   $adjusted-blur: $base-blur * $depth;
 
-  box-shadow: 0 $adjusted-shadow-size rgba(0, 0, 0, 0.35); //sass-lint:disable-line no-color-literals
+  box-shadow: 0 $adjusted-shadow-size rgba(17, 21, 27, 0.664); //sass-lint:disable-line no-color-literals
   transition: transform var(--animation-duration-very-fast) var(--animation-easing), box-shadow var(--animation-duration-very-fast) var(--animation-easing);
 
   &:not(:disabled):hover {

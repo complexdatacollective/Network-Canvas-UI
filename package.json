@@ -1,6 +1,6 @@
 {
   "name": "@codaco/ui",
-  "version": "3.4.1",
+  "version": "3.5.0",
   "description": "Styles and React components for the Network Canvas project",
   "main": "lib/components/index.js",
   "type": "module",
@@ -52,6 +52,7 @@
     "eslint-plugin-import": "2.7.0",
     "eslint-plugin-jsx-a11y": "5.1.1",
     "eslint-plugin-react": "^7.11.1",
+    "faker": "^4.1.0",
     "mkdirp": "^0.5.1",
     "ncp": "^2.0.0",
     "node-sass": "^4.14.1",
