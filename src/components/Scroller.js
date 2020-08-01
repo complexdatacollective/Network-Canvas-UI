@@ -55,7 +55,7 @@ Scroller.propTypes = {
   showScrollbars: PropTypes.bool,
   useSmoothScrolling: PropTypes.bool,
   forwardedRef: PropTypes.oneOfType([
-    PropTypes.func, 
+    PropTypes.func,
     PropTypes.shape({ current: PropTypes.any }),
   ]),
 };
