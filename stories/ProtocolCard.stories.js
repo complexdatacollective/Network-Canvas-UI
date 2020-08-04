@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import faker from 'faker';
 import { action } from '@storybook/addon-actions';
 import Harness from './helpers/Harness';
@@ -8,8 +8,8 @@ import '../src/styles/_all.scss';
 const requiredProps = {
   name: faker.lorem.sentence(),
   schemaVersion: 5,
-  lastModified: Date.now(),
-  installationDate: Date.now(),
+  lastModified: faker.date.recent().toISOString(),
+  installationDate: faker.date.recent().toISOString(),
   description: faker.lorem.paragraph(),
 };
 

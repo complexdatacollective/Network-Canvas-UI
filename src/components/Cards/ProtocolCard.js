@@ -21,22 +21,22 @@ const ProtocolCard = (props) => {
 
   const modifierClasses = cx(
     'protocol-card',
-    { 'protocol-card--info': !isObsolete && isOutdated },
-    { 'protocol-card--error': isObsolete },
+    { 'protocol-card--outdated': !isObsolete && isOutdated },
+    { 'protocol-card--obsolete': isObsolete },
   );
 
   const renderStatusIcon = () => {
     if (isOutdated) {
       return (
-        <div className="status-icon status-icon--info" onClick={(e) => { e.stopPropagation(); onStatusClickHandler(); }}>
-          <Icon name="info" />
+        <div className="status-icon status-icon--outdated" onClick={(e) => { e.stopPropagation(); onStatusClickHandler(); }}>
+          <Icon name="warning" />
         </div>
       );
     }
 
     if (isObsolete) {
       return (
-        <div className="status-icon status-icon--error" onClick={(e) => { e.stopPropagation(); onStatusClickHandler(); }}>
+        <div className="status-icon status-icon--obsolete" onClick={(e) => { e.stopPropagation(); onStatusClickHandler(); }}>
           <Icon name="error" />
         </div>
       );
@@ -48,12 +48,20 @@ const ProtocolCard = (props) => {
   return (
     <div className={modifierClasses} onClick={onClickHandler}>
       <div className="protocol-card__icon-section">
-        <div className="protocol-icon">
-          <Icon name="protocol-card" />
-        </div>
+        {
+          !isObsolete && (
+            <div className="protocol-icon">
+              <Icon name="protocol-card" />
+            </div>
+          )
+        }
         {renderStatusIcon()}
         <div className="protocol-meta">
-          <h6>Installed: { installationDate ? formatDate(installationDate) : 'Not installed'}</h6>
+          {
+            installationDate && (
+              <h6>Installed: {formatDate(installationDate)}</h6>
+            )
+          }
           <h6>Last Modified: {formatDate(lastModified)}</h6>
           <h6>Schema Version: {schemaVersion}</h6>
         </div>

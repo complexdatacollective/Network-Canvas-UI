@@ -11,13 +11,6 @@ $component: 'protocol-card';
   margin: unit(2);
   flex-direction: column-reverse;
 
-  &--server {
-    .#{$component}__icon-section {
-      background: var(--color-mustard);
-      color: white;
-    }
-  }
-
   &__icon-section {
     display: flex;
     justify-content: center;
@@ -64,38 +57,30 @@ $component: 'protocol-card';
 
     .protocol-name {
       flex: 0 0 auto;
-      margin: 0;
+      margin-top: 0;
       align-items: center;
       display: flex;
       hyphens: auto;
     }
 
     .protocol-description {
-      height: unit(10);
-      overflow-y: auto;
-      overflow-x: hidden;
-      padding: unit(2) 0;
+      height: unit(6);
       font-size: 0.8rem;
     }
-
   }
 
   .status-icon {
     height: 3rem;
     width: 3rem;
     text-align: center;
-    background: var(--info);
+    // background: var(--warning);
     padding: unit(1);
     margin-left: unit(1);
     border-radius: 50%;
     display: inline-block;
 
-    &--info {
-      background: var(--info);
-    }
-
-    &--error {
-      background: var(--error);
+    &--outdated {
+      background: var(--warning);
     }
 
     .icon {
@@ -104,4 +89,14 @@ $component: 'protocol-card';
     }
   }
 
+  &--obsolete {
+    .#{$component}__icon-section {
+      color: #ff9dbb;
+      background: var(--error);
+    }
+
+    .protocol-name, .protocol-description {
+      opacity: 0.35;
+    }
+  }
 }
