@@ -68,9 +68,13 @@ const ProtocolCard = (props) => {
       </div>
       <div className="protocol-card__main-section">
         <h2 className="protocol-name">{name}</h2>
-        <Scroller className="protocol-description">
-          { description || (<em>No protocol description.</em>) }
-        </Scroller>
+        {
+          description && (
+            <Scroller className="protocol-description">
+              { description }
+            </Scroller>
+          )
+        }
       </div>
     </div>
   );

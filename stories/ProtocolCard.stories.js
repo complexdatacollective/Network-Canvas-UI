@@ -10,7 +10,7 @@ const requiredProps = {
   schemaVersion: 5,
   lastModified: faker.date.recent().toISOString(),
   installationDate: faker.date.recent().toISOString(),
-  description: faker.lorem.paragraph(),
+  description: faker.lorem.sentence(),
 };
 
 export default { title: 'ProtocolCard' };
@@ -24,10 +24,30 @@ export const normal = () => (
   </Harness>
 );
 
-export const longtext = () => (
+export const longname = () => (
+  <Harness
+    requiredProps={requiredProps}
+    name={faker.lorem.sentence()}
+    onClickHandler={action('onClickHandler')}
+  >
+    {props => <ProtocolCard {...props} />}
+  </Harness>
+);
+
+export const longdescription = () => (
   <Harness
     requiredProps={requiredProps}
     description={faker.lorem.paragraphs()}
+    onClickHandler={action('onClickHandler')}
+  >
+    {props => <ProtocolCard {...props} />}
+  </Harness>
+);
+
+export const nodescription = () => (
+  <Harness
+    requiredProps={requiredProps}
+    description={null}
     onClickHandler={action('onClickHandler')}
   >
     {props => <ProtocolCard {...props} />}

@@ -54,17 +54,21 @@ $component: 'protocol-card';
     flex: 0 1 auto;
     padding: unit(2) unit(4);
     flex-direction: column;
+    height: unit(14);
+    display: flex;
+    justify-content: center;
 
     .protocol-name {
       flex: 0 0 auto;
-      margin-top: 0;
+      margin: 0;
       align-items: center;
       display: flex;
       hyphens: auto;
     }
 
     .protocol-description {
-      height: unit(6);
+      margin-top: unit(1);
+      flex: 1;
       font-size: 0.8rem;
     }
   }
