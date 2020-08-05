@@ -11,6 +11,47 @@ $component: 'protocol-card';
   margin: unit(2);
   flex-direction: column-reverse;
 
+  &--condensed {
+    @include clickable(1);
+    flex-direction: row;
+
+    .#{$component}__icon-section {
+      padding: 0;
+      flex: 0 0 5rem;
+
+      .protocol-icon {
+        height: 2rem;
+        width: 2rem;
+      }
+    }
+
+    .#{$component}__main-section {
+      flex: none;
+      padding: unit(1) unit(2);
+      height: auto;
+      width: calc(100% - 5rem);
+
+      .protocol-name {
+        display: block;
+        flex: none;
+        font-size: 1rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .protocol-description--condensed {
+        margin-top: unit(1);
+        flex: 1;
+        font-size: 0.64rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+      }
+    }
+  }
+
   &__icon-section {
     display: flex;
     justify-content: center;

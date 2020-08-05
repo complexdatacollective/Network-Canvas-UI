@@ -8,6 +8,7 @@ const formatDate = timestamp => timestamp && new Date(timestamp).toLocaleString(
 
 const ProtocolCard = (props) => {
   const {
+    condensed,
     schemaVersion,
     lastModified,
     installationDate,
@@ -21,6 +22,7 @@ const ProtocolCard = (props) => {
 
   const modifierClasses = cx(
     'protocol-card',
+    { 'protocol-card--condensed': condensed },
     { 'protocol-card--outdated': !isObsolete && isOutdated },
     { 'protocol-card--obsolete': isObsolete },
   );
@@ -56,20 +58,22 @@ const ProtocolCard = (props) => {
           )
         }
         {renderStatusIcon()}
-        <div className="protocol-meta">
-          {
-            installationDate && (
-              <h6>Installed: {formatDate(installationDate)}</h6>
-            )
-          }
-          <h6>Last Modified: {formatDate(lastModified)}</h6>
-          <h6>Schema Version: {schemaVersion}</h6>
-        </div>
+        { !condensed && (
+          <div className="protocol-meta">
+            {
+              installationDate && (
+                <h6>Installed: {formatDate(installationDate)}</h6>
+              )
+            }
+            <h6>Last Modified: {formatDate(lastModified)}</h6>
+            <h6>Schema Version: {schemaVersion}</h6>
+          </div>
+        ) }
       </div>
       <div className="protocol-card__main-section">
         <h2 className="protocol-name">{name}</h2>
         {
-          description && (
+          description && condensed ? (<div className="protocol-description--condensed">{ description }</div>) : (
             <Scroller className="protocol-description">
               { description }
             </Scroller>
@@ -89,6 +93,7 @@ ProtocolCard.defaultProps = {
   isOutdated: false,
   isObsolete: false,
   isSelected: false,
+  condensed: false,
 };
 
 ProtocolCard.propTypes = {
@@ -101,6 +106,7 @@ ProtocolCard.propTypes = {
   onStatusClickHandler: PropTypes.func,
   isOutdated: PropTypes.bool,
   isObsolete: PropTypes.bool,
+  condensed: PropTypes.bool,
 };
 
 export default ProtocolCard;

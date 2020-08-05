@@ -24,6 +24,19 @@ export const normal = () => (
   </Harness>
 );
 
+export const condensed = () => (
+  <Harness
+    requiredProps={requiredProps}
+    name={faker.lorem.sentence()}
+    description={faker.lorem.paragraphs()}
+    condensed
+    onClickHandler={action('onClickHandler')}
+  >
+    {props => <ProtocolCard {...props} />}
+  </Harness>
+);
+
+
 export const longname = () => (
   <Harness
     requiredProps={requiredProps}

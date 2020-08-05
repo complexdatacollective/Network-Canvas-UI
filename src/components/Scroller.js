@@ -44,7 +44,7 @@ Scroller.defaultProps = {
   className: '',
   onScroll: () => {},
   useSmoothScrolling: true,
-  showScrollbars: true,
+  showScrollbars: false,
   forwardedRef: null,
 };
 
