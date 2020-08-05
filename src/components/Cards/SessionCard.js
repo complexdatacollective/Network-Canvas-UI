@@ -1,12 +1,7 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
 import { get } from 'lodash';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { actionCreators as sessionActions } from '../ducks/modules/session';
-import { ProgressBar } from '../components';
+import { ProgressBar } from '../';
 
 const formatDate = timestamp => timestamp && new Date(timestamp).toLocaleString(undefined, { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' });
 
@@ -14,36 +9,21 @@ const oneBasedIndex = i => parseInt(i || 0, 10) + 1;
 
 const SessionCard = (props) => {
   const {
-    setSession,
-    attributes,
-    sessionUUID,
-    installedProtocols,
-    isSelected,
-  } = props;
-
-  const {
     caseId,
     protocolUID,
     updatedAt,
     lastExportedAt,
     stageIndex,
-  } = attributes;
-
-  const classes = cx({
-    'session-card': true,
-    'session-card--selected': isSelected(sessionUUID),
-  });
+    installedProtocols,
+    onClickHandler,
+  } = props;
 
   const progress = Math.round(
     (oneBasedIndex(stageIndex) / oneBasedIndex(get(installedProtocols, [protocolUID, 'stages'], []).length)) * 100,
   );
 
   return (
-    <motion.div
-      className={classes}
-      key={sessionUUID}
-      onClick={() => setSession(sessionUUID)}
-    >
+    <div className="session-card" onClick={onClickHandler}>
       <div className="session-card__content">
         <div className="meta-wrapper">
           <div className="progress-wrapper">
@@ -68,30 +48,23 @@ const SessionCard = (props) => {
           </h2>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
-SessionCard.propTypes = {
-  attributes: PropTypes.object.isRequired,
-  sessionUUID: PropTypes.string.isRequired,
-  setSession: PropTypes.func.isRequired,
-};
-
 SessionCard.defaultProps = {
+  onClickHandler: () => {},
 };
 
-function mapStateToProps(state) {
-  return {
-    isSelected: uuid => state.selectedSessions && state.selectedSessions.includes(uuid),
-    installedProtocols: state.installedProtocols,
-  };
-}
+SessionCard.propTypes = {
+  caseId: PropTypes.string.isRequired,
+  protocolUID: PropTypes.string.isRequired,
+  updatedAt: PropTypes.string.isRequired,
+  lastExportedAt: PropTypes.string.isRequired,
+  stageIndex: PropTypes.number.isRequired,
+  installedProtocols: PropTypes.object.isRequired,
+  onClickHandler: PropTypes.func,
+};
 
-function mapDispatchToProps(dispatch) {
-  return {
-    setSession: bindActionCreators(sessionActions.setSession, dispatch),
-  };
-}
-export default connect(mapStateToProps, mapDispatchToProps)(SessionCard);
+export default SessionCard;
 
