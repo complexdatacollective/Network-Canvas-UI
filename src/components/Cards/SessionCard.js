@@ -5,22 +5,15 @@ import { ProgressBar } from '../';
 
 const formatDate = timestamp => timestamp && new Date(timestamp).toLocaleString(undefined, { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' });
 
-const oneBasedIndex = i => parseInt(i || 0, 10) + 1;
-
 const SessionCard = (props) => {
   const {
     caseId,
-    protocolUID,
     updatedAt,
-    lastExportedAt,
-    stageIndex,
-    installedProtocols,
+    startedAt,
+    protocolName,
+    progress,
     onClickHandler,
   } = props;
-
-  const progress = Math.round(
-    (oneBasedIndex(stageIndex) / oneBasedIndex(get(installedProtocols, [protocolUID, 'stages'], []).length)) * 100,
-  );
 
   return (
     <div className="session-card" onClick={onClickHandler}>
@@ -32,13 +25,13 @@ const SessionCard = (props) => {
           </div>
           <div className="meta">
             <h6>
-              Protocol: { installedProtocols[protocolUID].name || '[Unavailable protocol]'}
+              Protocol: { protocolName || '[Unavailable protocol]'}
+            </h6>
+            <h6 className="meta-wrapper__attribute">
+              Begun:&nbsp;{ startedAt ? formatDate(startedAt) : (<span className="highlight">Not start date!</span>) }
             </h6>
             <h6 className="meta-wrapper__attribute">
               Last Changed: { formatDate(updatedAt) }
-            </h6>
-            <h6 className="meta-wrapper__attribute">
-              Last Exported:&nbsp;{ lastExportedAt ? formatDate(lastExportedAt) : (<span className="highlight">Not yet exported</span>) }
             </h6>
           </div>
         </div>
@@ -54,15 +47,15 @@ const SessionCard = (props) => {
 
 SessionCard.defaultProps = {
   onClickHandler: () => {},
+  protocolName: null,
 };
 
 SessionCard.propTypes = {
   caseId: PropTypes.string.isRequired,
-  protocolUID: PropTypes.string.isRequired,
   updatedAt: PropTypes.string.isRequired,
-  lastExportedAt: PropTypes.string.isRequired,
-  stageIndex: PropTypes.number.isRequired,
-  installedProtocols: PropTypes.object.isRequired,
+  startedAt: PropTypes.string.isRequired,
+  protocolName: PropTypes.string,
+  progress: PropTypes.number.isRequired,
   onClickHandler: PropTypes.func,
 };
 

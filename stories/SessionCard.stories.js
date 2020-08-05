@@ -7,16 +7,10 @@ import '../src/styles/_all.scss';
 
 const requiredProps = {
   caseId: faker.lorem.sentence(),
-  protocolUID: 1,
   updatedAt: faker.date.recent().toISOString(),
   lastExportedAt: faker.date.recent().toISOString(),
-  stageIndex: 0,
-  installedProtocols: {
-    1: {
-      name: 'Mock Protocol',
-      stages: Array(10),
-    },
-  },
+  protocolName: 'Mock Protocol',
+  progress: 55,
 };
 
 export default { title: 'SessionCard' };
