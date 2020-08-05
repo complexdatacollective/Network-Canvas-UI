@@ -18,6 +18,10 @@ $component: 'protocol-card';
     .#{$component}__icon-section {
       padding: 0;
       flex: 0 0 5rem;
+      
+      .status-icon {
+        margin-left: 0;
+      }
 
       .protocol-icon {
         height: 2rem;
@@ -28,7 +32,7 @@ $component: 'protocol-card';
     .#{$component}__main-section {
       flex: none;
       padding: unit(1) unit(2);
-      height: auto;
+      height: 4rem;
       width: calc(100% - 5rem);
 
       .protocol-name {
@@ -38,16 +42,6 @@ $component: 'protocol-card';
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-      }
-
-      .protocol-description--condensed {
-        margin-top: unit(1);
-        flex: 1;
-        font-size: 0.64rem;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        width: 100%;
       }
     }
   }
@@ -108,9 +102,18 @@ $component: 'protocol-card';
     }
 
     .protocol-description {
-      margin-top: unit(1);
+      padding-top: unit(1);
       flex: 1;
       font-size: 0.8rem;
+
+      &--condensed {
+        flex: 1;
+        font-size: 0.64rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+      }
     }
   }
 

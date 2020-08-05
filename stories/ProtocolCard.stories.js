@@ -28,9 +28,10 @@ export const condensed = () => (
   <Harness
     requiredProps={requiredProps}
     name={faker.lorem.sentence()}
-    description={faker.lorem.paragraphs()}
+    description={null}
     condensed
     onClickHandler={action('onClickHandler')}
+    onStatusClickHandler={action('onStatusClickHandler')}
   >
     {props => <ProtocolCard {...props} />}
   </Harness>

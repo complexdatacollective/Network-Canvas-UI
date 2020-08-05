@@ -44,20 +44,33 @@ const ProtocolCard = (props) => {
       );
     }
 
-    return ('');
+    return (
+      <div className="protocol-icon">
+        <Icon name="protocol-card" />
+      </div>
+    );
   };
+
+  const renderDescription = () => {
+    if (condensed) {
+      return (
+        <div className="protocol-description protocol-description--condensed">
+          { description }
+        </div>
+      )
+    }
+
+    return (
+      <Scroller className="protocol-description">
+        { description }
+      </Scroller>
+    )
+  }
 
   return (
     <div className={modifierClasses} onClick={onClickHandler}>
       <div className="protocol-card__icon-section">
-        {
-          !isObsolete && (
-            <div className="protocol-icon">
-              <Icon name="protocol-card" />
-            </div>
-          )
-        }
-        {renderStatusIcon()}
+        { renderStatusIcon() }
         { !condensed && (
           <div className="protocol-meta">
             {
@@ -72,13 +85,7 @@ const ProtocolCard = (props) => {
       </div>
       <div className="protocol-card__main-section">
         <h2 className="protocol-name">{name}</h2>
-        {
-          description && condensed ? (<div className="protocol-description--condensed">{ description }</div>) : (
-            <Scroller className="protocol-description">
-              { description }
-            </Scroller>
-          )
-        }
+        { description && renderDescription() }
       </div>
     </div>
   );
