@@ -1,4 +1,32 @@
+@keyframes progress-bar-animation {
+  from {
+    background-position: var(--progress-indeterminate-gradient-width) 0;
+  }
+
+  to {
+    background-position: 0 0;
+  }
+}
+
 .progress-bar {
+  --progress-indeterminate-background-color: var(--transparent-md);
+  --progress-indeterminate-highlight-color: var(--transparent-light);
+  --progress-indeterminate-gradient-width: 100rem;
+  --progress-indeterminate-animation-duration: 2s;
+
+  @include modifier(indeterminate) {
+    .progress-bar__filler {
+      animation: progress-bar-animation var(--progress-indeterminate-animation-duration) linear infinite;
+      background-image: linear-gradient(
+        0.25turn,
+        var(--progress-indeterminate-background-color),
+        var(--progress-indeterminate-highlight-color),
+        var(--progress-indeterminate-background-color),
+      );
+      background-size: var(--progress-indeterminate-gradient-width);
+    }
+  }
+
   background-color: var(--light-background);
   flex-grow: 1;
   width: 100%;
