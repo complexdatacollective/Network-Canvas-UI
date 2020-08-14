@@ -235,6 +235,7 @@ $system-font-stack: 'system-ui', sans-serif;
 
   // Top level transparentised values
   --transparent-light: #{transparentize(rgb(255, 255, 255), 0.7)};
+  --transparent-md: #{transparentize(rgb(128, 128, 128), 0.7)};
   --transparent-dark: #{transparentize(rgb(0, 0, 0), 0.3)};
 
   // additional one-off palette values

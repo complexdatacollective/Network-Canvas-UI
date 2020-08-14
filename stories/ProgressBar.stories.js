@@ -31,6 +31,15 @@ export const horizontal = () => (
   </Harness>
 );
 
+export const indeterminate = () => (
+  <ProgressBar
+    requiredProps={requiredProps}
+    orientation="horizontal"
+    percentProgress={50}
+    indeterminate
+  />
+);
+
 export const complete = () => (
   <Harness
     requiredProps={requiredProps}
