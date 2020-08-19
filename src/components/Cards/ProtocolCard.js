@@ -57,15 +57,15 @@ const ProtocolCard = (props) => {
         <div className="protocol-description protocol-description--condensed">
           { description }
         </div>
-      )
+      );
     }
 
     return (
       <Scroller className="protocol-description">
         { description }
       </Scroller>
-    )
-  }
+    );
+  };
 
   return (
     <div className={modifierClasses} onClick={onClickHandler}>

@@ -32,8 +32,8 @@
     "uuid": "^3.2.1"
   },
   "peerDependencies": {
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2"
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.7",
@@ -53,11 +53,12 @@
     "eslint-plugin-jsx-a11y": "5.1.1",
     "eslint-plugin-react": "^7.11.1",
     "faker": "^4.1.0",
+    "framer-motion": "^2.4.2",
     "mkdirp": "^0.5.1",
     "ncp": "^2.0.0",
     "node-sass": "^4.14.1",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "sass-lint": "^1.12.1",
     "sass-loader": "^8.0.2"
   }

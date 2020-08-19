@@ -1,5 +1,5 @@
 .modal {
-  opacity: 0;
+  // opacity: 0;
   position: fixed;
   top: 0;
   left: 0;
@@ -14,10 +14,6 @@
     width: 100%;
     height: 100%;
     background-color: var(--modal-overlay);
-    @supports (backdrop-filter: blur(0.75rem)) {
-      background: var(--modal-overlay);
-      backdrop-filter: blur(0.75rem);
-    }
   }
 
   &__content {

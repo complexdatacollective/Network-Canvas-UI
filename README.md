@@ -12,7 +12,7 @@ npm install --save @codaco/ui
 // in package.json
 {
   "dependencies": {
-    "@codaco/ui": "git+https://git@github.com/codaco/Network-Canvas-UI.git"
+    "@codaco/ui": "git+https://git@github.com/complexdatacollective/Network-Canvas-UI.git"
   }
 }
 ```
