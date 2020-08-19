@@ -48,10 +48,10 @@
   }
 
   &__additional {
+    margin-top: unit(2);
 
     &-box {
-      max-height: 15rem;
-      padding: 1.5rem;
+      @include allow-text-selection;
       margin-top: 1.5rem;
       background: var(--background);
       user-select: initial;
@@ -59,15 +59,7 @@
       overflow-x: hidden;
       border-radius: var(--border-radius);
 
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        font-weight: 700;
-        text-transform: uppercase;
-      }
+      
     }
   }
 
@@ -99,6 +91,7 @@
     border-color: var(--error);
 
     .error__stack-trace {
+      padding: unit(2);
       width: 100%;
       white-space: pre-wrap;
       word-break: break-all;

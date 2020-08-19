@@ -14,16 +14,14 @@ const variants = {
 };
 
 
-const Drop = ({ children, ...props }) => {
-  return (
-    <motion.div
-      variants={variants}
-      {...props}
-    >
-      {children}
-    </motion.div>
-  );
-};
+const Drop = ({ children, ...props }) => (
+  <motion.div
+    variants={variants}
+    {...props}
+  >
+    {children}
+  </motion.div>
+);
 
 
 Drop.propTypes = {

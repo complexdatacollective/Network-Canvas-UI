@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 import Dialog from './Dialog';
 import Button from '../Button';
@@ -11,12 +12,38 @@ const getMessage = ({ error, message }) =>
 
 const getStack = error => !!error && error.stack;
 
-const renderAdditionalInformation = stack => (
-  <React.Fragment>
-    <p><strong>Detailed information:</strong></p>
-    <pre className="error__stack-trace">{stack}</pre>
-  </React.Fragment>
-);
+const AdditionalInformation = ({ stack }) => {
+  const [expanded, setExpanded] = useState(false);
+
+  const buttonText = expanded ? 'Hide details \u25b2' : 'Show details \u25bc';
+
+  return (
+    <div className="dialog__additional">
+      <motion.div
+        className="dialog__additional-box"
+        initial={{ height: 0, marginBottom: 0 }}
+        animate={expanded ? { height: '15rem', marginBottom: '1.2rem' } : { height: 0, marginBottom: 0 }}
+      >
+        <pre className="error__stack-trace">{stack}</pre>
+      </motion.div>
+      <Button
+        size="small"
+        color="neon-coral"
+        onClick={() => setExpanded(!expanded)}
+      >
+        {buttonText}
+      </Button>
+    </div>
+  );
+};
+
+AdditionalInformation.propTypes = {
+  stack: PropTypes.string,
+};
+
+AdditionalInformation.defaultProps = {
+  stack: null,
+};
 
 /*
  * Designed to present errors to the user. Unlike some other Dialog types user must
@@ -36,7 +63,7 @@ const ErrorDialog = ({ error, message, onConfirm, show, confirmLabel, title }) =
         <Button key="confirm" onClick={onConfirm} color="neon-coral" content={confirmLabel} />,
       ]}
     >
-      {stack && renderAdditionalInformation(stack)}
+      {stack && <AdditionalInformation stack={stack} />}
     </Dialog>
   );
 };
