@@ -21,14 +21,14 @@ const AdditionalInformation = ({ stack }) => {
     <div className="dialog__additional">
       <motion.div
         className="dialog__additional-box"
-        initial={{ height: 0, marginBottom: 0 }}
-        animate={expanded ? { height: '15rem', marginBottom: '1.2rem' } : { height: 0, marginBottom: 0 }}
+        initial={{ height: 0 }}
+        animate={expanded ? { height: 'auto' } : { height: 0 }}
       >
         <pre className="error__stack-trace">{stack}</pre>
       </motion.div>
       <Button
         size="small"
-        color="neon-coral"
+        color="platinum"
         onClick={() => setExpanded(!expanded)}
       >
         {buttonText}

@@ -48,18 +48,20 @@
   }
 
   &__additional {
-    margin-top: unit(2);
+
+    .button {
+      margin-top: unit(2);
+    }
 
     &-box {
       @include allow-text-selection;
-      margin-top: 1.5rem;
+      margin-top: unit(2);
+      max-height: 50vh;
       background: var(--background);
       user-select: initial;
       overflow-y: auto;
       overflow-x: hidden;
       border-radius: var(--border-radius);
-
-      
     }
   }
 
