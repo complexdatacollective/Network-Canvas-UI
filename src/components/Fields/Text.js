@@ -17,7 +17,10 @@ class TextInput extends PureComponent {
       'number',
       'search',
     ]),
-    placeholder: PropTypes.string,
+    placeholder: PropTypes.oneOf([
+      PropTypes.string,
+      PropTypes.number,
+    ]),
     hidden: PropTypes.bool,
   };
 

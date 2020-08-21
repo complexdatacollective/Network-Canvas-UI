@@ -2,22 +2,16 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
 
-const variants = {
-  visible: {
-    opacity: 1,
-    y: '0',
-  },
-  hidden: {
-    opacity: 0,
-    y: '-5vh',
-  },
-};
-
-
-const Drop = ({ children, ...props }) => (
+const Drop = ({ children }) => (
   <motion.div
-    variants={variants}
-    {...props}
+    animate={{
+      opacity: 1,
+      y: '0',
+    }}
+    initial={{
+      opacity: 0,
+      y: '-5vh',
+    }}
   >
     {children}
   </motion.div>

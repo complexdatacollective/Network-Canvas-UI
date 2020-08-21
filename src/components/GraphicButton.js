@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { motion } from 'framer-motion';
 import cx from 'classnames';
 import create from '../assets/images/create-button.svg';
 import open from '../assets/images/open-button.svg';
@@ -28,7 +29,8 @@ const GraphicButton = ({
   const className = cx('graphic-button', { 'graphic-button--disabled': disabled });
 
   return (
-    <div
+    <motion.div
+      layout
       className={className}
       style={styles}
       onClick={onClick}
@@ -39,7 +41,7 @@ const GraphicButton = ({
       >
         {children}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

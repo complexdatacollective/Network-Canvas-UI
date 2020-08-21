@@ -20,7 +20,6 @@ class Modal extends Component {
       visible: {
         opacity: 1,
         transition: {
-          when: 'beforeChildren',
           duration: getCSSVariableAsNumber('--animation-duration-fast'),
         },
       },

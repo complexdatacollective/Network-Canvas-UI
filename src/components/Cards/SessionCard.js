@@ -24,13 +24,13 @@ const SessionCard = (props) => {
           </div>
           <div className="meta">
             <h6>
-              Protocol: { protocolName || '[Unavailable protocol]'}
+              Protocol:&nbsp;{ protocolName || (<span className="highlight">Unavailable protocol!</span>) }
             </h6>
             <h6 className="meta-wrapper__attribute">
-              Begun:&nbsp;{ startedAt ? formatDate(startedAt) : (<span className="highlight">Not start date!</span>) }
+              Started At:&nbsp;{ startedAt ? formatDate(startedAt) : (<span className="highlight">No start date!</span>) }
             </h6>
             <h6 className="meta-wrapper__attribute">
-              Last Changed: { formatDate(updatedAt) }
+              Last Changed:&nbsp;{ updatedAt ? formatDate(updatedAt) : (<span className="highlight">Never changed!</span>) }
             </h6>
           </div>
         </div>
@@ -51,8 +51,8 @@ SessionCard.defaultProps = {
 
 SessionCard.propTypes = {
   caseId: PropTypes.string.isRequired,
-  updatedAt: PropTypes.string.isRequired,
-  startedAt: PropTypes.string.isRequired,
+  updatedAt: PropTypes.number.isRequired,
+  startedAt: PropTypes.number.isRequired,
   protocolName: PropTypes.string,
   progress: PropTypes.number.isRequired,
   onClickHandler: PropTypes.func,
