@@ -24,6 +24,7 @@
   "dependencies": {
     "animejs": "^2.2.0",
     "classnames": "^2.2.6",
+    "framer-motion": "^2.6.0",
     "luxon": "^1.21.3",
     "prop-types": "^15.6.2",
     "react-compound-slider": "^2.4.0",
