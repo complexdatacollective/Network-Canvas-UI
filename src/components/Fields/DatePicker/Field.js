@@ -8,6 +8,8 @@ class DatePickerField extends Component {
   constructor(props) {
     super(props);
 
+    this.ref = React.createRef();
+
     this.state = {
       id: uuid(),
     };
@@ -32,7 +34,7 @@ class DatePickerField extends Component {
 
     const anyLabel = fieldLabel || label;
     return (
-      <div className="form-field-container" hidden={hidden}>
+      <div className="form-field-container" hidden={hidden} ref={this.ref}>
         { anyLabel &&
           <h4>{anyLabel}</h4>
         }
@@ -41,6 +43,7 @@ class DatePickerField extends Component {
             parameters={parameters}
             {...input}
             onChange={input.onBlur}
+            parentRef={this.ref}
           />
           <div className="form-field-date-picker__error">
             <div className="form-field-date-picker__error-message">

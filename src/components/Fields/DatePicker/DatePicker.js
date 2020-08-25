@@ -1,39 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import anime from 'animejs';
-import scrollparent from 'scrollparent';
-import { getCSSVariableAsNumber, getCSSVariableAsObject } from '../../../utils/CSSVariables';
 import { DatePicker, Years, Months, Days, Date } from './DatePicker/';
 import Panels from './Panels';
 import Panel from './Panel';
 import RangePicker from './RangePicker';
 import DatePreview from './DatePreview';
 import { now, isEmpty, getFirstDayOfMonth, hasProperties } from './helpers';
-
-
-const scrollFocus = (destination) => {
-  if (!destination) { return; }
-  getCSSVariableAsNumber('--animation-duration-fast-ms');
-
-  setTimeout(() => {
-    const scroller = scrollparent(destination);
-    const destinationOffset = parseInt(destination.getBoundingClientRect().top, 10);
-    const scrollEnd = destinationOffset;
-
-    anime({
-      targets: scroller,
-      scrollTop: scrollEnd,
-      easing: getCSSVariableAsObject('--animation-easing-js'),
-      duration: getCSSVariableAsNumber('--animation-duration-fast-ms'),
-    });
-  }, getCSSVariableAsNumber('--animation-duration-fast-ms'));
-};
+import useScrollTo from '../../hooks/useScrollTo';
 
 const DatePickerInput = ({
   onChange: onChangeInput,
   value,
   parameters,
+  parentRef,
 }) => {
   const [panelsOpen, setPanelsOpen] = useState(false);
 
@@ -42,13 +22,7 @@ const DatePickerInput = ({
     if (value !== '') { setPanelsOpen(false); }
   }, [value]);
 
-
-  const ref = useRef();
-  useEffect(() => {
-    if (ref && ref.current && panelsOpen) {
-      scrollFocus(ref.current);
-    }
-  }, [panelsOpen]);
+  useScrollTo(parentRef, open => open, [panelsOpen, parentRef]);
 
   // treat empty string as no value (for Redux Forms)
   const initialDate = isEmpty(value) ? null : value;
@@ -104,7 +78,6 @@ const DatePickerInput = ({
               onFocus={handleFocus}
               tabIndex="0"
               role="button"
-              ref={ref}
             >
               <DatePreview
                 onClick={handleClickPreview}
