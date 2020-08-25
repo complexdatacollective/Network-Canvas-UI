@@ -23,3 +23,13 @@ export const normal = () => (
     {props => <SessionCard {...props} />}
   </Harness>
 );
+
+export const longprotocolname = () => (
+  <Harness
+    requiredProps={requiredProps}
+    protocolName={faker.lorem.paragraph()}
+    onClickHandler={action('onClickHandler')}
+  >
+    {props => <SessionCard {...props} />}
+  </Harness>
+);

@@ -25,12 +25,14 @@
       background: var(--color-platinum--dark);
       flex: 0 0 auto;
       align-items: center;
+      justify-content: space-between;
 
       .meta {
-        flex: 1 0 auto;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: flex-start;
+        width: 75%;
 
         .highlight {
           color: var(--error);
@@ -40,10 +42,12 @@
           margin: 0.3rem;
           text-transform: uppercase;
           letter-spacing: 0.15em;
-          display: flex;
-          align-items: center;
-          justify-content: flex-end;
           font-size: 0.6rem;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          width: 100%;
+          padding-right: unit(2);
         }
 
       }
@@ -54,6 +58,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        max-width: 7rem;
 
         h6 {
           margin: 0 0 0.3rem;
@@ -64,6 +69,7 @@
 
         .progress-bar {
           width: 100%;
+          min-width: 7rem;
           background-color: var(--color-platinum);
           flex: 0 0.7rem;
 
@@ -89,8 +95,10 @@
         flex: 0 0 auto;
         margin: 0;
         align-items: center;
-        display: flex;
-        hyphens: auto;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
       }
     }
 
