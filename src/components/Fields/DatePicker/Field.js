@@ -31,7 +31,6 @@ class DatePickerField extends Component {
     );
 
     const anyLabel = fieldLabel || label;
-
     return (
       <div className="form-field-container" hidden={hidden}>
         { anyLabel &&
