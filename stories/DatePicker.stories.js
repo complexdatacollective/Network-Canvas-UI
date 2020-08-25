@@ -13,7 +13,12 @@ export default { title: 'DatePicker' };
 
 export const Field = () => (
   <Harness requiredProps={requiredProps}>
-    {props => <DatePicker {...props} />}
+    {props => (
+      <div>
+        <DatePicker {...props} />
+        Next element
+      </div>
+    )}
   </Harness>
 );
 
