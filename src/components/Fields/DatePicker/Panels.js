@@ -11,7 +11,12 @@ const Panels = ({ children }) => (
     style={{ originX: 0, originY: 0 }}
     layout
   >
-    {children}
+    <motion.div
+      className="date-picker__panels-container"
+      layout
+    >
+      {children}
+    </motion.div>
   </motion.div>
 );
 

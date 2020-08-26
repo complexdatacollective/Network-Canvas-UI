@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import { motion } from 'framer-motion';
 import { times, find } from 'lodash';
 
 // If today's date isn't in range, what's the closest value?
@@ -65,8 +64,8 @@ const RangePicker = ({
 
   const scrollToValue = getScrollToValue(range, today);
   return (
-    <motion.div animate className={classes} ref={datePickerRef}>
-      <motion.div animate className="date-picker__range-picker-items">
+    <div className={classes} ref={datePickerRef}>
+      <div className="date-picker__range-picker-items">
         {padding}
         {range.map((d) => {
           const itemStyle = cx(
@@ -89,8 +88,8 @@ const RangePicker = ({
             </div>
           );
         })}
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { motion, AnimateSharedLayout, AnimatePresence } from 'framer-motion';
@@ -10,16 +10,6 @@ import DatePreview from './DatePreview';
 import { now, isEmpty, getFirstDayOfMonth, hasProperties } from './helpers';
 import useScrollTo from '../../hooks/useScrollTo';
 
-const useProxyValue = (value) => {
-  const [proxyValue, setProxyValue] = useState(value);
-
-  useEffect(() => {
-    if (value !== proxyValue) { setProxyValue(value); }
-  }, [value]);
-
-  return [proxyValue, setProxyValue];
-};
-
 const DatePickerInput = ({
   onChange: onChangeInput,
   value,
@@ -28,14 +18,10 @@ const DatePickerInput = ({
 }) => {
   const [panelsOpen, setPanelsOpen] = useState(false);
 
-  const [proxyValue, setProxyValue] = useProxyValue(value);
-
-  const handleChange = v => setProxyValue(v);
-
-  useEffect(() => {
-    if (proxyValue !== '') { setPanelsOpen(false); }
-    if (proxyValue !== value) { onChangeInput(proxyValue); }
-  }, [proxyValue]);
+  const handleChange = useCallback((newValue) => {
+    if (newValue !== '') { setPanelsOpen(false); }
+    if (newValue !== value) { onChangeInput(newValue); }
+  }, [value, setPanelsOpen, onChangeInput]);
 
   useScrollTo(parentRef, open => open, [panelsOpen, parentRef]);
 
