@@ -10,6 +10,16 @@ import DatePreview from './DatePreview';
 import { now, isEmpty, getFirstDayOfMonth, hasProperties } from './helpers';
 import useScrollTo from '../../hooks/useScrollTo';
 
+const useProxyValue = (value) => {
+  const [proxyValue, setProxyValue] = useState(value);
+
+  useEffect(() => {
+    if (value !== proxyValue) { setProxyValue(value); }
+  }, [value]);
+
+  return [proxyValue, setProxyValue];
+};
+
 const DatePickerInput = ({
   onChange: onChangeInput,
   value,
@@ -18,10 +28,14 @@ const DatePickerInput = ({
 }) => {
   const [panelsOpen, setPanelsOpen] = useState(false);
 
-  // when the value is changed (probably set via onChange), close the panels.
+  const [proxyValue, setProxyValue] = useProxyValue(value);
+
+  const handleChange = v => setProxyValue(v);
+
   useEffect(() => {
-    if (value !== '') { setPanelsOpen(false); }
-  }, [value]);
+    if (proxyValue !== '') { setPanelsOpen(false); }
+    if (proxyValue !== value) { onChangeInput(proxyValue); }
+  }, [proxyValue]);
 
   useScrollTo(parentRef, open => open, [panelsOpen, parentRef]);
 
@@ -44,7 +58,7 @@ const DatePickerInput = ({
 
   return (
     <DatePicker
-      onChange={onChangeInput}
+      onChange={handleChange}
       date={initialDate}
       {...parameters}
     >

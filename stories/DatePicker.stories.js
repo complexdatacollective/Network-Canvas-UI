@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { action } from '@storybook/addon-actions';
 import Harness from './helpers/Harness';
 import DatePicker from '../src/components/Fields/DatePicker';
 import '../src/styles/_all.scss';
@@ -11,16 +12,30 @@ const requiredProps = {
 
 export default { title: 'DatePicker' };
 
-export const Field = () => (
-  <Harness requiredProps={requiredProps}>
-    {props => (
-      <div>
-        <DatePicker {...props} />
-        Next element
-      </div>
-    )}
-  </Harness>
-);
+export const Field = () => {
+  const [value, setValue] = useState('2019-09-09');
+  const handleChange = (...args) => {
+    setValue(...args);
+    action('change')(...args);
+  };
+
+  return (
+    <Harness
+      requiredProps={requiredProps}
+      input={{
+        onBlur: handleChange,
+        value,
+      }}
+    >
+      {props => (
+        <div>
+          <DatePicker {...props} />
+          Next element
+        </div>
+      )}
+    </Harness>
+  );
+}
 
 export const AutoScroll = () => (
   <Harness requiredProps={requiredProps}>
