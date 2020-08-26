@@ -106,7 +106,7 @@ ProtocolCard.defaultProps = {
 ProtocolCard.propTypes = {
   schemaVersion: PropTypes.number.isRequired,
   lastModified: PropTypes.string.isRequired,
-  installationDate: PropTypes.string,
+  installationDate: PropTypes.number,
   name: PropTypes.string.isRequired,
   description: PropTypes.string,
   onClickHandler: PropTypes.func,

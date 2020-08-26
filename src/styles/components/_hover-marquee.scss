@@ -1,0 +1,19 @@
+.hover-marquee {
+  width:100%;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  padding:4px 0;
+
+  &:not(:hover) {
+    text-overflow: ellipsis;
+  }
+
+  span {
+    position: relative;
+    left:0px;
+    width:100%;
+    transform:translateX(0%);
+    // transition:left .25s ease;
+  }
+}

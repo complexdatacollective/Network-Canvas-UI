@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ProgressBar } from '../';
+import HoverMarquee from '../HoverMarquee';
 
 const formatDate = timestamp => timestamp && new Date(timestamp).toLocaleString(undefined, { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' });
 
@@ -20,13 +21,13 @@ const SessionCard = (props) => {
         <div className="meta-wrapper">
           <div className="meta">
             <h6>
-              Protocol:&nbsp;{ protocolName || (<span className="highlight">Unavailable protocol!</span>) }
+              <HoverMarquee>{ protocolName || (<span className="highlight">Unavailable protocol!</span>) }</HoverMarquee>
             </h6>
             <h6 className="meta-wrapper__attribute">
-              Started At:&nbsp;{ startedAt ? formatDate(startedAt) : (<span className="highlight">No start date!</span>) }
+              <HoverMarquee>Started At:&nbsp;{ startedAt ? formatDate(startedAt) : (<span className="highlight">No start date!</span>) }</HoverMarquee>
             </h6>
             <h6 className="meta-wrapper__attribute">
-              Last Changed:&nbsp;{ updatedAt ? formatDate(updatedAt) : (<span className="highlight">Never changed!</span>) }
+              <HoverMarquee>Last Changed:&nbsp;{ updatedAt ? formatDate(updatedAt) : (<span className="highlight">Never changed!</span>) }</HoverMarquee>
             </h6>
           </div>
           <div className="progress-wrapper">
@@ -36,7 +37,7 @@ const SessionCard = (props) => {
         </div>
         <div className="main-wrapper">
           <h2 className="card__label">
-            { caseId }
+            <HoverMarquee>{ caseId }</HoverMarquee>
           </h2>
         </div>
       </div>
