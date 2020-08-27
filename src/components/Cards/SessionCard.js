@@ -17,28 +17,26 @@ const SessionCard = (props) => {
 
   return (
     <div className="session-card" onClick={onClickHandler}>
-      <div className="session-card__content">
-        <div className="meta-wrapper">
-          <div className="meta">
-            <h6>
-              <HoverMarquee>{ protocolName || (<span className="highlight">Unavailable protocol!</span>) }</HoverMarquee>
-            </h6>
-            <h6 className="meta-wrapper__attribute">
-              <HoverMarquee>Started At:&nbsp;{ startedAt ? formatDate(startedAt) : (<span className="highlight">No start date!</span>) }</HoverMarquee>
-            </h6>
-            <h6 className="meta-wrapper__attribute">
-              <HoverMarquee>Last Changed:&nbsp;{ updatedAt ? formatDate(updatedAt) : (<span className="highlight">Never changed!</span>) }</HoverMarquee>
-            </h6>
-          </div>
-          <div className="progress-wrapper">
-            <h6>{progress}% Complete</h6>
-            <ProgressBar percentProgress={progress} orientation="horizontal" />
-          </div>
+      <div className="main-wrapper">
+        <h2 className="card__label">
+          <HoverMarquee>{ caseId }</HoverMarquee>
+        </h2>
+      </div>
+      <div className="meta-wrapper">
+        <div className="meta">
+          <h6>
+            <HoverMarquee>{ protocolName || (<span className="highlight">Unavailable protocol!</span>) }</HoverMarquee>
+          </h6>
+          <h6 className="meta-wrapper__attribute">
+            <HoverMarquee>Started At:&nbsp;{ startedAt ? formatDate(startedAt) : (<span className="highlight">No start date!</span>) }</HoverMarquee>
+          </h6>
+          <h6 className="meta-wrapper__attribute">
+            <HoverMarquee>Last Changed:&nbsp;{ updatedAt ? formatDate(updatedAt) : (<span className="highlight">Never changed!</span>) }</HoverMarquee>
+          </h6>
         </div>
-        <div className="main-wrapper">
-          <h2 className="card__label">
-            <HoverMarquee>{ caseId }</HoverMarquee>
-          </h2>
+        <div className="progress-wrapper">
+          <h6>{progress}% Complete</h6>
+          <ProgressBar percentProgress={progress} orientation="horizontal" />
         </div>
       </div>
     </div>

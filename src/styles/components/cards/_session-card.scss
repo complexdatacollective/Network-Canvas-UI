@@ -2,7 +2,6 @@
 .session-card {
   @include transition-properties((background-color, border-bottom-color, transform, box-shadow), var(--animation-easing), var(--animation-duration-standard));
   @include clickable(2);
-  align-items: center;
   background-color: var(--color-platinum);
   border-radius: var(--border-radius);
   display: flex;
@@ -13,95 +12,87 @@
   margin: unit(2);
   overflow: hidden;
 
-  &__content {
+  .meta-wrapper {
     display: flex;
-    flex: 1 0;
-    flex-direction: column-reverse;
+    padding: unit(1) unit(4);
+    background: var(--color-platinum--dark);
+    align-items: center;
+    justify-content: space-between;
+    flex: 1 1 auto;
     width: 100%;
 
-    .meta-wrapper {
+    .meta {
       display: flex;
-      padding: unit(1) unit(4);
-      background: var(--color-platinum--dark);
-      flex: 0 0 auto;
-      align-items: center;
-      justify-content: space-between;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      width: 75%;
 
-      .meta {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        width: 75%;
-
-        .highlight {
-          color: var(--error);
-        }
-
-        h6 {
-          margin: 0.3rem;
-          text-transform: uppercase;
-          letter-spacing: 0.15em;
-          font-size: 0.6rem;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          width: 100%;
-          padding-right: unit(2);
-        }
-
+      .highlight {
+        color: var(--error);
       }
 
-      .progress-wrapper {
-        flex: 1;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        max-width: 7rem;
-
-        h6 {
-          margin: 0 0 0.3rem;
-          text-transform: uppercase;
-          letter-spacing: 0.15em;
-          font-size: 0.6rem;
-        }
-
-        .progress-bar {
-          width: 100%;
-          min-width: 7rem;
-          background-color: var(--color-platinum);
-          flex: 0 0.7rem;
-
-          .progress-bar__filler {
-            background-color: var(--color-cerulean-blue);
-          }
-
-          &--complete {
-            .progress-bar__filler {
-              background-color: var(--primary);
-            }
-          }
-        }
-      }
-
-    }
-
-    .main-wrapper {
-      flex: 1 1 auto;
-      padding: unit(4);
-
-      .card__label {
-        flex: 0 0 auto;
-        margin: 0;
-        align-items: center;
+      h6 {
+        margin: 0.3rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        font-size: 0.6rem;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         width: 100%;
+        padding-right: unit(2);
+      }
+
+    }
+
+    .progress-wrapper {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 7rem;
+      width: 25%;
+
+      h6 {
+        margin: 0 0 0.3rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        font-size: 0.6rem;
+      }
+
+      .progress-bar {
+        width: 100%;
+        background-color: var(--color-platinum);
+        flex: 0 0.7rem;
+
+        .progress-bar__filler {
+          background-color: var(--color-cerulean-blue);
+        }
+
+        &--complete {
+          .progress-bar__filler {
+            background-color: var(--primary);
+          }
+        }
       }
     }
 
+  }
+
+  .main-wrapper {
+    flex: 1 1 auto;
+    padding: unit(4);
+
+    .card__label {
+      flex: 0 0 auto;
+      margin: 0;
+      align-items: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 100%;
+    }
   }
 
 }
