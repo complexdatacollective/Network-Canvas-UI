@@ -6,11 +6,12 @@ import ServerCard from '../src/components/Cards/ServerCard';
 import '../src/styles/_all.scss';
 
 const requiredProps = {
-  name: faker.internet.domainName(),
-  address: [
+  name: faker.internet.domainWord(),
+  addresses: [
     faker.internet.ip(),
     faker.internet.ipv6(),
   ],
+  host: faker.internet.domainName(),
 };
 
 export default { title: 'ServerCard' };

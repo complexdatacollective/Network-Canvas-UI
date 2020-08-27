@@ -9,134 +9,42 @@ $component: 'server-card';
   display: flex;
   overflow: hidden;
   margin: unit(2);
-  flex-direction: column-reverse;
-
-  &--condensed {
-    @include clickable(1);
-    flex-direction: row;
-
-    .#{$component}__icon-section {
-      padding: 0;
-      flex: 0 0 4rem;
-      
-      .status-icon {
-        margin-left: 0;
-      }
-
-      .server-icon {
-        height: 2rem;
-        width: 2rem;
-      }
-    }
-
-    .#{$component}__main-section {
-      flex: none;
-      padding: unit(1) unit(2);
-      height: 4rem;
-      width: calc(100% - 4rem);
-
-      .server-name {
-        display: block;
-        flex: none;
-        font-size: 1rem;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-    }
-  }
 
   &__icon-section {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: var(--color-mustard--dark);
+    background: var(--color-mustard);
     flex-direction: row;
-    padding: unit(1) unit(4);
+    width: 7rem;
 
     .server-icon {
-      height: 3rem;
-      width: 3rem;
-      display: flex;
-
-      .icon {
-        flex: 0 1 auto;
-        height: 100% !important;
-        width: 100% !important;
-      }
-    }
-
-    .server-meta {
-      flex: 1 0 auto;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-
-      h6 {
-        margin: 0.3rem;
-        text-transform: uppercase;
-        letter-spacing: 0.15em;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        font-size: 0.64rem;
-      }
+      width: 4rem;
+      height: 4rem;
     }
   }
 
   &__main-section {
-    flex: 0 1 auto;
+    width: calc(100% - 7rem);
     padding: unit(2) unit(4);
-    flex-direction: column;
-    height: unit(14);
-    display: flex;
-    justify-content: center;
 
     .server-name {
-      flex: 0 0 auto;
       margin: 0;
-      align-items: center;
+    }
+
+    h6 {
+      margin: 0.3rem 0;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
       display: flex;
-      hyphens: auto;
+      align-items: center;
+      justify-content: flex-end;
+      font-size: 0.64rem;
     }
 
-    .server-description {
-      padding-top: unit(1);
-      flex: 1;
-      font-size: 0.8rem;
-
-      &--condensed {
-        flex: 1;
-        font-size: 0.64rem;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        width: 100%;
-      }
-    }
   }
 
-  .status-icon {
-    height: 3rem;
-    width: 3rem;
-    text-align: center;
-    // background: var(--warning);
-    padding: unit(1);
-    margin-left: unit(1);
-    border-radius: 50%;
-    display: inline-block;
-
-    &--outdated {
-      background: var(--warning);
-    }
-
-    .icon {
-      width: 100% !important;
-      height: 100% !important;
-    }
-  }
-
-  &--obsolete {
+  &--disabled {
     .#{$component}__icon-section {
       color: #ff9dbb;
       background: var(--error);

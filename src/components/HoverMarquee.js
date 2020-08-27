@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
-import useWindowWidth from '../hooks/useWindowWidth';
+import useResizeAware from 'react-resize-aware';
 
 const HoverMarquee = ({
   speed,
@@ -9,7 +9,7 @@ const HoverMarquee = ({
 }) => {
   const containerRef = useRef(null);
   const contentRef = useRef(null);
-  const width = useWindowWidth(); // Our custom Hook
+  const [sizes] = useResizeAware();
 
   const contentVariants = {
     hover: {
@@ -25,7 +25,7 @@ const HoverMarquee = ({
     const delta = contentRef.current.offsetWidth - containerRef.current.offsetWidth;
     contentVariants.hover.left = `-${delta}px`;
     contentVariants.hover.transition.duration = delta / speed;
-  }, [containerRef.current, contentRef.current, width]);
+  }, [containerRef.current, contentRef.current, sizes]);
 
   return (
     <div

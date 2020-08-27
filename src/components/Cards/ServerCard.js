@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import Icon from '../Icon';
-// import logo from '../../images/Srv-Flat.svg';
+import logo from '../../assets/images/Srv-Flat.svg';
+import HoverMarquee from '../HoverMarquee';
 
 /**
  * Renders a server icon & label. The label defaults to server name, falling back
@@ -12,13 +12,10 @@ import Icon from '../Icon';
 const ServerCard = ({
   name,
   addresses,
+  host,
   onClickHandler,
-  secondaryLabel,
 }) => {
-  let label = name || addresses[0];
-  if (secondaryLabel) {
-    label += ` ${secondaryLabel}`;
-  }
+  const label = name || addresses[0];
 
   const modifierClasses = cx(
     'server-card',
@@ -28,22 +25,17 @@ const ServerCard = ({
     <div className={modifierClasses} onClick={onClickHandler}>
       <div className="server-card__icon-section">
         <div className="server-icon">
-          <Icon name="server-card" />
+          <img src={logo} alt="" />
         </div>
-        {/* { !condensed && (
-          <div className="server-meta">
-            {
-              installationDate && (
-                <h6>Installed: {formatDate(installationDate)}</h6>
-              )
-            }
-            <h6>Last Modified: {formatDate(lastModified)}</h6>
-            <h6>Schema Version: {schemaVersion}</h6>
-          </div>
-        ) } */}
       </div>
       <div className="server-card__main-section">
-        <h2 className="server-name">{label}</h2>
+        <h2 className="server-name"><HoverMarquee>{label}</HoverMarquee></h2>
+        <h6>
+          <HoverMarquee>Addresses: {
+            addresses.map((address, index) => (<React.Fragment key={index}>[{address}]{index !== addresses.length - 1 && (',')} </React.Fragment>))}
+          </HoverMarquee>
+        </h6>
+        <h6><HoverMarquee>Hostname: {host}</HoverMarquee></h6>
       </div>
     </div>
   );
@@ -52,13 +44,13 @@ const ServerCard = ({
 ServerCard.propTypes = {
   name: PropTypes.string.isRequired,
   addresses: PropTypes.array.isRequired,
+  host: PropTypes.string,
   onClickHandler: PropTypes.func,
-  secondaryLabel: PropTypes.string,
 };
 
 ServerCard.defaultProps = {
   onClickHandler: () => {},
-  secondaryLabel: null,
+  host: null,
 };
 
 export default ServerCard;

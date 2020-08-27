@@ -56,7 +56,7 @@
     &-box {
       @include allow-text-selection;
       margin-top: unit(2);
-      max-height: 50vh;
+      max-height: 25rem;
       background: var(--background);
       user-select: initial;
       overflow-y: auto;
