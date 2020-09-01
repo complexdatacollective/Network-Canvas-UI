@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import { motion } from 'framer-motion';
 import { Date } from './DatePicker/';
 import { getMonthName } from './helpers';
 
@@ -44,9 +45,10 @@ const DatePreview = ({ onClick, isActive }) => (
       );
 
       return (
-        <div
+        <motion.div
           className={previewClass}
           onClick={handleClickPreview}
+          // layout
           ref={previewRef}
         >
           <div
@@ -83,7 +85,7 @@ const DatePreview = ({ onClick, isActive }) => (
           >
             clear
           </div>
-        </div>
+        </motion.div>
       );
     }}
   </Date>

@@ -1,30 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cx from 'classnames';
+import { motion } from 'framer-motion';
 
-const Panels = ({ children, isOpen }) => {
-  const panelsClasses = cx(
-    'date-picker__panels',
-    {
-      'date-picker__panels--is-open': isOpen,
-    },
-  );
-
-  return (
-    <div className={panelsClasses}>
+const Panels = ({ children }) => (
+  <motion.div
+    className="date-picker__panels"
+    initial={{ scaleY: 0, opacity: 0 }}
+    animate={{ scaleY: 1, opacity: 1 }}
+    exit={{ scaleY: 0, opacity: 0 }}
+    style={{ originX: 0, originY: 0 }}
+    layout
+  >
+    <motion.div
+      className="date-picker__panels-container"
+      layout
+    >
       {children}
-    </div>
-  );
-};
+    </motion.div>
+  </motion.div>
+);
 
 Panels.propTypes = {
   children: PropTypes.node,
-  isOpen: PropTypes.bool,
 };
 
 Panels.defaultProps = {
   children: null,
-  isOpen: true,
 };
 
 export default Panels;

@@ -1,24 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import { motion, AnimateSharedLayout, AnimatePresence } from 'framer-motion';
 import { DatePicker, Years, Months, Days, Date } from './DatePicker/';
 import Panels from './Panels';
 import Panel from './Panel';
 import RangePicker from './RangePicker';
 import DatePreview from './DatePreview';
 import { now, isEmpty, getFirstDayOfMonth, hasProperties } from './helpers';
+import useScrollTo from '../../hooks/useScrollTo';
 
 const DatePickerInput = ({
   onChange: onChangeInput,
   value,
   parameters,
+  parentRef,
 }) => {
   const [panelsOpen, setPanelsOpen] = useState(false);
 
-  // when the value is changed (probably set via onChange), close the panels.
-  useEffect(() => {
-    if (value !== '') { setPanelsOpen(false); }
-  }, [value]);
+  const handleChange = useCallback((newValue) => {
+    if (newValue !== '') { setPanelsOpen(false); }
+    if (newValue !== value) { onChangeInput(newValue); }
+  }, [value, setPanelsOpen, onChangeInput]);
+
+  useScrollTo(parentRef, open => open, [panelsOpen, parentRef]);
 
   // treat empty string as no value (for Redux Forms)
   const initialDate = isEmpty(value) ? null : value;
@@ -39,7 +44,7 @@ const DatePickerInput = ({
 
   return (
     <DatePicker
-      onChange={onChangeInput}
+      onChange={handleChange}
       date={initialDate}
       {...parameters}
     >
@@ -68,77 +73,85 @@ const DatePickerInput = ({
           };
 
           return (
-            <div
-              className={datePickerClasses}
-              onBlur={handleBlur}
-              onFocus={handleFocus}
-              tabIndex="0"
-              role="button"
-            >
-              <DatePreview
-                onClick={handleClickPreview}
-                isActive={panelsOpen}
-              />
-              <Panels isOpen={panelsOpen}>
-                <Panel
-                  isActive={isYearActive}
-                  isComplete={isYearComplete}
-                  type="year"
-                >
-                  <Years>
-                    {({ years }) => (
-                      <RangePicker
-                        type="year"
-                        today={todayYear}
-                        range={years}
-                        value={date.year}
-                        offset={(dateRange.start.year) % 5}
-                        onSelect={y => onChange({ year: y, month: null, day: null })}
-                      />
-                    )}
-                  </Years>
-                </Panel>
-                { canSetMonth &&
-                  <Panel
-                    isActive={isMonthActive}
-                    isComplete={isMonthComplete}
-                    type="month"
-                  >
-                    <Months>
-                      {({ months }) => (
-                        <RangePicker
-                          type="month"
-                          today={todayMonth}
-                          range={months}
-                          value={date.month}
-                          onSelect={m => onChange({ month: m, day: null })}
-                        />
-                      )}
-                    </Months>
-                  </Panel>
-                }
-                { canSetDay &&
-                  <Panel
-                    isActive={isDayActive}
-                    isComplete={isDayComplete}
-                    type="day"
-                  >
-                    <Days>
-                      {({ days }) => (
-                        <RangePicker
-                          type="day"
-                          today={todayDay}
-                          range={days}
-                          value={date.day}
-                          offset={getFirstDayOfMonth(date) - 1}
-                          onSelect={d => onChange({ day: d })}
-                        />
-                      )}
-                    </Days>
-                  </Panel>
-                }
-              </Panels>
-            </div>
+            <AnimateSharedLayout>
+              <motion.div
+                className={datePickerClasses}
+                onBlur={handleBlur}
+                onFocus={handleFocus}
+                tabIndex="0"
+                role="button"
+              >
+                <DatePreview
+                  onClick={handleClickPreview}
+                  isActive={panelsOpen}
+                />
+                <motion.div layout>
+                  <AnimatePresence>
+                    { panelsOpen &&
+                      <Panels>
+                        <Panel
+                          isActive={isYearActive}
+                          isComplete={isYearComplete}
+                          type="year"
+                        >
+                          <Years>
+                            {({ years }) => (
+                              <RangePicker
+                                type="year"
+                                today={todayYear}
+                                range={years}
+                                value={date.year}
+                                offset={(dateRange.start.year) % 5}
+                                onSelect={y => onChange({ year: y, month: null, day: null })}
+                              />
+                            )}
+                          </Years>
+                        </Panel>
+                        { canSetMonth &&
+                          <Panel
+                            isActive={isMonthActive}
+                            isComplete={isMonthComplete}
+                            type="month"
+                          >
+                            <Months>
+                              {({ months }) => (
+                                <RangePicker
+                                  type="month"
+                                  today={todayMonth}
+                                  range={months}
+                                  value={date.month}
+                                  onSelect={m => onChange({ month: m, day: null })}
+                                />
+                              )}
+                            </Months>
+                          </Panel>
+                        }
+                        { canSetDay &&
+                          <Panel
+                            isActive={isDayActive}
+                            isComplete={isDayComplete}
+                            type="day"
+                          >
+                            <Days>
+                              {({ days }) => (
+                                <RangePicker
+                                  type="day"
+                                  today={todayDay}
+                                  range={days}
+                                  value={date.day}
+                                  offset={getFirstDayOfMonth(date) - 1}
+                                  onSelect={d => onChange({ day: d })}
+                                />
+                              )}
+                            </Days>
+                          </Panel>
+                        }
+                      </Panels>
+                    }
+                  </AnimatePresence>
+                </motion.div>
+              </motion.div>
+            </AnimateSharedLayout>
           );
         }}
       </Date>
