@@ -24,3 +24,13 @@ export const normal = () => (
     {props => <ServerCard {...props} />}
   </Harness>
 );
+
+export const disabled = () => (
+  <Harness
+    requiredProps={requiredProps}
+    disabled
+    onClickHandler={action('onClickHandler')}
+  >
+    {props => <ServerCard {...props} />}
+  </Harness>
+);

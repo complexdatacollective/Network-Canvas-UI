@@ -14,11 +14,13 @@ const ServerCard = ({
   addresses,
   host,
   onClickHandler,
+  disabled,
 }) => {
   const label = name || addresses[0];
 
   const modifierClasses = cx(
     'server-card',
+    {'server-card--disabled': disabled },
   );
 
   return (
@@ -35,7 +37,7 @@ const ServerCard = ({
             addresses.map((address, index) => (<React.Fragment key={index}>[{address}]{index !== addresses.length - 1 && (',')} </React.Fragment>))}
           </HoverMarquee>
         </h6>
-        <h6><HoverMarquee>Hostname: {host}</HoverMarquee></h6>
+        <h6><HoverMarquee>Host: {host}</HoverMarquee></h6>
       </div>
     </div>
   );
@@ -46,11 +48,13 @@ ServerCard.propTypes = {
   addresses: PropTypes.array.isRequired,
   host: PropTypes.string,
   onClickHandler: PropTypes.func,
+  disabled: PropTypes.bool,
 };
 
 ServerCard.defaultProps = {
   onClickHandler: () => {},
   host: null,
+  disabled: false,
 };
 
 export default ServerCard;

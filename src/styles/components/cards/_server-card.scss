@@ -46,11 +46,10 @@ $component: 'server-card';
 
   &--disabled {
     .#{$component}__icon-section {
-      color: #ff9dbb;
-      background: var(--error);
+      background: var(--color-platinum--dark);
     }
 
-    .server-name, .server-description {
+    .server-name, h6 {
       opacity: 0.35;
     }
   }
