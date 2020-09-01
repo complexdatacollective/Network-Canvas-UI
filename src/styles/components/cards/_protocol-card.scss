@@ -1,0 +1,150 @@
+$component: 'protocol-card';
+
+.#{$component} {
+  @include clickable(2);
+
+  background: var(--color-platinum);
+  color: var(--color-navy-taupe);
+  border-radius: var(--border-radius);
+  display: flex;
+  overflow: hidden;
+  margin: unit(2);
+  flex-direction: column-reverse;
+
+  &--condensed {
+    @include clickable(1);
+    flex-direction: row;
+
+    .#{$component}__icon-section {
+      padding: 0;
+      flex: 0 0 4rem;
+      
+      .status-icon {
+        margin-left: 0;
+      }
+
+      .protocol-icon {
+        height: 2rem;
+        width: 2rem;
+      }
+    }
+
+    .#{$component}__main-section {
+      flex: none;
+      padding: unit(1) unit(2);
+      height: 4rem;
+      width: calc(100% - 4rem);
+
+      .protocol-name {
+        display: block;
+        flex: none;
+        font-size: 1rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+
+  &__icon-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #aab0fd;
+    background: var(--color-slate-blue--dark);
+    flex-direction: row;
+    padding: unit(1) unit(4);
+
+    .protocol-icon {
+      height: 3rem;
+      width: 3rem;
+      display: flex;
+
+      .icon {
+        flex: 0 1 auto;
+        height: 100% !important;
+        width: 100% !important;
+      }
+    }
+
+    .protocol-meta {
+      flex: 1 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      h6 {
+        margin: 0.3rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        font-size: 0.64rem;
+      }
+    }
+  }
+
+  &__main-section {
+    flex: 0 1 auto;
+    padding: unit(2) unit(4);
+    flex-direction: column;
+    height: unit(14);
+    display: flex;
+    justify-content: center;
+
+    .protocol-name {
+      flex: 0 0 auto;
+      margin: 0;
+      align-items: center;
+      display: flex;
+      hyphens: auto;
+    }
+
+    .protocol-description {
+      padding-top: unit(1);
+      flex: 1;
+      font-size: 0.8rem;
+
+      &--condensed {
+        flex: 1;
+        font-size: 0.64rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+      }
+    }
+  }
+
+  .status-icon {
+    height: 3rem;
+    width: 3rem;
+    text-align: center;
+    // background: var(--warning);
+    padding: unit(1);
+    margin-left: unit(1);
+    border-radius: 50%;
+    display: inline-block;
+
+    &--outdated {
+      background: var(--warning);
+    }
+
+    .icon {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+
+  &--obsolete {
+    .#{$component}__icon-section {
+      color: #ff9dbb;
+      background: var(--error);
+    }
+
+    .protocol-name, .protocol-description {
+      opacity: 0.35;
+    }
+  }
+}
