@@ -30,7 +30,6 @@ const GraphicButton = ({
 
   return (
     <motion.div
-      layout
       className={className}
       style={styles}
       onClick={onClick}
