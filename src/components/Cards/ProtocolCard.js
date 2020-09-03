@@ -22,6 +22,7 @@ const ProtocolCard = (props) => {
 
   const modifierClasses = cx(
     'protocol-card',
+    { 'protocol-card--clickable': onClickHandler },
     { 'protocol-card--condensed': condensed },
     { 'protocol-card--outdated': !isObsolete && isOutdated },
     { 'protocol-card--obsolete': isObsolete },
@@ -93,7 +94,7 @@ const ProtocolCard = (props) => {
 
 ProtocolCard.defaultProps = {
   className: '',
-  onClickHandler: () => {},
+  onClickHandler: undefined,
   onStatusClickHandler: () => {},
   description: null,
   installationDate: null,

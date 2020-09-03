@@ -47,6 +47,7 @@
   }
 
   &__additional {
+    margin-bottom: 0.15rem; // Needed so that @clickable elements dont cause scrollbars
 
     .button {
       margin-top: unit(2);

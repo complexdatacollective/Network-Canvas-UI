@@ -1,8 +1,6 @@
 $component: 'protocol-card';
 
 .#{$component} {
-  @include clickable(2);
-
   background: var(--color-platinum);
   color: var(--color-navy-taupe);
   border-radius: var(--border-radius);
@@ -10,6 +8,10 @@ $component: 'protocol-card';
   overflow: hidden;
   margin: unit(2);
   flex-direction: column-reverse;
+
+  &--clickable {
+    @include clickable(2);
+  }
 
   &--condensed {
     @include clickable(1);
