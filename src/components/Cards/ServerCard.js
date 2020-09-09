@@ -20,6 +20,7 @@ const ServerCard = ({
 
   const modifierClasses = cx(
     'server-card',
+    {'server-card--clickable': onClickHandler },
     {'server-card--disabled': disabled },
   );
 
@@ -52,7 +53,7 @@ ServerCard.propTypes = {
 };
 
 ServerCard.defaultProps = {
-  onClickHandler: () => {},
+  onClickHandler: undefined,
   host: null,
   disabled: false,
 };

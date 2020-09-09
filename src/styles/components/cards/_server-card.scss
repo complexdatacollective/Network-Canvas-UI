@@ -1,8 +1,6 @@
 $component: 'server-card';
 
 .#{$component} {
-  @include clickable(2);
-
   background: var(--color-platinum);
   color: var(--color-navy-taupe);
   border-radius: var(--border-radius);
@@ -42,6 +40,10 @@ $component: 'server-card';
       font-size: 0.64rem;
     }
 
+  }
+
+  &--clickable {
+    @include clickable(2);
   }
 
   &--disabled {

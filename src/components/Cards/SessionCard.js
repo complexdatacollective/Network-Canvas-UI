@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 import { ProgressBar } from '../';
 import HoverMarquee from '../HoverMarquee';
 
@@ -15,8 +16,13 @@ const SessionCard = (props) => {
     onClickHandler,
   } = props;
 
+  const modifierClasses = cx(
+    'session-card',
+    { 'session-card--clickable': onClickHandler },
+  );
+
   return (
-    <div className="session-card" onClick={onClickHandler}>
+    <div className={modifierClasses} onClick={onClickHandler}>
       <div className="main-wrapper">
         <h2 className="card__label">
           <HoverMarquee>{ caseId }</HoverMarquee>
@@ -44,7 +50,7 @@ const SessionCard = (props) => {
 };
 
 SessionCard.defaultProps = {
-  onClickHandler: () => {},
+  onClickHandler: undefined,
   protocolName: null,
 };
 

@@ -18,6 +18,14 @@ export default { title: 'ProtocolCard' };
 export const normal = () => (
   <Harness
     requiredProps={requiredProps}
+  >
+    {props => <ProtocolCard {...props} />}
+  </Harness>
+);
+
+export const Clickable = () => (
+  <Harness
+    requiredProps={requiredProps}
     onClickHandler={action('onClickHandler')}
   >
     {props => <ProtocolCard {...props} />}

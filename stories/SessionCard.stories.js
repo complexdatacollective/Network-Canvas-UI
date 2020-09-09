@@ -18,6 +18,14 @@ export default { title: 'SessionCard' };
 export const normal = () => (
   <Harness
     requiredProps={requiredProps}
+  >
+    {props => <SessionCard {...props} />}
+  </Harness>
+);
+
+export const clickable = () => (
+  <Harness
+    requiredProps={requiredProps}
     onClickHandler={action('onClickHandler')}
   >
     {props => <SessionCard {...props} />}

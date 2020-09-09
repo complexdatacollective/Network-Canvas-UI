@@ -1,7 +1,5 @@
 
 .session-card {
-  @include transition-properties((background-color, border-bottom-color, transform, box-shadow), var(--animation-easing), var(--animation-duration-standard));
-  @include clickable(2);
   background-color: var(--color-platinum);
   border-radius: var(--border-radius);
   display: flex;
@@ -11,6 +9,10 @@
   justify-content: space-between;
   margin: unit(2);
   overflow: hidden;
+
+  &--clickable {
+    @include clickable(2);
+  }
 
   .meta-wrapper {
     display: flex;

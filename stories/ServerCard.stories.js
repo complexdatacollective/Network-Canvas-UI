@@ -19,6 +19,14 @@ export default { title: 'ServerCard' };
 export const normal = () => (
   <Harness
     requiredProps={requiredProps}
+  >
+    {props => <ServerCard {...props} />}
+  </Harness>
+);
+
+export const clickable = () => (
+  <Harness
+    requiredProps={requiredProps}
     onClickHandler={action('onClickHandler')}
   >
     {props => <ServerCard {...props} />}

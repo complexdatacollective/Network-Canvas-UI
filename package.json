@@ -3,7 +3,6 @@
   "version": "3.5.0",
   "description": "Styles and React components for the Network Canvas project",
   "main": "lib/components/index.js",
-  "type": "module",
   "license": "GPL-3.0-or-later",
   "engines": {
     "node": "12.14.1",
