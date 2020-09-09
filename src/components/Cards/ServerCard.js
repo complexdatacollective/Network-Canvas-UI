@@ -20,8 +20,8 @@ const ServerCard = ({
 
   const modifierClasses = cx(
     'server-card',
-    {'server-card--clickable': onClickHandler },
-    {'server-card--disabled': disabled },
+    { 'server-card--clickable': onClickHandler },
+    { 'server-card--disabled': disabled },
   );
 
   return (
