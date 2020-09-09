@@ -1,5 +1,24 @@
 // Typography setter, mixins and classes based on breakpoints
 // ==========================================================
+
+// NEW system!
+$font-sizes: (
+  6: 3.815rem,
+  5: 3.052rem,
+  4: 2.441rem,
+  3: 1.953rem,
+  2: 1.563rem,
+  1: 1.25rem,
+  body: 1rem,
+  small: .8rem,
+);
+
+@function type-scale($name) {
+  @return map-get($font-sizes, $name);
+}
+
+
+// OLD system! To be refactored/removed
 $-type-map: () !default;
 
 @mixin type-set($type-name, $breakpoint-name, $type-properties) {

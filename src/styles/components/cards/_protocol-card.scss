@@ -1,8 +1,6 @@
 $component: 'protocol-card';
 
 .#{$component} {
-  @include clickable(2);
-
   background: var(--color-platinum);
   color: var(--color-navy-taupe);
   border-radius: var(--border-radius);
@@ -11,6 +9,10 @@ $component: 'protocol-card';
   margin: unit(2);
   flex-direction: column-reverse;
 
+  &--clickable {
+    @include clickable(2);
+  }
+
   &--condensed {
     @include clickable(1);
     flex-direction: row;
@@ -18,7 +20,7 @@ $component: 'protocol-card';
     .#{$component}__icon-section {
       padding: 0;
       flex: 0 0 4rem;
-      
+
       .status-icon {
         margin-left: 0;
       }
@@ -68,7 +70,7 @@ $component: 'protocol-card';
     }
 
     .protocol-meta {
-      flex: 1 0 auto;
+      flex: 1 1 auto;
       display: flex;
       flex-direction: column;
       justify-content: center;

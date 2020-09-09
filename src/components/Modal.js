@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import PropTypes from 'prop-types';
-import Fade from './Transitions/Fade';
 import Drop from './Transitions/Drop';
 import window from './window';
+import { getCSSVariableAsNumber } from '../utils/CSSVariables';
 
 class Modal extends Component {
   handleBlur = (event) => {
@@ -15,17 +16,38 @@ class Modal extends Component {
 
     const style = zIndex ? { zIndex } : null;
 
+    const variants = {
+      visible: {
+        opacity: 1,
+        transition: {
+          duration: getCSSVariableAsNumber('--animation-duration-fast'),
+        },
+      },
+      hidden: {
+        opacity: 0,
+      },
+    };
+
     return (
-      <Fade in={show}>
-        <div className="modal" style={style}>
-          <div className="modal__background" />
-          <div className="modal__content" onClick={this.handleBlur} >
-            <Drop in>
-              { children }
-            </Drop>
-          </div>
-        </div>
-      </Fade>
+      <AnimatePresence>
+        { show && (
+          <motion.div
+            className="modal"
+            style={style}
+            variants={variants}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+          >
+            <div className="modal__background" />
+            <div className="modal__content" onClick={this.handleBlur} >
+              <Drop>
+                { children }
+              </Drop>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     );
   }
 }

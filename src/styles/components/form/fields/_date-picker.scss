@@ -122,7 +122,7 @@ $darken: rgba(0, 0, 0, 0.2);
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
-    padding: 0.75rem 1.5rem;
+    padding: 0.75rem unit(2);
     border-radius: 5rem;
     background-color: transparent;
     transition: background-color ease $animation-speed;
@@ -175,7 +175,7 @@ $darken: rgba(0, 0, 0, 0.2);
       .date-picker__range-picker-items {
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         grid-template-rows: minmax(auto, 5rem);
-        padding: 1.5rem 0;
+        padding: unit(2) 0;
         height: calc(100% - 3rem); // double padding
       }
 

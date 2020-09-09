@@ -10,7 +10,6 @@
   border-width: 0;
   border-left-width: 0.5rem;
   border-radius: 0.75rem;
-  max-height: 80vh;
 
   &__main {
     flex: 1 1 100%;
@@ -18,19 +17,19 @@
     flex-direction: row;
     width: 100%;
     padding: unit(4) unit(4) 0;
+    max-height: 70vh;
 
     &-content {
       order: 1;
       overflow-y: auto;
       flex: 1 1 auto;
-      height: 100%;
       padding: 0 unit(4);
     }
 
     &-title {
       text-transform: uppercase;
       font-weight: 700;
-      margin-bottom: 1.5rem;
+      margin-bottom: unit(2);
     }
 
     &-icon {
@@ -48,26 +47,21 @@
   }
 
   &__additional {
+    margin-bottom: 0.15rem; // Needed so that @clickable elements dont cause scrollbars
+
+    .button {
+      margin-top: unit(2);
+    }
 
     &-box {
-      max-height: 15rem;
-      padding: 1.5rem;
-      margin-top: 1.5rem;
+      @include allow-text-selection;
+      margin-top: unit(2);
+      max-height: 25rem;
       background: var(--background);
       user-select: initial;
       overflow-y: auto;
       overflow-x: hidden;
       border-radius: var(--border-radius);
-
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        font-weight: 700;
-        text-transform: uppercase;
-      }
     }
   }
 
@@ -78,7 +72,7 @@
 
     .button {
       &:last-child {
-        margin-left: 1.5rem;
+        margin-left: unit(2);
       }
     }
   }
@@ -99,9 +93,10 @@
     border-color: var(--error);
 
     .error__stack-trace {
+      padding: unit(2);
       width: 100%;
       white-space: pre-wrap;
-      word-break: break-all;
+      word-break: break-word;
     }
   }
 

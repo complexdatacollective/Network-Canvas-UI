@@ -1,5 +1,6 @@
 import React from 'react';
 import '../src/styles/_all.scss';
+import colors from './helpers/Colors';
 
 export default { title: 'Palette' };
 
@@ -28,40 +29,6 @@ const Swatch = ({ color }) => {
     <div style={style}>--color-{color}</div>
   );
 };
-
-const colors = [
-  'neon-coral',
-  'neon-coral--dark',
-  'mustard',
-  'mustard--dark',
-  'sea-green',
-  'sea-green--dark',
-  'white',
-  'slate-blue',
-  'slate-blue--dark',
-  'navy-taupe',
-  'cyber-grape',
-  'rich-black',
-  'charcoal',
-  'platinum',
-  'platinum--dark',
-  'sea-serpent',
-  'sea-serpent--dark',
-  'purple-pizazz',
-  'purple-pizazz--dark',
-  'paradise-pink',
-  'paradise-pink--dark',
-  'cerulean-blue',
-  'cerulean-blue--dark',
-  'kiwi',
-  'kiwi--dark',
-  'neon-carrot',
-  'neon-carrot--dark',
-  'barbie-pink',
-  'barbie-pink--dark',
-  'tomato',
-  'tomato--dark',
-];
 
 export const all = () => {
   return colors.map(color => (

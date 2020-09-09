@@ -6,8 +6,10 @@
   --z-global-ui: 20; // i.e. menus, home buttons
   --z-modal: 30;
   --z-dialog: 31; // i.e. alerts
+  --z-fx-sub: 39;
   --z-fx: 40;
-  --z-chrome: 41; // i.e. app-level, i.e. window title bar
+  --z-fx-super: 41;
+  --z-chrome: 42; // i.e. app-level, i.e. window title bar
   // Reserved for development stuff that must always be visible
   --z-dev: 50;
 }

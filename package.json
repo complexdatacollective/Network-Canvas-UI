@@ -3,7 +3,6 @@
   "version": "3.5.0",
   "description": "Styles and React components for the Network Canvas project",
   "main": "lib/components/index.js",
-  "type": "module",
   "license": "GPL-3.0-or-later",
   "engines": {
     "node": "12.14.1",
@@ -25,6 +24,7 @@
     "animejs": "^2.2.0",
     "classnames": "^2.2.6",
     "framer-motion": "^2.6.0",
+    "lodash": "^4.17.20",
     "luxon": "^1.21.3",
     "prop-types": "^15.6.2",
     "react-compound-slider": "^2.4.0",
@@ -34,8 +34,8 @@
     "uuid": "^3.2.1"
   },
   "peerDependencies": {
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2"
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.7",
@@ -54,11 +54,13 @@
     "eslint-plugin-import": "2.7.0",
     "eslint-plugin-jsx-a11y": "5.1.1",
     "eslint-plugin-react": "^7.11.1",
+    "faker": "^4.1.0",
     "mkdirp": "^0.5.1",
     "ncp": "^2.0.0",
     "node-sass": "^4.14.1",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-resize-aware": "^3.0.1",
     "sass-lint": "^1.12.1",
     "sass-loader": "^8.0.2"
   }
