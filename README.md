@@ -45,7 +45,7 @@ $ npm link @codaco/ui
 # After each change (in UI):
 $ npm install
 $ npm run build
-$ npm install --production # potentially also rm -rf node_modules
+$ npm install --only=production # potentially also rm -rf node_modules
 ```
 
 To revert in consuming app: `npm install`

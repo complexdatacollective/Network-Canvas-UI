@@ -8,7 +8,7 @@ import Panel from './Panel';
 import RangePicker from './RangePicker';
 import DatePreview from './DatePreview';
 import { now, isEmpty, getFirstDayOfMonth, hasProperties } from './helpers';
-import useScrollTo from '../../hooks/useScrollTo';
+import useScrollTo from '../../../hooks/useScrollTo';
 
 const DatePickerInput = ({
   onChange: onChangeInput,
