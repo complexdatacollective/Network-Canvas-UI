@@ -25,6 +25,7 @@ const ToastManager = ({
             content={toast.content}
             type={toast.type}
             autoDismiss={toast.autoDismiss}
+            CustomIcon={toast.CustomIcon}
           />
         ))}
       </AnimatePresence>

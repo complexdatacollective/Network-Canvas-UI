@@ -1,6 +1,7 @@
 export { default as Button } from './Button';
 export { default as GraphicButton } from './GraphicButton';
 export { default as Icon } from './Icon';
+export { default as CompleteIcon } from './CompleteIcon';
 export { default as CloseButton } from './CloseButton';
 export { default as Node } from './Node';
 export { default as Expandable } from './Expandable';
