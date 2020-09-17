@@ -10,7 +10,6 @@ const initialToasts = [
     id: 0,
     title: 'My Title',
     content: 'My content',
-    autoDismiss: false,
   },
   {
     id: 1,
@@ -30,7 +29,6 @@ const initialToasts = [
         <p>This toast Has a custom icon and rich html content</p>
       </React.Fragment>
     ),
-    autoDismiss: false,
   },
 ];
 
@@ -57,10 +55,9 @@ export const normal = () => {
         title: 'Completed!',
         type: 'success',
         content: (<p>This shows a toast with a completed icon.</p>),
-        autoDismiss: false,
       },
     ]));
-  }
+  };
 
   return (
     <React.Fragment>
