@@ -7,15 +7,16 @@ import CompleteIcon from '../CompleteIcon';
 
 const Toast = ({
   id,
-  dismissHandler,
   title,
   content,
   type = 'info',
   autoDismiss = true,
+  dismissHandler,
+  dismissDuration = 4000,
   CustomIcon,
 }) => {
   if (autoDismiss) {
-    useTimeout(dismissHandler, 4000);
+    useTimeout(dismissHandler, dismissDuration);
   }
 
   const getIcon = () => {
@@ -39,8 +40,13 @@ const Toast = ({
     <motion.li
       key={id}
       layout
-      initial={{ opacity: 0, y: 100, scale: 0.3 }}
+      initial={{ opacity: 0, y: 50, scale: 0.3 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{
+        delay: 0.2,
+        type: 'spring',
+        layoutY: { delay: 0, type: 'spring' },
+      }}
       exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2 } }}
       className={`toast toast--${type}`}
     >

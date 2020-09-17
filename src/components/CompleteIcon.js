@@ -14,6 +14,7 @@ const CompleteIcon = () => {
       scale: 1,
       stroke: 'var(--primary)',
       transition: {
+        delay: 0.5,
         type: 'spring',
         damping: 7,
         stiffness: 20,
