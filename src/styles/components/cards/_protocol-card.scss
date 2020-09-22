@@ -6,7 +6,6 @@ $component: 'protocol-card';
   border-radius: var(--border-radius);
   display: flex;
   overflow: hidden;
-  margin: unit(2);
   flex-direction: column-reverse;
 
   &--clickable {

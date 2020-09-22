@@ -7,7 +7,9 @@ import '../src/styles/_all.scss';
 
 const requiredProps = {
   caseId: faker.lorem.sentence(),
+  startedAt: faker.date.recent().toISOString(),
   updatedAt: faker.date.recent().toISOString(),
+  finishedAt: faker.date.recent().toISOString(),
   lastExportedAt: faker.date.recent().toISOString(),
   protocolName: 'Mock Protocol',
   progress: 55,
@@ -39,5 +41,23 @@ export const longprotocolname = () => (
     onClickHandler={action('onClickHandler')}
   >
     {props => <SessionCard {...props} />}
+  </Harness>
+);
+
+export const selected = () => (
+  <Harness
+    requiredProps={requiredProps}
+    onClickHandler={action('onClickHandler')}
+  >
+    {props => <SessionCard {...props} selected />}
+  </Harness>
+);
+
+export const finished = () => (
+  <Harness
+    requiredProps={requiredProps}
+    onClickHandler={action('onClickHandler')}
+  >
+    {props => <SessionCard {...props} progress={100} />}
   </Harness>
 );

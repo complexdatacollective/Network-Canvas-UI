@@ -4,7 +4,7 @@ import cx from 'classnames';
 import Icon from '../Icon';
 import Scroller from '../Scroller';
 
-const formatDate = timestamp => timestamp && new Date(timestamp).toLocaleString(undefined, { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' });
+const formatDate = timestamp => timestamp && new Date(timestamp).toLocaleString(undefined);
 
 const ProtocolCard = (props) => {
   const {

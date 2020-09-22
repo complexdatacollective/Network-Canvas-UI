@@ -1,18 +1,17 @@
 .graphic-button {
   @include clickable;
-  display: inline-block;
+  display: inline-flex;
   width: 100%;
   color: var(--color-white);
   background-repeat: no-repeat;
   height: 10rem;
   border-radius: 1rem;
   position: relative;
+  justify-content: center;
+  align-items: center;
 
   &__label {
-    position: absolute;
-    top: 50%;
-    right: 4rem;
-    transform: translateY(-50%);
+    position: relative;
 
     h2 {
       font-size: type-scale(3);

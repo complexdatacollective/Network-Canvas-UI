@@ -45,7 +45,7 @@ const ServerCard = ({
 };
 
 ServerCard.propTypes = {
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
   addresses: PropTypes.array.isRequired,
   host: PropTypes.string,
   onClickHandler: PropTypes.func,
@@ -53,6 +53,7 @@ ServerCard.propTypes = {
 };
 
 ServerCard.defaultProps = {
+  name: undefined,
   onClickHandler: undefined,
   host: null,
   disabled: false,

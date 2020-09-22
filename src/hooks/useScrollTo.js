@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import anime from 'animejs';
 import scrollparent from 'scrollparent';
-import { getCSSVariableAsNumber, getCSSVariableAsObject } from '../../utils/CSSVariables';
+import { getCSSVariableAsNumber, getCSSVariableAsObject } from '../utils/CSSVariables';
 
 const scrollFocus = (destination, delay = 0) => {
   if (!destination) { return null; }

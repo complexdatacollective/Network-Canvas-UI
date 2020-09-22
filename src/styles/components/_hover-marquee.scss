@@ -3,7 +3,7 @@
   position: relative;
   white-space: nowrap;
   overflow: hidden;
-  padding:4px 0;
+  padding-bottom: 0.1rem; // Needed because text is clipped for letters such as 'g'
 
   &:not(:hover) {
     text-overflow: ellipsis;
