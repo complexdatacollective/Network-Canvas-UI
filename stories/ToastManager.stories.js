@@ -8,6 +8,7 @@ import '../src/styles/_all.scss';
 const initialToasts = [
   {
     id: 0,
+    type: 'success',
     title: 'My Title',
     content: 'My content',
   },
@@ -15,7 +16,7 @@ const initialToasts = [
     id: 1,
     type: 'warning',
     title: 'I Stay Around',
-    content: (<p>This toast wont leave until you ask it to</p>),
+    content: <p>This toast wont leave until you ask it to</p>,
     autoDismiss: false,
   },
   {
@@ -23,7 +24,7 @@ const initialToasts = [
     type: 'info',
     title: 'Custom Icon',
     CustomIcon: (<Spinner small />),
-    content: (
+    content: () => (
       <React.Fragment>
         <ProgressBar orientation="horizontal" percentProgress={40} />
         <p>This toast Has a custom icon and rich html content</p>
@@ -54,7 +55,7 @@ export const normal = () => {
         id: 4,
         title: 'Completed!',
         type: 'success',
-        content: (<p>This shows a toast with a completed icon.</p>),
+        content: () => (<p>This shows a toast with a completed icon.</p>),
       },
     ]));
   };

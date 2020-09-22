@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { AnimatePresence } from 'framer-motion';
 import Toast from './Toast';
 import window from '../window';
@@ -9,7 +10,7 @@ const ToastManager = ({
 }) => (
   <div className="toast-container">
     <ul className="toast-container-list">
-      <AnimatePresence initial={false}>
+      <AnimatePresence>
         {toasts.map(toast => (
           <Toast
             key={toast.id}
@@ -32,5 +33,10 @@ const ToastManager = ({
     </ul>
   </div>
 );
+
+ToastManager.propTypes = {
+  toasts: PropTypes.array.isRequired,
+  removeToast: PropTypes.func.isRequired,
+};
 
 export default window(ToastManager);

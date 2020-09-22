@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { motion } from 'framer-motion';
 import useTimeout from '../../hooks/useTimeout';
 import CloseButton from '../CloseButton';
@@ -9,10 +10,10 @@ const Toast = ({
   id,
   title,
   content,
-  type = 'info',
-  autoDismiss = true,
+  type,
+  autoDismiss,
   dismissHandler,
-  dismissDuration = 4000,
+  dismissDuration,
   CustomIcon,
 }) => {
   if (autoDismiss) {
@@ -20,7 +21,6 @@ const Toast = ({
   }
 
   const getIcon = () => {
-
     if (CustomIcon) {
       return CustomIcon;
     }
@@ -34,6 +34,14 @@ const Toast = ({
     }
 
     return <Icon name="info" />;
+  };
+
+  const getContent = () => {
+    if (typeof content === 'function') {
+      return content();
+    }
+
+    return content;
   };
 
   return (
@@ -51,17 +59,39 @@ const Toast = ({
       className={`toast toast--${type}`}
     >
       <div className="toast-icon">
-        { getIcon() }
+        {getIcon()}
       </div>
       <div className="toast-content">
         <h4 className="toast-content__title">{title}</h4>
-        {content}
+        {getContent()}
       </div>
       <CloseButton
         onClick={dismissHandler}
       />
     </motion.li>
   );
+};
+
+Toast.propTypes = {
+  id: PropTypes.any.isRequired,
+  title: PropTypes.string.isRequired,
+  content: PropTypes.any.isRequired,
+  type: PropTypes.oneOf([
+    'info',
+    'warning',
+    'success',
+  ]).isRequired,
+  autoDismiss: PropTypes.bool,
+  dismissHandler: PropTypes.func,
+  dismissDuration: PropTypes.number,
+  CustomIcon: PropTypes.node,
+};
+
+Toast.defaultProps = {
+  autoDismiss: true,
+  dismissHandler: null,
+  dismissDuration: 4000,
+  CustomIcon: null,
 };
 
 export default Toast;

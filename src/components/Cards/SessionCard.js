@@ -53,7 +53,7 @@ const SessionCard = (props) => {
             <img src={FinishedIcon} alt="Interview finished at" />
             { progress === 100 && finishedAt ? (
               <span>
-                { formatDate(updatedAt) }
+                { formatDate(finishedAt) }
               </span>
             ) : (
               <React.Fragment>
