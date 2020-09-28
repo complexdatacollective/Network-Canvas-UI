@@ -1,7 +1,3 @@
-:root {
-  --base-node-size: calc(var(--base-font-size) * 10);
-}
-
 @keyframes linking {
   0% {
     transform: scale(0.8);
@@ -17,52 +13,87 @@
 }
 
 .node {
-  display: inline-block;
-  position: relative;
-  width: 1em;
-  height: 1em;
-  font-size: var(--base-node-size);
-  vertical-align: middle;
+  position:relative;
 
-  &__node {
-    display: inline-block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    overflow: visible;
+  &:not(.node--inactive) {
+    @include clickable;
   }
 
-  &__node-base {
-    @include palette-modifiers($include-fill: true);
-    // fill: palette('node-color-seq-1');
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: unit(10);
+  height: unit(10);
+  border-radius: 50%;
+  margin: 1rem;
+
+  background: repeating-linear-gradient(
+    145deg,
+    #606dbc,
+    #606dbc 50%,
+    #465298 50%,
+    #465298 100%
+  );
+
+  &--selected {
+    &::after {
+      border: 0.2rem solid var(--color-white);
+      border-radius: 50%;
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    &::before {
+      border: 0.5rem solid var(--transparent-dark);
+      border-radius: 50%;
+      content: '';
+      position: absolute;
+      top: -0.5rem;
+      left: -0.5rem;
+      right: -0.5rem;
+      bottom: -0.5rem;
+    }
   }
 
-  &__node-flash {
-    @include palette-modifiers($include-fill: true);
-    // fill: palette('node-color-seq-1--dark');
+  &--linking {
+    &::after {
+      border: 0.2rem solid var(--color-white);
+      border-radius: 50%;
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    &::before {
+      border: 0.5rem solid var(--transparent-dark);
+      border-radius: 50%;
+      content: '';
+      position: absolute;
+      top: -0.5rem;
+      left: -0.5rem;
+      right: -0.5rem;
+      bottom: -0.5rem;
+      animation: linking var(--animation-duration-slow) ease-in-out infinite;
+      z-index: -1;
+    }
   }
 
-  &__node-trim {
-    fill: transparent;
-    stroke: transparent;
-    stroke-width: 0.75rem;
-    transition: stroke var(--animation-duration-standard) ease-in-out;
-  }
-
-  &__node-outer-trim {
-    fill: transparent;
-
+  &--inactive {
+    opacity: 0.5;
   }
 
   &__label {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
-    padding: 15%;
-    color: var(--node-label);
-
+    position: absolute;
+  
     &-text {
       left: 0;
       width: 100%;
@@ -72,52 +103,37 @@
       align-items: center;
       flex-wrap: nowrap;
       text-align: center;
-      font-size: 0.15em;
+      font-size: 1rem;
       font-family: $netcanvas-font-stack;
       color: palette('text');
       hyphens: auto;
       overflow: hidden;
       white-space: pre-line;
+      color: var(--node-label);
 
       &.len-1 {
-        font-size: 0.17em;
+        font-size: 1rem;
       }
 
       &.len-2 {
-        font-size: 0.17em;
+        font-size: 1rem;
       }
 
       &.len-3 {
-        font-size: 0.17em;
+        font-size: 1rem;
       }
 
       &.len-4 {
-        font-size: 0.17em;
+        font-size: 1rem;
       }
 
       &.len-5 {
-        font-size: 0.17em;
+        font-size: 1rem;
       }
 
       &.len-6 {
-        font-size: 0.17em;
+        font-size: 1rem;
       }
-    }
-  }
-
-  &--inactive {
-    opacity: 0.5;
-  }
-
-  &--selected {
-    .node__node-trim {
-      stroke: palette('selected');
-    }
-
-    .node__node-outer-trim {
-      fill: var(--node-outer-trim-stroke);
-      transform-origin: 250px 250px;
-      animation: bounce var(--animation-duration-standard) ease-in-out;
     }
   }
 

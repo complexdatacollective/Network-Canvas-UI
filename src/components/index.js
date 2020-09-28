@@ -3,6 +3,7 @@ export { default as GraphicButton } from './GraphicButton';
 export { default as Icon } from './Icon';
 export { default as CompleteIcon } from './CompleteIcon';
 export { default as CloseButton } from './CloseButton';
+export { default as HoverMarquee } from './HoverMarquee';
 export { default as Node } from './Node';
 export { default as Expandable } from './Expandable';
 export { default as NarrativePanel } from './NarrativePanel';
