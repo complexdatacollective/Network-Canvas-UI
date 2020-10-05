@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Spinner } from '../src/components/';
 import Harness from './helpers/Harness';
 import Button from '../src/components/Button';
