@@ -12,8 +12,16 @@ class Spinner extends React.PureComponent {
       },
     );
 
+    const circleSize = () => {
+      if (this.props.size) {
+        return { '--circle-size': this.props.size };
+      }
+
+      return {};
+    };
+
     return (
-      <div className={classes}>
+      <div className={classes} style={circleSize()} >
         <div className="circle">
           <div className="half-circle" />
           <div className="half-circle half-circle--rotated" />
@@ -38,11 +46,13 @@ class Spinner extends React.PureComponent {
 Spinner.propTypes = {
   small: PropTypes.bool,
   large: PropTypes.bool,
+  size: PropTypes.string,
 };
 
 Spinner.defaultProps = {
   small: false,
   large: false,
+  size: null,
 };
 
 export default Spinner;
