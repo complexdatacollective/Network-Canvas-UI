@@ -48,9 +48,19 @@
     }
 
     &--has-icon {
-      .#{$button-class}__content {
-        margin-left: -2rem;
+
+      &:not(.button--icon-pos-right) {
+        .#{$button-class}__content {
+          margin-left: -2rem;
+        }
       }
+
+      &.button--icon-pos-right {
+        .#{$button-class}__content {
+          margin-right: -2rem;
+        }
+      }
+
     }
 
     &__content {
@@ -74,14 +84,17 @@
 
     &__icon {
       // sass-lint:disable-block no-important
-      height: 1rem !important;
-      width: 1rem !important;
       margin: 0 1rem;
 
       // use flexbox to change order of icon and content
       &--right {
         order: 2;
       }
+    }
+
+    .icon.button__icon {
+      height: unit(2) !important;
+      width: unit(2) !important;
     }
   }
 }
