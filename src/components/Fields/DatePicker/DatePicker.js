@@ -69,7 +69,7 @@ const DatePickerInput = ({
             if (!isComplete) {
               onChange({ year: null, month: null, day: null });
             }
-            setPanelsOpen(false);
+            // setPanelsOpen(false);
           };
 
           return (

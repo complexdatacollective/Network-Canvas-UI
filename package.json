@@ -1,6 +1,6 @@
 {
   "name": "@codaco/ui",
-  "version": "3.7.1",
+  "version": "3.7.2",
   "description": "Styles and React components for the Network Canvas project",
   "main": "lib/components/index.js",
   "license": "GPL-3.0-or-later",
@@ -23,13 +23,13 @@
   "dependencies": {
     "animejs": "^2.2.0",
     "classnames": "^2.2.6",
-    "framer-motion": "^2.6.0",
+    "framer-motion": "^2.9.1",
     "lodash": "^4.17.20",
     "luxon": "^1.21.3",
     "prop-types": "^15.6.2",
     "react-compound-slider": "^2.4.0",
-    "react-transition-group": "^4.3.0",
     "react-resize-aware": "^3.0.1",
+    "react-transition-group": "^4.3.0",
     "recompose": "^0.30.0",
     "scrollparent": "^2.0.1",
     "uuid": "^3.2.1"

@@ -68,6 +68,7 @@ export const customIcon = () => (
   <Harness
     requiredProps={requiredProps}
     color="platinum"
+    iconPosition="right"
     icon={(<div><Spinner size="0.5rem" /></div>)}
   >
     {props => <Button {...props}/>}
