@@ -100,10 +100,11 @@ $darken: rgba(0, 0, 0, 0.2);
   &__panels {
     background-color: var(--background);
     height: $height;
+  }
 
-    &__panels-container {
-      height: $height;
-    }
+  &__panels-container {
+    height: $height;
+    position: relative;
   }
 
   &__panel {

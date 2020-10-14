@@ -71,23 +71,21 @@ class Toggle extends PureComponent {
           <h4>{fieldLabel}</h4>
         }
         <label className={componentClasses} htmlFor={this.id} title={title}>
-          <div>
-            <input
-              className="form-field-toggle__input"
-              id={this.id}
-              {...input}
-              {...rest}
-              checked={!!this.props.input.value}
-              disabled={disabled}
-              type="checkbox"
-              value="true"
-            />
-            <div className="form-field-toggle__toggle">
-              <span className="form-field-toggle__button" />
-            </div>
-            <div className="form-field-toggle__label">
-              {label || this.props.input.value}
-            </div>
+          <input
+            className="form-field-toggle__input"
+            id={this.id}
+            {...input}
+            {...rest}
+            checked={!!this.props.input.value}
+            disabled={disabled}
+            type="checkbox"
+            value="true"
+          />
+          <div className="form-field-toggle__toggle">
+            <span className="form-field-toggle__button" />
+          </div>
+          <div className="form-field-toggle__label">
+            {label || this.props.input.value}
           </div>
         </label>
         {invalid && touched && <div className="form-field-toggle__error"><Icon name="warning" />{error}</div>}

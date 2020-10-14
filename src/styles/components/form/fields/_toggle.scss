@@ -5,6 +5,8 @@ $border-space: 0.1rem;
 
 .#{$component-name} {
   display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
   cursor: pointer;
 
   &__input {
@@ -20,7 +22,6 @@ $border-space: 0.1rem;
 
   &__button {
     position: absolute;
-    cursor: pointer;
     background-color: var(--input-background);
     transition: background var(--animation-duration-fast) var(--animation-easing);
     border-radius: $size;
