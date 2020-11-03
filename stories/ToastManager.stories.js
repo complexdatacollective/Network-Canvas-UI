@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import uuid from 'uuid';
 import { action } from '@storybook/addon-actions';
 import Harness from './helpers/Harness';
 import ToastManager from '../src/components/Toast/ToastManager';
@@ -7,20 +8,28 @@ import '../src/styles/_all.scss';
 
 const initialToasts = [
   {
-    id: 0,
+    id: uuid(),
     type: 'success',
     title: 'My Title',
     content: 'My content',
   },
   {
-    id: 1,
+    id: uuid(),
+    type: 'info',
+    classNames: 'custom-class custom-class 2',
+    title: 'classnames',
+    autoDismiss: false,
+    content: 'Toast with custom class names',
+  },
+  {
+    id: uuid(),
     type: 'warning',
     title: 'I Stay Around',
     content: <p>This toast wont leave until you ask it to</p>,
     autoDismiss: false,
   },
   {
-    id: 2,
+    id: uuid(),
     type: 'info',
     title: 'Custom Icon',
     CustomIcon: (<Spinner small />),
@@ -52,7 +61,7 @@ export const normal = () => {
     setToasts(existing => ([
       ...existing,
       {
-        id: 4,
+        id: uuid(),
         title: 'Completed!',
         type: 'success',
         content: () => (<p>This shows a toast with a completed icon.</p>),

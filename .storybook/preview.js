@@ -1,6 +1,1 @@
-export const parameters = {
-  themes: [
-    { name: 'twitter', class: 'theme-twt', color: '#00aced', default: true },
-    { name: 'facebook', class: 'theme-fb', color: '#3b5998' }
-  ]
-};
+import '!style-loader!css-loader!sass-loader!../lib/styles/_all.scss';
