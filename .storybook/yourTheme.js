@@ -1,4 +1,4 @@
-// YourTheme.js
+// nceme.js
 
 import { create } from '@storybook/theming/create';
 import '!style-loader!css-loader!sass-loader!../lib/styles/_all.scss';

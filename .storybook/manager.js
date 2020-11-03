@@ -1,8 +1,8 @@
 // .storybook/manager.js
 
 import { addons } from '@storybook/addons';
-import yourTheme from './yourTheme';
+import ncThemerom './ncncTheme
 
 addons.setConfig({
-  theme: yourTheme,
+  theme: ncTheme
 });
