@@ -1,26 +1,25 @@
 // nceme.js
 
 import { create } from '@storybook/theming/create';
-import '!style-loader!css-loader!sass-loader!../lib/styles/_all.scss';
 
 const cssVar = (property, defaultValue) =>
   getComputedStyle(document.documentElement).getPropertyValue(property) || defaultValue
 
 export default create({
-  base: 'dark',
+  // base: 'dark',
 
-  colorPrimary: cssVar('--primary', 'red'),
-  colorSecondary: cssVar('--color-neon-coral', 'red'),
+  // colorPrimary: cssVar('--primary', 'red'),
+  // colorSecondary: cssVar('--color-neon-coral', 'red'),
 
-  // // UI
-  appBg: cssVar('--background', 'red'),
-  appContentBg: cssVar('--background', 'red'),
-  // // appBorderColor: 'grey',
-  appBorderRadius: cssVar('--border-radius', '1rem'),
+  // // // UI
+  // appBg: cssVar('--background', 'red'),
+  appContentBg: 'rgb(58,58,117)',
+  // // // appBorderColor: 'grey',
+  // appBorderRadius: cssVar('--border-radius', '1rem'),
 
-  // // Typography
-  fontBase: cssVar('--netcanvas-font-stack', '"Open Sans", sans-serif'),
-  // // fontCode: 'monospace',
+  // // // Typography
+  // fontBase: cssVar('--netcanvas-font-stack', '"Open Sans", sans-serif'),
+  // // // fontCode: 'monospace',
 
   // // Text colors
   // textColor: cssVar('--text', 'white'),

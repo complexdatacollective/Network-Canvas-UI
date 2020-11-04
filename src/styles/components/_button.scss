@@ -49,11 +49,15 @@
 
     &--has-icon {
 
-      &:not(.button--icon-pos-right) {
-        .#{$button-class}__content {
-          margin-left: -2rem;
-        }
+      .#{$button-class}__content {
+        margin-left: 0;
       }
+
+      // &:not(.button--icon-pos-right) {
+      //   .#{$button-class}__content {
+      //     margin-left: -2rem;
+      //   }
+      // }
 
       &.button--icon-pos-right {
         .#{$button-class}__content {
