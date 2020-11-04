@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 import uuid from 'uuid';
 import Icon from '../../Icon';
@@ -58,8 +59,22 @@ class DatePickerField extends Component {
   }
 }
 
+DatePickerField.propTypes = {
+  parameters: PropTypes.object.isRequired,
+  input: PropTypes.object.isRequired,
+  meta: PropTypes.object,
+  label: PropTypes.string,
+  fieldLabel: PropTypes.string,
+  className: PropTypes.string,
+  hidden: PropTypes.bool,
+};
+
 DatePickerField.defaultProps = {
-  parameters: null,
+  meta: {},
+  label: null,
+  fieldLabel: null,
+  className: null,
+  hidden: null,
 };
 
 export default DatePickerField;

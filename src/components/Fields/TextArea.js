@@ -8,6 +8,7 @@ class TextArea extends PureComponent {
   static propTypes = {
     input: PropTypes.object,
     meta: PropTypes.object,
+    type: PropTypes.string,
     label: PropTypes.string,
     autoFocus: PropTypes.bool,
     fieldLabel: PropTypes.string,

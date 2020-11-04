@@ -6,6 +6,7 @@ import uuid from 'uuid';
 class Radio extends PureComponent {
   static propTypes = {
     label: PropTypes.node,
+    fieldLabel: PropTypes.string,
     className: PropTypes.string,
     disabled: PropTypes.bool,
     input: PropTypes.object.isRequired,
@@ -14,6 +15,7 @@ class Radio extends PureComponent {
   static defaultProps = {
     className: '',
     label: null,
+    fieldLabel: null,
     disabled: false,
   };
 
