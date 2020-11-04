@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 class Handle extends Component {
@@ -77,5 +78,15 @@ class Handle extends Component {
     );
   }
 }
+
+Handle.propTypes = {
+  domain: PropTypes.array.isRequired,
+  handle: PropTypes.object.isRequired,
+  isActive: PropTypes.bool.isRequired,
+  isDisabled: PropTypes.bool.isRequired,
+  showTooltips: PropTypes.bool.isRequired,
+  getHandleProps: PropTypes.func.isRequired,
+  getLabelForValue: PropTypes.func.isRequired,
+};
 
 export default Handle;

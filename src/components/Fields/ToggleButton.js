@@ -10,6 +10,7 @@ class ToggleButton extends PureComponent {
     disabled: PropTypes.bool,
     input: PropTypes.object.isRequired,
     color: PropTypes.string,
+    fieldLabel: PropTypes.string,
   };
 
   static defaultProps = {
@@ -17,6 +18,7 @@ class ToggleButton extends PureComponent {
     label: null,
     disabled: false,
     color: 'cat-color-seq-1',
+    fieldLabel: null,
   };
 
   componentWillMount() {

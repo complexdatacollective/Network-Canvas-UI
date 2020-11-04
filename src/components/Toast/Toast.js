@@ -15,6 +15,7 @@ const Toast = ({
   dismissHandler,
   dismissDuration,
   CustomIcon,
+  className,
 }) => {
   if (autoDismiss) {
     useTimeout(dismissHandler, dismissDuration);
@@ -56,7 +57,7 @@ const Toast = ({
         layoutY: { delay: 0, type: 'spring' },
       }}
       exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2 } }}
-      className={`toast toast--${type}`}
+      className={`toast toast--${type} ${className}`}
     >
       <div className="toast-icon">
         {getIcon()}
@@ -85,6 +86,7 @@ Toast.propTypes = {
   dismissHandler: PropTypes.func,
   dismissDuration: PropTypes.number,
   CustomIcon: PropTypes.node,
+  className: PropTypes.string,
 };
 
 Toast.defaultProps = {
@@ -92,6 +94,7 @@ Toast.defaultProps = {
   dismissHandler: null,
   dismissDuration: 4000,
   CustomIcon: null,
+  className: '',
 };
 
 export default Toast;

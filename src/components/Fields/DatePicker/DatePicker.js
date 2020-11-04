@@ -169,6 +169,10 @@ DatePickerInput.propTypes = {
   onChange: PropTypes.func,
   parameters: PropTypes.object,
   value: PropTypes.string,
+  parentRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.any }),
+  ]).isRequired,
 };
 
 export default DatePickerInput;

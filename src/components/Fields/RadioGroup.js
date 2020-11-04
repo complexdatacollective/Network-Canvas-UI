@@ -10,6 +10,8 @@ class RadioGroup extends Component {
   static propTypes = {
     options: PropTypes.array,
     label: PropTypes.string,
+    input: PropTypes.object.isRequired,
+    className: PropTypes.string,
     fieldLabel: PropTypes.string,
     meta: PropTypes.object,
     optionComponent: PropTypes.func,
@@ -18,6 +20,7 @@ class RadioGroup extends Component {
   static defaultProps = {
     label: null,
     fieldLabel: null,
+    className: null,
     optionComponent: Radio,
     options: [],
     meta: {},

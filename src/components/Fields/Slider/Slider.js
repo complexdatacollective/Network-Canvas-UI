@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { round, get, isNil } from 'lodash';
 import cx from 'classnames';
 import { Slider, Handles, Tracks, Ticks } from 'react-compound-slider';
@@ -151,6 +152,18 @@ class SliderInput extends Component {
     );
   }
 }
+
+SliderInput.propTypes = {
+  options: PropTypes.array.isRequired,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]).isRequired,
+  type: PropTypes.string.isRequired,
+  onBlur: PropTypes.func.isRequired,
+  parameters: PropTypes.object.isRequired,
+};
+
 
 export default SliderInput;
 

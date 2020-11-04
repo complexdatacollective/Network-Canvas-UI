@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import { compose } from 'recompose';
 import windowRootConsumer from './windowRootConsumer';
@@ -14,6 +15,14 @@ const window = (WrappedComponent, defaultRoot = document.body) =>
   class Window extends Component {
     static get displayName() {
       return `Window(${getDisplayName(WrappedComponent)})`;
+    }
+
+    static propTypes = {
+      windowRoot: PropTypes.any,
+    };
+
+    static defaultProps = {
+      windowRoot: null,
     }
 
     render() {

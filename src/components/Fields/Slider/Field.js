@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
 import uuid from 'uuid';
 import Icon from '../../Icon';
@@ -30,6 +31,27 @@ const getValue = (value) => {
 };
 
 class SliderField extends Component {
+  static propTypes = {
+    label: PropTypes.node,
+    className: PropTypes.string,
+    hidden: PropTypes.bool,
+    input: PropTypes.object.isRequired,
+    meta: PropTypes.object,
+    parameters: PropTypes.object,
+    options: PropTypes.array.isRequired,
+    fieldLabel: PropTypes.string,
+    type: PropTypes.string.isRequired,
+  };
+
+  static defaultProps = {
+    className: '',
+    label: null,
+    hidden: false,
+    meta: {},
+    parameters: {},
+    fieldLabel: null,
+  };
+
   constructor(props) {
     super(props);
 
