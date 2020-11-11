@@ -8,7 +8,7 @@ import ModifiedIcon from '../../assets/images/ModifiedIcon.svg';
 import FinishedIcon from '../../assets/images/FinishedIcon.svg';
 import ExportedIcon from '../../assets/images/ExportedIcon.svg';
 
-const formatDate = timestamp => timestamp && new Date(timestamp).toLocaleString(undefined);
+const formatDate = dateString => dateString && new Date(dateString).toLocaleString(undefined);
 
 const SessionCard = (props) => {
   const {
@@ -82,10 +82,10 @@ SessionCard.defaultProps = {
 
 SessionCard.propTypes = {
   caseId: PropTypes.string.isRequired,
-  startedAt: PropTypes.number.isRequired,
-  updatedAt: PropTypes.number.isRequired,
-  finishedAt: PropTypes.number,
-  exportedAt: PropTypes.number,
+  startedAt: PropTypes.string.isRequired, // Expects ISO 8601 datetime string
+  updatedAt: PropTypes.string.isRequired, // Expects ISO 8601 datetime string
+  finishedAt: PropTypes.string, // Expects ISO 8601 datetime string
+  exportedAt: PropTypes.string, // Expects ISO 8601 datetime string
   protocolName: PropTypes.string,
   progress: PropTypes.number.isRequired,
   selected: PropTypes.bool,

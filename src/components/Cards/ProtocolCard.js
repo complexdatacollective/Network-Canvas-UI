@@ -4,7 +4,7 @@ import cx from 'classnames';
 import Icon from '../Icon';
 import Scroller from '../Scroller';
 
-const formatDate = timestamp => timestamp && new Date(timestamp).toLocaleString(undefined);
+const formatDate = timeString => timeString && new Date(timeString).toLocaleString(undefined);
 
 const ProtocolCard = (props) => {
   const {
@@ -106,8 +106,8 @@ ProtocolCard.defaultProps = {
 
 ProtocolCard.propTypes = {
   schemaVersion: PropTypes.number.isRequired,
-  lastModified: PropTypes.string.isRequired,
-  installationDate: PropTypes.number,
+  lastModified: PropTypes.string.isRequired, // Expects ISO 8601 datetime string
+  installationDate: PropTypes.string, // Expects ISO 8601 datetime string
   name: PropTypes.string.isRequired,
   description: PropTypes.string,
   onClickHandler: PropTypes.func,
