@@ -34,6 +34,10 @@ const Toast = ({
       return <Icon name="warning" />;
     }
 
+    if (type === 'error') {
+      return <Icon name="error" />;
+    }
+
     return <Icon name="info" />;
   };
 
@@ -80,6 +84,7 @@ Toast.propTypes = {
   type: PropTypes.oneOf([
     'info',
     'warning',
+    'error',
     'success',
   ]).isRequired,
   autoDismiss: PropTypes.bool,
@@ -92,7 +97,7 @@ Toast.propTypes = {
 Toast.defaultProps = {
   autoDismiss: true,
   dismissHandler: null,
-  dismissDuration: 4000,
+  dismissDuration: 8000,
   CustomIcon: null,
   className: '',
 };

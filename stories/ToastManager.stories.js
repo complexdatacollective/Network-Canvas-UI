@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import uuid from 'uuid';
+import faker from 'faker';
 import { action } from '@storybook/addon-actions';
 import Harness from './helpers/Harness';
 import ToastManager from '../src/components/Toast/ToastManager';
@@ -15,7 +16,7 @@ const initialToasts = [
   },
   {
     id: uuid(),
-    type: 'info',
+    type: 'error',
     classNames: 'custom-class custom-class 2',
     title: 'classnames',
     autoDismiss: false,
@@ -58,13 +59,17 @@ export const normal = () => {
   };
 
   const addToast = () => {
+    const randomType = () => faker.random.arrayElement(['info', 'success', 'warning', 'error']);
+    const randomContent = () => faker.lorem.paragraph();
+    const randomTitle = () => faker.hacker.phrase();
     setToasts(existing => ([
       ...existing,
       {
         id: uuid(),
-        title: 'Completed!',
-        type: 'success',
-        content: () => (<p>This shows a toast with a completed icon.</p>),
+        title: randomTitle(),
+        type: randomType(),
+        autoDismiss: false,
+        content: <p>{randomContent()}</p>,
       },
     ]));
   };

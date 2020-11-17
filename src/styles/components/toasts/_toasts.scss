@@ -19,17 +19,17 @@
 }
  
 .toast {
-  width: 30rem;
+  width: 40rem;
   background: var(--color-platinum);
   margin: unit(2) unit(6);
   padding: unit(4);
+  border-radius: var(--border-radius);
+  border-bottom: 0.5rem solid tomato;
+  box-shadow: 0 unit(1) unit(3) unit(0.5) rgba(0, 0, 0, 0.4);
   flex: 0 0 auto;
   position: relative;
   display: flex;
-  border-radius: var(--border-radius);
-  border-bottom: 0.5rem solid tomato;
   color: var(--text-dark);
-  box-shadow: 0 unit(1) unit(3) unit(0.5) rgba(0, 0, 0, 0.4);
 
   &--info {
     border-color: var(--info);
@@ -37,6 +37,10 @@
 
   &--warning {
     border-color: var(--warning);
+  }
+
+  &--error {
+    border-color: var(--error);
   }
 
   &--success {
