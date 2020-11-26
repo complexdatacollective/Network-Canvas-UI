@@ -5,6 +5,7 @@ $border-space: 0.25rem;
 .form-field-radio {
   display: inline-block;
   cursor: pointer;
+  position: relative;
   margin-bottom: 1rem;
 
   &:last-child {
@@ -12,6 +13,7 @@ $border-space: 0.25rem;
   }
 
   &__input {
+    position: absolute;
     opacity: 0;
   }
 
