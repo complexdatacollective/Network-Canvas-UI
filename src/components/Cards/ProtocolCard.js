@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Icon from '../Icon';
-import Scroller from '../Scroller';
 
 const formatDate = timeString => timeString && new Date(timeString).toLocaleString(undefined);
 
