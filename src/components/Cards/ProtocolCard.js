@@ -62,9 +62,9 @@ const ProtocolCard = (props) => {
     }
 
     return (
-      <Scroller className="protocol-description">
+      <div className="protocol-description">
         { description }
-      </Scroller>
+      </div>
     );
   };
 
