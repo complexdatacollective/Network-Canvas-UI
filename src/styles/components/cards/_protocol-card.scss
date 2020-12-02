@@ -16,7 +16,7 @@ $component: 'protocol-card';
   &--condensed {
     @include clickable(1);
     flex-direction: row;
-    height: unit(8);
+    height: unit(7);
 
     .#{$component}__icon-section {
       padding: 0;
@@ -111,7 +111,7 @@ $component: 'protocol-card';
       font-size: 0.8rem;
 
       &--condensed {
-        flex: 1;
+        flex: 0 auto;
         font-size: 0.64rem;
         white-space: nowrap;
         overflow: hidden;

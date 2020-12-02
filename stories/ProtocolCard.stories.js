@@ -45,6 +45,19 @@ export const condensed = () => (
   </Harness>
 );
 
+export const condensedWithDescription = () => (
+  <Harness
+    requiredProps={requiredProps}
+    name={faker.lorem.sentence()}
+    description="/Users/Someone/Somepath/Some Protoco.netcanvas"
+    condensed
+    onClickHandler={action('onClickHandler')}
+    onStatusClickHandler={action('onStatusClickHandler')}
+  >
+    {props => <ProtocolCard {...props} />}
+  </Harness>
+);
+
 
 export const longname = () => (
   <Harness
