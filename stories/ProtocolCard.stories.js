@@ -13,7 +13,7 @@ const requiredProps = {
   description: faker.lorem.sentence(),
 };
 
-export default { title: 'ProtocolCard' };
+export default { title: 'Components/ProtocolCard' };
 
 export const normal = () => (
   <Harness

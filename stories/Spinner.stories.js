@@ -3,7 +3,7 @@ import { Spinner } from '../src/components/';
 import '../src/styles/_all.scss';
 
 
-export default { title: 'Spinner' };
+export default { title: 'Components/Spinner' };
 
 export const basic = () => (
   <Spinner />

@@ -13,7 +13,7 @@ const requiredProps = {
   content: 'This is a button',
 };
 
-export default { title: 'Button' };
+export default { title: 'Components/Button' };
 
 export const basic = () => (
   <Harness

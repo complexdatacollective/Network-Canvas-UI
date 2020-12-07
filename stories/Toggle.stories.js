@@ -8,7 +8,7 @@ const requiredProps = {
   input: {},
 };
 
-export default { title: 'Toggle' };
+export default { title: 'Fields/Toggle' };
 
 export const off = () => (
   <Harness

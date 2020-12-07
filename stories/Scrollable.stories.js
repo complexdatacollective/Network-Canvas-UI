@@ -8,7 +8,7 @@ const requiredProps = {
   children: [...new Array(20)].map((_, index) => (<p key={index}>{faker.lorem.paragraph(20)}</p>)),
 };
 
-export default { title: 'Scroller' };
+export default { title: 'Utilities/Scroller' };
 
 export const renders = () => {
   return (

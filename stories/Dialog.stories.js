@@ -46,7 +46,7 @@ const noticeDialog = {
   onConfirm: confirmAction,
 };
 
-export default { title: 'Dialog' };
+export default { title: 'Systems/Dialog' };
 
 export const normal = () => {
   const [dialogs, setDialogs] = useState([]);

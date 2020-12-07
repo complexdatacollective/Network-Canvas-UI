@@ -8,7 +8,7 @@ const requiredProps = {
   input: {},
 };
 
-export default { title: 'ToggleButtonGroup' };
+export default { title: 'Fields/ToggleButtonGroup' };
 
 export const interaction = () => {
   const [value, setValue] = useState(['foo']);

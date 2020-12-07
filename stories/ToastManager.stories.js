@@ -43,7 +43,7 @@ const initialToasts = [
   },
 ];
 
-export default { title: 'Toast Manager' };
+export default { title: 'Systems/Toast Manager' };
 
 export const normal = () => {
   const [toasts, setToasts] = useState(initialToasts);

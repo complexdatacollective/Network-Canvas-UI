@@ -8,7 +8,7 @@ const requiredProps = {
   input: {},
 };
 
-export default { title: 'RadioGroup' };
+export default { title: 'Fields/RadioGroup' };
 
 export const interaction = () => {
   const [value, setValue] = useState('foo');

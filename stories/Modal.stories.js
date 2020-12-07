@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions';
 import Modal from '../src/components/Modal';
 import '../src/styles/_all.scss';
 
-export default { title: 'Modal' };
+export default { title: 'Utilities/Modal' };
 
 const useToggle = () => {
   const id = useRef(uuid());

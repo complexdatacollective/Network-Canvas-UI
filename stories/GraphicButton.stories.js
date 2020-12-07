@@ -12,7 +12,7 @@ const requiredProps = {
   onClick: () => action('onClick')
 };
 
-export default { title: 'GraphicButton' };
+export default { title: 'Components/GraphicButton' };
 
 export const normal = () => (
   <Harness

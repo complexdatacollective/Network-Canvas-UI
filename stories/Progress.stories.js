@@ -12,7 +12,7 @@ const requiredProps = {
   }),
 };
 
-export default { title: 'Progress' };
+export default { title: 'Components/Progress' };
 
 export const normal = () => (
   <Harness

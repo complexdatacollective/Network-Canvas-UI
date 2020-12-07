@@ -11,7 +11,7 @@ const requiredProps = {
 };
 
 export default {
-  title: 'Node',
+  title: 'Components/Node',
   argTypes: { handleClick: { action: 'clicked' } },
 };
 
