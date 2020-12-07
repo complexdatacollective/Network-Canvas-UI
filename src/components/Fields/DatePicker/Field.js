@@ -46,11 +46,13 @@ class DatePickerField extends Component {
             onChange={input.onBlur}
             parentRef={this.ref}
           />
-          <div className="form-field-date-picker__error">
-            <div className="form-field-date-picker__error-message">
-              <Icon name="warning" />{error}
+          {invalid && touched &&
+            <div className="form-field-date-picker__error">
+              <div className="form-field-date-picker__error-message">
+                <Icon name="warning" />{error}
+              </div>
             </div>
-          </div>
+          }
         </div>
 
       </div>

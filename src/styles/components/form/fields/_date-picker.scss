@@ -7,9 +7,7 @@ $darken: rgba(0, 0, 0, 0.2);
 .form-field-date-picker {
   &__error {
     opacity: 0;
-    max-height: 0;
-    transition: opacity var(--animation-easing) var(--animation-duration-fast),
-    max-height var(--animation-easing) var(--animation-duration-fast);
+    transition: opacity var(--animation-easing) var(--animation-duration-fast);
   }
 
   &__error-message {
@@ -31,7 +29,6 @@ $darken: rgba(0, 0, 0, 0.2);
 
     .form-field-date-picker__error {
       opacity: 1;
-      max-height: 2.5rem;
     }
   }
 }
