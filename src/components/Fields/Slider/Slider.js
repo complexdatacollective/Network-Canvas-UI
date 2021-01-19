@@ -158,12 +158,20 @@ SliderInput.propTypes = {
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
-  ]).isRequired,
+  ]),
   type: PropTypes.string.isRequired,
   onBlur: PropTypes.func.isRequired,
-  parameters: PropTypes.object.isRequired,
+  parameters: PropTypes.shape({
+    minLabel: PropTypes.string,
+    maxLabel: PropTypes.string,
+    label: PropTypes.string,
+  }),
 };
 
+SliderInput.defaultProps = {
+  value: null,
+  parameters: {},
+};
 
 export default SliderInput;
 
