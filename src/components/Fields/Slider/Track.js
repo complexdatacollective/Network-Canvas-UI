@@ -15,8 +15,8 @@ const Track = ({ source, target, getTrackProps }) => (
 );
 
 Track.propTypes = {
-  source: PropTypes.string.isRequired,
-  target: PropTypes.string.isRequired,
+  source: PropTypes.object.isRequired,
+  target: PropTypes.object.isRequired,
   getTrackProps: PropTypes.func.isRequired,
 };
 

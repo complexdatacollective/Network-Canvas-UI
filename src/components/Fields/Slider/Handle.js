@@ -81,12 +81,22 @@ class Handle extends Component {
 
 Handle.propTypes = {
   domain: PropTypes.array.isRequired,
-  handle: PropTypes.object.isRequired,
-  isActive: PropTypes.bool.isRequired,
-  isDisabled: PropTypes.bool.isRequired,
-  showTooltips: PropTypes.bool.isRequired,
+  handle: PropTypes.shape({
+    id: PropTypes.any.isRequired,
+    value: PropTypes.number.isRequired,
+    percent: PropTypes.number.isRequired,
+  }).isRequired,
+  isActive: PropTypes.bool,
+  isDisabled: PropTypes.bool,
+  showTooltips: PropTypes.bool,
   getHandleProps: PropTypes.func.isRequired,
   getLabelForValue: PropTypes.func.isRequired,
+};
+
+Handle.defaultProps = {
+  isActive: false,
+  isDisabled: false,
+  showTooltips: false,
 };
 
 export default Handle;

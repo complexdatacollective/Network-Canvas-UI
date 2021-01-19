@@ -38,7 +38,7 @@ class SliderField extends Component {
     input: PropTypes.object.isRequired,
     meta: PropTypes.object,
     parameters: PropTypes.object,
-    options: PropTypes.array.isRequired,
+    options: PropTypes.array,
     fieldLabel: PropTypes.string,
     type: PropTypes.string.isRequired,
   };
@@ -48,8 +48,9 @@ class SliderField extends Component {
     label: null,
     hidden: false,
     meta: {},
-    parameters: {},
     fieldLabel: null,
+    options: null,
+    parameters: null,
   };
 
   constructor(props) {
@@ -107,11 +108,6 @@ class SliderField extends Component {
     );
   }
 }
-
-SliderField.defaultProps = {
-  options: null,
-  parameters: null,
-};
 
 export default SliderField;
 
