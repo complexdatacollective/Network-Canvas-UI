@@ -8,14 +8,13 @@ const requiredProps = {
   input: {},
 };
 
-export default { title: 'Fields/LikertScale' };
+export default { title: 'Fields/VisualAnalogScale' };
 
 export const noOptions = () => {
   return (
     <Harness
       requiredProps={requiredProps}
       label="What do you make of that?"
-      type="ordinal"
       meta={{}}
     >
       {props => <Slider {...props} />}
@@ -34,13 +33,10 @@ export const interaction = () => {
     <Harness
       requiredProps={requiredProps}
       label="What do you make of that?"
-      type="ordinal"
+      type="scalar"
       meta={{}}
-      options={[
-        { label: 'foo', value: 'foo' },
-        { label: 'bar', value: 'bar' },
-        { label: 'bazz', value: 'bazz' },
-      ]}
+      minLabel={1}
+      maxLabel={5}
       input={{
         onBlur: handleBlur,
         value,

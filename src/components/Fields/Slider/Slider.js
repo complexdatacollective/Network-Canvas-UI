@@ -16,18 +16,24 @@ class SliderInput extends Component {
     };
   }
 
-  getSliderProps = () => {
-    const { options, value } = this.props;
+  get options() {
+    return this.props.options || [];
+  }
 
+  get value() {
+    return this.props.value;
+  }
+
+  getSliderProps = () => {
     const domain = this.isLikert() ?
-      [0, options.length - 1] :
+      [0, this.options.length - 1] :
       [0, 1];
 
     const step = this.isLikert() ? 1 : 0.0005;
 
     const values = this.isLikert() ?
-      [options.findIndex(option => option.value === value)] :
-      [value];
+      [this.options.findIndex(option => option.value === this.value)] :
+      [this.value];
 
     return {
       domain,
@@ -37,11 +43,11 @@ class SliderInput extends Component {
   };
 
   getTickCount = () => {
-    const { type, options } = this.props;
+    const { type } = this.props;
 
     switch (type) {
       case 'LIKERT':
-        return options.length - 1;
+        return this.options.length - 1;
       case 'VAS':
         return 1;
       default:
@@ -50,8 +56,8 @@ class SliderInput extends Component {
   };
 
   getLabelForValue = (value) => {
-    const { options, parameters } = this.props;
-    if (this.isLikert()) { return get(options, [value, 'label']); }
+    const { parameters } = this.props;
+    if (this.isLikert()) { return get(this.options, [value, 'label']); }
     if (this.isVisualAnalogScale()) {
       const index = value === 0 ? 'minLabel' : 'maxLabel';
       return get(parameters, index);
@@ -61,7 +67,7 @@ class SliderInput extends Component {
 
   normalizeValue = (value) => {
     if (this.isLikert()) {
-      return this.props.options[value].value;
+      return get(this.options, [value, 'value']);
     }
     return round(value, 3);
   }
@@ -88,6 +94,8 @@ class SliderInput extends Component {
     const tickCount = this.getTickCount();
     const showTooltips = !this.isVisualAnalogScale();
     const isNotSet = isNil(this.props.value);
+    const hasNoOptions = this.options.length < 2;
+    const isBlank = this.props.type === null || (this.isLikert() && hasNoOptions);
 
     const className = cx(
       'form-field-slider__slider',
@@ -95,6 +103,8 @@ class SliderInput extends Component {
       { 'form-field-slider__slider--vas': this.isVisualAnalogScale() },
       { 'form-field-slider__slider--not-set': isNotSet },
     );
+
+    if (isBlank) { return null; }
 
     return (
       <Slider
@@ -154,7 +164,7 @@ class SliderInput extends Component {
 }
 
 SliderInput.propTypes = {
-  options: PropTypes.array.isRequired,
+  options: PropTypes.array,
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
@@ -169,6 +179,7 @@ SliderInput.propTypes = {
 };
 
 SliderInput.defaultProps = {
+  options: [],
   value: null,
   parameters: {},
 };
