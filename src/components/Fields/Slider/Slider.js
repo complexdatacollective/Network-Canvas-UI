@@ -154,7 +154,7 @@ class SliderInput extends Component {
 }
 
 SliderInput.propTypes = {
-  options: PropTypes.array.isRequired,
+  options: PropTypes.array,
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
@@ -164,11 +164,11 @@ SliderInput.propTypes = {
   parameters: PropTypes.shape({
     minLabel: PropTypes.string,
     maxLabel: PropTypes.string,
-    label: PropTypes.string,
   }),
 };
 
 SliderInput.defaultProps = {
+  options: [],
   value: null,
   parameters: {},
 };
