@@ -9,4 +9,4 @@ LikertScale.propTypes = {
   options: PropTypes.array.isRequired,
 };
 
-export default LikertScale ;
+export default LikertScale;

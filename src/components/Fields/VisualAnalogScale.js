@@ -12,4 +12,4 @@ VisualAnalogScale.propTypes = {
   }).isRequired,
 };
 
-export default VisualAnalogScale ;
+export default VisualAnalogScale;
