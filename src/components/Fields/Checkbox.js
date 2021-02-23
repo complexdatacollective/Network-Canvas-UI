@@ -1,7 +1,9 @@
 import React, { PureComponent } from 'react';
+import ReactMarkdown from 'react-markdown';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import uuid from 'uuid';
+import { ALLOWED_MARKDOWN_LABEL_TAGS } from '../../utils/config';
 
 class Checkbox extends PureComponent {
   static propTypes = {
@@ -57,7 +59,10 @@ class Checkbox extends PureComponent {
           />
           <div className="form-field-checkbox__checkbox" />
           <div className="form-field-checkbox__label">
-            {label || input.value}
+            <ReactMarkdown
+              source={label || input.value}
+              allowedTypes={ALLOWED_MARKDOWN_LABEL_TAGS}
+            />
           </div>
         </div>
       </label>

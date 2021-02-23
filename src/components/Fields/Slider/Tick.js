@@ -1,5 +1,7 @@
 import React from 'react';
+import ReactMarkdown from 'react-markdown';
 import PropTypes from 'prop-types';
+import { ALLOWED_MARKDOWN_LABEL_TAGS } from '../../../utils/config';
 
 const Tick = ({ tick, getLabelForValue }) => {
   const { value, percent } = tick;
@@ -14,7 +16,10 @@ const Tick = ({ tick, getLabelForValue }) => {
       }}
     >
       <div className="form-field-slider__tick-label">
-        {label}
+        <ReactMarkdown
+          source={label}
+          allowedTypes={ALLOWED_MARKDOWN_LABEL_TAGS}
+        />
       </div>
     </div>
   );

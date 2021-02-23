@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import ReactMarkdown from 'react-markdown';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import uuid from 'uuid';
 import Radio from './Radio';
 import { asOptionObject, getValue } from './utils/options';
 import Icon from '../Icon';
+import { ALLOWED_MARKDOWN_LABEL_TAGS } from '../../utils/config';
 
 class RadioGroup extends Component {
   static propTypes = {
@@ -84,7 +86,12 @@ class RadioGroup extends Component {
     return (
       <div className={containerClassNames}>
         { anyLabel &&
-          <h4>{anyLabel}</h4>
+          <h4>
+            <ReactMarkdown
+              source={anyLabel}
+              allowedTypes={ALLOWED_MARKDOWN_LABEL_TAGS}
+            />
+          </h4>
         }
         <div className={classNames} name={name}>
           { options.map(this.renderOption) }

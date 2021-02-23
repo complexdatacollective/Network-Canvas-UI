@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import ReactMarkdown from 'react-markdown';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import uuid from 'uuid';
 import Icon from '../../Icon';
 import Slider from './Slider';
+import { ALLOWED_MARKDOWN_LABEL_TAGS } from '../../../utils/config';
 
 const getSliderType = (variableType) => {
   switch (variableType) {
@@ -86,7 +88,12 @@ class SliderField extends Component {
     return (
       <div className="form-field-container" hidden={hidden}>
         { anyLabel &&
-          <h4>{anyLabel}</h4>
+          <h4>
+            <ReactMarkdown
+              source={anyLabel}
+              allowedTypes={ALLOWED_MARKDOWN_LABEL_TAGS}
+            />
+          </h4>
         }
         <div className={formFieldClasses} name={input.name}>
           <Slider

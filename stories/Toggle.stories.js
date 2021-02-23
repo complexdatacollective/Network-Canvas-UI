@@ -25,7 +25,7 @@ export const off = () => (
 export const on = () => (
   <Harness
     requiredProps={requiredProps}
-    label="Is this switch on?"
+    label="Is this switch **on**?"
     input={{
       value: true,
     }}

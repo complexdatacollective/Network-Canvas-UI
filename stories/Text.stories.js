@@ -5,7 +5,7 @@ import Text from '../src/components/Fields/Text';
 import '../src/styles/_all.scss';
 
 const requiredProps = {
-  label: 'Please choose a date',
+  label: 'Please choose a **date**',
   input: { value: null },
   meta: {},
 };

@@ -20,10 +20,10 @@ export const interaction = () => {
   return (
     <Harness
       requiredProps={requiredProps}
-      label="What is your occupation?"
+      label="What is **your** occupation?"
       options={[
         { label: 'Epidemiologist', value: 1 },
-        { label: 'Telecommunications Technician', value: 2 },
+        { label: 'Telecommunications *Technician*', value: 2 },
         { label: 'Manufacturing', value: 3 },
         { label: 'Industrial-Organization Psychologist', value: 4 },
       ]}

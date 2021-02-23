@@ -1,9 +1,11 @@
 import React, { PureComponent } from 'react';
+import ReactMarkdown from 'react-markdown';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import ToggleButton from './ToggleButton';
 import Icon from '../Icon';
 import { asOptionObject, getValue } from './utils/options';
+import { ALLOWED_MARKDOWN_LABEL_TAGS } from '../../utils/config';
 
 
 class ToggleButtonGroup extends PureComponent {
@@ -86,7 +88,12 @@ class ToggleButtonGroup extends PureComponent {
     return (
       <div className={classNames}>
         { anyLabel &&
-          <h4>{anyLabel}</h4>
+          <h4>
+            {<ReactMarkdown
+              source={anyLabel}
+              allowedTypes={ALLOWED_MARKDOWN_LABEL_TAGS}
+            />}
+          </h4>
         }
         <div className="form-field form-field__inline" name={name}>
           { options.map(this.renderOption) }

@@ -5,7 +5,7 @@ import DatePicker from '../src/components/Fields/DatePicker';
 import '../src/styles/_all.scss';
 
 const requiredProps = {
-  label: 'Please choose a date',
+  label: 'Please __choose__ a date',
   input: { value: null },
   meta: {},
 };
