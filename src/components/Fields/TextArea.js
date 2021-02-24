@@ -1,10 +1,9 @@
 import React, { PureComponent } from 'react';
-import ReactMarkdown from 'react-markdown';
 import PropTypes from 'prop-types';
 import { uniqueId } from 'lodash';
 import cx from 'classnames';
 import Icon from '../Icon';
-import { ALLOWED_MARKDOWN_LABEL_TAGS } from '../../utils/config';
+import MarkdownLabel from './MarkdownLabel';
 
 class TextArea extends PureComponent {
   static propTypes = {
@@ -73,10 +72,7 @@ class TextArea extends PureComponent {
         {
           (fieldLabel || label) ?
             (<h4>
-              <ReactMarkdown
-                source={fieldLabel || label || ''}
-                allowedTypes={ALLOWED_MARKDOWN_LABEL_TAGS}
-              />
+              <MarkdownLabel label={fieldLabel || label || ''} />
             </h4>)
             : ''
         }

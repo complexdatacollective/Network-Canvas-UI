@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import ReactMarkdown from 'react-markdown';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import { ALLOWED_MARKDOWN_LABEL_TAGS } from '../../../utils/config';
+import MarkdownLabel from '../MarkdownLabel';
 
 class Handle extends Component {
   state = {
@@ -59,10 +58,7 @@ class Handle extends Component {
             style={{ left: `${percent}%` }}
           >
             <div className="form-field-slider__tooltip-label">
-              <ReactMarkdown
-                source={label}
-                allowedTypes={ALLOWED_MARKDOWN_LABEL_TAGS}
-              />
+              <MarkdownLabel label={label} />
             </div>
           </div>
         }

@@ -1,10 +1,9 @@
 import React, { PureComponent } from 'react';
-import ReactMarkdown from 'react-markdown';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import uuid from 'uuid';
 import Icon from '../Icon';
-import { ALLOWED_MARKDOWN_LABEL_TAGS } from '../../utils/config';
+import MarkdownLabel from './MarkdownLabel';
 
 class TextInput extends PureComponent {
   static propTypes = {
@@ -70,10 +69,7 @@ class TextInput extends PureComponent {
       <div className="form-field-container" hidden={hidden}>
         { anyLabel &&
           <h4>
-            <ReactMarkdown
-              source={anyLabel}
-              allowedTypes={ALLOWED_MARKDOWN_LABEL_TAGS}
-            />
+            <MarkdownLabel label={anyLabel} />
           </h4>
         }
         <div className={seamlessClasses}>

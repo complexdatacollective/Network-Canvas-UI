@@ -1,9 +1,8 @@
 import React, { PureComponent } from 'react';
-import ReactMarkdown from 'react-markdown';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import uuid from 'uuid';
-import { ALLOWED_MARKDOWN_LABEL_TAGS } from '../../utils/config';
+import MarkdownLabel from './MarkdownLabel';
 
 class Radio extends PureComponent {
   static propTypes = {
@@ -58,10 +57,7 @@ class Radio extends PureComponent {
         />
         <div className="form-field-radio__radio" />
         <div className="form-field-radio__label">
-          <ReactMarkdown
-            source={label || input.value}
-            allowedTypes={ALLOWED_MARKDOWN_LABEL_TAGS}
-          />
+          <MarkdownLabel label={label || input.value} />
         </div>
       </label>
     );

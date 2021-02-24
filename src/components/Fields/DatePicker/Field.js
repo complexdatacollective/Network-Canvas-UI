@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import ReactMarkdown from 'react-markdown';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import uuid from 'uuid';
 import Icon from '../../Icon';
 import DatePicker from './DatePicker';
-import { ALLOWED_MARKDOWN_LABEL_TAGS } from '../../../utils/config';
+import MarkdownLabel from '../MarkdownLabel';
 
 class DatePickerField extends Component {
   constructor(props) {
@@ -40,10 +39,7 @@ class DatePickerField extends Component {
       <div className="form-field-container" hidden={hidden} ref={this.ref}>
         { anyLabel &&
           <h4>
-            <ReactMarkdown
-              source={anyLabel}
-              allowedTypes={ALLOWED_MARKDOWN_LABEL_TAGS}
-            />
+            <MarkdownLabel label={anyLabel} />
           </h4>
         }
         <div className={formFieldClasses} name={input.name}>

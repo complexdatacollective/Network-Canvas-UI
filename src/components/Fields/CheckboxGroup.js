@@ -1,11 +1,10 @@
 import React, { PureComponent } from 'react';
-import ReactMarkdown from 'react-markdown';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Checkbox from './Checkbox';
 import { asOptionObject, getValue } from './utils/options';
 import Icon from '../Icon';
-import { ALLOWED_MARKDOWN_LABEL_TAGS } from '../../utils/config';
+import MarkdownLabel from './MarkdownLabel';
 
 class CheckboxGroup extends PureComponent {
   static propTypes = {
@@ -91,10 +90,7 @@ class CheckboxGroup extends PureComponent {
       <div className={classNames}>
         { anyLabel &&
           <h4>
-            <ReactMarkdown
-              source={anyLabel}
-              allowedTypes={ALLOWED_MARKDOWN_LABEL_TAGS}
-            />
+            <MarkdownLabel label={anyLabel} />
           </h4>
         }
         <div className="form-field" name={name}>

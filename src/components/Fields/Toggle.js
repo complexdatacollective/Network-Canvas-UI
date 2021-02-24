@@ -1,11 +1,10 @@
 import React, { PureComponent } from 'react';
-import ReactMarkdown from 'react-markdown';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { isBoolean } from 'lodash';
 import uuid from 'uuid';
 import Icon from '../Icon';
-import { ALLOWED_MARKDOWN_LABEL_TAGS } from '../../utils/config';
+import MarkdownLabel from './MarkdownLabel';
 
 class Toggle extends PureComponent {
   static propTypes = {
@@ -71,10 +70,7 @@ class Toggle extends PureComponent {
       <div className={containerClassNames} name={input.name}>
         { fieldLabel &&
           <h4>
-            <ReactMarkdown
-              source={fieldLabel}
-              allowedTypes={ALLOWED_MARKDOWN_LABEL_TAGS}
-            />
+            <MarkdownLabel label={fieldLabel} />
           </h4>
         }
         <label className={componentClasses} htmlFor={this.id} title={title}>
@@ -92,10 +88,7 @@ class Toggle extends PureComponent {
             <span className="form-field-toggle__button" />
           </div>
           <div className="form-field-toggle__label">
-            <ReactMarkdown
-              source={label || this.props.input.value}
-              allowedTypes={ALLOWED_MARKDOWN_LABEL_TAGS}
-            />
+            <MarkdownLabel label={label || this.props.input.value} />
           </div>
         </label>
         {invalid && touched && <div className="form-field-toggle__error"><Icon name="warning" />{error}</div>}
