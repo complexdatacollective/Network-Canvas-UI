@@ -87,9 +87,7 @@ class ToggleButtonGroup extends PureComponent {
     return (
       <div className={classNames}>
         { anyLabel &&
-          <h4>
-            <MarkdownLabel label={anyLabel} />
-          </h4>
+          <MarkdownLabel label={anyLabel} />
         }
         <div className="form-field form-field__inline" name={name}>
           { options.map(this.renderOption) }

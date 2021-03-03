@@ -1,3 +1,5 @@
+$size: 2rem;
+
 @mixin form-field {
   &__label {
     @include typography(copy-standard, font-size);
@@ -6,6 +8,17 @@
     margin: 0;
     color: var(--input-label);
   }
+}
+
+.form-field-label {
+  @extend h4;
+}
+
+.form-field-inline-label {
+  display: inline-block;
+  margin-left: unit(1);
+  vertical-align: top;
+  line-height: $size;
 }
 
 .form-field-container {

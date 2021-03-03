@@ -3,19 +3,22 @@ import ReactMarkdown from 'react-markdown';
 import PropTypes from 'prop-types';
 import { ALLOWED_MARKDOWN_LABEL_TAGS } from '../../utils/config';
 
-const MarkdownLabel = ({ label }) => (
+const MarkdownLabel = ({ label, className }) => (
   <ReactMarkdown
-    source={label}
+    className={className}
     allowedTypes={ALLOWED_MARKDOWN_LABEL_TAGS}
-  />
+  >
+    {label}
+  </ReactMarkdown>
 );
 
 MarkdownLabel.propTypes = {
-  label: PropTypes.string,
+  label: PropTypes.string.isRequired,
+  className: PropTypes.string,
 };
 
 MarkdownLabel.defaultProps = {
-  label: '',
+  className: 'form-field-label',
 };
 
 export default MarkdownLabel;

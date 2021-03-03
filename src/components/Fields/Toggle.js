@@ -69,9 +69,7 @@ class Toggle extends PureComponent {
     return (
       <div className={containerClassNames} name={input.name}>
         { fieldLabel &&
-          <h4>
-            <MarkdownLabel label={fieldLabel} />
-          </h4>
+          <MarkdownLabel label={fieldLabel} />
         }
         <label className={componentClasses} htmlFor={this.id} title={title}>
           <input
@@ -87,9 +85,7 @@ class Toggle extends PureComponent {
           <div className="form-field-toggle__toggle">
             <span className="form-field-toggle__button" />
           </div>
-          <div className="form-field-toggle__label">
-            <MarkdownLabel label={label || this.props.input.value} />
-          </div>
+          <MarkdownLabel label={label || this.props.input.value} className="form-field-inline-label" />
         </label>
         {invalid && touched && <div className="form-field-toggle__error"><Icon name="warning" />{error}</div>}
       </div>

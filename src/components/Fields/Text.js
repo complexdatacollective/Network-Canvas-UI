@@ -68,9 +68,7 @@ class TextInput extends PureComponent {
     return (
       <div className="form-field-container" hidden={hidden}>
         { anyLabel &&
-          <h4>
-            <MarkdownLabel label={anyLabel} />
-          </h4>
+          <MarkdownLabel label={anyLabel} />
         }
         <div className={seamlessClasses}>
           <input

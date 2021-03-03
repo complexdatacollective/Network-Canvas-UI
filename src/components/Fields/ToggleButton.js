@@ -57,9 +57,7 @@ class ToggleButton extends PureComponent {
             {...rest}
             type="checkbox"
           />
-          <div className="form-field-togglebutton__checkbox">
-            <MarkdownLabel label={label || this.props.input.value} />
-          </div>
+          <MarkdownLabel label={label || this.props.input.value} className="form-field-togglebutton__checkbox" />
         </div>
       </label>
     );

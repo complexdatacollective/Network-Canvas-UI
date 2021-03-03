@@ -85,9 +85,7 @@ class RadioGroup extends Component {
     return (
       <div className={containerClassNames}>
         { anyLabel &&
-          <h4>
-            <MarkdownLabel label={anyLabel} />
-          </h4>
+          <MarkdownLabel label={anyLabel} />
         }
         <div className={classNames} name={name}>
           { options.map(this.renderOption) }

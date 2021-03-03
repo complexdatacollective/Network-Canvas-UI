@@ -51,13 +51,6 @@ $border-space: 0.25rem;
     }
   }
 
-  &__label {
-    display: inline-block;
-    margin-left: unit(1);
-    vertical-align: top;
-    line-height: $size;
-  }
-
   &:hover {
     .form-field-radio__radio {
       &::before {
