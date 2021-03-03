@@ -62,7 +62,7 @@
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-markdown": "^3.6.0",
+    "react-markdown": "^5.0.3",
     "sass-lint": "^1.12.1",
     "sass-loader": "^8.0.2",
     "storybook-addon-themes": "^6.0.0"
