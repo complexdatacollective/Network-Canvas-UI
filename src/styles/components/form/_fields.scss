@@ -19,6 +19,11 @@ $size: 2rem;
   margin-left: unit(1);
   vertical-align: top;
   line-height: $size;
+
+  > p {
+    line-height: inherit;
+    margin: 0;
+  }
 }
 
 .form-field-container {

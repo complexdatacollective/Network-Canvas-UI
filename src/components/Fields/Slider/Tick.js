@@ -14,7 +14,7 @@ const Tick = ({ tick, getLabelForValue }) => {
         left: `${percent}%`,
       }}
     >
-      <MarkdownLabel label={label} className="form-field-slider__tick-label" />
+      {label && <MarkdownLabel label={label} className="form-field-slider__tick-label" />}
     </div>
   );
 };

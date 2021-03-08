@@ -56,7 +56,7 @@ class Radio extends PureComponent {
           {...rest}
         />
         <div className="form-field-radio__radio" />
-        <MarkdownLabel label={label || input.value} className="form-field-inline-label" />
+        {label && <MarkdownLabel label={label} className="form-field-inline-label" />}
       </label>
     );
   }

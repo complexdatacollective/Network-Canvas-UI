@@ -57,7 +57,7 @@ class Checkbox extends PureComponent {
             type="checkbox"
           />
           <div className="form-field-checkbox__checkbox" />
-          <MarkdownLabel label={label || input.value} className="form-field-inline-label" />
+          {label && <MarkdownLabel label={label} className="form-field-inline-label" />}
         </div>
       </label>
     );
