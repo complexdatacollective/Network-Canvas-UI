@@ -7,6 +7,7 @@ const MarkdownLabel = ({ label, className }) => (
   <ReactMarkdown
     className={className}
     allowedTypes={ALLOWED_MARKDOWN_LABEL_TAGS}
+    renderers={{ root: 'span' }}
   >
     {label}
   </ReactMarkdown>

@@ -4,6 +4,8 @@ const ALLOWED_MARKDOWN_LABEL_TAGS = [
   'emphasis',
   'strong',
   'text',
+  'list',
+  'listItem',
 ];
 
 module.exports = {

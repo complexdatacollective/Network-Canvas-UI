@@ -24,7 +24,8 @@ export const interaction = () => {
       options={[
         { label: 'foo', value: 'foo' },
         { label: 'bar', value: 'bar' },
-        { label: '*bazz*', value: 'bazz' },
+        { label: '*bazz* that also\n\nhas new lines', value: 'bazz' },
+        { label: 'zook', value: 'zook' },
       ]}
       input={{
         onChange: handleChange,

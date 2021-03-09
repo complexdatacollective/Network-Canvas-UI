@@ -11,7 +11,10 @@ $size: 2rem;
 }
 
 .form-field-label {
-  @extend h4;
+  font-family: var(--heading-font-family);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--text);
 }
 
 .form-field-inline-label {
@@ -32,11 +35,6 @@ $size: 2rem;
 
   &--inline {
     margin-bottom: 0;
-  }
-
-  h4 {
-    font-weight: 400;
-    margin-top: 0;
   }
 }
 

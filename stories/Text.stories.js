@@ -5,7 +5,8 @@ import Text from '../src/components/Fields/Text';
 import '../src/styles/_all.scss';
 
 const requiredProps = {
-  label: 'Please choose a **date**',
+  label: 'This prompt text contains **markdown** _formatting_',
+  placeholder: '',
   input: { value: null },
   meta: {},
 };
@@ -41,3 +42,18 @@ export const WithError = () => {
     </Harness>
   );
 };
+
+export const multilineLabel = () => (
+  <Harness
+    requiredProps={requiredProps}
+  >
+    {props => (
+      <div>
+        <div>
+          <Text {...props} label={'This is a _particularly_ long prompt that is spread:\n- Over multiple\n- lines'} />
+          Next element
+        </div>
+      </div>
+    )}
+  </Harness>
+);

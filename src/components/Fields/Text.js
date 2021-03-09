@@ -75,7 +75,7 @@ class TextInput extends PureComponent {
             id={this.id}
             name={input.name}
             className="form-field form-field-text form-field-text__input"
-            placeholder={placeholder || label}
+            placeholder={placeholder}
             autoFocus={autoFocus} // eslint-disable-line
             type={type}
             {...input}
