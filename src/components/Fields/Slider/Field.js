@@ -4,6 +4,7 @@ import cx from 'classnames';
 import uuid from 'uuid';
 import Icon from '../../Icon';
 import Slider from './Slider';
+import MarkdownLabel from '../MarkdownLabel';
 
 const getSliderType = (variableType) => {
   switch (variableType) {
@@ -86,7 +87,7 @@ class SliderField extends Component {
     return (
       <div className="form-field-container" hidden={hidden}>
         { anyLabel &&
-          <h4>{anyLabel}</h4>
+          <MarkdownLabel label={anyLabel} />
         }
         <div className={formFieldClasses} name={input.name}>
           <Slider

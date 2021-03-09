@@ -4,6 +4,7 @@ import cx from 'classnames';
 import ToggleButton from './ToggleButton';
 import Icon from '../Icon';
 import { asOptionObject, getValue } from './utils/options';
+import MarkdownLabel from './MarkdownLabel';
 
 
 class ToggleButtonGroup extends PureComponent {
@@ -86,7 +87,7 @@ class ToggleButtonGroup extends PureComponent {
     return (
       <div className={classNames}>
         { anyLabel &&
-          <h4>{anyLabel}</h4>
+          <MarkdownLabel label={anyLabel} />
         }
         <div className="form-field form-field__inline" name={name}>
           { options.map(this.renderOption) }

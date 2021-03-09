@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import uuid from 'uuid';
+import MarkdownLabel from './MarkdownLabel';
 
 class Radio extends PureComponent {
   static propTypes = {
@@ -55,9 +56,7 @@ class Radio extends PureComponent {
           {...rest}
         />
         <div className="form-field-radio__radio" />
-        <div className="form-field-radio__label">
-          {label || input.value}
-        </div>
+        {label && <MarkdownLabel label={label} className="form-field-inline-label" />}
       </label>
     );
   }

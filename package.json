@@ -1,6 +1,6 @@
 {
   "name": "@codaco/ui",
-  "version": "4.0.5",
+  "version": "4.1.0",
   "description": "Styles and React components for the Network Canvas project",
   "main": "lib/components/index.js",
   "license": "GPL-3.0-or-later",
@@ -62,6 +62,7 @@
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-markdown": "^5.0.3",
     "sass-lint": "^1.12.1",
     "sass-loader": "^8.0.2",
     "storybook-addon-themes": "^6.0.0"

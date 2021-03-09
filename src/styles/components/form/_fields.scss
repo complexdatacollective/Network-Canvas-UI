@@ -1,3 +1,5 @@
+$size: 2rem;
+
 @mixin form-field {
   &__label {
     @include typography(copy-standard, font-size);
@@ -8,17 +10,31 @@
   }
 }
 
+.form-field-label {
+  font-family: var(--heading-font-family);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--text);
+}
+
+.form-field-inline-label {
+  display: inline-block;
+  margin-left: unit(1);
+  vertical-align: top;
+  line-height: $size;
+
+  > p {
+    line-height: inherit;
+    margin: 0;
+  }
+}
+
 .form-field-container {
   display: block;
   margin-bottom: 2rem;
 
   &--inline {
     margin-bottom: 0;
-  }
-
-  h4 {
-    font-weight: 400;
-    margin-top: 0;
   }
 }
 

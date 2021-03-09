@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import uuid from 'uuid';
+import MarkdownLabel from './MarkdownLabel';
 
 class Checkbox extends PureComponent {
   static propTypes = {
@@ -56,9 +57,7 @@ class Checkbox extends PureComponent {
             type="checkbox"
           />
           <div className="form-field-checkbox__checkbox" />
-          <div className="form-field-checkbox__label">
-            {label || input.value}
-          </div>
+          {label && <MarkdownLabel label={label} className="form-field-inline-label" />}
         </div>
       </label>
     );

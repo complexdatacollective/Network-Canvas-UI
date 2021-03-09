@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import MarkdownLabel from '../MarkdownLabel';
 
 const Tick = ({ tick, getLabelForValue }) => {
   const { value, percent } = tick;
@@ -13,9 +14,7 @@ const Tick = ({ tick, getLabelForValue }) => {
         left: `${percent}%`,
       }}
     >
-      <div className="form-field-slider__tick-label">
-        {label}
-      </div>
+      {label && <MarkdownLabel label={label} className="form-field-slider__tick-label" />}
     </div>
   );
 };

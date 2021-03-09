@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import uuid from 'uuid';
 import Icon from '../Icon';
+import MarkdownLabel from './MarkdownLabel';
 
 class TextInput extends PureComponent {
   static propTypes = {
@@ -67,14 +68,14 @@ class TextInput extends PureComponent {
     return (
       <div className="form-field-container" hidden={hidden}>
         { anyLabel &&
-          <h4>{anyLabel}</h4>
+          <MarkdownLabel label={anyLabel} />
         }
         <div className={seamlessClasses}>
           <input
             id={this.id}
             name={input.name}
             className="form-field form-field-text form-field-text__input"
-            placeholder={placeholder || label}
+            placeholder={placeholder}
             autoFocus={autoFocus} // eslint-disable-line
             type={type}
             {...input}

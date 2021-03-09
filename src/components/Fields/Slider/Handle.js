@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import MarkdownLabel from '../MarkdownLabel';
 
 class Handle extends Component {
   state = {
@@ -56,9 +57,7 @@ class Handle extends Component {
             className={tooltipClasses}
             style={{ left: `${percent}%` }}
           >
-            <div className="form-field-slider__tooltip-label">
-              {label}
-            </div>
+            <MarkdownLabel label={label} className="form-field-slider__tooltip-label" />
           </div>
         }
         <div

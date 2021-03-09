@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import uuid from 'uuid';
+import MarkdownLabel from './MarkdownLabel';
 
 class ToggleButton extends PureComponent {
   static propTypes = {
@@ -56,9 +57,7 @@ class ToggleButton extends PureComponent {
             {...rest}
             type="checkbox"
           />
-          <div className="form-field-togglebutton__checkbox">
-            {label || this.props.input.value}
-          </div>
+          <MarkdownLabel label={label} className="form-field-togglebutton__checkbox" />
         </div>
       </label>
     );

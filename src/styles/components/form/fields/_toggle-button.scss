@@ -1,4 +1,4 @@
-$size: 7rem;
+$size: 9rem;
 $border: 0.2rem;
 $border-space: 0.3rem;
 
@@ -20,10 +20,8 @@ $component-name: form-field-togglebutton;
     justify-content: center;
     align-items: center;
     z-index: 0;
-    font-weight: 500;
     text-align: center;
     padding: 0.75rem;
-    word-break: break-word;
     hyphens: auto;
 
     &::before {
@@ -106,15 +104,16 @@ $component-name: form-field-togglebutton;
   }
 }
 
-@for $i from 1 through 10 {
+@for $i from 1 through 20 {
+  $sequence-number: $i % 11;
   .form-field-togglebutton-cat-color-seq-#{$i} {
     .form-field-togglebutton__checkbox {
       &::before {
-        border-color: var(--cat-color-seq-#{$i});
+        border-color: var(--cat-color-seq-#{$sequence-number});
       }
 
       &::after {
-        background-color: var(--cat-color-seq-#{$i});
+        background-color: var(--cat-color-seq-#{$sequence-number});
       }
     }
   }

@@ -20,12 +20,12 @@ export const interaction = () => {
   return (
     <Harness
       requiredProps={requiredProps}
-      label="What do you make of that?"
+      label="What do you *make* of that?"
       type="scalar"
       meta={{}}
       parameters={{
         minLabel: 'not much',
-        maxLabel: 'a lot',
+        maxLabel: 'a *lot*',
       }}
       input={{
         onBlur: handleBlur,

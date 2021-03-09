@@ -4,6 +4,7 @@ import cx from 'classnames';
 import Checkbox from './Checkbox';
 import { asOptionObject, getValue } from './utils/options';
 import Icon from '../Icon';
+import MarkdownLabel from './MarkdownLabel';
 
 class CheckboxGroup extends PureComponent {
   static propTypes = {
@@ -88,7 +89,7 @@ class CheckboxGroup extends PureComponent {
     return (
       <div className={classNames}>
         { anyLabel &&
-          <h4>{anyLabel}</h4>
+          <MarkdownLabel label={anyLabel} />
         }
         <div className="form-field" name={name}>
           { options.map(this.renderOption) }

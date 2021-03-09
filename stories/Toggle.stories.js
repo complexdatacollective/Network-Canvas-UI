@@ -25,7 +25,7 @@ export const off = () => (
 export const on = () => (
   <Harness
     requiredProps={requiredProps}
-    label="Is this switch on?"
+    label="Is this switch **on**?"
     input={{
       value: true,
     }}
@@ -44,7 +44,28 @@ export const interaction = () => {
   return (
     <Harness
       requiredProps={requiredProps}
-      label="Is this switch on?"
+      label="Is this switch *on*?"
+      input={{
+        onChange: handleChange,
+        value,
+      }}
+    >
+      {props => <Toggle {...props} />}
+    </Harness>
+  );
+};
+
+export const fieldLabelInteraction = () => {
+  const [value, setValue] = useState(false);
+  const handleChange = (...args) => {
+    setValue(v => !v);
+    action('change')(...args);
+  };
+
+  return (
+    <Harness
+      requiredProps={requiredProps}
+      fieldLabel="Is this switch *on*?"
       input={{
         onChange: handleChange,
         value,

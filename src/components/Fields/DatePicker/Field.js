@@ -4,6 +4,7 @@ import cx from 'classnames';
 import uuid from 'uuid';
 import Icon from '../../Icon';
 import DatePicker from './DatePicker';
+import MarkdownLabel from '../MarkdownLabel';
 
 class DatePickerField extends Component {
   constructor(props) {
@@ -37,7 +38,7 @@ class DatePickerField extends Component {
     return (
       <div className="form-field-container" hidden={hidden} ref={this.ref}>
         { anyLabel &&
-          <h4>{anyLabel}</h4>
+          <MarkdownLabel label={anyLabel} />
         }
         <div className={formFieldClasses} name={input.name}>
           <DatePicker

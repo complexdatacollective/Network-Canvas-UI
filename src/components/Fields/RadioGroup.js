@@ -5,6 +5,7 @@ import uuid from 'uuid';
 import Radio from './Radio';
 import { asOptionObject, getValue } from './utils/options';
 import Icon from '../Icon';
+import MarkdownLabel from './MarkdownLabel';
 
 class RadioGroup extends Component {
   static propTypes = {
@@ -84,7 +85,7 @@ class RadioGroup extends Component {
     return (
       <div className={containerClassNames}>
         { anyLabel &&
-          <h4>{anyLabel}</h4>
+          <MarkdownLabel label={anyLabel} />
         }
         <div className={classNames} name={name}>
           { options.map(this.renderOption) }

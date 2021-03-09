@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { uniqueId } from 'lodash';
 import cx from 'classnames';
 import Icon from '../Icon';
+import MarkdownLabel from './MarkdownLabel';
 
 class TextArea extends PureComponent {
   static propTypes = {
@@ -70,16 +71,14 @@ class TextArea extends PureComponent {
       >
         {
           (fieldLabel || label) ?
-            (<h4>
-              {fieldLabel || label || ''}
-            </h4>)
+            (<MarkdownLabel label={fieldLabel || label} />)
             : ''
         }
         <div className={seamlessClasses}>
           <textarea
             id={this.id}
             className="form-field form-field-text form-field-text--area form-field-text__input"
-            placeholder={placeholder || label}
+            placeholder={placeholder}
             autoFocus={autoFocus} // eslint-disable-line
             type={type}
             {...input}

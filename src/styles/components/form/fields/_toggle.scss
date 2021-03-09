@@ -51,13 +51,6 @@ $border-space: 0.1rem;
     }
   }
 
-  &__label {
-    display: inline-block;
-    margin-left: unit(1);
-    vertical-align: top;
-    line-height: $size;
-  }
-
   &__error {
     opacity: 0;
     background: var(--error);
