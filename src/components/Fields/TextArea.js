@@ -71,7 +71,7 @@ class TextArea extends PureComponent {
       >
         {
           (fieldLabel || label) ?
-            (<MarkdownLabel label={fieldLabel || label || ''} />)
+            (<MarkdownLabel label={fieldLabel || label} />)
             : ''
         }
         <div className={seamlessClasses}>
