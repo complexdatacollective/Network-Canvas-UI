@@ -33,9 +33,9 @@ class CheckboxGroup extends PureComponent {
 
   handleClickOption = (index) => {
     const option = getValue(this.props.options[index]);
-    const newValue = this.isOptionChecked(option) ?
-      this.value.filter(value => value !== option) :
-      [...this.value, option];
+    const newValue = this.isOptionChecked(option)
+      ? this.value.filter((value) => value !== option)
+      : [...this.value, option];
 
     this.props.input.onChange(newValue);
   }
@@ -88,13 +88,17 @@ class CheckboxGroup extends PureComponent {
 
     return (
       <div className={classNames}>
-        { anyLabel &&
-          <MarkdownLabel label={anyLabel} />
-        }
+        { anyLabel
+          && <MarkdownLabel label={anyLabel} />}
         <div className="form-field" name={name}>
           { options.map(this.renderOption) }
         </div>
-        {invalid && touched && <div className="form-field-checkbox-group__error"><Icon name="warning" />{error}</div>}
+        {invalid && touched && (
+        <div className="form-field-checkbox-group__error">
+          <Icon name="warning" />
+          {error}
+        </div>
+        )}
       </div>
     );
   }

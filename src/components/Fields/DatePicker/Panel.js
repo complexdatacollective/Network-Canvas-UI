@@ -9,7 +9,9 @@ const getAnimation = ({ isComplete, isActive }) => {
   return { x: '100%' };
 };
 
-const Panel = ({ type, isComplete, isActive, children }) => {
+const Panel = ({
+  type, isComplete, isActive, children,
+}) => {
   const className = cx(
     'date-picker__panel',
     {

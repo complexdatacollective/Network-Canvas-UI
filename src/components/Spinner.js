@@ -21,7 +21,7 @@ class Spinner extends React.PureComponent {
     };
 
     return (
-      <div className={classes} style={circleSize()} >
+      <div className={classes} style={circleSize()}>
         <div className="circle">
           <div className="half-circle" />
           <div className="half-circle half-circle--rotated" />

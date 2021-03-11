@@ -44,7 +44,9 @@ class TextInput extends PureComponent {
   render() {
     const {
       input,
-      meta: { error, active, invalid, touched },
+      meta: {
+        error, active, invalid, touched,
+      },
       label,
       placeholder,
       fieldLabel,
@@ -67,9 +69,8 @@ class TextInput extends PureComponent {
 
     return (
       <div className="form-field-container" hidden={hidden}>
-        { anyLabel &&
-          <MarkdownLabel label={anyLabel} />
-        }
+        { anyLabel
+          && <MarkdownLabel label={anyLabel} />}
         <div className={seamlessClasses}>
           <input
             id={this.id}
@@ -80,7 +81,12 @@ class TextInput extends PureComponent {
             type={type}
             {...input}
           />
-          {invalid && touched && <div className="form-field-text__error"><Icon name="warning" />{error}</div>}
+          {invalid && touched && (
+          <div className="form-field-text__error">
+            <Icon name="warning" />
+            {error}
+          </div>
+          )}
         </div>
 
       </div>

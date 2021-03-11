@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Icon } from './';
+import { Icon } from '.';
 
-const CloseButton = props => (
+const CloseButton = (props) => (
   <motion.div
     id="close-button"
     whileHover={{ scale: 1.1 }}

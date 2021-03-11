@@ -37,9 +37,8 @@ class DatePickerField extends Component {
     const anyLabel = fieldLabel || label;
     return (
       <div className="form-field-container" hidden={hidden} ref={this.ref}>
-        { anyLabel &&
-          <MarkdownLabel label={anyLabel} />
-        }
+        { anyLabel
+          && <MarkdownLabel label={anyLabel} />}
         <div className={formFieldClasses} name={input.name}>
           <DatePicker
             parameters={parameters}
@@ -47,13 +46,15 @@ class DatePickerField extends Component {
             onChange={input.onBlur}
             parentRef={this.ref}
           />
-          {invalid && touched &&
+          {invalid && touched
+            && (
             <div className="form-field-date-picker__error">
               <div className="form-field-date-picker__error-message">
-                <Icon name="warning" />{error}
+                <Icon name="warning" />
+                {error}
               </div>
             </div>
-          }
+            )}
         </div>
 
       </div>
@@ -81,4 +82,3 @@ DatePickerField.defaultProps = {
 };
 
 export default DatePickerField;
-

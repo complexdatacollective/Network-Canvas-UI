@@ -17,8 +17,7 @@ const getSliderType = (variableType) => {
   }
 };
 
-const hasValue = value =>
-  value !== '';
+const hasValue = (value) => value !== '';
 
 /**
  * Empty string value should be treated as `null`
@@ -86,9 +85,8 @@ class SliderField extends Component {
 
     return (
       <div className="form-field-container" hidden={hidden}>
-        { anyLabel &&
-          <MarkdownLabel label={anyLabel} />
-        }
+        { anyLabel
+          && <MarkdownLabel label={anyLabel} />}
         <div className={formFieldClasses} name={input.name}>
           <Slider
             options={options}
@@ -99,7 +97,8 @@ class SliderField extends Component {
           />
           <div className="form-field-slider__error">
             <div className="form-field-slider__error-message">
-              <Icon name="warning" />{error}
+              <Icon name="warning" />
+              {error}
             </div>
           </div>
         </div>
@@ -111,4 +110,3 @@ class SliderField extends Component {
 }
 
 export default SliderField;
-

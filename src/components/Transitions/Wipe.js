@@ -24,8 +24,8 @@ const disappear = () => ({
 const FolderTransition = ({ children, ...props }) => (
   <Transition
     timeout={getCSSVariableAsNumber('--animation-duration-standard-ms')}
-    onEntering={el => anime({ targets: el, ...appear() })}
-    onExiting={el => anime({ targets: el, ...disappear() })}
+    onEntering={(el) => anime({ targets: el, ...appear() })}
+    onExiting={(el) => anime({ targets: el, ...disappear() })}
     {...props}
   >
     { children }

@@ -3,17 +3,17 @@ import PropTypes from 'prop-types';
 import Dialog from './Dialog';
 import Button from '../Button';
 
-const getErrorMessage = error =>
-  !!error && (error.friendlyMessage ? error.friendlyMessage : error.toString());
+const getErrorMessage = (error) => !!error && (error.friendlyMessage ? error.friendlyMessage : error.toString());
 
-const getMessage = ({ error, message }) =>
-  (error ? getErrorMessage(error) : message);
+const getMessage = ({ error, message }) => (error ? getErrorMessage(error) : message);
 
 /*
  * Designed to present errors to the user. Unlike some other Dialog types user must
  * explicitly click Acknowledge to close.
  */
-const ErrorDialog = ({ error, message, onConfirm, show, confirmLabel, title }) => (
+const ErrorDialog = ({
+  error, message, onConfirm, show, confirmLabel, title,
+}) => (
   <Dialog
     type="error"
     icon="error"

@@ -7,7 +7,7 @@ import Slider from '../Slider';
 import Tick from '../Tick';
 import Handle from '../Handle';
 
-const getMockProps = props => ({
+const getMockProps = (props) => ({
   input: { onChange: () => {} },
   meta: { error: null, invalid: null, touched: null },
   ...props,

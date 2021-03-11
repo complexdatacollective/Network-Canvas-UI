@@ -5,7 +5,9 @@ import anime from 'animejs';
 import { getCSSVariableAsNumber, getCSSVariableAsObject } from '../../utils/CSSVariables';
 
 function Fade(props) {
-  const { children, customDuration, customEasing, enter, onExited } = props;
+  const {
+    children, customDuration, customEasing, enter, onExited,
+  } = props;
 
   const defaultDuration = {
     enter: getCSSVariableAsNumber('--animation-duration-fast-ms'),

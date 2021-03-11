@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Icon from '../Icon';
 
-const formatDate = timeString => timeString && new Date(timeString).toLocaleString(undefined);
+const formatDate = (timeString) => timeString && new Date(timeString).toLocaleString(undefined);
 
 const ProtocolCard = (props) => {
   const {
@@ -75,11 +75,20 @@ const ProtocolCard = (props) => {
           <div className="protocol-meta">
             {
               installationDate && (
-                <h6>Installed: {formatDate(installationDate)}</h6>
+                <h6>
+                  Installed:
+                  {formatDate(installationDate)}
+                </h6>
               )
             }
-            <h6>Last Modified: {formatDate(lastModified)}</h6>
-            <h6>Schema Version: {schemaVersion}</h6>
+            <h6>
+              Last Modified:
+              {formatDate(lastModified)}
+            </h6>
+            <h6>
+              Schema Version:
+              {schemaVersion}
+            </h6>
           </div>
         ) }
       </div>
@@ -117,4 +126,3 @@ ProtocolCard.propTypes = {
 };
 
 export default ProtocolCard;
-

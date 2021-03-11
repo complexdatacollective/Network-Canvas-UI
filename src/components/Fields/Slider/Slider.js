@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { round, get, isNil } from 'lodash';
 import cx from 'classnames';
-import { Slider, Handles, Tracks, Ticks } from 'react-compound-slider';
+import {
+  Slider, Handles, Tracks, Ticks,
+} from 'react-compound-slider';
 import Handle from './Handle';
 import Track from './Track';
 import Tick from './Tick';
@@ -19,15 +21,15 @@ class SliderInput extends Component {
   getSliderProps = () => {
     const { options, value } = this.props;
 
-    const domain = this.isLikert() ?
-      [0, options.length - 1] :
-      [0, 1];
+    const domain = this.isLikert()
+      ? [0, options.length - 1]
+      : [0, 1];
 
     const step = this.isLikert() ? 1 : 0.0005;
 
-    const values = this.isLikert() ?
-      [options.findIndex(option => option.value === value)] :
-      [value];
+    const values = this.isLikert()
+      ? [options.findIndex((option) => option.value === value)]
+      : [value];
 
     return {
       domain,
@@ -77,11 +79,9 @@ class SliderInput extends Component {
     this.props.onBlur(normalizedValue);
   }
 
-  isLikert = () =>
-    this.props.type === 'LIKERT';
+  isLikert = () => this.props.type === 'LIKERT';
 
-  isVisualAnalogScale = () =>
-    this.props.type === 'VAS';
+  isVisualAnalogScale = () => this.props.type === 'VAS';
 
   render() {
     const sliderProps = this.getSliderProps();
@@ -105,7 +105,7 @@ class SliderInput extends Component {
         <Handles>
           {({ handles, activeHandleID, getHandleProps }) => (
             <div className="form-field-slider__handles">
-              {handles.map(handle => (
+              {handles.map((handle) => (
                 <Handle
                   key={handle.id}
                   handle={handle}
@@ -133,7 +133,8 @@ class SliderInput extends Component {
             </div>
           )}
         </Tracks>
-        { tickCount &&
+        { tickCount
+          && (
           <Ticks count={tickCount}>
             {({ ticks }) => (
               <div className="form-field-slider__ticks">
@@ -147,7 +148,7 @@ class SliderInput extends Component {
               </div>
             )}
           </Ticks>
-        }
+          )}
       </Slider>
     );
   }
@@ -174,4 +175,3 @@ SliderInput.defaultProps = {
 };
 
 export default SliderInput;
-

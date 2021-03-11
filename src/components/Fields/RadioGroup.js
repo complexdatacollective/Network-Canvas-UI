@@ -31,8 +31,7 @@ class RadioGroup extends Component {
     this.id = uuid();
   }
 
-  onChange = index =>
-    this.props.input.onChange(getValue(this.props.options[index]));
+  onChange = (index) => this.props.input.onChange(getValue(this.props.options[index]));
 
   renderOption = (option, index) => {
     const {
@@ -84,13 +83,17 @@ class RadioGroup extends Component {
 
     return (
       <div className={containerClassNames}>
-        { anyLabel &&
-          <MarkdownLabel label={anyLabel} />
-        }
+        { anyLabel
+          && <MarkdownLabel label={anyLabel} />}
         <div className={classNames} name={name}>
           { options.map(this.renderOption) }
         </div>
-        {invalid && touched && <div className="form-field-radio-group__error"><Icon name="warning" />{error}</div>}
+        {invalid && touched && (
+        <div className="form-field-radio-group__error">
+          <Icon name="warning" />
+          {error}
+        </div>
+        )}
       </div>
     );
   }

@@ -12,9 +12,9 @@ const DATE_FORMAT = DATE_FORMATS.full;
  * when not set).
  */
 const RelativeDatePicker = ({ parameters = {}, ...rest }) => {
-  const anchor = parameters.anchor ?
-    DateTime.fromISO(parameters.anchor) :
-    DateTime.local();
+  const anchor = parameters.anchor
+    ? DateTime.fromISO(parameters.anchor)
+    : DateTime.local();
 
   const min = anchor.minus({ days: parameters.before || 180 })
     .toFormat(DATE_FORMAT);

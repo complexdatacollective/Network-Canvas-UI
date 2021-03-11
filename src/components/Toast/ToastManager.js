@@ -11,7 +11,7 @@ const ToastManager = ({
   <div className="toast-container">
     <ul className="toast-container-list">
       <AnimatePresence>
-        {toasts.map(toast => (
+        {toasts.map((toast) => (
           <Toast
             key={toast.id}
             id={toast.id}

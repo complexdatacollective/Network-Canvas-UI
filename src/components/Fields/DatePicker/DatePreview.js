@@ -7,7 +7,9 @@ import { getMonthName } from './helpers';
 
 const DatePreview = ({ onClick, isActive }) => (
   <Date>
-    {({ date, type, onChange, isComplete, isEmpty }) => {
+    {({
+      date, type, onChange, isComplete, isEmpty,
+    }) => {
       const previewRef = React.createRef();
 
       const handleClickYear = (e) => {
@@ -57,28 +59,28 @@ const DatePreview = ({ onClick, isActive }) => (
           >
             {date.year || 'year'}
           </div>
-          { ['full', 'month'].includes(type) &&
-            <div className="date-picker__preview-divider">/</div>
-          }
-          { ['full', 'month'].includes(type) &&
+          { ['full', 'month'].includes(type)
+            && <div className="date-picker__preview-divider">/</div>}
+          { ['full', 'month'].includes(type)
+            && (
             <div
               className={cx('date-picker__preview-part', { 'date-picker__preview-part--is-set': date.month })}
               onClick={handleClickMonth}
             >
               {getMonthName(date.month) || 'month'}
             </div>
-          }
-          { ['full'].includes(type) &&
-            <div className="date-picker__preview-divider">/</div>
-          }
-          { ['full'].includes(type) &&
+            )}
+          { ['full'].includes(type)
+            && <div className="date-picker__preview-divider">/</div>}
+          { ['full'].includes(type)
+            && (
             <div
               className={cx('date-picker__preview-part', { 'date-picker__preview-part--is-set': date.day })}
               onClick={handleClickDay}
             >
               {date.day || 'day'}
             </div>
-          }
+            )}
           <div
             className={cx('date-picker__preview-clear', { 'date-picker__preview-clear--is-visible': !isEmpty || isActive })}
             onClick={handleClear}

@@ -9,9 +9,9 @@ import { now, isComplete, isEmpty } from './helpers';
  * Get date object from an ISO string
  */
 const getDate = (dateString) => {
-  const { year, month, day } = dateString ?
-    DateTime.fromISO(dateString).toObject() :
-    {
+  const { year, month, day } = dateString
+    ? DateTime.fromISO(dateString).toObject()
+    : {
       month: null,
       day: null,
       year: null,
@@ -29,7 +29,7 @@ const DatePicker = ({
 
   // Correctly update component state when passed new date prop
   useEffect(() => {
-    setPickerState(state => ({
+    setPickerState((state) => ({
       ...state,
       date: getDate(props.date),
     }));
@@ -39,20 +39,20 @@ const DatePicker = ({
 
   const format = DATE_FORMATS[type];
 
-  const min = props.min ?
-    DateTime.fromISO(props.min) :
-    now().minus(DEFAULT_MIN_DATE);
+  const min = props.min
+    ? DateTime.fromISO(props.min)
+    : now().minus(DEFAULT_MIN_DATE);
 
-  const max = props.max ?
-    DateTime.fromISO(props.max) :
-    now();
+  const max = props.max
+    ? DateTime.fromISO(props.max)
+    : now();
 
   const range = Interval.fromDateTimes(min.startOf('day'), max.endOf('day'));
 
   const onChange = (values) => {
-    const newDate = Object.assign({}, pickerState.date, values);
+    const newDate = { ...pickerState.date, ...values };
 
-    setPickerState(state => ({
+    setPickerState((state) => ({
       ...state,
       date: newDate,
     }));

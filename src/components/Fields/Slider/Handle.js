@@ -51,15 +51,16 @@ class Handle extends Component {
     const label = getLabelForValue(value);
 
     return (
-      <React.Fragment>
-        { showTooltips &&
+      <>
+        { showTooltips
+          && (
           <div
             className={tooltipClasses}
             style={{ left: `${percent}%` }}
           >
             <MarkdownLabel label={label} className="form-field-slider__tooltip-label" />
           </div>
-        }
+          )}
         <div
           className="form-field-slider__handle"
           style={{ left: `${percent}%` }}
@@ -73,7 +74,7 @@ class Handle extends Component {
           className={markerClasses}
           style={{ left: `${percent}%` }}
         />
-      </React.Fragment>
+      </>
     );
   }
 }

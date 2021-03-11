@@ -40,7 +40,7 @@ class Modal extends Component {
             exit="hidden"
           >
             <div className="modal__background" />
-            <div className="modal__content" onClick={this.handleBlur} >
+            <div className="modal__content" onClick={this.handleBlur}>
               <Drop>
                 { children }
               </Drop>

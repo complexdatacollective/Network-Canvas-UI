@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Slider from './Slider';
 
-const VisualAnalogScale = props =>
-  <Slider {...props} />;
+const VisualAnalogScale = (props) => <Slider {...props} />;
 
 VisualAnalogScale.propTypes = {
   parameters: PropTypes.shape({

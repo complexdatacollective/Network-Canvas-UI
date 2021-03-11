@@ -5,8 +5,8 @@ const textOutOfBounds = (containerElement, textElement) => {
   const containerBounds = containerElement.getBoundingClientRect();
   const textBounds = textElement.getBoundingClientRect();
   return (
-    textBounds.height > containerBounds.height ||
-    textBounds.width > containerBounds.width
+    textBounds.height > containerBounds.height
+    || textBounds.width > containerBounds.width
   );
 };
 
@@ -33,9 +33,9 @@ const scaleTextToFit = (element, options) => {
   const findFontSize = (size) => {
     textElement.setAttribute('style', `position: absolute; font-size: ${size}${unit};`);
 
-    return !textOutOfBounds(element, textElement) ?
-      findFontSize(size + increment) :
-      size - increment;
+    return !textOutOfBounds(element, textElement)
+      ? findFontSize(size + increment)
+      : size - increment;
   };
 
   const fontSize = findFontSize(0);

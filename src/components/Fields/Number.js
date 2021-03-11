@@ -10,16 +10,14 @@ const toInt = (value) => {
   return int;
 };
 
-const withNumericChangeHandlers = withProps(props => ({
+const withNumericChangeHandlers = withProps((props) => ({
   type: 'number',
   input: {
     ...props.input,
-    onChange: e =>
-      has(props, 'input.onChange') &&
-      props.input.onChange(toInt(e.target.value)),
-    onBlur: e =>
-      has(props, 'input.onBlur') &&
-      props.input.onBlur(toInt(e.target.value)),
+    onChange: (e) => has(props, 'input.onChange')
+      && props.input.onChange(toInt(e.target.value)),
+    onBlur: (e) => has(props, 'input.onBlur')
+      && props.input.onBlur(toInt(e.target.value)),
   },
 }));
 

@@ -13,7 +13,9 @@ class Notify extends PureComponent {
   defaultEasing = getCSSVariableAsObject('--animation-easing-js');
 
   render() {
-    const { children, customDuration, customEasing, enter } = this.props;
+    const {
+      children, customDuration, customEasing, enter,
+    } = this.props;
 
     const duration = customDuration || this.defaultDuration;
     const easing = customEasing || this.defaultEasing;

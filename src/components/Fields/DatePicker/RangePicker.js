@@ -45,8 +45,8 @@ const RangePicker = ({
     // only scroll when value is empty
     if (value !== null) { return; }
     if (!datePickerRef.current || !scrollRef.current) { return; }
-    const offsetTop = scrollRef.current.offsetTop;
-    const offsetHeight = scrollRef.current.offsetHeight;
+    const { offsetTop } = scrollRef.current;
+    const { offsetHeight } = scrollRef.current;
     datePickerRef.current.scrollTop = offsetTop - (offsetHeight * 0.5);
   }, [rangeKey, datePickerKey, scrollRefKey, value]);
 
@@ -57,7 +57,7 @@ const RangePicker = ({
 
   const padding = times(
     offset,
-    index => (
+    (index) => (
       <div key={`padding${index}`} className="date-picker__range-item" />
     ),
   );

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
 
-
 const Fade = ({ children, ...props }) => (
   <Transition
     mountOnEnter

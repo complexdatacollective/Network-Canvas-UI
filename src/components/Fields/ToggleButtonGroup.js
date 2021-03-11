@@ -6,7 +6,6 @@ import Icon from '../Icon';
 import { asOptionObject, getValue } from './utils/options';
 import MarkdownLabel from './MarkdownLabel';
 
-
 class ToggleButtonGroup extends PureComponent {
   static propTypes = {
     options: PropTypes.array,
@@ -32,9 +31,9 @@ class ToggleButtonGroup extends PureComponent {
 
   handleClickOption = (event) => {
     const option = getValue(this.props.options[event.target.value]);
-    const newValue = this.isOptionChecked(option) ?
-      this.value.filter(value => value !== option) :
-      [...this.value, option];
+    const newValue = this.isOptionChecked(option)
+      ? this.value.filter((value) => value !== option)
+      : [...this.value, option];
 
     this.props.input.onChange(newValue);
   }
@@ -86,13 +85,17 @@ class ToggleButtonGroup extends PureComponent {
 
     return (
       <div className={classNames}>
-        { anyLabel &&
-          <MarkdownLabel label={anyLabel} />
-        }
+        { anyLabel
+          && <MarkdownLabel label={anyLabel} />}
         <div className="form-field form-field__inline" name={name}>
           { options.map(this.renderOption) }
         </div>
-        {invalid && touched && <div className="form-field-togglebutton-group__error"><Icon name="warning" />{error}</div>}
+        {invalid && touched && (
+        <div className="form-field-togglebutton-group__error">
+          <Icon name="warning" />
+          {error}
+        </div>
+        )}
       </div>
     );
   }

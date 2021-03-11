@@ -31,8 +31,8 @@ const AppearTransition = ({ children, ...props }) => {
       mountOnEnter
       unmountOnExit
       timeout={standardDuration}
-      onEntering={el => anime({ targets: el, ...appear })}
-      onExiting={el => anime({ targets: el, ...disappear })}
+      onEntering={(el) => anime({ targets: el, ...appear })}
+      onExiting={(el) => anime({ targets: el, ...disappear })}
       {...props}
     >
       { children }

@@ -17,7 +17,6 @@ const Drop = ({ children }) => (
   </motion.div>
 );
 
-
 Drop.propTypes = {
   children: PropTypes.any,
 };
