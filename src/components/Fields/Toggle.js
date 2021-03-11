@@ -26,7 +26,9 @@ class Toggle extends PureComponent {
     meta: {},
   };
 
-  componentWillMount() {
+  constructor(props) {
+    super(props);
+
     this.id = uuid();
 
     // Because redux forms will just not pass on this
@@ -74,9 +76,11 @@ class Toggle extends PureComponent {
           <input
             className="form-field-toggle__input"
             id={this.id}
+            // eslint-disable-next-line react/jsx-props-no-spreading
             {...input}
+            // eslint-disable-next-line react/jsx-props-no-spreading
             {...rest}
-            checked={!!this.props.input.value}
+            checked={!!input.value}
             disabled={disabled}
             type="checkbox"
             value="true"

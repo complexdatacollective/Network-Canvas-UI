@@ -22,7 +22,6 @@ class CheckboxGroup extends PureComponent {
     label: null,
     fieldLabel: null,
     options: [],
-    disabled: false,
     optionComponent: Checkbox,
     meta: {},
   };

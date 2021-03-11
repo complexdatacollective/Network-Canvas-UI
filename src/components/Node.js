@@ -9,6 +9,7 @@ import classNames from 'classnames';
 class Node extends Component {
   render() {
     const {
+      label,
       color,
       inactive,
       selected,
@@ -28,14 +29,14 @@ class Node extends Component {
     );
 
     const labelClasses = () => {
-      const labelLength = this.props.label.length;
+      const labelLength = label.length;
       return `node__label-text len-${labelLength}`;
     };
 
     const nodeBaseColor = `var(--${color})`;
     const nodeFlashColor = `var(--${color}--dark)`;
 
-    const label = this.props.label.length < 22 ? this.props.label : `${this.props.label.substring(0, 18)}\u{AD}...`; // Add ellipsis for really long labels
+    const labelWithEllipsis = label.length < 22 ? label : `${label.substring(0, 18)}\u{AD}...`; // Add ellipsis for really long labels
 
     return (
       <div className={classes} onClick={handleClick}>
@@ -61,7 +62,7 @@ class Node extends Component {
             className={labelClasses()}
             ref={(labelText) => { this.labelText = labelText; }}
           >
-            {label}
+            {labelWithEllipsis}
           </div>
         </div>
       </div>

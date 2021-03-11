@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { DateTime } from 'luxon';
 import DatePicker, { DATE_FORMATS } from './DatePicker';
 
@@ -27,7 +28,16 @@ const RelativeDatePicker = ({ parameters = {}, ...rest }) => {
     max,
   };
 
+  // eslint-disable-next-line react/jsx-props-no-spreading
   return <DatePicker {...rest} parameters={newParameters} />;
+};
+
+RelativeDatePicker.propTypes = {
+  parameters: PropTypes.object,
+};
+
+RelativeDatePicker.defaultProps = {
+  parameters: {},
 };
 
 export default RelativeDatePicker;

@@ -32,11 +32,6 @@ class TextArea extends PureComponent {
 
   constructor(props) {
     super(props);
-
-    this.state = { isFocussed: false };
-  }
-
-  componentWillMount() {
     this.id = uniqueId('label');
   }
 
@@ -83,6 +78,7 @@ class TextArea extends PureComponent {
             placeholder={placeholder}
             autoFocus={autoFocus} // eslint-disable-line
             type={type}
+            // eslint-disable-next-line react/jsx-props-no-spreading
             {...input}
           />
           {invalid && touched && (

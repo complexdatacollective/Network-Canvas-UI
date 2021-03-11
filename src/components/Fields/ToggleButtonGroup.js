@@ -7,24 +7,6 @@ import { asOptionObject, getValue } from './utils/options';
 import MarkdownLabel from './MarkdownLabel';
 
 class ToggleButtonGroup extends PureComponent {
-  static propTypes = {
-    options: PropTypes.array,
-    className: PropTypes.string,
-    label: PropTypes.string,
-    fieldLabel: PropTypes.string,
-    input: PropTypes.object.isRequired,
-    meta: PropTypes.object,
-  };
-
-  static defaultProps = {
-    className: null,
-    label: null,
-    fieldLabel: null,
-    options: [],
-    disabled: false,
-    meta: {},
-  };
-
   get value() {
     return this.props.input.value;
   }
@@ -100,5 +82,22 @@ class ToggleButtonGroup extends PureComponent {
     );
   }
 }
+
+ToggleButtonGroup.propTypes = {
+  options: PropTypes.array,
+  className: PropTypes.string,
+  label: PropTypes.string,
+  fieldLabel: PropTypes.string,
+  input: PropTypes.object.isRequired,
+  meta: PropTypes.object,
+};
+
+ToggleButtonGroup.defaultProps = {
+  className: null,
+  label: null,
+  fieldLabel: null,
+  options: [],
+  meta: {},
+};
 
 export default ToggleButtonGroup;

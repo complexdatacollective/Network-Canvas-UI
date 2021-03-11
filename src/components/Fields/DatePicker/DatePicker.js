@@ -49,6 +49,7 @@ const DatePickerInput = ({
     <DatePicker
       onChange={handleChange}
       date={initialDate}
+      // eslint-disable-next-line react/jsx-props-no-spreading
       {...parameters}
     >
       <Date>

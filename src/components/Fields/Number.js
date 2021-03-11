@@ -4,7 +4,7 @@ import TextInput from './Text';
 
 const toInt = (value) => {
   const int = parseInt(value, 10);
-  if (isNaN(int)) {
+  if (Number.isNaN(int)) {
     return null;
   }
   return int;

@@ -22,7 +22,9 @@ class ToggleButton extends PureComponent {
     fieldLabel: null,
   };
 
-  componentWillMount() {
+  constructor(props) {
+    super(props);
+
     this.id = uuid();
   }
 
@@ -52,8 +54,10 @@ class ToggleButton extends PureComponent {
           <input
             className="form-field-togglebutton__input"
             id={this.id}
-            checked={!!this.props.input.value}
+            checked={!!input.value}
+            // eslint-disable-next-line react/jsx-props-no-spreading
             {...input}
+            // eslint-disable-next-line react/jsx-props-no-spreading
             {...rest}
             type="checkbox"
           />

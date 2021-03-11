@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import Dialog from './Dialog';
 import Button from '../Button';
 
-const getErrorMessage = (error) => !!error && (error.friendlyMessage ? error.friendlyMessage : error.toString());
+const getErrorMessage = (error) => !!error
+  && (error.friendlyMessage ? error.friendlyMessage : error.toString());
 
 const getMessage = ({ error, message }) => (error ? getErrorMessage(error) : message);
 

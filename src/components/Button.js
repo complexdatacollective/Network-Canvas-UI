@@ -84,6 +84,7 @@ class Button extends PureComponent {
 
     return (
       <button
+        // eslint-disable-next-line react/button-has-type
         type={type}
         className={buttonClassNames}
         onClick={onClick}

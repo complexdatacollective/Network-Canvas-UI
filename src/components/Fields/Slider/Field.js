@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import uuid from 'uuid';
 import Icon from '../../Icon';
 import Slider from './Slider';
 import MarkdownLabel from '../MarkdownLabel';
@@ -30,83 +29,72 @@ const getValue = (value) => {
   return value;
 };
 
-class SliderField extends Component {
-  static propTypes = {
-    label: PropTypes.node,
-    className: PropTypes.string,
-    hidden: PropTypes.bool,
-    input: PropTypes.object.isRequired,
-    meta: PropTypes.object,
-    parameters: PropTypes.object,
-    options: PropTypes.array,
-    fieldLabel: PropTypes.string,
-    type: PropTypes.string.isRequired,
-  };
+const SliderField = (props) => {
+  const {
+    input,
+    meta: { error, invalid, touched },
+    label,
+    parameters,
+    options,
+    fieldLabel,
+    className,
+    hidden,
+    type,
+  } = props;
 
-  static defaultProps = {
-    className: '',
-    label: null,
-    hidden: false,
-    meta: {},
-    fieldLabel: null,
-    options: null,
-    parameters: null,
-  };
+  const formFieldClasses = cx(
+    className,
+    'form-field-slider',
+    { 'form-field-slider--has-error': invalid && touched },
+  );
 
-  constructor(props) {
-    super(props);
+  const anyLabel = fieldLabel || label;
+  const sliderType = getSliderType(type);
 
-    this.state = {
-      id: uuid(),
-    };
-  }
-
-  render() {
-    const {
-      input,
-      meta: { error, invalid, touched },
-      label,
-      parameters,
-      options,
-      fieldLabel,
-      className,
-      hidden,
-      type,
-    } = this.props;
-
-    const formFieldClasses = cx(
-      className,
-      'form-field-slider',
-      { 'form-field-slider--has-error': invalid && touched },
-    );
-
-    const anyLabel = fieldLabel || label;
-    const sliderType = getSliderType(type);
-
-    return (
-      <div className="form-field-container" hidden={hidden}>
-        { anyLabel
-          && <MarkdownLabel label={anyLabel} />}
-        <div className={formFieldClasses} name={input.name}>
-          <Slider
-            options={options}
-            parameters={parameters}
-            type={sliderType}
-            {...input}
-            value={getValue(input.value)}
-          />
-          <div className="form-field-slider__error">
-            <div className="form-field-slider__error-message">
-              <Icon name="warning" />
-              {error}
-            </div>
+  return (
+    <div className="form-field-container" hidden={hidden}>
+      { anyLabel
+        && <MarkdownLabel label={anyLabel} />}
+      <div className={formFieldClasses} name={input.name}>
+        <Slider
+          options={options}
+          parameters={parameters}
+          type={sliderType}
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          {...input}
+          value={getValue(input.value)}
+        />
+        <div className="form-field-slider__error">
+          <div className="form-field-slider__error-message">
+            <Icon name="warning" />
+            {error}
           </div>
         </div>
-
       </div>
+    </div>
+  );
+};
 
-    );
-  }
-}
+SliderField.propTypes = {
+  label: PropTypes.node,
+  className: PropTypes.string,
+  hidden: PropTypes.bool,
+  input: PropTypes.object.isRequired,
+  meta: PropTypes.object,
+  parameters: PropTypes.object,
+  options: PropTypes.array,
+  fieldLabel: PropTypes.string,
+  type: PropTypes.string.isRequired,
+};
+
+SliderField.defaultProps = {
+  className: '',
+  label: null,
+  hidden: false,
+  meta: {},
+  fieldLabel: null,
+  options: null,
+  parameters: null,
+};
 
 export default SliderField;

@@ -21,35 +21,39 @@ const getDate = (dateString) => {
 
 const DatePicker = ({
   children,
-  ...props
+  date,
+  min,
+  max,
+  onChange,
+  type,
 }) => {
   const [pickerState, setPickerState] = useState({
-    date: getDate(props.date),
+    date: getDate(date),
   });
 
   // Correctly update component state when passed new date prop
   useEffect(() => {
     setPickerState((state) => ({
       ...state,
-      date: getDate(props.date),
+      date: getDate(date),
     }));
-  }, [props.date]);
+  }, [date]);
 
-  const type = props.type || DEFAULT_TYPE;
+  const typeWithDefault = type || DEFAULT_TYPE;
 
-  const format = DATE_FORMATS[type];
+  const format = DATE_FORMATS[typeWithDefault];
 
-  const min = props.min
-    ? DateTime.fromISO(props.min)
+  const minWithDefault = min
+    ? DateTime.fromISO(min)
     : now().minus(DEFAULT_MIN_DATE);
 
-  const max = props.max
-    ? DateTime.fromISO(props.max)
+  const maxWithDefault = max
+    ? DateTime.fromISO(max)
     : now();
 
-  const range = Interval.fromDateTimes(min.startOf('day'), max.endOf('day'));
+  const range = Interval.fromDateTimes(minWithDefault.startOf('day'), maxWithDefault.endOf('day'));
 
-  const onChange = (values) => {
+  const handleOnChange = (values) => {
     const newDate = { ...pickerState.date, ...values };
 
     setPickerState((state) => ({
@@ -58,18 +62,18 @@ const DatePicker = ({
     }));
 
     if (isEmpty(type)(newDate)) {
-      props.onChange('');
+      onChange('');
       return;
     }
 
     if (isComplete(type)(newDate)) {
       const dateString = DateTime.fromObject(newDate).toFormat(format);
-      props.onChange(dateString);
+      onChange(dateString);
     }
   };
 
   const context = {
-    onChange,
+    onChange: handleOnChange,
     range,
     type,
     ...pickerState,

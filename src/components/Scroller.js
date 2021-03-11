@@ -16,6 +16,7 @@ class Scroller extends Component {
     const maxScrollPosition = element.scrollHeight - element.clientHeight;
     const scrollAmount = scrollTop / maxScrollPosition;
 
+    // eslint-disable-next-line react/destructuring-assignment
     this.props.onScroll(scrollTop, scrollAmount);
   }
 

@@ -101,14 +101,12 @@ const ProtocolCard = (props) => {
 };
 
 ProtocolCard.defaultProps = {
-  className: '',
   onClickHandler: undefined,
   onStatusClickHandler: () => {},
   description: null,
   installationDate: null,
   isOutdated: false,
   isObsolete: false,
-  isSelected: false,
   condensed: false,
 };
 

@@ -45,6 +45,7 @@ function Fade(props) {
         }
       }
       enter={enter}
+      // eslint-disable-next-line react/destructuring-assignment
       in={props.in}
       appear
       unmountOnExit

@@ -20,7 +20,9 @@ class Radio extends PureComponent {
     disabled: false,
   };
 
-  componentWillMount() {
+  constructor(props) {
+    super(props);
+
     this.id = uuid();
   }
 
@@ -52,7 +54,9 @@ class Radio extends PureComponent {
           // provided to <Field />, so for the case that it isn't we can rely on the more reliable
           // input.value
           checked={!!input.value}
+          // eslint-disable-next-line react/jsx-props-no-spreading
           {...input}
+          // eslint-disable-next-line react/jsx-props-no-spreading
           {...rest}
         />
         <div className="form-field-radio__radio" />

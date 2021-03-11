@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import uuid from 'uuid';
 import Icon from '../../Icon';
 import DatePicker from './DatePicker';
 import MarkdownLabel from '../MarkdownLabel';
@@ -11,10 +10,6 @@ class DatePickerField extends Component {
     super(props);
 
     this.ref = React.createRef();
-
-    this.state = {
-      id: uuid(),
-    };
   }
 
   render() {

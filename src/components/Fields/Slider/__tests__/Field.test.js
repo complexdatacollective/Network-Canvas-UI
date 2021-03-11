@@ -24,6 +24,7 @@ describe('Slider/Field', () => {
         { value: 'FIZZ', label: 'fizz' },
       ],
     });
+    // eslint-disable-next-line react/jsx-props-no-spreading
     const subject = mount((<Field {...mockProps} />));
     expect(subject.html()).toMatchSnapshot();
 
@@ -47,6 +48,7 @@ describe('Slider/Field', () => {
         maxLabel: 'Bazz',
       },
     });
+    // eslint-disable-next-line react/jsx-props-no-spreading
     const subject = mount((<Field {...mockProps} />));
     expect(subject.html()).toMatchSnapshot();
 
@@ -66,6 +68,7 @@ describe('Slider/Field', () => {
     const mockProps = getMockProps({
       type: 'number',
     });
+    // eslint-disable-next-line react/jsx-props-no-spreading
     const subject = mount((<Field {...mockProps} />));
     expect(subject.html()).toMatchSnapshot();
 

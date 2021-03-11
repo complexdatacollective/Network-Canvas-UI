@@ -27,7 +27,9 @@ class RadioGroup extends Component {
     meta: {},
   };
 
-  componentWillMount() {
+  constructor(props) {
+    super(props);
+
     this.id = uuid();
   }
 
@@ -51,6 +53,7 @@ class RadioGroup extends Component {
           onChange: () => this.onChange(index),
         }}
         label={optionLabel}
+        // eslint-disable-next-line react/jsx-props-no-spreading
         {...optionRest}
       />
     );

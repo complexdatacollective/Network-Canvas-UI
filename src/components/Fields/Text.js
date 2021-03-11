@@ -37,7 +37,9 @@ class TextInput extends PureComponent {
     hidden: false,
   };
 
-  componentWillMount() {
+  constructor(props) {
+    super(props);
+
     this.id = uuid();
   }
 
@@ -79,6 +81,7 @@ class TextInput extends PureComponent {
             placeholder={placeholder}
             autoFocus={autoFocus} // eslint-disable-line
             type={type}
+            // eslint-disable-next-line react/jsx-props-no-spreading
             {...input}
           />
           {invalid && touched && (

@@ -20,7 +20,9 @@ class Checkbox extends PureComponent {
     disabled: false,
   };
 
-  componentWillMount() {
+  constructor(props) {
+    super(props);
+
     this.id = uuid();
   }
 

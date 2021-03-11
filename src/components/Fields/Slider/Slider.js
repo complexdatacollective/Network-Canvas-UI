@@ -10,14 +10,6 @@ import Track from './Track';
 import Tick from './Tick';
 
 class SliderInput extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      touched: false,
-    };
-  }
-
   getSliderProps = () => {
     const { options, value } = this.props;
 
@@ -73,7 +65,6 @@ class SliderInput extends Component {
    * we are using handleSlideEnd() to capture changes.
    */
   handleSlideEnd = (value) => {
-    this.setState({ touched: true });
     const normalizedValue = this.normalizeValue(value);
     // Use input.onBlur rather than input.onChange so that we can set 'touched'
     this.props.onBlur(normalizedValue);
@@ -84,10 +75,14 @@ class SliderInput extends Component {
   isVisualAnalogScale = () => this.props.type === 'VAS';
 
   render() {
+    const {
+      value,
+    } = this.props;
+
     const sliderProps = this.getSliderProps();
     const tickCount = this.getTickCount();
     const showTooltips = !this.isVisualAnalogScale();
-    const isNotSet = isNil(this.props.value);
+    const isNotSet = isNil(value);
 
     const className = cx(
       'form-field-slider__slider',
@@ -98,6 +93,7 @@ class SliderInput extends Component {
 
     return (
       <Slider
+        // eslint-disable-next-line react/jsx-props-no-spreading
         {...sliderProps}
         className={className}
         onSlideEnd={this.handleSlideEnd}
