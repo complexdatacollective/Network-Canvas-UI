@@ -6,37 +6,6 @@ import Icon from '../Icon';
 import MarkdownLabel from './MarkdownLabel';
 
 class TextInput extends PureComponent {
-  static propTypes = {
-    input: PropTypes.object,
-    meta: PropTypes.object,
-    label: PropTypes.string,
-    autoFocus: PropTypes.bool,
-    fieldLabel: PropTypes.string,
-    className: PropTypes.string,
-    type: PropTypes.oneOf([
-      'text',
-      'number',
-      'search',
-    ]),
-    placeholder: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-    hidden: PropTypes.bool,
-  };
-
-  static defaultProps = {
-    input: {},
-    meta: {},
-    type: 'text',
-    autoFocus: false,
-    label: null,
-    fieldLabel: null,
-    placeholder: '',
-    className: '',
-    hidden: false,
-  };
-
   constructor(props) {
     super(props);
 
@@ -97,5 +66,36 @@ class TextInput extends PureComponent {
     );
   }
 }
+
+TextInput.propTypes = {
+  input: PropTypes.object,
+  meta: PropTypes.object,
+  label: PropTypes.string,
+  autoFocus: PropTypes.bool,
+  fieldLabel: PropTypes.string,
+  className: PropTypes.string,
+  type: PropTypes.oneOf([
+    'text',
+    'number',
+    'search',
+  ]),
+  placeholder: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+  hidden: PropTypes.bool,
+};
+
+TextInput.defaultProps = {
+  input: {},
+  meta: {},
+  type: 'text',
+  autoFocus: false,
+  label: null,
+  fieldLabel: null,
+  placeholder: '',
+  className: '',
+  hidden: false,
+};
 
 export default TextInput;

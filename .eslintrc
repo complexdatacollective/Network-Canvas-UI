@@ -26,9 +26,6 @@
       "import/no-extraneous-dependencies": "off",
       "import/no-named-as-default": "off",
       "jsx-a11y/click-events-have-key-events": "off",
-      "react/destructuring-assignment": ["warn", "always", { "ignoreClassFields": true }],
-      "react/static-property-placement": "off",
-      "react/jsx-props-no-spreading": ["warn"],
       "no-mixed-operators": [1, {"allowSamePrecedence": true}]
     }
 }

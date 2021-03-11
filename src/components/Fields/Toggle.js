@@ -7,35 +7,23 @@ import Icon from '../Icon';
 import MarkdownLabel from './MarkdownLabel';
 
 class Toggle extends PureComponent {
-  static propTypes = {
-    label: PropTypes.string,
-    title: PropTypes.string,
-    fieldLabel: PropTypes.string,
-    className: PropTypes.string,
-    disabled: PropTypes.bool,
-    input: PropTypes.object.isRequired,
-    meta: PropTypes.object,
-  };
-
-  static defaultProps = {
-    className: '',
-    label: null,
-    title: '',
-    fieldLabel: null,
-    disabled: false,
-    meta: {},
-  };
-
   constructor(props) {
     super(props);
 
     this.id = uuid();
 
+    const {
+      input: {
+        value,
+        onChange,
+      },
+    } = this.props;
+
     // Because redux forms will just not pass on this
     // field if it was never touched and we need it to
     // return `false`.
-    if (!isBoolean(this.props.input.value)) {
-      this.props.input.onChange(false);
+    if (!isBoolean(value)) {
+      onChange(false);
     }
   }
 
@@ -100,5 +88,24 @@ class Toggle extends PureComponent {
     );
   }
 }
+
+Toggle.propTypes = {
+  label: PropTypes.string,
+  title: PropTypes.string,
+  fieldLabel: PropTypes.string,
+  className: PropTypes.string,
+  disabled: PropTypes.bool,
+  input: PropTypes.object.isRequired,
+  meta: PropTypes.object,
+};
+
+Toggle.defaultProps = {
+  className: '',
+  label: null,
+  title: '',
+  fieldLabel: null,
+  disabled: false,
+  meta: {},
+};
 
 export default Toggle;

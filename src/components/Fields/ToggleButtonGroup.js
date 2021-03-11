@@ -8,20 +8,34 @@ import MarkdownLabel from './MarkdownLabel';
 
 class ToggleButtonGroup extends PureComponent {
   get value() {
-    return this.props.input.value;
+    const {
+      input: {
+        value,
+      },
+    } = this.props;
+    return value;
   }
 
   handleClickOption = (event) => {
-    const option = getValue(this.props.options[event.target.value]);
+    const {
+      options,
+      input,
+    } = this.props;
+
+    const option = getValue(options[event.target.value]);
     const newValue = this.isOptionChecked(option)
       ? this.value.filter((value) => value !== option)
       : [...this.value, option];
 
-    this.props.input.onChange(newValue);
+    input.onChange(newValue);
   }
 
   isOptionChecked = (option) => {
-    const value = this.props.input.value || [];
+    const {
+      input: {
+        value = [],
+      },
+    } = this.props;
     const included = value.includes(option);
     return included;
   }
