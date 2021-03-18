@@ -35,14 +35,11 @@ const CSSVariable = (variableName) => {
   return variable;
 };
 
-export const getCSSVariableAsString = variableName =>
-  CSSVariable(variableName);
+export const getCSSVariableAsString = (variableName) => CSSVariable(variableName);
 
-export const getCSSVariableAsNumber = variableName =>
-  parseInt(CSSVariable(variableName), 10);
+export const getCSSVariableAsNumber = (variableName) => parseInt(CSSVariable(variableName), 10);
 
-export const getCSSVariableAsObject = variableName =>
-  JSON.parse(CSSVariable(variableName));
+export const getCSSVariableAsObject = (variableName) => JSON.parse(CSSVariable(variableName));
 
 export const getCSSVariable = (variableName) => {
   const variable = CSSVariable(variableName);

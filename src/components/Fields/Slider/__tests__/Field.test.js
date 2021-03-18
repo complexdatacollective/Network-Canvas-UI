@@ -7,7 +7,7 @@ import Slider from '../Slider';
 import Tick from '../Tick';
 import Handle from '../Handle';
 
-const getMockProps = props => ({
+const getMockProps = (props) => ({
   input: { onChange: () => {} },
   meta: { error: null, invalid: null, touched: null },
   ...props,
@@ -24,6 +24,7 @@ describe('Slider/Field', () => {
         { value: 'FIZZ', label: 'fizz' },
       ],
     });
+    // eslint-disable-next-line react/jsx-props-no-spreading
     const subject = mount((<Field {...mockProps} />));
     expect(subject.html()).toMatchSnapshot();
 
@@ -47,6 +48,7 @@ describe('Slider/Field', () => {
         maxLabel: 'Bazz',
       },
     });
+    // eslint-disable-next-line react/jsx-props-no-spreading
     const subject = mount((<Field {...mockProps} />));
     expect(subject.html()).toMatchSnapshot();
 
@@ -66,6 +68,7 @@ describe('Slider/Field', () => {
     const mockProps = getMockProps({
       type: 'number',
     });
+    // eslint-disable-next-line react/jsx-props-no-spreading
     const subject = mount((<Field {...mockProps} />));
     expect(subject.html()).toMatchSnapshot();
 

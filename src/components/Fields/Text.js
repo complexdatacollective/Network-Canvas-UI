@@ -6,45 +6,18 @@ import Icon from '../Icon';
 import MarkdownLabel from './MarkdownLabel';
 
 class TextInput extends PureComponent {
-  static propTypes = {
-    input: PropTypes.object,
-    meta: PropTypes.object,
-    label: PropTypes.string,
-    autoFocus: PropTypes.bool,
-    fieldLabel: PropTypes.string,
-    className: PropTypes.string,
-    type: PropTypes.oneOf([
-      'text',
-      'number',
-      'search',
-    ]),
-    placeholder: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
-    hidden: PropTypes.bool,
-  };
+  constructor(props) {
+    super(props);
 
-  static defaultProps = {
-    input: {},
-    meta: {},
-    type: 'text',
-    autoFocus: false,
-    label: null,
-    fieldLabel: null,
-    placeholder: '',
-    className: '',
-    hidden: false,
-  };
-
-  componentWillMount() {
     this.id = uuid();
   }
 
   render() {
     const {
       input,
-      meta: { error, active, invalid, touched },
+      meta: {
+        error, active, invalid, touched,
+      },
       label,
       placeholder,
       fieldLabel,
@@ -67,9 +40,8 @@ class TextInput extends PureComponent {
 
     return (
       <div className="form-field-container" hidden={hidden}>
-        { anyLabel &&
-          <MarkdownLabel label={anyLabel} />
-        }
+        { anyLabel
+          && <MarkdownLabel label={anyLabel} />}
         <div className={seamlessClasses}>
           <input
             id={this.id}
@@ -78,9 +50,15 @@ class TextInput extends PureComponent {
             placeholder={placeholder}
             autoFocus={autoFocus} // eslint-disable-line
             type={type}
+            // eslint-disable-next-line react/jsx-props-no-spreading
             {...input}
           />
-          {invalid && touched && <div className="form-field-text__error"><Icon name="warning" />{error}</div>}
+          {invalid && touched && (
+          <div className="form-field-text__error">
+            <Icon name="warning" />
+            {error}
+          </div>
+          )}
         </div>
 
       </div>
@@ -88,5 +66,36 @@ class TextInput extends PureComponent {
     );
   }
 }
+
+TextInput.propTypes = {
+  input: PropTypes.object,
+  meta: PropTypes.object,
+  label: PropTypes.string,
+  autoFocus: PropTypes.bool,
+  fieldLabel: PropTypes.string,
+  className: PropTypes.string,
+  type: PropTypes.oneOf([
+    'text',
+    'number',
+    'search',
+  ]),
+  placeholder: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]),
+  hidden: PropTypes.bool,
+};
+
+TextInput.defaultProps = {
+  input: {},
+  meta: {},
+  type: 'text',
+  autoFocus: false,
+  label: null,
+  fieldLabel: null,
+  placeholder: '',
+  className: '',
+  hidden: false,
+};
 
 export default TextInput;

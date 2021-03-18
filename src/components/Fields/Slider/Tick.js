@@ -25,7 +25,6 @@ Tick.propTypes = {
 };
 
 Tick.defaultProps = {
-  tick: null,
   getLabelForValue: () => null,
 };
 

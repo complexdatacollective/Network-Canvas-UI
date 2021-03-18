@@ -44,6 +44,7 @@ const makeProps = () => ({
 
 describe('<Dialogs />', () => {
   it('Renders nothing when dialogs empty', () => {
+    // eslint-disable-next-line react/jsx-props-no-spreading
     const component = shallow(<Dialogs {...makeProps()} />);
     expect(component.find('Warning').length).toBe(0);
     expect(component.find('Confirm').length).toBe(0);
@@ -51,6 +52,7 @@ describe('<Dialogs />', () => {
   });
 
   it('It renders dialogs', () => {
+    // eslint-disable-next-line react/jsx-props-no-spreading
     const component = shallow(<Dialogs {...makeProps()} dialogs={makeDialogs()} />);
     expect(component.find('Warning').length).toBe(1);
     expect(component.find('Confirm').length).toBe(1);
@@ -61,6 +63,7 @@ describe('<Dialogs />', () => {
     it('Wires up <Warning /> Dialog', () => {
       const mockProps = makeProps();
       const mockWarningDialog = warningDialog();
+      // eslint-disable-next-line react/jsx-props-no-spreading
       const component = mount(<Dialogs {...mockProps} dialogs={[mockWarningDialog]} />);
 
       component.find('Warning button').at(1)
@@ -77,6 +80,7 @@ describe('<Dialogs />', () => {
     it('Wires up <Notice /> Dialog', () => {
       const mockProps = makeProps();
       const mockNoticeDialog = noticeDialog();
+      // eslint-disable-next-line react/jsx-props-no-spreading
       const component = mount(<Dialogs {...mockProps} dialogs={[mockNoticeDialog]} />);
 
       component.find('Notice button').at(0).simulate('click');
@@ -87,6 +91,7 @@ describe('<Dialogs />', () => {
     it('Wires up <Confirm /> Dialog', () => {
       const mockProps = makeProps();
       const mockConfirmDialog = confirmDialog();
+      // eslint-disable-next-line react/jsx-props-no-spreading
       const component = mount(<Dialogs {...mockProps} dialogs={[mockConfirmDialog]} />);
 
       component.find('Confirm button').at(1)

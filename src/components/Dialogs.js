@@ -47,27 +47,21 @@ import * as DialogVariants from './Dialog';
  * ]
  */
 class Dialogs extends Component {
-  static propTypes = {
-    dialogs: PropTypes.array,
-    closeDialog: PropTypes.func.isRequired,
-  }
-
-  static defaultProps = {
-    dialogs: [],
-  };
-
   get dialogs() {
-    return this.props.dialogs;
+    const { dialogs } = this.props;
+    return dialogs;
   }
 
   handleConfirm = (dialog) => {
+    const { closeDialog } = this.props;
     if (dialog.onConfirm) { dialog.onConfirm(dialog); }
-    this.props.closeDialog(dialog.id);
+    closeDialog(dialog.id);
   }
 
   handleCancel = (dialog) => {
+    const { closeDialog } = this.props;
     if (dialog.onCancel) { dialog.onCancel(dialog); }
-    this.props.closeDialog(dialog.id);
+    closeDialog(dialog.id);
   }
 
   renderDialog = (dialog) => {
@@ -82,6 +76,7 @@ class Dialogs extends Component {
         key={dialog.id}
         onConfirm={onConfirm}
         onCancel={onCancel}
+        // eslint-disable-next-line react/jsx-props-no-spreading
         {...omit(dialog, ['onConfirm', 'onCancel'])}
       />
     );
@@ -91,6 +86,15 @@ class Dialogs extends Component {
     return this.dialogs.map(this.renderDialog);
   }
 }
+
+Dialogs.propTypes = {
+  dialogs: PropTypes.array,
+  closeDialog: PropTypes.func.isRequired,
+};
+
+Dialogs.defaultProps = {
+  dialogs: [],
+};
 
 export { Dialogs };
 

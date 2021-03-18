@@ -5,24 +5,9 @@ import uuid from 'uuid';
 import MarkdownLabel from './MarkdownLabel';
 
 class ToggleButton extends PureComponent {
-  static propTypes = {
-    label: PropTypes.string,
-    className: PropTypes.string,
-    disabled: PropTypes.bool,
-    input: PropTypes.object.isRequired,
-    color: PropTypes.string,
-    fieldLabel: PropTypes.string,
-  };
+  constructor(props) {
+    super(props);
 
-  static defaultProps = {
-    className: '',
-    label: null,
-    disabled: false,
-    color: 'cat-color-seq-1',
-    fieldLabel: null,
-  };
-
-  componentWillMount() {
     this.id = uuid();
   }
 
@@ -52,8 +37,10 @@ class ToggleButton extends PureComponent {
           <input
             className="form-field-togglebutton__input"
             id={this.id}
-            checked={!!this.props.input.value}
+            checked={!!input.value}
+            // eslint-disable-next-line react/jsx-props-no-spreading
             {...input}
+            // eslint-disable-next-line react/jsx-props-no-spreading
             {...rest}
             type="checkbox"
           />
@@ -63,5 +50,22 @@ class ToggleButton extends PureComponent {
     );
   }
 }
+
+ToggleButton.propTypes = {
+  label: PropTypes.string,
+  className: PropTypes.string,
+  disabled: PropTypes.bool,
+  input: PropTypes.object.isRequired,
+  color: PropTypes.string,
+  fieldLabel: PropTypes.string,
+};
+
+ToggleButton.defaultProps = {
+  className: '',
+  label: null,
+  disabled: false,
+  color: 'cat-color-seq-1',
+  fieldLabel: null,
+};
 
 export default ToggleButton;

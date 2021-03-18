@@ -6,7 +6,6 @@ export { default as CloseButton } from './CloseButton';
 export { default as Node } from './Node';
 export { default as Expandable } from './Expandable';
 export { default as NarrativePanel } from './NarrativePanel';
-export { default as Progress } from './Progress';
 export { default as ProgressBar } from './ProgressBar';
 export { default as Spinner } from './Spinner';
 export { default as Scroller } from './Scroller';

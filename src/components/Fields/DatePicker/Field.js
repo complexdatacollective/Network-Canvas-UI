@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import uuid from 'uuid';
 import Icon from '../../Icon';
 import DatePicker from './DatePicker';
 import MarkdownLabel from '../MarkdownLabel';
@@ -11,10 +10,6 @@ class DatePickerField extends Component {
     super(props);
 
     this.ref = React.createRef();
-
-    this.state = {
-      id: uuid(),
-    };
   }
 
   render() {
@@ -37,23 +32,25 @@ class DatePickerField extends Component {
     const anyLabel = fieldLabel || label;
     return (
       <div className="form-field-container" hidden={hidden} ref={this.ref}>
-        { anyLabel &&
-          <MarkdownLabel label={anyLabel} />
-        }
+        { anyLabel
+          && <MarkdownLabel label={anyLabel} />}
         <div className={formFieldClasses} name={input.name}>
           <DatePicker
             parameters={parameters}
+            // eslint-disable-next-line react/jsx-props-no-spreading
             {...input}
             onChange={input.onBlur}
             parentRef={this.ref}
           />
-          {invalid && touched &&
+          {invalid && touched
+            && (
             <div className="form-field-date-picker__error">
               <div className="form-field-date-picker__error-message">
-                <Icon name="warning" />{error}
+                <Icon name="warning" />
+                {error}
               </div>
             </div>
-          }
+            )}
         </div>
 
       </div>
@@ -63,7 +60,7 @@ class DatePickerField extends Component {
 }
 
 DatePickerField.propTypes = {
-  parameters: PropTypes.object.isRequired,
+  parameters: PropTypes.object,
   input: PropTypes.object.isRequired,
   meta: PropTypes.object,
   label: PropTypes.string,
@@ -73,6 +70,7 @@ DatePickerField.propTypes = {
 };
 
 DatePickerField.defaultProps = {
+  parameters: {},
   meta: {},
   label: null,
   fieldLabel: null,
@@ -81,4 +79,3 @@ DatePickerField.defaultProps = {
 };
 
 export default DatePickerField;
-

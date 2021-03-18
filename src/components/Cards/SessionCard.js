@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import { ProgressBar } from '../';
+import { ProgressBar } from '..';
 import HoverMarquee from '../HoverMarquee';
 import StartedIcon from '../../assets/images/StartedIcon.svg';
 import ModifiedIcon from '../../assets/images/ModifiedIcon.svg';
 import FinishedIcon from '../../assets/images/FinishedIcon.svg';
 import ExportedIcon from '../../assets/images/ExportedIcon.svg';
 
-const formatDate = dateString => dateString && new Date(dateString).toLocaleString(undefined);
+const formatDate = (dateString) => dateString && new Date(dateString).toLocaleString(undefined);
 
 const SessionCard = (props) => {
   const {
@@ -42,10 +42,16 @@ const SessionCard = (props) => {
       <div className="meta-wrapper">
         <div className="meta">
           <h6 className="meta-wrapper__attribute">
-            <HoverMarquee><img src={StartedIcon} alt="Interview started at" />{ startedAt ? formatDate(startedAt) : (<span className="highlight">No start date!</span>) }</HoverMarquee>
+            <HoverMarquee>
+              <img src={StartedIcon} alt="Interview started at" />
+              { startedAt ? formatDate(startedAt) : (<span className="highlight">No start date!</span>) }
+            </HoverMarquee>
           </h6>
           <h6 className="meta-wrapper__attribute">
-            <HoverMarquee><img src={ModifiedIcon} alt="Interview modified at" />{ updatedAt ? formatDate(updatedAt) : (<span className="highlight">Never changed!</span>) }</HoverMarquee>
+            <HoverMarquee>
+              <img src={ModifiedIcon} alt="Interview modified at" />
+              { updatedAt ? formatDate(updatedAt) : (<span className="highlight">Never changed!</span>) }
+            </HoverMarquee>
           </h6>
         </div>
         <div className="meta">
@@ -56,15 +62,22 @@ const SessionCard = (props) => {
                 { formatDate(finishedAt) }
               </span>
             ) : (
-              <React.Fragment>
-                <span> {progress}%</span>
+              <>
+                <span>
+                  {' '}
+                  {progress}
+                  %
+                </span>
                 <ProgressBar percentProgress={progress} orientation="horizontal" />
-              </React.Fragment>
+              </>
             )}
 
           </div>
           <h6 className="meta-wrapper__attribute">
-            <HoverMarquee><img src={ExportedIcon} alt="Interview exported at" />{ exportedAt ? formatDate(exportedAt) : (<span className="highlight">Not yet exported</span>) }</HoverMarquee>
+            <HoverMarquee>
+              <img src={ExportedIcon} alt="Interview exported at" />
+              { exportedAt ? formatDate(exportedAt) : (<span className="highlight">Not yet exported</span>) }
+            </HoverMarquee>
           </h6>
         </div>
       </div>
@@ -93,4 +106,3 @@ SessionCard.propTypes = {
 };
 
 export default SessionCard;
-

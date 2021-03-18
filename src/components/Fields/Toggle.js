@@ -7,33 +7,23 @@ import Icon from '../Icon';
 import MarkdownLabel from './MarkdownLabel';
 
 class Toggle extends PureComponent {
-  static propTypes = {
-    label: PropTypes.string,
-    title: PropTypes.string,
-    fieldLabel: PropTypes.string,
-    className: PropTypes.string,
-    disabled: PropTypes.bool,
-    input: PropTypes.object.isRequired,
-    meta: PropTypes.object,
-  };
+  constructor(props) {
+    super(props);
 
-  static defaultProps = {
-    className: '',
-    label: null,
-    title: '',
-    fieldLabel: null,
-    disabled: false,
-    meta: {},
-  };
-
-  componentWillMount() {
     this.id = uuid();
+
+    const {
+      input: {
+        value,
+        onChange,
+      },
+    } = this.props;
 
     // Because redux forms will just not pass on this
     // field if it was never touched and we need it to
     // return `false`.
-    if (!isBoolean(this.props.input.value)) {
-      this.props.input.onChange(false);
+    if (!isBoolean(value)) {
+      onChange(false);
     }
   }
 
@@ -68,16 +58,17 @@ class Toggle extends PureComponent {
 
     return (
       <div className={containerClassNames} name={input.name}>
-        { fieldLabel &&
-          <MarkdownLabel label={fieldLabel} />
-        }
+        { fieldLabel
+          && <MarkdownLabel label={fieldLabel} />}
         <label className={componentClasses} htmlFor={this.id} title={title}>
           <input
             className="form-field-toggle__input"
             id={this.id}
+            // eslint-disable-next-line react/jsx-props-no-spreading
             {...input}
+            // eslint-disable-next-line react/jsx-props-no-spreading
             {...rest}
-            checked={!!this.props.input.value}
+            checked={!!input.value}
             disabled={disabled}
             type="checkbox"
             value="true"
@@ -87,10 +78,34 @@ class Toggle extends PureComponent {
           </div>
           {label && <MarkdownLabel label={label} className="form-field-inline-label" />}
         </label>
-        {invalid && touched && <div className="form-field-toggle__error"><Icon name="warning" />{error}</div>}
+        {invalid && touched && (
+        <div className="form-field-toggle__error">
+          <Icon name="warning" />
+          {error}
+        </div>
+        )}
       </div>
     );
   }
 }
+
+Toggle.propTypes = {
+  label: PropTypes.string,
+  title: PropTypes.string,
+  fieldLabel: PropTypes.string,
+  className: PropTypes.string,
+  disabled: PropTypes.bool,
+  input: PropTypes.object.isRequired,
+  meta: PropTypes.object,
+};
+
+Toggle.defaultProps = {
+  className: '',
+  label: null,
+  title: '',
+  fieldLabel: null,
+  disabled: false,
+  meta: {},
+};
 
 export default Toggle;

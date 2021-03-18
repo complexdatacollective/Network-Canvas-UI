@@ -4,8 +4,12 @@ import cx from 'classnames';
 import MarkdownLabel from '../MarkdownLabel';
 
 class Handle extends Component {
-  state = {
-    mouseOver: false,
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      mouseOver: false,
+    };
   }
 
   handleMouseOver = () => {
@@ -51,29 +55,32 @@ class Handle extends Component {
     const label = getLabelForValue(value);
 
     return (
-      <React.Fragment>
-        { showTooltips &&
+      <>
+        { showTooltips
+          && (
           <div
             className={tooltipClasses}
             style={{ left: `${percent}%` }}
           >
             <MarkdownLabel label={label} className="form-field-slider__tooltip-label" />
           </div>
-        }
+          )}
         <div
           className="form-field-slider__handle"
           style={{ left: `${percent}%` }}
+          // eslint-disable-next-line react/jsx-props-no-spreading
           {...handleProps}
         />
         <div
           role="slider"
+          aria-label="Slider"
           aria-valuemin={min}
           aria-valuemax={max}
           aria-valuenow={value}
           className={markerClasses}
           style={{ left: `${percent}%` }}
         />
-      </React.Fragment>
+      </>
     );
   }
 }

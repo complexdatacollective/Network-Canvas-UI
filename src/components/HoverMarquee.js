@@ -49,4 +49,3 @@ HoverMarquee.propTypes = {
 };
 
 export default HoverMarquee;
-

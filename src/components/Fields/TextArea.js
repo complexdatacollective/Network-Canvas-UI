@@ -6,43 +6,16 @@ import Icon from '../Icon';
 import MarkdownLabel from './MarkdownLabel';
 
 class TextArea extends PureComponent {
-  static propTypes = {
-    input: PropTypes.object,
-    meta: PropTypes.object,
-    type: PropTypes.string,
-    label: PropTypes.string,
-    autoFocus: PropTypes.bool,
-    fieldLabel: PropTypes.string,
-    className: PropTypes.string,
-    placeholder: PropTypes.string,
-    hidden: PropTypes.bool,
-  };
-
-  static defaultProps = {
-    input: {},
-    meta: {},
-    type: 'text',
-    autoFocus: false,
-    label: null,
-    fieldLabel: null,
-    placeholder: '',
-    className: '',
-    hidden: false,
-  };
-
   constructor(props) {
     super(props);
-
-    this.state = { isFocussed: false };
-  }
-
-  componentWillMount() {
     this.id = uniqueId('label');
   }
 
   render() {
     const {
-      meta: { active, error, invalid, touched },
+      meta: {
+        active, error, invalid, touched,
+      },
       label,
       placeholder,
       fieldLabel,
@@ -65,13 +38,13 @@ class TextArea extends PureComponent {
     return (
       <label
         htmlFor={this.id}
-        className={'form-field-container'}
+        className="form-field-container"
         hidden={hidden}
         name={input.name}
       >
         {
-          (fieldLabel || label) ?
-            (<MarkdownLabel label={fieldLabel || label} />)
+          (fieldLabel || label)
+            ? (<MarkdownLabel label={fieldLabel || label} />)
             : ''
         }
         <div className={seamlessClasses}>
@@ -81,13 +54,43 @@ class TextArea extends PureComponent {
             placeholder={placeholder}
             autoFocus={autoFocus} // eslint-disable-line
             type={type}
+            // eslint-disable-next-line react/jsx-props-no-spreading
             {...input}
           />
-          {invalid && touched && <div className="form-field-text__error"><Icon name="warning" />{error}</div>}
+          {invalid && touched && (
+          <div className="form-field-text__error">
+            <Icon name="warning" />
+            {error}
+          </div>
+          )}
         </div>
       </label>
     );
   }
 }
+
+TextArea.propTypes = {
+  input: PropTypes.object,
+  meta: PropTypes.object,
+  type: PropTypes.string,
+  label: PropTypes.string,
+  autoFocus: PropTypes.bool,
+  fieldLabel: PropTypes.string,
+  className: PropTypes.string,
+  placeholder: PropTypes.string,
+  hidden: PropTypes.bool,
+};
+
+TextArea.defaultProps = {
+  input: {},
+  meta: {},
+  type: 'text',
+  autoFocus: false,
+  label: null,
+  fieldLabel: null,
+  placeholder: '',
+  className: '',
+  hidden: false,
+};
 
 export default TextArea;
