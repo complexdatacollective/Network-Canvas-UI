@@ -21,6 +21,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@material-ui/icons": "^4.11.2",
     "animejs": "^2.2.0",
     "classnames": "^2.2.6",
     "framer-motion": "^2.9.1",
