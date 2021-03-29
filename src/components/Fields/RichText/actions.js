@@ -1,15 +1,19 @@
 import {
   Element as SlateElement,
+  Editor,
+  Transforms,
 } from 'slate';
 import { EditListPlugin } from '@productboard/slate-edit-list';
 
-const [withEditList, onKeyDown, { Editor, Transforms }] = EditListPlugin();
-
 const LIST_TYPES = ['ul_list', 'ol_list'];
 
-const getNewType = ({ isActive, isList, format }) => {
+const [withEditList, onKeyDown, { Transforms: EditListTransforms }] = EditListPlugin();
+
+const getNewType = ({ isActive, format }) => {
+  // If isActive is set, format already set. Remove it.
   if (isActive) { return 'paragraph'; }
-  if (isList) { return 'list_item'; }
+
+  // Otherwise return the new format ready to apply
   return format;
 };
 
@@ -32,10 +36,27 @@ const toggleBlock = (editor, format) => {
   const isActive = isBlockActive(editor, format);
   const isList = LIST_TYPES.includes(format);
 
-  Transforms.toggleList(editor);
+  console.log('toggleBlock', isActive, isList, editor, format);
+
+  if (isList) {
+    EditListTransforms.toggleList(editor, format);
+    return;
+  }
+
+  const newProperties = {
+    type: getNewType({ isActive, format }),
+  };
+
+  Transforms.setNodes(editor, newProperties);
+
+  if (!isActive && isList) {
+    const block = { type: format, children: [] };
+    Transforms.wrapNodes(editor, block);
+  }
 };
 
 const toggleMark = (editor, format) => {
+  console.log('toggleMark', editor, format);
   const isActive = isMarkActive(editor, format);
 
   if (isActive) {

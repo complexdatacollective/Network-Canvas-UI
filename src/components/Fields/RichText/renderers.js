@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -17,8 +18,6 @@ const Element = ({ attributes, children, element }) => {
       return <h3 {...attributes}>{children}</h3>;
     case 'heading_four':
       return <h4 {...attributes}>{children}</h4>;
-    case 'heading_five':
-      return <h5 {...attributes}>{children}</h5>;
     case 'list_item':
       return <li {...attributes}>{children}</li>;
     default:
@@ -41,11 +40,11 @@ Element.defaultProps = {
 
 const withMarks = (content, leaf) => {
   if (leaf.bold) {
-    return <strong>{content}</strong>;
-  }
+    if (leaf.italic) {
+      return <strong><em>{content}</em></strong>;
+    }
 
-  if (leaf.code) {
-    return <code>{content}</code>;
+    return <strong>{content}</strong>;
   }
 
   if (leaf.italic) {
@@ -66,7 +65,6 @@ Leaf.propTypes = {
     bold: PropTypes.bool,
     italic: PropTypes.bool,
     underline: PropTypes.bool,
-    code: PropTypes.bool,
   }).isRequired,
 };
 

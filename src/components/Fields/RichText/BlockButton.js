@@ -10,10 +10,9 @@ import {
 
 const BlockButton = ({ format, icon }) => {
   const editor = useSlate();
-
   return (
     <button
-      active={isBlockActive(editor, format)}
+      active={isBlockActive(editor, format) ? 'true' : undefined}
       onMouseDown={(event) => {
         event.preventDefault();
         toggleBlock(editor, format);

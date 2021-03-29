@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import uuid from 'uuid/v4';
 import Icon from '../../Icon';
 import RichText from './RichText';
+import MarkdownLabel from '../MarkdownLabel';
 import { MODES } from './options';
 
 const RichTextField = ({
@@ -19,15 +20,14 @@ const RichTextField = ({
 
   return (
     <div className="form-field-container">
-      { anyLabel && (
-        <h4>{anyLabel}</h4>
-      )}
+      { anyLabel
+        && <MarkdownLabel label={anyLabel} />}
       <div className="form-field-rich-text">
         <RichText
           id={id.current}
           value={input.value}
           onChange={input.onChange}
-          placeholder={placeholder || label}
+          placeholder={placeholder}
           autoFocus={autoFocus} // eslint-disable-line
           mode={mode}
         />

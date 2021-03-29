@@ -75,3 +75,18 @@ export const customIcon = () => (
   </Harness>
 );
 
+export const sizes = () => (
+  <Harness
+    requiredProps={requiredProps}
+  >
+    {props => (
+      <p>
+        <Button {...props} size="small">Smol button</Button>
+        <br />
+        <br />
+        <Button {...props}>Standard button</Button>
+      </p>
+    )}
+  </Harness>
+);
+

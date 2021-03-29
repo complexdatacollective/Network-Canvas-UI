@@ -4,7 +4,6 @@ import markdown from 'remark-parse';
 import { isEmpty } from 'lodash';
 
 export const defaultValue = [{
-  // type: 'paragraph',
   children: [
     { text: '' },
   ],
@@ -20,7 +19,7 @@ const parse = (value) => {
     .use(markdown)
     .use(slate)
     .process(value)
-    .then(({ contents }) => contents);
+    .then(({ result }) => result);
 };
 
 export default parse;

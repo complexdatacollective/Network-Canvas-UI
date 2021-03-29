@@ -16,7 +16,6 @@ const SHORTCUTS = {
   '##': 'heading_two',
   '###': 'heading_three',
   '####': 'heading_four',
-  '#####': 'heading_five',
 };
 
 const withShortcuts = (editor) => {

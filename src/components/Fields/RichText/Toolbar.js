@@ -17,7 +17,6 @@ const Toolbar = ({ controls }) => (
         <BlockButton format="heading_two" icon="h2" />
         <BlockButton format="heading_three" icon="h3" />
         <BlockButton format="heading_four" icon="h4" />
-        <BlockButton format="heading_five" icon="h5" />
       </>
     )}
     { includes(controls, 'quote') && (

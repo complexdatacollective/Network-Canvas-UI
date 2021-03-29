@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { Editable, withReact, Slate } from 'slate-react';
 import { createEditor } from 'slate';
@@ -64,6 +64,7 @@ const RichText = ({
   mode,
   onChange,
   value: initialValue,
+  placeholder,
 }) => {
   const [value, setValue] = useState(defaultValue);
   const normalizeOptions = {
@@ -83,105 +84,43 @@ const RichText = ({
     [],
   );
 
-  // TODO: it needs to rerender when selection changes
-  const renderToolbar = useCallback(() => {
-    const inList = Editor.isSelectionInList(editor);
-
-    return (
-      <div>
-        <div
-          className={inList ? 'active' : ''}
-          onClick={() =>
-            inList
-              ? Transforms.unwrapList(editor)
-              : Transforms.wrapInList(editor)
-          }
-        >
-          <i className="fa fa-list-ul fa-lg" />
-        </div>
-
-        <div
-          className={inList ? '' : 'disabled'}
-          onClick={() => Transforms.decreaseItemDepth(editor)}
-        >
-          <i className="fa fa-outdent fa-lg" />
-        </div>
-
-        <div
-          className={inList ? '' : 'disabled'}
-          onClick={() => Transforms.increaseItemDepth(editor)}
-        >
-          <i className="fa fa-indent fa-lg" />
-        </div>
-
-        <span className="sep">·</span>
-
-        <div onClick={() => Transforms.wrapInList(editor)}>
-          Wrap in list
-        </div>
-        <div onClick={() => Transforms.unwrapList(editor)}>
-          Unwrap from list
-        </div>
-
-        <div onClick={() => Transforms.toggleList(editor, 'ol_list')}>
-          Toggle ordered list
-        </div>
-        <div onClick={() => Transforms.toggleList(editor)}>
-          Toggle unordered list
-        </div>
-
-        <div
-          onClick={() => {
-            console.log(JSON.stringify(editor.selection, null, 2))
-            console.log(JSON.stringify(Editor.getItemsAtRange(editor), null, 2))
-          }}
-        >
-          Dump selection
-        </div>
-      </div>
-    );
-  });
-
   // Set starting state from prop value on start up
   useEffect(() => {
     parse(initialValue)
-      .then((newValue) => {
-        console.log(JSON.stringify({ parsed: newValue, initialValue }, null, 2));
-        return newValue;
-      })
       .then(setValue);
   }, []);
 
   // Update upstream on change
   useEffect(() => {
     onChange(serialize(value));
-    console.log(JSON.stringify({ serialized: serialize(value), value }, null, 2));
-  }, [onChange, value]);
+  }, [value]);
 
-  // const handleKeyDown = (event) => {
-  //   Object.keys(HOTKEYS).forEach((hotkey) => {
-  //     if (isHotkey(hotkey, event)) {
-  //       event.preventDefault();
-  //       const mark = HOTKEYS[hotkey];
-  //       toggleMark(editor, mark);
-  //     }
-  //   });
-  // };
+  const handleKeyDown = (event) => {
+    Object.keys(HOTKEYS).forEach((hotkey) => {
+      if (isHotkey(hotkey, event)) {
+        event.preventDefault();
+        const mark = HOTKEYS[hotkey];
+        toggleMark(editor, mark, Transforms, Editor);
+      }
+    });
+  };
 
   const controls = TOOLBAR_MODES[mode];
-
   return (
     <Slate editor={editor} value={value} onChange={setValue}>
       <RichTextContainer>
         <Toolbar controls={controls} />
-        <div className="rich-text__editable">
+        <div className={`rich-text__editable ${mode === 'single' ? 'rich-text__editable--inline' : ''}`}>
           <Editable
             renderElement={Element}
             renderLeaf={Leaf}
-            placeholder=""
+            placeholder={placeholder}
             spellCheck
-            autoFocus
-            onKeyDown={onKeyDown(editor)}
+            autoFocus={autoFocus}
+            onKeyDown={(e) => {
+              handleKeyDown(e);
+              onKeyDown(editor)(e);
+            }}
           />
         </div>
       </RichTextContainer>
@@ -191,6 +130,7 @@ const RichText = ({
 
 RichText.propTypes = {
   value: PropTypes.string,
+  placeholder: PropTypes.string,
   onChange: PropTypes.func,
   mode: PropTypes.oneOf(Object.values(MODES)),
   autoFocus: PropTypes.bool,
@@ -198,6 +138,7 @@ RichText.propTypes = {
 
 RichText.defaultProps = {
   value: '',
+  placeholder: 'Enter some text...',
   onChange: () => {},
   mode: MODES.full,
   autoFocus: false,
