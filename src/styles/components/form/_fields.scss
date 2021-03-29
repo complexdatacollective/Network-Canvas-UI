@@ -59,6 +59,7 @@ $size: 2rem;
   }
 }
 
+@import './fields/boolean';
 @import './fields/radio';
 @import './fields/radio-group';
 @import './fields/checkbox';
