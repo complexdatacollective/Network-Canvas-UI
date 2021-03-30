@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import Harness from './helpers/Harness';
 import { Field as RichTextField, MODES } from '../src/components/Fields/RichText';
@@ -16,6 +16,10 @@ export default { title: 'Fields/RichText' };
 
 export const Renders = () => {
   const [value, setValue] = useState();
+
+  useEffect(() => {
+    console.log(JSON.stringify(value));
+  }, [value]);
 
   return (
     <Harness
@@ -43,6 +47,11 @@ export const Renders = () => {
 
 export const Modes = () => Object.keys(MODES).map((mode) => {
   const [value, setValue] = useState();
+
+  useEffect(() => {
+    console.log(JSON.stringify(value));
+  }, [value]);
+
   return (
     <Harness
       requiredProps={requiredProps}

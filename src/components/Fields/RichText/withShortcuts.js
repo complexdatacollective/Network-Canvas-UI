@@ -1,16 +1,15 @@
 /* eslint-disable no-param-reassign */
 import {
-  Editor,
-  Transforms,
   Range,
   Point,
   Element as SlateElement,
 } from 'slate';
+import { EditListPlugin } from '@productboard/slate-edit-list';
 
 const SHORTCUTS = {
-  '*': 'list_item',
-  '-': 'list_item',
-  '+': 'list_item',
+  '1.': 'ol_list',
+  '*': 'ul_list',
+  '-': 'ul_list',
   '>': 'block_quote',
   '#': 'heading_one',
   '##': 'heading_two',
@@ -18,11 +17,13 @@ const SHORTCUTS = {
   '####': 'heading_four',
 };
 
-const withShortcuts = (editor) => {
+const withShortcuts = (mode) => (editor) => {
   const {
     deleteBackward,
     insertText,
   } = editor;
+
+  const [, , { Editor, Transforms }] = EditListPlugin();
 
   editor.insertText = (text) => {
     const { selection } = editor;
@@ -32,35 +33,37 @@ const withShortcuts = (editor) => {
       const block = Editor.above(editor, {
         match: (n) => Editor.isBlock(editor, n),
       });
+
+      // Attempt to choose the following block?
+      // This code is from the Slate examples, and the methods
+      // aren't well documented :/
       const path = block ? block[1] : [];
       const start = Editor.start(editor, path);
       const range = { anchor, focus: start };
       const beforeText = Editor.string(editor, range);
       const type = SHORTCUTS[beforeText];
 
+      // If type is set, we matched with one of our shortcuts
       if (type) {
+        // Delete the existing character(s)
         Transforms.select(editor, range);
         Transforms.delete(editor);
+
+        // If shortcut is a list, wrap - unless we are in inline mode!
+        if ((type === 'ul_list' || type === 'ol_list') && mode !== 'inline') {
+          Transforms.wrapInList(editor, type);
+          // Return here because we already updated the element type and don't
+          // need to do it again below.
+          return;
+        }
+
+        // Update the element type based on the shortcut type
         const newProperties = {
           type,
         };
         Transforms.setNodes(editor, newProperties, {
           match: (n) => Editor.isBlock(editor, n),
         });
-
-        if (type === 'list_item') {
-          const list = {
-            type: 'ul_list',
-            children: [],
-          };
-          Transforms.wrapNodes(editor, list, {
-            match: (n) => (
-              !Editor.isEditor(n)
-              && SlateElement.isElement(n)
-              && n.type === 'list_item'
-            ),
-          });
-        }
 
         return;
       }
@@ -91,17 +94,6 @@ const withShortcuts = (editor) => {
             type: 'paragraph',
           };
           Transforms.setNodes(editor, newProperties);
-
-          if (block.type === 'list_item') {
-            Transforms.unwrapNodes(editor, {
-              match: (n) => (
-                !Editor.isEditor(n)
-                && SlateElement.isElement(n)
-                && n.type === 'ul_list'
-              ),
-              split: true,
-            });
-          }
 
           return;
         }

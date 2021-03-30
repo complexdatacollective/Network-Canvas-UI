@@ -63,9 +63,6 @@ const RichText = ({
   placeholder,
 }) => {
   const [value, setValue] = useState(defaultValue);
-  const normalizeOptions = {
-    mode,
-  };
 
   const [withEditList, onKeyDown, { Editor, Transforms }] = EditListPlugin({
     maxDepth: 1,
@@ -74,8 +71,8 @@ const RichText = ({
   const editor = useMemo(
     () => compose(
       withEditList,
-      withShortcuts,
-      withNormalize(normalizeOptions),
+      withNormalize(mode),
+      withShortcuts(mode),
       withHistory,
       withReact,
     )(createEditor()),
@@ -113,7 +110,7 @@ const RichText = ({
           <Editable
             renderElement={Element}
             renderLeaf={Leaf}
-            placeholder={<em>{placeholder}</em>}
+            placeholder={(<em style={{ userSelect: 'none' }}>{placeholder}</em>)}
             spellCheck
             autoFocus={autoFocus}
             onKeyDown={(e) => {

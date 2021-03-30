@@ -1,19 +1,13 @@
 /* eslint-disable no-param-reassign,no-restricted-syntax */
 import { Transforms, Node, Element } from 'slate';
-import { MODES } from './options';
-
-const defaultOptions = {
-  mode: MODES.full,
-};
 
 /**
  * This extends the editor with a custom normalization
  * function to support 'single' line, and 'marks' only
  * modes.
  */
-const withNormalize = (userOptions) => (editor) => {
+const withNormalize = (mode) => (editor) => {
   const { normalizeNode } = editor;
-  const options = { ...defaultOptions, ...userOptions };
 
   editor.normalizeNode = ([node, path]) => {
     /**
@@ -22,11 +16,11 @@ const withNormalize = (userOptions) => (editor) => {
      * We can the top-level nodes, for each
      * subsequent element after the first we
      * merge it with the previous, creating
-     * a inline node.
+     * an inline node.
      */
 
     // for top level paths only
-    if (options.mode === MODES.inline && path.length === 0) {
+    if (mode === 'inline' && path.length === 0) {
       // If empty, insert a blank paragraph node
       if (editor.children.length < 1) {
         const defaultNode = { type: 'paragraph', children: [{ text: '' }] };
@@ -45,22 +39,6 @@ const withNormalize = (userOptions) => (editor) => {
         } else if (Element.isElement(child)) {
           Transforms.mergeNodes(editor, { at: childPath });
         }
-      }
-    }
-
-    /**
-     * 'marks' mode
-     *
-     * Ensures that all elements are paragraphs
-     */
-    // Filter allowed Elements
-    if (options.mode === MODES.marks) {
-      if (Element.isElement(node) && node.type !== 'paragraph') {
-        Transforms.setNodes(
-          editor,
-          { type: 'paragraph' },
-          { at: path },
-        );
       }
     }
 

@@ -24,7 +24,7 @@
     &:not(.rich-text__editable--inline) {
       resize:vertical;
       overflow: auto;
-      min-height: unit(20);
+      // min-height: unit(20);
     }
 
     cursor: text;
