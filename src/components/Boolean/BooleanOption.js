@@ -6,6 +6,7 @@ import RoundCheckbox from './RoundCheckbox';
 const BooleanOption = ({
   selected,
   label,
+  onClick,
 }) => {
   const classes = cx(
     'boolean-option',
@@ -13,7 +14,7 @@ const BooleanOption = ({
   );
 
   return (
-    <div className={classes}>
+    <div className={classes} onClick={onClick}>
       <RoundCheckbox checked={selected} />
       {label}
     </div>
@@ -23,10 +24,12 @@ const BooleanOption = ({
 BooleanOption.propTypes = {
   selected: PropTypes.bool,
   label: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
 };
 
 BooleanOption.defaultProps = {
   selected: false,
+  onClick: () => {},
 };
 
 export default BooleanOption;
