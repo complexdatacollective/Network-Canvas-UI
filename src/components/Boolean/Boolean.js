@@ -17,7 +17,7 @@ const Boolean = ({
         />
       ))}
     </div>
-    <div className="boolean__options">
+    <div className="boolean__reset">
       <div onClick={() => onChange(null)}>
         Reset answer
       </div>

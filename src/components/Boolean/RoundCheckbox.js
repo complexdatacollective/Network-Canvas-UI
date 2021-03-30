@@ -12,7 +12,7 @@ const RoundCheckbox = ({ checked }) => {
   return (
     <div className={classes}>
       <DoneIcon
-        style={{ color: 'var(--input-accent)' }}
+        style={{ color: 'var(--color-white)' }}
       />
     </div>
   );

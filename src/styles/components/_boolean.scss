@@ -1,8 +1,69 @@
 .boolean {
+  background: var(--input-background);
+  border-radius: var(--border-radius);
+  padding: .75rem;
+  margin-top: 1rem;
+
+  &__options {
+    display: block;
+  }
+
+  &__reset {
+    display: block;
+    font-size: .9rem;
+    margin-top: 1rem;
+    color: var(--input-text);
+    text-decoration: underline;
+  }
 }
 
 .boolean-option {
+  display: inline-flex;
+  border-color: transparent;
+  border-width: 0.125rem;
+  border-style: solid;
+  padding: .5rem .75rem;
+  border-radius: var(--border-radius);
+  justify-content: center;
+  align-items: center;
+  margin-left: 1rem;
+  background: var(--input-background);
+  color: var(--input-text);
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  &--selected {
+    border-color: var(--input-accent);
+  }
 }
 
 .round-checkbox {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: content-box;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 1.4rem;
+  border-color: var(--color-white);
+  border-width: 0.125rem;
+  border-style: solid;
+  margin-right: 0.5rem;
+
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    opacity: 0;
+  }
+
+  &--checked {
+    background-color: var(--input-accent);
+    border-color: transparent;
+
+    svg {
+      opacity: 1;
+    }
+  }
 }
