@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { action } from '@storybook/addon-actions';
 import Harness from './helpers/Harness';
 import { Field as RichTextField, MODES } from '../src/components/Fields/RichText';
 
@@ -9,15 +8,14 @@ import '../src/styles/_all.scss';
 
 const requiredProps = {
   label: 'This prompt text contains **markdown** _formatting_',
-  placeholder: '',
-  input: { value: 'something **with markdown**\n\n- and a\n- list\n\nThat has other elements following it.\n> A block quote' },
+  input: { value: '# Heading!\n\nsomething **with markdown**\n\n- and a\n- list\n\nThat has other elements following it.\n\n1. Numbered\n1. Elements\n\n> A block quote\n\nHello' },
   meta: {},
 };
 
 export default { title: 'Fields/RichText' };
 
 export const Renders = () => {
-  const [things, setValue] = useState();
+  const [value, setValue] = useState();
 
   return (
     <Harness
@@ -31,11 +29,11 @@ export const Renders = () => {
           <RichTextField {...props} />
           <div style={{ margin: '2rem 0' }}>
             <h4>Rendered Markdown:</h4>
-            <ReactMarkdown>{things}</ReactMarkdown>
+            <ReactMarkdown>{value}</ReactMarkdown>
           </div>
           <div style={{ margin: '2rem 0' }}>
             <h4>Raw Markdown:</h4>
-            <pre>{things}</pre>
+            <pre>{JSON.stringify({ value }, null, 2)}</pre>
           </div>
         </>
       )}
@@ -43,9 +41,8 @@ export const Renders = () => {
   );
 };
 
-export const Inline = () => {
-  const [things, setValue] = useState();
-
+export const Modes = () => Object.keys(MODES).map((mode) => {
+  const [value, setValue] = useState();
   return (
     <Harness
       requiredProps={requiredProps}
@@ -53,21 +50,13 @@ export const Inline = () => {
         onChange: setValue,
         value: 'An **_inline_** value that might _represent a prompt_.',
       }}
-      mode={MODES.single}
+      mode={MODES[mode]}
     >
-      {props => (
+      {(props) => (
         <>
           <RichTextField {...props} />
-          <div style={{ margin: '2rem 0' }}>
-            <h4>Rendered Markdown:</h4>
-            <ReactMarkdown>{things}</ReactMarkdown>
-          </div>
-          <div style={{ margin: '2rem 0' }}>
-            <h4>Raw Markdown:</h4>
-            <pre>{things}</pre>
-          </div>
         </>
       )}
     </Harness>
   );
-};
+});

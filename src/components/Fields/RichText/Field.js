@@ -61,7 +61,7 @@ RichTextField.propTypes = {
 
 RichTextField.defaultProps = {
   autoFocus: false,
-  placeholder: null,
+  placeholder: undefined,
   label: null,
   meta: {},
   mode: MODES.full,

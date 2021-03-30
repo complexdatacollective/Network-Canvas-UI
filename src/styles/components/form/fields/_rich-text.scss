@@ -9,12 +9,25 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
+
+    .toolbar-spacer {
+      background: var(--color-platinum--dark);
+      flex: 0 0 auto;
+      width: 2px;
+      height: unit(2);
+      margin: 0 unit(1.5);
+    }
   }
 
   &__editable {
+
+    &:not(.rich-text__editable--inline) {
+      resize:vertical;
+      overflow: auto;
+      min-height: unit(20);
+    }
+
     cursor: text;
-    resize:vertical;
-    overflow: auto;
     color: var(--input-text);
     padding: 0 unit(2);
     border-bottom-width: unit(.25);
@@ -43,14 +56,15 @@
     background-color: transparent;
     transition: filter var(--animation-easing) var(--animation-duration-fast), background-color var(--animation-easing) var(--animation-duration-fast);
     cursor: pointer;
-    height: unit(4);
-    width: unit(4);
-    margin: unit(0.5);
+    height: unit(3.5);
+    width: unit(3.5);
+    margin: unit(0.5) unit(0.3);
     filter: grayscale(100%) brightness(65%);
     border-radius: 50%;
 
     svg {
       vertical-align: middle;
+      width: 100%;
     }
 
     &:hover {
@@ -66,7 +80,7 @@
     }
   }
 
-  &--is-active {
+  &:hover {
     .rich-text__editable {
       border-bottom: 2px solid var(--input-accent);
     }

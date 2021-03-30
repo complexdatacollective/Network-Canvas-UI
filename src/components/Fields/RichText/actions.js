@@ -7,12 +7,12 @@ import { EditListPlugin } from '@productboard/slate-edit-list';
 
 const LIST_TYPES = ['ul_list', 'ol_list'];
 
-const [withEditList, onKeyDown, { Transforms: EditListTransforms }] = EditListPlugin();
+const [, , { Transforms: EditListTransforms }] = EditListPlugin();
 
-const getNewType = ({ isActive, format }) => {
+const getNewType = ({ isActive, isList, format }) => {
+  if (isList) { return 'list_item'; }
   // If isActive is set, format already set. Remove it.
   if (isActive) { return 'paragraph'; }
-
   // Otherwise return the new format ready to apply
   return format;
 };
@@ -36,27 +36,27 @@ const toggleBlock = (editor, format) => {
   const isActive = isBlockActive(editor, format);
   const isList = LIST_TYPES.includes(format);
 
-  console.log('toggleBlock', isActive, isList, editor, format);
-
-  if (isList) {
-    EditListTransforms.toggleList(editor, format);
-    return;
+  // If we are formatting a list and in one, unwrap
+  if (isList && isActive) {
+    EditListTransforms.unwrapList(editor, format);
+    return; // Important that we do not setNodes() after this
   }
 
-  const newProperties = {
-    type: getNewType({ isActive, format }),
-  };
+  // If we are formatting a list but not it in one, wrap
+  if (isList && !isActive) {
+    EditListTransforms.wrapInList(editor, format);
+  }
 
-  Transforms.setNodes(editor, newProperties);
+  if (!isList) {
+    const newProperties = {
+      type: getNewType({ isActive, isList, format }),
+    };
 
-  if (!isActive && isList) {
-    const block = { type: format, children: [] };
-    Transforms.wrapNodes(editor, block);
+    Transforms.setNodes(editor, newProperties);
   }
 };
 
 const toggleMark = (editor, format) => {
-  console.log('toggleMark', editor, format);
   const isActive = isMarkActive(editor, format);
 
   if (isActive) {

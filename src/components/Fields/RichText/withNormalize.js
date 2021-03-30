@@ -17,16 +17,16 @@ const withNormalize = (userOptions) => (editor) => {
 
   editor.normalizeNode = ([node, path]) => {
     /**
-     * 'single' mode
+     * 'inline' mode
      *
      * We can the top-level nodes, for each
      * subsequent element after the first we
      * merge it with the previous, creating
-     * a single node.
+     * a inline node.
      */
 
     // for top level paths only
-    if (options.mode === MODES.single && path.length === 0) {
+    if (options.mode === MODES.inline && path.length === 0) {
       // If empty, insert a blank paragraph node
       if (editor.children.length < 1) {
         const defaultNode = { type: 'paragraph', children: [{ text: '' }] };

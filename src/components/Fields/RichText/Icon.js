@@ -10,6 +10,8 @@ import H4Icon from '@material-ui/icons/Looks4Rounded';
 import H5Icon from '@material-ui/icons/Looks5Rounded';
 import ULIcon from '@material-ui/icons/FormatListBulletedRounded';
 import OLIcon from '@material-ui/icons/FormatListNumberedRounded';
+import UndoIcon from '@material-ui/icons/UndoRounded';
+import RedoIcon from '@material-ui/icons/RedoRounded';
 
 const icons = {
   bold: BoldIcon,
@@ -22,6 +24,8 @@ const icons = {
   h5: H5Icon,
   ul: ULIcon,
   ol: OLIcon,
+  undo: UndoIcon,
+  redo: RedoIcon,
 };
 
 const Icon = ({ name }) => {

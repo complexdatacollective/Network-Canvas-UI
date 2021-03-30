@@ -19,7 +19,6 @@ import RichTextContainer from './RichTextContainer';
 const HOTKEYS = {
   'mod+b': 'bold',
   'mod+i': 'italic',
-  'mod+u': 'underline',
 };
 
 /**
@@ -44,14 +43,11 @@ const HOTKEYS = {
  *
  * This editor has modes:
  * - 'full': All markdown features available
- * - 'marks': Inline features, such as italic, bold are
- *   enabled. Multiline is enabled.
- * - 'single': Same as 'marks', but no multiline.
+ * - 'inline': Same as 'marks', but no multiline.
  *
  * @param {bool} autoFocus Focus input automatically when
  * rendered.
- * @param {string} mode One of 'single', 'full' (default),
- * 'marks'.
+ * @param {string} mode One of 'inline', 'full' (default),
  * @param {func} onChange Will receive a markdown value when
  * the document changes
  * @param {string} value Expects a value which will be used
@@ -71,7 +67,9 @@ const RichText = ({
     mode,
   };
 
-  const [withEditList, onKeyDown, { Editor, Transforms }] = EditListPlugin();
+  const [withEditList, onKeyDown, { Editor, Transforms }] = EditListPlugin({
+    maxDepth: 1,
+  });
 
   const editor = useMemo(
     () => compose(
@@ -106,15 +104,16 @@ const RichText = ({
   };
 
   const controls = TOOLBAR_MODES[mode];
+
   return (
     <Slate editor={editor} value={value} onChange={setValue}>
       <RichTextContainer>
-        <Toolbar controls={controls} />
-        <div className={`rich-text__editable ${mode === 'single' ? 'rich-text__editable--inline' : ''}`}>
+        <Toolbar controls={controls} editor={editor} />
+        <div className={`rich-text__editable ${mode === 'inline' ? 'rich-text__editable--inline' : ''}`}>
           <Editable
             renderElement={Element}
             renderLeaf={Leaf}
-            placeholder={placeholder}
+            placeholder={<em>{placeholder}</em>}
             spellCheck
             autoFocus={autoFocus}
             onKeyDown={(e) => {

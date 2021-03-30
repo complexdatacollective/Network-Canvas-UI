@@ -93,7 +93,7 @@ TextInput.defaultProps = {
   autoFocus: false,
   label: null,
   fieldLabel: null,
-  placeholder: '',
+  placeholder: 'Enter some text...',
   className: '',
   hidden: false,
 };
