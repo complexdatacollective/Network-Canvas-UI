@@ -26,12 +26,15 @@
   border-radius: var(--border-radius);
   justify-content: center;
   align-items: center;
-  margin-left: 1rem;
+  margin-right: 1rem;
   background: var(--input-background);
   color: var(--input-text);
+  transition-property: border-color;
+  transition-duration: var(--animation-duration-standard);
+  transition-timing-function: var(--animation-easing);
 
-  &:first-child {
-    margin-left: 0;
+  &:last-child {
+    margin-right: 0;
   }
 
   &--selected {
@@ -51,11 +54,17 @@
   border-width: 0.125rem;
   border-style: solid;
   margin-right: 0.5rem;
+  transition-property: border-color, background-color;
+  transition-duration: var(--animation-duration-standard);
+  transition-timing-function: var(--animation-easing);
 
   svg {
     width: 1.5rem;
     height: 1.5rem;
     opacity: 0;
+    transition-property: opacity;
+    transition-duration: var(--animation-duration-standard);
+    transition-timing-function: var(--animation-easing);
   }
 
   &--checked {
