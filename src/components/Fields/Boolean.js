@@ -9,23 +9,19 @@ const BooleanField = ({
   className,
   input,
   disabled,
+  options,
 }) => {
   const componentClasses = cx(
-    'form-field-boolean',
+    'form-field-container form-field-boolean',
     className,
     {
       'form-field-boolean--disabled': disabled,
     },
   );
 
-  const options = [
-    { label: 'Yes', value: true },
-    { label: 'No', value: false },
-  ];
-
   return (
     <div className={componentClasses}>
-      <div className="form-field-boolean__label">
+      <div className="form-field-label">
         {label && <MarkdownLabel label={label} className="form-field-inline-label" />}
       </div>
       <div className="form-field-boolean__control">
@@ -44,12 +40,24 @@ BooleanField.propTypes = {
   className: PropTypes.string,
   disabled: PropTypes.bool,
   input: PropTypes.object.isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.stirng,
+      value: PropTypes.oneOf([
+        PropTypes.bool,
+      ]),
+    }),
+  ),
 };
 
 BooleanField.defaultProps = {
   className: '',
   label: null,
   disabled: false,
+  options: [
+    { label: 'Yes', value: true },
+    { label: 'No', value: false },
+  ],
 };
 
 export default BooleanField;
