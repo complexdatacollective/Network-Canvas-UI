@@ -13,8 +13,8 @@ import { toggleMark } from './actions';
 import { Element, Leaf } from './renderers';
 import serialize from './serialize';
 import parse, { defaultValue } from './parse';
-import { MODES, TOOLBAR_MODES } from './options';
 import RichTextContainer from './RichTextContainer';
+import { INLINE_DISALLOWED_ITEMS } from './options';
 
 const HOTKEYS = {
   'mod+b': 'bold',
@@ -33,21 +33,30 @@ const HOTKEYS = {
  * the element types and leaf types are arbitrary - in
  * this case we are using the types provided by our
  * very opinionated serialize/parse library `remark-slate`.
- * These are the types you will see in `options.js`, that
- * are set using the `buttons.js` components.
  *
  * The other notable feature is our normalizer. When
  * document is updated, this method is run for each node
  * and is how we restrict block types and force single
  * line mode.
  *
- * This editor has modes:
- * - 'full': All markdown features available
- * - 'inline': Same as 'marks', but no multiline.
+ * This editor has two props that set its operation:
+ * - 'inline' (bool):
+ *   determines if elements that would cause a line
+ *   break or block level element can be created.
+ *   Default is false.
+ *
+ * - 'disallowedTypes' (array):
+ *   Array containing any 'type' listed in options.js
+ *   which will then be excluded from the toolbar and
+ *   markdown shortcuts.
  *
  * @param {bool} autoFocus Focus input automatically when
  * rendered.
- * @param {string} mode One of 'inline', 'full' (default),
+ * @param {bool} inline determines if elements that would
+ * cause a line break or block level element can be created.
+ * @param {array} disallowedTypes Array containing any
+ * 'type' listed in options.js which will then be excluded
+ * from the toolbar and markdown shortcuts.
  * @param {func} onChange Will receive a markdown value when
  * the document changes
  * @param {string} value Expects a value which will be used
@@ -57,7 +66,8 @@ const HOTKEYS = {
 
 const RichText = ({
   autoFocus,
-  mode,
+  inline,
+  disallowedTypes,
   onChange,
   value: initialValue,
   placeholder,
@@ -65,14 +75,26 @@ const RichText = ({
   const [value, setValue] = useState(defaultValue);
 
   const [withEditList, onKeyDown, { Editor, Transforms }] = EditListPlugin({
-    maxDepth: 1,
+    maxDepth: 1, // Restrict list depth to one, for now.
+  });
+
+  // Use the inline prop to optionally merge additional disallowed items
+  const disallowedTypesWithDefaults = [
+    ...disallowedTypes,
+    ...[...(inline ? INLINE_DISALLOWED_ITEMS : [])],
+  ];
+
+  const withOptions = (e) => Object.assign(e, {
+    inline,
+    disallowedTypes: disallowedTypesWithDefaults,
   });
 
   const editor = useMemo(
     () => compose(
+      withNormalize,
+      withShortcuts,
+      withOptions,
       withEditList,
-      withNormalize(mode),
-      withShortcuts(mode),
       withHistory,
       withReact,
     )(createEditor()),
@@ -100,13 +122,11 @@ const RichText = ({
     });
   };
 
-  const controls = TOOLBAR_MODES[mode];
-
   return (
     <Slate editor={editor} value={value} onChange={setValue}>
       <RichTextContainer>
-        <Toolbar controls={controls} editor={editor} />
-        <div className={`rich-text__editable ${mode === 'inline' ? 'rich-text__editable--inline' : ''}`}>
+        <Toolbar disallowedTypes={disallowedTypesWithDefaults} editor={editor} />
+        <div className={`rich-text__editable ${inline ? 'rich-text__editable--inline' : ''}`}>
           <Editable
             renderElement={Element}
             renderLeaf={Leaf}
@@ -128,7 +148,8 @@ RichText.propTypes = {
   value: PropTypes.string,
   placeholder: PropTypes.string,
   onChange: PropTypes.func,
-  mode: PropTypes.oneOf(Object.values(MODES)),
+  inline: PropTypes.bool,
+  disallowedTypes: PropTypes.array,
   autoFocus: PropTypes.bool,
 };
 
@@ -136,7 +157,8 @@ RichText.defaultProps = {
   value: '',
   placeholder: 'Enter some text...',
   onChange: () => {},
-  mode: MODES.full,
+  inline: false,
+  disallowedTypes: [],
   autoFocus: false,
 };
 

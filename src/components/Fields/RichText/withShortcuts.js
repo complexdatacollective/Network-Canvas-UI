@@ -15,15 +15,36 @@ const SHORTCUTS = {
   '##': 'heading_two',
   '###': 'heading_three',
   '####': 'heading_four',
+  '#####': 'heading_five', // Always disallowed
+  '######': 'heading_six', // Always disallowed
 };
 
-const withShortcuts = (mode) => (editor) => {
+// Maps disallowed types to shortcut types
+const TYPE_MAP = {
+  lists: ['ol_list', 'ul_list'],
+  headings: ['heading_one', 'heading_two', 'heading_three', 'heading_four', 'heading_five', 'heading_six'],
+  quote: ['block_quote'],
+};
+
+const withShortcuts = (editor) => {
   const {
     deleteBackward,
     insertText,
+    inline,
+    disallowedTypes,
   } = editor;
 
   const [, , { Editor, Transforms }] = EditListPlugin();
+
+  // Disallow H5 and H6
+  const isDisallowedHeading = (type) => type === 'heading_five' || type === 'heading_six';
+
+  // Lookup each disallowed type in TYPE_MAP, and return true if the
+  // given type is included
+  const isDisallowedType = (
+    type, typeList,
+  ) => isDisallowedHeading(type)
+  || typeList.some((disallowedType) => TYPE_MAP[disallowedType].includes(type));
 
   editor.insertText = (text) => {
     const { selection } = editor;
@@ -46,11 +67,18 @@ const withShortcuts = (mode) => (editor) => {
       // If type is set, we matched with one of our shortcuts
       if (type) {
         // Delete the existing character(s)
+        // Unless we replace them with setNodes or wrapInList,
+        // this ensures they will not end up in markdown.
         Transforms.select(editor, range);
         Transforms.delete(editor);
 
+        // Cancel shortcut creation if tag is disallowed
+        if (isDisallowedType(type, disallowedTypes)) {
+          return;
+        }
+
         // If shortcut is a list, wrap - unless we are in inline mode!
-        if ((type === 'ul_list' || type === 'ol_list') && mode !== 'inline') {
+        if ((type === 'ul_list' || type === 'ol_list') && !inline) {
           Transforms.wrapInList(editor, type);
           // Return here because we already updated the element type and don't
           // need to do it again below.

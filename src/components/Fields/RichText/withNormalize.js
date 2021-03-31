@@ -6,7 +6,7 @@ import { Transforms, Node, Element } from 'slate';
  * function to support 'single' line, and 'marks' only
  * modes.
  */
-const withNormalize = (mode) => (editor) => {
+const withNormalize = (editor) => {
   const { normalizeNode } = editor;
 
   editor.normalizeNode = ([node, path]) => {
@@ -20,7 +20,7 @@ const withNormalize = (mode) => (editor) => {
      */
 
     // for top level paths only
-    if (mode === 'inline' && path.length === 0) {
+    if (editor.inline && path.length === 0) {
       // If empty, insert a blank paragraph node
       if (editor.children.length < 1) {
         const defaultNode = { type: 'paragraph', children: [{ text: '' }] };

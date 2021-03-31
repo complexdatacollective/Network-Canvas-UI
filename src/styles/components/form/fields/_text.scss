@@ -66,7 +66,7 @@ $module-name: form-field-text;
 
     .#{$module-name}__input {
       margin-bottom: 0;
-      border: 0.1rem solid var(--error);
+      border: 0.125rem solid var(--error);
     }
   }
 }

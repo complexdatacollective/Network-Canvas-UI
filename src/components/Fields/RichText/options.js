@@ -18,7 +18,6 @@ export const MODES = {
   inline: 'inline',
 };
 
-export const TOOLBAR_MODES = {
-  full: [...BLOCKS, ...MARKS, ...HISTORY],
-  inline: [...MARKS, ...HISTORY],
-};
+export const TOOLBAR_ITEMS = [...BLOCKS, ...MARKS, ...HISTORY];
+
+export const INLINE_DISALLOWED_ITEMS = [...BLOCKS];

@@ -1,3 +1,5 @@
+$module-name: form-field-rich-text;
+
 .rich-text {
   background: var(--input-background);
   border-radius: 1rem 1rem 0 0;
@@ -14,7 +16,7 @@
       background: var(--color-platinum--dark);
       flex: 0 0 auto;
       width: 2px;
-      height: unit(2);
+      height: unit(3);
       margin: 0 unit(1.5);
     }
   }
@@ -24,10 +26,8 @@
     &:not(.rich-text__editable--inline) {
       resize:vertical;
       overflow: auto;
-      // min-height: unit(20);
     }
 
-    cursor: text;
     color: var(--input-text);
     padding: 0 unit(2);
     border-bottom-width: unit(.25);
@@ -56,8 +56,8 @@
     background-color: transparent;
     transition: filter var(--animation-easing) var(--animation-duration-fast), background-color var(--animation-easing) var(--animation-duration-fast);
     cursor: pointer;
-    height: unit(3.5);
-    width: unit(3.5);
+    height: unit(4);
+    width: unit(4);
     margin: unit(0.5) unit(0.3);
     filter: grayscale(100%) brightness(65%);
     border-radius: 50%;
@@ -83,6 +83,33 @@
   &:hover {
     .rich-text__editable {
       border-bottom: 2px solid var(--input-accent);
+    }
+  }
+}
+
+.#{$module-name} {
+  &--has-error {
+    .#{$module-name}__error {
+      opacity: 1;
+    }
+
+    .rich-text {
+      border: 0.125rem solid var(--error);
+    }
+  }
+
+  &__error {
+    opacity: 0;
+    background: var(--error);
+    color: var(--form-error-text);
+    transition: opacity var(--animation-easing) var(--animation-duration-standard),
+    max-height var(--animation-easing) var(--animation-duration-standard);
+    padding: 0.5rem 0.25rem;
+    display: flex;
+    align-items: center;
+
+    svg {
+      max-height: 1.2rem;
     }
   }
 }

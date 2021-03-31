@@ -13,8 +13,12 @@ $size: 2rem;
 .form-field-label {
   font-family: var(--heading-font-family);
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 500;
   color: var(--text);
+
+  > * {
+    font-weight: inherit;
+  }
 }
 
 .form-field-inline-label {

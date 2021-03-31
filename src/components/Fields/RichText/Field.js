@@ -1,44 +1,57 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
+import cx from 'classnames';
 import uuid from 'uuid/v4';
 import Icon from '../../Icon';
 import RichText from './RichText';
 import MarkdownLabel from '../MarkdownLabel';
-import { MODES } from './options';
 
 const RichTextField = ({
   input,
-  meta: { error, invalid, touched },
+  meta: {
+    error, active, invalid, touched,
+  },
   label,
   placeholder,
   autoFocus,
-  mode,
+  inline,
+  disallowedTypes,
+  className,
 }) => {
   const id = useRef(uuid());
 
   const anyLabel = label;
 
+  const seamlessClasses = cx(
+    className,
+    'form-field-rich-text',
+    {
+      'form-field-rich-text--has-focus': active,
+      'form-field-rich-text--has-error': invalid && touched && error,
+    },
+  );
+
   return (
     <div className="form-field-container">
       { anyLabel
         && <MarkdownLabel label={anyLabel} />}
-      <div className="form-field-rich-text">
+      <div className={seamlessClasses}>
         <RichText
           id={id.current}
           value={input.value}
           onChange={input.onChange}
           placeholder={placeholder}
-          autoFocus={autoFocus} // eslint-disable-line
-          mode={mode}
+          autoFocus={autoFocus}
+          inline={inline}
+          disallowedTypes={disallowedTypes}
         />
         {invalid && touched && (
-          <div className="form-field-text__error">
+          <div className="form-field-rich-text__error">
             <Icon name="warning" />
             {error}
           </div>
         )}
       </div>
-
     </div>
   );
 };
@@ -51,12 +64,15 @@ RichTextField.propTypes = {
   label: PropTypes.string,
   meta: PropTypes.shape({
     error: PropTypes.string,
+    active: PropTypes.bool,
     invalid: PropTypes.bool,
     touched: PropTypes.bool,
   }),
   placeholder: PropTypes.string,
   autoFocus: PropTypes.bool,
-  mode: PropTypes.oneOf(Object.values(MODES)),
+  inline: PropTypes.bool,
+  disallowedTypes: PropTypes.array,
+  className: PropTypes.string,
 };
 
 RichTextField.defaultProps = {
@@ -64,7 +80,9 @@ RichTextField.defaultProps = {
   placeholder: undefined,
   label: null,
   meta: {},
-  mode: MODES.full,
+  inline: false,
+  disallowedTypes: [],
+  className: null,
 };
 
 export default RichTextField;
