@@ -107,8 +107,24 @@ const RichText = ({
       .then(setValue);
   }, []);
 
+  // Test if there is no text content in the tree
+  const everyChildEmpty = (children) => children.every((child) => {
+    if (child.children) {
+      return everyChildEmpty(child.children);
+    }
+
+    return child.text === '' || !/\S/.test(child.text);
+  });
+
   // Update upstream on change
   useEffect(() => {
+    // If all content is empty, set an empty value so that validation
+    // can pick up on it
+    if (everyChildEmpty(editor.children)) {
+      // Remove <br> and \n and see if string is empty?
+      onChange('');
+      return;
+    }
     onChange(serialize(value));
   }, [value]);
 
@@ -125,7 +141,7 @@ const RichText = ({
   return (
     <Slate editor={editor} value={value} onChange={setValue}>
       <RichTextContainer>
-        <Toolbar disallowedTypes={disallowedTypesWithDefaults} editor={editor} />
+        <Toolbar editor={editor} />
         <div className={`rich-text__editable ${inline ? 'rich-text__editable--inline' : ''}`}>
           <Editable
             renderElement={Element}

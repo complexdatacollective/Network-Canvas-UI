@@ -27,7 +27,7 @@ $module-name: form-field-rich-text;
       resize:vertical;
       overflow: auto;
     }
-
+    cursor: text;
     color: var(--input-text);
     padding: 0 unit(2);
     border-bottom-width: unit(.25);

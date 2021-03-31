@@ -4,7 +4,8 @@ import { includes } from 'lodash';
 import { MarkButton, BlockButton, ToolbarButton } from './ToolbarButton';
 import { TOOLBAR_ITEMS } from './options';
 
-const Toolbar = ({ disallowedTypes, editor }) => {
+const Toolbar = ({ editor }) => {
+  const { disallowedTypes } = editor;
   const filteredItems = TOOLBAR_ITEMS.filter((item) => !disallowedTypes.includes(item));
 
   return (
@@ -53,7 +54,6 @@ const Toolbar = ({ disallowedTypes, editor }) => {
 };
 
 Toolbar.propTypes = {
-  disallowedTypes: PropTypes.array.isRequired,
   editor: PropTypes.object.isRequired,
 };
 

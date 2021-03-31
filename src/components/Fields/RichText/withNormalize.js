@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign,no-restricted-syntax */
-import { Transforms, Node, Element } from 'slate';
+import { Transforms } from 'slate';
 
 /**
  * This extends the editor with a custom normalization
@@ -21,24 +21,12 @@ const withNormalize = (editor) => {
 
     // for top level paths only
     if (editor.inline && path.length === 0) {
+      // TODO: disallow three spaces followed by MD shortcut
+
       // If empty, insert a blank paragraph node
       if (editor.children.length < 1) {
         const defaultNode = { type: 'paragraph', children: [{ text: '' }] };
         Transforms.insertNodes(editor, defaultNode, { at: path.concat(0) });
-      }
-
-      // Force the first node to always be a paragraph and merge any
-      // later nodes
-      for (const [child, childPath] of Node.children(editor, path)) {
-        if (Element.isElement(child) && childPath[0] === 0 && node.type !== 'paragraph') {
-          Transforms.setNodes(
-            editor,
-            { type: 'paragraph', break: false },
-            { at: childPath },
-          );
-        } else if (Element.isElement(child)) {
-          Transforms.mergeNodes(editor, { at: childPath });
-        }
       }
     }
 
