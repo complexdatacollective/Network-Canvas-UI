@@ -3,6 +3,7 @@ import {
   Range,
   Point,
   Element as SlateElement,
+  Editor,
 } from 'slate';
 import { EditListPlugin } from '@productboard/slate-edit-list';
 
@@ -26,6 +27,8 @@ const TYPE_MAP = {
   quote: ['block_quote'],
 };
 
+const [, , { Transforms }] = EditListPlugin();
+
 const withShortcuts = (editor) => {
   const {
     deleteBackward,
@@ -33,8 +36,6 @@ const withShortcuts = (editor) => {
     inline,
     disallowedTypes,
   } = editor;
-
-  const [, , { Editor, Transforms }] = EditListPlugin();
 
   // Disallow H5 and H6
   const isDisallowedHeading = (type) => type === 'heading_five' || type === 'heading_six';
