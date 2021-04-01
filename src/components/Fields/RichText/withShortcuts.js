@@ -3,7 +3,6 @@ import {
   Range,
   Point,
   Element as SlateElement,
-  Editor,
 } from 'slate';
 import { EditListPlugin } from '@productboard/slate-edit-list';
 
@@ -27,7 +26,7 @@ const TYPE_MAP = {
   quote: ['block_quote'],
 };
 
-const [, , { Transforms }] = EditListPlugin();
+const [, , { Transforms, Editor }] = EditListPlugin();
 
 const withShortcuts = (editor) => {
   const {
