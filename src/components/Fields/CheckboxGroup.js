@@ -7,46 +7,30 @@ import Icon from '../Icon';
 import MarkdownLabel from './MarkdownLabel';
 
 class CheckboxGroup extends PureComponent {
-  static propTypes = {
-    options: PropTypes.array,
-    className: PropTypes.string,
-    label: PropTypes.string,
-    fieldLabel: PropTypes.string,
-    input: PropTypes.object.isRequired,
-    optionComponent: PropTypes.func,
-    meta: PropTypes.object,
-  };
-
-  static defaultProps = {
-    className: null,
-    label: null,
-    fieldLabel: null,
-    options: [],
-    optionComponent: Checkbox,
-    meta: {},
-  };
-
   get value() {
-    return this.props.input.value;
+    const { input: { value } } = this.props;
+    return value;
   }
 
   handleClickOption = (index) => {
-    const option = getValue(this.props.options[index]);
+    const { input: { onChange }, options } = this.props;
+    const option = getValue(options[index]);
     const newValue = this.isOptionChecked(option)
       ? this.value.filter((value) => value !== option)
       : [...this.value, option];
 
-    this.props.input.onChange(newValue);
+    onChange(newValue);
   }
 
   isOptionChecked = (option) => {
-    const value = this.props.input.value || [];
+    const { input: { value = [] } } = this.props;
     const included = value.includes(option);
     return included;
   }
 
   renderOption = (option, index) => {
-    const OptionComponent = this.props.optionComponent;
+    const { optionComponent } = this.props;
+    const OptionComponent = optionComponent;
     const { value: optionValue, label: optionLabel, ...optionRest } = asOptionObject(option);
 
     return (
@@ -59,6 +43,7 @@ class CheckboxGroup extends PureComponent {
           onChange: () => this.handleClickOption(index),
         }}
         label={optionLabel}
+        // eslint-disable-next-line react/jsx-props-no-spreading
         {...optionRest}
       />
     );
@@ -102,5 +87,24 @@ class CheckboxGroup extends PureComponent {
     );
   }
 }
+
+CheckboxGroup.propTypes = {
+  options: PropTypes.array,
+  className: PropTypes.string,
+  label: PropTypes.string,
+  fieldLabel: PropTypes.string,
+  input: PropTypes.object.isRequired,
+  optionComponent: PropTypes.func,
+  meta: PropTypes.object,
+};
+
+CheckboxGroup.defaultProps = {
+  className: null,
+  label: null,
+  fieldLabel: null,
+  options: [],
+  optionComponent: Checkbox,
+  meta: {},
+};
 
 export default CheckboxGroup;

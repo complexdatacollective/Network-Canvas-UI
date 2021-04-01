@@ -5,23 +5,6 @@ import uuid from 'uuid';
 import MarkdownLabel from './MarkdownLabel';
 
 class ToggleButton extends PureComponent {
-  static propTypes = {
-    label: PropTypes.string,
-    className: PropTypes.string,
-    disabled: PropTypes.bool,
-    input: PropTypes.object.isRequired,
-    color: PropTypes.string,
-    fieldLabel: PropTypes.string,
-  };
-
-  static defaultProps = {
-    className: '',
-    label: null,
-    disabled: false,
-    color: 'cat-color-seq-1',
-    fieldLabel: null,
-  };
-
   constructor(props) {
     super(props);
 
@@ -67,5 +50,22 @@ class ToggleButton extends PureComponent {
     );
   }
 }
+
+ToggleButton.propTypes = {
+  label: PropTypes.string,
+  className: PropTypes.string,
+  disabled: PropTypes.bool,
+  input: PropTypes.object.isRequired,
+  color: PropTypes.string,
+  fieldLabel: PropTypes.string,
+};
+
+ToggleButton.defaultProps = {
+  className: '',
+  label: null,
+  disabled: false,
+  color: 'cat-color-seq-1',
+  fieldLabel: null,
+};
 
 export default ToggleButton;

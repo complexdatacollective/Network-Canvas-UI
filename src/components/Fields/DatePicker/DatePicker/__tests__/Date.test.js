@@ -9,6 +9,7 @@ const getSubject = (props) => {
   const mockFunctionalComponent = jest.fn(() => null);
 
   mount((
+    // eslint-disable-next-line react/jsx-props-no-spreading
     <DatePicker {...props}>
       <Date>{mockFunctionalComponent}</Date>
     </DatePicker>

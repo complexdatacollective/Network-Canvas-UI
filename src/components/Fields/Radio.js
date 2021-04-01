@@ -5,21 +5,6 @@ import uuid from 'uuid';
 import MarkdownLabel from './MarkdownLabel';
 
 class Radio extends PureComponent {
-  static propTypes = {
-    label: PropTypes.node,
-    fieldLabel: PropTypes.string,
-    className: PropTypes.string,
-    disabled: PropTypes.bool,
-    input: PropTypes.object.isRequired,
-  };
-
-  static defaultProps = {
-    className: '',
-    label: null,
-    fieldLabel: null,
-    disabled: false,
-  };
-
   constructor(props) {
     super(props);
 
@@ -65,5 +50,20 @@ class Radio extends PureComponent {
     );
   }
 }
+
+Radio.propTypes = {
+  label: PropTypes.node,
+  fieldLabel: PropTypes.string,
+  className: PropTypes.string,
+  disabled: PropTypes.bool,
+  input: PropTypes.object.isRequired,
+};
+
+Radio.defaultProps = {
+  className: '',
+  label: null,
+  fieldLabel: null,
+  disabled: false,
+};
 
 export default Radio;

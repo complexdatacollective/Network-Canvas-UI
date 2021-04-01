@@ -37,6 +37,7 @@ class DatePickerField extends Component {
         <div className={formFieldClasses} name={input.name}>
           <DatePicker
             parameters={parameters}
+            // eslint-disable-next-line react/jsx-props-no-spreading
             {...input}
             onChange={input.onBlur}
             parentRef={this.ref}
@@ -59,7 +60,7 @@ class DatePickerField extends Component {
 }
 
 DatePickerField.propTypes = {
-  parameters: PropTypes.object.isRequired,
+  parameters: PropTypes.object,
   input: PropTypes.object.isRequired,
   meta: PropTypes.object,
   label: PropTypes.string,
@@ -69,6 +70,7 @@ DatePickerField.propTypes = {
 };
 
 DatePickerField.defaultProps = {
+  parameters: {},
   meta: {},
   label: null,
   fieldLabel: null,

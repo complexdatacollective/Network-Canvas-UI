@@ -7,7 +7,7 @@ import '../src/styles/_all.scss';
 const requiredProps = {
   label: 'This prompt text contains **markdown** _formatting_',
   placeholder: '',
-  input: { value: null },
+  input: { value: undefined },
   meta: {},
 };
 

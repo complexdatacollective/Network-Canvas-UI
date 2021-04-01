@@ -54,8 +54,12 @@ class SliderInput extends Component {
   }
 
   normalizeValue = (value) => {
+    const {
+      options,
+    } = this.props;
+
     if (this.isLikert()) {
-      return this.props.options[value].value;
+      return options[value].value;
     }
     return round(value, 3);
   }
@@ -65,14 +69,21 @@ class SliderInput extends Component {
    * we are using handleSlideEnd() to capture changes.
    */
   handleSlideEnd = (value) => {
+    const { onBlur } = this.props;
     const normalizedValue = this.normalizeValue(value);
     // Use input.onBlur rather than input.onChange so that we can set 'touched'
-    this.props.onBlur(normalizedValue);
+    onBlur(normalizedValue);
   }
 
-  isLikert = () => this.props.type === 'LIKERT';
+  isLikert = () => {
+    const { type } = this.props;
+    return type === 'LIKERT';
+  }
 
-  isVisualAnalogScale = () => this.props.type === 'VAS';
+  isVisualAnalogScale = () => {
+    const { type } = this.props;
+    return type === 'VAS';
+  };
 
   render() {
     const {

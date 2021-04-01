@@ -30,7 +30,9 @@
 
 
   // Prevent text selection except when an element has a given class.
-  * {
+  // IMPORTANT: input and textarea are excepted because including them
+  // locks the input on iOS!
+  *:not(input):not(textarea) {
     user-select: none;
 
     .allow-text-selection,

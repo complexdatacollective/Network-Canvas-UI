@@ -8,32 +8,22 @@ import Icon from '../Icon';
 import MarkdownLabel from './MarkdownLabel';
 
 class RadioGroup extends Component {
-  static propTypes = {
-    options: PropTypes.array,
-    label: PropTypes.string,
-    input: PropTypes.object.isRequired,
-    className: PropTypes.string,
-    fieldLabel: PropTypes.string,
-    meta: PropTypes.object,
-    optionComponent: PropTypes.func,
-  };
-
-  static defaultProps = {
-    label: null,
-    fieldLabel: null,
-    className: null,
-    optionComponent: Radio,
-    options: [],
-    meta: {},
-  };
-
   constructor(props) {
     super(props);
 
     this.id = uuid();
   }
 
-  onChange = (index) => this.props.input.onChange(getValue(this.props.options[index]));
+  onChange = (index) => {
+    const {
+      input: {
+        onChange,
+      },
+      options,
+    } = this.props;
+
+    return onChange(getValue(options[index]));
+  };
 
   renderOption = (option, index) => {
     const {
@@ -101,6 +91,25 @@ class RadioGroup extends Component {
     );
   }
 }
+
+RadioGroup.propTypes = {
+  options: PropTypes.array,
+  label: PropTypes.string,
+  input: PropTypes.object.isRequired,
+  className: PropTypes.string,
+  fieldLabel: PropTypes.string,
+  meta: PropTypes.object,
+  optionComponent: PropTypes.func,
+};
+
+RadioGroup.defaultProps = {
+  label: null,
+  fieldLabel: null,
+  className: null,
+  optionComponent: Radio,
+  options: [],
+  meta: {},
+};
 
 export { RadioGroup };
 

@@ -6,30 +6,6 @@ import Icon from '../Icon';
 import MarkdownLabel from './MarkdownLabel';
 
 class TextArea extends PureComponent {
-  static propTypes = {
-    input: PropTypes.object,
-    meta: PropTypes.object,
-    type: PropTypes.string,
-    label: PropTypes.string,
-    autoFocus: PropTypes.bool,
-    fieldLabel: PropTypes.string,
-    className: PropTypes.string,
-    placeholder: PropTypes.string,
-    hidden: PropTypes.bool,
-  };
-
-  static defaultProps = {
-    input: {},
-    meta: {},
-    type: 'text',
-    autoFocus: false,
-    label: null,
-    fieldLabel: null,
-    placeholder: '',
-    className: '',
-    hidden: false,
-  };
-
   constructor(props) {
     super(props);
     this.id = uniqueId('label');
@@ -92,5 +68,29 @@ class TextArea extends PureComponent {
     );
   }
 }
+
+TextArea.propTypes = {
+  input: PropTypes.object,
+  meta: PropTypes.object,
+  type: PropTypes.string,
+  label: PropTypes.string,
+  autoFocus: PropTypes.bool,
+  fieldLabel: PropTypes.string,
+  className: PropTypes.string,
+  placeholder: PropTypes.string,
+  hidden: PropTypes.bool,
+};
+
+TextArea.defaultProps = {
+  input: {},
+  meta: {},
+  type: 'text',
+  autoFocus: false,
+  label: null,
+  fieldLabel: null,
+  placeholder: '',
+  className: '',
+  hidden: false,
+};
 
 export default TextArea;

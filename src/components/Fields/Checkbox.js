@@ -5,21 +5,6 @@ import uuid from 'uuid';
 import MarkdownLabel from './MarkdownLabel';
 
 class Checkbox extends PureComponent {
-  static propTypes = {
-    label: PropTypes.node,
-    fieldLabel: PropTypes.string,
-    className: PropTypes.string,
-    disabled: PropTypes.bool,
-    input: PropTypes.object.isRequired,
-  };
-
-  static defaultProps = {
-    className: '',
-    label: null,
-    fieldLabel: null,
-    disabled: false,
-  };
-
   constructor(props) {
     super(props);
 
@@ -53,7 +38,9 @@ class Checkbox extends PureComponent {
           // provided to <Field />, so for the case that it isn't we can rely on the more reliable
           // input.value
           checked={!!input.value}
+          // eslint-disable-next-line react/jsx-props-no-spreading
           {...input}
+          // eslint-disable-next-line react/jsx-props-no-spreading
           {...rest}
           type="checkbox"
         />
@@ -63,5 +50,20 @@ class Checkbox extends PureComponent {
     );
   }
 }
+
+Checkbox.propTypes = {
+  label: PropTypes.node,
+  fieldLabel: PropTypes.string,
+  className: PropTypes.string,
+  disabled: PropTypes.bool,
+  input: PropTypes.object.isRequired,
+};
+
+Checkbox.defaultProps = {
+  className: '',
+  label: null,
+  fieldLabel: null,
+  disabled: false,
+};
 
 export default Checkbox;
