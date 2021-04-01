@@ -108,7 +108,11 @@ const withShortcuts = (editor) => {
 
         // If shortcut is a list, wrap - unless we are in inline mode!
         if ((type === 'ul_list' || type === 'ol_list') && !inline) {
-          Transforms.wrapInList(editor, type);
+          // If we're not already in a list, wrap the text in a list
+          if (!Editor.getCurrentList(editor, range)) {
+            Transforms.wrapInList(editor, type);
+          }
+
           // Return here because we already updated the element type and don't
           // need to do it again below.
           return;
