@@ -50,20 +50,24 @@ const withShortcuts = (editor) => {
   editor.insertText = (text) => {
     const { selection } = editor;
 
+    // When the user inserts a space and we have a single cursor rather
+    // than a range selected.
     if (text === ' ' && selection && Range.isCollapsed(selection)) {
       const { anchor } = selection;
       const block = Editor.above(editor, {
         match: (n) => Editor.isBlock(editor, n),
       });
 
-      // Attempt to choose the following block?
-      // This code is from the Slate examples, and the methods
-      // aren't well documented :/
+      // Get the text from the cursor position to the beginning
+      // of the current block (not including the last space).
       const path = block ? block[1] : [];
       const start = Editor.start(editor, path);
       const range = { anchor, focus: start };
+      // Text up until the last space
       const beforeText = Editor.string(editor, range);
-      const type = SHORTCUTS[beforeText];
+      // Trim any leading spaces from the text and check whether
+      // it matches one of the shortcuts.
+      const type = SHORTCUTS[beforeText.trim()];
 
       // If type is set, we matched with one of our shortcuts
       if (type) {
