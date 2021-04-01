@@ -42,10 +42,8 @@ BooleanField.propTypes = {
   input: PropTypes.object.isRequired,
   options: PropTypes.arrayOf(
     PropTypes.shape({
-      label: PropTypes.stirng,
-      value: PropTypes.oneOf([
-        PropTypes.bool,
-      ]),
+      label: PropTypes.string.isRequired,
+      value: PropTypes.bool.isRequired,
     }),
   ),
 };

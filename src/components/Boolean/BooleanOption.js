@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import RoundCheckbox from './RoundCheckbox';
+import MarkdownLabel from '../Fields/MarkdownLabel';
 
 const BooleanOption = ({
   selected,
@@ -16,7 +17,7 @@ const BooleanOption = ({
   return (
     <div className={classes} onClick={onClick}>
       <RoundCheckbox checked={selected} />
-      {label}
+      <MarkdownLabel label={label} className="form-field-inline-label" />
     </div>
   );
 };
