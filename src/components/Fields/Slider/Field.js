@@ -64,12 +64,12 @@ const SliderField = (props) => {
           {...input}
           value={getValue(input.value)}
         />
-        <div className="form-field-slider__error">
-          <div className="form-field-slider__error-message">
+        {invalid && touched && (
+          <div className="form-field-slider__error">
             <Icon name="warning" />
             {error}
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

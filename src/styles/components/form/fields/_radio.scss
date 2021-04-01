@@ -1,15 +1,12 @@
-$size: 2rem;
-$border: 0.1rem;
-$border-space: 0.25rem;
-
 .form-field-radio {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   cursor: pointer;
   position: relative;
-  margin-bottom: 1rem;
+  margin-bottom: unit(2);
 
   &:last-child {
-    margin: 0;
+    margin-bottom: 0;
   }
 
   &__input {
@@ -19,8 +16,8 @@ $border-space: 0.25rem;
 
   &__radio {
     position: relative;
-    width: $size;
-    height: $size;
+    width: $global-input-element-size;
+    height: $global-input-element-size;
     display: inline-block;
 
     &::before {
@@ -32,18 +29,18 @@ $border-space: 0.25rem;
       height: 100%;
       border-radius: 100%;
       border-color: var(--input-border);
-      border-width: $border;
+      border-width: $global-input-border-size;
       border-style: solid;
       transition: border-color var(--animation-easing) var(--animation-duration-standard);
     }
 
     &::after {
       position: absolute;
-      top: $border + $border-space;
-      left: $border + $border-space;
+      top: $global-input-border-size + $global-input-border-space;
+      left: $global-input-border-size + $global-input-border-space;
       content: '';
-      width: calc(100% - #{($border + $border-space) * 2});
-      height: calc(100% - #{($border + $border-space) * 2});
+      width: calc(100% - #{($global-input-border-size + $global-input-border-space) * 2});
+      height: calc(100% - #{($global-input-border-size + $global-input-border-space) * 2});
       border-radius: 100%;
       background-color: var(--input-accent);
       opacity: 0;

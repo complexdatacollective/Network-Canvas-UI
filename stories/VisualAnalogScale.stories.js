@@ -36,3 +36,48 @@ export const interaction = () => {
     </Harness>
   );
 };
+
+export const withError = () => {
+  const [value, setValue] = useState(null);
+  const defaultMeta = false;
+  const [meta, setMeta] = useState(defaultMeta);
+
+  const toggleError = () => {
+    setMeta(!meta);
+    action('toggleError')(!meta);
+  };
+
+  const renderMeta = { error: 'Something was not right about the input', invalid: meta, touched: meta };
+
+  const handleBlur = (...args) => {
+    setValue(...args);
+    action('change')(...args);
+  };
+
+  return (
+    <Harness
+      requiredProps={requiredProps}
+      label="What do you *make* of that?"
+      type="scalar"
+      meta={renderMeta}
+      parameters={{
+        minLabel: 'not much',
+        maxLabel: 'a *lot*',
+      }}
+      input={{
+        onBlur: handleBlur,
+        value,
+      }}
+    >
+      {props => (
+        <div>
+          <button onClick={toggleError}>Toggle Error</button>
+          <div>
+            <VisualAnalogScale {...props} />
+            Next element
+          </div>
+        </div>
+      )}
+    </Harness>
+  );
+};

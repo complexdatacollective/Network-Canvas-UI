@@ -1,0 +1,80 @@
+.form-field-boolean {
+  margin-bottom: 2rem;
+}
+
+.boolean {
+  &__options {
+    display: flex;
+    width: 100%;
+  }
+
+  &__reset {
+    display: block;
+    font-size: .9rem;
+    margin-top: 1rem;
+    color: var(--input-text);
+    text-decoration: underline;
+  }
+}
+
+.boolean-option {
+  flex: 0 0 calc(50% - #{unit(0.5)});
+  display: inline-flex;
+  border-color: transparent;
+  border-width: $global-input-border-size;
+  border-style: solid;
+  padding: unit(2);
+  border-radius: var(--border-radius);
+  align-items: center;
+  margin-right: unit(0.5);
+  margin-left: 0;
+  background: var(--input-background);
+  color: var(--input-label);
+  transition-property: border-color;
+  transition-duration: var(--animation-duration-standard);
+  transition-timing-function: var(--animation-easing);
+
+  &:last-child {
+    margin-right: 0;
+    margin-left: unit(0.5);
+  }
+
+  &--selected {
+    border-color: var(--input-accent);
+  }
+}
+
+.round-checkbox {
+  flex: 0 0 $global-input-element-size;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: content-box;
+  width: $global-input-element-size;
+  height: $global-input-element-size;
+  border-radius: 100%;
+  border-color: var(--color-white);
+  border-width: $global-input-border-size;
+  border-style: solid;
+  transition-property: border-color, background-color;
+  transition-duration: var(--animation-duration-standard);
+  transition-timing-function: var(--animation-easing);
+
+  svg {
+    width: $global-input-element-size * 0.5;
+    height: $global-input-element-size * 0.5;
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: var(--animation-duration-standard);
+    transition-timing-function: var(--animation-easing);
+  }
+
+  &--checked {
+    background-color: var(--input-accent);
+    border-color: transparent;
+
+    svg {
+      opacity: 1;
+    }
+  }
+}

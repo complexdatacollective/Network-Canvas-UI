@@ -1,4 +1,6 @@
-$size: 2rem;
+$global-input-element-size: unit(4);
+$global-input-border-size: 0.125rem;
+$global-input-border-space: 0.25rem;
 
 @mixin form-field {
   &__label {
@@ -18,14 +20,14 @@ $size: 2rem;
 }
 
 .form-field-inline-label {
-  display: inline-block;
   margin-left: unit(1);
-  vertical-align: top;
-  line-height: $size;
 
-  > p {
-    line-height: inherit;
-    margin: 0;
+  > :first-child {
+    margin-top: 0;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
   }
 }
 
@@ -59,6 +61,7 @@ $size: 2rem;
   }
 }
 
+@import './fields/boolean';
 @import './fields/radio';
 @import './fields/radio-group';
 @import './fields/checkbox';

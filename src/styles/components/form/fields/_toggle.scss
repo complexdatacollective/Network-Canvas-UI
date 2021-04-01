@@ -1,10 +1,7 @@
 $component-name: form-field-toggle;
-$size: 2rem;
-$border: 0.05rem;
-$border-space: 0.1rem;
 
 .#{$component-name} {
-  display: flex;
+  align-items: center;
   flex-direction: row;
   justify-content: flex-start;
   cursor: pointer;
@@ -15,8 +12,8 @@ $border-space: 0.1rem;
 
   &__toggle {
     position: relative;
-    width: $size * 2;
-    height: $size;
+    width: $global-input-element-size * 2;
+    height: $global-input-element-size;
     display: inline-block;
   }
 
@@ -24,7 +21,7 @@ $border-space: 0.1rem;
     position: absolute;
     background-color: var(--input-background);
     transition: background var(--animation-duration-fast) var(--animation-easing);
-    border-radius: $size;
+    border-radius: $global-input-element-size;
     top: 0;
     left: 0;
     right: 0;
@@ -34,8 +31,8 @@ $border-space: 0.1rem;
       position: absolute;
       content: '';
       border-radius: 50%;
-      height: $size;
-      width: $size;
+      height: $global-input-element-size;
+      width: $global-input-element-size;
       background-color: var(--input-border);
       transition: transform var(--animation-duration-fast) var(--animation-easing);
     }
@@ -46,7 +43,7 @@ $border-space: 0.1rem;
       background-color: var(--input-radio--fill);
 
       &::before {
-        transform: translateX($size);
+        transform: translateX($global-input-element-size);
       }
     }
   }
