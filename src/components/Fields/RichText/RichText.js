@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { Editable, withReact, Slate } from 'slate-react';
 import { createEditor } from 'slate';
@@ -19,6 +19,20 @@ import { INLINE_DISALLOWED_ITEMS } from './options';
 const HOTKEYS = {
   'mod+b': 'bold',
   'mod+i': 'italic',
+};
+
+const [withEditList, listOnKeyDown, { Editor, Transforms }] = EditListPlugin({
+  maxDepth: 1, // Restrict list depth to one, for now.
+});
+
+const hotkeyOnKeyDown = (editor) => (event) => {
+  Object.keys(HOTKEYS).forEach((hotkey) => {
+    if (isHotkey(hotkey, event)) {
+      event.preventDefault();
+      const mark = HOTKEYS[hotkey];
+      toggleMark(editor, mark, Transforms, Editor);
+    }
+  });
 };
 
 /**
@@ -74,10 +88,6 @@ const RichText = ({
 }) => {
   const [value, setValue] = useState(defaultValue);
 
-  const [withEditList, onKeyDown, { Editor, Transforms }] = EditListPlugin({
-    maxDepth: 1, // Restrict list depth to one, for now.
-  });
-
   // Use the inline prop to optionally merge additional disallowed items
   const disallowedTypesWithDefaults = [
     ...disallowedTypes,
@@ -98,7 +108,7 @@ const RichText = ({
       withHistory,
       withReact,
     )(createEditor()),
-    [],
+    [disallowedTypesWithDefaults.join()],
   );
 
   // Set starting state from prop value on start up
@@ -129,15 +139,10 @@ const RichText = ({
     onChange(serialize(value));
   }, [value]);
 
-  const handleKeyDown = (event) => {
-    Object.keys(HOTKEYS).forEach((hotkey) => {
-      if (isHotkey(hotkey, event)) {
-        event.preventDefault();
-        const mark = HOTKEYS[hotkey];
-        toggleMark(editor, mark, Transforms, Editor);
-      }
-    });
-  };
+  const handleKeyDown = useCallback((event) => {
+    hotkeyOnKeyDown(editor)(event);
+    listOnKeyDown(editor)(event);
+  }, [editor]);
 
   return (
     <Slate editor={editor} value={value} onChange={setValue}>
@@ -150,10 +155,7 @@ const RichText = ({
             placeholder={(<em style={{ userSelect: 'none' }}>{placeholder}</em>)}
             spellCheck
             autoFocus={autoFocus}
-            onKeyDown={(e) => {
-              handleKeyDown(e);
-              onKeyDown(editor)(e);
-            }}
+            onKeyDown={handleKeyDown}
           />
         </div>
       </RichTextContainer>
