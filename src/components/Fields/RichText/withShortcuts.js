@@ -28,12 +28,32 @@ const TYPE_MAP = {
 
 const [, , { Transforms, Editor }] = EditListPlugin();
 
+const getBeforeText = (editor) => {
+  const { selection } = editor;
+  // check for incomplete shortcut on the last line.
+  const { anchor } = selection;
+  const block = Editor.above(editor, {
+    match: (n) => Editor.isBlock(editor, n),
+  });
+
+  // Get the text from the cursor position to the beginning
+  // of the current block (not including the last space).
+  const path = block ? block[1] : [];
+  const start = Editor.start(editor, path);
+  const range = { anchor, focus: start };
+  // Text up until the last space
+  const beforeText = Editor.string(editor, range);
+
+  return [beforeText, range];
+};
+
 const withShortcuts = (editor) => {
   const {
     deleteBackward,
     insertText,
     inline,
     disallowedTypes,
+    insertBreak,
   } = editor;
 
   // Disallow H5 and H6
@@ -46,24 +66,29 @@ const withShortcuts = (editor) => {
   ) => isDisallowedHeading(type)
   || typeList.some((disallowedType) => TYPE_MAP[disallowedType].includes(type));
 
+  editor.insertBreak = () => {
+    // If the last line was a shortcut (e.g. the user
+    // didn't press space, delete it.
+    const [beforeText, range] = getBeforeText(editor);
+    const type = SHORTCUTS[beforeText.trim()];
+
+    if (type) {
+      Transforms.select(editor, range);
+      Transforms.delete(editor);
+      // Uncomment the following to stay on the same line.
+      // return;
+    }
+
+    insertBreak();
+  };
+
   editor.insertText = (text) => {
     const { selection } = editor;
 
     // When the user inserts a space and we have a single cursor rather
     // than a range selected.
     if (text === ' ' && selection && Range.isCollapsed(selection)) {
-      const { anchor } = selection;
-      const block = Editor.above(editor, {
-        match: (n) => Editor.isBlock(editor, n),
-      });
-
-      // Get the text from the cursor position to the beginning
-      // of the current block (not including the last space).
-      const path = block ? block[1] : [];
-      const start = Editor.start(editor, path);
-      const range = { anchor, focus: start };
-      // Text up until the last space
-      const beforeText = Editor.string(editor, range);
+      const [beforeText, range] = getBeforeText(editor);
       // Trim any leading spaces from the text and check whether
       // it matches one of the shortcuts.
       const type = SHORTCUTS[beforeText.trim()];
