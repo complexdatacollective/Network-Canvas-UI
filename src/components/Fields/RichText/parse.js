@@ -12,7 +12,11 @@ export const defaultValue = [{
 
 // TODO: Can we make this synchronous?
 const parse = (value) => {
-  // The regex tests for presence of space/tab/break
+  // If for some reason we encounter 'content' with no content,
+  // Slate rendering will be messed up. Instead, return a
+  // 'proper' empty node.
+  //
+  // The regex tests for presence of only space/tab/break
   if (!value || isEmpty(value) || !/\S/.test(value)) {
     return Promise.resolve(defaultValue);
   }

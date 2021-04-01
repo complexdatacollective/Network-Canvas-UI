@@ -113,6 +113,8 @@ const RichText = ({
       return everyChildEmpty(child.children);
     }
 
+    // The regexp here means that content only containing spaces or
+    // tabs will be considered empty!
     return isEmpty(child.text) || !/\S/.test(child.text);
   });
 
@@ -121,7 +123,6 @@ const RichText = ({
     // If all content is empty, set an empty value so that validation
     // can pick up on it
     if (everyChildEmpty(editor.children)) {
-      // Remove <br> and \n and see if string is empty?
       onChange('');
       return;
     }
