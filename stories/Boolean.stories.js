@@ -21,10 +21,6 @@ export const interaction = () => {
         onChange: handleChange,
         value,
       }}
-      options={[
-        { label: '**Yes**. This is a really long label that represents the value yes. Are there any other questions?', value: true },
-        { label: 'No', value: false },
-      ]}
     >
       {(props) => <Boolean {...props} />}
     </Harness>
@@ -46,6 +42,35 @@ export const longText = () => {
         onChange: handleChange,
         value,
       }}
+      options={[
+        { label: '**Yes**. This is a really long label that represents the value yes. Are there any other questions?', value: true },
+        { label: 'No', value: false },
+      ]}
+    >
+      {(props) => <Boolean {...props} />}
+    </Harness>
+  );
+};
+
+export const longTextWithList = () => {
+  const [value, setValue] = useState('foo');
+
+  const handleChange = (...args) => {
+    setValue(...args);
+    action('change')(...args);
+  };
+
+  return (
+    <Harness
+      label="This version has longer labels that include list items."
+      input={{
+        onChange: handleChange,
+        value,
+      }}
+      options={[
+        { label: '**Yes**. This is a really long label that represents the value yes.\n\n- Are there any other questions?\n\n- Are there any other questions?\n\n- Are there any other questions?', value: true },
+        { label: '**No**. This is a really long label that represents the value no.\n\n- Are there any other questions?\n\n- Are there any other questions?\n\n- Are there any other questions?', value: false },
+      ]}
     >
       {(props) => <Boolean {...props} />}
     </Harness>
