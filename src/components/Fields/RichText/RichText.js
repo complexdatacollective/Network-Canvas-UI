@@ -4,7 +4,7 @@ import { Editable, withReact, Slate } from 'slate-react';
 import { createEditor } from 'slate';
 import { withHistory } from 'slate-history';
 import isHotkey from 'is-hotkey';
-import { compose } from 'lodash/fp';
+import { compose, isEmpty } from 'lodash/fp';
 import { EditListPlugin } from '@productboard/slate-edit-list';
 import withNormalize from './withNormalize';
 import withShortcuts from './withShortcuts';
@@ -113,7 +113,7 @@ const RichText = ({
       return everyChildEmpty(child.children);
     }
 
-    return child.text === '' || !/\S/.test(child.text);
+    return isEmpty(child.text) || !/\S/.test(child.text);
   });
 
   // Update upstream on change
