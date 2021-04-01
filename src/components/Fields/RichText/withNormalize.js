@@ -52,7 +52,7 @@ const withNormalize = (editor) => {
       if (item) {
         for (const [child, childPath] of Node.children(editor, path)) {
           if (child.text) {
-            const noMarkdownText = child.text.replace(/^\s*[-#]/g, '');
+            const noMarkdownText = child.text.replace(/^\s*([-#]|[0-9]+\.)/g, '');
             if (noMarkdownText !== child.text) {
               const range = Editor.range(
                 editor,
