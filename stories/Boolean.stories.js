@@ -6,8 +6,14 @@ import '../src/styles/_all.scss';
 
 export default { title: 'Fields/Boolean' };
 
+const requiredProps = {
+  label: 'This is the **boolean** input.',
+  input: { value: null },
+  meta: {},
+};
+
 export const interaction = () => {
-  const [value, setValue] = useState('foo');
+  const [value, setValue] = useState();
 
   const handleChange = (...args) => {
     setValue(...args);
@@ -16,6 +22,7 @@ export const interaction = () => {
 
   return (
     <Harness
+      requiredProps={requiredProps}
       label="This input type **requires** the user to _specifically_ set a value, which can also be cleared."
       input={{
         onChange: handleChange,
@@ -28,7 +35,7 @@ export const interaction = () => {
 };
 
 export const longText = () => {
-  const [value, setValue] = useState('foo');
+  const [value, setValue] = useState();
 
   const handleChange = (...args) => {
     setValue(...args);
@@ -37,6 +44,7 @@ export const longText = () => {
 
   return (
     <Harness
+      requiredProps={requiredProps}
       label="This version has longer labels."
       input={{
         onChange: handleChange,
@@ -53,7 +61,7 @@ export const longText = () => {
 };
 
 export const longTextWithList = () => {
-  const [value, setValue] = useState('foo');
+  const [value, setValue] = useState();
 
   const handleChange = (...args) => {
     setValue(...args);
@@ -62,6 +70,7 @@ export const longTextWithList = () => {
 
   return (
     <Harness
+      requiredProps={requiredProps}
       label="This version has longer labels that include list items."
       input={{
         onChange: handleChange,

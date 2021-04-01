@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import DoneIcon from '@material-ui/icons/DoneRounded';
 import cx from 'classnames';
+import Icon from '../Icon';
 
 const RoundCheckbox = ({ checked }) => {
   const classes = cx(
@@ -11,9 +12,10 @@ const RoundCheckbox = ({ checked }) => {
 
   return (
     <div className={classes}>
-      <DoneIcon
+      <Icon name="tick" color="white" />
+      {/* <DoneIcon
         style={{ color: 'var(--color-white)' }}
-      />
+      /> */}
     </div>
   );
 };

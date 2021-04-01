@@ -92,60 +92,62 @@ class SliderInput extends Component {
     );
 
     return (
-      <Slider
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        {...sliderProps}
-        className={className}
-        onSlideEnd={this.handleSlideEnd}
-      >
-        <Handles>
-          {({ handles, activeHandleID, getHandleProps }) => (
-            <div className="form-field-slider__handles">
-              {handles.map((handle) => (
-                <Handle
-                  key={handle.id}
-                  handle={handle}
-                  getLabelForValue={this.getLabelForValue}
-                  domain={sliderProps.domain}
-                  isActive={handle.id === activeHandleID}
-                  getHandleProps={getHandleProps}
-                  showTooltips={showTooltips}
-                />
-              ))}
-            </div>
-          )}
-        </Handles>
-        <Tracks>
-          {({ tracks, getTrackProps }) => (
-            <div className="form-field-slider__tracks">
-              {tracks.map(({ id, source, target }) => (
-                <Track
-                  key={id}
-                  source={source}
-                  target={target}
-                  getTrackProps={getTrackProps}
-                />
-              ))}
-            </div>
-          )}
-        </Tracks>
-        { tickCount
-          && (
-          <Ticks count={tickCount}>
-            {({ ticks }) => (
-              <div className="form-field-slider__ticks">
-                {ticks.map((tick, index) => (
-                  <Tick
-                    tick={tick}
-                    key={`${this.getLabelForValue}_${index}`}
+      <div className="form-field">
+        <Slider
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          {...sliderProps}
+          className={className}
+          onSlideEnd={this.handleSlideEnd}
+        >
+          <Handles>
+            {({ handles, activeHandleID, getHandleProps }) => (
+              <div className="form-field-slider__handles">
+                {handles.map((handle) => (
+                  <Handle
+                    key={handle.id}
+                    handle={handle}
                     getLabelForValue={this.getLabelForValue}
+                    domain={sliderProps.domain}
+                    isActive={handle.id === activeHandleID}
+                    getHandleProps={getHandleProps}
+                    showTooltips={showTooltips}
                   />
                 ))}
               </div>
             )}
-          </Ticks>
-          )}
-      </Slider>
+          </Handles>
+          <Tracks>
+            {({ tracks, getTrackProps }) => (
+              <div className="form-field-slider__tracks">
+                {tracks.map(({ id, source, target }) => (
+                  <Track
+                    key={id}
+                    source={source}
+                    target={target}
+                    getTrackProps={getTrackProps}
+                  />
+                ))}
+              </div>
+            )}
+          </Tracks>
+          { tickCount
+            && (
+            <Ticks count={tickCount}>
+              {({ ticks }) => (
+                <div className="form-field-slider__ticks">
+                  {ticks.map((tick, index) => (
+                    <Tick
+                      tick={tick}
+                      key={`${this.getLabelForValue}_${index}`}
+                      getLabelForValue={this.getLabelForValue}
+                    />
+                  ))}
+                </div>
+              )}
+            </Ticks>
+            )}
+        </Slider>
+      </div>
     );
   }
 }

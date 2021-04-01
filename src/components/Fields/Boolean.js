@@ -21,9 +21,7 @@ const BooleanField = ({
 
   return (
     <div className={componentClasses}>
-      <div className="form-field-label">
-        {label && <MarkdownLabel label={label} className="form-field-inline-label" />}
-      </div>
+      {label && <MarkdownLabel label={label} />}
       <div className="form-field-boolean__control">
         <Boolean
           options={options}

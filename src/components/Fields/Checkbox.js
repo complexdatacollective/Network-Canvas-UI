@@ -46,21 +46,19 @@ class Checkbox extends PureComponent {
 
     return (
       <label className={componentClasses} htmlFor={this.id}>
-        <div>
-          <input
-            className="form-field-checkbox__input"
-            id={this.id}
-            // input.checked is only provided by redux form if type="checkbox" or type="radio" is
-            // provided to <Field />, so for the case that it isn't we can rely on the more reliable
-            // input.value
-            checked={!!input.value}
-            {...input}
-            {...rest}
-            type="checkbox"
-          />
-          <div className="form-field-checkbox__checkbox" />
-          {label && <MarkdownLabel label={label} className="form-field-inline-label" />}
-        </div>
+        <input
+          className="form-field-checkbox__input"
+          id={this.id}
+          // input.checked is only provided by redux form if type="checkbox" or type="radio" is
+          // provided to <Field />, so for the case that it isn't we can rely on the more reliable
+          // input.value
+          checked={!!input.value}
+          {...input}
+          {...rest}
+          type="checkbox"
+        />
+        <div className="form-field-checkbox__checkbox" />
+        {label && <MarkdownLabel label={label} className="form-field-inline-label" />}
       </label>
     );
   }

@@ -7,10 +7,11 @@ const Boolean = ({
   value,
   onChange,
 }) => (
-  <div className="boolean">
+  <div className="form-field boolean">
     <div className="boolean__options">
       {options.map(({ label, value: optionValue }) => (
         <BooleanOption
+          key={optionValue}
           label={label}
           selected={value === optionValue}
           onClick={() => onChange(optionValue)}
@@ -25,7 +26,7 @@ const Boolean = ({
   </div>
 );
 
-const valuePropTypes = PropTypes.oneOf([
+const valuePropTypes = PropTypes.oneOfType([
   PropTypes.bool,
   PropTypes.string,
   PropTypes.number,
