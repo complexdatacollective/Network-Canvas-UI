@@ -94,7 +94,7 @@ const toggleBlock = (editor, block) => {
 
 // Supports blockquotes containing paragraphs
 // and converting list items into block quotes
-const toggleBlockquote = (editor) => () => {
+export const toggleBlockquote = (editor) => {
   const blocks = getBlocks(editor);
 
   blocks.forEach((block) => {
@@ -118,24 +118,45 @@ const toggleBlockquote = (editor) => () => {
   });
 };
 
-const onKeyDown = (editor) => (event) => {
-  const args = [event, editor];
+// const onKeyDown = (editor) => (event) => {
+//   const args = [event, editor];
 
-  switch (event.key) {
-    case KEY_ENTER:
-      onEnter(...args);
-      break;
-    case KEY_BACKSPACE:
-      onBackspace(...args);
-      break;
-    default:
-      break;
-  }
+//   switch (event.key) {
+//     case KEY_ENTER:
+//       onEnter(...args);
+//       break;
+//     case KEY_BACKSPACE:
+//       onBackspace(...args);
+//       break;
+//     default:
+//       break;
+//   }
+// };
+
+const withBlockquotes = (editor) => {
+  const {
+    selection,
+    deleteBackward,
+    deleteFragment,
+  } = editor;
+
+  editor.deleteBackward = (unit) => {
+    console.log(unit, 'del back');
+    const block = Editor.above(editor, {
+      match: (n) => Editor.isBlock(editor, n),
+      mode: 'highest',
+    });
+
+    console.log(block);
+    deleteBackward(unit);
+  };
+
+  editor.deleteFragment = (...args) => {
+    console.log(...args, 'del frag');
+    deleteFragment(...args);
+  };
+
+  return editor;
 };
 
-const blockquotes = (editor) => ({
-  onKeyDown: onKeyDown(editor),
-  toggleBlockquote: toggleBlockquote(editor),
-});
-
-export default blockquotes;
+export default withBlockquotes;

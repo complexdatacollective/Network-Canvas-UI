@@ -17,7 +17,7 @@ import { toggleMark } from './lib/actions';
 import serialize from './lib/serialize';
 import parse, { defaultValue } from './lib/parse';
 import { INLINE_DISALLOWED_ITEMS } from './lib/options';
-import blockquotes from './lib/blockquotes';
+import withBlockquotes, { toggleBlockquote } from './lib/blockquotes';
 import Element from './Element';
 import Leaf from './Leaf';
 import Toolbar from './Toolbar';
@@ -110,6 +110,7 @@ const RichText = ({
     () => compose(
       withNormalize,
       withShortcuts,
+      withBlockquotes,
       withOptions,
       withEditList,
       withHistory,
@@ -117,8 +118,6 @@ const RichText = ({
     )(createEditor()),
     [disallowedTypesWithDefaults.join()],
   );
-
-  const { toggleBlockquote } = blockquotes(editor);
 
   // Set starting state from prop value on start up
   useEffect(() => {
@@ -169,7 +168,7 @@ const RichText = ({
         </div>
         <button
           type="button"
-          onClick={toggleBlockquote}
+          onClick={() => toggleBlockquote(editor)}
         >
           toggle blockquote
         </button>
