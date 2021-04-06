@@ -11,15 +11,15 @@ import { withHistory } from 'slate-history';
 import isHotkey from 'is-hotkey';
 import { compose, isEmpty } from 'lodash/fp';
 import { EditListPlugin } from '@productboard/slate-edit-list';
-import withNormalize from './withNormalize';
-import withShortcuts from './withShortcuts';
+import withNormalize from './lib/withNormalize';
+import withShortcuts from './lib/withShortcuts';
+import { toggleMark } from './lib/actions';
+import { Element, Leaf } from './lib/renderers';
+import serialize from './lib/serialize';
+import parse, { defaultValue } from './lib/parse';
+import { INLINE_DISALLOWED_ITEMS } from './lib/options';
 import Toolbar from './Toolbar';
-import { toggleMark } from './actions';
-import { Element, Leaf } from './renderers';
-import serialize from './serialize';
-import parse, { defaultValue } from './parse';
 import RichTextContainer from './RichTextContainer';
-import { INLINE_DISALLOWED_ITEMS } from './options';
 
 const HOTKEYS = {
   'mod+b': 'bold',

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { includes } from 'lodash';
 import { MarkButton, BlockButton, ToolbarButton } from './ToolbarButton';
-import { TOOLBAR_ITEMS } from './options';
+import { TOOLBAR_ITEMS } from './lib/options';
 
 const Toolbar = ({ editor }) => {
   const { disallowedTypes } = editor;

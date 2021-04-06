@@ -8,7 +8,7 @@ import {
   toggleMark,
   isMarkActive,
   isBlockActive,
-} from './actions';
+} from './lib/actions';
 
 export const ToolbarButton = ({
   isActive, icon, tooltip, action,
