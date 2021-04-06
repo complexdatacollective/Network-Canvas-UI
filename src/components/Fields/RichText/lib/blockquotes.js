@@ -58,7 +58,14 @@ const toggleBlock = (editor, block) => {
   switch (type) {
     case 'block_quote':
       // de-blockquote
-      Transforms.unwrapNodes(editor, { at: path });
+      Transforms.unwrapNodes(
+        editor,
+        {
+          at: path,
+          match: (n) => n.type === 'block_quote',
+          mode: 'all',
+        },
+      );
       break;
     case 'ul_list':
     case 'ol_list':
@@ -90,7 +97,25 @@ const toggleBlock = (editor, block) => {
 const toggleBlockquote = (editor) => () => {
   const blocks = getBlocks(editor);
 
-  blocks.forEach((block) => toggleBlock(editor, block));
+  blocks.forEach((block) => {
+    toggleBlock(editor, block);
+  });
+
+  const reversedPaths = blocks.reduce(
+    (acc, [, path]) => ([path, ...acc]),
+    [],
+  );
+
+  // Merge adjacent block quotes
+  reversedPaths.forEach((path, index) => {
+    const nextPath = get(reversedPaths, [index + 1]);
+    if (!nextPath) { return; }
+    const next = Node.get(editor, nextPath);
+    const current = Node.get(editor, path);
+    if (current.type === 'block_quote' && next.type === 'block_quote') {
+      Transforms.mergeNodes(editor, { at: path });
+    }
+  });
 };
 
 const onKeyDown = (editor) => (event) => {
