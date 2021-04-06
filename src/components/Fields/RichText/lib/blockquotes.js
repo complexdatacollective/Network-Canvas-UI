@@ -18,21 +18,18 @@ const onBackspace = () => {
   // If in a blockquote close the blockquote
 };
 
-// Supports blockquotes containing paragraphs
-// and converting list items into block quotes
-const toggleBlockquote = (editor) => () => {
+const getBlocks = (editor) => {
   const { selection } = editor;
+  const isCollapsed = selection && Range.isCollapsed(selection);
+  if (isCollapsed) {
+    return [Editor.above(editor, {
+      match: (n) => Editor.isBlock(editor, n),
+      mode: 'highest',
+    })];
+  }
 
-  const block = Editor.above(editor, {
-    match: (n) => Editor.isBlock(editor, n),
-    mode: 'highest',
-  });
-
-  const type = get(block, [0, 'type']);
-  const path = get(block, [1], []);
-
-  const start = Editor.before(editor, selection, { unit: 'block' });
-  const end = Editor.after(editor, selection, { unit: 'block' });
+  const start = Editor.start(editor, selection, { unit: 'block' });
+  const end = Editor.end(editor, selection, { unit: 'block' });
 
   const nodes = Node.elements(
     editor,
@@ -42,16 +39,26 @@ const toggleBlockquote = (editor) => () => {
     },
   );
 
-  for (let node of nodes) {
+  const blocks = [];
+
+  // eslint-disable-next-line no-restricted-syntax
+  for (const node of nodes) {
     if (node[1].length === 1) {
-      console.log({ node, selection });
+      blocks.push(node);
     }
   }
+
+  return blocks;
+};
+
+const toggleBlock = (editor, block) => {
+  const type = get(block, [0, 'type']);
+  const path = get(block, [1], []);
 
   switch (type) {
     case 'block_quote':
       // de-blockquote
-      Transforms.liftNodes(editor, { at: selection.anchor });
+      Transforms.unwrapNodes(editor, { at: path });
       break;
     case 'ul_list':
     case 'ol_list':
@@ -76,6 +83,14 @@ const toggleBlockquote = (editor) => () => {
       break;
     default:
   }
+};
+
+// Supports blockquotes containing paragraphs
+// and converting list items into block quotes
+const toggleBlockquote = (editor) => () => {
+  const blocks = getBlocks(editor);
+
+  blocks.forEach((block) => toggleBlock(editor, block));
 };
 
 const onKeyDown = (editor) => (event) => {
