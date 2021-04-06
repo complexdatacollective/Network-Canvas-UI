@@ -31,27 +31,27 @@ const toggleBlockquote = (editor) => () => {
   const type = get(block, [0, 'type']);
   const path = get(block, [1], []);
 
-  const nodes = Editor.nodes(
+  const start = Editor.before(editor, selection, { unit: 'block' });
+  const end = Editor.after(editor, selection, { unit: 'block' });
+
+  const nodes = Node.elements(
     editor,
     {
-      at: [selection.focus, selection.anchor],
-      // mode: 'highest',
-      match: (n) => {
-        // Range.includes(selection, n[1]),
-        console.log({ n });
-        return true;
-      },
+      from: start.path,
+      to: end.path,
     },
   );
 
   for (let node of nodes) {
-    console.log({ node, selection });
+    if (node[1].length === 1) {
+      console.log({ node, selection });
+    }
   }
 
-  // de-blockquote
   switch (type) {
     case 'block_quote':
-      Transforms.liftNodes(editor);
+      // de-blockquote
+      Transforms.liftNodes(editor, { at: selection.anchor });
       break;
     case 'ul_list':
     case 'ol_list':
