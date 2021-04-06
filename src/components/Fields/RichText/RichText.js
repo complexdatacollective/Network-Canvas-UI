@@ -14,10 +14,11 @@ import { EditListPlugin } from '@productboard/slate-edit-list';
 import withNormalize from './lib/withNormalize';
 import withShortcuts from './lib/withShortcuts';
 import { toggleMark } from './lib/actions';
-import { Element, Leaf } from './lib/renderers';
 import serialize from './lib/serialize';
 import parse, { defaultValue } from './lib/parse';
 import { INLINE_DISALLOWED_ITEMS } from './lib/options';
+import Element from './Element';
+import Leaf from './Leaf';
 import Toolbar from './Toolbar';
 import RichTextContainer from './RichTextContainer';
 
