@@ -17,7 +17,7 @@ import { toggleMark } from './lib/actions';
 import serialize from './lib/serialize';
 import parse, { defaultValue } from './lib/parse';
 import { INLINE_DISALLOWED_ITEMS } from './lib/options';
-import withBlockquotes, { toggleBlockquote } from './lib/blockquotes';
+import { toggleBlockquote } from './lib/blockquotes';
 import Element from './Element';
 import Leaf from './Leaf';
 import Toolbar from './Toolbar';
@@ -110,7 +110,6 @@ const RichText = ({
     () => compose(
       withNormalize,
       withShortcuts,
-      withBlockquotes,
       withOptions,
       withEditList,
       withHistory,

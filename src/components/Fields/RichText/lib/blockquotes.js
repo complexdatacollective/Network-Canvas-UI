@@ -1,4 +1,4 @@
-// import { Editor } from 'slate-react';
+/* eslint-disable import/prefer-default-export */
 import {
   Editor,
   Range,
@@ -6,17 +6,6 @@ import {
   Node,
 } from 'slate';
 import { get } from 'lodash';
-
-const KEY_ENTER = 'Enter';
-const KEY_BACKSPACE = 'Backspace';
-
-const onEnter = () => {
-  // if in a blockquote insert a new line?
-};
-
-const onBackspace = () => {
-  // If in a blockquote close the blockquote
-};
 
 const getBlocks = (editor) => {
   const { selection } = editor;
@@ -117,46 +106,3 @@ export const toggleBlockquote = (editor) => {
     }
   });
 };
-
-// const onKeyDown = (editor) => (event) => {
-//   const args = [event, editor];
-
-//   switch (event.key) {
-//     case KEY_ENTER:
-//       onEnter(...args);
-//       break;
-//     case KEY_BACKSPACE:
-//       onBackspace(...args);
-//       break;
-//     default:
-//       break;
-//   }
-// };
-
-const withBlockquotes = (editor) => {
-  const {
-    selection,
-    deleteBackward,
-    deleteFragment,
-  } = editor;
-
-  editor.deleteBackward = (unit) => {
-    console.log(unit, 'del back');
-    const block = Editor.above(editor, {
-      match: (n) => Editor.isBlock(editor, n),
-      mode: 'highest',
-    });
-
-    console.log(block);
-    deleteBackward(unit);
-  };
-
-  editor.deleteFragment = (...args) => {
-    console.log(...args, 'del frag');
-    deleteFragment(...args);
-  };
-
-  return editor;
-};
-
-export default withBlockquotes;
