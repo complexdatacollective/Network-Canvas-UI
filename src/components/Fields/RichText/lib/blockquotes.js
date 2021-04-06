@@ -18,10 +18,10 @@ const onBackspace = () => {
   // If in a blockquote close the blockquote
 };
 
+// Supports blockquotes containing paragraphs
+// and converting list items into block quotes
 const toggleBlockquote = (editor) => () => {
-  // Toggle blockquote AND paragraph
   const { selection } = editor;
-  const { anchor } = selection;
 
   const block = Editor.above(editor, {
     match: (n) => Editor.isBlock(editor, n),
@@ -30,6 +30,23 @@ const toggleBlockquote = (editor) => () => {
 
   const type = get(block, [0, 'type']);
   const path = get(block, [1], []);
+
+  const nodes = Editor.nodes(
+    editor,
+    {
+      at: [selection.focus, selection.anchor],
+      // mode: 'highest',
+      match: (n) => {
+        // Range.includes(selection, n[1]),
+        console.log({ n });
+        return true;
+      },
+    },
+  );
+
+  for (let node of nodes) {
+    console.log({ node, selection });
+  }
 
   // de-blockquote
   switch (type) {
