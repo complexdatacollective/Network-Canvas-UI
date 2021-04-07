@@ -9,6 +9,7 @@ import arrowRight from './arrow-right.svg.react';
 import backArrow from './back-arrow.svg.react';
 import cancel from './cancel.svg.react';
 import close from './close.svg.react';
+import cross from './cross.svg.react';
 import contexts from './contexts.svg.react';
 import edit from './edit.svg.react';
 import error from './error.svg.react';
@@ -61,6 +62,7 @@ export default {
   'back-arrow': backArrow,
   cancel,
   close,
+  cross,
   contexts,
   edit,
   error,

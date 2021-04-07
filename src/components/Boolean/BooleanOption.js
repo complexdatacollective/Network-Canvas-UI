@@ -9,10 +9,13 @@ const BooleanOption = ({
   selected,
   label,
   onClick,
+  icon,
+  negative,
 }) => {
   const classNames = cx(
     'boolean-option',
     { 'boolean-option--selected': selected },
+    { 'boolean-option--negative': negative },
     classes,
   );
 
@@ -26,7 +29,7 @@ const BooleanOption = ({
 
   return (
     <div className={classNames} onClick={onClick}>
-      <RoundCheckbox checked={selected} />
+      <RoundCheckbox checked={selected} customIcon={icon} negative={negative} />
       {renderLabel()}
     </div>
   );
@@ -40,12 +43,16 @@ BooleanOption.propTypes = {
     PropTypes.func,
   ]).isRequired,
   onClick: PropTypes.func,
+  icon: PropTypes.func,
+  negative: PropTypes.bool,
 };
 
 BooleanOption.defaultProps = {
   classes: null,
   selected: false,
   onClick: () => {},
+  icon: null,
+  negative: false,
 };
 
 export default BooleanOption;

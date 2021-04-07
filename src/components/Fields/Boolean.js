@@ -39,7 +39,7 @@ const valuePropTypes = PropTypes.oneOfType([
   PropTypes.bool,
   PropTypes.string,
   PropTypes.number,
-]);
+]).isRequired;
 
 BooleanField.propTypes = {
   label: PropTypes.node,
@@ -55,6 +55,8 @@ BooleanField.propTypes = {
       ]).isRequired,
       value: valuePropTypes,
       classes: PropTypes.string,
+      icon: PropTypes.func,
+      negative: PropTypes.bool,
     }),
   ),
 };
@@ -66,7 +68,7 @@ BooleanField.defaultProps = {
   disabled: false,
   options: [
     { label: 'Yes', value: true },
-    { label: 'No', value: false },
+    { label: 'No', value: false, negative: true },
   ],
 };
 

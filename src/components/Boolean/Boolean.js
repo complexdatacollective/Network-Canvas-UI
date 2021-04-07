@@ -10,13 +10,21 @@ const Boolean = ({
 }) => (
   <div className="form-field boolean">
     <div className="boolean__options">
-      {options.map(({ label, value: optionValue, classes }) => (
+      {options.map(({
+        label,
+        value: optionValue,
+        classes,
+        icon,
+        negative,
+      }) => (
         <BooleanOption
           classes={classes}
           key={optionValue}
           label={label}
           selected={value === optionValue}
           onClick={() => onChange(optionValue)}
+          icon={icon}
+          negative={negative}
         />
       ))}
     </div>
@@ -43,7 +51,9 @@ const optionPropTypes = PropTypes.shape({
   ]).isRequired,
   value: valuePropTypes,
   classes: PropTypes.string,
-});
+  icon: PropTypes.func,
+  negative: PropTypes.bool,
+}).isRequired;
 
 Boolean.propTypes = {
   noReset: PropTypes.bool.isRequired,

@@ -5,6 +5,7 @@ import Boolean from '../src/components/Fields/Boolean';
 import '../src/styles/_all.scss';
 
 import './Boolean.stories.scss';
+import Icon from '../src/components/Icon';
 
 export default { title: 'Fields/Boolean' };
 
@@ -183,7 +184,12 @@ export const withFiveItems = () => {
         { label: 'Most of the time', value: 4 },
         { label: 'Sometimes', value: 3 },
         { label: 'Rarely', value: 2 },
-        { label: 'Never', value: 1, classes: 'red' },
+        {
+          label: 'Never',
+          value: 1,
+          classes: 'red',
+          icon: () => <Icon name="cross" color="white" />,
+        },
       ]}
     >
       {(props) => (
