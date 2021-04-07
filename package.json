@@ -1,6 +1,6 @@
 {
   "name": "@codaco/ui",
-  "version": "5.1.0",
+  "version": "5.2.0",
   "description": "Styles and React components for the Network Canvas project",
   "main": "lib/components/index.js",
   "license": "GPL-3.0-or-later",
