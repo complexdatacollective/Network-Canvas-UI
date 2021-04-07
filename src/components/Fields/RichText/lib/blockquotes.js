@@ -107,12 +107,3 @@ export const toggleBlockquote = (editor) => {
     }
   });
 };
-
-export const isBlockquote = (editor) => {
-  const block = getContainerBlockAtCursor(editor);
-  const type = get(block, [0, 'type']);
-
-  console.log({ block, type, editor });
-
-  return type === 'block_quote';
-};
