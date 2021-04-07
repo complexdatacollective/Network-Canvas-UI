@@ -1,8 +1,13 @@
 /* eslint-disable no-param-reassign,no-restricted-syntax */
-import { Transforms, Node, Element } from 'slate';
-import { EditListPlugin } from '@productboard/slate-edit-list';
+import {
+  Transforms,
+  Node,
+  Element,
+  Text,
+} from 'slate';
+// import { EditListPlugin } from '@productboard/slate-edit-list';
 
-const [, , { Editor }] = EditListPlugin();
+// const [, , { Editor }] = EditListPlugin();
 
 /**
  * This extends the editor with a custom normalization
@@ -45,26 +50,20 @@ const withNormalize = (editor) => {
       }
     }
 
-    // Prevent markdown characters inside list items
-    if (Element.isElement(Node.get(editor, path))) {
-      const item = Editor.getCurrentItem(editor, path);
+    console.log('normalize', node);
+    // Prevent markdown characters inside text blocks
+    if (Text.isText(node)) {
+      const container = Node.parent(editor, path);
+      const containerPath = path.slice(0, -1);
+      const firstTextPath = [...containerPath, 0];
 
-      if (item) {
-        for (const [child, childPath] of Node.children(editor, path)) {
-          if (child.text) {
-            const noMarkdownText = child.text.replace(/^\s*([-#]|[0-9]+\.)/g, '');
-            if (noMarkdownText !== child.text) {
-              const range = Editor.range(
-                editor,
-                Editor.start(editor, childPath),
-                Editor.end(editor, childPath),
-              );
-              Transforms.select(editor, range);
-              Transforms.delete(editor);
-              Transforms.insertText(editor, noMarkdownText, Editor.start(editor, childPath));
-            }
-          }
-        }
+      const { text } = container.children[0];
+      const noMarkdownText = text.replace(/^\s*([-#]|[0-9]+\.)\s/g, '');
+
+      if (noMarkdownText !== text) {
+        const { selection } = editor;
+        Transforms.insertText(editor, noMarkdownText, { at: firstTextPath });
+        Transforms.select(editor, selection);
       }
     }
 

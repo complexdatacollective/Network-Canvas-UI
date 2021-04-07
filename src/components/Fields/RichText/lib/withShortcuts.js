@@ -85,6 +85,8 @@ const withShortcuts = (editor) => {
   editor.insertText = (text) => {
     const { selection } = editor;
 
+    console.log('insert text');
+
     // When the user inserts a space and we have a single cursor rather
     // than a range selected.
     if (text === ' ' && selection && Range.isCollapsed(selection)) {
