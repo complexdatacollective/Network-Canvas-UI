@@ -15,22 +15,13 @@ const getContainerBlockAtCursor = (editor) => (
 );
 
 const getContainerBlocksAtSelection = (editor) => {
-  const { selection } = editor;
-  const start = Editor.start(editor, selection, { unit: 'block' });
-  const end = Editor.end(editor, selection, { unit: 'block' });
-
-  const nodes = Node.elements(
-    editor,
-    {
-      from: start.path,
-      to: end.path,
-    },
-  );
+  const nodes = Editor.nodes(editor);
 
   const blocks = [];
 
   // eslint-disable-next-line no-restricted-syntax
   for (const node of nodes) {
+    // Top level nodes only
     if (node[1].length === 1) {
       blocks.push(node);
     }
