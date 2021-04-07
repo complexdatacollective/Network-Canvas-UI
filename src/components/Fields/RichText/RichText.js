@@ -17,7 +17,6 @@ import { toggleMark } from './lib/actions';
 import serialize from './lib/serialize';
 import parse, { defaultValue } from './lib/parse';
 import { INLINE_DISALLOWED_ITEMS } from './lib/options';
-import { toggleBlockquote } from './lib/blockquotes';
 import Element from './Element';
 import Leaf from './Leaf';
 import Toolbar from './Toolbar';
@@ -154,7 +153,7 @@ const RichText = ({
   return (
     <Slate editor={editor} value={value} onChange={setValue}>
       <RichTextContainer>
-        <Toolbar editor={editor} />
+        <Toolbar />
         <div className={`rich-text__editable ${inline ? 'rich-text__editable--inline' : ''}`}>
           <Editable
             renderElement={Element}
@@ -165,12 +164,6 @@ const RichText = ({
             onKeyDown={handleKeyDown}
           />
         </div>
-        <button
-          type="button"
-          onClick={() => toggleBlockquote(editor)}
-        >
-          toggle blockquote
-        </button>
       </RichTextContainer>
     </Slate>
   );

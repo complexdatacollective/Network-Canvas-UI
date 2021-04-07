@@ -1,10 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useSlate } from 'slate-react';
 import { includes } from 'lodash';
+import { isBlockActive } from './lib/actions';
+import { toggleBlockquote } from './lib/blockquotes';
 import { MarkButton, BlockButton, ToolbarButton } from './ToolbarButton';
 import { TOOLBAR_ITEMS } from './lib/options';
 
-const Toolbar = ({ editor }) => {
+const Toolbar = () => {
+  const editor = useSlate();
   const { disallowedTypes } = editor;
   const filteredItems = TOOLBAR_ITEMS.filter((item) => !disallowedTypes.includes(item));
 
@@ -24,7 +27,12 @@ const Toolbar = ({ editor }) => {
       { includes(filteredItems, 'quote') && (
         <>
           <div className="toolbar-spacer" />
-          <BlockButton format="block_quote" icon="quote" tooltip="Quote" />
+          <ToolbarButton
+            icon="quote"
+            tooltip="Quote"
+            isActive={isBlockActive(editor, 'block_quote')}
+            action={() => toggleBlockquote(editor)}
+          />
         </>
       )}
       { includes(filteredItems, 'lists') && (
@@ -51,10 +59,6 @@ const Toolbar = ({ editor }) => {
       )}
     </div>
   );
-};
-
-Toolbar.propTypes = {
-  editor: PropTypes.object.isRequired,
 };
 
 export default Toolbar;

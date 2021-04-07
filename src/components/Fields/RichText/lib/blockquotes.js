@@ -7,16 +7,15 @@ import {
 } from 'slate';
 import { get } from 'lodash';
 
-const getBlocks = (editor) => {
-  const { selection } = editor;
-  const isCollapsed = selection && Range.isCollapsed(selection);
-  if (isCollapsed) {
-    return [Editor.above(editor, {
-      match: (n) => Editor.isBlock(editor, n),
-      mode: 'highest',
-    })];
-  }
+const getContainerBlockAtCursor = (editor) => (
+  Editor.above(editor, {
+    match: (n) => Editor.isBlock(editor, n),
+    mode: 'highest',
+  })
+);
 
+const getContainerBlocksAtSelection = (editor) => {
+  const { selection } = editor;
   const start = Editor.start(editor, selection, { unit: 'block' });
   const end = Editor.end(editor, selection, { unit: 'block' });
 
@@ -38,6 +37,17 @@ const getBlocks = (editor) => {
   }
 
   return blocks;
+};
+
+const getBlocks = (editor) => {
+  const { selection } = editor;
+  const isCollapsed = selection && Range.isCollapsed(selection);
+
+  if (isCollapsed) {
+    return [getContainerBlockAtCursor(editor)];
+  }
+
+  return getContainerBlocksAtSelection(editor);
 };
 
 const toggleBlock = (editor, block) => {
@@ -105,4 +115,13 @@ export const toggleBlockquote = (editor) => {
       Transforms.mergeNodes(editor, { at: path });
     }
   });
+};
+
+export const isBlockquote = (editor) => {
+  const block = getContainerBlockAtCursor(editor);
+  const type = get(block, [0, 'type']);
+
+  console.log({ block, type, editor });
+
+  return type === 'block_quote';
 };
