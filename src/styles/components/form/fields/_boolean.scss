@@ -38,13 +38,15 @@
     margin-right: 0;
   }
 
-  &:hover {
-    // border-color: var(--input-accent);
-  }
-
   &--selected {
     border-color: var(--input-accent);
+
+    &.boolean-option--negative {
+      border-color: var(--error);
+    }
   }
+
+
 }
 
 .round-checkbox {
@@ -73,9 +75,15 @@
     transition-timing-function: var(--animation-easing);
   }
 
+
+
   &--checked {
     background-color: var(--input-accent);
     border-color: transparent;
+
+    &.round-checkbox--negative {
+      background-color: var(--error);
+    }
 
     svg {
       opacity: 1;

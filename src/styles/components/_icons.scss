@@ -203,7 +203,8 @@ $-icon-color-modifiers: (
     }
   }
 
-  &[name='tick'] {
+  &[name='tick'],
+  &[name='cross'] {
     .cls-1 {
       fill: color('#{$main-color}');
     }
