@@ -12,6 +12,7 @@ const toInt = (value) => {
 
 const withNumericChangeHandlers = withProps((props) => ({
   type: 'number',
+  placeholder: props.placeholder ? props.placeholder : 'Enter a number...',
   input: {
     ...props.input,
     onChange: (e) => has(props, 'input.onChange')

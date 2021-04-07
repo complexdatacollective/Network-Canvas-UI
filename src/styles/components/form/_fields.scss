@@ -15,8 +15,12 @@ $global-input-border-space: 0.25rem;
 .form-field-label {
   font-family: var(--heading-font-family);
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 500;
   color: var(--text);
+
+  > * {
+    font-weight: inherit;
+  }
 }
 
 .form-field-inline-label {
@@ -73,3 +77,4 @@ $global-input-border-space: 0.25rem;
 @import './fields/range';
 @import './fields/slider';
 @import './fields/date-picker';
+@import './fields/rich-text';

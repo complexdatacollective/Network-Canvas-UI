@@ -4,6 +4,7 @@ export { default as Number } from './Number';
 export { default as TextArea } from './TextArea';
 export { default as Radio } from './Radio';
 export { default as RadioGroup } from './RadioGroup';
+export { default as RichText } from './RichText';
 export { default as Checkbox } from './Checkbox';
 export { default as Toggle } from './Toggle';
 export { default as ToggleButton } from './ToggleButton';

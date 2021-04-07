@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@material-ui/icons": "^4.11.2",
+    "@productboard/slate-edit-list": "^0.21.5",
     "animejs": "^2.2.0",
     "classnames": "^2.2.6",
     "framer-motion": "^2.9.1",
@@ -29,10 +30,17 @@
     "luxon": "^1.21.3",
     "prop-types": "^15.6.2",
     "react-compound-slider": "^2.4.0",
+    "react-markdown": "^5.0.3",
     "react-resize-aware": "^3.0.1",
     "react-transition-group": "^4.3.0",
     "recompose": "^0.30.0",
+    "remark-parse": "^9.0.0",
+    "remark-slate": "^1.5.1",
     "scrollparent": "^2.0.1",
+    "slate": "^0.57.3",
+    "slate-history": "^0.59.0",
+    "slate-react": "^0.57.3",
+    "unified": "^9.2.1",
     "uuid": "^3.2.1"
   },
   "peerDependencies": {
@@ -64,7 +72,6 @@
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-markdown": "^5.0.3",
     "sass-lint": "^1.13.1",
     "sass-loader": "^8.0.2",
     "storybook-addon-themes": "^6.0.0"
