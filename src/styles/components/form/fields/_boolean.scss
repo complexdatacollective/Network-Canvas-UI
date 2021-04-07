@@ -9,6 +9,7 @@
   }
 
   &__reset {
+    cursor: pointer;
     display: block;
     font-size: .9rem;
     margin-top: 1rem;
@@ -18,7 +19,9 @@
 }
 
 .boolean-option {
-  flex: 0 0 calc(50% - #{unit(0.5)});
+  @include clickable(1);
+  cursor: pointer;
+  flex: 1 1;
   display: inline-flex;
   border-color: transparent;
   border-width: $global-input-border-size;
@@ -30,13 +33,13 @@
   margin-left: 0;
   background: var(--input-background);
   color: var(--input-label);
-  transition-property: border-color;
-  transition-duration: var(--animation-duration-standard);
-  transition-timing-function: var(--animation-easing);
 
   &:last-child {
     margin-right: 0;
-    margin-left: unit(0.5);
+  }
+
+  &:hover {
+    // border-color: var(--input-accent);
   }
 
   &--selected {
@@ -59,6 +62,7 @@
   transition-property: border-color, background-color;
   transition-duration: var(--animation-duration-standard);
   transition-timing-function: var(--animation-easing);
+  margin-right: unit(1);
 
   svg {
     width: $global-input-element-size * 0.5;

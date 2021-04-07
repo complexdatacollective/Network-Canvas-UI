@@ -20,6 +20,7 @@
     width: $global-input-element-size;
     height: $global-input-element-size;
     display: inline-flex;
+    margin-right: unit(1);
 
     &::before {
       position: absolute;
