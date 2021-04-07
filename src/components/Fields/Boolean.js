@@ -6,6 +6,7 @@ import Boolean from '../Boolean/Boolean';
 
 const BooleanField = ({
   label,
+  noReset,
   className,
   input,
   disabled,
@@ -27,27 +28,40 @@ const BooleanField = ({
           options={options}
           value={input.value}
           onChange={input.onChange}
+          noReset={noReset}
         />
       </div>
     </div>
   );
 };
 
+const valuePropTypes = PropTypes.oneOfType([
+  PropTypes.bool,
+  PropTypes.string,
+  PropTypes.number,
+]);
+
 BooleanField.propTypes = {
   label: PropTypes.node,
+  noReset: PropTypes.bool,
   className: PropTypes.string,
   disabled: PropTypes.bool,
   input: PropTypes.object.isRequired,
   options: PropTypes.arrayOf(
     PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      value: PropTypes.bool.isRequired,
+      label: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.func,
+      ]).isRequired,
+      value: valuePropTypes,
+      classes: PropTypes.string,
     }),
   ),
 };
 
 BooleanField.defaultProps = {
   className: '',
+  noReset: false,
   label: null,
   disabled: false,
   options: [

@@ -13,6 +13,8 @@ $component-name: form-field-togglebutton;
   }
 
   &__checkbox {
+    @include clickable;
+    border-radius: 50%;
     position: relative;
     width: $size;
     height: $size;

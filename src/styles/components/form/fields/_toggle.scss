@@ -15,6 +15,7 @@ $component-name: form-field-toggle;
     width: $global-input-element-size * 2;
     height: $global-input-element-size;
     display: inline-block;
+    margin-right: unit(1);
   }
 
   &__button {
