@@ -6,6 +6,7 @@ import Boolean from '../Boolean/Boolean';
 
 const BooleanField = ({
   label,
+  fieldLabel,
   noReset,
   className,
   input,
@@ -20,9 +21,11 @@ const BooleanField = ({
     },
   );
 
+  const anyLabel = fieldLabel || label;
+
   return (
     <div className={componentClasses}>
-      {label && <MarkdownLabel label={label} />}
+      {anyLabel && <MarkdownLabel label={anyLabel} />}
       <div className="form-field-boolean__control">
         <Boolean
           options={options}
@@ -42,7 +45,8 @@ const valuePropTypes = PropTypes.oneOfType([
 ]).isRequired;
 
 BooleanField.propTypes = {
-  label: PropTypes.node,
+  label: PropTypes.string,
+  fieldLabel: PropTypes.string,
   noReset: PropTypes.bool,
   className: PropTypes.string,
   disabled: PropTypes.bool,
@@ -65,6 +69,7 @@ BooleanField.defaultProps = {
   className: '',
   noReset: false,
   label: null,
+  fieldLabel: null,
   disabled: false,
   options: [
     { label: 'Yes', value: true },
