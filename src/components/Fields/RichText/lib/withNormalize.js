@@ -26,13 +26,19 @@ const getDisallowedPattern = (disallowedTypes) => {
     return [...acc, typePattern];
   }, []);
 
-  const disallowedPattern = `^\\s*(${typePatterns.join('|')})\\s*`;
+  const disallowedPattern = `^(\\s*)(${typePatterns.join('|')})(\\s*)`;
 
   return new RegExp(disallowedPattern, 'g');
 };
 
+const getDisallowedSanitizer = (disallowedTypes) => (text) => {
+  const disallowedPattern = getDisallowedPattern(disallowedTypes);
+
+  return text.replace(disallowedPattern, '$1$3');
+};
+
 const SanitizeDisallowedMarkdown = (editor) => {
-  const disallowedPattern = getDisallowedPattern(editor.disallowedTypes);
+  const sanitizeDisallowed = getDisallowedSanitizer(editor.disallowedTypes);
 
   return ([node, path]) => {
     if (editor.disallowedTypes.length === 0) { return; }
@@ -42,13 +48,14 @@ const SanitizeDisallowedMarkdown = (editor) => {
       && path[path.length - 1] === 0 // First text node in the parent
     ) {
       const { text } = node;
-      const noMarkdownText = text.replace(disallowedPattern, '');
+      const noMarkdownText = sanitizeDisallowed(text);
 
       if (noMarkdownText !== text) {
         const { selection } = editor;
+        const offset = Math.max(0, selection.anchor.offset - 1);
         const range = {
-          anchor: { ...selection.anchor, offset: 0 },
-          focus: { ...selection.focus, offset: 0 },
+          anchor: { ...selection.anchor, offset },
+          focus: { ...selection.focus, offset },
         };
         // replace text in node
         Transforms.insertText(editor, noMarkdownText, { at: path });
