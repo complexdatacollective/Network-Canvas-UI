@@ -31,9 +31,11 @@ const getDisallowedPattern = (disallowedTypes) => {
   return new RegExp(disallowedPattern, 'g');
 };
 
-const SanitizeDisallowedMarkdown = (editor) => ([node, path]) => {
+const SanitizeDisallowedMarkdown = (editor) => {
   const disallowedPattern = getDisallowedPattern(editor.disallowedTypes);
-  if (editor.inline) {
+
+  return ([node, path]) => {
+    if (editor.disallowedTypes.length === 0) { return; }
     if (Text.isText(node)) {
       // Prevent markdown characters inside text blocks
       const container = Node.parent(editor, path);
@@ -45,7 +47,6 @@ const SanitizeDisallowedMarkdown = (editor) => ([node, path]) => {
 
       if (noMarkdownText !== text) {
         const { selection } = editor;
-        console.log(selection);
         const range = {
           anchor: { ...selection.anchor, offset: 0 },
           focus: { ...selection.focus, offset: 0 },
@@ -56,7 +57,7 @@ const SanitizeDisallowedMarkdown = (editor) => ([node, path]) => {
         Transforms.select(editor, range);
       }
     }
-  }
+  };
 };
 
 /**
