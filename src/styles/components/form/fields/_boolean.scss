@@ -37,7 +37,7 @@
   &--collapsed {
     border-width: $global-input-border-size * 2;
     justify-content: center;
-    padding: unit(1);
+    padding: unit(2) unit(1);
 
     .form-field-inline-label {
       text-align: center;
