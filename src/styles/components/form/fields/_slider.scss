@@ -121,11 +121,10 @@ $module-name: form-field-slider;
 
     &-label {
       position: absolute;
-      top: 0.5 * $touch-height;
+      top: unit(4);
       transform: translate(-50%, 0);
       display: flex;
       justify-content: center;
-      align-items: center;
       width: max-content;
       min-height: $touch-height;
       max-width: $align-margin * 1.75;
@@ -184,7 +183,7 @@ $module-name: form-field-slider;
     height: $height;
     margin-left: $align-margin;
     margin-right: $align-margin;
-    margin-bottom: unit(2);
+    margin-bottom: unit(4);
 
     &--vas,
     &--likert {

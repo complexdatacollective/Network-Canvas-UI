@@ -14,7 +14,7 @@ $global-input-border-space: 0.25rem;
 
 .form-field-label {
   font-family: var(--heading-font-family);
-  font-size: 1rem;
+  font-size: inherit;
   font-weight: 500;
   color: var(--text);
 
@@ -24,10 +24,6 @@ $global-input-border-space: 0.25rem;
 
   > :first-child {
     margin-top: 0;
-  }
-
-  > :last-child {
-    margin-bottom: 0;
   }
 }
 
