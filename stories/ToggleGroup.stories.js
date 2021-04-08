@@ -26,6 +26,7 @@ export const interaction = () => {
         { label: 'Telecommunications *Technician*', value: 2 },
         { label: 'Manufacturing', value: 3 },
         { label: 'Industrial-Organization Psychologist', value: 4 },
+        { label: '_Gardening_ Club', value: 4 },
       ]}
       input={{
         onChange: handleChange,

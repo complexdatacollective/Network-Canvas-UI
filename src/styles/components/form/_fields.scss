@@ -21,6 +21,14 @@ $global-input-border-space: 0.25rem;
   > * {
     font-weight: inherit;
   }
+
+  > :first-child {
+    margin-top: 0;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
 }
 
 .form-field-inline-label {
