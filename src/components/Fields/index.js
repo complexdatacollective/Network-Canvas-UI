@@ -1,4 +1,5 @@
 /* eslint-disable import/prefer-default-export */
+export { default as Boolean } from './Boolean';
 export { default as Text } from './Text';
 export { default as Number } from './Number';
 export { default as TextArea } from './TextArea';
