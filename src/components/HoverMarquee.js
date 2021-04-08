@@ -9,7 +9,7 @@ const HoverMarquee = ({
 }) => {
   const containerRef = useRef(null);
   const contentRef = useRef(null);
-  const [sizes] = useResizeAware();
+  const [resizeListener, sizes] = useResizeAware();
 
   const contentVariants = {
     hover: {
@@ -32,6 +32,7 @@ const HoverMarquee = ({
       className="hover-marquee"
       ref={containerRef}
     >
+      {resizeListener}
       <motion.span transition={{ duration: 0 }} whileHover="hover" variants={contentVariants} ref={contentRef}>
         {children}
       </motion.span>

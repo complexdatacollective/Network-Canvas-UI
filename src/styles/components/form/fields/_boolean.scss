@@ -21,7 +21,7 @@
 .boolean-option {
   @include clickable(1);
   cursor: pointer;
-  flex: 1 1;
+  flex: 1 1 100%;
   display: inline-flex;
   border-color: transparent;
   border-width: $global-input-border-size;
@@ -33,6 +33,22 @@
   margin-left: 0;
   background: var(--input-background);
   color: var(--input-label);
+
+  &--collapsed {
+    border-width: $global-input-border-size * 2;
+    justify-content: center;
+    padding: unit(1);
+
+    .form-field-inline-label {
+      text-align: center;
+    }
+
+    .round-checkbox {
+      display: none;
+    }
+  }
+
+
 
   &:last-child {
     margin-right: 0;
