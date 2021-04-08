@@ -4,7 +4,11 @@ import {
   Node,
   Element,
   Text,
+  Editor,
 } from 'slate';
+import {
+  isEmpty,
+} from 'lodash';
 
 const getTypePattern = (type) => {
   switch (type) {
@@ -44,10 +48,15 @@ const SanitizeDisallowedMarkdown = (editor) => {
     if (editor.disallowedTypes.length === 0) { return; }
     // Prevent markdown characters inside (first) text blocks
     if (
-      Text.isText(node)
-      && path[path.length - 1] === 0 // First text node in the parent
+      Element.isElement(node)
+      && Editor.hasTexts(editor, node)
     ) {
-      const { text } = node;
+      // Find first non-empty text node
+      const firstTextNodeIndex = node.children.findIndex(({ text }) => !isEmpty(text));
+      if (firstTextNodeIndex === -1) { return; }
+      const firstTextNodePath = [...path, firstTextNodeIndex];
+      const { text } = Node.get(editor, firstTextNodePath);
+
       const noMarkdownText = sanitizeDisallowed(text);
 
       if (noMarkdownText !== text) {
