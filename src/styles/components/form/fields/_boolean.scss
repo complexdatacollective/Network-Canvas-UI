@@ -48,8 +48,6 @@
     }
   }
 
-
-
   &:last-child {
     margin-right: 0;
   }
@@ -61,8 +59,6 @@
       border-color: var(--error);
     }
   }
-
-
 }
 
 .round-checkbox {
@@ -90,8 +86,6 @@
     transition-duration: var(--animation-duration-standard);
     transition-timing-function: var(--animation-easing);
   }
-
-
 
   &--checked {
     background-color: var(--input-accent);
