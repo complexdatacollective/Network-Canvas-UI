@@ -4,7 +4,6 @@ import cx from 'classnames';
 import useResizeAware from 'react-resize-aware';
 import RoundCheckbox from './RoundCheckbox';
 import MarkdownLabel from '../Fields/MarkdownLabel';
-import { size } from 'lodash';
 
 const BooleanOption = ({
   classes,
@@ -32,7 +31,6 @@ const BooleanOption = ({
     return <MarkdownLabel label={label} className="form-field-inline-label" />;
   };
 
-  console.log('sizes', sizes);
   return (
     <div className={classNames} onClick={onClick} style={{ position: 'relative' }}>
       {resizeListener}
