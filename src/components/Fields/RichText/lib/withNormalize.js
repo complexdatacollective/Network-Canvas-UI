@@ -5,9 +5,59 @@ import {
   Element,
   Text,
 } from 'slate';
-// import { EditListPlugin } from '@productboard/slate-edit-list';
 
-// const [, , { Editor }] = EditListPlugin();
+const getTypePattern = (type) => {
+  switch (type) {
+    case 'quote':
+      return '>';
+    case 'headings':
+      return '#+';
+    case 'lists':
+      return '\\+|-|\\*|[0-9]+\\.';
+    default:
+      return null;
+  }
+};
+
+const getDisallowedPattern = (disallowedTypes) => {
+  const typePatterns = disallowedTypes.reduce((acc, type) => {
+    const typePattern = getTypePattern(type);
+    if (!typePattern) { return acc; }
+    return [...acc, typePattern];
+  }, []);
+
+  const disallowedPattern = `^\\s*(${typePatterns.join('|')})\\s*`;
+
+  return new RegExp(disallowedPattern, 'g');
+};
+
+const SanitizeDisallowedMarkdown = (editor) => ([node, path]) => {
+  const disallowedPattern = getDisallowedPattern(editor.disallowedTypes);
+  if (editor.inline) {
+    if (Text.isText(node)) {
+      // Prevent markdown characters inside text blocks
+      const container = Node.parent(editor, path);
+      const containerPath = path.slice(0, -1);
+      const firstTextPath = [...containerPath, 0];
+
+      const { text } = container.children[0];
+      const noMarkdownText = text.replace(disallowedPattern, '');
+
+      if (noMarkdownText !== text) {
+        const { selection } = editor;
+        console.log(selection);
+        const range = {
+          anchor: { ...selection.anchor, offset: 0 },
+          focus: { ...selection.focus, offset: 0 },
+        };
+        // _replace_ text in block
+        Transforms.insertText(editor, noMarkdownText, { at: firstTextPath });
+        // Reset to start of line
+        Transforms.select(editor, range);
+      }
+    }
+  }
+};
 
 /**
  * This extends the editor with a custom normalization
@@ -16,6 +66,8 @@ import {
  */
 const withNormalize = (editor) => {
   const { normalizeNode } = editor;
+
+  const sanitizeDisallowedMarkdown = SanitizeDisallowedMarkdown(editor);
 
   editor.normalizeNode = ([node, path]) => {
     /**
@@ -50,22 +102,7 @@ const withNormalize = (editor) => {
       }
     }
 
-    console.log('normalize', node);
-    // Prevent markdown characters inside text blocks
-    if (Text.isText(node)) {
-      const container = Node.parent(editor, path);
-      const containerPath = path.slice(0, -1);
-      const firstTextPath = [...containerPath, 0];
-
-      const { text } = container.children[0];
-      const noMarkdownText = text.replace(/^\s*([-#]|[0-9]+\.)\s/g, '');
-
-      if (noMarkdownText !== text) {
-        const { selection } = editor;
-        Transforms.insertText(editor, noMarkdownText, { at: firstTextPath });
-        Transforms.select(editor, selection);
-      }
-    }
+    sanitizeDisallowedMarkdown([node, path]);
 
     return normalizeNode([node, path]);
   };
