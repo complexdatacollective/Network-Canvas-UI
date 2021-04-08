@@ -36,13 +36,12 @@ const SanitizeDisallowedMarkdown = (editor) => {
 
   return ([node, path]) => {
     if (editor.disallowedTypes.length === 0) { return; }
-    if (Text.isText(node)) {
-      // Prevent markdown characters inside text blocks
-      const container = Node.parent(editor, path);
-      const containerPath = path.slice(0, -1);
-      const firstTextPath = [...containerPath, 0];
-
-      const { text } = container.children[0];
+    // Prevent markdown characters inside (first) text blocks
+    if (
+      Text.isText(node)
+      && path[path.length - 1] === 0 // First text node in the parent
+    ) {
+      const { text } = node;
       const noMarkdownText = text.replace(disallowedPattern, '');
 
       if (noMarkdownText !== text) {
@@ -51,8 +50,8 @@ const SanitizeDisallowedMarkdown = (editor) => {
           anchor: { ...selection.anchor, offset: 0 },
           focus: { ...selection.focus, offset: 0 },
         };
-        // _replace_ text in block
-        Transforms.insertText(editor, noMarkdownText, { at: firstTextPath });
+        // replace text in node
+        Transforms.insertText(editor, noMarkdownText, { at: path });
         // Reset to start of line
         Transforms.select(editor, range);
       }
