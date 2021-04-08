@@ -62,7 +62,7 @@ class Handle extends Component {
             className={tooltipClasses}
             style={{ left: `${percent}%` }}
           >
-            <MarkdownLabel label={label} className="form-field-slider__tooltip-label" />
+            <MarkdownLabel inline label={label} className="form-field-slider__tooltip-label" />
           </div>
           )}
         <div

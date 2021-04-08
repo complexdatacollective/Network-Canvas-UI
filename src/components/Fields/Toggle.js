@@ -76,7 +76,7 @@ class Toggle extends PureComponent {
           <div className="form-field-toggle__toggle">
             <span className="form-field-toggle__button" />
           </div>
-          {label && <MarkdownLabel label={label} className="form-field-inline-label" />}
+          {label && <MarkdownLabel inline label={label} className="form-field-inline-label" />}
         </label>
         {invalid && touched && (
         <div className="form-field-toggle__error">
