@@ -8,6 +8,7 @@ const MarkdownLabel = ({ label, className, inline }) => (
     className={className}
     allowedTypes={inline ? ALLOWED_MARKDOWN_INLINE_LABEL_TAGS : ALLOWED_MARKDOWN_LABEL_TAGS}
     renderers={{ root: 'span' }}
+    unwrapDisallowed
   >
     {label}
   </ReactMarkdown>
