@@ -125,7 +125,11 @@ export const withError = () => {
     action('toggleError')(!meta);
   };
 
-  const renderMeta = { error: 'Something was not right about the input', invalid: meta, touched: meta };
+  const renderMeta = {
+    error: 'Something was not right about the input',
+    invalid: meta,
+    touched: meta,
+  };
 
   useEffect(() => {
     console.log(JSON.stringify(value));

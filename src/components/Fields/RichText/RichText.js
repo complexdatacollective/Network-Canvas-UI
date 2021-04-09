@@ -89,10 +89,13 @@ const RichText = ({
   inline,
   disallowedTypes,
   onChange,
+  onBlur,
+  onFocus,
   value: initialValue,
   placeholder,
 }) => {
   const [value, setValue] = useState(defaultValue);
+  const [initialized, setInitialized] = useState(false);
 
   // Use the inline prop to optionally merge additional disallowed items
   const disallowedTypesWithDefaults = [
@@ -120,7 +123,8 @@ const RichText = ({
   // Set starting state from prop value on start up
   useEffect(() => {
     parse(initialValue)
-      .then(setValue);
+      .then(setValue)
+      .then(() => setInitialized(true));
   }, []);
 
   // Test if there is no text content in the tree
@@ -134,15 +138,17 @@ const RichText = ({
     return isEmpty(child.text) || !/\S/.test(child.text);
   });
 
+  const getSerializedValue = () => {
+    if (everyChildEmpty(editor.children)) {
+      return '';
+    }
+    return serialize(value);
+  };
+
   // Update upstream on change
   useEffect(() => {
-    // If all content is empty, set an empty value so that validation
-    // can pick up on it
-    if (everyChildEmpty(editor.children)) {
-      onChange('');
-      return;
-    }
-    onChange(serialize(value));
+    if (!initialized) { return; }
+    onChange(getSerializedValue());
   }, [value]);
 
   const handleKeyDown = useCallback((event) => {
@@ -150,9 +156,13 @@ const RichText = ({
     listOnKeyDown(editor)(event);
   }, [editor]);
 
+  const handleOnBlur = () => {
+    onBlur(getSerializedValue());
+  };
+
   return (
     <Slate editor={editor} value={value} onChange={setValue}>
-      <RichTextContainer>
+      <RichTextContainer onFocus={onFocus} onBlur={handleOnBlur}>
         <Toolbar />
         <div className={`rich-text__editable ${inline ? 'rich-text__editable--inline' : ''}`}>
           <Editable

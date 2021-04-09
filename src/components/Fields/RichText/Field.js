@@ -40,6 +40,8 @@ const RichTextField = ({
           id={id.current}
           value={input.value}
           onChange={input.onChange}
+          onFocus={input.onFocus}
+          onBlur={input.onBlur}
           placeholder={placeholder}
           autoFocus={autoFocus}
           inline={inline}
@@ -60,6 +62,8 @@ RichTextField.propTypes = {
   input: PropTypes.shape({
     value: PropTypes.string,
     onChange: PropTypes.func,
+    onFocus: PropTypes.func,
+    onBlur: PropTypes.func,
   }).isRequired,
   label: PropTypes.string,
   meta: PropTypes.shape({
