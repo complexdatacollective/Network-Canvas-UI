@@ -55,7 +55,6 @@ const SanitizeDisallowedMarkdown = (editor) => {
       if (firstTextNodeIndex === -1) { return; }
       const firstTextNodePath = [...path, firstTextNodeIndex];
       const { text } = Node.get(editor, firstTextNodePath);
-
       const noMarkdownText = sanitizeDisallowed(text);
 
       if (noMarkdownText !== text) {
@@ -66,7 +65,7 @@ const SanitizeDisallowedMarkdown = (editor) => {
           focus: { ...selection.focus, offset },
         };
         // replace text in node
-        Transforms.insertText(editor, noMarkdownText, { at: path });
+        Transforms.insertText(editor, noMarkdownText, { at: firstTextNodePath });
         // Reset to start of line
         Transforms.select(editor, range);
       }
