@@ -3,7 +3,6 @@ import {
   Transforms,
   Node,
   Element,
-  Text,
   Editor,
 } from 'slate';
 import {

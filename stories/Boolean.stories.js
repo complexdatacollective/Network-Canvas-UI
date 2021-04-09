@@ -201,3 +201,42 @@ export const withFiveItems = () => {
     </Harness>
   );
 };
+
+export const WithError = () => {
+  const defaultMeta = false;
+  const [meta, setMeta] = useState(defaultMeta);
+
+  const toggleError = () => {
+    setMeta(!meta);
+    action('toggleError')(!meta);
+  };
+
+  const renderMeta = { error: 'Something was not right about the input', invalid: meta, touched: meta };
+
+  const [value, setValue] = useState();
+
+  const handleChange = (...args) => {
+    setValue(...args);
+    action('change')(...args);
+  };
+
+  return (
+    <Harness
+      requiredProps={requiredProps}
+      label="This input type **requires** the user to _specifically_ set a value, which can also be cleared."
+      input={{
+        onChange: handleChange,
+        value,
+      }}
+      meta={renderMeta}
+    >
+      {(props) => (
+        <>
+          <button onClick={toggleError}>Toggle Error</button>
+          <Boolean {...props} />
+          next element
+        </>
+      )}
+    </Harness>
+  );
+};

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import useResizeAware from 'react-resize-aware';
 import RoundCheckbox from './RoundCheckbox';
 import MarkdownLabel from '../Fields/MarkdownLabel';
 
@@ -12,10 +13,13 @@ const BooleanOption = ({
   icon,
   negative,
 }) => {
+  const [resizeListener, sizes] = useResizeAware();
+
   const classNames = cx(
     'boolean-option',
     { 'boolean-option--selected': selected },
     { 'boolean-option--negative': negative },
+    { 'boolean-option--collapsed': sizes && sizes.width < 235 },
     classes,
   );
 
@@ -28,7 +32,8 @@ const BooleanOption = ({
   };
 
   return (
-    <div className={classNames} onClick={onClick}>
+    <div className={classNames} onClick={onClick} style={{ position: 'relative' }}>
+      {resizeListener}
       <RoundCheckbox checked={selected} customIcon={icon} negative={negative} />
       {renderLabel()}
     </div>

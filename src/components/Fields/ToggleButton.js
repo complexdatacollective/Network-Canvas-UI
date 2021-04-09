@@ -44,7 +44,9 @@ class ToggleButton extends PureComponent {
             {...rest}
             type="checkbox"
           />
-          <MarkdownLabel label={label} className="form-field-togglebutton__checkbox" />
+          <div className="form-field-togglebutton__checkbox">
+            <MarkdownLabel inline label={label} />
+          </div>
         </div>
       </label>
     );

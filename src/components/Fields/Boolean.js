@@ -3,14 +3,17 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import MarkdownLabel from './MarkdownLabel';
 import Boolean from '../Boolean/Boolean';
+import Icon from '../Icon';
 
 const BooleanField = ({
   label,
+  fieldLabel,
   noReset,
   className,
   input,
   disabled,
   options,
+  meta: { error, invalid, touched },
 }) => {
   const componentClasses = cx(
     'form-field-container form-field-boolean',
@@ -18,11 +21,16 @@ const BooleanField = ({
     {
       'form-field-boolean--disabled': disabled,
     },
+    {
+      'form-field-boolean--has-error': invalid && touched && error,
+    },
   );
+
+  const anyLabel = fieldLabel || label;
 
   return (
     <div className={componentClasses}>
-      {label && <MarkdownLabel label={label} />}
+      {anyLabel && <MarkdownLabel label={anyLabel} />}
       <div className="form-field-boolean__control">
         <Boolean
           options={options}
@@ -30,6 +38,12 @@ const BooleanField = ({
           onChange={input.onChange}
           noReset={noReset}
         />
+        {invalid && touched && (
+        <div className="form-field-boolean__error">
+          <Icon name="warning" />
+          {error}
+        </div>
+        )}
       </div>
     </div>
   );
@@ -42,7 +56,8 @@ const valuePropTypes = PropTypes.oneOfType([
 ]).isRequired;
 
 BooleanField.propTypes = {
-  label: PropTypes.node,
+  label: PropTypes.string,
+  fieldLabel: PropTypes.string,
   noReset: PropTypes.bool,
   className: PropTypes.string,
   disabled: PropTypes.bool,
@@ -59,17 +74,20 @@ BooleanField.propTypes = {
       negative: PropTypes.bool,
     }),
   ),
+  meta: PropTypes.object,
 };
 
 BooleanField.defaultProps = {
   className: '',
   noReset: false,
   label: null,
+  fieldLabel: null,
   disabled: false,
   options: [
     { label: 'Yes', value: true },
     { label: 'No', value: false, negative: true },
   ],
+  meta: {},
 };
 
 export default BooleanField;
