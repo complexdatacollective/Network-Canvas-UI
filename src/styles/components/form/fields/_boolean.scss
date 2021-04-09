@@ -1,5 +1,32 @@
 .form-field-boolean {
   margin-bottom: 2rem;
+
+  &__error {
+    opacity: 0;
+    background: var(--error);
+    color: var(--text);
+    transition: opacity var(--animation-easing) var(--animation-duration-standard),
+    max-height var(--animation-easing) var(--animation-duration-standard);
+    padding: 0.5rem 0.25rem;
+    display: flex;
+    align-items: center;
+
+    svg {
+      max-height: 1.2rem;
+    }
+  }
+
+  &--has-error {
+    .form-field-boolean__error {
+      opacity: 1;
+    }
+
+    .form-field {
+      margin-bottom: 0;
+      border: 0.125rem solid var(--error);
+    }
+
+  }
 }
 
 .boolean {
