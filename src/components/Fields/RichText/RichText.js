@@ -89,8 +89,6 @@ const RichText = ({
   inline,
   disallowedTypes,
   onChange,
-  onBlur,
-  onFocus,
   value: initialValue,
   placeholder,
 }) => {
@@ -156,13 +154,9 @@ const RichText = ({
     listOnKeyDown(editor)(event);
   }, [editor]);
 
-  const handleOnBlur = () => {
-    onBlur(getSerializedValue());
-  };
-
   return (
     <Slate editor={editor} value={value} onChange={setValue}>
-      <RichTextContainer onFocus={onFocus} onBlur={handleOnBlur}>
+      <RichTextContainer>
         <Toolbar />
         <div className={`rich-text__editable ${inline ? 'rich-text__editable--inline' : ''}`}>
           <Editable
