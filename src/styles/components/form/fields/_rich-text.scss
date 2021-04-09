@@ -1,6 +1,7 @@
 $module-name: form-field-rich-text;
 
 .rich-text {
+  --blockquote-border-color: var(--transparent-light);
   background: var(--input-background);
   border-radius: 1rem 1rem 0 0;
   overflow: hidden;
@@ -42,11 +43,7 @@ $module-name: form-field-rich-text;
     }
 
     blockquote {
-      border-left: 3px solid var(--transparent-light);
-      padding-left: unit(2);
-      margin-top: 1rem;
-      margin-bottom: 1rem;
-      line-height: 1.25;
+      border-left-color: var(--blockquote-border-color);
     }
   }
 
