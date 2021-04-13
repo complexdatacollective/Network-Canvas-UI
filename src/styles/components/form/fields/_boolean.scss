@@ -97,7 +97,7 @@
   width: $global-input-element-size;
   height: $global-input-element-size;
   border-radius: 100%;
-  border-color: var(--color-white);
+  border-color: var(--input-border);
   border-width: $global-input-border-size;
   border-style: solid;
   transition-property: border-color, background-color;
