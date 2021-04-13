@@ -5,6 +5,7 @@ import {
   Element as SlateElement,
 } from 'slate';
 import { EditListPlugin } from '@productboard/slate-edit-list';
+import { get } from 'lodash';
 
 const SHORTCUTS = {
   '1.': 'ol_list',
@@ -20,6 +21,7 @@ const SHORTCUTS = {
 };
 
 // Maps disallowed types to shortcut types
+// This map MUST include all items in ./options.js
 const TYPE_MAP = {
   lists: ['ol_list', 'ul_list'],
   headings: ['heading_one', 'heading_two', 'heading_three', 'heading_four', 'heading_five', 'heading_six'],
@@ -64,7 +66,7 @@ const withShortcuts = (editor) => {
   const isDisallowedType = (
     type, typeList,
   ) => isDisallowedHeading(type)
-  || typeList.some((disallowedType) => TYPE_MAP[disallowedType].includes(type));
+  || typeList.some((disallowedType) => get(TYPE_MAP, disallowedType, []).includes(type));
 
   editor.insertBreak = () => {
     // If the last line was a shortcut (e.g. the user

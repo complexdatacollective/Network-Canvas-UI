@@ -129,9 +129,9 @@ export const disallowedTypes = () => {
       requiredProps={requiredProps}
       input={{
         onChange: setValue,
-        value: 'Full editor, but headings **not** allowed.',
+        value: 'Full editor, but quotes **not** allowed.',
       }}
-      disallowedTypes={['headings']}
+      disallowedTypes={['quote', 'history']}
     >
       {props => (
         <>
