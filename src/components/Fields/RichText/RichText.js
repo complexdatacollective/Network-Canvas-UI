@@ -93,7 +93,7 @@ const RichText = ({
   placeholder,
 }) => {
   const [value, setValue] = useState(defaultValue);
-  const [initialized, setInitialized] = useState(false);
+  const [lastChange, setLastChange] = useState(null);
 
   // Use the inline prop to optionally merge additional disallowed items
   const disallowedTypesWithDefaults = [
@@ -118,13 +118,6 @@ const RichText = ({
     [disallowedTypesWithDefaults.join()],
   );
 
-  // Set starting state from prop value on start up
-  useEffect(() => {
-    parse(initialValue)
-      .then(setValue)
-      .then(() => setInitialized(true));
-  }, []);
-
   // Test if there is no text content in the tree
   const everyChildEmpty = (children) => children.every((child) => {
     if (child.children) {
@@ -143,10 +136,30 @@ const RichText = ({
     return serialize(value);
   };
 
+  // Set starting state from prop value on start up
+  useEffect(() => {
+    // If value matches the last reported change do not set value;
+    if (initialValue === lastChange) { return; }
+
+    parse(initialValue)
+      .then((parsedValue) => {
+        // we need to reset the cursor state because the value length may have changed
+        Transforms.deselect(editor);
+        setValue(parsedValue);
+      });
+  }, [initialValue]);
+
   // Update upstream on change
   useEffect(() => {
-    if (!initialized) { return; }
-    onChange(getSerializedValue());
+    const nextValue = getSerializedValue();
+
+    // Is this optimization necessary?
+    if (nextValue === lastChange) {
+      return;
+    }
+
+    setLastChange(nextValue);
+    onChange(nextValue);
   }, [value]);
 
   const handleKeyDown = useCallback((event) => {
