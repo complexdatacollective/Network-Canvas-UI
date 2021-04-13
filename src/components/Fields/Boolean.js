@@ -29,7 +29,7 @@ const BooleanField = ({
   const anyLabel = fieldLabel || label;
 
   return (
-    <div className={componentClasses}>
+    <div className={componentClasses} name={input.name}>
       {anyLabel && <MarkdownLabel label={anyLabel} />}
       <div className="form-field-boolean__control">
         <Boolean
