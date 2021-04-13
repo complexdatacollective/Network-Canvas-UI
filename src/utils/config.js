@@ -2,7 +2,6 @@ const ALLOWED_MARKDOWN_TAGS = [
   'break',
   'emphasis',
   'heading',
-  'link',
   'list',
   'listItem',
   'paragraph',

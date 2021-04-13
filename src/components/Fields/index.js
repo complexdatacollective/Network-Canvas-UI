@@ -16,3 +16,4 @@ export { default as VisualAnalogScale } from './VisualAnalogScale';
 export { default as DatePicker } from './DatePicker';
 export { default as RelativeDatePicker } from './RelativeDatePicker';
 export { default as MarkdownLabel } from './MarkdownLabel';
+export { default as Markdown } from './Markdown';

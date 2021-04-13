@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import useResizeAware from 'react-resize-aware';
 import RoundCheckbox from './RoundCheckbox';
-import MarkdownLabel from '../Fields/MarkdownLabel';
+import Markdown from '../Fields/Markdown';
 
 const BooleanOption = ({
   classes,
@@ -28,7 +28,7 @@ const BooleanOption = ({
       return label();
     }
 
-    return <MarkdownLabel label={label} className="form-field-inline-label" />;
+    return <Markdown label={label} className="form-field-inline-label" />;
   };
 
   return (
