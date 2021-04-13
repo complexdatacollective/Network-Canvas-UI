@@ -49,6 +49,41 @@ export const Renders = () => {
   );
 };
 
+export const ValueUpdated = () => {
+  const [value, setValue] = useState('**old** value\n');
+
+  useEffect(() => {
+    setTimeout(() => {
+      setValue('**old** value\n');
+    }, 3000);
+  }, [value]);
+
+  return (
+    <Harness
+      requiredProps={requiredProps}
+      input={{
+        value,
+        onChange: setValue,
+      }}
+    >
+      {(props) => (
+        <>
+          <RichTextField {...props} />
+          <div style={{ margin: '2rem 0' }}>
+            <h4>Rendered Markdown:</h4>
+            <ReactMarkdown allowedTypes={ALLOWED_MARKDOWN_LABEL_TAGS}>{value}</ReactMarkdown>
+            <MarkdownLabel label={value} />
+          </div>
+          <div style={{ margin: '2rem 0' }}>
+            <h4>Raw Markdown:</h4>
+            <pre>{JSON.stringify({ value }, null, 2)}</pre>
+          </div>
+        </>
+      )}
+    </Harness>
+  );
+};
+
 export const Inline = () => {
   const [value, setValue] = useState();
 
