@@ -3,7 +3,13 @@ import anime from 'animejs';
 import scrollparent from 'scrollparent';
 import { getCSSVariableAsNumber, getCSSVariableAsObject } from '../utils/CSSVariables';
 
-const scrollFocus = (destination, delay = 0) => {
+const getFastAnimationDuration = () => getCSSVariableAsNumber('--animation-duration-fast-ms');
+
+const scrollFocus = (
+  destination,
+  delay = getFastAnimationDuration(),
+  duration = getFastAnimationDuration(),
+) => {
   if (!destination) { return null; }
 
   return setTimeout(() => {
@@ -16,7 +22,7 @@ const scrollFocus = (destination, delay = 0) => {
       targets: scroller,
       scrollTop: scrollEnd,
       easing: getCSSVariableAsObject('--animation-easing-js'),
-      duration: getCSSVariableAsNumber('--animation-duration-fast-ms'),
+      duration,
     });
   }, delay);
 };
@@ -34,14 +40,15 @@ const useScrollTo = (
   ref,
   condition,
   watch,
-  delay = getCSSVariableAsNumber('--animation-duration-fast-ms'),
+  delay = getFastAnimationDuration(),
+  duration = getFastAnimationDuration(),
 ) => {
   const timer = useRef();
 
   useEffect(() => {
     if (ref && ref.current && condition(...watch)) {
       clearTimeout(timer.current);
-      timer.current = scrollFocus(ref.current, delay);
+      timer.current = scrollFocus(ref.current, delay, duration);
     }
   }, watch);
 };

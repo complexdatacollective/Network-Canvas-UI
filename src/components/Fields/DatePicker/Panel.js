@@ -27,6 +27,7 @@ const Panel = ({
     <motion.div
       initial={{ x: 0 }}
       animate={animate}
+      transition={{ duration: 0.2, type: 'tween' }}
       className={className}
     >
       {children}

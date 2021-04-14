@@ -19,6 +19,7 @@ const DatePickerInput = ({
   value,
   parameters,
   parentRef,
+  placeholder,
 }) => {
   const [panelsOpen, setPanelsOpen] = useState(false);
 
@@ -90,6 +91,7 @@ const DatePickerInput = ({
                 <DatePreview
                   onClick={handleClickPreview}
                   isActive={panelsOpen}
+                  placeholder={placeholder}
                 />
                 <motion.div layout>
                   <AnimatePresence>
@@ -172,6 +174,7 @@ DatePickerInput.defaultProps = {
   value: null,
   parameters: {},
   onChange: () => {},
+  placeholder: null,
 };
 
 DatePickerInput.propTypes = {
@@ -182,6 +185,7 @@ DatePickerInput.propTypes = {
     PropTypes.func,
     PropTypes.shape({ current: PropTypes.any }),
   ]).isRequired,
+  placeholder: PropTypes.string,
 };
 
 export default DatePickerInput;

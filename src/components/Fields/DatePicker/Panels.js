@@ -9,6 +9,7 @@ const Panels = ({ children }) => (
     animate={{ scaleY: 1, opacity: 1 }}
     exit={{ scaleY: 0, opacity: 0 }}
     style={{ originX: 0, originY: 0 }}
+    transition={{ duration: 0.2, type: 'tween' }}
     layout
   >
     <motion.div

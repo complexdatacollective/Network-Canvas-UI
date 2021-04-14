@@ -98,7 +98,7 @@ DatePicker.defaultProps = {
 DatePicker.propTypes = {
   children: PropTypes.node,
   date: PropTypes.string,
-  type: PropTypes.string,
+  type: PropTypes.oneOf([...Object.keys(DATE_FORMATS)]),
   min: PropTypes.string,
   max: PropTypes.string,
   onChange: PropTypes.func,

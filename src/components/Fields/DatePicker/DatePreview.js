@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { Date } from './DatePicker/';
 import { getMonthName } from './helpers';
 
-const DatePreview = ({ onClick, isActive }) => (
+const DatePreview = ({ onClick, isActive, placeholder }) => (
   <Date>
     {({
       date, type, onChange, isComplete, isEmpty,
@@ -46,6 +46,19 @@ const DatePreview = ({ onClick, isActive }) => (
         { 'date-picker__preview--is-empty': isEmpty },
       );
 
+      if (!isActive && isEmpty && placeholder) {
+        return (
+          <motion.div
+            className={previewClass}
+            onClick={handleClickPreview}
+            // layout
+            ref={previewRef}
+          >
+            <span className="date-picker__placeholder">{placeholder}</span>
+          </motion.div>
+        );
+      }
+
       return (
         <motion.div
           className={previewClass}
@@ -57,7 +70,7 @@ const DatePreview = ({ onClick, isActive }) => (
             className={cx('date-picker__preview-part', { 'date-picker__preview-part--is-set': date.year })}
             onClick={handleClickYear}
           >
-            {date.year || 'year'}
+            {date.year || 'Year'}
           </div>
           { ['full', 'month'].includes(type)
             && <div className="date-picker__preview-divider">/</div>}
@@ -67,7 +80,7 @@ const DatePreview = ({ onClick, isActive }) => (
               className={cx('date-picker__preview-part', { 'date-picker__preview-part--is-set': date.month })}
               onClick={handleClickMonth}
             >
-              {getMonthName(date.month) || 'month'}
+              {getMonthName(date.month) || 'Month'}
             </div>
             )}
           { ['full'].includes(type)
@@ -78,7 +91,7 @@ const DatePreview = ({ onClick, isActive }) => (
               className={cx('date-picker__preview-part', { 'date-picker__preview-part--is-set': date.day })}
               onClick={handleClickDay}
             >
-              {date.day || 'day'}
+              {date.day || 'Day'}
             </div>
             )}
           <div

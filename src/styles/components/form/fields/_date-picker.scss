@@ -5,6 +5,7 @@ $lighten: rgba(255, 255, 255, 0.05);
 $darken: rgba(0, 0, 0, 0.2);
 
 .form-field-date-picker {
+  color: var(--input-text);
   &__error {
     opacity: 0;
     transition: opacity var(--animation-easing) var(--animation-duration-fast);
@@ -41,6 +42,11 @@ $darken: rgba(0, 0, 0, 0.2);
   max-width: 100%;
   overflow: hidden;
 
+  &__placeholder {
+    color: var(--input-placeholder);
+    font-style: italic;
+  }
+
   &__preview {
     font-size: 1rem;
     background-color: var(--background);
@@ -59,16 +65,18 @@ $darken: rgba(0, 0, 0, 0.2);
 
     &-part,
     &-clear {
+      cursor: pointer;
       display: inline-block;
-      transition: opacity var(--animation-easing) var(--animation-duration-fast);
+      transition: color var(--animation-easing) var(--animation-duration-fast);
     }
 
     &-part {
-      opacity: 0.33;
+      color: var(--input-placeholder);
+      font-style: italic;
 
       &--is-set {
-        cursor: pointer;
-        opacity: 1;
+        color: var(--input-text);
+        font-style: normal;
       }
     }
 
@@ -86,7 +94,9 @@ $darken: rgba(0, 0, 0, 0.2);
     }
 
     &--is-empty {
+      color: var(--input-placeholder);
       cursor: pointer;
+      font-style: italic;
     }
 
     &:focus {
@@ -169,7 +179,11 @@ $darken: rgba(0, 0, 0, 0.2);
     height: 100%;
 
     &--year {
-      @extend .scrollable !optional; // sass-lint:disable-line placeholder-in-extend
+      overflow-x: hidden;
+      overflow-y: auto;
+      // sass-lint:disable no-vendor-prefixes
+      -webkit-overflow-scrolling: touch;
+
       .date-picker__range-picker-items {
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         grid-template-rows: minmax(auto, 5rem);

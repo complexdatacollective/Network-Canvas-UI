@@ -17,6 +17,7 @@ class DatePickerField extends Component {
       input,
       meta: { error, invalid, touched },
       label,
+      placeholder,
       parameters,
       fieldLabel,
       className,
@@ -41,6 +42,7 @@ class DatePickerField extends Component {
             {...input}
             onChange={input.onBlur}
             parentRef={this.ref}
+            placeholder={placeholder}
           />
           {invalid && touched
             && (
@@ -64,6 +66,7 @@ DatePickerField.propTypes = {
   input: PropTypes.object.isRequired,
   meta: PropTypes.object,
   label: PropTypes.string,
+  placeholder: PropTypes.string,
   fieldLabel: PropTypes.string,
   className: PropTypes.string,
   hidden: PropTypes.bool,
@@ -73,6 +76,7 @@ DatePickerField.defaultProps = {
   parameters: {},
   meta: {},
   label: null,
+  placeholder: null,
   fieldLabel: null,
   className: null,
   hidden: null,

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import Harness from './helpers/Harness';
-import DatePicker, { DATE_FORMATS } from '../src/components/Fields/DatePicker';
+import RelativeDatePicker from '../src/components/Fields/RelativeDatePicker';
 import '../src/styles/_all.scss';
 
 const requiredProps = {
@@ -10,10 +10,10 @@ const requiredProps = {
   meta: {},
 };
 
-export default { title: 'Fields/DatePicker' };
+export default { title: 'Fields/RelativeDatePicker' };
 
 export const Field = () => {
-  const [value, setValue] = useState('1959-09-09');
+  const [value, setValue] = useState('2019-09-09');
   const handleChange = (...args) => {
     setValue(...args);
     action('change')(...args);
@@ -29,37 +29,7 @@ export const Field = () => {
     >
       {props => (
         <div>
-          <DatePicker {...props} />
-          Next element
-        </div>
-      )}
-    </Harness>
-  );
-};
-
-export const Parameters = () => {
-  const [value, setValue] = useState('1959-09');
-  const handleChange = (...args) => {
-    setValue(...args);
-    action('change')(...args);
-  };
-
-  return (
-    <Harness
-      requiredProps={requiredProps}
-      input={{
-        onBlur: handleChange,
-        value,
-      }}
-      parameters={{
-        type: 'month',
-        min: '1000-01',
-        max: '3000-12',
-      }}
-    >
-      {props => (
-        <div>
-          <DatePicker {...props} />
+          <RelativeDatePicker {...props} />
           Next element
         </div>
       )}
@@ -76,7 +46,7 @@ export const WithPlaceholder = () => {
     >
       {props => (
         <div>
-          <DatePicker {...props} />
+          <RelativeDatePicker {...props} />
           Next element
         </div>
       )}
@@ -105,7 +75,7 @@ export const WithError = () => {
         <div>
           <button onClick={toggleError}>Toggle Error</button>
           <div>
-            <DatePicker {...props} />
+            <RelativeDatePicker {...props} />
             Next element
           </div>
         </div>
@@ -119,7 +89,7 @@ export const AutoScroll = () => (
     {props => (
       <div style={{ backgroundColor: 'var(--color-slate-blue)', height: '400px', overflowY: 'scroll' }}>
         <div style={{ padding: '300px 0' }}>
-          <DatePicker {...props} />
+          <RelativeDatePicker {...props} />
         </div>
       </div>
     )}
