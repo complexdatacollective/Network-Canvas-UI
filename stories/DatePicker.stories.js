@@ -115,10 +115,24 @@ export const WithError = () => {
 };
 
 export const AutoScroll = () => (
-  <Harness requiredProps={requiredProps}>
+  <Harness
+    requiredProps={requiredProps}
+    parameters={{
+      min: '1000-01',
+      max: '3000-12',
+    }}
+  >
     {props => (
-      <div style={{ backgroundColor: 'var(--color-slate-blue)', height: '400px', overflowY: 'scroll' }}>
-        <div style={{ padding: '300px 0' }}>
+      <div style={{
+        backgroundColor: 'var(--color-slate-blue)',
+        height: '500px',
+        overflowY: 'scroll',
+        scrollBehavior: 'smooth',
+        position: 'relative',
+        top: '3rem',
+      }}
+      >
+        <div style={{ padding: '400px 0' }}>
           <DatePicker {...props} />
         </div>
       </div>
