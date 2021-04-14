@@ -109,11 +109,13 @@ const DatePreview = ({ onClick, isActive, placeholder }) => (
 DatePreview.propTypes = {
   onClick: PropTypes.func,
   isActive: PropTypes.bool,
+  placeholder: PropTypes.string,
 };
 
 DatePreview.defaultProps = {
   onClick: () => {},
   isActive: false,
+  placeholder: null,
 };
 
 export default DatePreview;
