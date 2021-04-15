@@ -92,8 +92,9 @@ const RichText = ({
   value: initialValue,
   placeholder,
 }) => {
+  const [isInitialized, setIsInitialized] = useState(false);
   const [value, setValue] = useState(defaultValue);
-  const [lastChange, setLastChange] = useState(null);
+  const [lastChange, setLastChange] = useState(initialValue);
 
   // Use the inline prop to optionally merge additional disallowed items
   const disallowedTypesWithDefaults = [
@@ -136,21 +137,31 @@ const RichText = ({
     return serialize(value);
   };
 
-  // Set starting state from prop value on start up
-  useEffect(() => {
-    // If value matches the last reported change do not set value;
-    if (initialValue === lastChange) { return; }
-
+  const setInitialValue = () =>
     parse(initialValue)
       .then((parsedValue) => {
         // we need to reset the cursor state because the value length may have changed
         Transforms.deselect(editor);
         setValue(parsedValue);
       });
+
+  // Set starting state from prop value on start up
+  useEffect(() => {
+    setInitialValue()
+      .then(() => setIsInitialized(true));
+  }, []);
+
+  // Set value again when initial value changes
+  useEffect(() => {
+    // If value matches the last reported change do not set value;
+    if (initialValue === lastChange) { return; }
+    setInitialValue();
   }, [initialValue]);
 
   // Update upstream on change
   useEffect(() => {
+    if (!isInitialized) { return; }
+
     const nextValue = getSerializedValue();
 
     // Is this optimization necessary?
