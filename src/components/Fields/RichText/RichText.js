@@ -137,13 +137,12 @@ const RichText = ({
     return serialize(value);
   };
 
-  const setInitialValue = () =>
-    parse(initialValue)
-      .then((parsedValue) => {
-        // we need to reset the cursor state because the value length may have changed
-        Transforms.deselect(editor);
-        setValue(parsedValue);
-      });
+  const setInitialValue = () => parse(initialValue)
+    .then((parsedValue) => {
+      // we need to reset the cursor state because the value length may have changed
+      Transforms.deselect(editor);
+      setValue(parsedValue);
+    });
 
   // Set starting state from prop value on start up
   useEffect(() => {
