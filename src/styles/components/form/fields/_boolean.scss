@@ -103,7 +103,7 @@
   transition-property: border-color, background-color;
   transition-duration: var(--animation-duration-standard);
   transition-timing-function: var(--animation-easing);
-  margin-right: unit(1);
+  margin-right: unit(2);
 
   svg {
     width: $global-input-element-size * 0.5;
