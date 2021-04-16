@@ -20,6 +20,8 @@ const Element = ({ attributes, children, element }) => {
       return <h4 {...attributes}>{children}</h4>;
     case 'list_item':
       return <li {...attributes}>{children}</li>;
+    case 'thematic_break':
+      return <hr />;
     default:
       return <p {...attributes}>{children}</p>;
   }

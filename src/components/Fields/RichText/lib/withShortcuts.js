@@ -6,6 +6,7 @@ import {
 } from 'slate';
 import { EditListPlugin } from '@productboard/slate-edit-list';
 import { get } from 'lodash';
+import { insertThematicBreak, getContainerBlockAtCursor } from './utils';
 
 const SHORTCUTS = {
   '1.': 'ol_list',
@@ -29,7 +30,7 @@ const SHORTCUTS = {
 const ALWAYS_DISALLOWED = [
   'heading_five',
   'heading_six',
-  'thematic_break',
+  // 'thematic_break',
 ];
 
 // Maps disallowed types to shortcut types
@@ -69,6 +70,7 @@ const withShortcuts = (editor) => {
     inline,
     disallowedTypes,
     insertBreak,
+    isVoid,
   } = editor;
 
   // Always disallowed types
@@ -83,17 +85,31 @@ const withShortcuts = (editor) => {
     || typeList.some((disallowedType) => get(TYPE_MAP, disallowedType, []).includes(type))
   );
 
+  const VOID_TYPES = ['thematic_break'];
+
+  editor.isVoid = (element) => {
+    if (VOID_TYPES.includes(element.type)) { return true; }
+    return isVoid(element);
+  };
+
   editor.insertBreak = () => {
     // If the last line was a shortcut (e.g. the user
     // didn't press space, delete it.
-    const [beforeText, range] = getBeforeText(editor);
+    const [beforeText] = getBeforeText(editor);
     const type = SHORTCUTS[beforeText.trim()];
 
     if (type) {
-      Transforms.select(editor, range);
-      Transforms.delete(editor);
-      // Uncomment the following to stay on the same line.
-      // return;
+      Transforms.removeNodes(editor);
+
+      if (type === 'thematic_break') {
+        const containerBlock = getContainerBlockAtCursor(editor);
+
+        if (get(containerBlock, [0, 'type']) === 'paragraph') {
+          insertThematicBreak(editor);
+        }
+
+        return;
+      }
     }
 
     insertBreak();
@@ -123,6 +139,18 @@ const withShortcuts = (editor) => {
           return;
         }
 
+        if (type === 'thematic_break') {
+          const containerBlock = getContainerBlockAtCursor(editor);
+
+          Transforms.removeNodes(editor);
+
+          if (get(containerBlock, [0, 'type']) === 'paragraph') {
+            insertThematicBreak(editor);
+          }
+
+          return;
+        }
+
         // If shortcut is a list, wrap - unless we are in inline mode!
         if ((type === 'ul_list' || type === 'ol_list') && !inline) {
           // If we're not already in a list, wrap the text in a list
@@ -139,6 +167,7 @@ const withShortcuts = (editor) => {
         const newProperties = {
           type,
         };
+
         Transforms.setNodes(editor, newProperties, {
           match: (n) => Editor.isBlock(editor, n),
         });
