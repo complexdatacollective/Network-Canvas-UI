@@ -16,9 +16,17 @@ const SHORTCUTS = {
   '##': 'heading_two',
   '###': 'heading_three',
   '####': 'heading_four',
-  '#####': 'heading_five', // Always disallowed
-  '######': 'heading_six', // Always disallowed
+  '#####': 'heading_five', // disallowed
+  '######': 'heading_six', // disallowed
+  '```': 'code_block', // disallowed
 };
+
+// These types are detected so they can be removed
+const ALWAYS_DISALLOWED = [
+  'heading_five',
+  'heading_six',
+  'code_block',
+];
 
 // Maps disallowed types to shortcut types
 // This map MUST include all items in ./options.js
@@ -58,15 +66,17 @@ const withShortcuts = (editor) => {
     insertBreak,
   } = editor;
 
-  // Disallow H5 and H6
-  const isDisallowedHeading = (type) => type === 'heading_five' || type === 'heading_six';
+  // Always disallowed types
+  const isAlwaysDisallowed = (type) => ALWAYS_DISALLOWED.includes(type);
 
   // Lookup each disallowed type in TYPE_MAP, and return true if the
   // given type is included
   const isDisallowedType = (
     type, typeList,
-  ) => isDisallowedHeading(type)
-  || typeList.some((disallowedType) => get(TYPE_MAP, disallowedType, []).includes(type));
+  ) => (
+    isAlwaysDisallowed(type)
+    || typeList.some((disallowedType) => get(TYPE_MAP, disallowedType, []).includes(type))
+  );
 
   editor.insertBreak = () => {
     // If the last line was a shortcut (e.g. the user
