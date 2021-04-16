@@ -21,6 +21,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
     "@productboard/slate-edit-list": "^0.21.5",
     "animejs": "^2.2.0",
@@ -54,10 +55,11 @@
     "@babel/eslint-plugin": "^7.13.10",
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/preset-react": "^7.12.1",
-    "@storybook/addon-actions": "^6.1.21",
-    "@storybook/addon-links": "^6.1.21",
-    "@storybook/addons": "^6.1.21",
-    "@storybook/react": "^6.1.21",
+    "@storybook/addon-actions": "^6.2.8",
+    "@storybook/addon-essentials": "^6.2.8",
+    "@storybook/addon-links": "^6.2.8",
+    "@storybook/addons": "^6.2.8",
+    "@storybook/react": "^6.2.8",
     "babel-loader": "^8.1.0",
     "core-js": "^3.6.5",
     "enzyme": "^3.7.0",
@@ -74,6 +76,6 @@
     "react-dom": "^16.13.1",
     "sass-lint": "^1.13.1",
     "sass-loader": "^8.0.2",
-    "storybook-addon-themes": "^6.0.0"
+    "storybook-addon-themes": "^6.1.0"
   }
 }

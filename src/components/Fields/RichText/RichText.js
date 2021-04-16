@@ -16,7 +16,7 @@ import withShortcuts from './lib/withShortcuts';
 import { toggleMark } from './lib/actions';
 import serialize from './lib/serialize';
 import parse, { defaultValue } from './lib/parse';
-import { INLINE_DISALLOWED_ITEMS } from './lib/options';
+import { INLINE_DISALLOWED_ITEMS, ALWAYS_DISALLOWED } from './lib/options';
 import Element from './Element';
 import Leaf from './Leaf';
 import Toolbar from './Toolbar';
@@ -100,6 +100,7 @@ const RichText = ({
   const disallowedTypesWithDefaults = [
     ...disallowedTypes,
     ...[...(inline ? INLINE_DISALLOWED_ITEMS : [])],
+    ...ALWAYS_DISALLOWED,
   ];
 
   const withOptions = (e) => Object.assign(e, {
