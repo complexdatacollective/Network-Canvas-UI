@@ -21,6 +21,7 @@ const SHORTCUTS = {
   '```': 'code_block', // disallowed
   '---': 'thematic_break',
   '***': 'thematic_break',
+  // eslint-disable-next-line quote-props
   '___': 'thematic_break',
 };
 
