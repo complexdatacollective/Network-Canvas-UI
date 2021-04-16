@@ -25,7 +25,6 @@ const SHORTCUTS = {
 const ALWAYS_DISALLOWED = [
   'heading_five',
   'heading_six',
-  'code_block',
 ];
 
 // Maps disallowed types to shortcut types
@@ -34,6 +33,7 @@ const TYPE_MAP = {
   lists: ['ol_list', 'ul_list'],
   headings: ['heading_one', 'heading_two', 'heading_three', 'heading_four', 'heading_five', 'heading_six'],
   quote: ['block_quote'],
+  code: ['code_block'],
 };
 
 const [, , { Transforms, Editor }] = EditListPlugin();

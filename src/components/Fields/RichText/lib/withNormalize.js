@@ -9,7 +9,7 @@ import {
   isEmpty,
 } from 'lodash';
 
-const getTypePattern = (type) => {
+const getBlockPattern = (type) => {
   switch (type) {
     case 'quote':
       return '>';
@@ -22,22 +22,37 @@ const getTypePattern = (type) => {
   }
 };
 
-const getDisallowedPattern = (disallowedTypes) => {
-  const typePatterns = disallowedTypes.reduce((acc, type) => {
-    const typePattern = getTypePattern(type);
+const getInlinePattern = (type) => {
+  switch (type) {
+    case 'code':
+      return '`';
+    case 'strike':
+      return '~';
+    default:
+      return null;
+  }
+};
+
+const getDisallowedSanitizer = (disallowedTypes) => {
+  const blockTypePatterns = disallowedTypes.reduce((acc, type) => {
+    const typePattern = getBlockPattern(type);
     if (!typePattern) { return acc; }
     return [...acc, typePattern];
   }, []);
 
-  const disallowedPattern = `^(\\s*)(${typePatterns.join('|')})(\\s*)`;
+  const disallowedBlockPattern = new RegExp(`^(\\s*)(${blockTypePatterns.join('|')})(\\s*)`, 'g');
 
-  return new RegExp(disallowedPattern, 'g');
-};
+  const inlineTypePatterns = disallowedTypes.reduce((acc, type) => {
+    const typePattern = getInlinePattern(type);
+    if (!typePattern) { return acc; }
+    return [...acc, typePattern];
+  }, []);
 
-const getDisallowedSanitizer = (disallowedTypes) => (text) => {
-  const disallowedPattern = getDisallowedPattern(disallowedTypes);
+  const disallowedInlinePattern = new RegExp(`(${inlineTypePatterns.join('|')})`, 'g');
 
-  return text.replace(disallowedPattern, '$1$3');
+  return (text) => text
+    .replace(disallowedBlockPattern, '$1$3')
+    .replace(disallowedInlinePattern, '');
 };
 
 const SanitizeDisallowedMarkdown = (editor) => {

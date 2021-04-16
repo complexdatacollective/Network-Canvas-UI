@@ -18,6 +18,8 @@ export const MODES = {
   inline: 'inline',
 };
 
+export const ALWAYS_DISALLOWED = ['strike', 'code'];
+
 export const TOOLBAR_ITEMS = [...BLOCKS, ...MARKS, ...HISTORY];
 
 export const INLINE_DISALLOWED_ITEMS = [...BLOCKS];
