@@ -7,7 +7,6 @@ const ALLOWED_MARKDOWN_TAGS = [
   'listItem',
   'paragraph',
   'strong',
-  'thematicBreak',
   'text',
 ];
 

@@ -19,12 +19,16 @@ const SHORTCUTS = {
   '#####': 'heading_five', // disallowed
   '######': 'heading_six', // disallowed
   '```': 'code_block', // disallowed
+  '---': 'thematic_break',
+  '***': 'thematic_break',
+  '___': 'thematic_break',
 };
 
 // These types are detected so they can be removed
 const ALWAYS_DISALLOWED = [
   'heading_five',
   'heading_six',
+  'thematic_break',
 ];
 
 // Maps disallowed types to shortcut types
