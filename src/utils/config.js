@@ -1,6 +1,7 @@
 const ALLOWED_MARKDOWN_TAGS = [
   'break',
   'emphasis',
+  'blockquote',
   'heading',
   'list',
   'listItem',
@@ -20,7 +21,6 @@ const ALLOWED_MARKDOWN_PROMPT_TAGS = [
 const ALLOWED_MARKDOWN_LABEL_TAGS = [
   'paragraph',
   'break',
-  'blockquote',
   'emphasis',
   'strong',
   'text',
