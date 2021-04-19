@@ -17,13 +17,14 @@
     "build": "./scripts/build",
     "preflight": "npm run lint && npm run sass-lint",
     "prepublishOnly": "npm run preflight && npm run build",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -p 6006 --no-manager-cache",
     "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
     "@productboard/slate-edit-list": "^0.21.5",
+    "@storybook/theming": "^6.2.8",
     "animejs": "^2.2.0",
     "classnames": "^2.2.6",
     "framer-motion": "^2.9.1",
@@ -75,7 +76,6 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "sass-lint": "^1.13.1",
-    "sass-loader": "^8.0.2",
-    "storybook-addon-themes": "^6.1.0"
+    "sass-loader": "^8.0.2"
   }
 }
