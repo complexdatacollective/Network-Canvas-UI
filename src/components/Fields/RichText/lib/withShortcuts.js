@@ -43,6 +43,7 @@ const TYPE_MAP = {
   headings: ['heading_one', 'heading_two', 'heading_three', 'heading_four', 'heading_five', 'heading_six'],
   quote: ['block_quote'],
   code: ['code_block'],
+  thematic_break: ['thematic_break'],
 };
 
 const [, , { Transforms, Editor }] = EditListPlugin();
