@@ -23,10 +23,10 @@ const SHORTCUTS = {
   '^(---+|\\*\\*\\*+|___+)$': 'thematic_break',
 };
 
-const SHORTCUT_PATTERNS = Object.keys(SHORTCUTS).map((pattern) => {
+// To pairs for easier mapping
+const SHORTCUT_PAIRS = Object.keys(SHORTCUTS).map((pattern) => {
   const type = SHORTCUTS[pattern];
-  const matcher = new RegExp(pattern, 'g');
-  return [type, matcher];
+  return [type, pattern];
 });
 
 // These types are detected so they can be removed
@@ -48,7 +48,7 @@ const TYPE_MAP = {
 const [, , { Transforms, Editor }] = EditListPlugin();
 
 const checkType = (string) => {
-  const [type] = SHORTCUT_PATTERNS.find(([, matcher]) => matcher.test(string)) || [];
+  const [type] = SHORTCUT_PAIRS.find(([, matcher]) => new RegExp(matcher, 'g').test(string)) || [null];
   return type;
 };
 
@@ -105,8 +105,6 @@ const withShortcuts = (editor) => {
     // didn't press space, delete it.
     const [beforeText] = getBeforeText(editor);
     const type = checkType(beforeText.trim());
-
-    console.log({ type, beforeText, trim: beforeText.trim() });
 
     if (type) {
       Transforms.removeNodes(editor);

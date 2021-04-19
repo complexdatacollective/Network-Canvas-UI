@@ -44,5 +44,6 @@ export const insertThematicBreak = (editor) => {
     { type: 'thematic_break', children: [{ text: '' }] },
     { type: 'paragraph', children: [{ text: '' }] },
   ]);
+
   Transforms.move(editor, { unit: 'line', distance: 1 });
 };

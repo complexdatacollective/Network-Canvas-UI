@@ -21,7 +21,12 @@ const Element = ({ attributes, children, element }) => {
     case 'list_item':
       return <li {...attributes}>{children}</li>;
     case 'thematic_break':
-      return <hr />;
+      return (
+        <div {...attributes}>
+          <hr />
+          {children}
+        </div>
+      );
     default:
       return <p {...attributes}>{children}</p>;
   }
