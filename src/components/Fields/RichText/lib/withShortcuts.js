@@ -9,22 +9,25 @@ import { get } from 'lodash';
 import { insertThematicBreak, getContainerBlockAtCursor } from './utils';
 
 const SHORTCUTS = {
-  '1.': 'ol_list',
-  '*': 'ul_list',
-  '-': 'ul_list',
-  '>': 'block_quote',
-  '#': 'heading_one',
-  '##': 'heading_two',
-  '###': 'heading_three',
-  '####': 'heading_four',
-  '#####': 'heading_five', // disallowed
-  '######': 'heading_six', // disallowed
-  '```': 'code_block', // disallowed
-  '---': 'thematic_break',
-  '***': 'thematic_break',
-  // eslint-disable-next-line quote-props
-  '___': 'thematic_break',
+  '^[0-9]+\\.$': 'ol_list',
+  '^\\*$': 'ul_list',
+  '^-$': 'ul_list',
+  '^>$': 'block_quote',
+  '^#$': 'heading_one',
+  '^##$': 'heading_two',
+  '^###$': 'heading_three',
+  '^####$': 'heading_four',
+  '^#####$': 'heading_five', // disallowed
+  '^######$': 'heading_six', // disallowed
+  '^```$': 'code_block', // disallowed
+  '^(---+|\\*\\*\\*+|___+)$': 'thematic_break',
 };
+
+const SHORTCUT_PATTERNS = Object.keys(SHORTCUTS).map((pattern) => {
+  const type = SHORTCUTS[pattern];
+  const matcher = new RegExp(pattern, 'g');
+  return [type, matcher];
+});
 
 // These types are detected so they can be removed
 const ALWAYS_DISALLOWED = [
@@ -43,6 +46,11 @@ const TYPE_MAP = {
 };
 
 const [, , { Transforms, Editor }] = EditListPlugin();
+
+const checkType = (string) => {
+  const [type] = SHORTCUT_PATTERNS.find(([, matcher]) => matcher.test(string)) || [];
+  return type;
+};
 
 const getBeforeText = (editor) => {
   const { selection } = editor;
@@ -96,7 +104,9 @@ const withShortcuts = (editor) => {
     // If the last line was a shortcut (e.g. the user
     // didn't press space, delete it.
     const [beforeText] = getBeforeText(editor);
-    const type = SHORTCUTS[beforeText.trim()];
+    const type = checkType(beforeText.trim());
+
+    console.log({ type, beforeText, trim: beforeText.trim() });
 
     if (type) {
       Transforms.removeNodes(editor);
@@ -124,7 +134,7 @@ const withShortcuts = (editor) => {
       const [beforeText, range] = getBeforeText(editor);
       // Trim any leading spaces from the text and check whether
       // it matches one of the shortcuts.
-      const type = SHORTCUTS[beforeText.trim()];
+      const type = checkType(beforeText.trim());
 
       // If type is set, we matched with one of our shortcuts
       if (type) {
@@ -142,6 +152,8 @@ const withShortcuts = (editor) => {
         if (type === 'thematic_break') {
           const containerBlock = getContainerBlockAtCursor(editor);
 
+          // Only insert thematic breaks inside paragraphs, otherwise
+          // we remove the characters to stop a markdown parser using them
           Transforms.removeNodes(editor);
 
           if (get(containerBlock, [0, 'type']) === 'paragraph') {
