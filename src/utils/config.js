@@ -8,6 +8,7 @@ const ALLOWED_MARKDOWN_TAGS = [
   'paragraph',
   'strong',
   'text',
+  'thematicBreak',
 ];
 
 const ALLOWED_MARKDOWN_PROMPT_TAGS = [

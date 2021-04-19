@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Field as RichTextField } from '../src/components/Fields/RichText';
-import { ALLOWED_MARKDOWN_LABEL_TAGS } from '../src/utils/config';
+import { ALLOWED_MARKDOWN_TAGS } from '../src/utils/config';
 
 import '../src/styles/_all.scss';
 import MarkdownLabel from '../src/components/Fields/MarkdownLabel';
@@ -49,7 +49,7 @@ const Template = ({ initialValue, hasError, ...args }) => {
       <RichTextField {...props} />
       <div style={{ margin: '2rem 0' }}>
         <h4>Rendered Markdown:</h4>
-        <ReactMarkdown allowedTypes={ALLOWED_MARKDOWN_LABEL_TAGS}>{value}</ReactMarkdown>
+        <ReactMarkdown allowedTypes={ALLOWED_MARKDOWN_TAGS}>{value}</ReactMarkdown>
         <MarkdownLabel label={value} />
       </div>
       <div style={{ margin: '2rem 0' }}>
