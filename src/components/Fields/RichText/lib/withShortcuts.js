@@ -104,11 +104,12 @@ const withShortcuts = (editor) => {
   editor.insertBreak = () => {
     // If the last line was a shortcut (e.g. the user
     // didn't press space, delete it.
-    const [beforeText] = getBeforeText(editor);
+    const [beforeText, range] = getBeforeText(editor);
     const type = checkType(beforeText.trim());
 
     if (type) {
-      Transforms.removeNodes(editor);
+      Transforms.select(editor, range);
+      Transforms.delete(editor);
 
       if (type === 'thematic_break') {
         const containerBlock = getContainerBlockAtCursor(editor);
@@ -116,6 +117,8 @@ const withShortcuts = (editor) => {
         if (get(containerBlock, [0, 'type']) === 'paragraph') {
           insertThematicBreak(editor);
         }
+
+        // TODO: remove leading block?
 
         return;
       }
