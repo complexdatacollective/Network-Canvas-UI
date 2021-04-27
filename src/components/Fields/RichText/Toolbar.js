@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSlate } from 'slate-react';
 import { includes } from 'lodash';
-import { isBlockActive } from './lib/actions';
+import { isBlockActive, smartInsertThematicBreak } from './lib/actions';
 import { toggleBlockquote } from './lib/blockquotes';
 import { MarkButton, BlockButton, ToolbarButton } from './ToolbarButton';
 import { TOOLBAR_ITEMS } from './lib/options';
@@ -40,6 +40,12 @@ const Toolbar = () => {
           <div className="toolbar-spacer" />
           <BlockButton format="ol_list" icon="ol" tooltip="Numbered List" />
           <BlockButton format="ul_list" icon="ul" tooltip="Bulleted List" />
+        </>
+      )}
+      { includes(filteredItems, 'thematic_break') && (
+        <>
+          <div className="toolbar-spacer" />
+          <ToolbarButton action={() => smartInsertThematicBreak(editor)} icon="hr" tooltip="Thematic Break" />
         </>
       )}
       { includes(filteredItems, 'history') && (

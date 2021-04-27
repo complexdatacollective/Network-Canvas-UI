@@ -12,6 +12,7 @@ import ULIcon from '@material-ui/icons/FormatListBulletedRounded';
 import OLIcon from '@material-ui/icons/FormatListNumberedRounded';
 import UndoIcon from '@material-ui/icons/UndoRounded';
 import RedoIcon from '@material-ui/icons/RedoRounded';
+import HorizontalRuleIcon from '@material-ui/icons/RemoveRounded';
 
 const icons = {
   bold: BoldIcon,
@@ -26,6 +27,7 @@ const icons = {
   ol: OLIcon,
   undo: UndoIcon,
   redo: RedoIcon,
+  hr: HorizontalRuleIcon,
 };
 
 const Icon = ({ name }) => {

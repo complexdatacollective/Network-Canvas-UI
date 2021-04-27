@@ -4,6 +4,8 @@ import {
   Transforms,
 } from 'slate';
 import { EditListPlugin } from '@productboard/slate-edit-list';
+import { insertThematicBreak } from './utils';
+import { BLOCK_TYPES } from './options';
 
 const LIST_TYPES = ['ul_list', 'ol_list'];
 
@@ -66,9 +68,18 @@ const toggleMark = (editor, format) => {
   }
 };
 
+const smartInsertThematicBreak = (editor) => {
+  const isWithinBlock = BLOCK_TYPES.some((format) => isBlockActive(editor, format));
+
+  if (isWithinBlock) { return; }
+
+  insertThematicBreak(editor);
+};
+
 export {
   toggleMark,
   toggleBlock,
   isMarkActive,
   isBlockActive,
+  smartInsertThematicBreak,
 };
