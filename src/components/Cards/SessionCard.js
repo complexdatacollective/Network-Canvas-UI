@@ -35,7 +35,7 @@ const SessionCard = (props) => {
     <div className={modifierClasses} onClick={onClickHandler}>
       <div className="main-wrapper">
         <h2 className="card__label">
-          { loading ? <Skeleton /> : <HoverMarquee>{ caseId }</HoverMarquee>}
+          { loading ? <Skeleton width="60%" /> : <HoverMarquee>{ caseId }</HoverMarquee>}
         </h2>
         <h5 className="card__protocol">
           {loading ? <Skeleton /> : <HoverMarquee>{ protocolName || (<span className="highlight">Unavailable protocol!</span>) }</HoverMarquee> }
@@ -44,7 +44,7 @@ const SessionCard = (props) => {
       <div className="meta-wrapper">
         <div className="meta">
           <h6 className="meta-wrapper__attribute">
-            { loading ? <Skeleton /> : (
+            { loading ? <Skeleton width="90%" /> : (
               <HoverMarquee>
                 <img src={StartedIcon} alt="Interview started at" />
                 { startedAt ? formatDate(startedAt) : (<span className="highlight">No start date!</span>) }
@@ -52,7 +52,7 @@ const SessionCard = (props) => {
             )}
           </h6>
           <h6 className="meta-wrapper__attribute">
-            { loading ? <Skeleton /> : (
+            { loading ? <Skeleton width="90%" /> : (
               <HoverMarquee>
                 <img src={ModifiedIcon} alt="Interview modified at" />
                 { updatedAt ? formatDate(updatedAt) : (<span className="highlight">Never changed!</span>) }
@@ -62,7 +62,7 @@ const SessionCard = (props) => {
         </div>
         <div className="meta">
           <h6 className="meta-wrapper__attribute progress-wrapper">
-            { loading ? <Skeleton /> : (
+            { loading ? <Skeleton width="90%" /> : (
               <>
                 <img src={FinishedIcon} alt="Interview finished at" />
                 { progress === 100 && finishedAt ? (
@@ -83,7 +83,7 @@ const SessionCard = (props) => {
             )}
           </h6>
           <h6 className="meta-wrapper__attribute">
-            { loading ? <Skeleton /> : (
+            { loading ? <Skeleton width="90%" /> : (
               <HoverMarquee>
                 <img src={ExportedIcon} alt="Interview exported at" />
                 { exportedAt ? formatDate(exportedAt) : (<span className="highlight">Not yet exported</span>) }
