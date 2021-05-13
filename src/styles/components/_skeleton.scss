@@ -1,0 +1,27 @@
+@keyframes skeleton {
+    0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+};
+
+.skeleton {
+  --defaultBaseColor: var(--color-platinum--dark);
+  --defaultHighlightColor: var(--color-platinum);
+  background-color: var(--defaultBaseColor);
+  background-image: linear-gradient(
+    90deg,
+    var(--defaultBaseColor),
+    var(--defaultHighlightColor),
+    var(--defaultBaseColor)
+  );
+  background-size: 200px 100%;
+  background-repeat: no-repeat;
+  border-radius: 4px;
+  display: inline-block;
+  line-height: 1;
+  width: 100%;
+  animation: skeleton 1s ease-in-out infinite;
+}

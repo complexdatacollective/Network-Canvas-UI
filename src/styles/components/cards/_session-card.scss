@@ -72,7 +72,8 @@
       width: 100%;
       margin: 0.4rem 0;
 
-      span {
+      div {
+        display: inline-block;
         text-transform: uppercase;
         letter-spacing: 0.15em;
         font-size: 0.6rem;
@@ -106,7 +107,7 @@
     justify-content: center;
 
     .card {
-    
+
       &__label {
         flex: 0 0 auto;
         margin: 0;

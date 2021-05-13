@@ -61,3 +61,12 @@ export const finished = () => (
     {props => <SessionCard {...props} progress={100} />}
   </Harness>
 );
+
+export const loading = () => (
+  <Harness
+    requiredProps={requiredProps}
+    loading
+  >
+    {props => <SessionCard {...props} />}
+  </Harness>
+);

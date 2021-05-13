@@ -7,6 +7,7 @@ import StartedIcon from '../../assets/images/StartedIcon.svg';
 import ModifiedIcon from '../../assets/images/ModifiedIcon.svg';
 import FinishedIcon from '../../assets/images/FinishedIcon.svg';
 import ExportedIcon from '../../assets/images/ExportedIcon.svg';
+import Skeleton from '../Skeleton';
 
 const formatDate = (dateString) => dateString && new Date(dateString).toLocaleString(undefined);
 
@@ -21,6 +22,7 @@ const SessionCard = (props) => {
     progress,
     selected,
     onClickHandler,
+    loading,
   } = props;
 
   const modifierClasses = cx(
@@ -33,51 +35,60 @@ const SessionCard = (props) => {
     <div className={modifierClasses} onClick={onClickHandler}>
       <div className="main-wrapper">
         <h2 className="card__label">
-          <HoverMarquee>{ caseId }</HoverMarquee>
+          { loading ? <Skeleton /> : <HoverMarquee>{ caseId }</HoverMarquee>}
         </h2>
         <h5 className="card__protocol">
-          <HoverMarquee>{ protocolName || (<span className="highlight">Unavailable protocol!</span>) }</HoverMarquee>
+          {loading ? <Skeleton /> : <HoverMarquee>{ protocolName || (<span className="highlight">Unavailable protocol!</span>) }</HoverMarquee> }
         </h5>
       </div>
       <div className="meta-wrapper">
         <div className="meta">
           <h6 className="meta-wrapper__attribute">
-            <HoverMarquee>
-              <img src={StartedIcon} alt="Interview started at" />
-              { startedAt ? formatDate(startedAt) : (<span className="highlight">No start date!</span>) }
-            </HoverMarquee>
+            { loading ? <Skeleton /> : (
+              <HoverMarquee>
+                <img src={StartedIcon} alt="Interview started at" />
+                { startedAt ? formatDate(startedAt) : (<span className="highlight">No start date!</span>) }
+              </HoverMarquee>
+            )}
           </h6>
           <h6 className="meta-wrapper__attribute">
-            <HoverMarquee>
-              <img src={ModifiedIcon} alt="Interview modified at" />
-              { updatedAt ? formatDate(updatedAt) : (<span className="highlight">Never changed!</span>) }
-            </HoverMarquee>
+            { loading ? <Skeleton /> : (
+              <HoverMarquee>
+                <img src={ModifiedIcon} alt="Interview modified at" />
+                { updatedAt ? formatDate(updatedAt) : (<span className="highlight">Never changed!</span>) }
+              </HoverMarquee>
+            )}
           </h6>
         </div>
         <div className="meta">
-          <div className="progress-wrapper">
-            <img src={FinishedIcon} alt="Interview finished at" />
-            { progress === 100 && finishedAt ? (
-              <span>
-                { formatDate(finishedAt) }
-              </span>
-            ) : (
+          <h6 className="meta-wrapper__attribute progress-wrapper">
+            { loading ? <Skeleton /> : (
               <>
-                <span>
-                  {' '}
-                  {progress}
-                  %
-                </span>
-                <ProgressBar percentProgress={progress} orientation="horizontal" />
+                <img src={FinishedIcon} alt="Interview finished at" />
+                { progress === 100 && finishedAt ? (
+                  <div>
+                    { formatDate(finishedAt) }
+                  </div>
+                ) : (
+                  <>
+                    <div>
+                      {' '}
+                      {progress}
+                      %
+                    </div>
+                    <ProgressBar percentProgress={progress} orientation="horizontal" />
+                  </>
+                )}
               </>
             )}
-
-          </div>
+          </h6>
           <h6 className="meta-wrapper__attribute">
-            <HoverMarquee>
-              <img src={ExportedIcon} alt="Interview exported at" />
-              { exportedAt ? formatDate(exportedAt) : (<span className="highlight">Not yet exported</span>) }
-            </HoverMarquee>
+            { loading ? <Skeleton /> : (
+              <HoverMarquee>
+                <img src={ExportedIcon} alt="Interview exported at" />
+                { exportedAt ? formatDate(exportedAt) : (<span className="highlight">Not yet exported</span>) }
+              </HoverMarquee>
+            )}
           </h6>
         </div>
       </div>
@@ -91,6 +102,7 @@ SessionCard.defaultProps = {
   selected: false,
   finishedAt: null,
   exportedAt: null,
+  loading: false,
 };
 
 SessionCard.propTypes = {
@@ -103,6 +115,7 @@ SessionCard.propTypes = {
   progress: PropTypes.number.isRequired,
   selected: PropTypes.bool,
   onClickHandler: PropTypes.func,
+  loading: PropTypes.bool,
 };
 
 export default SessionCard;
