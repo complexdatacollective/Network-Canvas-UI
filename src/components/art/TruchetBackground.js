@@ -1,5 +1,6 @@
 /* eslint-disable no-plusplus, no-param-reassign */
 import { motion } from 'framer-motion';
+import PropTypes from 'prop-types';
 import { random } from 'lodash';
 import React from 'react';
 import cross from './tiles/cross';
@@ -20,21 +21,6 @@ const tiles = [
   tee,
 ];
 
-const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.05
-    }
-  }
-}
-
-const item = {
-  hidden: { opacity: 0 },
-  show: { opacity: 1 }
-}
-
 const getRandomTile = () => tiles[Math.floor(Math.random() * tiles.length)];
 
 const Tile = ({ level }) => {
@@ -52,6 +38,10 @@ const Tile = ({ level }) => {
       </svg>
     </motion.div>
   );
+};
+
+Tile.propTypes = {
+  level: PropTypes.number.isRequired,
 };
 
 const Grid = ({ rows, columns, level }) => {
@@ -88,15 +78,39 @@ const Grid = ({ rows, columns, level }) => {
   );
 };
 
+Grid.propTypes = {
+  rows: PropTypes.number.isRequired,
+  columns: PropTypes.number.isRequired,
+  level: PropTypes.number,
+};
+
+Grid.defaultProps = {
+  level: 0,
+};
+
 const TruchetBackground = (props) => {
-  console.log('Truchet', props);
+  const {
+    rows,
+    columns,
+  } = props;
+
   return (
     <div
       className="TruchetBackground"
     >
-      <Grid rows={4} columns={4} level={0} />
+      <Grid rows={rows} columns={columns} />
     </div>
   );
+};
+
+TruchetBackground.propTypes = {
+  rows: PropTypes.number,
+  columns: PropTypes.number,
+};
+
+TruchetBackground.defaultProps = {
+  rows: 4,
+  columns: 4,
 };
 
 export default TruchetBackground;
