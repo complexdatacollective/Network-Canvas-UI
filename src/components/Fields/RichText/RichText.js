@@ -143,12 +143,11 @@ const RichText = ({
   };
 
   const setInitialValue = () => parse(initialValue)
-    .then(({ parsedValue, formatUpdated }) => {
-
+    .then(({ parsedValue, formatUpdated: updated }) => {
       // Set this special escape hatch to trigger a one off `onChange`
       // in situations where the initialValue contained HTML characters
       // that needed to be escaped into entities.
-      if (formatUpdated) {
+      if (updated) {
         setFormatUpdated(true);
       }
       // we need to reset the cursor state because the value length may have changed
