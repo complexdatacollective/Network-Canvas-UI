@@ -92,7 +92,6 @@ const RichText = ({
   placeholder,
 }) => {
   const [isInitialized, setIsInitialized] = useState(false);
-  const [formatUpdated, setFormatUpdated] = useState(false);
   const [value, setValue] = useState(defaultValue);
   const [lastChange, setLastChange] = useState(initialValue);
 
@@ -143,13 +142,7 @@ const RichText = ({
   };
 
   const setInitialValue = () => parse(initialValue)
-    .then(({ parsedValue, formatUpdated: updated }) => {
-      // Set this special escape hatch to trigger a one off `onChange`
-      // in situations where the initialValue contained HTML characters
-      // that needed to be escaped into entities.
-      if (updated) {
-        setFormatUpdated(true);
-      }
+    .then((parsedValue) => {
       // we need to reset the cursor state because the value length may have changed
       Transforms.deselect(editor);
       setValue(parsedValue);
@@ -170,7 +163,7 @@ const RichText = ({
 
   // Update upstream on change
   useEffect(() => {
-    if (!isInitialized && !formatUpdated) { return; }
+    if (!isInitialized) { return; }
 
     const nextValue = getSerializedValue();
 
@@ -180,7 +173,6 @@ const RichText = ({
     }
 
     setLastChange(nextValue);
-    setFormatUpdated(false);
     onChange(nextValue);
   }, [value]);
 

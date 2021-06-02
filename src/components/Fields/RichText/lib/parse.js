@@ -18,21 +18,24 @@ const parse = (value) => {
   //
   // The regex tests for presence of only space/tab/break
   if (!value || isEmpty(value) || !/\S/.test(value)) {
-    return Promise.resolve({ parsedValue: defaultValue, formatUpdated: false });
+    return Promise.resolve(defaultValue);
   }
 
   // Hack for `>` characters that already exist in some protocols
   // and will be interpreted as block quotes on first load
-  //
-  // Converts all html elements into their entities.
-  const encodedValue = value.replace(/[\u00A0-\u9999<>&]/g, (i) => `&#${i.charCodeAt(0)};`);
+  // Encoding this way forces slate to treat them as paragraphs
+  const encodedValue = value.replace(/>/g, '\\>');
 
+  // eslint-disable-next-line no-console
+  console.log({
+    value,
+    encodedValue,
+  });
   return unified()
     .use(markdown)
     .use(slate)
     .process(encodedValue)
-    // Notify the consumer if the format has been changed
-    .then(({ result }) => ({ parsedValue: result, formatUpdated: encodedValue !== value }));
+    .then(({ result }) => (result));
 };
 
 export default parse;
