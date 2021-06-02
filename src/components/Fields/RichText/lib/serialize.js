@@ -5,6 +5,11 @@ const serializeNodes = (nodes) => (
     .join('\n')
     .replace(/\*/g, '\\*')
     .replace(/_/g, '\\_')
+    .replace(/-/g, '\\-')
+    .replace(/(\s*)#+(\s)/g, '$1\\#$2')
+    .replace(/`/g, '\\`')
+    .replace(/'/g, '\\\'')
+    .replace(/"/g, '\\"')
     .replace(/\[/g, '\\[')
     .replace(/\]/g, '\\]')
 );

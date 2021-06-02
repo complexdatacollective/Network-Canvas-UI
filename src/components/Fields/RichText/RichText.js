@@ -12,7 +12,7 @@ import isHotkey from 'is-hotkey';
 import { compose, isEmpty } from 'lodash/fp';
 import { EditListPlugin } from '@productboard/slate-edit-list';
 import withNormalize from './lib/withNormalize';
-import withShortcuts from './lib/withShortcuts';
+// import withShortcuts from './lib/withShortcuts';
 import { toggleMark } from './lib/actions';
 import serialize from './lib/serialize';
 import parse, { defaultValue } from './lib/parse';
@@ -111,7 +111,7 @@ const RichText = ({
   const editor = useMemo(
     () => compose(
       withNormalize,
-      withShortcuts,
+      // withShortcuts,
       withOptions,
       withEditList,
       withHistory,
@@ -122,7 +122,7 @@ const RichText = ({
 
   // Test if there is no text content in the tree
   const childrenAreEmpty = (children) => children.every((child) => {
-    // Thematic break has no text
+    // Thematic break has no text, but still counts as content.
     if (child.type === 'thematic_break') {
       return false;
     }
