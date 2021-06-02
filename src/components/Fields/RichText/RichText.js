@@ -12,7 +12,6 @@ import isHotkey from 'is-hotkey';
 import { compose, isEmpty } from 'lodash/fp';
 import { EditListPlugin } from '@productboard/slate-edit-list';
 import withNormalize from './lib/withNormalize';
-// import withShortcuts from './lib/withShortcuts';
 import { toggleMark } from './lib/actions';
 import serialize from './lib/serialize';
 import parse, { defaultValue } from './lib/parse';
@@ -93,6 +92,7 @@ const RichText = ({
   placeholder,
 }) => {
   const [isInitialized, setIsInitialized] = useState(false);
+  const [formatUpdated, setFormatUpdated] = useState(false);
   const [value, setValue] = useState(defaultValue);
   const [lastChange, setLastChange] = useState(initialValue);
 
@@ -111,7 +111,6 @@ const RichText = ({
   const editor = useMemo(
     () => compose(
       withNormalize,
-      // withShortcuts,
       withOptions,
       withEditList,
       withHistory,
@@ -144,7 +143,14 @@ const RichText = ({
   };
 
   const setInitialValue = () => parse(initialValue)
-    .then((parsedValue) => {
+    .then(({ parsedValue, formatUpdated }) => {
+
+      // Set this special escape hatch to trigger a one off `onChange`
+      // in situations where the initialValue contained HTML characters
+      // that needed to be escaped into entities.
+      if (formatUpdated) {
+        setFormatUpdated(true);
+      }
       // we need to reset the cursor state because the value length may have changed
       Transforms.deselect(editor);
       setValue(parsedValue);
@@ -165,7 +171,7 @@ const RichText = ({
 
   // Update upstream on change
   useEffect(() => {
-    if (!isInitialized) { return; }
+    if (!isInitialized && !formatUpdated) { return; }
 
     const nextValue = getSerializedValue();
 
@@ -175,6 +181,7 @@ const RichText = ({
     }
 
     setLastChange(nextValue);
+    setFormatUpdated(false);
     onChange(nextValue);
   }, [value]);
 

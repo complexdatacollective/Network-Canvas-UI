@@ -8,7 +8,6 @@ const escapeMarkdownChars = (string) => string
   .replace(/-/g, '\\-')
   .replace(/(\s*)#+(\s)/g, '$1\\#$2')
   .replace(/`/g, '\\`')
-  .replace(/"/g, '\\"')
   .replace(/\[/g, '\\[')
   .replace(/\]/g, '\\]');
 
