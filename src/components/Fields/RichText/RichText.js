@@ -121,9 +121,14 @@ const RichText = ({
   );
 
   // Test if there is no text content in the tree
-  const everyChildEmpty = (children) => children.every((child) => {
+  const childrenAreEmpty = (children) => children.every((child) => {
+    // Thematic break has no text
+    if (child.type === 'thematic_break') {
+      return false;
+    }
+
     if (child.children) {
-      return everyChildEmpty(child.children);
+      return childrenAreEmpty(child.children);
     }
 
     // The regexp here means that content only containing spaces or
@@ -132,7 +137,7 @@ const RichText = ({
   });
 
   const getSerializedValue = () => {
-    if (everyChildEmpty(editor.children)) {
+    if (childrenAreEmpty(editor.children)) {
       return '';
     }
     return serialize(value);

@@ -12,7 +12,6 @@ const SHORTCUTS = {
   '^[0-9]+\\.$': 'ol_list',
   '^\\*$': 'ul_list',
   '^-$': 'ul_list',
-  '^>$': 'block_quote',
   '^#$': 'heading_one',
   '^##$': 'heading_two',
   '^###$': 'heading_three',
@@ -41,7 +40,6 @@ const ALWAYS_DISALLOWED = [
 const TYPE_MAP = {
   lists: ['ol_list', 'ul_list'],
   headings: ['heading_one', 'heading_two', 'heading_three', 'heading_four', 'heading_five', 'heading_six'],
-  quote: ['block_quote'],
   code: ['code_block'],
   thematic_break: ['thematic_break'],
 };
