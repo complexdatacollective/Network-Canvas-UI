@@ -8,7 +8,8 @@ import '../src/styles/_all.scss';
 import MarkdownLabel from '../src/components/Fields/MarkdownLabel';
 import Markdown from '../src/components/Fields/Markdown';
 
-const initialValue = '# Heading!\n\nsomething **with markdown**\n\n- and a\n- list\n\nThat has other elements following it.\n\n1. Numbered\n1. Elements\n\n> A block quote that should not render.\n\n \\< an escaped angle bracket\n\n \\> another escaped angle bracket\n\nHello';
+// const initialValue = '# Heading!\n\nsomething **with markdown**\n\n- and a\n- list\n\nThat has other elements following it.\n\n1. Numbered\n1. Elements\n\n> A block quote that should not render.\n\n \\< an escaped angle bracket\n\n \\> another escaped angle bracket\n\nHello';
+const initialValue = '>1 hour to 4 hours\n\n4. naughty\n\n> things';
 
 export default {
   title: 'Fields/RichText',

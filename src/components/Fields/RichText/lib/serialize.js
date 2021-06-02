@@ -2,6 +2,7 @@ import { serialize } from 'remark-slate';
 
 const escapeMarkdownChars = (string) => string
   .replace(/\\/g, '\\\\')
+  .replace(/(^\d+)+(\.)/g, '$1\\$2')
   .replace(/\*/g, '\\*')
   .replace(/_/g, '\\_')
   .replace(/-/g, '\\-')
