@@ -3,59 +3,7 @@ import {
   Transforms,
   Node,
   Element,
-  Editor,
 } from 'slate';
-import {
-  isEmpty,
-} from 'lodash';
-
-const getBlockPattern = (type) => {
-  switch (type) {
-    case 'quote':
-      return '>';
-    case 'headings':
-      return '#+';
-    case 'lists':
-      return '\\+|-|\\*|[0-9]+\\.';
-    default:
-      return null;
-  }
-};
-
-const getInlinePattern = (type) => {
-  switch (type) {
-    case 'code':
-      return '`';
-    case 'strike':
-      return '~';
-    default:
-      return null;
-  }
-};
-
-const getDisallowedSanitizer = (disallowedTypes) => {
-  const blockTypePatterns = disallowedTypes.reduce((acc, type) => {
-    const typePattern = getBlockPattern(type);
-    if (!typePattern) { return acc; }
-    return [...acc, typePattern];
-  }, []);
-
-  const disallowedBlockPattern = new RegExp(`^(\\s*)(${blockTypePatterns.join('|')})(\\s*)`, 'g');
-
-  const inlineTypePatterns = disallowedTypes.reduce((acc, type) => {
-    const typePattern = getInlinePattern(type);
-    if (!typePattern) { return acc; }
-    return [...acc, typePattern];
-  }, []);
-
-  const disallowedInlinePattern = new RegExp(`(${inlineTypePatterns.join('|')})`, 'g');
-
-  return (text) => text
-    .replace(disallowedBlockPattern, '$1$3')
-    .replace(disallowedInlinePattern, '');
-};
-
-
 
 /**
  * This extends the editor with a custom normalization
