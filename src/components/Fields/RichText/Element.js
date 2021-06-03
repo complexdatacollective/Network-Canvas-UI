@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 
 const Element = ({ attributes, children, element }) => {
   switch (element.type) {
-    case 'block_quote':
-      return <span {...attributes}>{children}</span>;
     case 'ul_list':
       return <ul {...attributes}>{children}</ul>;
     case 'ol_list':
