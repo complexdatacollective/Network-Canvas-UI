@@ -1,12 +1,15 @@
 // nceme.js
 
-import { create } from '@storybook/theming/create';
+import { create } from '@storybook/theming';
 
 const cssVar = (property, defaultValue) =>
   getComputedStyle(document.documentElement).getPropertyValue(property) || defaultValue
 
 export default create({
-  // base: 'dark',
+  base: 'dark',
+
+  // colorPrimary: 'hotpink',
+  // colorSecondary: 'deepskyblue',
 
   // colorPrimary: cssVar('--primary', 'red'),
   // colorSecondary: cssVar('--color-neon-coral', 'red'),

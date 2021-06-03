@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 
 const Element = ({ attributes, children, element }) => {
   switch (element.type) {
-    case 'block_quote':
-      return <blockquote {...attributes}>{children}</blockquote>;
     case 'ul_list':
       return <ul {...attributes}>{children}</ul>;
     case 'ol_list':
@@ -20,6 +18,13 @@ const Element = ({ attributes, children, element }) => {
       return <h4 {...attributes}>{children}</h4>;
     case 'list_item':
       return <li {...attributes}>{children}</li>;
+    case 'thematic_break':
+      return (
+        <div {...attributes}>
+          <hr />
+          {children}
+        </div>
+      );
     default:
       return <p {...attributes}>{children}</p>;
   }

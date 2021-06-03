@@ -2,6 +2,7 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import PropTypes from 'prop-types';
 import { ALLOWED_MARKDOWN_TAGS } from '../../utils/config';
+import { escapeAngleBracket } from './RichText/lib/parse';
 
 const Markdown = ({ label, className }) => (
   <ReactMarkdown
@@ -10,7 +11,7 @@ const Markdown = ({ label, className }) => (
     renderers={{ root: 'span' }}
     unwrapDisallowed
   >
-    {label}
+    {escapeAngleBracket(label)}
   </ReactMarkdown>
 );
 

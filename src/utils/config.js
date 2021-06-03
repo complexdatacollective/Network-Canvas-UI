@@ -1,13 +1,13 @@
 const ALLOWED_MARKDOWN_TAGS = [
   'break',
   'emphasis',
-  'blockquote',
   'heading',
   'list',
   'listItem',
   'paragraph',
   'strong',
   'text',
+  'thematicBreak',
 ];
 
 const ALLOWED_MARKDOWN_PROMPT_TAGS = [
