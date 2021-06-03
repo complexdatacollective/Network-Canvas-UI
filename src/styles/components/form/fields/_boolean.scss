@@ -49,6 +49,7 @@
   @include clickable(1);
   cursor: pointer;
   flex: 1 1 100%;
+  width: 100%; // for when used outside of flex container;
   display: inline-flex;
   border-color: transparent;
   border-width: $global-input-border-size;

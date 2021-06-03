@@ -18,7 +18,7 @@
     "preflight": "npm run lint && npm run sass-lint",
     "prepublishOnly": "npm run preflight && npm run build",
     "storybook": "start-storybook -p 6006 --no-manager-cache",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook -o docs-build"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.3",
