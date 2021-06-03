@@ -72,7 +72,7 @@
   // RichText uses <p> inside <li> elements as part of its schema.
   // Remove margin in this case for display purposes.
   li {
-    p {
+    > p {
       margin: 0;
     }
   }

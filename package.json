@@ -1,6 +1,6 @@
 {
   "name": "@codaco/ui",
-  "version": "5.3.4",
+  "version": "5.4.0",
   "description": "Styles and React components for the Network Canvas project",
   "main": "lib/components/index.js",
   "license": "GPL-3.0-or-later",
@@ -18,7 +18,7 @@
     "preflight": "npm run lint && npm run sass-lint",
     "prepublishOnly": "npm run preflight && npm run build",
     "storybook": "start-storybook -p 6006 --no-manager-cache",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook -o docs-build"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.3",

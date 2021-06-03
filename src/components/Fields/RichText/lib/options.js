@@ -1,5 +1,4 @@
 export const BLOCKS = [
-  'quote',
   'headings',
   'lists',
   'thematic_break',

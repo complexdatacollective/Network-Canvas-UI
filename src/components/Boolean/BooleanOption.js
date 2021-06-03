@@ -10,7 +10,7 @@ const BooleanOption = ({
   selected,
   label,
   onClick,
-  icon,
+  customIcon,
   negative,
 }) => {
   const [resizeListener, sizes] = useResizeAware();
@@ -34,7 +34,7 @@ const BooleanOption = ({
   return (
     <div className={classNames} onClick={onClick} style={{ position: 'relative' }}>
       {resizeListener}
-      <RoundCheckbox checked={selected} customIcon={icon} negative={negative} />
+      { customIcon || <RoundCheckbox checked={selected} negative={negative} />}
       {renderLabel()}
     </div>
   );
@@ -48,7 +48,7 @@ BooleanOption.propTypes = {
     PropTypes.func,
   ]).isRequired,
   onClick: PropTypes.func,
-  icon: PropTypes.func,
+  customIcon: PropTypes.func,
   negative: PropTypes.bool,
 };
 
@@ -56,7 +56,7 @@ BooleanOption.defaultProps = {
   classes: null,
   selected: false,
   onClick: () => {},
-  icon: null,
+  customIcon: null,
   negative: false,
 };
 

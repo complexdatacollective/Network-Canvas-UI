@@ -1,7 +1,6 @@
 const ALLOWED_MARKDOWN_TAGS = [
   'break',
   'emphasis',
-  'blockquote',
   'heading',
   'list',
   'listItem',

@@ -10,6 +10,11 @@ export const defaultValue = [{
   ],
 }];
 
+// Hack for `>` characters that already exist in some protocols
+// and will be interpreted as block quotes on first load
+// Encoding this way forces slate to treat them as paragraphs
+export const escapeAngleBracket = (value = '') => value.replace(/>/g, '&gt;');
+
 // TODO: Can we make this synchronous?
 const parse = (value) => {
   // If for some reason we encounter 'content' with no content,
@@ -24,8 +29,8 @@ const parse = (value) => {
   return unified()
     .use(markdown)
     .use(slate)
-    .process(value)
-    .then(({ result }) => result);
+    .process(escapeAngleBracket(value))
+    .then(({ result }) => (result));
 };
 
 export default parse;
