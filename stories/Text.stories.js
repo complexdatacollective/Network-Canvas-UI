@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { action } from '@storybook/addon-actions';
+import SearchIcon from '@material-ui/icons/SearchRounded';
 import Harness from './helpers/Harness';
 import Text from '../src/components/Fields/Text';
 import Number from '../src/components/Fields/Number';
@@ -22,7 +23,6 @@ export const WithError = () => {
     action('toggleError')(!meta);
   };
 
-
   const renderMeta = { error: 'Something was not right about the input', invalid: meta, touched: meta };
 
   return (
@@ -30,9 +30,9 @@ export const WithError = () => {
       requiredProps={requiredProps}
       meta={renderMeta}
     >
-      {props => (
+      {(props) => (
         <div>
-          <button onClick={toggleError}>Toggle Error</button>
+          <button type="button" onClick={toggleError}>Toggle Error</button>
           <div>
             <Text {...props} />
             Next element
@@ -47,7 +47,7 @@ export const multilineLabel = () => (
   <Harness
     requiredProps={requiredProps}
   >
-    {props => (
+    {(props) => (
       <div>
         <div>
           <Text {...props} label={'This is a _particularly_ long prompt that is spread:\n- Over multiple\n- lines'} />
@@ -62,12 +62,33 @@ export const numberMode = () => (
   <Harness
     requiredProps={requiredProps}
   >
-    {props => (
+    {(props) => (
       <div>
         <div>
           <Number {...props} label="This is a number input" />
           Next element
         </div>
+      </div>
+    )}
+  </Harness>
+);
+
+export const withAdornment = () => (
+  <Harness
+    requiredProps={requiredProps}
+  >
+    {(props) => (
+      <div>
+        <Text
+          {...props}
+          adornment={<SearchIcon style={{ color: '#fff' }} />}
+          adornmentPosition="left"
+        />
+        <Text
+          {...props}
+          adornment={<SearchIcon style={{ color: '#fff' }} />}
+          adornmentPosition="right"
+        />
       </div>
     )}
   </Harness>
