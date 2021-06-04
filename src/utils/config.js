@@ -1,36 +1,37 @@
 const ALLOWED_MARKDOWN_TAGS = [
-  'break',
-  'emphasis',
-  'heading',
-  'list',
-  'listItem',
-  'paragraph',
+  'br',
+  'em',
+  'h1',
+  'h2',
+  'h3',
+  'h4',
+  'ul',
+  'ol',
+  'li',
+  'p',
   'strong',
-  'text',
-  'thematicBreak',
+  'hr',
 ];
 
 const ALLOWED_MARKDOWN_PROMPT_TAGS = [
-  'paragraph',
-  'text',
-  'emphasis',
+  'p',
+  'em',
   'strong',
 ];
 
 const ALLOWED_MARKDOWN_LABEL_TAGS = [
-  'paragraph',
-  'break',
-  'emphasis',
+  'br',
+  'p',
+  'em',
   'strong',
-  'text',
-  'list',
-  'listItem',
+  'ul',
+  'ol',
+  'li',
 ];
 
 const ALLOWED_MARKDOWN_INLINE_LABEL_TAGS = [
-  'emphasis',
+  'em',
   'strong',
-  'text',
 ];
 
 module.exports = {
