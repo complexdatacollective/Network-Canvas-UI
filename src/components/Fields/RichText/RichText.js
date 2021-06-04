@@ -20,6 +20,7 @@ import Element from './Element';
 import Leaf from './Leaf';
 import Toolbar from './Toolbar';
 import RichTextContainer from './RichTextContainer';
+import withVoids from './lib/withVoids';
 
 const HOTKEYS = {
   'mod+b': 'bold',
@@ -109,6 +110,7 @@ const RichText = ({
 
   const editor = useMemo(
     () => compose(
+      withVoids,
       withNormalize,
       withOptions,
       withEditList,

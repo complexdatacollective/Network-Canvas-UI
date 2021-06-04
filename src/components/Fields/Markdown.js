@@ -9,6 +9,7 @@ const Markdown = ({ label, className }) => (
     className={className}
     allowedTypes={ALLOWED_MARKDOWN_TAGS}
     renderers={{ root: 'span' }}
+    allowDangerousHtml
     unwrapDisallowed
   >
     {escapeAngleBracket(label)}

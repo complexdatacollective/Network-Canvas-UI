@@ -30,9 +30,17 @@ const escapeNode = (node) => {
   return node;
 };
 
-const serializeNodes = (nodes) => (
-  nodes.map((n) => serialize(escapeNode(n)))
-    .join('\n')
-);
+const serializeNodes = (nodes) => {
+  console.log('serialize nodes', nodes);
+  return (
+    nodes.map((n) => {
+      const result = serialize(escapeNode(n));
+      console.log('result', result);
+      return result;
+    })
+      .join('')
+
+  );
+};
 
 export default serializeNodes;

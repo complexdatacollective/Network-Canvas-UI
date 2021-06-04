@@ -7,8 +7,10 @@ import { ALLOWED_MARKDOWN_TAGS } from '../src/utils/config';
 import '../src/styles/_all.scss';
 import MarkdownLabel from '../src/components/Fields/MarkdownLabel';
 import Markdown from '../src/components/Fields/Markdown';
+import { escapeAngleBracket } from '../src/components/Fields/RichText/lib/parse';
 
-const initialValue = '# Heading!\n\nsomething **with markdown**\n\n- and a\n- list\n\nThat has other elements following it.\n\n1. Numbered\n1. Elements\n\n> A block quote that should not render.\n\n&gt; HTML angle bracket\n\nHello';
+// const initialValue = '# Heading!\n\nsomething **with markdown**\n\n- and a\n- list\n\nThat has other elements following it.\n\n1. Numbered\n1. Elements\n\n> A block quote that should not render.\n\n&gt; HTML angle bracket\n\nHello';
+const initialValue = '>asdasdsa\n\n<br>\n\n\n---\n\n<br>\n\n';
 
 export default {
   title: 'Fields/RichText',
@@ -51,7 +53,9 @@ const Template = ({ initialValue, hasError, ...args }) => {
       <div style={{ display: 'flex', width: '100%' }}>
         <div style={{padding: '1rem', margin: '1rem', border: '1px solid white', flex: '1 1 33%'}}>
           <h4>Raw React-Markdown:</h4>
-          <ReactMarkdown allowedTypes={ALLOWED_MARKDOWN_TAGS}>{value}</ReactMarkdown>
+          <ReactMarkdown allowDangerousHtml>
+            {escapeAngleBracket(value)}
+          </ReactMarkdown>
         </div>
         <div style={{ padding: '1rem', margin: '1rem', border: '1px solid white', flex: '1 1 33%'}}>
           <h4>Markdown:</h4>
