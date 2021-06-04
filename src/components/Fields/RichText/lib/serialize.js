@@ -1,5 +1,6 @@
 import { serialize } from 'remark-slate';
 
+// Escape any characters that could cause markdown to be generated
 const escapeMarkdownChars = (string) => string
   .replace(/\\/g, '\\\\')
   .replace(/(^\d+)+(\.)/g, '$1\\$2')
@@ -13,11 +14,10 @@ const escapeMarkdownChars = (string) => string
 
 const escapeNode = (node) => {
   if (node.children) {
-    const mutatedNode = {
+    return {
       ...node,
       children: node.children.map((child) => escapeNode(child)),
     };
-    return mutatedNode;
   }
 
   if (node.text) {
@@ -30,17 +30,8 @@ const escapeNode = (node) => {
   return node;
 };
 
-const serializeNodes = (nodes) => {
-  console.log('serialize nodes', nodes);
-  return (
-    nodes.map((n) => {
-      const result = serialize(escapeNode(n));
-      console.log('result', result);
-      return result;
-    })
-      .join('')
-
-  );
-};
+const serializeNodes = (nodes) => (
+  nodes.map((n) => serialize(escapeNode(n))).join('\n')
+);
 
 export default serializeNodes;
