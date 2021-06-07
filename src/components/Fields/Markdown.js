@@ -30,27 +30,41 @@ const defaultMarkdownRenderers = {
   a: externalLinkRenderer,
 };
 
-const Markdown = ({ label, className, allowedElements = ALLOWED_MARKDOWN_TAGS }) => (
-  <ReactMarkdown
-    className={className}
-    allowedElements={allowedElements}
-    components={defaultMarkdownRenderers}
-    rehypePlugins={[rehypeRaw, rehypeSanitize]}
-    unwrapDisallowed
-  >
-    {escapeAngleBracket(label)}
-  </ReactMarkdown>
-);
+const Markdown = ({
+  label,
+  className,
+  allowedElements = ALLOWED_MARKDOWN_TAGS,
+  markdownRenderers,
+}) => {
+  const combinedRenderers = {
+    ...defaultMarkdownRenderers,
+    ...markdownRenderers,
+  };
+
+  return (
+    <ReactMarkdown
+      className={className}
+      allowedElements={allowedElements}
+      components={combinedRenderers}
+      rehypePlugins={[rehypeRaw, rehypeSanitize]}
+      unwrapDisallowed
+    >
+      {escapeAngleBracket(label)}
+    </ReactMarkdown>
+  );
+};
 
 Markdown.propTypes = {
   allowedElements: PropTypes.array,
   label: PropTypes.string.isRequired,
   className: PropTypes.string,
+  markdownRenderers: PropTypes.object,
 };
 
 Markdown.defaultProps = {
   allowedElements: null,
   className: 'markdown',
+  markdownRenderers: {},
 };
 
 export default Markdown;

@@ -32,6 +32,10 @@ const errorMeta = {
   touched: true,
 };
 
+const customRenderer = {
+  p: () => 'things!',
+};
+
 const Template = ({ initialValue, hasError, ...args }) => {
   const [value, onChange] = useState(initialValue);
 
