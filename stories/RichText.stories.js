@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
-import ReactMarkdown from 'react-markdown';
+import ReactMarkdown from 'react-markdown/react-markdown.min.js';
 import { Field as RichTextField } from '../src/components/Fields/RichText';
 import '../src/styles/_all.scss';
 import MarkdownLabel from '../src/components/Fields/MarkdownLabel';

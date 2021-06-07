@@ -1,5 +1,6 @@
 import React from 'react';
-import ReactMarkdown from 'react-markdown';
+// eslint-disable-next-line import/extensions
+import ReactMarkdown from 'react-markdown/react-markdown.min.js';
 import rehypeRaw from 'rehype-raw';
 import rehypeSanitize from 'rehype-sanitize';
 import PropTypes from 'prop-types';
