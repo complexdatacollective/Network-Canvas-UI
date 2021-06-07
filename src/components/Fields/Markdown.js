@@ -9,7 +9,7 @@ import { escapeAngleBracket } from './RichText/lib/parse';
 
 const emojiTextRenderer = ({ node, ...props }) => (
   <p>
-    {props.children.map(child => {
+    {props.children.map((child) => {
       if (typeof child === 'string') {
         return child.replace(/:\w+:/gi, (name) => emoji.getUnicode(name));
       }
