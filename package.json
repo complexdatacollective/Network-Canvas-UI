@@ -1,6 +1,6 @@
 {
   "name": "@codaco/ui",
-  "version": "5.4.1-alpha.3",
+  "version": "5.4.1-alpha.4",
   "description": "Styles and React components for the Network Canvas project",
   "main": "lib/components/index.js",
   "license": "GPL-3.0-or-later",
@@ -28,6 +28,7 @@
     "animejs": "^2.2.0",
     "classnames": "^2.2.6",
     "emoji-dictionary": "^1.0.11",
+    "framer-motion": "^4.1.17",
     "luxon": "^1.21.3",
     "prop-types": "^15.6.2",
     "react-compound-slider": "^2.4.0",
@@ -47,7 +48,6 @@
     "uuid": "^3.2.1"
   },
   "peerDependencies": {
-    "framer-motion": "^4.1.17",
     "lodash": "^4.17.20",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
@@ -76,6 +76,8 @@
     "mkdirp": "^0.5.1",
     "ncp": "^2.0.0",
     "node-sass": "^4.14.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "sass-lint": "^1.13.1",
     "sass-loader": "^8.0.2"
   }

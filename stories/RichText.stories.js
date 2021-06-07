@@ -7,7 +7,7 @@ import MarkdownLabel from '../src/components/Fields/MarkdownLabel';
 import Markdown from '../src/components/Fields/Markdown';
 import { escapeAngleBracket } from '../src/components/Fields/RichText/lib/parse';
 
-const initialValue = `# Heading!\n\nsomething **with markdown** :heart:. Perhaps [a link]('place')\n\n\n- and a\n- list\n\n\nThat has other elements following it.\n\n\n1. Numbered\n1. Elements\n\n\n&gt; A block quote that should not render.\n\n&gt; HTML angle bracket\n\nNow some meaningful whitespace:\n\n<br>\n\n\n<br>\n\n\n<br>\n\n\n...ok?\n\n---\n\nHorizontal line\n`;
+const initialValue = `See Below\n\nwefwef\n\n<br>\n\n\n<br>\n\n\n---\n\n<br>\n\n\n<br>\n\n\n<br>\n\n\nwefwef\n`;
 
 export default {
   title: 'Fields/RichText',
