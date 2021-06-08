@@ -40,7 +40,6 @@ export const getBlocks = (editor) => {
 };
 
 export const insertThematicBreak = (editor) => {
-  console.log(editor, editor.isVoid);
   Transforms.insertNodes(editor, [
     { type: 'thematic_break', children: [{ text: '' }] },
     { type: 'paragraph', children: [{ text: '' }] },

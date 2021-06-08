@@ -1,6 +1,6 @@
 {
   "name": "@codaco/ui",
-  "version": "5.5.0-alpha.1",
+  "version": "5.4.1-alpha.10",
   "description": "Styles and React components for the Network Canvas project",
   "main": "lib/components/index.js",
   "license": "GPL-3.0-or-later",
@@ -39,7 +39,7 @@
     "rehype-raw": "^5.1.0",
     "rehype-sanitize": "^4.0.0",
     "remark-parse": "^9.0.0",
-    "remark-slate": "^1.8.0",
+    "remark-slate": "^1.5.1",
     "scrollparent": "^2.0.1",
     "slate": "^0.60.17",
     "slate-history": "^0.59.0",

@@ -19,11 +19,13 @@ const Markdown = ({ label, className, allowedElements = ALLOWED_MARKDOWN_TAGS })
 );
 
 Markdown.propTypes = {
+  allowedElements: PropTypes.string,
   label: PropTypes.string.isRequired,
   className: PropTypes.string,
 };
 
 Markdown.defaultProps = {
+  allowedElements: null,
   className: 'markdown',
 };
 
