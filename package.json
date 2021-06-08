@@ -1,6 +1,6 @@
 {
   "name": "@codaco/ui",
-  "version": "5.4.1-alpha.11",
+  "version": "5.4.1-alpha.12",
   "description": "Styles and React components for the Network Canvas project",
   "main": "lib/components/index.js",
   "license": "GPL-3.0-or-later",
@@ -27,6 +27,7 @@
     "@storybook/theming": "^6.2.8",
     "animejs": "^2.2.0",
     "classnames": "^2.2.6",
+    "emoji-dictionary": "^1.0.11",
     "framer-motion": "^2.9.1",
     "lodash": "^4.17.20",
     "luxon": "^1.21.3",
