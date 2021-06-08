@@ -12,6 +12,7 @@ import isHotkey from 'is-hotkey';
 import { compose, isEmpty } from 'lodash/fp';
 import { EditListPlugin } from '@productboard/slate-edit-list';
 import withNormalize from './lib/withNormalize';
+import withVoids from './lib/withVoids';
 import { toggleMark } from './lib/actions';
 import serialize from './lib/serialize';
 import parse, { defaultValue } from './lib/parse';
@@ -109,6 +110,7 @@ const RichText = ({
 
   const editor = useMemo(
     () => compose(
+      withVoids,
       withNormalize,
       withOptions,
       withEditList,

@@ -13,7 +13,7 @@ export const defaultValue = [{
 // Hack for `>` characters that already exist in some protocols
 // and will be interpreted as block quotes on first load
 // Encoding this way forces slate to treat them as paragraphs
-export const escapeAngleBracket = (value = '') => value.replace(/>/g, '&gt;');
+export const escapeAngleBracket = (value = '') => value.replace(/(?<!<br.*?)>/g, '&gt;');
 
 // TODO: Can we make this synchronous?
 const parse = (value) => {
