@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import SearchIcon from '@material-ui/icons/SearchRounded';
+import ClearIcon from '@material-ui/icons/ClearRounded';
 import Harness from './helpers/Harness';
 import Text from '../src/components/Fields/Text';
 import Number from '../src/components/Fields/Number';
@@ -81,13 +82,16 @@ export const withAdornment = () => (
       <div>
         <Text
           {...props}
-          adornment={<SearchIcon style={{ color: '#fff' }} />}
-          adornmentPosition="left"
+          adornmentLeft={<SearchIcon style={{ color: '#fff' }} />}
         />
         <Text
           {...props}
-          adornment={<SearchIcon style={{ color: '#fff' }} />}
-          adornmentPosition="right"
+          adornmentRight={<SearchIcon style={{ color: '#fff' }} />}
+        />
+        <Text
+          {...props}
+          adornmentLeft={<SearchIcon style={{ color: '#fff' }} />}
+          adornmentRight={<ClearIcon style={{ color: '#fff' }} />}
         />
       </div>
     )}

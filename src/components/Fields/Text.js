@@ -18,8 +18,8 @@ const TextInput = ({
   type,
   autoFocus,
   hidden,
-  adornment,
-  adornmentPosition,
+  adornmentLeft,
+  adornmentRight,
 }) => {
   const id = useRef(uuid());
   const [hasFocus, setFocus] = useState(false);
@@ -34,7 +34,9 @@ const TextInput = ({
     if (input.onBlur) { input.onBlur(...args); }
   };
 
-  const hasAdornment = !!adornment;
+  const hasLeftAdornment = !!adornmentLeft;
+  const hasRightAdornment = !!adornmentRight;
+  const hasAdornment = hasLeftAdornment || hasRightAdornment;
 
   const seamlessClasses = cx(
     className,
@@ -43,8 +45,8 @@ const TextInput = ({
       'form-field-text--has-focus': hasFocus,
       'form-field-text--has-error': invalid && touched && error,
       'form-field-text--adornment': hasAdornment,
-      'form-field-text--adornment-right': hasAdornment && adornmentPosition === 'right',
-      'form-field-text--adornment-left': hasAdornment && adornmentPosition === 'left',
+      'form-field-text--has-left-adornment': hasLeftAdornment,
+      'form-field-text--has-right-adornment': hasRightAdornment,
     },
   );
 
@@ -66,9 +68,14 @@ const TextInput = ({
           onBlur={handleBlur}
           onFocus={handleFocus}
         />
-        { hasAdornment && (
-          <div className="form-field-text__adornment">
-            {adornment}
+        { adornmentLeft && (
+          <div className="form-field-text__adornment-left">
+            {adornmentLeft}
+          </div>
+        )}
+        { adornmentRight && (
+          <div className="form-field-text__adornment-right">
+            {adornmentRight}
           </div>
         )}
         {invalid && touched && (
