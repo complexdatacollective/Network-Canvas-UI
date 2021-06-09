@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { noop } from 'lodash';
+import { noop, get } from 'lodash';
 import SearchIcon from '@material-ui/icons/SearchRounded';
 import ClearIcon from '@material-ui/icons/ClearRounded';
 import { getCSSVariableAsString } from '../../utils/CSSVariables';
@@ -9,8 +9,7 @@ import Text from './Text';
 const Search = (props) => {
   const color = getCSSVariableAsString('--input-text');
 
-  // eslint-disable-next-line react/destructuring-assignment
-  const onChange = props?.input?.onChange || noop;
+  const onChange = get(props, ['input', 'onChange'], noop);
 
   const handleClear = () => {
     onChange('');
