@@ -2,14 +2,15 @@ import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import uuid from 'uuid';
-import MaterialIcon from '@material-ui/core/Icon';
 import Icon from '../Icon';
 import MarkdownLabel from './MarkdownLabel';
 
 const TextInput = ({
   input,
   meta: {
-    error, active, invalid, touched,
+    error,
+    invalid,
+    touched,
   },
   label,
   placeholder,
@@ -92,8 +93,8 @@ const TextInput = ({
 };
 
 TextInput.propTypes = {
-  adornment: PropTypes.node,
-  adornmentPosition: PropTypes.oneOf(['left', 'right']),
+  adornmentLeft: PropTypes.node,
+  adornmentRight: PropTypes.node,
   autoFocus: PropTypes.bool,
   className: PropTypes.string,
   fieldLabel: PropTypes.string,
@@ -113,8 +114,8 @@ TextInput.propTypes = {
 };
 
 TextInput.defaultProps = {
-  adornment: null,
-  adornmentPosition: 'right',
+  adornmentLeft: null,
+  adornmentRight: null,
   autoFocus: false,
   className: '',
   fieldLabel: null,
