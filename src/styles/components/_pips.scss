@@ -1,0 +1,34 @@
+$block: pips;
+
+.#{$block} {
+  --pip-size: #{unit(1.2  )};
+  --pip-border-color: hsla(0, 0%, 100%, 0.15);
+  --pip-active-color: var(--primary);
+
+  width: 100%;
+  flex: 0 0 calc(var(--pip-size) + #{unit(1)});
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__pip {
+    width: var(--pip-size);
+    height: var(--pip-size);
+    border-radius: 50%;
+    background-color: transparent;
+    border: unit(0.3) solid var(--pip-border-color);
+    transition: background-color var(--animation-duration-fast) ease-in;
+
+    &:not(:last-child):not(:only-child) {
+      margin-right: unit(0.5);
+    }
+
+    &--active {
+      background-color: var(--pip-border-color);
+    }
+  }
+
+  &--large {
+    --pip-size: #{unit(2)};
+  }
+}

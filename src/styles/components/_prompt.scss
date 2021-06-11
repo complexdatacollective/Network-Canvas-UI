@@ -1,0 +1,16 @@
+$module-name: prompt;
+
+.#{$module-name} {
+  font-size: var(--prompt-text-size);
+  text-align: center;
+  font-family: var(--heading-font-family);
+  flex: 0 0 calc((1.1 * 1.6rem) * var(--number-of-lines) + 5px);
+  display: -webkit-box;
+  -webkit-line-clamp: var(--number-of-lines);
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  &__text {
+    display: inline;
+  }
+}
