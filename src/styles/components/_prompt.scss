@@ -4,7 +4,7 @@ $module-name: prompt;
   font-size: var(--prompt-text-size);
   text-align: center;
   font-family: var(--heading-font-family);
-  flex: 0 0 calc((1.1 * 1.6rem) * var(--number-of-lines) + 5px);
+  flex: 0 0 calc((1.1 * var(--prompt-text-size)) * var(--number-of-lines) + 5px);
   display: -webkit-box;
   -webkit-line-clamp: var(--number-of-lines);
   -webkit-box-orient: vertical;

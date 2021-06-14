@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 // iOS/macOS seem to lower-case navigator.language (which is the default language)
 const getVoiceForLanguage = (language) => speechSynthesis.getVoices()
@@ -15,7 +15,7 @@ const getVoiceForLanguage = (language) => speechSynthesis.getVoices()
 const useSpeech = (text, lang = window.navigator.language) => {
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [error, setError] = useState(null);
-  const [voicesForLanguage, setVoicesForLanguage] = useState(null);
+  const voicesForLanguage = useMemo(() => getVoiceForLanguage(lang), [lang]);
 
   const speak = () => {
     if (error) {
@@ -42,16 +42,10 @@ const useSpeech = (text, lang = window.navigator.language) => {
     setIsSpeaking(false);
   };
 
-  useEffect(() => {
-    setVoicesForLanguage(getVoiceForLanguage(lang));
-  }, [lang]);
-
   useEffect(
     () => {
       if (!voicesForLanguage) {
         setError(`No voice available for language "${lang}". Cannot speak!`);
-      } else {
-        setError(false);
       }
 
       return stop();

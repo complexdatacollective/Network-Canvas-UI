@@ -12,14 +12,14 @@ export default {
   },
 };
 
-const Template = ({ text, ...args }) => {
+const Template = ({ ...args }) => {
   const props = {
     ...args,
   };
 
   return (
     <>
-      <SpeakText {...props}>{text}</SpeakText>
+      <SpeakText {...props} />
     </>
   );
 };
