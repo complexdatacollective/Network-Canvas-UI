@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 
 const DataCard = ({
-  title,
+  label,
   data,
   onClick,
   allowDrag,
@@ -18,15 +18,15 @@ const DataCard = ({
 
   return (
     <div className={classes} onClick={onClick}>
-      <div className="data-card__title">
-        <h2>{title}</h2>
+      <div className="data-card__label">
+        <h2>{label}</h2>
       </div>
-      { data.length > 0 && (
+      { data && Object.keys(data).length > 0 && (
         <div className="data-card__data">
-          {data.map((item) => (
+          {Object.keys(data).map((dataLabel) => (
             <div className="data-card__data-item">
-              <div className="data-card__data-label">{item.label}</div>
-              <div className="data-card__data-value">{item.value}</div>
+              <div className="data-card__data-label">{dataLabel}</div>
+              <div className="data-card__data-value">{data[dataLabel]}</div>
             </div>
           ))}
         </div>
@@ -36,7 +36,7 @@ const DataCard = ({
 };
 
 DataCard.defaultProps = {
-  data: [],
+  data: {},
 };
 
 DataCard.propTypes = {

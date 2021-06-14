@@ -6,20 +6,34 @@ import DataCard from '../src/components/Cards/DataCard';
 export default {
   title: 'Components/Cards/DataCard',
   args: {
-    title: 'An unstilled foxglove ',
-    data: [
-      { label: 'foo', value: 'bar' },
-    ],
+    label: 'An unstilled foxglove ',
+    data: {
+      foo: 'bar',
+    },
     width: 470,
+    height: 'auto',
     allowDrag: false,
     onClick: null,
   },
 };
 
-const Template = ({ title, data, width, allowDrag, onClick }) => (
-  <div style={{ width }}>
+const Template = ({
+  label,
+  data,
+  width,
+  height,
+  allowDrag,
+  onClick,
+}) => (
+  <div
+    style={{
+      width,
+      height,
+      display: 'flex',
+    }}
+  >
     <DataCard
-      title={title}
+      label={label}
       data={data}
       allowDrag={allowDrag}
       onClick={onClick}
@@ -31,41 +45,39 @@ export const Normal = Template.bind({});
 
 export const LongTitle = Template.bind({});
 LongTitle.args = {
-  title: 'This is not to discredit the idea that the literature would have us believe that a touring cement is not but a thought',
+  label: 'This is not to discredit the idea that the literature would have us believe that a touring cement is not but a thought',
 };
 
 export const LongData = Template.bind({});
 LongData.args = {
-  data: [
-    {
-      label: 'description',
-      value: 'A capital is the attack of a helmet. Varus trips show us how brians can be tails.',
-    },
-  ],
+  data: {
+    description: 'A capital is the attack of a helmet. Varus trips show us how brians can be tails.',
+  },
+};
+
+export const Stretch = Template.bind({});
+Stretch.args = {
+  height: 500,
+};
+
+export const NoData = Template.bind({});
+NoData.args = {
+  data: {},
+};
+
+export const NoDataStretch = Template.bind({});
+NoDataStretch.args = {
+  data: {},
+  height: 500,
 };
 
 export const ManyRows = Template.bind({});
 ManyRows.args = {
-  data: [
-    {
-      label: 'name',
-      value: 'a truffled surfboard',
-    },
-    {
-      label: 'more detail',
-      value: 'Some posit the hurtling witness',
-    },
-    {
-      label: 'description',
-      value: 'A capital is the attack of a helmet. Varus trips show us how brians can be tails.',
-    },
-    {
-      label: 'feature',
-      value: 'alarm is a bench',
-    },
-    {
-      label: 'age',
-      value: '42',
-    },
-  ],
+  data: {
+    name: 'a truffled surfboard',
+    'more detail': 'Some posit the hurtling witness',
+    description: 'A capital is the attack of a helmet. Varus trips show us how brians can be tails.',
+    feature: 'alarm is a bench',
+    age: '42',
+  },
 };
