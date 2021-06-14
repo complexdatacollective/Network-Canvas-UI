@@ -12,6 +12,7 @@ const Prompts = (props) => {
   const {
     currentPrompt,
     prompts,
+    speakable,
   } = props;
 
   const prevPromptRef = useRef();
@@ -33,7 +34,7 @@ const Prompts = (props) => {
         duration: 0.5,
       }}
     >
-      <Pips count={prompts.length} currentIndex={currentIndex} />
+      { prompts.length > 1 && <Pips count={prompts.length} currentIndex={currentIndex} />}
       <AnimatePresence custom={backwards} exitBeforeEnter initial={false}>
         { prompts.map(({
           id,
@@ -44,6 +45,7 @@ const Prompts = (props) => {
             id={id}
             text={text}
             backwards={backwards}
+            speakable={speakable}
           />
         )))}
       </AnimatePresence>
@@ -54,9 +56,11 @@ const Prompts = (props) => {
 Prompts.propTypes = {
   prompts: PropTypes.any.isRequired,
   currentPrompt: PropTypes.string.isRequired,
+  speakable: PropTypes.bool,
 };
 
 Prompts.defaultProps = {
+  speakable: false,
 };
 
 export default Prompts;

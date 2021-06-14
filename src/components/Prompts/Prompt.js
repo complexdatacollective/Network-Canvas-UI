@@ -32,12 +32,10 @@ const Prompt = (props) => {
     speakable,
   } = props;
   const [rawText, setRawText] = useState(null);
-  const [readyToSpeak, setReadyToSpeak] = useState(false);
 
   useEffect(() => {
     remark().use(strip).process(text, (_, { contents }) => {
       setRawText(contents);
-      setReadyToSpeak(true);
     });
   }, [text]);
 
@@ -55,10 +53,9 @@ const Prompt = (props) => {
         opacity: { duration: 0.2 },
       }}
     >
-      { speakable && readyToSpeak && <SpeakText text={rawText} />}
+      { speakable && rawText && <SpeakText text={rawText} />}
       {' '}
       <MarkdownLabel label={text} inline className="prompt__text" />
-
     </motion.div>
   );
 };
@@ -72,7 +69,7 @@ Prompt.propTypes = {
 
 Prompt.defaultProps = {
   backwards: false,
-  speakable: true,
+  speakable: false,
 };
 
 export default Prompt;

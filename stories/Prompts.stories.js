@@ -25,6 +25,7 @@ export default {
 const Template = (args) => {
   const {
     prompts,
+    speakable,
   } = args;
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -33,7 +34,7 @@ const Template = (args) => {
   console.log('current', currentIndex);
   return (
     <>
-      <Prompts prompts={prompts} currentPrompt={prompts[currentIndex].id} />
+      <Prompts prompts={prompts} speakable={speakable} currentPrompt={prompts[currentIndex].id} />
       <div style={{
         position: 'absolute',
         bottom: '0',
@@ -50,4 +51,15 @@ const Template = (args) => {
 export const Primary = Template.bind({});
 Primary.args = {
   prompts: mockPrompts,
+};
+
+export const Speakable = Template.bind({});
+Speakable.args = {
+  prompts: mockPrompts,
+  speakable: true,
+};
+
+export const Single = Template.bind({});
+Single.args = {
+  prompts: [mockPrompts[0]],
 };
