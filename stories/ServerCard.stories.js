@@ -14,7 +14,7 @@ const requiredProps = {
   host: faker.internet.domainName(),
 };
 
-export default { title: 'Components/ServerCard' };
+export default { title: 'Components/Cards/ServerCard' };
 
 export const normal = () => (
   <Harness
