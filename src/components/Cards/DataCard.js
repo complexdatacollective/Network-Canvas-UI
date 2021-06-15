@@ -37,10 +37,15 @@ const DataCard = ({
 
 DataCard.defaultProps = {
   data: {},
+  onClick: () => {},
+  allowDrag: false,
 };
 
 DataCard.propTypes = {
   data: PropTypes.array,
+  label: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
+  allowDrag: PropTypes.bool,
 };
 
 export default DataCard;
