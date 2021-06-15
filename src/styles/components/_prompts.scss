@@ -2,7 +2,9 @@ $module-name: prompts;
 
 .#{$module-name} {
   --number-of-lines: 3;
-  --prompt-text-size: 1.6rem;
+  --prompt-text-size: 1.75rem; // h1
+  --pip-size:  #{unit(1.2)};
+
   width: 100%;
   max-width: 55rem;
   display: flex;
@@ -11,4 +13,8 @@ $module-name: prompts;
   color: var(--text);
   font-weight: 400;
   line-height: 1.1;
+
+  &__spacer {
+    flex: 0 0 calc(var(--pip-size) + #{unit(1)});
+  }
 }

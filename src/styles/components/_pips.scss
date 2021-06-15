@@ -1,21 +1,21 @@
 $block: pips;
 
 .#{$block} {
-  --pip-size: #{unit(1.2)};
-  --pip-border-color: hsla(0, 0%, 100%, 0.15);
+  --local-pip-size:  var(--pip-size, #{unit(1.2)});
+  --local-pip-border-color: var(--pip-border-color, hsla(0, 0%, 100%, 0.15));
 
   width: 100%;
-  flex: 0 0 calc(var(--pip-size) + #{unit(1)});
+  flex: 0 0 calc(var(--local-pip-size) + #{unit(1)});
   display: flex;
   justify-content: center;
   align-items: center;
 
   &__pip {
-    width: var(--pip-size);
-    height: var(--pip-size);
+    width: var(--local-pip-size);
+    height: var(--local-pip-size);
     border-radius: 50%;
     background-color: transparent;
-    border: 2px solid var(--pip-border-color);
+    border: 2px solid var(--local-pip-border-color);
     transition: background-color var(--animation-duration-fast) ease-in;
 
     &:not(:last-child):not(:only-child) {
@@ -23,11 +23,11 @@ $block: pips;
     }
 
     &--active {
-      background-color: var(--pip-border-color);
+      background-color: var(--local-pip-border-color);
     }
   }
 
   &--large {
-    --pip-size: #{unit(2)};
+    --local-pip-size:  var(--pip-size, #{unit(2)});
   }
 }

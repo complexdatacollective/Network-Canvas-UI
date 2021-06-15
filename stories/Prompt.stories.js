@@ -48,4 +48,5 @@ export const Truncation = Constrained.bind({});
 Truncation.args = {
   id: '123',
   text: 'This is a really long prompt that should be wrapped first over multiple lines but will then ultimately be truncated with ellipses because nobody should ever need to write this much for any reason at all',
+  speakable: true,
 };

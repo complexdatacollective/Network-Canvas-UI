@@ -31,20 +31,49 @@ const Template = (args) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const setIndexWithWrap = (index) => setCurrentIndex(Math.abs(index) % prompts.length);
-  console.log('current', currentIndex);
+
   return (
-    <>
-      <Prompts prompts={prompts} speakable={speakable} currentPrompt={prompts[currentIndex].id} />
+    <div style={{
+      border: '1px solid red',
+      margin: '0 2.4rem',
+      height: '100%',
+      padding: '1rem 0 2rem',
+      overflow: 'hidden',
+      display: 'flex',
+      flexDirection: 'column',
+      background: 'aqua',
+    }}
+    >
       <div style={{
-        position: 'absolute',
-        bottom: '0',
-        padding: '2rem',
+        flex: '0 0 auto',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'tomato',
       }}
       >
-        <button type="button" onClick={() => setIndexWithWrap(currentIndex - 1)}>Previous</button>
-        <button type="button" onClick={() => setIndexWithWrap(currentIndex + 1)}>Next</button>
+        <Prompts prompts={prompts} speakable={speakable} currentPrompt={prompts[currentIndex].id} />
       </div>
-    </>
+      <div style={{
+        flex: '1 auto',
+        flexDirection: 'column',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100%',
+        position: 'relative',
+        marginTop: '1rem',
+        minHeight: '0',
+        background: 'bisque',
+      }}
+      >
+        <h2>Interface content</h2>
+        <div>
+          <button type="button" onClick={() => setIndexWithWrap(currentIndex - 1)}>Previous</button>
+          <button type="button" onClick={() => setIndexWithWrap(currentIndex + 1)}>Next</button>
+        </div>
+      </div>
+    </div>
   );
 };
 

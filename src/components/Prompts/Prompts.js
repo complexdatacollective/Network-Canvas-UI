@@ -34,7 +34,7 @@ const Prompts = (props) => {
         duration: 0.5,
       }}
     >
-      { prompts.length > 1 && <Pips count={prompts.length} currentIndex={currentIndex} />}
+      { prompts.length > 1 ? (<Pips count={prompts.length} currentIndex={currentIndex} />) : (<div className="prompts__spacer" />)}
       <AnimatePresence custom={backwards} exitBeforeEnter initial={false}>
         { prompts.map(({
           id,
@@ -49,6 +49,7 @@ const Prompts = (props) => {
           />
         )))}
       </AnimatePresence>
+      <div className="prompts__spacer" />
     </motion.div>
   );
 };
