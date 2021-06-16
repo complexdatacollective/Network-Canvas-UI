@@ -12,7 +12,7 @@ const Scroller = React.forwardRef(({
   const scrollableRef = useRef();
 
   useImperativeHandle(ref, () => ({
-    scrollTo: scrollableRef.current.scrollTo,
+    scrollTo: (...args) => scrollableRef.current.scrollTo(...args),
   }));
 
   const handleScroll = useCallback(() => {

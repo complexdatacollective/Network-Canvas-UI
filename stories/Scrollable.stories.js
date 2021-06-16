@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import faker from 'faker';
 import Scroller from '../src/components/Scroller';
 import '../src/styles/_all.scss';
@@ -27,3 +27,20 @@ export const rendersHeading = (props) => (
 rendersHeading.args = {
   children: 'Eulogy for an Adolescence Shattered Against Elliot Street Pavement - Heres to Being Young!',
 };
+
+export const scrollTo = (props) => {
+  const ref = useRef();
+  const handleClick = () => {
+    ref.current.scrollTo(0, 200);
+  };
+  return (
+    <div>
+      <div style={{ height: 600, display: 'flex' }}>
+        <Scroller {...props} ref={ref} />
+      </div>
+      <br />
+      <button type="button" onClick={handleClick}>scrollTo(0, 200)</button>
+    </div>
+  );
+};
+renders.args = {};
