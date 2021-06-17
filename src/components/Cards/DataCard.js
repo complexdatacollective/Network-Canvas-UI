@@ -24,7 +24,7 @@ const DataCard = ({
       { data && Object.keys(data).length > 0 && (
         <div className="data-card__data">
           {Object.keys(data).map((dataLabel) => (
-            <div className="data-card__data-item">
+            <div className="data-card__data-item" key={dataLabel}>
               <div className="data-card__data-label">{dataLabel}</div>
               <div className="data-card__data-value">{data[dataLabel]}</div>
             </div>
@@ -42,7 +42,7 @@ DataCard.defaultProps = {
 };
 
 DataCard.propTypes = {
-  data: PropTypes.array,
+  data: PropTypes.object,
   label: PropTypes.string.isRequired,
   onClick: PropTypes.func,
   allowDrag: PropTypes.bool,
