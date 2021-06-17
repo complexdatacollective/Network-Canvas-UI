@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import { noop } from 'lodash';
 
 const DataCard = ({
   label,
@@ -12,12 +13,15 @@ const DataCard = ({
     'data-card',
     {
       'data-card--can-drag': allowDrag,
-      'data-card--can-click': onClick,
+      'data-card--can-click': onClick !== noop,
     },
   );
 
   return (
-    <div className={classes} onClick={onClick}>
+    <div
+      className={classes}
+      onClick={onClick}
+    >
       <div className="data-card__label">
         <h2>{label}</h2>
       </div>
@@ -37,7 +41,7 @@ const DataCard = ({
 
 DataCard.defaultProps = {
   data: {},
-  onClick: () => {},
+  onClick: noop,
   allowDrag: false,
 };
 

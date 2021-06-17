@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+import { action } from '@storybook/addon-actions';
 import '../src/styles/_all.scss';
 import DataCard from '../src/components/Cards/DataCard';
 
@@ -13,7 +14,17 @@ export default {
     width: 470,
     height: 'auto',
     allowDrag: false,
-    onClick: null,
+    onClick: undefined,
+  },
+  argTypes: {
+    onClick: {
+      control: { type: 'radio' },
+      options: ['None', 'Click handler'],
+      mapping: {
+        None: undefined,
+        'Click handler': action('DataCard click'),
+      },
+    },
   },
 };
 
@@ -53,6 +64,16 @@ LongData.args = {
   data: {
     description: 'A capital is the attack of a helmet. Varus trips show us how brians can be tails.',
   },
+};
+
+export const Clickable = Template.bind({});
+Clickable.args = {
+  onClick: () => console.log('click'),
+};
+
+export const Draggable = Template.bind({});
+Draggable.args = {
+  allowDrag: true,
 };
 
 export const Stretch = Template.bind({});
