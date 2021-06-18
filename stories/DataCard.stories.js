@@ -25,6 +25,14 @@ export default {
         'Click handler': action('DataCard click'),
       },
     },
+    width: {
+      control: {
+        type: 'range',
+        min: 450,
+        max: 1000,
+        step: 10,
+      },
+    },
   },
 };
 
@@ -63,6 +71,8 @@ export const LongData = Template.bind({});
 LongData.args = {
   data: {
     description: 'A capital is the attack of a helmet. Varus trips show us how brians can be tails.',
+    'this_is_an_exceptionally_long_label': 'Brians can be tails.',
+    'this is an exceptionally long label with spaces': 'Brians can be tails.',
   },
 };
 
