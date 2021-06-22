@@ -1,0 +1,36 @@
+html, body {
+  background: black;
+}
+
+.export-sprite {
+  background: rgba(255, 255, 255, 0.1);
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  &__node {
+    position: absolute;
+    background: lime;
+    width: 100px;
+    height: 100px;
+    background: repeating-linear-gradient(
+      145deg,
+      rgba(255, 255, 255, .15),
+      rgba(255, 255, 255, .15) 50%,
+      rgba(0, 0, 0, .1) 50%,
+      rgba(0, 0, 0, .1) 100%
+    );
+  }
+
+  &__destination {
+    position: absolute;
+    left: 200px;
+    top: 200px;
+    width: 50px;
+    height: 50px;
+    transform: translate(-50%, -50%);
+    border-radius: 2px;
+    background-color: white;
+    z-index: -100;
+  }
+}
