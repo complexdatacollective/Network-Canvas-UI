@@ -5,19 +5,33 @@ import ExportSprite from '../../src/components/Sprites/ExportSprite';
 
 export default {
   title: 'Components/Sprites/ExportSprite',
+  args: {
+    size: 500,
+  },
+  argTypes: {
+    size: {
+      control: {
+        type: 'range',
+        min: 100,
+        max: 500,
+        step: 100,
+      },
+    },
+  },
 };
 
 const Template = ({
-
+  size,
 }) => (
   <div
     style={{
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
+      height: '100%',
     }}
   >
-    <ExportSprite />
+    <ExportSprite size={size} />
   </div>
 );
 

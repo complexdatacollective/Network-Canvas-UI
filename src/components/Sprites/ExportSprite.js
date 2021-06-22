@@ -1,4 +1,10 @@
+/* eslint-disable no-param-reassign */
 import React, { useRef, useEffect } from 'react';
+import DescriptionRoundedIcon from '@material-ui/icons/DescriptionRounded';
+
+const NODE_COUNT = 15;
+const ROTATIONAL_SPEED = 0.015;
+const GRAVITATIONAL_SPEED = 0.9834;
 
 const px = (f) => `${Math.round(f)}px`;
 
@@ -20,113 +26,149 @@ const palette = [
   'rgb(232, 45, 63)',
 ];
 
-const newItem = (el) => () => {
-  const item = {
+const generateNode = (el, options = {}) => () => {
+  const maxRange = options.size / 2;
+
+  const node = {
     a: range(-Math.PI, Math.PI),
-    h: range(150, 200),
+    h: maxRange,
     f: range(1, 3),
     d: 1,
-    s: range(25, 50),
+    s: range(options.size / 12, options.size / 8),
     c: palette[Math.floor(range(0, palette.length))],
     el: document.createElement('div'),
   };
 
-  item.el.classList.add('export-sprite__node');
-  item.el.style.backgroundColor = item.c;
-  item.el.style.width = px(item.s);
-  item.el.style.height = px(item.s);
-  item.el.style.left = px(Math.sin(item.a) * item.h + 200);
-  item.el.style.top = px(Math.cos(item.a) * item.h + 200);
-  item.el.style.opacity = 1 - (item.h/200);
-  item.el.style.borderRadius = px(100);
-  el.appendChild(item.el);
+  node.el.classList.add('export-sprite__node');
+  node.el.style.backgroundColor = node.c;
+  node.el.style.borderRadius = px(node.s);
+  node.el.style.opacity = 0;
+  el.appendChild(node.el);
 
-  return item;
+  return node;
 };
 
 class ExportAnimation {
-  constructor(el) {
+  constructor(el, options = {}) {
     if (!el) { throw new Error('Element not found'); }
     this.el = el;
-    this.items = [];
+    this.options = options;
+    this.nodes = [];
     this.start();
   }
 
   start() {
-    this.items = Array(5).fill(undefined)
-      .map(newItem(this.el));
+    this.nodes = Array(NODE_COUNT)
+      .fill(undefined)
+      .map(this.generateNode());
 
     this.loop();
+  }
 
-    setTimeout(() => {
-      console.log(this.items);
-    }, 10000);
+  generateNode() {
+    return generateNode(this.el, this.options);
+  }
+
+  maxRange() {
+    return this.options.size / 2;
   }
 
   loop() {
     // render
-    this.items.forEach((item) => {
-      const s = item.s/2 + item.s * item.h / 200;
-      item.el.style.left = px(Math.sin(item.a) * item.h + 200 - s / 2);
-      item.el.style.opacity = item.h > 50
-        ? 1 - (item.h/200)
-        : item.h/50;
-      item.el.style.top = px(Math.cos(item.a) * item.h + 200 - s / 2);
-      item.el.style.width = px(s);
-      item.el.style.height = px(s);
+    this.nodes.forEach((node) => {
+      const displaySize = (node.s * 0.5) + (node.s * node.h / this.maxRange());
+      const fadeEdge = this.maxRange() * 0.2;
+
+      const cutoff = node.s / 5;
+
+      node.el.style.opacity = node.h > fadeEdge
+        ? 1 - (node.h / this.maxRange())
+        : node.h / (fadeEdge - cutoff);
+
+      node.el.style.left = px(Math.sin(node.a) * node.h + this.maxRange() - displaySize * 0.5);
+      node.el.style.top = px(Math.cos(node.a) * node.h + this.maxRange() - displaySize * 0.5);
+
+      node.el.style.width = px(displaySize);
+      node.el.style.height = px(displaySize);
     });
 
-    this.items = this.items
-      .map((item) => {
-        const a = item.a - item.d * 0.015 * item.f;
-        const h = item.h * Math.pow(0.9834, item.f);
+    this.nodes = this.nodes
+      .reduce((nodes, node) => {
+        const a = node.a - node.d * ROTATIONAL_SPEED * node.f;
+        const h = node.h * (GRAVITATIONAL_SPEED ** node.f);
+        const cutoff = node.s / 5;
 
-        if (h <= item.s / 5) {
-          this.el.removeChild(item.el);
+        if (h <= cutoff) {
+          this.el.removeChild(node.el);
+          return nodes;
         }
 
-        return {
-          ...item,
-          a,
-          h,
-        };
-      })
-      .filter(({ h, s }) => h > s / 5);
+        return [
+          ...nodes,
+          {
+            ...node,
+            a,
+            h,
+          },
+        ];
+      }, []);
 
-    this.items = [
-      ...this.items,
-      ...Array(15 - this.items.length)
+    this.nodes = [
+      ...this.nodes,
+      ...Array(NODE_COUNT - this.nodes.length)
         .fill(undefined)
-        .map(newItem(this.el)),
+        .map(this.generateNode()),
     ];
 
-    window.requestAnimationFrame(() => this.loop());
+    this.animation = window.requestAnimationFrame(() => this.loop());
   }
 
   destroy() {
-    this.items.forEach(({ el }) => {
+    window.cancelAnimationFrame(this.animation);
+
+    this.nodes.forEach(({ el }) => {
       this.el.removeChild(el);
     });
 
-    this.items = [];
+    this.nodes = [];
   }
 }
 
-const ExportSprite = () => {
+const ExportSprite = ({
+  size,
+}) => {
   const el = useRef();
   const animation = useRef();
 
   useEffect(() => {
-    animation.current = new ExportAnimation(el.current);
+    animation.current = new ExportAnimation(el.current, {
+      size,
+    });
 
     return () => { animation.current.destroy(); };
-  }, [el.current]);
+  }, [el.current, size]);
 
   return (
-    <div className="export-sprite" ref={el}>
-      <div className="export-sprite__destination" />
+    <div
+      className="export-sprite"
+      ref={el}
+      style={{ width: size, height: size }}
+    >
+      <div
+        className="export-sprite__destination"
+        style={{
+          left: px(size/2),
+          top: px(size/2),
+        }}
+      >
+        <DescriptionRoundedIcon />
+      </div>
     </div>
   );
+};
+
+ExportSprite.defaultProps = {
+  size: 200,
 };
 
 export default ExportSprite;
