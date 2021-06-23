@@ -1,5 +1,6 @@
-/* eslint-disable no-param-reassign */
+/* eslint-disable no-param-reassign, no-mixed-operators */
 import React, { useRef, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import DescriptionRoundedIcon from '@material-ui/icons/DescriptionRounded';
 
 const NODE_COUNT = 15;
@@ -157,8 +158,8 @@ const ExportSprite = ({
       <div
         className="export-sprite__destination"
         style={{
-          left: px(size/2),
-          top: px(size/2),
+          left: px(size / 2),
+          top: px(size / 2),
         }}
       >
         <DescriptionRoundedIcon />
@@ -169,6 +170,10 @@ const ExportSprite = ({
 
 ExportSprite.defaultProps = {
   size: 200,
+};
+
+ExportSprite.propTypes = {
+  size: PropTypes.number,
 };
 
 export default ExportSprite;
