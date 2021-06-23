@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+import { AnimatePresence } from 'framer-motion';
 import '../src/styles/_all.scss';
 import Steps from '../src/components/Wizard/Steps';
 import Step from '../src/components/Wizard/Step';
@@ -20,20 +21,28 @@ export default {
   },
 };
 
+const animation = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
+};
+
 const Template = ({
   index,
 }) => (
-  <Steps index={index}>
-    <Step key={1}>
-      Step 1
-    </Step>
-    <Step key={2}>
-      Step 2
-    </Step>
-    <Step key={3}>
-      Step 3
-    </Step>
-  </Steps>
+  <AnimatePresence>
+    <Steps index={index}>
+      <Step key="1" {...animation}>
+        Step 1
+      </Step>
+      <Step key="2" {...animation}>
+        Step 2
+      </Step>
+      <Step key="3" {...animation}>
+        Step 3
+      </Step>
+    </Steps>
+  </AnimatePresence>
 );
 
 export const Normal = Template.bind({});
