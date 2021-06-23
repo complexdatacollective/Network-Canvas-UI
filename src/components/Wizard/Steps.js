@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const Steps = ({ index, children }) => {
@@ -20,6 +21,16 @@ const Steps = ({ index, children }) => {
       </AnimatePresence>
     </div>
   );
+};
+
+Steps.propTypes = {
+  index: PropTypes.number,
+  children: PropTypes.node,
+};
+
+Steps.defaultProps = {
+  index: 1,
+  children: null,
 };
 
 export default Steps;
