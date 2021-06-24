@@ -8,6 +8,7 @@ import cx from 'classnames';
 import { motion } from 'framer-motion';
 import MarkdownLabel from '../Fields/MarkdownLabel';
 import useSpeech from '../../hooks/useSpeech';
+import useTimeout from '../../hooks/useTimeout';
 
 // Words read per second (approximate). Used to calculate underline duration.
 const WORDS_PER_SECOND = 0.30;
@@ -56,19 +57,11 @@ const Prompt = (props) => {
   } = useSpeech(rawText);
 
   useEffect(() => {
-    let timeout;
-
     // use timeout to allow mount animation to complete and synthesis engine to be ready.
     if (speakable && rawText && !isSpeaking) {
-      timeout = setTimeout(() => {
-        speak();
-      }, 500);
+      useTimeout(speak, 1000);
     }
     return () => {
-      if (timeout) {
-        clearTimeout(timeout);
-      }
-
       if (stop) {
         stop();
       }
