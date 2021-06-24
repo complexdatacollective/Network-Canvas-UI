@@ -1,37 +1,46 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import faker from 'faker';
-import Harness from './helpers/Harness';
 import Scroller from '../src/components/Scroller';
 import '../src/styles/_all.scss';
 
-const requiredProps = {
-  children: [...new Array(20)].map((_, index) => (<p key={index}>{faker.lorem.paragraph(20)}</p>)),
+export default {
+  title: 'Utilities/Scroller',
+  args: {
+    children: [...new Array(20)]
+      .map((_, index) => (<p key={index}>{faker.lorem.paragraph(20)}</p>)),
+  },
+  argTypes: { onScroll: { action: 'scrolled' } },
 };
 
-export default { title: 'Utilities/Scroller' };
+export const renders = (props) => (
+  <div style={{ height: 600, display: 'flex' }}>
+    <Scroller {...props} />
+  </div>
+);
+renders.args = {};
 
-export const renders = () => {
+export const rendersHeading = (props) => (
+  <h1>
+    <Scroller {...props} />
+  </h1>
+);
+rendersHeading.args = {
+  children: 'Eulogy for an Adolescence Shattered Against Elliot Street Pavement - Heres to Being Young!',
+};
+
+export const scrollTo = (props) => {
+  const ref = useRef();
+  const handleClick = () => {
+    ref.current.scrollTo(0, 200);
+  };
   return (
-    <Harness
-      requiredProps={requiredProps}
-    >
-      {
-        props =>
-          (<Scroller {...props} />)
-      }
-    </Harness>
+    <div>
+      <div style={{ height: 600, display: 'flex' }}>
+        <Scroller {...props} ref={ref} />
+      </div>
+      <br />
+      <button type="button" onClick={handleClick}>scrollTo(0, 200)</button>
+    </div>
   );
 };
-
-export const rendersHeading = () => (
-  <Harness
-    requiredProps={requiredProps}
-  >
-    {
-      props =>
-        (<h1><Scroller {...props}>
-          Eulogy for an Adolescence Shattered Against Elliot Street Pavement - Heres to Being Young!
-        </Scroller></h1>)
-    }
-  </Harness>
-);
+renders.args = {};

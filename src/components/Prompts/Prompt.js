@@ -40,6 +40,10 @@ const Prompt = (props) => {
   const [animationDuration, setAnimationDuration] = useState(0);
 
   const rawText = useMemo(() => {
+    if (!speakable) {
+      return null;
+    }
+
     const { contents } = remark().use(strip).processSync(text);
 
     const duration = contents.split(' ').length * WORDS_PER_SECOND;
@@ -52,13 +56,23 @@ const Prompt = (props) => {
   } = useSpeech(rawText);
 
   useEffect(() => {
+    let timeout;
+
     // use timeout to allow mount animation to complete and synthesis engine to be ready.
-    setTimeout(() => {
-      if (speakable && rawText && !isSpeaking) {
+    if (speakable && rawText && !isSpeaking) {
+      timeout = setTimeout(() => {
         speak();
+      }, 1000);
+    }
+    return () => {
+      if (timeout) {
+        clearTimeout(timeout);
       }
-    }, 1000);
-    return stop();
+
+      if (stop) {
+        stop();
+      }
+    };
   }, [speakable, rawText]);
 
   const classes = cx(

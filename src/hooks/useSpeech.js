@@ -1,3 +1,4 @@
+import { noop } from 'lodash';
 import { useEffect, useMemo, useState } from 'react';
 
 /**
@@ -9,6 +10,16 @@ import { useEffect, useMemo, useState } from 'react';
 const useSpeech = (text, lang = window.navigator.language) => {
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [error, setError] = useState(null);
+
+  // No text means nothing to do.
+  if (!text) {
+    return {
+      speak: noop,
+      stop: noop,
+      error: null,
+      isSpeaking: false,
+    };
+  }
 
   // Speech synthesis API isn't supported on Android: https://bugs.chromium.org/p/chromium/issues/detail?id=487255
   if (!('speechSynthesis' in window)) {
@@ -59,7 +70,9 @@ const useSpeech = (text, lang = window.navigator.language) => {
         setError(`No voice available for language "${lang}". Cannot speak!`);
       }
 
-      return stop();
+      return () => {
+        stop();
+      };
     },
     [voicesForLanguage],
   );

@@ -1,6 +1,7 @@
 $module-name: form-field-text;
 
 .#{$module-name} {
+  position: relative;
 
   &__input {
     display: block;
@@ -22,6 +23,27 @@ $module-name: form-field-text;
       color: var(--input-placeholder);
       font-style: italic;
     }
+  }
+
+  &__adornment-left,
+  &__adornment-right {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // pointer-events: none;
+    transition: all var(--animation-easing) var(--animation-duration-fast);
+    width: 1.5em;
+  }
+
+  &__adornment-left {
+    left: 1em;
+  }
+
+  &__adornment-right {
+    right: 1em;
   }
 
   &--has-focus,
@@ -57,6 +79,18 @@ $module-name: form-field-text;
     padding-top: 2rem;
     padding-bottom: 2rem;
     resize: vertical;
+  }
+
+  &--has-right-adornment {
+    .#{$module-name}__input {
+      padding-right: 3.25em;
+    }
+  }
+
+  &--has-left-adornment {
+    .#{$module-name}__input {
+      padding-left: 3.25em;
+    }
   }
 
   &--has-error {

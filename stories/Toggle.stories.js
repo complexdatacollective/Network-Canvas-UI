@@ -75,3 +75,25 @@ export const fieldLabelInteraction = () => {
     </Harness>
   );
 };
+
+export const disabled = () => {
+  const [value, setValue] = useState(false);
+  const handleChange = (...args) => {
+    setValue(v => !v);
+    action('change')(...args);
+  };
+
+  return (
+    <Harness
+      requiredProps={requiredProps}
+      label="Is this switch *on*?"
+      disabled
+      input={{
+        onChange: handleChange,
+        value,
+      }}
+    >
+      {props => <Toggle {...props} />}
+    </Harness>
+  );
+};

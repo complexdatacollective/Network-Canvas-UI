@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { findIndex } from 'lodash';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -23,7 +23,7 @@ const Prompts = (props) => {
     prevPromptRef.current = currentIndex;
   }, [currentPrompt]);
 
-  const backwards = currentIndex < prevPromptRef.current;
+  const backwards = useMemo(() => currentIndex < prevPromptRef.current, []);
 
   return (
     <motion.div
