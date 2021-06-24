@@ -35,13 +35,10 @@ const Template = (args) => {
   return (
     <div style={{
       border: '1px solid red',
-      margin: '0 2.4rem',
       height: '100%',
-      padding: '1rem 0 2rem',
       overflow: 'hidden',
       display: 'flex',
       flexDirection: 'column',
-      background: 'aqua',
     }}
     >
       <div style={{
@@ -49,7 +46,7 @@ const Template = (args) => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        background: 'tomato',
+        border: '1px solid yellow',
       }}
       >
         <Prompts prompts={prompts} speakable={speakable} currentPrompt={prompts[currentIndex].id} />
@@ -64,7 +61,7 @@ const Template = (args) => {
         position: 'relative',
         marginTop: '1rem',
         minHeight: '0',
-        background: 'bisque',
+        border: '1px solid blue',
       }}
       >
         <h2>Interface content</h2>

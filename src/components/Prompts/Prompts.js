@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { findIndex } from 'lodash';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion';
 import Prompt from './Prompt';
 import Pips from './Pips';
 
