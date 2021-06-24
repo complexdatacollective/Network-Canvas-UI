@@ -1,15 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
 
-// Speech synthesis API is not available in Android's
-// webview: https://bugs.chromium.org/p/chromium/issues/detail?id=487255
-// We need to catch those errors here, and set the error state.
-const speechSupported = 'speechSynthesis' in window;
-
-// iOS/macOS seem to lower-case navigator.language (which is the default language)
-const getVoiceForLanguage = (language) => speechSupported && speechSynthesis.getVoices()
-  // The voice "Jorge" is broken in Firefox (doesn't speak)!
-  .find((voice) => voice.name !== 'Jorge' && (voice.lang.toLowerCase() === language.toLowerCase()));
-
 /**
  * Hook for text-to-speech.
  *
@@ -19,7 +9,24 @@ const getVoiceForLanguage = (language) => speechSupported && speechSynthesis.get
 const useSpeech = (text, lang = window.navigator.language) => {
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [error, setError] = useState(null);
-  const voicesForLanguage = useMemo(() => getVoiceForLanguage(lang), [lang]);
+
+  // Speech synthesis API isn't supported on Android: https://bugs.chromium.org/p/chromium/issues/detail?id=487255
+  if (!('speechSynthesis' in window)) {
+    return { error: 'Speech synthesis not supported on this platform.' };
+  }
+
+  const voices = useMemo(() => {
+    if (error) {
+      return {};
+    }
+
+    return speechSynthesis.getVoices();
+  }, []);
+
+  // iOS/macOS seem to lower-case navigator.language (which is the default language)
+  const voicesForLanguage = useMemo(() => voices.find(
+    (voice) => voice.lang.toLowerCase() === lang.toLowerCase(),
+  ), [lang]);
 
   const speak = () => {
     if (error) {
@@ -29,7 +36,7 @@ const useSpeech = (text, lang = window.navigator.language) => {
     setIsSpeaking(true);
     const utterance = new SpeechSynthesisUtterance(text);
 
-    // For iOS we must set both voice and language, but this breaks firefox!
+    // For iOS we must set both voice and language
     utterance.lang = lang;
     utterance.voice = voicesForLanguage;
 
@@ -48,9 +55,7 @@ const useSpeech = (text, lang = window.navigator.language) => {
 
   useEffect(
     () => {
-      if (!speechSupported) {
-        setError('Speech synthesis not supported on this platform.');
-      } else if (!voicesForLanguage) {
+      if (!voicesForLanguage) {
         setError(`No voice available for language "${lang}". Cannot speak!`);
       }
 

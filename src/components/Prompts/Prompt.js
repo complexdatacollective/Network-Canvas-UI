@@ -37,28 +37,27 @@ const Prompt = (props) => {
     backwards,
     speakable,
   } = props;
-  const [rawText, setRawText] = useState(null);
   const [animationDuration, setAnimationDuration] = useState(0);
+
+  const rawText = useMemo(() => {
+    const { contents } = remark().use(strip).processSync(text);
+
+    const duration = contents.split(' ').length * WORDS_PER_SECOND;
+    setAnimationDuration(duration);
+    return contents;
+  }, [text]);
 
   const {
     speak, stop, isSpeaking, error,
   } = useSpeech(rawText);
 
   useEffect(() => {
-    remark().use(strip).process(text, (_, { contents }) => {
-      const duration = contents.split(' ').length * WORDS_PER_SECOND;
-      setAnimationDuration(duration);
-      setRawText(contents);
-    });
-  }, [text]);
-
-  useEffect(() => {
+    // use timeout to allow mount animation to complete and synthesis engine to be ready.
     setTimeout(() => {
       if (speakable && rawText && !isSpeaking) {
         speak();
       }
     }, 1000);
-
     return stop();
   }, [speakable, rawText]);
 
