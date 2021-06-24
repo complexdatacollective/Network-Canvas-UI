@@ -62,7 +62,7 @@ const Prompt = (props) => {
     if (speakable && rawText && !isSpeaking) {
       timeout = setTimeout(() => {
         speak();
-      }, 1000);
+      }, 500);
     }
     return () => {
       if (timeout) {

@@ -1,5 +1,6 @@
 import { noop } from 'lodash';
 import { useEffect, useMemo, useState } from 'react';
+import useIsMounted from './useIsMounted';
 
 // Used when we bail out of the hook to provide a consistent surface for consumers.
 const noopReturnValues = {
@@ -18,6 +19,7 @@ const noopReturnValues = {
 const useSpeech = (text, lang = window.navigator.language) => {
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [error, setError] = useState(null);
+  const isMounted = useIsMounted();
 
   // No text means nothing to do.
   if (!text) {
@@ -50,7 +52,6 @@ const useSpeech = (text, lang = window.navigator.language) => {
       return;
     }
 
-    setIsSpeaking(true);
     const utterance = new SpeechSynthesisUtterance(text);
 
     // For iOS we must set both voice and language
@@ -59,8 +60,8 @@ const useSpeech = (text, lang = window.navigator.language) => {
 
     // Slow speech slightly to help with comprehension.
     utterance.rate = 0.9;
-
-    utterance.onend = () => setIsSpeaking(false);
+    utterance.onstart = () => isMounted() && setIsSpeaking(true);
+    utterance.onend = () => isMounted() && setIsSpeaking(false);
     speechSynthesis.speak(utterance);
   };
 
