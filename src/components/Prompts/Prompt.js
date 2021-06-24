@@ -56,17 +56,14 @@ const Prompt = (props) => {
     speak, stop, isSpeaking, error,
   } = useSpeech(rawText);
 
-  useEffect(() => {
-    // use timeout to allow mount animation to complete and synthesis engine to be ready.
-    if (speakable && rawText && !isSpeaking) {
-      useTimeout(speak, 1000);
+  // use timeout to allow mount animation to complete and synthesis engine to be ready.
+  useTimeout(speak, 1000);
+
+  useEffect(() => () => {
+    if (stop) {
+      stop();
     }
-    return () => {
-      if (stop) {
-        stop();
-      }
-    };
-  }, [speakable, rawText]);
+  }, []);
 
   const classes = cx(
     'prompt',
