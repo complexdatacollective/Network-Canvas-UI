@@ -1,6 +1,14 @@
 import { noop } from 'lodash';
 import { useEffect, useMemo, useState } from 'react';
 
+// Used when we bail out of the hook to provide a consistent surface for consumers.
+const noopReturnValues = {
+  speak: noop,
+  stop: noop,
+  error: null,
+  isSpeaking: false,
+};
+
 /**
  * Hook for text-to-speech.
  *
@@ -13,17 +21,15 @@ const useSpeech = (text, lang = window.navigator.language) => {
 
   // No text means nothing to do.
   if (!text) {
-    return {
-      speak: noop,
-      stop: noop,
-      error: null,
-      isSpeaking: false,
-    };
+    return noopReturnValues;
   }
 
   // Speech synthesis API isn't supported on Android: https://bugs.chromium.org/p/chromium/issues/detail?id=487255
   if (!('speechSynthesis' in window)) {
-    return { error: 'Speech synthesis not supported on this platform.' };
+    return {
+      ...noopReturnValues,
+      error: 'Speech API not supported',
+    };
   }
 
   const voices = useMemo(() => {
