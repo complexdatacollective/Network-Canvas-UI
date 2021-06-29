@@ -34,16 +34,12 @@ const useSpeech = (text, lang = window.navigator.language) => {
     };
   }
 
-  const voices = useMemo(() => {
-    if (error) {
-      return {};
-    }
+  const voices = useMemo(() => speechSynthesis.getVoices(), []);
 
-    return speechSynthesis.getVoices();
-  }, []);
-
-  // iOS/macOS seem to lower-case navigator.language (which is the default language)
-  const voicesForLanguage = useMemo(() => voices.find(
+  // Find the first speech synthesis voice available for our current language.
+  // The first voice may not always be the best, so this could be improved.
+  const voiceForLanguage = useMemo(() => voices.find(
+    // iOS/macOS seem to lower-case navigator.language (which is the default language)
     (voice) => voice.lang.toLowerCase() === lang.toLowerCase(),
   ), [lang]);
 
@@ -54,12 +50,14 @@ const useSpeech = (text, lang = window.navigator.language) => {
 
     const utterance = new SpeechSynthesisUtterance(text);
 
-    // For iOS we must set both voice and language
+    // For iOS we must set both voice and language together
     utterance.lang = lang;
-    utterance.voice = voicesForLanguage;
+    utterance.voice = voiceForLanguage;
 
-    // Slow speech slightly to help with comprehension.
-    utterance.rate = 0.9;
+    // `onstart` takes < 1s to begin talking on Chrome, but is instantaneous
+    // on FF and Safari.
+    // it might be better to have a 'starting' state that updates immediately
+    // and can be used by the consumer to render feedback for the user.
     utterance.onstart = () => isMounted() && setIsSpeaking(true);
     utterance.onend = () => isMounted() && setIsSpeaking(false);
     speechSynthesis.speak(utterance);
@@ -73,7 +71,7 @@ const useSpeech = (text, lang = window.navigator.language) => {
 
   useEffect(
     () => {
-      if (!voicesForLanguage) {
+      if (!voiceForLanguage) {
         setError(`No voice available for language "${lang}". Cannot speak!`);
       }
 
@@ -81,7 +79,7 @@ const useSpeech = (text, lang = window.navigator.language) => {
         stop();
       };
     },
-    [voicesForLanguage],
+    [voiceForLanguage],
   );
 
   return {
