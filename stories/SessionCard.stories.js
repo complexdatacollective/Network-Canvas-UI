@@ -15,7 +15,7 @@ const requiredProps = {
   progress: 55,
 };
 
-export default { title: 'Components/SessionCard' };
+export default { title: 'Components/Cards/SessionCard' };
 
 export const normal = () => (
   <Harness

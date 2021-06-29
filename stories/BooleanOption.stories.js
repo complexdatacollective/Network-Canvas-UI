@@ -1,3 +1,5 @@
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable arrow-body-style */
 import React, { useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import Harness from './helpers/Harness';
@@ -40,7 +42,7 @@ export const negative = () => {
   return (
     <Harness
       requiredProps={requiredProps}
-      label="This has a custom icon!"
+      label="Renders negative state"
       selected
       negative
     >
@@ -50,12 +52,14 @@ export const negative = () => {
 };
 
 export const customIcon = () => {
+  const [selected, setSelected] = useState(false);
   return (
     <Harness
       requiredProps={requiredProps}
       label="This has a custom icon!"
-      selected
-      icon={() => <Icon name="cross" color="white" />}
+      selected={selected}
+      customIcon={<div style={{ marginRight: '1.2rem' }}><Icon name="menu" color={selected ? 'primary' : ''} /></div>}
+      onClick={() => setSelected(!selected)}
     >
       {(props) => <BooleanOption {...props} />}
     </Harness>

@@ -1,17 +1,14 @@
 import React from 'react';
-import ReactMarkdown from 'react-markdown';
 import PropTypes from 'prop-types';
 import { ALLOWED_MARKDOWN_LABEL_TAGS, ALLOWED_MARKDOWN_INLINE_LABEL_TAGS } from '../../utils/config';
+import Markdown from './Markdown';
 
 const MarkdownLabel = ({ label, className, inline }) => (
-  <ReactMarkdown
+  <Markdown
     className={className}
-    allowedTypes={inline ? ALLOWED_MARKDOWN_INLINE_LABEL_TAGS : ALLOWED_MARKDOWN_LABEL_TAGS}
-    renderers={{ root: 'span' }}
-    unwrapDisallowed
-  >
-    {label}
-  </ReactMarkdown>
+    allowedElements={inline ? ALLOWED_MARKDOWN_INLINE_LABEL_TAGS : ALLOWED_MARKDOWN_LABEL_TAGS}
+    label={label}
+  />
 );
 
 MarkdownLabel.propTypes = {
