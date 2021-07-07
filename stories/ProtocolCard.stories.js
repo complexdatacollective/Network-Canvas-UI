@@ -23,6 +23,15 @@ export const normal = () => (
   </Harness>
 );
 
+export const selected = () => (
+  <Harness
+    requiredProps={requiredProps}
+    selected
+  >
+    {props => <ProtocolCard {...props} />}
+  </Harness>
+);
+
 export const Clickable = () => (
   <Harness
     requiredProps={requiredProps}
@@ -38,6 +47,20 @@ export const condensed = () => (
     name={faker.lorem.sentence()}
     description={null}
     condensed
+    onClickHandler={action('onClickHandler')}
+    onStatusClickHandler={action('onStatusClickHandler')}
+  >
+    {props => <ProtocolCard {...props} />}
+  </Harness>
+);
+
+export const condensedSelected = () => (
+  <Harness
+    requiredProps={requiredProps}
+    name={faker.lorem.sentence()}
+    description={null}
+    condensed
+    selected
     onClickHandler={action('onClickHandler')}
     onStatusClickHandler={action('onStatusClickHandler')}
   >
