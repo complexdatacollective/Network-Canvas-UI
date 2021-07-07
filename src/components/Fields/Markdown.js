@@ -25,7 +25,6 @@ const externalLinkRenderer = ({ href, children }) => (
 );
 
 const defaultMarkdownRenderers = {
-  '**': 'span',
   p: emojiTextRenderer,
   a: externalLinkRenderer,
 };
