@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import uuid from 'uuid';
+import { v4 as uuid } from 'uuid';
 import Radio from './Radio';
 import { asOptionObject, getValue } from './utils/options';
 import Icon from '../Icon';

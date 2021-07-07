@@ -1,0 +1,21 @@
+.item-list {
+  flex: 1;
+  display: flex;
+
+  &__container,
+  &__sizer {
+    flex: 1;
+    display: flex;
+    position: relative;
+  }
+
+  &__grid {
+  }
+
+  &__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+

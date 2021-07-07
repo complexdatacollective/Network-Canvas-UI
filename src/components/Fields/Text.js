@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import uuid from 'uuid';
+import { v4 as uuid } from 'uuid';
 import Icon from '../Icon';
 import MarkdownLabel from './MarkdownLabel';
 

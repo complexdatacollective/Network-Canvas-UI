@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import PropTypes from 'prop-types';
-import Drop from './Transitions/Drop';
 import window from './window';
 import { getCSSVariableAsNumber } from '../utils/CSSVariables';
 
@@ -43,9 +42,7 @@ class Modal extends Component {
           >
             <div className="modal__background" />
             <div className="modal__content" onClick={handleBlur}>
-              <Drop>
-                { children }
-              </Drop>
+              { children }
             </div>
           </motion.div>
         )}

@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import uuid from 'uuid/v4';
+import { v4 as uuid } from 'uuid';
 import Icon from '../../Icon';
 import RichText from './RichText';
 import MarkdownLabel from '../MarkdownLabel';
