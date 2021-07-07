@@ -4,6 +4,7 @@ $module-name: prompts;
   --number-of-lines: 3;
   --prompt-text-size: 1.75rem; // h1
   --pip-size:  #{unit(1.2)};
+  --spacer-size: calc(var(--pip-size) + #{unit(1)});
 
   width: 100%;
   max-width: 55rem;
@@ -16,6 +17,6 @@ $module-name: prompts;
   overflow: hidden;
 
   &__spacer {
-    flex: 0 0 calc(var(--pip-size) + #{unit(1)});
+    flex: 0 0 var(--spacer-size);
   }
 }
