@@ -110,6 +110,7 @@ ProtocolCard.defaultProps = {
   isOutdated: false,
   isObsolete: false,
   condensed: false,
+  selected: false,
 };
 
 ProtocolCard.propTypes = {
@@ -123,6 +124,7 @@ ProtocolCard.propTypes = {
   isOutdated: PropTypes.bool,
   isObsolete: PropTypes.bool,
   condensed: PropTypes.bool,
+  selected: PropTypes.bool,
 };
 
 export default ProtocolCard;
