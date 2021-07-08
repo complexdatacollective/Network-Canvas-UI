@@ -1,9 +1,9 @@
 /* eslint-disable no-param-reassign, no-mixed-operators */
 import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import DescriptionRoundedIcon from '@material-ui/icons/DescriptionRounded';
+import ProgressCircle from '../ProgressCircle';
 
-const NODE_COUNT = 15;
+const NODE_COUNT = 10;
 const ROTATIONAL_SPEED = 0.015;
 const GRAVITATIONAL_SPEED = 0.9834;
 
@@ -78,13 +78,8 @@ class ExportAnimation {
     // render
     this.nodes.forEach((node) => {
       const displaySize = (node.s * 0.5) + (node.s * node.h / this.maxRange());
-      const fadeEdge = this.maxRange() * 0.2;
 
-      const cutoff = node.s / 5;
-
-      node.el.style.opacity = node.h > fadeEdge
-        ? 1 - (node.h / this.maxRange())
-        : node.h / (fadeEdge - cutoff);
+      node.el.style.opacity = 1 - (node.h / this.maxRange());
 
       node.el.style.left = px(Math.sin(node.a) * node.h + this.maxRange() - displaySize * 0.5);
       node.el.style.top = px(Math.cos(node.a) * node.h + this.maxRange() - displaySize * 0.5);
@@ -136,10 +131,15 @@ class ExportAnimation {
 }
 
 const ExportSprite = ({
-  size,
+  percentProgress,
+  statusText,
 }) => {
   const el = useRef();
   const animation = useRef();
+
+  console.log('p', percentProgress, statusText);
+
+  const size = 500;
 
   useEffect(() => {
     animation.current = new ExportAnimation(el.current, {
@@ -162,18 +162,22 @@ const ExportSprite = ({
           top: px(size / 2),
         }}
       >
-        <DescriptionRoundedIcon />
+        <ProgressCircle percentProgress={percentProgress} hideCounter />
+        <h4>
+          {statusText}
+        </h4>
       </div>
     </div>
   );
 };
 
 ExportSprite.defaultProps = {
-  size: 200,
+  statusText: 'Exporting items...',
 };
 
 ExportSprite.propTypes = {
-  size: PropTypes.number,
+  percentProgress: PropTypes.number.isRequired,
+  statusText: PropTypes.string,
 };
 
 export default ExportSprite;

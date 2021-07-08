@@ -6,8 +6,8 @@
   &__node {
     position: absolute;
     background: lime;
-    width: 100px;
-    height: 100px;
+    width: unit(5);
+    height: unit(5);
     background: repeating-linear-gradient(
       145deg,
       rgba(255, 255, 255, .15),
@@ -19,13 +19,16 @@
 
   &__destination {
     position: absolute;
-    width: 50px;
-    height: 50px;
     transform: translate(-50%, -50%);
-    border-radius: 50px;
-    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: var(--z-global-ui);
+
+    .progress-circle {
+      --circle-text-color: var(--color-charcoal);
+      --circle-background-color: var(--color-white);
+      --circle-complete-color: var(--primary);
+    }
   }
 }
