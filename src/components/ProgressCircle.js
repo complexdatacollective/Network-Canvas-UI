@@ -48,14 +48,14 @@ const ProgressCircle = ({
 
   return (
     <div className="progress-circle" ref={ref}>
-      { !hideCounter && (
-        <div className="progress-circle__status">
-          <h2>
+      <div className="progress-circle__status">
+        { !hideCounter && (
+          <h1 style={{ margin: 0 }}>
             <Counter incomingValue={percentProgress} />
             %
-          </h2>
-        </div>
-      )}
+          </h1>
+        )}
+      </div>
       <div className="progress-circle__circle">
         <svg
           viewBox="0 0 100 100"
@@ -68,8 +68,7 @@ const ProgressCircle = ({
             className="background-circle"
             cx="50"
             cy="50"
-            r={radius + 5}
-            stroke="transparent"
+            r={radius}
           />
           <motion.circle
             className="animated-circle"

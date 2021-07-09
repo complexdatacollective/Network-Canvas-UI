@@ -12,7 +12,9 @@
   }
 
   .background-circle {
+    stroke-width: var(--circle-line-width);
     fill: var(--circle-background-color);
+    stroke: var(--color-platinum);
   }
 
   @include element(status) {
@@ -25,6 +27,7 @@
     align-items: center;
     justify-content: center;
     color: var(--circle-text-color);
+    shape-outside: circle(50%);
   }
 
   @include element(circle) {

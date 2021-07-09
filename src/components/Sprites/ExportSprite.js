@@ -131,15 +131,12 @@ class ExportAnimation {
 }
 
 const ExportSprite = ({
+  size,
   percentProgress,
   statusText,
 }) => {
   const el = useRef();
   const animation = useRef();
-
-  console.log('p', percentProgress, statusText);
-
-  const size = 500;
 
   useEffect(() => {
     animation.current = new ExportAnimation(el.current, {
@@ -162,20 +159,24 @@ const ExportSprite = ({
           top: px(size / 2),
         }}
       >
-        <ProgressCircle percentProgress={percentProgress} hideCounter />
-        <h4>
-          {statusText}
-        </h4>
+        <div className="export-sprite__destination__circle">
+          <ProgressCircle percentProgress={percentProgress} />
+        </div>
+        <div className="export-sprite__destination__text">
+          <h4>{statusText}</h4>
+        </div>
       </div>
     </div>
   );
 };
 
 ExportSprite.defaultProps = {
+  size: 500,
   statusText: 'Exporting items...',
 };
 
 ExportSprite.propTypes = {
+  size: PropTypes.number,
   percentProgress: PropTypes.number.isRequired,
   statusText: PropTypes.string,
 };
