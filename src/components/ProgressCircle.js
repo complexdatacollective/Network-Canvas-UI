@@ -18,6 +18,7 @@ const Counter = ({ incomingValue }) => {
     const controls = animate(counterValue, incomingValue, {
       duration: 0.2,
       onUpdate(value) {
+        setCounterValue(value);
         node.textContent = value.toFixed(0);
       },
       onComplete() {
