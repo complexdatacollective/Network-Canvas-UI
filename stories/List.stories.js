@@ -84,8 +84,8 @@ const Template = (args) => (
       // emptyComponent
       // mode=[] // details, list, cards
       cardColumnBreakpoints={{
-        900: 2,
-        1000: 3,
+        800: 2,
+        1200: 3,
       }}
     />
   </div>

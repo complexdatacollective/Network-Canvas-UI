@@ -92,9 +92,9 @@ const useGridSizer = (
       return columns > 1 ? columns : 1;
     }
 
-    const breakpoints = Object.keys(columnBreakpoints).sort().reverse();
-    const breakpoint = breakpoints.find((bp) => bp < containerWidth);
-    return columnBreakpoints[breakpoint] || 1;
+    const breakpoints = Object.keys(columnBreakpoints).sort();
+    const activeBreakpoint = breakpoints.find((bp) => bp < containerWidth);
+    return columnBreakpoints[activeBreakpoint] || 1;
   }, [useItemSizing, ItemComponent, containerWidth, columnBreakpoints]);
 
   const rowCount = useMemo(() => (
