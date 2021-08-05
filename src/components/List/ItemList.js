@@ -78,10 +78,8 @@ const getDelay = (
   const rowsToAnimate = Math.ceil(containerHeight / rowHeight()); // Don't animate past viewport
   const baseDelay = 0.001; // Always make delay non-zero
 
-  // Two scenarios where we don't delay at all:
-  //   1. If we are scrolling. This prevents list animation when scrolling back up
-  //   2. If we are outside of the viewport - simply a waste of resources.
-  if (rowIndex > rowsToAnimate || isScrolling) { return 0; }
+  // Don't delay at all if we are scrolling. This prevents list animation when scrolling back up
+  if (isScrolling) { return 0; }
 
   // Calculate the delay based on the cell's row and column position
   const colDelay = columnIndex * itemStagger;
@@ -130,7 +128,6 @@ const getCellRenderer = (Component) => (args) => {
 
   // Here is where we define and manage our initial mounting animation for this cell
   useEffect(() => {
-    animation.set({ y: '75%' });
     animation.start({
       opacity: 1,
       y: 0,
@@ -143,11 +140,14 @@ const getCellRenderer = (Component) => (args) => {
 
   const classes = cx(
     'item-list__item',
-    { 'item-list__item--hidden': delay > 0 },
   );
 
   return (
     <motion.div
+      initial={!isScrolling && {
+        opacity: 0,
+        y: '75%',
+      }}
       animate={animation}
       className={classes}
       style={style}
@@ -173,15 +173,15 @@ const ItemList = ({
   const containerRef = useRef(null);
   const [resizeListener, { width, height }] = useResizeAware();
 
-  const listUUID = useMemo(() => uuid(), [items, ItemComponent]);
+  const listUUID = useMemo(() => uuid(), [items, ItemComponent, useItemSizing]);
 
   // Instantiate useGridSizer: enhancement to react-window allowing dynamic heights
   const [gridProps, ready] = useGridSizer(
     useItemSizing,
     cardColumnBreakpoints,
-    ItemComponent, // ItemComponent
-    items, // items list
-    width, // container width
+    ItemComponent,
+    items,
+    width, // container width from resizeAware
   );
 
   const {
@@ -214,11 +214,14 @@ const ItemList = ({
 
   return (
     <AnimatePresence exitBeforeEnter>
-      <div
+      <motion.div
         key={listUUID}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
+        transition={{
+          when: 'beforeChildren',
+        }}
         className={classNames}
         ref={containerRef}
       >
@@ -252,7 +255,7 @@ const ItemList = ({
           </div>
         </ListContext.Provider>
 
-      </div>
+      </motion.div>
     </AnimatePresence>
   );
 };

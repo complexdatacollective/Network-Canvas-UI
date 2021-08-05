@@ -5,11 +5,14 @@
   display: flex;
   flex-direction: column;
   height: 11rem;
+  max-width: 25rem;
+  width: 100%;
   color: var(--color-navy-taupe);
   justify-content: space-between;
   overflow: hidden;
   box-sizing: border-box;
   position: relative;
+  margin: unit(2);
 
   &--clickable {
     @include clickable(2);

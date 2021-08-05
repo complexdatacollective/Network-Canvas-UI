@@ -5,7 +5,20 @@ import React, {
   useCallback,
   useState,
 } from 'react';
-import { v4 as uuid } from 'uuid';
+
+// Get a DOM element's height, including margins.
+const getElementHeight = (element) => {
+  const { height } = element.getBoundingClientRect();
+  const elementStyle = window.getComputedStyle(element);
+
+  // height: element height + vertical padding & borders
+  // now we just need to add vertical margins
+  const totalHeight = ['top', 'bottom']
+    .map((side) => parseInt(elementStyle[`margin-${side}`], 10))
+    .reduce((total, side) => total + side, height);
+
+  return totalHeight;
+};
 
 /**
  * This is an enhancement for react-window, which allows items in a grid
@@ -36,27 +49,26 @@ const useGridSizer = (
   containerWidth,
   minimumHeight = 150,
 ) => {
-  const id = useMemo(() => uuid(), []);
   const [hiddenSizingEl, setHiddenSizingElement] = useState(null);
 
   useEffect(() => {
-    if (hiddenSizingEl) { return () => {}; }
+    setHiddenSizingElement(null);
 
     const newHiddenSizingEl = document.createElement('div');
 
-    newHiddenSizingEl.classList.add(`hidden-sizing-element-${id}`);
     newHiddenSizingEl.style.position = 'absolute';
     newHiddenSizingEl.style.top = '0';
     newHiddenSizingEl.style.pointerEvents = 'none';
     newHiddenSizingEl.style.visibility = 'hidden';
+    newHiddenSizingEl.style.width = '100%';
+    newHiddenSizingEl.style.height = '100%';
     newHiddenSizingEl.innerHTML = renderToString(<ItemComponent />);
 
-    document.body.appendChild(newHiddenSizingEl);
-
-    setHiddenSizingElement(newHiddenSizingEl);
+    const element = document.body.appendChild(newHiddenSizingEl);
+    setHiddenSizingElement(element.firstElementChild);
 
     return () => document.body.removeChild(newHiddenSizingEl);
-  }, []);
+  }, [ItemComponent, useItemSizing]);
 
   // Set ready to true only after we have rendered our hidden sizing element
   // Consumers use this to know when to expect sane values.
@@ -71,81 +83,57 @@ const useGridSizer = (
   // can fit within the container width.
   //
   // Row height is set to exactly the item height
-  let columnCount;
-  let columnWidth;
-  let rowCount;
-  let rowHeight;
 
-  if (useItemSizing) {
-    columnCount = useMemo(() => {
+  const columnCount = useMemo(() => {
+    if (useItemSizing) {
       if (!hiddenSizingEl) { return 1; }
       const { width } = hiddenSizingEl.getBoundingClientRect();
       const columns = Math.floor(containerWidth / width);
       return columns > 1 ? columns : 1;
-    }, [ItemComponent, containerWidth]);
+    }
 
-    rowCount = useMemo(() => (
-      Math.ceil((itemCount || 0) / columnCount)
-    ), [itemCount, columnCount]);
+    const breakpoints = Object.keys(columnBreakpoints).sort().reverse();
+    const breakpoint = breakpoints.find((bp) => bp < containerWidth);
+    return columnBreakpoints[breakpoint] || 1;
+  }, [useItemSizing, ItemComponent, containerWidth, columnBreakpoints]);
 
-    columnWidth = useCallback(() => (
-      containerWidth / columnCount
-    ), [containerWidth, columnCount]);
+  const rowCount = useMemo(() => (
+    Math.ceil((itemCount || 0) / columnCount)
+  ), [itemCount, columnCount]);
 
-    // Calculate row height based on height of hiddenSizingEl
-    rowHeight = useCallback(
-      () => {
-        if (!hiddenSizingEl) { return minimumHeight; }
-        const { height } = hiddenSizingEl.getBoundingClientRect();
+  const columnWidth = useCallback(() => (
+    containerWidth / columnCount
+  ), [containerWidth, columnCount]);
+
+  // Calculate row height based on height of hiddenSizingEl
+  const rowHeight = useCallback(
+    (rowIndex) => {
+      if (!hiddenSizingEl) { return minimumHeight; }
+
+      const height = getElementHeight(hiddenSizingEl);
+
+      if (useItemSizing) {
         return height;
-      },
-      [hiddenSizingEl, ItemComponent],
-    );
-  } else {
-    // When not using item sizing, we calculate the number of columns
-    // based on container breakpoints, and set the row height based
-    // on the hidden element height
-    columnCount = useMemo(() => {
-      const breakpoints = Object.keys(columnBreakpoints).sort().reverse();
-      const breakpoint = breakpoints.find((bp) => bp < containerWidth);
-      return columnBreakpoints[breakpoint];
-    }, [itemCount, columnBreakpoints, containerWidth]);
+      }
 
-    rowCount = useMemo(() => (
-      Math.ceil((itemCount || 0) / columnCount)
-    ), [itemCount, columnCount]);
+      hiddenSizingEl.style.width = `${columnWidth()}px`;
 
-    columnWidth = useCallback(() => (
-      containerWidth / columnCount
-    ), [containerWidth, columnCount]);
+      const start = rowIndex * columnCount;
+      const end = start + columnCount;
 
-    // Calculate row height based on height of hiddenSizingEl
-    rowHeight = useCallback(
-      (rowIndex) => {
-        if (!hiddenSizingEl) { return minimumHeight; }
+      const biggestRowHeight = items.slice(start, end)
+        .reduce(
+          (acc) => (
+            height > acc
+              ? height
+              : acc
+          ), 0,
+        );
 
-        hiddenSizingEl.style.width = `${columnWidth()}px`;
-
-        const start = rowIndex * columnCount;
-        const end = start + columnCount;
-
-        const height = items.slice(start, end)
-          .reduce(
-            (acc, item) => {
-              return (
-                hiddenSizingEl.clientHeight > acc
-                  ? hiddenSizingEl.clientHeight
-                  : acc
-              );
-            },
-            0,
-          );
-
-        return height > 0 ? height : minimumHeight;
-      },
-      [hiddenSizingEl, items, columnWidth()],
-    );
-  }
+      return biggestRowHeight > 0 ? biggestRowHeight : minimumHeight;
+    },
+    [useItemSizing, hiddenSizingEl, items, ItemComponent, columnWidth()],
+  );
 
   return [
     {

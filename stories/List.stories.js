@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import faker from 'faker';
 import { v4 as uuid } from 'uuid';
-import Toggle from '../src/components/Fields/Toggle';
 import ItemList from '../src/components/List/ItemList';
 import '../src/styles/_all.scss';
 import Node from '../src/components/Node';
+import SessionCard from '../src/components/Cards/SessionCard';
 
 const TestCard = ({ name }) => (
   <div
     style={{
       background: 'Tomato',
-      padding: '5rem',
+      height: '200px',
       width: '100%',
-      margin: '1rem',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -21,6 +20,8 @@ const TestCard = ({ name }) => (
     {name}
   </div>
 );
+
+const TestSessionCard = ({ name }) => <SessionCard loading />;
 
 const mockItems = (length = 100) => [...Array(length)].map(() => (
   {
@@ -45,10 +46,11 @@ export default {
       control: { type: 'radio' },
     },
     itemComponent: {
-      options: ['TestCard', 'Node'],
+      options: ['TestCard', 'Node', 'SessionCard'],
       mapping: {
         TestCard,
         Node: ({ name }) => <Node label={name} />,
+        SessionCard: TestSessionCard,
       },
       control: { type: 'radio' },
     },
@@ -81,11 +83,10 @@ const Template = (args) => (
       // itemClickHandler
       // emptyComponent
       // mode=[] // details, list, cards
-      // cardColumnBreakpoints={{
-      //   1: 250,
-      //   2: 500,
-      //   3: 750,
-      // }}
+      cardColumnBreakpoints={{
+        900: 2,
+        1000: 3,
+      }}
     />
   </div>
 );
