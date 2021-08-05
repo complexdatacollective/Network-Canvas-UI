@@ -9,13 +9,35 @@ import React, {
 import PropTypes from 'prop-types';
 import { isNil } from 'lodash';
 import AutoSizer from 'react-virtualized-auto-sizer';
-import { AnimatePresence, AnimateSharedLayout, motion, useReducedMotion } from 'framer-motion';
+import { useAnimation, AnimatePresence, AnimateSharedLayout, motion, useReducedMotion } from 'framer-motion';
 import { VariableSizeGrid as Grid } from 'react-window';
 import useResizeAware from 'react-resize-aware';
 import { v4 as uuid } from 'uuid';
 import cx from 'classnames';
 import useGridSizer from './useGridSizer';
-import { useAnimation } from 'framer-motion';
+
+const useListAnimation = () => {
+  const animation = useMemo(() => {
+    const veryFast = getCSSVariableAsNumber('--animation-duration-very-fast-ms') / 1000;
+    const fast = getCSSVariableAsNumber('--animation-duration-fast-ms') / 1000;
+    const standard = getCSSVariableAsNumber('--animation-duration-standard-ms') / 1000;
+    const slow = getCSSVariableAsNumber('--animation-duration-slow-ms') / 1000;
+
+    const easing = getCSSVariableAsObject('--animation-easing-js');
+
+    return {
+      duration: {
+        veryFast,
+        fast,
+        standard,
+        slow,
+      },
+      easing,
+    };
+  }, []);
+
+  return animation;
+};
 
 const DefaultEmptyComponent = () => (
   <div className="searchable-list__placeholder">
@@ -31,25 +53,53 @@ const getDataIndex = (columns, { rowIndex, columnIndex }) => (
   (rowIndex * columns) + columnIndex
 );
 
-const getDelay = (rowHeight, containerHeight, numberOfColumns, columnIndex, rowIndex) => {
-  const itemStagger = 0.05;
-  const rowsToAnimate = Math.ceil(containerHeight / rowHeight());
+/**
+ * @function getDelay
+ * Calculates an animation delay for each cell based on its position as well as the
+ * current scrolling state of the list.
+ *
+ * @param {boolean} isScrolling - is the list currently scrolling?
+ * @param {number} rowHeight - pixel height of the current row
+ * @param {number} containerHeight - pixel height of the list
+ * @param {number} numberOfColumns - number of vertical divisions
+ * @param {number} columnIndex - the column index of the current item
+ * @param {number} rowIndex - the row index of the current item
+ * @returns number
+ */
+const getDelay = (
+  isScrolling,
+  rowHeight,
+  containerHeight,
+  numberOfColumns,
+  columnIndex,
+  rowIndex,
+) => {
+  const itemStagger = 0.05; // Gap between items
+  const rowsToAnimate = Math.ceil(containerHeight / rowHeight()); // Don't animate past viewport
+  const baseDelay = 0.001; // Always make delay non-zero
 
-  if (rowIndex > rowsToAnimate) {
-    // return baseDelay + (columnIndex * itemStagger);
-    return 0;
-  }
+  // Two scenarios where we don't delay at all:
+  //   1. If we are scrolling. This prevents list animation when scrolling back up
+  //   2. If we are outside of the viewport - simply a waste of resources.
+  if (rowIndex > rowsToAnimate || isScrolling) { return 0; }
 
+  // Calculate the delay based on the cell's row and column position
   const colDelay = columnIndex * itemStagger;
-
   const rowDelay = (rowIndex % rowsToAnimate) * (itemStagger * numberOfColumns);
 
-  return colDelay + rowDelay;
+  return baseDelay + colDelay + rowDelay;
 };
 
+/**
+ * @function getCellRenderer
+ * Function called for each item when rendering the grid
+ * @param {*} Component - A component for use when rendering
+ * @returns function
+ */
 const getCellRenderer = (Component) => (args) => {
   const {
     columnIndex,
+    isScrolling,
     rowIndex,
     style,
   } = args;
@@ -72,43 +122,43 @@ const getCellRenderer = (Component) => (args) => {
 
   const delay = useMemo(
     () => getDelay(
-      rowHeight, containerHeight, columns, columnIndex, rowIndex,
-    ), [rowHeight, containerHeight, columns, columnIndex, rowIndex],
+      isScrolling, rowHeight, containerHeight, columns, columnIndex, rowIndex,
+    ), [isScrolling, rowHeight, containerHeight, columns, columnIndex, rowIndex],
   );
 
-  const controls = useAnimation();
+  const animation = useAnimation();
 
+  // Here is where we define and manage our initial mounting animation for this cell
   useEffect(() => {
-    console.log('us');
-    controls.set({ opacity: 0, y: '75%' });
-    controls.start(() => ({
+    animation.set({ y: '75%' });
+    animation.start({
       opacity: 1,
       y: 0,
       transition: {
         delay,
       },
-    }));
-
-    return () => controls.stop();
+    });
+    return () => animation.stop();
   }, []);
+
+  const classes = cx(
+    'item-list__item',
+    { 'item-list__item--hidden': delay > 0 },
+  );
 
   return (
     <motion.div
-      className="item-list__item"
+      animate={animation}
+      className={classes}
       style={style}
       key={id}
-      // layout
-      // layoutId={id}
+      exit={{ scale: 0, opacity: 0, transition: { duration: 0.2 } }}
     >
-      <motion.div
-        animate={controls}
-      >
-        <Component
-          {...attributes}
-        />
-      </motion.div>
+      <Component
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...attributes}
+      />
     </motion.div>
-
   );
 };
 
@@ -118,14 +168,12 @@ const ItemList = ({
   useItemSizing,
   itemComponent: ItemComponent,
   emptyComponent: EmptyComponent = DefaultEmptyComponent,
-  cardColumnBreakpoints = {
-    250: 1,
-    500: 2,
-    750: 3,
-  }
+  cardColumnBreakpoints,
 }) => {
   const containerRef = useRef(null);
   const [resizeListener, { width, height }] = useResizeAware();
+
+  const listUUID = useMemo(() => uuid(), [items, ItemComponent]);
 
   // Instantiate useGridSizer: enhancement to react-window allowing dynamic heights
   const [gridProps, ready] = useGridSizer(
@@ -134,7 +182,6 @@ const ItemList = ({
     ItemComponent, // ItemComponent
     items, // items list
     width, // container width
-    // minimum row height
   );
 
   const {
@@ -144,31 +191,6 @@ const ItemList = ({
     columnWidth,
     rowHeight,
   } = gridProps;
-
-  // console.log({
-  //   width,
-  //   columnCount,
-  //   rowCount,
-  //   columnWidth: columnWidth(),
-  //   rowHeight,
-  // });
-
-  // const itemKey = useCallback((index) => {
-  //   const dataIndex = getDataIndex(columnCount, index);
-
-  //   // If last row is shorter than number of columns
-  //   if (dataIndex >= items.length) { return null; }
-
-  //   const key = items[dataIndex] && items[dataIndex].id;
-
-  //   if (isNil(key)) {
-  //     // Something went wrong, this is a failsafe but will force a rerender every time
-  //     console.debug('`itemKey()` returned undefined in `<ItemList />`', dataIndex, items[dataIndex]); // eslint-disable-line no-console
-  //     return uuid();
-  //   }
-
-  //   return key;
-  // }, [columnCount, items]);
 
   const CellRenderer = useMemo(
     () => getCellRenderer(ItemComponent),
@@ -191,41 +213,47 @@ const ItemList = ({
   const showEmpty = items.length === 0;
 
   return (
-    <div
-      className={classNames}
-      ref={containerRef}
-    >
-      <ListContext.Provider value={context}>
-        <div className="item-list__container">
-          <AnimateSharedLayout>
-            {resizeListener}
-            { showEmpty && <EmptyComponent />}
-            <AutoSizer>
-              {(containerSize) => {
-                // If auto sizer is not ready, items would be sized incorrectly
-                if (!ready) { return null; }
-                return (
-                  <Grid
-                    className="item-list__grid"
-                    height={containerSize.height}
-                    width={containerSize.width}
-                    // itemKey={itemKey}
-                    key={key}
-                    columnCount={columnCount}
-                    rowCount={rowCount}
-                    columnWidth={columnWidth}
-                    rowHeight={rowHeight}
-                  >
-                    {CellRenderer}
-                  </Grid>
-                );
-              }}
-            </AutoSizer>
-          </AnimateSharedLayout>
-        </div>
-      </ListContext.Provider>
+    <AnimatePresence exitBeforeEnter>
+      <div
+        key={listUUID}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className={classNames}
+        ref={containerRef}
+      >
+        <ListContext.Provider value={context}>
+          <div className="item-list__container">
+            <AnimateSharedLayout>
+              {resizeListener}
+              { showEmpty && <EmptyComponent />}
+              <AutoSizer>
+                {(containerSize) => {
+                  // If auto sizer is not ready, items would be sized incorrectly
+                  if (!ready) { return null; }
+                  return (
+                    <Grid
+                      className="item-list__grid"
+                      height={containerSize.height}
+                      width={containerSize.width}
+                      key={key}
+                      columnCount={columnCount}
+                      rowCount={rowCount}
+                      columnWidth={columnWidth}
+                      rowHeight={rowHeight}
+                      useIsScrolling
+                    >
+                      {CellRenderer}
+                    </Grid>
+                  );
+                }}
+              </AutoSizer>
+            </AnimateSharedLayout>
+          </div>
+        </ListContext.Provider>
 
-    </div>
+      </div>
+    </AnimatePresence>
   );
 };
 
@@ -234,6 +262,8 @@ ItemList.propTypes = {
   className: PropTypes.string,
   itemComponent: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
   emptyComponent: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+  cardColumnBreakpoints: PropTypes.object,
+  items: PropTypes.array.isRequired,
 };
 
 ItemList.defaultProps = {
@@ -241,6 +271,11 @@ ItemList.defaultProps = {
   className: null,
   itemComponent: NoopComponent,
   emptyComponent: NoopComponent,
+  cardColumnBreakpoints: {
+    250: 1,
+    500: 2,
+    750: 3,
+  },
 };
 
 export default ItemList;

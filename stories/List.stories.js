@@ -6,94 +6,88 @@ import ItemList from '../src/components/List/ItemList';
 import '../src/styles/_all.scss';
 import Node from '../src/components/Node';
 
-const TestCard = ({ name }) => {
-  return (
-    <div
-      style={{
-        background: 'Tomato',
-        padding: '5rem',
-        width: '100%',
-        margin: '1rem',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      {name}
-    </div>
-  );
-};
+const TestCard = ({ name }) => (
+  <div
+    style={{
+      background: 'Tomato',
+      padding: '5rem',
+      width: '100%',
+      margin: '1rem',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    }}
+  >
+    {name}
+  </div>
+);
 
-const mockItems = () => [...Array(20)].map((item, index) => (
+const mockItems = (length = 100) => [...Array(length)].map(() => (
   {
     id: uuid(),
     attributes: {
       name: faker.name.firstName(),
     },
   }
-)).sort((item1, item2) => {
-  return item1.attributes.name > item2.attributes.name;
-});
-
-const requiredProps = {
-};
+)).sort((item1, item2) => item1.attributes.name > item2.attributes.name);
 
 export default {
   title: 'Components/ItemList',
-  argTypes: { handleClick: { action: 'clicked' } },
+  argTypes: {
+    items: {
+      options: ['10,000', 1000, 100, 10],
+      mapping: {
+        '10,000': mockItems(10000),
+        1000: mockItems(1000),
+        100: mockItems(100),
+        10: mockItems(10),
+      },
+      control: { type: 'radio' },
+    },
+    itemComponent: {
+      options: ['TestCard', 'Node'],
+      mapping: {
+        TestCard,
+        Node: ({ name }) => <Node label={name} />,
+      },
+      control: { type: 'radio' },
+    },
+    useItemSizing: {
+      type: 'boolean',
+    },
+  },
+  args: {
+    items: 1000,
+    useItemSizing: true,
+    itemComponent: 'Node',
+  },
 };
 
-const Template = (args) => {
-  const [items, setItems] = useState(mockItems());
-  const [useItemSizing, setUseItemSizing] = useState(false);
-
-  return (
-  <>
-    <div
-      style={{
-        display: 'flex',
-        height: '400px',
-        width: '100%',
-        border: '1px solid tomato',
-        '--base-font-size': '12px',
-      }}
-    >
-      <ItemList
-        items={items}
-        itemComponent={(props) => <Node label={props.name} />}
-        // itemComponent={TestCard}
-        useItemSizing={useItemSizing}
-        // itemClickHandler
-        // emptyComponent
-        // mode=[] // details, list, cards
-        // cardColumnBreakpoints={{
-        //   1: 250,
-        //   2: 500,
-        //   3: 750,
-        // }}
-      />
-    </div>
-    <button
-      onClick={
-        () => {
-          const reversed = [...items].reverse();
-          setItems(reversed);
-        }
-      }
-    >
-      Reverse</button>
-    <button onClick={() => setItems(mockItems())} >New Items</button>
-    <Toggle
-      label="Use item sizing"
-      input={{
-        onChange: () => setUseItemSizing(!useItemSizing),
-        value: !!useItemSizing,
-      }}
+const Template = (args) => (
+  <div
+    style={{
+      display: 'flex',
+      height: '400px',
+      width: '100%',
+      border: '1px solid tomato',
+      '--base-font-size': '12px',
+      resize: 'both',
+      overflow: 'auto',
+    }}
+  >
+    <ItemList
+      {...args}
+      // itemComponent={(props) => <Node label={props.name} />}
+      // itemClickHandler
+      // emptyComponent
+      // mode=[] // details, list, cards
+      // cardColumnBreakpoints={{
+      //   1: 250,
+      //   2: 500,
+      //   3: 750,
+      // }}
     />
-  </>
-  );
-};
+  </div>
+);
 
 export const Primary = Template.bind({});
-Primary.args = {
-};
