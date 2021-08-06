@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import faker from 'faker';
 import { v4 as uuid } from 'uuid';
 import ItemList from '../src/components/List/ItemList';
 import '../src/styles/_all.scss';
 import Node from '../src/components/Node';
 import SessionCard from '../src/components/Cards/SessionCard';
+import ProtocolCard from '../src/components/Cards/ProtocolCard';
 
-const TestCard = ({ name }) => (
+const TestCard = (attributes) => (
   <div
     style={{
       background: 'Tomato',
@@ -15,19 +16,36 @@ const TestCard = ({ name }) => (
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
+      flexDirection: 'column',
     }}
   >
-    {name}
+    <h5>{attributes.name}</h5>
+    <ul>
+      <li>{attributes.caseId}</li>
+      <li>{attributes.startedAt}</li>
+      <li>{attributes.updatedAt}</li>
+      <li>{attributes.progress}</li>
+    </ul>
   </div>
 );
 
-const TestSessionCard = ({ name }) => <SessionCard loading />;
+const TestSessionCard = (attributes) => <SessionCard {...attributes} />;
+
+const TestProtocolCard = (attributes) => <ProtocolCard {...attributes} />;
+
+// const TestDataCard = (attributes) => <DataCard {...attributes} />;
 
 const mockItems = (length = 100) => [...Array(length)].map(() => (
   {
     id: uuid(),
     attributes: {
       name: faker.name.firstName(),
+      caseId: faker.name.firstName(),
+      protocolName: faker.name.firstName(),
+      progress: 50,
+      startedAt: faker.date.recent().toUTCString(),
+      exportedAt: faker.date.recent().toUTCString(),
+      updatedAt: faker.date.recent().toUTCString(),
     },
   }
 )).sort((item1, item2) => item1.attributes.name > item2.attributes.name);
@@ -46,11 +64,12 @@ export default {
       control: { type: 'radio' },
     },
     itemComponent: {
-      options: ['TestCard', 'Node', 'SessionCard'],
+      options: ['TestCard', 'Node', 'SessionCard', 'ProtocolCard'],
       mapping: {
         TestCard,
         Node: ({ name }) => <Node label={name} />,
         SessionCard: TestSessionCard,
+        ProtocolCard: TestProtocolCard,
       },
       control: { type: 'radio' },
     },
@@ -59,9 +78,9 @@ export default {
     },
   },
   args: {
-    items: 1000,
-    useItemSizing: true,
-    itemComponent: 'Node',
+    items: 100,
+    useItemSizing: false,
+    itemComponent: 'SessionCard',
   },
 };
 

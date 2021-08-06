@@ -1,43 +1,24 @@
 import React, {
   useContext,
   useMemo,
-  useCallback,
-  useState,
   useRef,
   useEffect,
+  useState,
 } from 'react';
 import PropTypes from 'prop-types';
-import { isNil } from 'lodash';
 import AutoSizer from 'react-virtualized-auto-sizer';
-import { useAnimation, AnimatePresence, AnimateSharedLayout, motion, useReducedMotion } from 'framer-motion';
+import {
+  useAnimation,
+  AnimatePresence,
+  motion,
+  useReducedMotion,
+} from 'framer-motion';
 import { VariableSizeGrid as Grid } from 'react-window';
-import useResizeAware from 'react-resize-aware';
+import useResizeObserver from 'use-resize-observer';
 import { v4 as uuid } from 'uuid';
 import cx from 'classnames';
 import useGridSizer from './useGridSizer';
-
-const useListAnimation = () => {
-  const animation = useMemo(() => {
-    const veryFast = getCSSVariableAsNumber('--animation-duration-very-fast-ms') / 1000;
-    const fast = getCSSVariableAsNumber('--animation-duration-fast-ms') / 1000;
-    const standard = getCSSVariableAsNumber('--animation-duration-standard-ms') / 1000;
-    const slow = getCSSVariableAsNumber('--animation-duration-slow-ms') / 1000;
-
-    const easing = getCSSVariableAsObject('--animation-easing-js');
-
-    return {
-      duration: {
-        veryFast,
-        fast,
-        standard,
-        slow,
-      },
-      easing,
-    };
-  }, []);
-
-  return animation;
-};
+import { debounce } from 'lodash';
 
 const DefaultEmptyComponent = () => (
   <div className="searchable-list__placeholder">
@@ -46,8 +27,6 @@ const DefaultEmptyComponent = () => (
 );
 
 const ListContext = React.createContext({ items: [], columns: 0 });
-
-const NoopComponent = () => null;
 
 const getDataIndex = (columns, { rowIndex, columnIndex }) => (
   (rowIndex * columns) + columnIndex
@@ -128,13 +107,15 @@ const getCellRenderer = (Component) => (args) => {
 
   // Here is where we define and manage our initial mounting animation for this cell
   useEffect(() => {
-    animation.start({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay,
-      },
-    });
+    if (!isScrolling && delay > 0) {
+      animation.start({
+        opacity: 1,
+        y: 0,
+        transition: {
+          delay,
+        },
+      });
+    }
     return () => animation.stop();
   }, []);
 
@@ -171,26 +152,40 @@ const ItemList = ({
   cardColumnBreakpoints,
 }) => {
   const containerRef = useRef(null);
-  const [resizeListener, { width, height }] = useResizeAware();
+  const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
 
+  const debouncedSizeUpdate = debounce(({ width: newWidth, height: newHeight }) => {
+    if (height !== newHeight) {
+      setHeight(newHeight);
+    }
+    if (width !== newWidth) {
+      setWidth(newWidth);
+    }
+  }, 100);
+
+
+  // We use the custom onResize callback of the resize observer hook to enable
+  // us to debounce resize events that cause re-rendering.
+  const { ref } = useResizeObserver({
+    onResize: (newSizes) => debouncedSizeUpdate(newSizes),
+  });
   const listUUID = useMemo(() => uuid(), [items, ItemComponent, useItemSizing]);
 
   // Instantiate useGridSizer: enhancement to react-window allowing dynamic heights
-  const [gridProps, ready] = useGridSizer(
+  const [{
+    key,
+    columnCount,
+    rowCount,
+    columnWidth,
+    rowHeight,
+  }, ready] = useGridSizer(
     useItemSizing,
     cardColumnBreakpoints,
     ItemComponent,
     items,
     width, // container width from resizeAware
   );
-
-  const {
-    key,
-    columnCount,
-    rowCount,
-    columnWidth,
-    rowHeight,
-  } = gridProps;
 
   const CellRenderer = useMemo(
     () => getCellRenderer(ItemComponent),
@@ -220,35 +215,31 @@ const ItemList = ({
         ref={containerRef}
       >
         <ListContext.Provider value={context}>
-          <div className="item-list__container">
-            <AnimateSharedLayout>
-              {resizeListener}
-              { showEmpty && <EmptyComponent />}
-              <AutoSizer>
-                {(containerSize) => {
-                  // If auto sizer is not ready, items would be sized incorrectly
-                  if (!ready) { return null; }
-                  return (
-                    <Grid
-                      className="item-list__grid"
-                      height={containerSize.height}
-                      width={containerSize.width}
-                      key={key}
-                      columnCount={columnCount}
-                      rowCount={rowCount}
-                      columnWidth={columnWidth}
-                      rowHeight={rowHeight}
-                      useIsScrolling
-                    >
-                      {CellRenderer}
-                    </Grid>
-                  );
-                }}
-              </AutoSizer>
-            </AnimateSharedLayout>
+          <div className="item-list__container" ref={ref}>
+            { showEmpty && <EmptyComponent />}
+            <AutoSizer>
+              {(containerSize) => {
+                // If auto sizer is not ready, items would be sized incorrectly
+                if (!ready) { return null; }
+                return (
+                  <Grid
+                    className="item-list__grid"
+                    height={containerSize.height}
+                    width={containerSize.width}
+                    key={key}
+                    columnCount={columnCount}
+                    rowCount={rowCount}
+                    columnWidth={columnWidth}
+                    rowHeight={rowHeight}
+                    useIsScrolling
+                  >
+                    {CellRenderer}
+                  </Grid>
+                );
+              }}
+            </AutoSizer>
           </div>
         </ListContext.Provider>
-
       </div>
     </AnimatePresence>
   );
@@ -257,7 +248,7 @@ const ItemList = ({
 ItemList.propTypes = {
   useItemSizing: PropTypes.bool,
   className: PropTypes.string,
-  itemComponent: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
+  itemComponent: PropTypes.oneOfType([PropTypes.object, PropTypes.func]).isRequired,
   emptyComponent: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
   cardColumnBreakpoints: PropTypes.object,
   items: PropTypes.array.isRequired,
@@ -266,8 +257,7 @@ ItemList.propTypes = {
 ItemList.defaultProps = {
   useItemSizing: false,
   className: null,
-  itemComponent: NoopComponent,
-  emptyComponent: NoopComponent,
+  emptyComponent: () => (<h4>Empty</h4>),
   cardColumnBreakpoints: {
     250: 1,
     500: 2,

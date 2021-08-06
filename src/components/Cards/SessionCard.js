@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { ProgressBar } from '..';
-import HoverMarquee from '../HoverMarquee';
+// import HoverMarquee from '../HoverMarquee';
 import StartedIcon from '../../assets/images/StartedIcon.svg';
 import ModifiedIcon from '../../assets/images/ModifiedIcon.svg';
 import FinishedIcon from '../../assets/images/FinishedIcon.svg';
@@ -10,6 +10,8 @@ import ExportedIcon from '../../assets/images/ExportedIcon.svg';
 import Skeleton from '../Skeleton';
 
 const formatDate = (dateString) => dateString && new Date(dateString).toLocaleString(undefined);
+
+const HoverMarquee = (props) => (<div>{props.children}</div>);
 
 const SessionCard = (props) => {
   const {

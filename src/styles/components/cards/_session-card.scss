@@ -11,7 +11,6 @@
   overflow: hidden;
   box-sizing: border-box;
   position: relative;
-  margin: unit(2);
 
   &--clickable {
     @include clickable(2);
