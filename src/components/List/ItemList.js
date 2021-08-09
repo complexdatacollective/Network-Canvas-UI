@@ -1,11 +1,13 @@
 import React, {
   useContext,
+  useCallback,
   useMemo,
   useRef,
   useEffect,
   useState,
 } from 'react';
 import PropTypes from 'prop-types';
+import { debounce } from 'lodash';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import {
   useAnimation,
@@ -18,7 +20,6 @@ import useResizeObserver from 'use-resize-observer';
 import { v4 as uuid } from 'uuid';
 import cx from 'classnames';
 import useGridSizer from './useGridSizer';
-import { debounce } from 'lodash';
 
 const DefaultEmptyComponent = () => (
   <div className="searchable-list__placeholder">
@@ -26,7 +27,7 @@ const DefaultEmptyComponent = () => (
   </div>
 );
 
-const ListContext = React.createContext({ items: [], columns: 0 });
+const ListContext = React.createContext({ items: [], columns: 0});
 
 const getDataIndex = (columns, { rowIndex, columnIndex }) => (
   (rowIndex * columns) + columnIndex
@@ -83,11 +84,12 @@ const getCellRenderer = (Component) => (args) => {
 
   const {
     items,
+    selectedItems,
+    onSelect,
     columns,
     rowHeight,
     containerHeight,
   } = useContext(ListContext);
-
   const dataIndex = getDataIndex(columns, { rowIndex, columnIndex });
 
   const item = items[dataIndex];
@@ -97,6 +99,9 @@ const getCellRenderer = (Component) => (args) => {
 
   const { id, attributes } = item;
 
+  // const isDisabled = disabled && disabled.includes(id);
+  const isSelected = selectedItems && selectedItems.includes(id);
+
   const delay = useMemo(
     () => getDelay(
       isScrolling, rowHeight, containerHeight, columns, columnIndex, rowIndex,
@@ -104,10 +109,11 @@ const getCellRenderer = (Component) => (args) => {
   );
 
   const animation = useAnimation();
+  const shouldAnimate = !reducedMotion && !isScrolling && delay > 0;
 
   // Here is where we define and manage our initial mounting animation for this cell
   useEffect(() => {
-    if (!isScrolling && delay > 0) {
+    if (shouldAnimate) {
       animation.start({
         opacity: 1,
         y: 0,
@@ -125,7 +131,7 @@ const getCellRenderer = (Component) => (args) => {
 
   return (
     <motion.div
-      initial={!isScrolling && {
+      initial={shouldAnimate && {
         opacity: 0,
         y: '75%',
       }}
@@ -136,8 +142,12 @@ const getCellRenderer = (Component) => (args) => {
       exit={{ scale: 0, opacity: 0, transition: { duration: 0.2 } }}
     >
       <Component
+        id={id}
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...attributes}
+        onClick={() => onSelect(id)}
+        // disabled={isDisabled}
+        selected={isSelected}
       />
     </motion.div>
   );
@@ -146,6 +156,8 @@ const getCellRenderer = (Component) => (args) => {
 const ItemList = ({
   className,
   items,
+  selectedItems,
+  onSelect,
   useItemSizing,
   itemComponent: ItemComponent,
   emptyComponent: EmptyComponent = DefaultEmptyComponent,
@@ -162,14 +174,16 @@ const ItemList = ({
     if (width !== newWidth) {
       setWidth(newWidth);
     }
-  }, 100);
-
+  }, 200);
 
   // We use the custom onResize callback of the resize observer hook to enable
   // us to debounce resize events that cause re-rendering.
   const { ref } = useResizeObserver({
     onResize: (newSizes) => debouncedSizeUpdate(newSizes),
   });
+
+  // We use this list UUID to determine when to re-render, which triggers the exit
+  // animation of the list items.
   const listUUID = useMemo(() => uuid(), [items, ItemComponent, useItemSizing]);
 
   // Instantiate useGridSizer: enhancement to react-window allowing dynamic heights
@@ -194,10 +208,12 @@ const ItemList = ({
 
   const context = useMemo(() => ({
     items,
+    selectedItems,
+    onSelect,
     columns: columnCount,
     rowHeight,
     containerHeight: height,
-  }), [items, rowHeight, columnCount]);
+  }), [items, selectedItems, rowHeight, columnCount]);
 
   const classNames = cx(
     'item-list',
@@ -206,6 +222,10 @@ const ItemList = ({
 
   // If items is provided but is empty show the empty component
   const showEmpty = items.length === 0;
+
+  console.log('list UUID', listUUID);
+
+  console.log('width', width);
 
   return (
     <AnimatePresence exitBeforeEnter>
@@ -223,10 +243,10 @@ const ItemList = ({
                 if (!ready) { return null; }
                 return (
                   <Grid
+                    key={key}
                     className="item-list__grid"
                     height={containerSize.height}
                     width={containerSize.width}
-                    key={key}
                     columnCount={columnCount}
                     rowCount={rowCount}
                     columnWidth={columnWidth}

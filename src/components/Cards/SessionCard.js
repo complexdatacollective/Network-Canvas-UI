@@ -23,18 +23,18 @@ const SessionCard = (props) => {
     protocolName,
     progress,
     selected,
-    onClickHandler,
+    onClick,
     loading,
   } = props;
 
   const modifierClasses = cx(
     'session-card',
-    { 'session-card--clickable': onClickHandler },
+    { 'session-card--clickable': onClick },
     { 'session-card--selected': selected },
   );
 
   return (
-    <div className={modifierClasses} onClick={onClickHandler}>
+    <div className={modifierClasses} onClick={onClick}>
       <div className="main-wrapper">
         <h2 className="card__label">
           { loading ? <Skeleton width="60%" /> : <HoverMarquee>{ caseId }</HoverMarquee>}
@@ -99,7 +99,7 @@ const SessionCard = (props) => {
 };
 
 SessionCard.defaultProps = {
-  onClickHandler: undefined,
+  onClick: undefined,
   protocolName: null,
   selected: false,
   finishedAt: null,
@@ -116,7 +116,7 @@ SessionCard.propTypes = {
   protocolName: PropTypes.string,
   progress: PropTypes.number.isRequired,
   selected: PropTypes.bool,
-  onClickHandler: PropTypes.func,
+  onClick: PropTypes.func,
   loading: PropTypes.bool,
 };
 

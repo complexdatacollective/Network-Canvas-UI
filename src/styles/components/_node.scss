@@ -109,6 +109,10 @@
     opacity: 0.5;
   }
 
+  &--clickable {
+    cursor: pointer;
+  }
+
   &--selected {
     .node__node-trim {
       stroke: palette('selected');

@@ -16,12 +16,12 @@ const ProtocolCard = (props) => {
     isOutdated,
     isObsolete,
     onStatusClickHandler,
-    onClickHandler,
+    onClick,
   } = props;
 
   const modifierClasses = cx(
     'protocol-card',
-    { 'protocol-card--clickable': onClickHandler },
+    { 'protocol-card--clickable': onClick },
     { 'protocol-card--condensed': condensed },
     { 'protocol-card--outdated': !isObsolete && isOutdated },
     { 'protocol-card--obsolete': isObsolete },
@@ -68,7 +68,7 @@ const ProtocolCard = (props) => {
   };
 
   return (
-    <div className={modifierClasses} onClick={onClickHandler}>
+    <div className={modifierClasses} onClick={onClick}>
       <div className="protocol-card__icon-section">
         { renderStatusIcon() }
         { !condensed && (
@@ -101,7 +101,7 @@ const ProtocolCard = (props) => {
 };
 
 ProtocolCard.defaultProps = {
-  onClickHandler: undefined,
+  onClick: undefined,
   onStatusClickHandler: () => {},
   description: null,
   installationDate: null,
@@ -116,7 +116,7 @@ ProtocolCard.propTypes = {
   installationDate: PropTypes.string, // Expects ISO 8601 datetime string
   name: PropTypes.string.isRequired,
   description: PropTypes.string,
-  onClickHandler: PropTypes.func,
+  onClick: PropTypes.func,
   onStatusClickHandler: PropTypes.func,
   isOutdated: PropTypes.bool,
   isObsolete: PropTypes.bool,

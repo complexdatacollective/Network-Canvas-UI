@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable react/prop-types */
+import React, { useMemo, useState, useCallback } from 'react';
 import faker from 'faker';
 import { v4 as uuid } from 'uuid';
 import ItemList from '../src/components/List/ItemList';
@@ -33,14 +34,12 @@ const TestSessionCard = (attributes) => <SessionCard {...attributes} />;
 
 const TestProtocolCard = (attributes) => <ProtocolCard {...attributes} />;
 
-// const TestDataCard = (attributes) => <DataCard {...attributes} />;
-
 const mockItems = (length = 100) => [...Array(length)].map(() => (
   {
     id: uuid(),
     attributes: {
-      id: uuid(),
       label: faker.name.firstName(),
+      name: faker.name.firstName(),
       caseId: faker.name.firstName(),
       protocolName: faker.name.firstName(),
       progress: 50,
@@ -52,7 +51,7 @@ const mockItems = (length = 100) => [...Array(length)].map(() => (
 )).sort((item1, item2) => item1.attributes.name > item2.attributes.name);
 
 export default {
-  title: 'Components/ItemList',
+  title: 'Components/SelectableItemList',
   argTypes: {
     items: {
       options: ['10,000', 1000, 100, 10],
@@ -74,9 +73,6 @@ export default {
       },
       control: { type: 'radio' },
     },
-    useItemSizing: {
-      type: 'boolean',
-    },
   },
   args: {
     items: 100,
@@ -85,30 +81,56 @@ export default {
   },
 };
 
-const Template = (args) => (
-  <div
-    style={{
-      display: 'flex',
-      height: '400px',
-      width: '100%',
-      border: '1px solid tomato',
-      '--base-font-size': '12px',
-      resize: 'both',
-      overflow: 'auto',
-    }}
-  >
-    <ItemList
-      {...args}
-      // itemComponent={(props) => <Node label={props.name} />}
-      // itemClickHandler
-      // emptyComponent
-      // mode=[] // details, list, cards
-      cardColumnBreakpoints={{
-        800: 2,
-        1200: 3,
-      }}
+const TestNode = (props) => {
+  return (
+    <Node
+      {...props}
+      label={props.name}
     />
-  </div>
-);
+  );
+};
+
+const Template = (args) => {
+  const [selected, setSelected] = useState([]);
+
+  const doSelection = useCallback((id) => {
+    if (selected.includes(id)) {
+      setSelected([
+        ...selected.filter((selectedID) => selectedID !== id),
+      ]);
+      return;
+    }
+
+    setSelected((alreadySelected) => [
+      ...alreadySelected,
+      id,
+    ]);
+  }, [selected]);
+
+  return (
+    <div
+      style={{
+        display: 'flex',
+        height: '400px',
+        width: '100%',
+        border: '1px solid tomato',
+        '--base-font-size': '12px',
+        resize: 'both',
+        overflow: 'auto',
+      }}
+    >
+      <ItemList
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...args}
+        selectedItems={selected}
+        onSelect={doSelection}
+        cardColumnBreakpoints={{
+          800: 2,
+          1200: 3,
+        }}
+      />
+    </div>
+  );
+};
 
 export const Primary = Template.bind({});

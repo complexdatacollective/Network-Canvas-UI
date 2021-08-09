@@ -15,12 +15,13 @@ class Node extends Component {
       selected,
       selectedColor,
       linking,
-      handleClick,
+      onClick,
     } = this.props;
 
     const classes = classNames(
       'node',
       {
+        'node--clickable': onClick,
         'node--inactive': inactive,
         'node--selected': selected,
         'node--linking': linking,
@@ -39,7 +40,7 @@ class Node extends Component {
     const labelWithEllipsis = label.length < 22 ? label : `${label.substring(0, 18)}\u{AD}...`; // Add ellipsis for really long labels
 
     return (
-      <div className={classes} onClick={handleClick}>
+      <div className={classes} onClick={onClick}>
         <svg
           viewBox="0 0 500 500"
           xmlns="http://www.w3.org/2000/svg"
@@ -60,7 +61,7 @@ class Node extends Component {
         <div className="node__label">
           <div
             className={labelClasses()}
-            ref={(labelText) => { this.labelText = labelText; }}
+            // ref={(labelText) => { this.labelText = labelText; }}
           >
             {labelWithEllipsis}
           </div>
@@ -77,7 +78,7 @@ Node.propTypes = {
   selected: PropTypes.bool,
   selectedColor: PropTypes.string,
   linking: PropTypes.bool,
-  handleClick: PropTypes.func,
+  onClick: PropTypes.func,
 };
 
 Node.defaultProps = {
@@ -87,7 +88,7 @@ Node.defaultProps = {
   selected: false,
   selectedColor: '',
   linking: false,
-  handleClick: null,
+  onClick: null,
 };
 
 export default Node;
