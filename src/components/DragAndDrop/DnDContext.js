@@ -77,18 +77,17 @@ const DnDProvider = (props) => {
     return draggingType === thisAccepts;
   }, [source, uuid]);
 
-  const isSourceOverObstacle = useCallback(() => {
-    const {top, bottom, left, right } = getSourcePosition();
-    
-  }, source, targets);
+  // const isSourceOverObstacle = useCallback(() => {
+  //   const {top, bottom, left, right } = getSourcePosition();
+  // }, source, targets);
 
   const dndData = {
     targets,
     obstacles,
     source,
     setSource: setDragSource,
-    overObstable: isSourceOverObstacle(),
-    overDropTarget: isSourceOverDropTarget(),
+    // overObstable: isSourceOverObstacle(),
+    // overDropTarget: isSourceOverDropTarget(),
     upsertTarget: handleUpsert,
     removeTarget: handleRemoveTarget,
     getActiveState,
