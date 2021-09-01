@@ -1,6 +1,6 @@
 {
   "name": "@codaco/ui",
-  "version": "5.7.4",
+  "version": "5.8.0-alpha.1",
   "description": "Styles and React components for the Network Canvas project",
   "main": "lib/components/index.js",
   "license": "GPL-3.0-or-later",
@@ -36,6 +36,8 @@
     "react-markdown": "^6.0.2",
     "react-resize-aware": "^3.0.1",
     "react-transition-group": "^4.3.0",
+    "react-virtualized-auto-sizer": "^1.0.6",
+    "react-window": "^1.8.6",
     "recompose": "^0.30.0",
     "rehype-raw": "^5.1.0",
     "rehype-sanitize": "^4.0.0",
@@ -48,6 +50,7 @@
     "slate-react": "^0.57.3",
     "strip-markdown": "^4.0.0",
     "unified": "^9.2.1",
+    "use-resize-observer": "^8.0.0",
     "uuid": "^3.2.1"
   },
   "peerDependencies": {
