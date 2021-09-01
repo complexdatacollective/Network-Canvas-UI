@@ -1,0 +1,3 @@
+- We can't use framer motion's drag support because it doesnt deal with scroll containers. Does this matter? Maybe not.
+- At any rate, the main advantage is that it uses transform and is much faster. Port transform to DragPreview.
+- Move drag manager logic to DnDContext and makeDraggable.
