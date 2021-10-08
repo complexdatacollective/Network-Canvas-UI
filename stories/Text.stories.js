@@ -1,99 +1,90 @@
-import React, { useState } from 'react';
-import { action } from '@storybook/addon-actions';
+import React from 'react';
+import { get } from 'lodash';
 import SearchIcon from '@material-ui/icons/SearchRounded';
 import ClearIcon from '@material-ui/icons/ClearRounded';
-import Harness from './helpers/Harness';
 import Text from '../src/components/Fields/Text';
-import Number from '../src/components/Fields/Number';
 import '../src/styles/_all.scss';
 
-const requiredProps = {
-  label: 'This prompt text contains **markdown** _formatting_',
-  input: { value: undefined },
-  meta: {},
+const adornments = {
+  search: <SearchIcon style={{ color: '#fff' }} />,
+  clear: <ClearIcon style={{ color: '#fff' }} />,
 };
 
-export default { title: 'Fields/Text' };
+export default {
+  title: 'Components/Text',
+  args: {
+    value: undefined,
+    error: 'Something was not right about the input',
+    invalid: false,
+    touched: false,
+    label: 'This prompt text contains **markdown** _formatting_',
+    adornmentLeft: undefined,
+    adornmentRight: undefined,
+  },
+  argTypes: {
+    value: {
+      control: {
+        type: 'text',
+      },
+    },
+    onChange: { action: 'onChange' },
+    adornmentLeft: {
+      control: {
+        type: 'select',
+        options: ['search', 'clear'],
+      },
+    },
+    adornmentRight: {
+      control: {
+        type: 'select',
+        options: ['search', 'clear'],
+      },
+    },
+  },
+};
 
-export const WithError = () => {
-  const defaultMeta = false;
-  const [meta, setMeta] = useState(defaultMeta);
-
-  const toggleError = () => {
-    setMeta(!meta);
-    action('toggleError')(!meta);
-  };
-
-  const renderMeta = { error: 'Something was not right about the input', invalid: meta, touched: meta };
+const Template = ({
+  value,
+  error,
+  invalid,
+  touched,
+  label,
+  onChange,
+  adornmentLeft,
+  adornmentRight,
+}) => {
+  const input = { value, onChange };
+  const meta = { error, invalid, touched };
 
   return (
-    <Harness
-      requiredProps={requiredProps}
-      meta={renderMeta}
-    >
-      {(props) => (
-        <div>
-          <button type="button" onClick={toggleError}>Toggle Error</button>
-          <div>
-            <Text {...props} />
-            Next element
-          </div>
-        </div>
-      )}
-    </Harness>
+    <>
+      <Text
+        input={input}
+        meta={meta}
+        label={label}
+        adornmentLeft={get(adornments, adornmentLeft)}
+        adornmentRight={get(adornments, adornmentRight)}
+      />
+      Next element
+    </>
   );
 };
 
-export const multilineLabel = () => (
-  <Harness
-    requiredProps={requiredProps}
-  >
-    {(props) => (
-      <div>
-        <div>
-          <Text {...props} label={'This is a _particularly_ long prompt that is spread:\n- Over multiple\n- lines'} />
-          Next element
-        </div>
-      </div>
-    )}
-  </Harness>
-);
+export const Normal = Template.bind({});
 
-export const numberMode = () => (
-  <Harness
-    requiredProps={requiredProps}
-  >
-    {(props) => (
-      <div>
-        <div>
-          <Number {...props} label="This is a number input" />
-          Next element
-        </div>
-      </div>
-    )}
-  </Harness>
-);
+export const WithError = Template.bind({});
+WithError.args = {
+  invalid: true,
+  touched: true,
+};
 
-export const withAdornment = () => (
-  <Harness
-    requiredProps={requiredProps}
-  >
-    {(props) => (
-      <div>
-        <Text
-          {...props}
-          adornmentLeft={<SearchIcon style={{ color: '#fff' }} />}
-        />
-        <Text
-          {...props}
-          adornmentRight={<SearchIcon style={{ color: '#fff' }} />}
-        />
-        <Text
-          {...props}
-          adornmentLeft={<SearchIcon style={{ color: '#fff' }} />}
-          adornmentRight={<ClearIcon style={{ color: '#fff' }} />}
-        />
-      </div>
-    )}
-  </Harness>
-);
+export const MultilineLabel = Template.bind({});
+MultilineLabel.args = {
+  label: 'This is a _particularly_ long prompt that is spread:\n- Over multiple\n- lines',
+};
+
+export const WithAdornment = Template.bind({});
+WithAdornment.args = {
+  adornmentLeft: 'search',
+  adornmentRight: 'clear',
+};
