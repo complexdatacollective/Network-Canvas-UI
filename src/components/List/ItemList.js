@@ -85,7 +85,6 @@ const getCellRenderer = (Component) => (args) => {
   const {
     items,
     selectedItems,
-    onSelect,
     columns,
     rowHeight,
     containerHeight,
@@ -145,7 +144,6 @@ const getCellRenderer = (Component) => (args) => {
         id={id}
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...attributes}
-        onClick={() => onSelect(id)}
         // disabled={isDisabled}
         selected={isSelected}
       />
@@ -157,7 +155,6 @@ const ItemList = ({
   className,
   items,
   selectedItems,
-  onSelect,
   useItemSizing,
   itemComponent: ItemComponent,
   emptyComponent: EmptyComponent = DefaultEmptyComponent,
@@ -209,7 +206,6 @@ const ItemList = ({
   const context = useMemo(() => ({
     items,
     selectedItems,
-    onSelect,
     columns: columnCount,
     rowHeight,
     containerHeight: height,

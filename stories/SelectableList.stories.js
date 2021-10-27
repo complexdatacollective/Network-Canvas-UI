@@ -81,15 +81,6 @@ export default {
   },
 };
 
-const TestNode = (props) => {
-  return (
-    <Node
-      {...props}
-      label={props.name}
-    />
-  );
-};
-
 const Template = (args) => {
   const [selected, setSelected] = useState([]);
 
@@ -107,6 +98,24 @@ const Template = (args) => {
     ]);
   }, [selected]);
 
+  const TestNode = (props) => {
+    const {
+      id,
+      name,
+    } = props;
+
+    const isSelected = !!selected.includes(id);
+
+    return (
+      <Node
+        {...props}
+        label={name}
+        selected={isSelected}
+        onClick={doSelection}
+      />
+    );
+  };
+
   return (
     <div
       style={{
@@ -122,6 +131,7 @@ const Template = (args) => {
       <ItemList
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...args}
+        itemComponent={TestNode}
         selectedItems={selected}
         onSelect={doSelection}
         cardColumnBreakpoints={{
