@@ -14,3 +14,4 @@ export { default as Dialogs } from './Dialogs';
 export { default as Modal } from './Modal';
 export { default as ToastManager } from './Toast/ToastManager';
 export { default as window } from './window';
+export { default as SliderControl } from './SliderControl';
