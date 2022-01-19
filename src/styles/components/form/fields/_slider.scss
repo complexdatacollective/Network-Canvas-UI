@@ -148,7 +148,7 @@ $module-name: form-field-slider;
     position: absolute;
     top: $height * 0.5;
     transform: translate(-50%, -50%);
-    z-index: var(--z-default);
+    z-index: var(--z-global-ui);
     width: $touch-height;
     height: $touch-height;
     cursor: pointer;
