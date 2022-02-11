@@ -121,6 +121,7 @@
     }
   }
 
+  // Used for narrative key
   @each $ordinal-color in $ordinal-colors {
     $i: index($ordinal-colors, $ordinal-color);
 

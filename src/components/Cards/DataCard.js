@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { noop } from 'lodash';
+import Node from '../Node';
 
 const DataCard = ({
   label,
@@ -22,8 +23,9 @@ const DataCard = ({
       className={classes}
       onClick={onClick}
     >
-      <div className="data-card__label">
-        <h2>{label}</h2>
+      <div className="data-card__label" style={{ '--base-node-size': '8rem'}}>
+        <Node label={label} color="color-platinum" />
+        {/* <h3>{label}</h3> */}
       </div>
       { data && Object.keys(data).length > 0 && (
         <div className="data-card__data">

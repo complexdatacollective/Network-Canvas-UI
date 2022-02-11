@@ -20,6 +20,8 @@ import { v4 as uuid } from 'uuid';
 import cx from 'classnames';
 import useGridSizer from './useGridSizer';
 
+const SCROLL_BORDER = 18; // ~1rem
+
 const DefaultEmptyComponent = () => (
   <div className="searchable-list__placeholder">
     No results.
@@ -157,7 +159,7 @@ const ItemList = ({
   items,
   selectedItems,
   onSelect,
-  useItemSizing,
+  useItemSizing, // If true, let the component determine its own size. Useful for e.g <Node />
   itemComponent: ItemComponent,
   emptyComponent: EmptyComponent = DefaultEmptyComponent,
   cardColumnBreakpoints,
@@ -167,19 +169,20 @@ const ItemList = ({
   const [height, setHeight] = useState(0);
 
   const debouncedSizeUpdate = debounce(({ width: newWidth, height: newHeight }) => {
+    console.log({newWidth, things: containerRef.current});
     if (height !== newHeight) {
       setHeight(newHeight);
     }
     if (width !== newWidth) {
-      setWidth(newWidth);
+      setWidth(newWidth - SCROLL_BORDER);
     }
   }, 200);
 
   // We use the custom onResize callback of the resize observer hook to enable
   // us to debounce resize events that cause re-rendering.
-  const { ref } = useResizeObserver({
-    onResize: (newSizes) => debouncedSizeUpdate(newSizes),
-  });
+  // const { ref } = useResizeObserver({
+  //   onResize: (newSizes) => debouncedSizeUpdate(newSizes),
+  // });
 
   // We use this list UUID to determine when to re-render, which triggers the exit
   // animation of the list items.
@@ -202,7 +205,7 @@ const ItemList = ({
 
   const CellRenderer = useMemo(
     () => getCellRenderer(ItemComponent),
-    [ItemComponent, columnCount],
+    [items, ItemComponent, columnCount],
   );
 
   const context = useMemo(() => ({
@@ -220,19 +223,27 @@ const ItemList = ({
   );
 
   // If items is provided but is empty show the empty component
-  const showEmpty = items.length === 0;
+  const showEmpty = useMemo(() => items && items.length === 0, [items]);
+
+  console.log({ listUUID, columnCount, items, showEmpty });
+
+  if (items && items.length === 0) {
+    return (<EmptyComponent />);
+  }
 
   return (
+  <div className={classNames}>
     <AnimatePresence exitBeforeEnter>
       <div
-        key={listUUID}
-        className={classNames}
-        ref={containerRef}
+        key={items.length}
+        style={{
+          flex: 1,
+          display: 'flex',
+        }}
       >
         <ListContext.Provider value={context}>
-          <div className="item-list__container" ref={ref}>
-            { showEmpty && <EmptyComponent />}
-            <AutoSizer>
+          <div className="item-list__container">
+            <AutoSizer onResize={debouncedSizeUpdate}>
               {(containerSize) => {
                 // If auto sizer is not ready, items would be sized incorrectly
                 if (!ready) { return null; }
@@ -257,6 +268,7 @@ const ItemList = ({
         </ListContext.Provider>
       </div>
     </AnimatePresence>
+  </div>
   );
 };
 

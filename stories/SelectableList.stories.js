@@ -54,12 +54,13 @@ export default {
   title: 'Components/SelectableItemList',
   argTypes: {
     items: {
-      options: ['10,000', 1000, 100, 10],
+      options: ['10,000', 1000, 100, 10, 2],
       mapping: {
         '10,000': mockItems(10000),
         1000: mockItems(1000),
         100: mockItems(100),
         10: mockItems(10),
+        2: mockItems(2),
       },
       control: { type: 'radio' },
     },
@@ -113,7 +114,6 @@ const Template = (args) => {
         display: 'flex',
         height: '400px',
         width: '100%',
-        border: '1px solid tomato',
         '--base-font-size': '12px',
         resize: 'both',
         overflow: 'auto',

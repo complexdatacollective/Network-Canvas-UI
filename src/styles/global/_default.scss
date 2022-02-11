@@ -169,7 +169,7 @@ $ordinal-colors: (
   'kiwi',
   'cerulean-blue',
   'paradise-pink',
-  'mustard'
+  'mustard',
 );
 
 @include color-sequence('ord-color-seq', $ordinal-colors, true);

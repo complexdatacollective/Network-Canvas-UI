@@ -14,7 +14,7 @@
   "scripts": {
     "lint": "eslint ./src",
     "sass-lint": "sass-lint -vc .sass-lint.yml",
-    "build": "./scripts/build",
+    "build": "bash ./scripts/build",
     "preflight": "npm run lint && npm run sass-lint",
     "prepublishOnly": "npm run preflight && npm run build",
     "storybook": "start-storybook -p 6006 --no-manager-cache",

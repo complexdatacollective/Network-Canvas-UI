@@ -10,6 +10,8 @@
   }
 
   &__grid {
+    overflow-y: scroll;
+    overflow-x: hidden;
   }
 
   &__item {

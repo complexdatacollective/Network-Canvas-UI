@@ -3,26 +3,31 @@
   overflow: hidden;
   color: var(--color-navy-taupe);
   display: flex;
-  flex-direction: column;
   flex: 1;
+  height: 300px;
+  max-width: 500px;
+  margin: unit(1);
 
   &__label {
-    flex: 1;
+    flex: 0 0 auto;
     display: flex;
     align-items: center;
-    padding: 1rem;
-    background-color: var(--color-platinum);
-    h2 {
+    justify-content: center;
+    // padding: unit(2);
+    background-color: var(--color-cerulean-blue--dark);
+    h3 {
       margin: 0;
+      line-height: 1;
     }
   }
 
   &__data {
+    flex: 1;
     display: table;
-    // background: var(--color-slate-blue--dark);
-    background: var(--color-rich-black);
+    background: var(--color-cerulean-blue);
+    // background: var(--color-rich-black);
     overflow: hidden;
-    padding: 0.5rem 1rem;
+    padding: unit(1) unit(2);
     width: 100%;
 
     &-label,
@@ -37,15 +42,14 @@
       text-transform: uppercase;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--color-white);
       opacity: 0.5;
       text-align: right;
-      padding-right: 1rem;
-      overflow-wrap: anywhere;
-      hyphens: auto;
-      width: 33%;
-      min-width: 10rem;
+      padding-right: unit(1);
+      word-break: break-word;
+      font-size: 0.64rem;
+      min-width: unit(12);
     }
 
     &-value {
@@ -63,6 +67,6 @@
   }
 
   &--can-click {
-    cursor: pointer;
+    @include clickable;
   }
 }

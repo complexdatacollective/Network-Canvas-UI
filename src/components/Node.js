@@ -18,6 +18,8 @@ class Node extends Component {
       handleClick,
     } = this.props;
 
+    console.log('n', color);
+
     const classes = classNames(
       'node',
       {

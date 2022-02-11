@@ -42,10 +42,11 @@ export const linking = () => {
 };
 
 export const colorVariants = () => {
+  console.log(colors);
   return colors.map(color => (
     <Harness
       requiredProps={requiredProps}
-      color={color}
+      color={`color-${color}`}
     >
       {props => <Node {...props} />}
     </Harness>

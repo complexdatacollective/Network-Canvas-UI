@@ -66,7 +66,7 @@ const useGridSizer = (
 
     const element = document.body.appendChild(newHiddenSizingEl);
     setHiddenSizingElement(element.firstElementChild);
-
+    console.log('hiddensizingEl');
     return () => document.body.removeChild(newHiddenSizingEl);
   }, [ItemComponent, useItemSizing]);
 
@@ -95,7 +95,7 @@ const useGridSizer = (
     const breakpoints = Object.keys(columnBreakpoints).sort();
     const activeBreakpoint = breakpoints.find((bp) => bp < containerWidth);
     return columnBreakpoints[activeBreakpoint] || 1;
-  }, [useItemSizing, ItemComponent, containerWidth, columnBreakpoints]);
+  }, [useItemSizing, ItemComponent, containerWidth, columnBreakpoints, hiddenSizingEl]);
 
   const rowCount = useMemo(() => (
     Math.ceil((itemCount || 0) / columnCount)
