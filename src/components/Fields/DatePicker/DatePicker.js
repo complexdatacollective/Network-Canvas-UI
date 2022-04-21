@@ -1,4 +1,6 @@
-import React, { useState, useCallback, useEffect, useRef } from 'react';
+import React, {
+  useState, useCallback, useEffect, useRef,
+} from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { motion, AnimateSharedLayout, AnimatePresence } from 'framer-motion';
@@ -30,7 +32,7 @@ const DatePickerInput = ({
     if (newValue !== value) { onChangeInput(newValue); }
   }, [value, setPanelsOpen, onChangeInput]);
 
-  const handleClickOutside = e => {
+  const handleClickOutside = (e) => {
     if (ref.current.contains(e.target)) {
       // inside click
       return;
@@ -43,13 +45,13 @@ const DatePickerInput = ({
 
   useEffect(() => {
     if (panelsOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener('mousedown', handleClickOutside);
     } else {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [panelsOpen]);
 
