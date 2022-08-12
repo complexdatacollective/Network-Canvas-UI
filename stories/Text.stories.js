@@ -11,7 +11,7 @@ const adornments = {
 };
 
 export default {
-  title: 'Components/Text',
+  title: 'Fields/Text',
   args: {
     value: undefined,
     error: 'Something was not right about the input',

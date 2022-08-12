@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import useResizeAware from 'react-resize-aware';
@@ -60,4 +60,4 @@ BooleanOption.defaultProps = {
   negative: false,
 };
 
-export default BooleanOption;
+export default memo(BooleanOption);
