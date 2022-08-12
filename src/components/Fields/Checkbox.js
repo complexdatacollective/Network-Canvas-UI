@@ -43,7 +43,7 @@ const Checkbox = (props) => {
       {label && <MarkdownLabel inline label={label} className="form-field-inline-label" />}
     </label>
   );
-}
+};
 
 Checkbox.propTypes = {
   label: PropTypes.node,
