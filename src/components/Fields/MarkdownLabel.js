@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { ALLOWED_MARKDOWN_LABEL_TAGS, ALLOWED_MARKDOWN_INLINE_LABEL_TAGS } from '../../utils/config';
 import Markdown from './Markdown';
@@ -22,4 +22,4 @@ MarkdownLabel.defaultProps = {
   inline: false,
 };
 
-export default MarkdownLabel;
+export default memo(MarkdownLabel);
