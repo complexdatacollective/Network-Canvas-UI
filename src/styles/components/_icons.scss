@@ -14,6 +14,7 @@ $-icon-color-modifiers: (
   'mustard',
   'neon-coral',
   'tomato',
+  'sea-green',
   'sea-serpent',
   'barbie-pink',
   'purple-pizazz',
@@ -62,6 +63,16 @@ $-icon-color-modifiers: (
       fill: color('tomato--dark');
     }
   }
+
+  &[name='add-a-context-single'] {
+    .cls-9 {
+      fill: rgba(0,0,0, 0.1);
+    }
+    .cls-10 {
+      fill: rgba(0,0,0, 0.2);
+    }
+  }
+
 
   &[name='add-a-person'],
   &[name='add-a-relationship'] {
@@ -116,7 +127,8 @@ $-icon-color-modifiers: (
     }
   }
 
-  &[name='add-a-protocol'] {
+  &[name='add-a-protocol'],
+  &[name='add-a-protocol-single'] {
     .cls-1 {
       fill: color('white');
     }
@@ -451,6 +463,14 @@ $-icon-color-modifiers: (
 
     .cls-2 {
       fill: color('platinum');
+    }
+
+    .cls-4 {
+      fill: color('neon-coral');
+    }
+
+    .cls-5 {
+      fill: color('neon-coral--dark');
     }
 
     @include special-icon-colors;

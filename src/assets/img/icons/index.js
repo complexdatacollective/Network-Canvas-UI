@@ -1,8 +1,13 @@
 import addAContext from './add-a-context.svg.react';
+import addAContextSingle from './add-a-context-single.svg.react';
 import addAProtocol from './add-a-protocol.svg.react';
+import addAProtocolSingle from './add-a-protocol-single.svg.react';
 import addAPerson from './add-a-person.svg.react';
+import addAPersonSingle from './add-a-person-single.svg.react';
 import addAPlace from './add-a-place.svg.react';
+import AddAPlaceSingle from './add-a-place-single.svg.react';
 import addARelationship from './add-a-relationship.svg.react';
+import addARelationshipSingle from './add-a-relationship-single.svg.react';
 import addAScreen from './add-a-screen.svg.react';
 import arrowLeft from './arrow-left.svg.react';
 import arrowRight from './arrow-right.svg.react';
@@ -52,10 +57,15 @@ import move from './move.svg.react';
 
 export default {
   'add-a-context': addAContext,
+  'add-a-context-single': addAContextSingle,
   'add-a-protocol': addAProtocol,
+  'add-a-protocol-single': addAProtocolSingle,
   'add-a-person': addAPerson,
+  'add-a-person-single': addAPersonSingle,
   'add-a-place': addAPlace,
+  'add-a-place-single': AddAPlaceSingle,
   'add-a-relationship': addARelationship,
+  'add-a-relationship-single': addARelationshipSingle,
   'add-a-screen': addAScreen,
   'arrow-left': arrowLeft,
   'arrow-right': arrowRight,
