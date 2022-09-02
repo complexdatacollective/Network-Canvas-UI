@@ -30,7 +30,7 @@ $-icon-color-modifiers: (
 ) {
   // action / notification icons are a bit more detailed
   // and need to be styled individually
-  &[name='add-a-context'] {
+  &[name='add-a-context-button'] {
     .cls-1 {
       fill: color('#{$main-color}');
     }
@@ -64,7 +64,7 @@ $-icon-color-modifiers: (
     }
   }
 
-  &[name='add-a-context-single'] {
+  &[name='add-a-context'] {
     .cls-9 {
       fill: rgba(0,0,0, 0.1);
     }
@@ -74,8 +74,8 @@ $-icon-color-modifiers: (
   }
 
 
-  &[name='add-a-person'],
-  &[name='add-a-relationship'] {
+  &[name='add-a-person-button'],
+  &[name='add-a-relationship-button'] {
     .cls-1 {
       fill: color('#{$main-color}');
     }
@@ -101,7 +101,7 @@ $-icon-color-modifiers: (
     }
   }
 
-  &[name='add-a-place'] {
+  &[name='add-a-place-button'] {
     .cls-1 {
       fill: color('#{$main-color}');
     }
@@ -128,7 +128,7 @@ $-icon-color-modifiers: (
   }
 
   &[name='add-a-protocol'],
-  &[name='add-a-protocol-single'] {
+  &[name='add-a-protocol-button'] {
     .cls-1 {
       fill: color('white');
     }
@@ -504,11 +504,11 @@ $-icon-color-modifiers: (
 
     // icon sizes
     // add button icons
-    &[name='add-a-person'],
-    &[name='add-a-context'],
-    &[name='add-a-relationship'],
-    &[name='add-a-screen'],
-    &[name='add-a-place'] {
+    &[name='add-a-person-button'],
+    &[name='add-a-context-button'],
+    &[name='add-a-relationship-button'],
+    &[name='add-a-screen-button'],
+    &[name='add-a-place-button'] {
       height: $icon-large-height;
       width: $icon-large-width;
     }

@@ -3,17 +3,19 @@ import { Spinner } from '../src/components/';
 import Harness from './helpers/Harness';
 import Button from '../src/components/Button';
 import colors from './helpers/Colors';
-import icons from './helpers/Icons';
+import * as icons from '../src/assets/img/icons';
 import '../src/styles/_all.scss';
 
 const requiredProps = {
   iconPosition: 'left',
-  onClick: () => {},
+  onClick: () => { },
   disabled: false,
   content: 'This is a button',
 };
 
 export default { title: 'Components/Button' };
+
+console.log(icons.default);
 
 export const basic = () => (
   <Harness
@@ -54,7 +56,7 @@ export const colorVariants = () => {
 };
 
 export const iconVariants = () => {
-  return icons.map(icon => (
+  return Object.keys(icons.default).map(icon => (
     <Harness
       requiredProps={requiredProps}
       icon={icon}
@@ -71,7 +73,7 @@ export const customIcon = () => (
     iconPosition="right"
     icon={(<div><Spinner size="0.5rem" /></div>)}
   >
-    {props => <Button {...props}/>}
+    {props => <Button {...props} />}
   </Harness>
 );
 

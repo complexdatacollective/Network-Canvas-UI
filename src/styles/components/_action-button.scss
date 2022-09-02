@@ -30,14 +30,14 @@
       height: 60%;
       width: 60%;
 
-      &[name="add-a-person-single"],
-      &[name="add-a-relationship-single"] {
+      &[name="add-a-person"],
+      &[name="add-a-relationship"] {
         align-self: flex-end;
         height: 80%;
         width: 100%;
       }
 
-      &[name='add-a-context-single'] {
+      &[name='add-a-context'] {
         height: 70%;
         width: 70%;
       }

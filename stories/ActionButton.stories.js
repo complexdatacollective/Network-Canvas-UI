@@ -7,11 +7,11 @@ import colors from './helpers/Colors';
 import '../src/styles/_all.scss';
 
 const iconOptions = [
-  'add-a-person-single',
-  'add-a-place-single',
-  'add-a-relationship-single',
-  'add-a-context-single',
-  'add-a-protocol-single',
+  'add-a-person',
+  'add-a-place',
+  'add-a-relationship',
+  'add-a-context',
+  'add-a-protocol',
   ...Object.keys(muiIcons),
 ];
 
