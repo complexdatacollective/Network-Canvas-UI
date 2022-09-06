@@ -5,7 +5,7 @@ $component-name: form-field-togglebutton-group;
   display: block;
 
   &__option {
-    margin: unit(1);
+    margin: unit(0.5);
   }
 
 
@@ -31,7 +31,7 @@ $component-name: form-field-togglebutton-group;
 
     .form-field__inline {
       margin-bottom: 0;
-      border: 0.1rem solid var(--error);
+      border: 0.125rem solid var(--error);
     }
 
   }

@@ -14,6 +14,7 @@ $-icon-color-modifiers: (
   'mustard',
   'neon-coral',
   'tomato',
+  'sea-green',
   'sea-serpent',
   'barbie-pink',
   'purple-pizazz',
@@ -29,7 +30,7 @@ $-icon-color-modifiers: (
 ) {
   // action / notification icons are a bit more detailed
   // and need to be styled individually
-  &[name='add-a-context'] {
+  &[name='add-a-context-button'] {
     .cls-1 {
       fill: color('#{$main-color}');
     }
@@ -63,8 +64,18 @@ $-icon-color-modifiers: (
     }
   }
 
-  &[name='add-a-person'],
-  &[name='add-a-relationship'] {
+  &[name='add-a-context'] {
+    .cls-9 {
+      fill: rgba(0,0,0, 0.1);
+    }
+    .cls-10 {
+      fill: rgba(0,0,0, 0.2);
+    }
+  }
+
+
+  &[name='add-a-person-button'],
+  &[name='add-a-relationship-button'] {
     .cls-1 {
       fill: color('#{$main-color}');
     }
@@ -90,7 +101,7 @@ $-icon-color-modifiers: (
     }
   }
 
-  &[name='add-a-place'] {
+  &[name='add-a-place-button'] {
     .cls-1 {
       fill: color('#{$main-color}');
     }
@@ -116,7 +127,8 @@ $-icon-color-modifiers: (
     }
   }
 
-  &[name='add-a-protocol'] {
+  &[name='add-a-protocol'],
+  &[name='add-a-protocol-button'] {
     .cls-1 {
       fill: color('white');
     }
@@ -203,7 +215,8 @@ $-icon-color-modifiers: (
     }
   }
 
-  &[name='tick'] {
+  &[name='tick'],
+  &[name='cross'] {
     .cls-1 {
       fill: color('#{$main-color}');
     }
@@ -452,6 +465,14 @@ $-icon-color-modifiers: (
       fill: color('platinum');
     }
 
+    .cls-4 {
+      fill: color('neon-coral');
+    }
+
+    .cls-5 {
+      fill: color('neon-coral--dark');
+    }
+
     @include special-icon-colors;
     // simpler icons can be targeted with color modifiers
     @each $color-name in $-icon-color-modifiers {
@@ -483,11 +504,11 @@ $-icon-color-modifiers: (
 
     // icon sizes
     // add button icons
-    &[name='add-a-person'],
-    &[name='add-a-context'],
-    &[name='add-a-relationship'],
-    &[name='add-a-screen'],
-    &[name='add-a-place'] {
+    &[name='add-a-person-button'],
+    &[name='add-a-context-button'],
+    &[name='add-a-relationship-button'],
+    &[name='add-a-screen-button'],
+    &[name='add-a-place-button'] {
       height: $icon-large-height;
       width: $icon-large-width;
     }

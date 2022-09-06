@@ -30,12 +30,17 @@
 
 
   // Prevent text selection except when an element has a given class.
-  * {
+  // IMPORTANT: input and textarea are excepted because including them
+  // locks the input on iOS!
+  *:not(input):not(textarea) {
     user-select: none;
 
+    // Contenteditable covers our rich text input
+    [contenteditable="true"],
+    [contenteditable="true"] *,
     .allow-text-selection,
     .allow-text-selection * {
-      user-select: text;
+      user-select: auto;
     }
   }
 
@@ -64,18 +69,12 @@
     line-height: 1.25;
   }
 
-  ol,
-  ul,
-  dl {
-    margin-top: 0;
-    margin-bottom: 1rem;
-  }
-
-  ol ol,
-  ul ul,
-  ol ul,
-  ul ol {
-    margin-bottom: 0;
+  // RichText uses <p> inside <li> elements as part of its schema.
+  // Remove margin in this case for display purposes.
+  li {
+    > p {
+      margin: 0;
+    }
   }
 
   dt {
@@ -89,6 +88,11 @@
 
   blockquote {
     margin: 0 0 1rem;
+    border-left: 3px solid var(--transparent-light);
+    padding-left: 1.2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    line-height: 1.25;
   }
 
   dfn {

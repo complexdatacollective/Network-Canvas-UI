@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import { motion } from 'framer-motion';
+import { motion } from 'framer-motion/dist/framer-motion';
 
 const getAnimation = ({ isComplete, isActive }) => {
   if (isComplete) { return { x: '-100%' }; }
@@ -9,7 +9,9 @@ const getAnimation = ({ isComplete, isActive }) => {
   return { x: '100%' };
 };
 
-const Panel = ({ type, isComplete, isActive, children }) => {
+const Panel = ({
+  type, isComplete, isActive, children,
+}) => {
   const className = cx(
     'date-picker__panel',
     {
@@ -25,6 +27,7 @@ const Panel = ({ type, isComplete, isActive, children }) => {
     <motion.div
       initial={{ x: 0 }}
       animate={animate}
+      transition={{ duration: 0.2, type: 'tween' }}
       className={className}
     >
       {children}

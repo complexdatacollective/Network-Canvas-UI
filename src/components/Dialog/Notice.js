@@ -6,7 +6,9 @@ import Button from '../Button';
 /*
  * Designed to present notices to the user.
  */
-const Notice = ({ title, message, onConfirm, confirmLabel, show }) => (
+const Notice = ({
+  title, message, onConfirm, confirmLabel, show,
+}) => (
   <Dialog
     type="notice"
     icon="info"

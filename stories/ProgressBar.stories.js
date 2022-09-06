@@ -1,51 +1,47 @@
 import React from 'react';
-import faker from 'faker';
-import Harness from './helpers/Harness';
 import ProgressBar from '../src/components/ProgressBar';
 
 import '../src/styles/_all.scss';
 
-const requiredProps = {
-  percentProgress: faker.random.number({
-    min: 1,
-    max: 100,
-  }),
+export default {
+  title: 'Components/ProgressBar',
+  args: {
+    percentProgress: 50,
+  },
+  argTypes: {
+    percentProgress: {
+      options: { min: 0, max: 100, step: 1 },
+      control: { type: 'range' },
+    },
+    orientation: {
+      options: ['horizontal', 'vertical'],
+      control: { type: 'radio' },
+    },
+  },
 };
 
-export default { title: 'ProgressBar' };
-
-export const normal = () => (
-  <Harness
-    requiredProps={requiredProps}
-  >
-    {props => <div style={{ height: '10rem' }}><ProgressBar {...props} /></div>}
-  </Harness>
+const Template = (props) => (
+  <div style={{ height: '650px' }}>
+    <ProgressBar {...props} />
+  </div>
 );
 
-export const horizontal = () => (
-  <Harness
-    requiredProps={requiredProps}
-    orientation="horizontal"
-  >
-    {props => <ProgressBar {...props} />}
-  </Harness>
-);
+export const normal = Template.bind({});
 
-export const indeterminate = () => (
-  <ProgressBar
-    requiredProps={requiredProps}
-    orientation="horizontal"
-    percentProgress={50}
-    indeterminate
-  />
-);
+export const horizontal = Template.bind({});
+horizontal.args = {
+  orientation: 'horizontal',
+};
 
-export const complete = () => (
-  <Harness
-    requiredProps={requiredProps}
-    orientation="horizontal"
-    percentProgress={100}
-  >
-    {props => <ProgressBar {...props} />}
-  </Harness>
-);
+export const indeterminate = Template.bind({});
+indeterminate.args = {
+  orientation: 'horizontal',
+  indeterminate: true,
+};
+
+export const complete = Template.bind({});
+complete.args = {
+  orientation: 'horizontal',
+  percentProgress: 100,
+  nudge: true,
+};

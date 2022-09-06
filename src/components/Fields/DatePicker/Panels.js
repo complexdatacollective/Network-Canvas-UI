@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { motion } from 'framer-motion';
+import { motion } from 'framer-motion/dist/framer-motion';
 
 const Panels = ({ children }) => (
   <motion.div
@@ -9,6 +9,7 @@ const Panels = ({ children }) => (
     animate={{ scaleY: 1, opacity: 1 }}
     exit={{ scaleY: 0, opacity: 0 }}
     style={{ originX: 0, originY: 0 }}
+    transition={{ duration: 0.2, type: 'tween' }}
     layout
   >
     <motion.div

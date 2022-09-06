@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'framer-motion/dist/framer-motion';
 import PropTypes from 'prop-types';
 
 const Drop = ({ children }) => (
@@ -16,7 +16,6 @@ const Drop = ({ children }) => (
     {children}
   </motion.div>
 );
-
 
 Drop.propTypes = {
   children: PropTypes.any,

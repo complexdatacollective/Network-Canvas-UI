@@ -1,3 +1,7 @@
+$global-input-element-size: unit(4);
+$global-input-border-size: 0.125rem;
+$global-input-border-space: 0.25rem;
+
 @mixin form-field {
   &__label {
     @include typography(copy-standard, font-size);
@@ -8,17 +12,37 @@
   }
 }
 
+.form-field-label {
+  font-family: var(--heading-font-family);
+  font-size: inherit;
+  font-weight: 500;
+  color: var(--text);
+
+  > * {
+    font-weight: inherit;
+  }
+
+  > :first-child {
+    margin-top: 0;
+  }
+}
+
+.form-field-inline-label {
+  > :first-child {
+    margin-top: 0;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
 .form-field-container {
   display: block;
   margin-bottom: 2rem;
 
   &--inline {
     margin-bottom: 0;
-  }
-
-  h4 {
-    font-weight: 400;
-    margin-top: 0;
   }
 }
 
@@ -43,6 +67,7 @@
   }
 }
 
+@import './fields/boolean';
 @import './fields/radio';
 @import './fields/radio-group';
 @import './fields/checkbox';
@@ -54,3 +79,4 @@
 @import './fields/range';
 @import './fields/slider';
 @import './fields/date-picker';
+@import './fields/rich-text';

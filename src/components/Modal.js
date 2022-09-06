@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion/dist/framer-motion';
 import PropTypes from 'prop-types';
 import Drop from './Transitions/Drop';
 import window from './window';
 import { getCSSVariableAsNumber } from '../utils/CSSVariables';
 
 class Modal extends Component {
-  handleBlur = (event) => {
-    if (event.target !== event.currentTarget) { return; }
-    this.props.onBlur(event);
-  }
-
   render() {
-    const { children, show, zIndex } = this.props;
+    const {
+      children, show, zIndex, onBlur,
+    } = this.props;
 
     const style = zIndex ? { zIndex } : null;
+
+    const handleBlur = (event) => {
+      if (event.target !== event.currentTarget) { return; }
+      onBlur(event);
+    };
 
     const variants = {
       visible: {
@@ -30,7 +32,7 @@ class Modal extends Component {
 
     return (
       <AnimatePresence>
-        { show && (
+        {show && (
           <motion.div
             className="modal"
             style={style}
@@ -40,9 +42,9 @@ class Modal extends Component {
             exit="hidden"
           >
             <div className="modal__background" />
-            <div className="modal__content" onClick={this.handleBlur} >
+            <div className="modal__content" onClick={handleBlur}>
               <Drop>
-                { children }
+                {children}
               </Drop>
             </div>
           </motion.div>
@@ -63,7 +65,7 @@ Modal.defaultProps = {
   show: false,
   zIndex: null,
   children: null,
-  onBlur: () => {},
+  onBlur: () => { },
 };
 
 export { Modal };

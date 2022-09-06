@@ -4,42 +4,38 @@ import cx from 'classnames';
 import ToggleButton from './ToggleButton';
 import Icon from '../Icon';
 import { asOptionObject, getValue } from './utils/options';
-
+import MarkdownLabel from './MarkdownLabel';
 
 class ToggleButtonGroup extends PureComponent {
-  static propTypes = {
-    options: PropTypes.array,
-    className: PropTypes.string,
-    label: PropTypes.string,
-    fieldLabel: PropTypes.string,
-    input: PropTypes.object.isRequired,
-    meta: PropTypes.object,
-  };
-
-  static defaultProps = {
-    className: null,
-    label: null,
-    fieldLabel: null,
-    options: [],
-    disabled: false,
-    meta: {},
-  };
-
   get value() {
-    return this.props.input.value;
+    const {
+      input: {
+        value,
+      },
+    } = this.props;
+    return value;
   }
 
   handleClickOption = (event) => {
-    const option = getValue(this.props.options[event.target.value]);
-    const newValue = this.isOptionChecked(option) ?
-      this.value.filter(value => value !== option) :
-      [...this.value, option];
+    const {
+      options,
+      input,
+    } = this.props;
 
-    this.props.input.onChange(newValue);
+    const option = getValue(options[event.target.value]);
+    const newValue = this.isOptionChecked(option)
+      ? this.value.filter((value) => value !== option)
+      : [...this.value, option];
+
+    input.onChange(newValue);
   }
 
   isOptionChecked = (option) => {
-    const value = this.props.input.value || [];
+    const {
+      input: {
+        value = [],
+      },
+    } = this.props;
     const included = value.includes(option);
     return included;
   }
@@ -85,16 +81,37 @@ class ToggleButtonGroup extends PureComponent {
 
     return (
       <div className={classNames}>
-        { anyLabel &&
-          <h4>{anyLabel}</h4>
-        }
+        { anyLabel
+          && <MarkdownLabel label={anyLabel} />}
         <div className="form-field form-field__inline" name={name}>
           { options.map(this.renderOption) }
         </div>
-        {invalid && touched && <div className="form-field-togglebutton-group__error"><Icon name="warning" />{error}</div>}
+        {invalid && touched && (
+        <div className="form-field-togglebutton-group__error">
+          <Icon name="warning" />
+          {error}
+        </div>
+        )}
       </div>
     );
   }
 }
+
+ToggleButtonGroup.propTypes = {
+  options: PropTypes.array,
+  className: PropTypes.string,
+  label: PropTypes.string,
+  fieldLabel: PropTypes.string,
+  input: PropTypes.object.isRequired,
+  meta: PropTypes.object,
+};
+
+ToggleButtonGroup.defaultProps = {
+  className: null,
+  label: null,
+  fieldLabel: null,
+  options: [],
+  meta: {},
+};
 
 export default ToggleButtonGroup;

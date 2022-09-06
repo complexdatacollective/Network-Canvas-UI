@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import Icon from '../Icon';
-import Scroller from '../Scroller';
 
-const formatDate = timestamp => timestamp && new Date(timestamp).toLocaleString(undefined);
+const formatDate = (timeString) => timeString && new Date(timeString).toLocaleString(undefined);
 
 const ProtocolCard = (props) => {
   const {
+    selected,
     condensed,
     schemaVersion,
     lastModified,
@@ -24,6 +24,7 @@ const ProtocolCard = (props) => {
     'protocol-card',
     { 'protocol-card--clickable': onClickHandler },
     { 'protocol-card--condensed': condensed },
+    { 'protocol-card--selected': selected },
     { 'protocol-card--outdated': !isObsolete && isOutdated },
     { 'protocol-card--obsolete': isObsolete },
   );
@@ -62,9 +63,9 @@ const ProtocolCard = (props) => {
     }
 
     return (
-      <Scroller className="protocol-description">
+      <div className="protocol-description">
         { description }
-      </Scroller>
+      </div>
     );
   };
 
@@ -76,11 +77,20 @@ const ProtocolCard = (props) => {
           <div className="protocol-meta">
             {
               installationDate && (
-                <h6>Installed: {formatDate(installationDate)}</h6>
+                <h6>
+                  Installed:
+                  {formatDate(installationDate)}
+                </h6>
               )
             }
-            <h6>Last Modified: {formatDate(lastModified)}</h6>
-            <h6>Schema Version: {schemaVersion}</h6>
+            <h6>
+              Last Modified:
+              {formatDate(lastModified)}
+            </h6>
+            <h6>
+              Schema Version:
+              {schemaVersion}
+            </h6>
           </div>
         ) }
       </div>
@@ -93,21 +103,20 @@ const ProtocolCard = (props) => {
 };
 
 ProtocolCard.defaultProps = {
-  className: '',
   onClickHandler: undefined,
   onStatusClickHandler: () => {},
   description: null,
   installationDate: null,
   isOutdated: false,
   isObsolete: false,
-  isSelected: false,
   condensed: false,
+  selected: false,
 };
 
 ProtocolCard.propTypes = {
   schemaVersion: PropTypes.number.isRequired,
-  lastModified: PropTypes.string.isRequired,
-  installationDate: PropTypes.number,
+  lastModified: PropTypes.string.isRequired, // Expects ISO 8601 datetime string
+  installationDate: PropTypes.string, // Expects ISO 8601 datetime string
   name: PropTypes.string.isRequired,
   description: PropTypes.string,
   onClickHandler: PropTypes.func,
@@ -115,7 +124,7 @@ ProtocolCard.propTypes = {
   isOutdated: PropTypes.bool,
   isObsolete: PropTypes.bool,
   condensed: PropTypes.bool,
+  selected: PropTypes.bool,
 };
 
 export default ProtocolCard;
-

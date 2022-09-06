@@ -6,7 +6,7 @@ import '../src/styles/_all.scss';
 const requiredProps = {
 };
 
-export default { title: 'HoverMarquee' };
+export default { title: 'Utilities/HoverMarquee' };
 
 export const renders = () => (
   <Harness

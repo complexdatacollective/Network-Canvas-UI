@@ -40,7 +40,7 @@ const windowRootProvider = compose(
       windowRoot: PropTypes.instanceOf(Element),
       setWindowRoot: PropTypes.func,
     },
-    props => ({
+    (props) => ({
       windowRoot: props.windowRoot,
       setWindowRoot: props.setWindowRoot,
     }),

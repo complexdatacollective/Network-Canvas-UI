@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { motion } from 'framer-motion';
+import { motion } from 'framer-motion/dist/framer-motion';
 import useTimeout from '../../hooks/useTimeout';
 import CloseButton from '../CloseButton';
 import Icon from '../Icon';
@@ -15,6 +15,7 @@ const Toast = ({
   dismissHandler,
   dismissDuration,
   CustomIcon,
+  className,
 }) => {
   if (autoDismiss) {
     useTimeout(dismissHandler, dismissDuration);
@@ -31,6 +32,10 @@ const Toast = ({
 
     if (type === 'warning') {
       return <Icon name="warning" />;
+    }
+
+    if (type === 'error') {
+      return <Icon name="error" />;
     }
 
     return <Icon name="info" />;
@@ -56,7 +61,7 @@ const Toast = ({
         layoutY: { delay: 0, type: 'spring' },
       }}
       exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2 } }}
-      className={`toast toast--${type}`}
+      className={`toast toast--${type} ${className}`}
     >
       <div className="toast-icon">
         {getIcon()}
@@ -79,19 +84,22 @@ Toast.propTypes = {
   type: PropTypes.oneOf([
     'info',
     'warning',
+    'error',
     'success',
   ]).isRequired,
   autoDismiss: PropTypes.bool,
   dismissHandler: PropTypes.func,
   dismissDuration: PropTypes.number,
   CustomIcon: PropTypes.node,
+  className: PropTypes.string,
 };
 
 Toast.defaultProps = {
   autoDismiss: true,
   dismissHandler: null,
-  dismissDuration: 4000,
+  dismissDuration: 8000,
   CustomIcon: null,
+  className: '',
 };
 
 export default Toast;

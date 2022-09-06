@@ -34,11 +34,26 @@ const ServerCard = ({
       <div className="server-card__main-section">
         <h2 className="server-name"><HoverMarquee>{label}</HoverMarquee></h2>
         <h6>
-          <HoverMarquee>Addresses: {
-            addresses.map((address, index) => (<React.Fragment key={index}>[{address}]{index !== addresses.length - 1 && (',')} </React.Fragment>))}
+          <HoverMarquee>
+            Addresses:
+            {
+            addresses.map((address, index) => (
+              <React.Fragment key={index}>
+                [
+                {address}
+                ]
+                {index !== addresses.length - 1 && (',')}
+              </React.Fragment>
+            ))
+}
           </HoverMarquee>
         </h6>
-        <h6><HoverMarquee>Host: {host}</HoverMarquee></h6>
+        <h6>
+          <HoverMarquee>
+            Host:
+            {host}
+          </HoverMarquee>
+        </h6>
       </div>
     </div>
   );

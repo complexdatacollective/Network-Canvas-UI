@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
+import MarkdownLabel from '../MarkdownLabel';
 
 class Handle extends Component {
-  state = {
-    mouseOver: false,
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      mouseOver: false,
+    };
   }
 
   handleMouseOver = () => {
@@ -49,33 +55,54 @@ class Handle extends Component {
     const label = getLabelForValue(value);
 
     return (
-      <React.Fragment>
-        { showTooltips &&
+      <>
+        { showTooltips
+          && (
           <div
             className={tooltipClasses}
             style={{ left: `${percent}%` }}
           >
-            <div className="form-field-slider__tooltip-label">
-              {label}
-            </div>
+            <MarkdownLabel inline label={label} className="form-field-slider__tooltip-label" />
           </div>
-        }
+          )}
         <div
           className="form-field-slider__handle"
           style={{ left: `${percent}%` }}
+          // eslint-disable-next-line react/jsx-props-no-spreading
           {...handleProps}
         />
         <div
           role="slider"
+          aria-label="Slider"
           aria-valuemin={min}
           aria-valuemax={max}
           aria-valuenow={value}
           className={markerClasses}
           style={{ left: `${percent}%` }}
         />
-      </React.Fragment>
+      </>
     );
   }
 }
+
+Handle.propTypes = {
+  domain: PropTypes.array.isRequired,
+  handle: PropTypes.shape({
+    id: PropTypes.any.isRequired,
+    value: PropTypes.number.isRequired,
+    percent: PropTypes.number.isRequired,
+  }).isRequired,
+  isActive: PropTypes.bool,
+  isDisabled: PropTypes.bool,
+  showTooltips: PropTypes.bool,
+  getHandleProps: PropTypes.func.isRequired,
+  getLabelForValue: PropTypes.func.isRequired,
+};
+
+Handle.defaultProps = {
+  isActive: false,
+  isDisabled: false,
+  showTooltips: false,
+};
 
 export default Handle;

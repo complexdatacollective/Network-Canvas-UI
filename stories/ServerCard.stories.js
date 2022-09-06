@@ -1,5 +1,5 @@
 import React from 'react';
-import faker from 'faker';
+import { faker } from '@faker-js/faker';
 import { action } from '@storybook/addon-actions';
 import Harness from './helpers/Harness';
 import ServerCard from '../src/components/Cards/ServerCard';
@@ -14,7 +14,7 @@ const requiredProps = {
   host: faker.internet.domainName(),
 };
 
-export default { title: 'ServerCard' };
+export default { title: 'Components/Cards/ServerCard' };
 
 export const normal = () => (
   <Harness

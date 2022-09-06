@@ -3,7 +3,9 @@ import DatePickerContext from './DatePickerContext';
 import { isComplete, isEmpty } from './helpers';
 
 const Date = ({ children }) => {
-  const { onChange, date, range, type } = useContext(DatePickerContext);
+  const {
+    onChange, date, range, type,
+  } = useContext(DatePickerContext);
 
   return children({
     onChange,

@@ -1,16 +1,17 @@
+/* eslint-disable react/button-has-type */
 import React, { useState, useRef } from 'react';
 import uuid from 'uuid';
 import { action } from '@storybook/addon-actions';
 import Modal from '../src/components/Modal';
 import '../src/styles/_all.scss';
 
-export default { title: 'Modal' };
+export default { title: 'Utilities/Modal' };
 
 const useToggle = () => {
   const id = useRef(uuid());
   const [show, setShow] = useState(false);
   const toggleShow = () => {
-    setShow(v => !v);
+    setShow((v) => !v);
     action('show')(id.current, !show);
   };
 
@@ -23,25 +24,25 @@ export const interaction = () => {
   const [show3, toggle3] = useToggle();
 
   return (
-    <React.Fragment>
+    <>
       <button onClick={toggle1}>open</button>
       <Modal show={show2}>
-        Second window<br />
-
+        Second window
+        <br />
         <button onClick={toggle3}>open</button>
         <button onClick={toggle2}>close</button>
       </Modal>
       <Modal show={show1}>
-        First window<br />
-
+        First window
+        <br />
         <button onClick={toggle2}>open</button>
         <button onClick={toggle1}>close</button>
       </Modal>
       <Modal show={show3}>
-        Third window<br />
-
+        Third window
+        <br />
         <button onClick={toggle3}>close</button>
       </Modal>
-    </React.Fragment>
+    </>
   );
 };

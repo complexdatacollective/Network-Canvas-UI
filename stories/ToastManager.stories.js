@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import uuid from 'uuid';
+import { faker } from '@faker-js/faker';
 import { action } from '@storybook/addon-actions';
 import Harness from './helpers/Harness';
 import ToastManager from '../src/components/Toast/ToastManager';
@@ -7,20 +9,28 @@ import '../src/styles/_all.scss';
 
 const initialToasts = [
   {
-    id: 0,
+    id: uuid(),
     type: 'success',
     title: 'My Title',
     content: 'My content',
   },
   {
-    id: 1,
+    id: uuid(),
+    type: 'error',
+    classNames: 'custom-class custom-class 2',
+    title: 'classnames',
+    autoDismiss: false,
+    content: 'Toast with custom class names',
+  },
+  {
+    id: uuid(),
     type: 'warning',
     title: 'I Stay Around',
     content: <p>This toast wont leave until you ask it to</p>,
     autoDismiss: false,
   },
   {
-    id: 2,
+    id: uuid(),
     type: 'info',
     title: 'Custom Icon',
     CustomIcon: (<Spinner small />),
@@ -33,7 +43,7 @@ const initialToasts = [
   },
 ];
 
-export default { title: 'Toast Manager' };
+export default { title: 'Systems/Toast Manager' };
 
 export const normal = () => {
   const [toasts, setToasts] = useState(initialToasts);
@@ -49,13 +59,17 @@ export const normal = () => {
   };
 
   const addToast = () => {
+    const randomType = () => faker.random.arrayElement(['info', 'success', 'warning', 'error']);
+    const randomContent = () => faker.lorem.paragraph();
+    const randomTitle = () => faker.hacker.phrase();
     setToasts(existing => ([
       ...existing,
       {
-        id: 4,
-        title: 'Completed!',
-        type: 'success',
-        content: () => (<p>This shows a toast with a completed icon.</p>),
+        id: uuid(),
+        title: randomTitle(),
+        type: randomType(),
+        autoDismiss: false,
+        content: <p>{randomContent()}</p>,
       },
     ]));
   };

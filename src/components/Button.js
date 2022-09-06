@@ -25,41 +25,6 @@ const renderButtonIcon = ({ icon, iconPosition }) => {
 };
 
 class Button extends PureComponent {
-  static propTypes = {
-    content: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.element,
-    ]),
-    children: PropTypes.node,
-    icon: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.element,
-      PropTypes.object,
-    ]),
-    iconPosition: PropTypes.oneOf([
-      'left', 'right',
-    ]),
-    size: PropTypes.string,
-    color: PropTypes.string,
-    type: PropTypes.oneOf([
-      'button', 'submit', 'reset',
-    ]),
-    onClick: PropTypes.func,
-    disabled: PropTypes.bool,
-  }
-
-  static defaultProps = {
-    content: '',
-    children: null,
-    icon: '',
-    iconPosition: 'left',
-    size: '',
-    color: '',
-    type: 'button',
-    onClick: () => {},
-    disabled: false,
-  }
-
   render() {
     const {
       color,
@@ -79,23 +44,59 @@ class Button extends PureComponent {
       [`button--${color}`]: !!color,
       [`button--${size}`]: !!size,
       'button--has-icon': !!icon,
+      'button--icon-pos-right': iconPosition === 'right',
     });
 
     return (
       <button
+        // eslint-disable-next-line react/button-has-type
         type={type}
         className={buttonClassNames}
         onClick={onClick}
         disabled={disabled}
+        // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
       >
         {renderButtonIcon({ icon, iconPosition })}
-        <span className="button__content">
-          {children || content}
-        </span>
+        {(content || children) && <span className="button__content">{children || content}</span>}
       </button>
     );
   }
 }
+
+Button.propTypes = {
+  content: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element,
+  ]),
+  children: PropTypes.node,
+  icon: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element,
+    PropTypes.object,
+  ]),
+  iconPosition: PropTypes.oneOf([
+    'left', 'right',
+  ]),
+  size: PropTypes.string,
+  color: PropTypes.string,
+  type: PropTypes.oneOf([
+    'button', 'submit', 'reset',
+  ]),
+  onClick: PropTypes.func,
+  disabled: PropTypes.bool,
+};
+
+Button.defaultProps = {
+  content: '',
+  children: null,
+  icon: '',
+  iconPosition: 'left',
+  size: '',
+  color: '',
+  type: 'button',
+  onClick: () => {},
+  disabled: false,
+};
 
 export default Button;

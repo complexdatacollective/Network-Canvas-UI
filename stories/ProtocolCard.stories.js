@@ -1,5 +1,5 @@
 import React from 'react';
-import faker from 'faker';
+import { faker } from '@faker-js/faker';
 import { action } from '@storybook/addon-actions';
 import Harness from './helpers/Harness';
 import ProtocolCard from '../src/components/Cards/ProtocolCard';
@@ -13,11 +13,20 @@ const requiredProps = {
   description: faker.lorem.sentence(),
 };
 
-export default { title: 'ProtocolCard' };
+export default { title: 'Components/Cards/ProtocolCard' };
 
 export const normal = () => (
   <Harness
     requiredProps={requiredProps}
+  >
+    {props => <ProtocolCard {...props} />}
+  </Harness>
+);
+
+export const selected = () => (
+  <Harness
+    requiredProps={requiredProps}
+    selected
   >
     {props => <ProtocolCard {...props} />}
   </Harness>
@@ -37,6 +46,33 @@ export const condensed = () => (
     requiredProps={requiredProps}
     name={faker.lorem.sentence()}
     description={null}
+    condensed
+    onClickHandler={action('onClickHandler')}
+    onStatusClickHandler={action('onStatusClickHandler')}
+  >
+    {props => <ProtocolCard {...props} />}
+  </Harness>
+);
+
+export const condensedSelected = () => (
+  <Harness
+    requiredProps={requiredProps}
+    name={faker.lorem.sentence()}
+    description={null}
+    condensed
+    selected
+    onClickHandler={action('onClickHandler')}
+    onStatusClickHandler={action('onStatusClickHandler')}
+  >
+    {props => <ProtocolCard {...props} />}
+  </Harness>
+);
+
+export const condensedWithDescription = () => (
+  <Harness
+    requiredProps={requiredProps}
+    name={faker.lorem.sentence()}
+    description="/Users/Someone/Somepath/Some Protoco.netcanvas"
     condensed
     onClickHandler={action('onClickHandler')}
     onStatusClickHandler={action('onStatusClickHandler')}

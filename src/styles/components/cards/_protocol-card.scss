@@ -7,14 +7,30 @@ $component: 'protocol-card';
   display: flex;
   overflow: hidden;
   flex-direction: column-reverse;
+  height: 13rem;
+  position: relative;
 
   &--clickable {
     @include clickable(2);
   }
 
+  &--selected {
+    &:before {
+      content: '';
+      position:absolute;
+      top:0;
+      bottom:0;
+      left:0;
+      right: 0;
+      border: 0.4rem solid var(--color-mustard);
+      border-radius: var(--border-radius);
+    }
+  }
+
   &--condensed {
     @include clickable(1);
     flex-direction: row;
+    height: unit(7);
 
     .#{$component}__icon-section {
       padding: 0;
@@ -31,9 +47,7 @@ $component: 'protocol-card';
     }
 
     .#{$component}__main-section {
-      flex: none;
       padding: unit(1) unit(2);
-      height: 4rem;
       width: calc(100% - 4rem);
 
       .protocol-name {
@@ -55,10 +69,12 @@ $component: 'protocol-card';
     background: var(--color-slate-blue--dark);
     flex-direction: row;
     padding: unit(1) unit(4);
+    flex: 0 0 auto;
+    min-height: 0;
 
     .protocol-icon {
-      height: 3rem;
-      width: 3rem;
+      height: 100%;
+      flex: 0 0 unit(4);
       display: flex;
 
       .icon {
@@ -87,12 +103,12 @@ $component: 'protocol-card';
   }
 
   &__main-section {
-    flex: 0 1 auto;
-    padding: unit(2) unit(4);
+    padding: unit(2) unit(4) unit(1);
     flex-direction: column;
-    height: unit(14);
     display: flex;
     justify-content: center;
+    min-height: 0; // This is needed so that the flexbox can shrink to the absolute height parent
+    flex: 1 1 auto;
 
     .protocol-name {
       flex: 0 0 auto;
@@ -103,12 +119,13 @@ $component: 'protocol-card';
     }
 
     .protocol-description {
+      @include scrollable(unit(1));
       padding-top: unit(1);
-      flex: 1;
+      flex: 1 1 auto;
       font-size: 0.8rem;
 
       &--condensed {
-        flex: 1;
+        flex: 0 auto;
         font-size: 0.64rem;
         white-space: nowrap;
         overflow: hidden;

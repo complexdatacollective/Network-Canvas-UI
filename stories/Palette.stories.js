@@ -2,7 +2,7 @@ import React from 'react';
 import '../src/styles/_all.scss';
 import colors from './helpers/Colors';
 
-export default { title: 'Palette' };
+export default { title: 'Global/Palette' };
 
 const swatchStyles = {
   display: 'inline-flex',

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { motion } from 'framer-motion';
+import { motion } from 'framer-motion/dist/framer-motion';
 import cx from 'classnames';
 import create from '../assets/images/create-button.svg';
 

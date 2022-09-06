@@ -1,5 +1,5 @@
 import React from 'react';
-import faker from 'faker';
+import { faker } from '@faker-js/faker';
 import { action } from '@storybook/addon-actions';
 import Harness from './helpers/Harness';
 import SessionCard from '../src/components/Cards/SessionCard';
@@ -15,7 +15,7 @@ const requiredProps = {
   progress: 55,
 };
 
-export default { title: 'SessionCard' };
+export default { title: 'Components/Cards/SessionCard' };
 
 export const normal = () => (
   <Harness

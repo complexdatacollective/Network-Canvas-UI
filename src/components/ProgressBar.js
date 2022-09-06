@@ -15,28 +15,29 @@ const ProgressBar = ({
   onClick,
   orientation,
   percentProgress,
-}) =>
-  (
-    <div
-      className={cx(
-        'progress-bar',
-        `progress-bar--${orientation}`,
-        {
-          'progress-bar--indeterminate': indeterminate || percentProgress === null,
-          'progress-bar--complete': percentProgress === 100,
-        },
-      )}
-      onClick={onClick}
-    >
-      <div className="progress-bar__filler" style={fillerValue(orientation, percentProgress)} />
-    </div>
-  );
+  nudge,
+}) => (
+  <div
+    className={cx(
+      'progress-bar',
+      `progress-bar--${orientation}`,
+      {
+        'progress-bar--indeterminate': indeterminate || percentProgress === null,
+        'progress-bar--complete': percentProgress === 100 && nudge,
+      },
+    )}
+    onClick={onClick}
+  >
+    <div className="progress-bar__filler" style={fillerValue(orientation, percentProgress)} />
+  </div>
+);
 
 ProgressBar.propTypes = {
   indeterminate: PropTypes.bool,
   onClick: PropTypes.func,
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   percentProgress: PropTypes.number,
+  nudge: PropTypes.bool,
 };
 
 ProgressBar.defaultProps = {
@@ -44,6 +45,7 @@ ProgressBar.defaultProps = {
   onClick: () => {},
   orientation: 'vertical',
   percentProgress: 0,
+  nudge: true,
 };
 
 export default ProgressBar;
