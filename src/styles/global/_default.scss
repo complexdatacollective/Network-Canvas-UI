@@ -251,6 +251,8 @@ $system-font-stack: 'system-ui', sans-serif;
 
   --session-management-screen-bg: #{transparentize(rgb(58, 58, 117), 0.5)};
 
+  --datepicker-panel-bg: var(--color-rich-black);
+
   // Inputs
   --input-background: #{transparentize(rgb(0, 0, 0), 0.67)};
   --input-label: #{transparentize(rgb(255, 255, 255), 0)};

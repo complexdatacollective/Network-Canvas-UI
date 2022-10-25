@@ -114,7 +114,7 @@ $darken: rgba(0, 0, 0, 0.2);
   }
 
   &__panels {
-    background-color: var(--color-rich-black);
+    background-color: var(--datepicker-panel-bg);
     height: $height;
     overflow: hidden;
   }
