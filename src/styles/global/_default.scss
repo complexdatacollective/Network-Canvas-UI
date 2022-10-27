@@ -251,12 +251,11 @@ $system-font-stack: 'system-ui', sans-serif;
 
   --session-management-screen-bg: #{transparentize(rgb(58, 58, 117), 0.5)};
 
-  --datepicker-panel-bg: var(--color-rich-black);
-
   // Inputs
   --input-background: #{transparentize(rgb(0, 0, 0), 0.67)};
   --input-label: #{transparentize(rgb(255, 255, 255), 0)};
   --input-placeholder: #{transparentize(rgb(255, 255, 255), 0.75)};
+  --input-panel-bg: var(--color-rich-black);
 
   --modal-overlay: #{transparentize(rgb(39, 32, 76), 0.1)};
   --modal-window-box-shadow: #{transparentize(rgb(22, 21, 43), 0.25)};
