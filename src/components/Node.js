@@ -1,50 +1,166 @@
-import React, { useMemo, memo } from 'react';
+import React, { useMemo, memo, useState, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { noop } from 'lodash';
-import { AnimatePresence, motion } from 'framer-motion/dist/framer-motion';
+import { motion } from 'framer-motion/dist/framer-motion';
+// import { useReducedMotion } from 'framer-motion';
 
 const circlePath = (R = 50, CX = 50, CY = 50) => `M ${CX - R}, ${CY} a ${R},${R} 0 1,0 ${R * 2},0 a ${R},${R} 0 1,0 -${R * 2},0`;
+const LONG_PRESS_DELAY = 1500;
+
+const useLongPress = (
+  onLongPress,
+  onClick,
+  { shouldPreventDefault = true, delay = LONG_PRESS_DELAY } = {}
+) => {
+  const [longPressTriggered, setLongPressTriggered] = useState(false);
+  const timeout = useRef();
+  const target = useRef();
+
+  const start = useCallback(
+    event => {
+      if (shouldPreventDefault && event.target) {
+        event.target.addEventListener("touchend", preventDefault, {
+          passive: false
+        });
+        target.current = event.target;
+      }
+      timeout.current = setTimeout(() => {
+        onLongPress(event);
+        setLongPressTriggered(true);
+      }, delay);
+    },
+    [onLongPress, delay, shouldPreventDefault]
+  );
+
+  const clear = useCallback(
+    (event, shouldTriggerClick = true) => {
+      timeout.current && clearTimeout(timeout.current);
+      shouldTriggerClick && !longPressTriggered && onClick();
+      setLongPressTriggered(false);
+      if (shouldPreventDefault && target.current) {
+        target.current.removeEventListener("touchend", preventDefault);
+      }
+    },
+    [shouldPreventDefault, onClick, longPressTriggered]
+  );
+
+  return {
+    onMouseDown: e => start(e),
+    onTouchStart: e => start(e),
+    onMouseUp: e => clear(e),
+    onMouseLeave: e => clear(e, false),
+    onTouchEnd: e => clear(e)
+  };
+};
+
+const isTouchEvent = event => {
+  return "touches" in event;
+};
+
+const preventDefault = event => {
+  if (!isTouchEvent(event)) return;
+
+  if (event.touches.length < 2 && event.preventDefault) {
+    event.preventDefault();
+  }
+};
+
+export const longPressEvents = (
+  callbackComplete,
+  callbackCancelled = noop,
+  callbackStarted = noop,
+  ms = LONG_PRESS_DELAY,
+) => {
+  let timeout = null;
+
+  const start = () => {
+    callbackStarted();
+    timeout = setTimeout(callbackComplete, ms);
+  };
+
+  const stop = (event, shouldTriggerClick = true) => {
+    console.log('stop');
+    callbackCancelled();
+    if (timeout) {
+      console.log('stop: cancelling timeout');
+      clearTimeout(timeout);
+    }
+  };
+
+  return callbackComplete ? {
+    onMouseDown: start,
+    onMouseUp: stop,
+    onTouchStart: start,
+    onMouseLeave: (e) => stop(e, false),
+    onTouchEnd: stop,
+  } : {};
+};
 
 const variants = {
   outer: {
+    initial: {
+      opacity: 0,
+    },
+    show: {
+      opacity: 1,
+      scale: 1,
+      pathLength: 0,
+    },
     hover: {
       scale: 1.05,
       boxShadow: '0 0.4rem var(--color-shadow)',
     },
     tap: {
+      opacity: 1,
       scale: 0.95,
       boxShadow: 0,
     },
-    initial: {
-      opacity: 0,
-      y: 50,
-    },
     selected: {
-      scale: [1.1, 1],
-    },
-    show: {
-      y: 0,
-      scale: 1,
       opacity: 1,
-      boxShadow: '0 0.2rem var(--color-shadow)',
+      scale: [0.8, 1.1, 1],
+      transition: {
+        type: 'spring',
+        damping: 20,
+        stiffness: 100,
+      },
     },
-    hide: {
-      opacity: 0,
-      scale: 0,
+    disabled: {
+      opacity: 0.5,
+    },
+    longPress: {
+      opacity: 1,
+      scale: 1,
+    },
+    linking: {
+      opacity: 1,
+      scale: 1,
     },
   },
   border: {
-    show: {
+    selected: {
       strokeWidth: 7,
+      pathLength: 1,
       transition: {
         type: 'spring',
-        damping: 7,
-        stiffness: 350,
+        damping: 20,
+        stiffness: 100,
       },
     },
-    hide: {
+    linking: {
       strokeWidth: 0,
+      pathLength: 0,
+    },
+    show: {
+      strokeWidth: 7,
+      pathLength: 0,
+    },
+    longPress: {
+      strokeWidth: 7,
+      pathLength: 1,
+      transition: {
+        duration: LONG_PRESS_DELAY / 1000,
+      },
     },
   },
 };
@@ -60,8 +176,12 @@ const Node = memo((props) => {
     linking,
     onClick,
     onLongPress,
-    dontAnimate,
   } = props;
+
+  const [isPressing, setIsPressing] = useState(false);
+  const longPressEvent = useLongPress(onLongPress, onClick);
+
+  // const shouldUseReducedMotion = useReducedMotion();
 
   const classes = classNames(
     'node',
@@ -76,6 +196,26 @@ const Node = memo((props) => {
     },
   );
 
+  const animateVariant = () => {
+    if (disabled) {
+      return 'disabled';
+    }
+
+    if (isPressing) {
+      return 'longPress';
+    }
+
+    if (selected) {
+      return 'selected';
+    }
+
+    if (linking) {
+      return 'linking';
+    }
+
+    return 'show';
+  };
+
   // Add ellipsis for really long labels
   // 22 Characters chosen from visual testing
   const labelWithEllipsis = useMemo(() => {
@@ -87,28 +227,19 @@ const Node = memo((props) => {
   }, [label]);
 
   // TODO:
-  // - Disable animate presents with dontAnimate
   // - Implement useReducedMotion
+
+  console.log('isPressing', isPressing);
 
   return (
     <motion.div
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...longPressEvent}
       className={classes}
-      onClick={onClick}
+      // onClick={onClick}
       variants={variants.outer}
       initial="initial"
-      animate="show"
-      exit="hide"
-      whileTap="tap"
-      whileHover="hover"
-      custom={{
-        dontAnimate,
-        draggable,
-      }}
-      transition={{
-        type: 'spring',
-        stiffness: 250,
-        damping: 20,
-      }}
+      animate={animateVariant()}
     >
       {linking && (
         <div className="node__linking" />
@@ -119,8 +250,6 @@ const Node = memo((props) => {
       <svg viewBox="0 0 100 100" className="node__border" width="100%" height="100%">
         <motion.path
           variants={variants.border}
-          initial="hide"
-          animate={selected ? 'show' : 'hide'}
           fill="none"
           d={circlePath(47.5, 50, 50)}
           stroke="var(--color-selected)"
@@ -139,7 +268,7 @@ Node.propTypes = {
   disabled: PropTypes.bool,
   linking: PropTypes.bool,
   onClick: PropTypes.func,
-  dontAnimate: PropTypes.bool,
+  onLongPress: PropTypes.func,
 };
 
 Node.defaultProps = {
@@ -151,7 +280,7 @@ Node.defaultProps = {
   linking: false,
   disabled: false,
   onClick: noop,
-  dontAnimate: false,
+  onLongPress: noop,
 };
 
 export default Node;

@@ -10,17 +10,17 @@
 @keyframes linking {
   0% {
     transform: scale(0.82);
-    border-color: var(--color-main);
+    // border-color: var(--color-main);
   }
 
   50% {
     transform: scale(1);
-    border-color: var(--color-linking);
+    // border-color: var(--color-linking);
   }
 
   100% {
     transform: scale(0.82);
-    border-color: var(--color-main);
+    // border-color: var(--color-main);
   }
 }
 
@@ -56,8 +56,9 @@
   }
 
   &--disabled {
-    filter: grayscale(100%);
+    opacity: 0.5;
     cursor: not-allowed;
+    pointer-events: none;
   }
 
   &--draggable {
@@ -65,6 +66,7 @@
   }
 
   &__border {
+    transform: rotate(90deg);
     position: absolute;
     overflow: visible;
     top: 0;
@@ -122,18 +124,5 @@
         stroke: color($ordinal-color);
       }
     }
-  }
-
-  &--linking {
-    .node__node-trim {
-      stroke: palette('selected');
-    }
-
-    .node__node-outer-trim {
-      fill: var(--node-outer-trim-stroke);
-      transform-origin: 250px 250px;
-      animation: linking var(--animation-duration-slow) ease-in-out infinite;
-    }
-
   }
 }
