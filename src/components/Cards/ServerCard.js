@@ -25,7 +25,13 @@ const ServerCard = ({
   );
 
   return (
-    <div className={modifierClasses} onClick={onClickHandler}>
+    <div
+      className={modifierClasses}
+      onClick={onClickHandler}
+      onKeyDown={onClickHandler}
+      role="button"
+      tabIndex={0}
+    >
       <div className="server-card__icon-section">
         <div className="server-icon">
           <img src={logo} alt="" />
@@ -37,15 +43,15 @@ const ServerCard = ({
           <HoverMarquee>
             Addresses:
             {
-            addresses.map((address, index) => (
-              <React.Fragment key={index}>
-                [
-                {address}
-                ]
-                {index !== addresses.length - 1 && (',')}
-              </React.Fragment>
-            ))
-}
+              addresses.map((address, index) => (
+                <React.Fragment key={index}>
+                  [
+                  {address}
+                  ]
+                  {index !== addresses.length - 1 && (',')}
+                </React.Fragment>
+              ))
+            }
           </HoverMarquee>
         </h6>
         <h6>

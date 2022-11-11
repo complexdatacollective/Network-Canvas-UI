@@ -33,6 +33,7 @@ class NarrativePanel extends Component {
           role="button"
           tabIndex={0}
           onClick={toggleOpen}
+          onKeyDown={toggleOpen}
         >
           {title}
         </div>

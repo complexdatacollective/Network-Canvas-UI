@@ -80,6 +80,9 @@ const RangePicker = ({
             <div
               className={itemStyle}
               onClick={() => onSelect(d.value)}
+              onKeyDown={() => onSelect(d.value)}
+              tabIndex={0}
+              role="button"
               ref={ref}
               data-value={d.value}
               key={`item${d.value}`}
@@ -106,7 +109,7 @@ RangePicker.defaultProps = {
   value: null,
   today: null,
   type: null,
-  onSelect: () => {},
+  onSelect: () => { },
   offset: 0,
 };
 

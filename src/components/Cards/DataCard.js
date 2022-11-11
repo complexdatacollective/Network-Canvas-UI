@@ -21,11 +21,14 @@ const DataCard = ({
     <div
       className={classes}
       onClick={onClick}
+      onKeyDown={onClick}
+      role="button"
+      tabIndex={0}
     >
       <div className="data-card__label">
         <h2>{label}</h2>
       </div>
-      { data && Object.keys(data).length > 0 && (
+      {data && Object.keys(data).length > 0 && (
         <div className="data-card__data">
           {Object.keys(data).map((dataLabel) => (
             <div className="data-card__data-item" key={dataLabel}>

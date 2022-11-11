@@ -27,6 +27,9 @@ const ProgressBar = ({
       },
     )}
     onClick={onClick}
+    onKeyDown={onClick}
+    role="progressbar"
+    tabIndex={0}
   >
     <div className="progress-bar__filler" style={fillerValue(orientation, percentProgress)} />
   </div>
@@ -42,7 +45,7 @@ ProgressBar.propTypes = {
 
 ProgressBar.defaultProps = {
   indeterminate: false,
-  onClick: () => {},
+  onClick: () => { },
   orientation: 'vertical',
   percentProgress: 0,
   nudge: true,
