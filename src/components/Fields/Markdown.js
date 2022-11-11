@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo, memo } from 'react';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import rehypeSanitize from 'rehype-sanitize';
@@ -35,10 +35,18 @@ const Markdown = ({
   allowedElements = ALLOWED_MARKDOWN_TAGS,
   markdownRenderers,
 }) => {
-  const combinedRenderers = {
+  const combinedRenderers = useMemo(() => ({
     ...defaultMarkdownRenderers,
     ...markdownRenderers,
-  };
+  }), [markdownRenderers]);
+
+  const rawText = useMemo(() => {
+    if (!label) {
+      return null;
+    }
+
+    return escapeAngleBracket(label);
+  }, [label]);
 
   return (
     <ReactMarkdown
@@ -48,7 +56,7 @@ const Markdown = ({
       rehypePlugins={[rehypeRaw, rehypeSanitize]}
       unwrapDisallowed
     >
-      {escapeAngleBracket(label)}
+      {rawText}
     </ReactMarkdown>
   );
 };
@@ -66,4 +74,4 @@ Markdown.defaultProps = {
   markdownRenderers: {},
 };
 
-export default Markdown;
+export default memo(Markdown);

@@ -4,10 +4,6 @@
   "description": "Styles and React components for the Network Canvas project",
   "main": "lib/components/index.js",
   "license": "GPL-3.0-or-later",
-  "engines": {
-    "node": "16.1.0",
-    "npm": "7.11.2"
-  },
   "repository": {
     "type": "git"
   },
@@ -17,14 +13,13 @@
     "build": "./scripts/build",
     "preflight": "npm run lint && npm run sass-lint",
     "prepublishOnly": "npm run preflight && npm run build",
-    "storybook": "start-storybook -p 6006 --no-manager-cache",
-    "build-storybook": "build-storybook -o docs-build"
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
     "@productboard/slate-edit-list": "^0.21.5",
-    "@storybook/theming": "^6.2.8",
     "animejs": "^2.2.0",
     "classnames": "^2.2.6",
     "emoji-dictionary": "^1.0.11",
@@ -51,8 +46,8 @@
     "uuid": "^3.2.1"
   },
   "peerDependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.1",
@@ -61,12 +56,15 @@
     "@babel/eslint-plugin": "^7.13.10",
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/preset-react": "^7.12.1",
-    "@storybook/addon-actions": "^6.2.8",
-    "@storybook/addon-essentials": "^6.2.8",
-    "@storybook/addon-links": "^6.2.8",
-    "@storybook/addon-postcss": "^2.0.0",
-    "@storybook/addons": "^6.2.8",
-    "@storybook/react": "^6.2.8",
+    "@storybook/addon-actions": "^6.5.13",
+    "@storybook/addon-essentials": "^6.5.13",
+    "@storybook/addon-interactions": "^6.5.13",
+    "@storybook/addon-links": "^6.5.13",
+    "@storybook/builder-webpack4": "^6.5.13",
+    "@storybook/manager-webpack4": "^6.5.13",
+    "@storybook/react": "^6.5.13",
+    "@storybook/testing-library": "^0.0.13",
+    "autoprefixer": "^9.8.8",
     "babel-loader": "^8.1.0",
     "blobs": "^2.2.0",
     "core-js": "^3.6.5",
@@ -80,10 +78,11 @@
     "faker": "^4.1.0",
     "mkdirp": "^0.5.1",
     "ncp": "^2.0.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "sass": "^1.32.13",
     "sass-lint": "^1.13.1",
-    "sass-loader": "^8.0.2"
+    "sass-loader": "^8.0.2",
+    "storybook-addon-sass-postcss": "^0.1.3"
   }
 }

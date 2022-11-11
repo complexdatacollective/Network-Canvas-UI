@@ -58,9 +58,7 @@ class Button extends PureComponent {
         {...rest}
       >
         {renderButtonIcon({ icon, iconPosition })}
-        <span className="button__content">
-          {children || content}
-        </span>
+        {(content || children) && <span className="button__content">{children || content}</span>}
       </button>
     );
   }

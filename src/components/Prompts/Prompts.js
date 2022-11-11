@@ -23,7 +23,7 @@ const Prompts = (props) => {
     prevPromptRef.current = currentIndex;
   }, [currentPrompt]);
 
-  const backwards = useMemo(() => currentIndex < prevPromptRef.current, []);
+  const backwards = useMemo(() => currentIndex < prevPromptRef.current, [currentIndex]);
 
   return (
     <motion.div

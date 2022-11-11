@@ -1,4 +1,19 @@
 # Network Canvas UI
+This package provides design primitives and components for applications that are part of the Network
+Canvas project (https://networkcanvas.com).
+## 6.0.0 Backlog
+
+- [ ] Update core dependencies
+  - [ ] React 18
+  - [ ] Framer Latest
+  - [ ] Storybook 7
+- [ ] Visual regression testing
+- [ ] Accessibility auditing (warnings for now....errors when we get to production)
+- [ ] Drag and drop system
+- [ ] Virtualised list component, supporting drag and drop, sort, and filter
+- [ ] Design primitives
+- [ ] Responsiveness
+- [ ] Interaction sounds
 
 ## Installation
 
