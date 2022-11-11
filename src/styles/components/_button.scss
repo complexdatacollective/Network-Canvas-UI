@@ -13,7 +13,6 @@
 ) {
   .#{$button-class} {
     @include reset-button;
-    @include vcjc; // vertical center, justify center
     @include clickable;
 
     font-weight: 700;

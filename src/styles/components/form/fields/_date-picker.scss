@@ -5,6 +5,7 @@ $lighten: rgba(255, 255, 255, 0.05);
 $darken: rgba(0, 0, 0, 0.2);
 
 .form-field-date-picker {
+  --datepicker-panel-bg: var(--input-panel-bg);
   color: var(--input-text);
   &__error {
     opacity: 0;
@@ -40,7 +41,7 @@ $darken: rgba(0, 0, 0, 0.2);
   --lighten: $lighten;
   --darken: $darken;
   max-width: 100%;
-  overflow: hidden;
+  position: relative;
 
   &__placeholder {
     color: var(--input-placeholder);
@@ -104,9 +105,19 @@ $darken: rgba(0, 0, 0, 0.2);
     }
   }
 
+  &__container {
+    position: absolute;
+    z-index: var(--z-global-ui);
+    width: 100%;
+    max-width: 30rem;
+    box-shadow: 0 2rem 3rem 0 var(--modal-window-box-shadow);
+    margin-bottom: 3rem;
+  }
+
   &__panels {
-    background-color: var(--background);
+    background-color: var(--datepicker-panel-bg);
     height: $height;
+    overflow: hidden;
   }
 
   &__panels-container {

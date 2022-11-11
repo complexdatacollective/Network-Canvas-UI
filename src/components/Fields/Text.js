@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { memo, useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { v4 as uuid } from 'uuid';
@@ -52,6 +52,7 @@ const TextInput = ({
   );
 
   const anyLabel = fieldLabel || label;
+
   return (
     <div className="form-field-container" hidden={hidden}>
       { anyLabel
@@ -127,4 +128,4 @@ TextInput.defaultProps = {
   type: 'text',
 };
 
-export default TextInput;
+export default memo(TextInput);

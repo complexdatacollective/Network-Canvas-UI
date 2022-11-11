@@ -7,6 +7,7 @@ const formatDate = (timeString) => timeString && new Date(timeString).toLocaleSt
 
 const ProtocolCard = (props) => {
   const {
+    selected,
     condensed,
     schemaVersion,
     lastModified,
@@ -23,6 +24,7 @@ const ProtocolCard = (props) => {
     'protocol-card',
     { 'protocol-card--clickable': onClick },
     { 'protocol-card--condensed': condensed },
+    { 'protocol-card--selected': selected },
     { 'protocol-card--outdated': !isObsolete && isOutdated },
     { 'protocol-card--obsolete': isObsolete },
   );
@@ -108,6 +110,7 @@ ProtocolCard.defaultProps = {
   isOutdated: false,
   isObsolete: false,
   condensed: false,
+  selected: false,
 };
 
 ProtocolCard.propTypes = {
@@ -121,6 +124,7 @@ ProtocolCard.propTypes = {
   isOutdated: PropTypes.bool,
   isObsolete: PropTypes.bool,
   condensed: PropTypes.bool,
+  selected: PropTypes.bool,
 };
 
 export default ProtocolCard;

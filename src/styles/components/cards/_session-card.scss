@@ -4,7 +4,7 @@
   border-radius: var(--border-radius);
   display: flex;
   flex-direction: column;
-  height: 11rem;
+  height: 9rem;
   width: 100%;
   color: var(--color-navy-taupe);
   justify-content: space-between;
@@ -35,7 +35,7 @@
     background: var(--color-platinum--dark);
     align-items: center;
     justify-content: space-between;
-    flex: 1 1 50%;
+    flex: 0 0 45%;
     width: 100%;
 
     .meta {
@@ -55,7 +55,6 @@
         letter-spacing: 0.15em;
         font-size: 0.6rem;
         width: 100%;
-        margin: 0.4rem 0;
       }
 
       img {
@@ -71,7 +70,6 @@
       display: flex;
       align-items: center;
       width: 100%;
-      margin: 0.4rem 0;
 
       div {
         display: inline-block;
@@ -101,7 +99,7 @@
   }
 
   .main-wrapper {
-    flex: 1 1 50%;
+    flex: 1 0 auto;
     padding: 0 unit(4);
     display: flex;
     flex-direction: column;

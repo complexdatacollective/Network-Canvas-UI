@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, memo } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import icons from '../utils/getIcon';
@@ -16,7 +16,7 @@ const Icon = (props) => {
     [`icon--${color}`]: !!color,
   }, [className]);
 
-  const IconComponent = icons(name);
+  const IconComponent = useCallback(icons(name), [name]);
 
   if (!IconComponent) {
     console.warn('Invalid icon name:', name); // eslint-disable-line no-console
@@ -47,4 +47,4 @@ Icon.defaultProps = {
   style: {},
 };
 
-export default Icon;
+export default memo(Icon);

@@ -1,4 +1,6 @@
-import React, { useState, useCallback } from 'react';
+import React, {
+  useState, useCallback, useEffect, useRef,
+} from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { motion, AnimateSharedLayout, AnimatePresence } from 'framer-motion';
@@ -21,6 +23,8 @@ const DatePickerInput = ({
   parentRef,
   placeholder,
 }) => {
+  const ref = useRef();
+
   const [panelsOpen, setPanelsOpen] = useState(false);
 
   const handleChange = useCallback((newValue) => {
@@ -28,7 +32,28 @@ const DatePickerInput = ({
     if (newValue !== value) { onChangeInput(newValue); }
   }, [value, setPanelsOpen, onChangeInput]);
 
+  const handleClickOutside = (e) => {
+    if (ref.current.contains(e.target)) {
+      // inside click
+      return;
+    }
+    // outside click
+    setPanelsOpen(false);
+  };
+
   useScrollTo(parentRef, (open) => open, [panelsOpen, parentRef]);
+
+  useEffect(() => {
+    if (panelsOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [panelsOpen]);
 
   // treat empty string as no value (for Redux Forms)
   const initialDate = isEmpty(value) ? null : value;
@@ -93,7 +118,7 @@ const DatePickerInput = ({
                   isActive={panelsOpen}
                   placeholder={placeholder}
                 />
-                <motion.div layout>
+                <motion.div ref={ref} layout className="date-picker__container">
                   <AnimatePresence>
                     { panelsOpen
                       && (

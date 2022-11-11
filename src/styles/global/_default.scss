@@ -4,8 +4,6 @@
 @import 'core/breakpoints';
 @import 'core/color';
 @import 'core/palette';
-@import 'core/grid';
-@import 'core/functions';
 @import 'core/spacing';
 @import 'core/typography';
 @import 'core/quicksand';
@@ -255,6 +253,7 @@ $system-font-stack: 'system-ui', sans-serif;
   --input-background: #{transparentize(rgb(0, 0, 0), 0.67)};
   --input-label: #{transparentize(rgb(255, 255, 255), 0)};
   --input-placeholder: #{transparentize(rgb(255, 255, 255), 0.75)};
+  --input-panel-bg: var(--color-rich-black);
 
   --modal-overlay: #{transparentize(rgb(39, 32, 76), 0.1)};
   --modal-window-box-shadow: #{transparentize(rgb(22, 21, 43), 0.25)};
@@ -438,5 +437,4 @@ $headings: (
 
 @if $export-ui-classes {
   @include typography-classes;
-  @include grid-classes;
 }

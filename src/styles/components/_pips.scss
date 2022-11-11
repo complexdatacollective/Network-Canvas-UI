@@ -2,10 +2,11 @@ $block: pips;
 
 .#{$block} {
   --local-pip-size:  var(--pip-size, #{unit(1.2)});
+  --local-pip-size-flex: calc(var(--local-pip-size) + #{unit(1)});
   --local-pip-border-color: var(--pip-border-color, hsla(0, 0%, 100%, 0.15));
 
   width: 100%;
-  flex: 0 0 calc(var(--local-pip-size) + #{unit(1)});
+  flex: 0 0 var(--local-pip-size-flex);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,5 +30,6 @@ $block: pips;
 
   &--large {
     --local-pip-size:  var(--pip-size, #{unit(2)});
+    --local-pip-size-flex: calc(var(--local-pip-size) + #{unit(1)});
   }
 }

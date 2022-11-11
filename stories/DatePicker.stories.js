@@ -139,3 +139,31 @@ export const AutoScroll = () => (
     )}
   </Harness>
 );
+
+export const LightPanelBackground = () => {
+  const [value, setValue] = useState('1959-09-09');
+  const handleChange = (...args) => {
+    setValue(...args);
+    action('change')(...args);
+  };
+
+  return (
+    <Harness
+      requiredProps={requiredProps}
+      input={{
+        onBlur: handleChange,
+        value,
+      }}
+    >
+      {props => (
+        <div>
+          <div style={{"--input-panel-bg": "white",
+        "--input-text": "rgb(109, 111, 118)"}}>
+            <DatePicker {...props} />
+          </div>
+          Next element
+        </div>
+      )}
+    </Harness>
+  );
+};
