@@ -28,12 +28,17 @@ const Boolean = ({
         />
       ))}
     </div>
-    { !noReset && (
-    <div className="boolean__reset">
-      <div onClick={() => onChange(null)}>
-        Reset answer
+    {!noReset && (
+      <div className="boolean__reset">
+        <div
+          onClick={() => onChange(null)}
+          onKeyDown={() => onChange(null)}
+          role="button"
+          tabIndex={0}
+        >
+          Reset answer
+        </div>
       </div>
-    </div>
     )}
   </div>
 );
@@ -65,7 +70,7 @@ Boolean.propTypes = {
 Boolean.defaultProps = {
   value: null,
   options: [],
-  onChange: () => {},
+  onChange: () => { },
 };
 
 export default Boolean;

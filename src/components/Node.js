@@ -39,7 +39,13 @@ class Node extends Component {
     const labelWithEllipsis = label.length < 22 ? label : `${label.substring(0, 18)}\u{AD}...`; // Add ellipsis for really long labels
 
     return (
-      <div className={classes} onClick={handleClick}>
+      <div
+        className={classes}
+        onClick={handleClick}
+        onKeyDown={handleClick}
+        role="button"
+        tabIndex={0}
+      >
         <svg
           viewBox="0 0 500 500"
           xmlns="http://www.w3.org/2000/svg"

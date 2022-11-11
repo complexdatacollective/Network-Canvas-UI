@@ -29,19 +29,28 @@ const ProtocolCard = (props) => {
     { 'protocol-card--obsolete': isObsolete },
   );
 
-  const renderStatusIcon = () => {
-    if (isOutdated) {
-      return (
-        <div className="status-icon status-icon--outdated" onClick={(e) => { e.stopPropagation(); onStatusClickHandler(); }}>
-          <Icon name="warning" />
-        </div>
-      );
-    }
+  const handleStatusClick = (e) => {
+    e.stopPropagation();
+    onStatusClickHandler();
+  };
 
-    if (isObsolete) {
+  const renderStatusIcon = () => {
+    if (isOutdated || isObsolete) {
+      const classes = cx(
+        'status-icon',
+        { 'status-icon--outdated': !isObsolete && isOutdated },
+        { 'status-icon--obsolete': isObsolete },
+      );
+
       return (
-        <div className="status-icon status-icon--obsolete" onClick={(e) => { e.stopPropagation(); onStatusClickHandler(); }}>
-          <Icon name="error" />
+        <div
+          className={classes}
+          onClick={handleStatusClick}
+          onKeyDown={handleStatusClick}
+          role="button"
+          tabIndex={0}
+        >
+          <Icon name={isOutdated ? 'warning' : 'error'} />
         </div>
       );
     }
@@ -57,23 +66,29 @@ const ProtocolCard = (props) => {
     if (condensed) {
       return (
         <div className="protocol-description protocol-description--condensed">
-          { description }
+          {description}
         </div>
       );
     }
 
     return (
       <div className="protocol-description">
-        { description }
+        {description}
       </div>
     );
   };
 
   return (
-    <div className={modifierClasses} onClick={onClickHandler}>
+    <div
+      className={modifierClasses}
+      onClick={onClickHandler}
+      onKeyDown={onClickHandler}
+      role="button"
+      tabIndex={0}
+    >
       <div className="protocol-card__icon-section">
-        { renderStatusIcon() }
-        { !condensed && (
+        {renderStatusIcon()}
+        {!condensed && (
           <div className="protocol-meta">
             {
               installationDate && (
@@ -92,11 +107,11 @@ const ProtocolCard = (props) => {
               {schemaVersion}
             </h6>
           </div>
-        ) }
+        )}
       </div>
       <div className="protocol-card__main-section">
         <h2 className="protocol-name">{name}</h2>
-        { description && renderDescription() }
+        {description && renderDescription()}
       </div>
     </div>
   );
@@ -104,7 +119,7 @@ const ProtocolCard = (props) => {
 
 ProtocolCard.defaultProps = {
   onClickHandler: undefined,
-  onStatusClickHandler: () => {},
+  onStatusClickHandler: () => { },
   description: null,
   installationDate: null,
   isOutdated: false,

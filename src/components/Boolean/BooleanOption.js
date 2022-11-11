@@ -32,9 +32,15 @@ const BooleanOption = ({
   };
 
   return (
-    <div className={classNames} onClick={onClick} style={{ position: 'relative' }}>
+    <div
+      className={classNames}
+      onClick={onClick}
+      onKeyDown={onClick}
+      role="button"
+      tabIndex={0}
+    >
       {resizeListener}
-      { customIcon || <RoundCheckbox checked={selected} negative={negative} />}
+      {customIcon || <RoundCheckbox checked={selected} negative={negative} />}
       {renderLabel()}
     </div>
   );
@@ -55,7 +61,7 @@ BooleanOption.propTypes = {
 BooleanOption.defaultProps = {
   classes: null,
   selected: false,
-  onClick: () => {},
+  onClick: () => { },
   customIcon: null,
   negative: false,
 };

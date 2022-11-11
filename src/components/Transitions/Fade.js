@@ -1,12 +1,15 @@
 import React from 'react';
-import { Transition } from 'react-transition-group';
+import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
-import anime from 'animejs';
 import { getCSSVariableAsNumber, getCSSVariableAsObject } from '../../utils/CSSVariables';
 
 function Fade(props) {
   const {
-    children, customDuration, customEasing, enter, onExited,
+    in: inProp,
+    children,
+    customDuration,
+    customEasing,
+    onExited,
   } = props;
 
   const defaultDuration = {
@@ -20,39 +23,14 @@ function Fade(props) {
   const easing = customEasing || defaultEasing;
 
   return (
-    <Transition
-      timeout={duration}
-      onEnter={
-        (el) => {
-          anime({
-            targets: el,
-            opacity: [0, 1],
-            elasticity: 0,
-            easing,
-            duration: duration.enter,
-          });
-        }
-      }
-      onExit={
-        (el) => {
-          anime({
-            targets: el,
-            opacity: [1, 0],
-            elasticity: 0,
-            easing,
-            duration: duration.exit,
-          });
-        }
-      }
-      enter={enter}
-      // eslint-disable-next-line react/destructuring-assignment
-      in={props.in}
-      appear
-      unmountOnExit
-      onExited={onExited}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: inProp ? 1 : 0 }}
+      transition={{ duration, ease: easing }}
+      onAnimationComplete={inProp ? undefined : onExited}
     >
-      { children }
-    </Transition>
+      {children}
+    </motion.div>
   );
 }
 
@@ -60,7 +38,6 @@ Fade.propTypes = {
   children: PropTypes.any,
   customDuration: PropTypes.object,
   customEasing: PropTypes.array,
-  enter: PropTypes.bool,
   in: PropTypes.bool.isRequired,
   onExited: PropTypes.func,
 };
@@ -69,8 +46,7 @@ Fade.defaultProps = {
   children: null,
   customDuration: null,
   customEasing: null,
-  enter: true,
-  onExited: () => {},
+  onExited: () => { },
 };
 
 export default Fade;

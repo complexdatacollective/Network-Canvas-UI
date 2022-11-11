@@ -69,34 +69,46 @@ const DatePreview = ({ onClick, isActive, placeholder }) => (
           <div
             className={cx('date-picker__preview-part', { 'date-picker__preview-part--is-set': date.year })}
             onClick={handleClickYear}
+            onKeyDown={handleClickYear}
+            role="button"
+            tabIndex={0}
           >
             {date.year || 'Year'}
           </div>
-          { ['full', 'month'].includes(type)
+          {['full', 'month'].includes(type)
             && <div className="date-picker__preview-divider">/</div>}
-          { ['full', 'month'].includes(type)
+          {['full', 'month'].includes(type)
             && (
-            <div
-              className={cx('date-picker__preview-part', { 'date-picker__preview-part--is-set': date.month })}
-              onClick={handleClickMonth}
-            >
-              {getMonthName(date.month) || 'Month'}
-            </div>
+              <div
+                className={cx('date-picker__preview-part', { 'date-picker__preview-part--is-set': date.month })}
+                onClick={handleClickMonth}
+                onKeyDown={handleClickMonth}
+                role="button"
+                tabIndex={0}
+              >
+                {getMonthName(date.month) || 'Month'}
+              </div>
             )}
-          { ['full'].includes(type)
+          {['full'].includes(type)
             && <div className="date-picker__preview-divider">/</div>}
-          { ['full'].includes(type)
+          {['full'].includes(type)
             && (
-            <div
-              className={cx('date-picker__preview-part', { 'date-picker__preview-part--is-set': date.day })}
-              onClick={handleClickDay}
-            >
-              {date.day || 'Day'}
-            </div>
+              <div
+                className={cx('date-picker__preview-part', { 'date-picker__preview-part--is-set': date.day })}
+                onClick={handleClickDay}
+                onKeyDown={handleClickDay}
+                role="button"
+                tabIndex={0}
+              >
+                {date.day || 'Day'}
+              </div>
             )}
           <div
             className={cx('date-picker__preview-clear', { 'date-picker__preview-clear--is-visible': !isEmpty || isActive })}
             onClick={handleClear}
+            onKeyDown={handleClear}
+            role="button"
+            tabIndex={0}
           >
             clear
           </div>
@@ -113,7 +125,7 @@ DatePreview.propTypes = {
 };
 
 DatePreview.defaultProps = {
-  onClick: () => {},
+  onClick: () => { },
   isActive: false,
   placeholder: null,
 };

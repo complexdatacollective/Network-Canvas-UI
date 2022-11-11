@@ -32,7 +32,7 @@ class Modal extends Component {
 
     return (
       <AnimatePresence>
-        { show && (
+        {show && (
           <motion.div
             className="modal"
             style={style}
@@ -42,9 +42,12 @@ class Modal extends Component {
             exit="hidden"
           >
             <div className="modal__background" />
-            <div className="modal__content" onClick={handleBlur}>
+            <div
+              className="modal__content"
+              onBlur={handleBlur}
+            >
               <Drop>
-                { children }
+                {children}
               </Drop>
             </div>
           </motion.div>
@@ -65,7 +68,7 @@ Modal.defaultProps = {
   show: false,
   zIndex: null,
   children: null,
-  onBlur: () => {},
+  onBlur: () => { },
 };
 
 export { Modal };
