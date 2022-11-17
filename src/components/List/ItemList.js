@@ -1,13 +1,13 @@
 import React, {
   useContext,
-  useCallback,
   useMemo,
   useRef,
   useEffect,
   useState,
+  useCallback,
 } from 'react';
 import PropTypes from 'prop-types';
-import { debounce } from 'lodash';
+import { debounce, isEmpty } from 'lodash';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import {
   useAnimation,
@@ -16,18 +16,26 @@ import {
   useReducedMotion,
 } from 'framer-motion';
 import { VariableSizeGrid as Grid } from 'react-window';
-import useResizeObserver from 'use-resize-observer';
-import { v4 as uuid } from 'uuid';
 import cx from 'classnames';
 import useGridSizer from './useGridSizer';
+import useSize from '../../hooks/useSize';
 
 const DefaultEmptyComponent = () => (
-  <div className="searchable-list__placeholder">
-    No results.
-  </div>
+  <motion.div
+    className="item-list__emptyMessage"
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+  >
+    Nothing to display.
+  </motion.div>
 );
 
-const ListContext = React.createContext({ items: [], columns: 0});
+const ListContext = React.createContext({
+  items: [],
+  selectedItems: [],
+  columns: 0,
+});
 
 const getDataIndex = (columns, { rowIndex, columnIndex }) => (
   (rowIndex * columns) + columnIndex
@@ -85,14 +93,15 @@ const getCellRenderer = (Component) => (args) => {
   const {
     items,
     selectedItems,
+    onSelect,
     columns,
     rowHeight,
     containerHeight,
+    reducedMotion,
   } = useContext(ListContext);
   const dataIndex = getDataIndex(columns, { rowIndex, columnIndex });
 
   const item = items[dataIndex];
-  const reducedMotion = useReducedMotion();
 
   if (!item) { return null; }
 
@@ -145,6 +154,7 @@ const getCellRenderer = (Component) => (args) => {
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...attributes}
         // disabled={isDisabled}
+        onClick={() => onSelect(id)}
         selected={isSelected}
       />
     </motion.div>
@@ -155,33 +165,32 @@ const ItemList = ({
   className,
   items,
   selectedItems,
+  onSelect,
   useItemSizing,
   itemComponent: ItemComponent,
-  emptyComponent: EmptyComponent = DefaultEmptyComponent,
+  emptyComponent: EmptyComponent,
   cardColumnBreakpoints,
 }) => {
   const containerRef = useRef(null);
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
 
-  const debouncedSizeUpdate = debounce(({ width: newWidth, height: newHeight }) => {
+  const debouncedSizeUpdate = useCallback(debounce(({ width: newWidth, height: newHeight }) => {
     if (height !== newHeight) {
       setHeight(newHeight);
     }
     if (width !== newWidth) {
       setWidth(newWidth);
     }
-  }, 200);
+  }, 100), [width, height]);
 
-  // We use the custom onResize callback of the resize observer hook to enable
-  // us to debounce resize events that cause re-rendering.
-  const { ref } = useResizeObserver({
-    onResize: (newSizes) => debouncedSizeUpdate(newSizes),
-  });
+  const size = useSize(containerRef);
 
-  // We use this list UUID to determine when to re-render, which triggers the exit
-  // animation of the list items.
-  const listUUID = useMemo(() => uuid(), [items, ItemComponent, useItemSizing]);
+  useEffect(() => {
+    if (size) {
+      debouncedSizeUpdate(size);
+    }
+  }, [size]);
 
   // Instantiate useGridSizer: enhancement to react-window allowing dynamic heights
   const [{
@@ -199,65 +208,64 @@ const ItemList = ({
   );
 
   const CellRenderer = useMemo(
-    () => getCellRenderer(ItemComponent),
-    [ItemComponent, columnCount],
+    () => {
+      console.log('CellRenderer');
+      return getCellRenderer(ItemComponent);
+    },
+    [ItemComponent, items],
   );
+
+  const reducedMotion = useReducedMotion();
 
   const context = useMemo(() => ({
     items,
     selectedItems,
+    onSelect,
     columns: columnCount,
     rowHeight,
     containerHeight: height,
+    reducedMotion,
   }), [items, selectedItems, rowHeight, columnCount]);
 
-  const classNames = cx(
-    'item-list',
-    className,
-  );
-
-  // If items is provided but is empty show the empty component
-  const showEmpty = items.length === 0;
-
-  console.log('list UUID', listUUID);
-
-  console.log('width', width);
-
   return (
-    <AnimatePresence exitBeforeEnter>
+    <ListContext.Provider value={context}>
       <div
-        key={listUUID}
-        className={classNames}
+        className={cx(
+          'item-list',
+          { 'item-list--empty': isEmpty(items) },
+          className,
+        )}
         ref={containerRef}
       >
-        <ListContext.Provider value={context}>
-          <div className="item-list__container" ref={ref}>
-            { showEmpty && <EmptyComponent />}
-            <AutoSizer>
-              {(containerSize) => {
-                // If auto sizer is not ready, items would be sized incorrectly
-                if (!ready) { return null; }
-                return (
-                  <Grid
-                    key={key}
-                    className="item-list__grid"
-                    height={containerSize.height}
-                    width={containerSize.width}
-                    columnCount={columnCount}
-                    rowCount={rowCount}
-                    columnWidth={columnWidth}
-                    rowHeight={rowHeight}
-                    useIsScrolling
-                  >
-                    {CellRenderer}
-                  </Grid>
-                );
-              }}
-            </AutoSizer>
+        <AnimatePresence exitBeforeEnter>
+          <div className="item-list__container">
+            {isEmpty(items) ? (<EmptyComponent />) : (
+              <AutoSizer key={columnCount}>
+                {({ width: containerWidth, height: containerHeight }) => {
+                  // If auto sizer is not ready, items would be sized incorrectly
+                  if (!ready) { return null; }
+                  return (
+                    <Grid
+                      key={key}
+                      className="item-list__grid"
+                      height={containerHeight}
+                      width={containerWidth}
+                      columnCount={columnCount}
+                      rowCount={rowCount}
+                      columnWidth={columnWidth}
+                      rowHeight={rowHeight}
+                      useIsScrolling
+                    >
+                      {CellRenderer}
+                    </Grid>
+                  );
+                }}
+              </AutoSizer>
+            )}
           </div>
-        </ListContext.Provider>
+        </AnimatePresence>
       </div>
-    </AnimatePresence>
+    </ListContext.Provider>
   );
 };
 
@@ -273,7 +281,7 @@ ItemList.propTypes = {
 ItemList.defaultProps = {
   useItemSizing: false,
   className: null,
-  emptyComponent: () => (<h4>Empty</h4>),
+  emptyComponent: DefaultEmptyComponent,
   cardColumnBreakpoints: {
     250: 1,
     500: 2,

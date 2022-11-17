@@ -29,11 +29,6 @@
     color: color('white');
     border-bottom: 1px solid color('white');
 
-    &:focus,
-    &:active {
-      outline: 0;
-    }
-
     &__container--hidden {
       flex-basis: 0;
     }

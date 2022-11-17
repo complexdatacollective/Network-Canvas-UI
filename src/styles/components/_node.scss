@@ -24,6 +24,10 @@
   font-size: var(--base-node-size);
   vertical-align: middle;
 
+  &:focus-visible {
+    outline: 4px dashed red;
+  }
+
   &__node {
     display: inline-block;
     position: absolute;

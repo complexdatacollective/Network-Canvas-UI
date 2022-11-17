@@ -1,5 +1,5 @@
 import React from 'react';
-import { Spinner } from '../src/components/';
+import { Spinner } from '../src/components';
 import Harness from './helpers/Harness';
 import Button from '../src/components/Button';
 import colors from './helpers/Colors';
@@ -14,8 +14,6 @@ const requiredProps = {
 };
 
 export default { title: 'Components/Button' };
-
-console.log(icons.default);
 
 export const basic = () => (
   <Harness

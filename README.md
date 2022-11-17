@@ -7,6 +7,7 @@ Canvas project (https://networkcanvas.com).
   - [ ] React 18
   - [ ] Framer Latest
   - [ ] Storybook 7
+- [ ] Typescript
 - [ ] Visual regression testing
 - [ ] Accessibility auditing (warnings for now....errors when we get to production)
 - [ ] Drag and drop system
@@ -14,6 +15,9 @@ Canvas project (https://networkcanvas.com).
 - [ ] Design primitives
 - [ ] Responsiveness
 - [ ] Interaction sounds
+- [ ] Move CreateSorter and useSort over from network-canvas
+  - [ ] Other hooks?
+- [ ] Theming
 
 ## Installation
 

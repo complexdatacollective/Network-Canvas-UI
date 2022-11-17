@@ -52,22 +52,31 @@ const useGridSizer = (
   const [hiddenSizingEl, setHiddenSizingElement] = useState(null);
 
   useEffect(() => {
-    setHiddenSizingElement(null);
+    if (hiddenSizingEl) {
+      document.getElementsByClassName('hidden-sizer')[0].remove();
+      setHiddenSizingElement(null);
+    }
 
+    // Create a container div to render the sizing element inside of
     const newHiddenSizingEl = document.createElement('div');
+    newHiddenSizingEl.classList.add('hidden-sizer');
 
+    // Make the element full width/height of the screen, so the intrinsic size
+    // of the item is not constrained by the container
     newHiddenSizingEl.style.position = 'absolute';
     newHiddenSizingEl.style.top = '0';
     newHiddenSizingEl.style.pointerEvents = 'none';
     newHiddenSizingEl.style.visibility = 'hidden';
     newHiddenSizingEl.style.width = '100%';
     newHiddenSizingEl.style.height = '100%';
+
+    // Render the ItemComponent inside of the container
     newHiddenSizingEl.innerHTML = renderToString(<ItemComponent />);
 
     const element = document.body.appendChild(newHiddenSizingEl);
-    setHiddenSizingElement(element.firstElementChild);
 
-    return () => document.body.removeChild(newHiddenSizingEl);
+    // Set the hidden sizing element to the ItemComponent (not the container!)
+    setHiddenSizingElement(element.firstElementChild);
   }, [ItemComponent, useItemSizing]);
 
   // Set ready to true only after we have rendered our hidden sizing element
@@ -78,13 +87,11 @@ const useGridSizer = (
 
   const itemCount = (items && items.length) || 0;
 
-  // When using item sizing, we calculate the item's size, using the
-  // hidden sizing element, and then determine how many columns we
-  // can fit within the container width.
-  //
-  // Row height is set to exactly the item height
-
+  // Number of columns to render
   const columnCount = useMemo(() => {
+    // When using item sizing, we calculate the item's size, using the
+    // hidden sizing element, and then determine how many columns we
+    // can fit within the container width.
     if (useItemSizing) {
       if (!hiddenSizingEl) { return 1; }
       const { width } = hiddenSizingEl.getBoundingClientRect();
@@ -92,10 +99,11 @@ const useGridSizer = (
       return columns > 1 ? columns : 1;
     }
 
+    // When not using item sizing, use the breakpoints configuration.
     const breakpoints = Object.keys(columnBreakpoints).sort();
     const activeBreakpoint = breakpoints.find((bp) => bp < containerWidth);
     return columnBreakpoints[activeBreakpoint] || 1;
-  }, [useItemSizing, ItemComponent, containerWidth, columnBreakpoints]);
+  }, [useItemSizing, hiddenSizingEl, containerWidth, columnBreakpoints]);
 
   const rowCount = useMemo(() => (
     Math.ceil((itemCount || 0) / columnCount)
@@ -108,14 +116,19 @@ const useGridSizer = (
   // Calculate row height based on height of hiddenSizingEl
   const rowHeight = useCallback(
     (rowIndex) => {
+      // If we don't have a hidden sizing element, we can't calculate
       if (!hiddenSizingEl) { return minimumHeight; }
 
+      // Get the hiddenSizing element's intrinsic height
       const height = getElementHeight(hiddenSizingEl);
 
+      // If we are using item sizing, return the intrinsic height
       if (useItemSizing) {
         return height;
       }
 
+      // Otherwise, we need to resize the hiddenSizing element to the column
+      // with, and then calculate the height of the tallest item.
       hiddenSizingEl.style.width = `${columnWidth()}px`;
 
       const start = rowIndex * columnCount;
@@ -132,7 +145,18 @@ const useGridSizer = (
 
       return biggestRowHeight > 0 ? biggestRowHeight : minimumHeight;
     },
-    [useItemSizing, hiddenSizingEl, items, ItemComponent, columnWidth()],
+    [useItemSizing, hiddenSizingEl, items, ItemComponent],
+  );
+
+  console.log(
+    {
+      key: containerWidth,
+      columnCount,
+      rowCount,
+      columnWidth: columnWidth(),
+      rowHeight,
+    },
+    ready,
   );
 
   return [

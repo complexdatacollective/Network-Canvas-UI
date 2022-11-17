@@ -1,6 +1,5 @@
-import React, { useMemo, useRef } from 'react';
+import React, { useMemo, useRef, useId } from 'react';
 import PropTypes from 'prop-types';
-import { v4 as uuid } from 'uuid';
 import cx from 'classnames';
 import { motion } from 'framer-motion';
 import { isEqual, get } from 'lodash';
@@ -34,7 +33,7 @@ const HyperList = ({
   sortOptions,
   sortableProperties,
 }) => {
-  const id = useRef(uuid());
+  const id = useId();
   const [results, query, setQuery, isWaiting, hasQuery] = useSearch(items, searchOptions);
 
   const [
@@ -98,7 +97,7 @@ const HyperList = ({
           items={filteredResults}
           itemComponent={itemComponent}
         />
-        { showTooMany && (
+        {showTooMany && (
           <div
             className="searchable-list__too-many"
           >
@@ -106,7 +105,7 @@ const HyperList = ({
           </div>
         )}
       </div>
-      { canSort && (
+      {canSort && (
         <div className="searchable-list__sort">
           {get(sortOptions, 'sortableProperties', []).map(({ variable, label }) => {
             const isActive = isEqual(variable, sortByProperty);

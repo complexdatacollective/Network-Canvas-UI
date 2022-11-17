@@ -10,6 +10,7 @@
   }
 
   &__grid {
+    overflow-x: hidden !important; // sass-lint:disable-line no-important
   }
 
   &__item {
@@ -17,6 +18,14 @@
     justify-content: center;
     align-items: center;
     width: 100%;
+  }
+
+  &--empty {}
+
+  &__emptyMessage {
+    flex: 1;
+    align-self: center;
+    text-align: center;
   }
 }
 

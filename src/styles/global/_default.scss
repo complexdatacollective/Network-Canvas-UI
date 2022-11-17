@@ -292,6 +292,14 @@ $system-font-stack: 'system-ui', sans-serif;
 html {
   font-family: var(--body-font-family);
   font-size: var(--base-font-size);
+
+
+}
+
+body {
+  > *:focus {
+      outline: 1px dashed red;
+    }
 }
 
 a {

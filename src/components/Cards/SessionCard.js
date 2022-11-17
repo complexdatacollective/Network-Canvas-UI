@@ -11,7 +11,9 @@ import Skeleton from '../Skeleton';
 
 const formatDate = (dateString) => dateString && new Date(dateString).toLocaleString(undefined);
 
-const SessionCard = (props) => {
+// const HoverMarquee = HoverTest;
+
+const SessionCard = React.memo((props) => {
   const {
     caseId,
     startedAt,
@@ -100,7 +102,7 @@ const SessionCard = (props) => {
       </div>
     </div>
   );
-};
+});
 
 SessionCard.defaultProps = {
   onClickHandler: undefined,

@@ -60,6 +60,7 @@ export default {
         1000: mockItems(1000),
         100: mockItems(100),
         10: mockItems(10),
+        0: [],
       },
       control: { type: 'radio' },
     },
@@ -81,10 +82,20 @@ export default {
   },
 };
 
+const TestNode = (props) => {
+  return (
+    <Node
+      {...props}
+      label={props.name}
+    />
+  );
+};
+
 const Template = (args) => {
   const [selected, setSelected] = useState([]);
-
+  console.log('selected', selected);
   const doSelection = useCallback((id) => {
+    console.log('do selection', id);
     if (selected.includes(id)) {
       setSelected([
         ...selected.filter((selectedID) => selectedID !== id),
@@ -98,48 +109,37 @@ const Template = (args) => {
     ]);
   }, [selected]);
 
-  const TestNode = (props) => {
-    const {
-      id,
-      name,
-    } = props;
-
-    const isSelected = !!selected.includes(id);
-
-    return (
-      <Node
-        {...props}
-        label={name}
-        selected={isSelected}
-        onClick={doSelection}
-      />
-    );
-  };
-
   return (
-    <div
-      style={{
-        display: 'flex',
-        height: '400px',
-        width: '100%',
-        border: '1px solid tomato',
-        '--base-font-size': '12px',
-        resize: 'both',
-        overflow: 'auto',
-      }}
-    >
-      <ItemList
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        {...args}
-        itemComponent={TestNode}
-        selectedItems={selected}
-        onSelect={doSelection}
-        cardColumnBreakpoints={{
-          800: 2,
-          1200: 3,
+    <>
+      {selected && selected.length > 0 && (
+        <div>
+          {selected.length}
+          items selected.
+        </div>
+      )}
+      <div
+        style={{
+          display: 'flex',
+          height: '400px',
+          width: '100%',
+          border: '1px solid tomato',
+          '--base-font-size': '12px',
+          resize: 'both',
+          overflow: 'auto',
         }}
-      />
-    </div>
+      >
+        <ItemList
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          {...args}
+          selectedItems={selected}
+          onSelect={doSelection}
+          cardColumnBreakpoints={{
+            800: 2,
+            1200: 3,
+          }}
+        />
+      </div>
+    </>
   );
 };
 
