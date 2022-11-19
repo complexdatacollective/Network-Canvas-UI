@@ -6,11 +6,13 @@
   flex-direction: column;
   height: 9rem;
   width: 100%;
+  max-width: 30rem;
   color: var(--color-navy-taupe);
   justify-content: space-between;
   overflow: hidden;
   box-sizing: border-box;
   position: relative;
+  margin: 0.3rem 0.6rem;
 
   &--clickable {
     @include clickable(2);

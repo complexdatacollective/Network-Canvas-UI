@@ -148,20 +148,9 @@ const useGridSizer = (
     [useItemSizing, hiddenSizingEl, items, ItemComponent],
   );
 
-  console.log(
-    {
-      key: containerWidth,
-      columnCount,
-      rowCount,
-      columnWidth: columnWidth(),
-      rowHeight,
-    },
-    ready,
-  );
-
   return [
     {
-      key: containerWidth,
+      key: `${containerWidth}-${columnCount}-${itemCount}-${useItemSizing}`,
       columnCount,
       rowCount,
       columnWidth,
