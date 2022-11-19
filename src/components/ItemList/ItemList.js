@@ -25,16 +25,16 @@ import { useDroppable } from '@dnd-kit/core';
 const ItemList = ({
   className,
   items,
-  selectedItems,
-  onSelect,
   useItemSizing,
   itemComponent: ItemComponent,
   emptyComponent: EmptyComponent,
   cardColumnBreakpoints,
 }) => {
   const containerRef = useRef(null);
-  const [width, setWidth] = useState(0);
-  const [height, setHeight] = useState(0);
+
+  // For some reason, these values cannot be 0 to start, otherwise the grid will not render!
+  const [width, setWidth] = useState(1);
+  const [height, setHeight] = useState(1);
   const {
     setNodeRef,
     isOver,
@@ -92,15 +92,12 @@ const ItemList = ({
 
   const context = useMemo(() => ({
     items,
-    selectedItems,
-    onSelect,
     columns: columnCount,
     rowHeight,
     containerHeight: height,
     reducedMotion,
   }), [
     items,
-    selectedItems,
     columnCount,
     rowHeight,
     height,
@@ -108,20 +105,20 @@ const ItemList = ({
   ]);
 
   return (
-    <ListContext.Provider value={context}>
-      <div
-        className={cx(
-          'item-list',
-          { 'item-list--empty': isEmpty(items) },
-          className,
-        )}
-        ref={(el) => { setNodeRef(el); containerRef.current = el; }}
-      >
-        <AnimatePresence>
-          {active && <DefaultDropOverlay isOver={isOver} />}
-        </AnimatePresence>
-        <AnimatePresence exitBeforeEnter>
-          <div className="item-list__container">
+    <div
+      className={cx(
+        'item-list',
+        { 'item-list--empty': isEmpty(items) },
+        className,
+      )}
+      ref={(el) => { setNodeRef(el); containerRef.current = el; }}
+    >
+      <AnimatePresence>
+        {active && <DefaultDropOverlay isOver={isOver} />}
+      </AnimatePresence>
+      <AnimatePresence exitBeforeEnter>
+        <div className="item-list__container" key={key}>
+          <ListContext.Provider value={context}>
             {isEmpty(items) ? (<EmptyComponent />) : (
               <AutoSizer key={key}>
                 {({ width: containerWidth, height: containerHeight }) => {
@@ -144,10 +141,10 @@ const ItemList = ({
                 }}
               </AutoSizer>
             )}
-          </div>
-        </AnimatePresence>
-      </div>
-    </ListContext.Provider>
+          </ListContext.Provider>
+        </div>
+      </AnimatePresence>
+    </div>
   );
 };
 
