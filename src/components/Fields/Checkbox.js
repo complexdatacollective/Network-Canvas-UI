@@ -1,7 +1,7 @@
 import React, { memo, useRef } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import uuid from 'uuid';
+import uuid from 'uuid/v4';
 import MarkdownLabel from './MarkdownLabel';
 
 const Checkbox = (props) => {

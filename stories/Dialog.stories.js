@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import uuid from 'uuid';
+import uuid from 'uuid/v4';
 import { action } from '@storybook/addon-actions';
 import '../src/styles/_all.scss';
 import { Dialogs } from '../src/components';

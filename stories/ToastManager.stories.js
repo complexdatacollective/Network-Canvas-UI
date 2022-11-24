@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import uuid from 'uuid';
+import uuid from 'uuid/v4';
 import faker from 'faker';
 import { action } from '@storybook/addon-actions';
 import Harness from './helpers/Harness';
