@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class SVG extends React.PureComponent {
+class SVG extends React.PureComponent {
   render() {
     return (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 240" {...this.props}>
@@ -31,3 +31,5 @@ export default class SVG extends React.PureComponent {
     );
   }
 }
+
+export default SVG;
