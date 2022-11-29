@@ -1,5 +1,6 @@
 import { babel } from '@rollup/plugin-babel';
 import external from 'rollup-plugin-peer-deps-external';
+import nodeExternals from 'rollup-plugin-node-externals';
 import resolve from '@rollup/plugin-node-resolve';
 import scss from 'rollup-plugin-scss';
 import typescript from '@rollup/plugin-typescript';
@@ -34,6 +35,7 @@ export default [
         failOnError: true,
         outputStyle: 'compressed',
       }),
+      nodeExternals(),
       external(),
       resolve(),
       svgr(),
@@ -54,7 +56,7 @@ export default [
         }
       }),
       typescript(),
-      terser(),
+      // terser(),
     ],
   },
 ];

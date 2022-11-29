@@ -2,7 +2,7 @@ export * from './Cards';
 export * from './Dialog';
 export * from './Fields';
 export * from './Prompts';
-export * from './Sprites/ExportSprite';
+export * from './Sprites';
 export * from './Toast';
 export * from './Transitions';
 export * from './Wizard';

@@ -1,7 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import PropTypes from 'prop-types';
-import Modal from '../Modal';
+import Modal from '../../Modal';
 
 /**
  * A relatively unstyled dialog for use in other kinds of modals
@@ -47,7 +47,7 @@ SimpleDialog.defaultProps = {
   show: false,
   children: null,
   options: [],
-  onBlur: () => {},
+  onBlur: () => { },
   style: {},
   className: null,
 };
