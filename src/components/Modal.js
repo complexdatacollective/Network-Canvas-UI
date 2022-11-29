@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import PropTypes from 'prop-types';
 import Drop from './Transitions/Drop';
-import window from './window';
+import window from '../utils/window';
 import { getCSSVariableAsNumber } from '../utils/CSSVariables';
 
 class Modal extends Component {
@@ -32,7 +32,7 @@ class Modal extends Component {
 
     return (
       <AnimatePresence>
-        { show && (
+        {show && (
           <motion.div
             className="modal"
             style={style}
@@ -44,7 +44,7 @@ class Modal extends Component {
             <div className="modal__background" />
             <div className="modal__content" onClick={handleBlur}>
               <Drop>
-                { children }
+                {children}
               </Drop>
             </div>
           </motion.div>
@@ -65,7 +65,7 @@ Modal.defaultProps = {
   show: false,
   zIndex: null,
   children: null,
-  onBlur: () => {},
+  onBlur: () => { },
 };
 
 export { Modal };

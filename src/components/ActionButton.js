@@ -4,22 +4,6 @@ import cx from 'classnames';
 import { noop } from 'lodash';
 import Icon from './Icon';
 
-const renderIcon = ({ icon }) => {
-  let iconElement = null;
-  if (icon) {
-    if (typeof icon === 'string') {
-      // eslint-disable-next-line
-      const Icon = require('./Icon').default;
-      iconElement = <Icon name={icon} />;
-    } else {
-      iconElement = React.cloneElement(
-        icon,
-      );
-    }
-  }
-  return iconElement;
-};
-
 const ActionButton = React.memo((props) => {
   const {
     disabled,
@@ -45,7 +29,7 @@ const ActionButton = React.memo((props) => {
       tabIndex="0"
     >
       <div className="icon-container">
-        {renderIcon({ icon })}
+        <Icon name={icon} />
       </div>
       <div className="plus-button">
         <Icon

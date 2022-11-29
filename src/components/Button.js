@@ -8,20 +8,7 @@ const renderButtonIcon = ({ icon, iconPosition }) => {
     'button__icon--right': iconPosition === 'right',
   });
 
-  let iconElement = null;
-  if (icon) {
-    if (typeof icon === 'string') {
-      // eslint-disable-next-line
-      const Icon = require('./Icon').default;
-      iconElement = <Icon name={icon} className={iconClassNames} />;
-    } else {
-      iconElement = React.cloneElement(
-        icon,
-        { className: iconClassNames },
-      );
-    }
-  }
-  return iconElement;
+  return <Icon name={icon} className={iconClassNames} />;
 };
 
 class Button extends PureComponent {
@@ -95,7 +82,7 @@ Button.defaultProps = {
   size: '',
   color: '',
   type: 'button',
-  onClick: () => {},
+  onClick: () => { },
   disabled: false,
 };
 

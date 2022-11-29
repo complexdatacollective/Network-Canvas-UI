@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { omit } from 'lodash';
-import * as DialogVariants from './Dialog';
+import * as DialogVariants from '.';
 
 /*
  * Displays a stack of Dialogs.

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
-import MarkdownLabel from './MarkdownLabel';
-import Boolean from '../Boolean/Boolean';
-import Icon from '../Icon';
+import MarkdownLabel from '../MarkdownLabel';
+import Boolean from './Boolean';
+import Icon from '../../Icon';
 
 const BooleanField = ({
   label,
@@ -39,10 +39,10 @@ const BooleanField = ({
           noReset={noReset}
         />
         {invalid && touched && (
-        <div className="form-field-boolean__error">
-          <Icon name="warning" />
-          {error}
-        </div>
+          <div className="form-field-boolean__error">
+            <Icon name="warning" />
+            {error}
+          </div>
         )}
       </div>
     </div>

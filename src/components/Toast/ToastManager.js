@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { AnimatePresence } from 'framer-motion';
 import Toast from './Toast';
-import window from '../window';
+import window from '../../utils/window';
 
 const ToastManager = ({
   toasts,

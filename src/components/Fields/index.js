@@ -1,8 +1,6 @@
 /* eslint-disable import/prefer-default-export */
-export { default as Boolean } from './Boolean';
 export { default as Checkbox } from './Checkbox';
 export { default as CheckboxGroup } from './CheckboxGroup';
-export { default as DatePicker } from './DatePicker';
 export { default as LikertScale } from './LikertScale';
 export { default as Markdown } from './Markdown';
 export { default as MarkdownLabel } from './MarkdownLabel';
