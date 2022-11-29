@@ -4,8 +4,6 @@
 @import 'core/breakpoints';
 @import 'core/color';
 @import 'core/palette';
-@import 'core/grid';
-@import 'core/functions';
 @import 'core/spacing';
 @import 'core/typography';
 @import 'core/quicksand';
@@ -112,6 +110,12 @@ $export-ui-classes: true !default;
       @include palette-set('#{$name}-#{$i}--dark', color('#{$current-color}--dark'));
     }
   }
+}
+
+// vertical align, horizontal align
+@mixin vcjc {
+  justify-content: center;
+  align-items: center;
 }
 
 // Root sequence
@@ -439,5 +443,4 @@ $headings: (
 
 @if $export-ui-classes {
   @include typography-classes;
-  @include grid-classes;
 }
