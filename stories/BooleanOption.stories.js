@@ -1,9 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable arrow-body-style */
 import React, { useState } from 'react';
-import { action } from '@storybook/addon-actions';
 import Harness from './helpers/Harness';
-import BooleanOption from '../src/components/Boolean/BooleanOption';
+import BooleanOption from '../src/components/Fields/Boolean/BooleanOption';
 import '../src/styles/_all.scss';
 
 import './Boolean.stories.scss';

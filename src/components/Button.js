@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import Icon from './Icon';
 
 const renderButtonIcon = ({ icon, iconPosition }) => {
   const iconClassNames = cx({
@@ -8,8 +9,21 @@ const renderButtonIcon = ({ icon, iconPosition }) => {
     'button__icon--right': iconPosition === 'right',
   });
 
-  return <Icon name={icon} className={iconClassNames} />;
+  let iconElement = null;
+  if (icon) {
+    if (typeof icon === 'string') {
+      // eslint-disable-next-line
+      iconElement = <Icon name={icon} className={iconClassNames} />;
+    } else {
+      iconElement = React.cloneElement(
+        icon,
+        { className: iconClassNames },
+      );
+    }
+  }
+  return iconElement;
 };
+
 
 class Button extends PureComponent {
   render() {

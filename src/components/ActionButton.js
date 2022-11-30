@@ -20,6 +20,20 @@ const ActionButton = React.memo((props) => {
     [`action-button--${color}`]: !!color,
   });
 
+  const renderIcon = ({ icon }) => {
+    let iconElement = null;
+    if (icon) {
+      if (typeof icon === 'string') {
+        iconElement = <Icon name={icon} />;
+      } else {
+        iconElement = React.cloneElement(
+          icon,
+        );
+      }
+    }
+    return iconElement;
+  };
+
   return (
     <button
       type="button"

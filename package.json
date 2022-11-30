@@ -1,6 +1,6 @@
 {
   "name": "@codaco/ui",
-  "version": "6.0.0-alpha.2",
+  "version": "6.0.0-alpha.3",
   "description": "Styles and React components for the Network Canvas project",
   "license": "GPL-3.0-or-later",
   "main": "lib/index.js",
@@ -10,10 +10,9 @@
     "type": "git"
   },
   "scripts": {
-    "rollup": "node --experimental-json-modules ./node_modules/.bin/rollup --config rollup.config.mjs",
+    "build": "node --experimental-json-modules ./node_modules/.bin/rollup --config rollup.config.mjs",
     "lint": "eslint ./src",
     "sass-lint": "sass-lint -vc .sass-lint.yml",
-    "build": "./scripts/build",
     "preflight": "npm run lint && npm run sass-lint",
     "prepublishOnly": "npm run preflight && npm run build",
     "storybook": "start-storybook -p 6006 --no-manager-cache",
@@ -66,12 +65,14 @@
     "@rollup/plugin-json": "^5.0.2",
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@rollup/plugin-typescript": "^9.0.2",
-    "@storybook/addon-actions": "^6.3.3",
-    "@storybook/addon-essentials": "^6.3.3",
-    "@storybook/addon-links": "^6.3.3",
-    "@storybook/addons": "^6.3.3",
-    "@storybook/react": "^6.3.3",
-    "@storybook/theming": "^6.3.3",
+    "@storybook/addon-actions": "^6.5.13",
+    "@storybook/addon-essentials": "^6.5.13",
+    "@storybook/addon-links": "^6.5.13",
+    "@storybook/addons": "^6.5.13",
+    "@storybook/builder-webpack5": "^6.5.13",
+    "@storybook/manager-webpack5": "^6.5.13",
+    "@storybook/react": "^6.5.13",
+    "@storybook/theming": "^6.5.13",
     "@svgr/rollup": "^6.5.1",
     "@types/react": "^18.0.25",
     "css-loader": "^6.7.2",
@@ -93,8 +94,10 @@
     "rollup-plugin-terser": "^7.0.2",
     "sass": "^1.56.1",
     "sass-lint": "^1.13.1",
-    "sass-loader": "^10.2.0",
+    "sass-loader": "^13.2.0",
+    "storybook-addon-sass-postcss": "^0.1.3",
     "style-loader": "^3.3.1",
-    "typescript": "^4.9.3"
+    "typescript": "^4.9.3",
+    "webpack": "^5.75.0"
   }
 }
