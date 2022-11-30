@@ -4,6 +4,20 @@ import cx from 'classnames';
 import { noop } from 'lodash';
 import Icon from './Icon';
 
+const renderIcon = ({ icon }) => {
+  let iconElement = null;
+  if (icon) {
+    if (typeof icon === 'string') {
+      iconElement = <Icon name={icon} />;
+    } else {
+      iconElement = React.cloneElement(
+        icon,
+      );
+    }
+  }
+  return iconElement;
+};
+
 const ActionButton = React.memo((props) => {
   const {
     disabled,
@@ -20,20 +34,6 @@ const ActionButton = React.memo((props) => {
     [`action-button--${color}`]: !!color,
   });
 
-  const renderIcon = ({ icon }) => {
-    let iconElement = null;
-    if (icon) {
-      if (typeof icon === 'string') {
-        iconElement = <Icon name={icon} />;
-      } else {
-        iconElement = React.cloneElement(
-          icon,
-        );
-      }
-    }
-    return iconElement;
-  };
-
   return (
     <button
       type="button"
@@ -43,7 +43,7 @@ const ActionButton = React.memo((props) => {
       tabIndex="0"
     >
       <div className="icon-container">
-        <Icon name={icon} />
+        {renderIcon({ icon })}
       </div>
       <div className="plus-button">
         <Icon

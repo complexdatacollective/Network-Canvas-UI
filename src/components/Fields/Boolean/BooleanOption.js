@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import useResizeAware from 'react-resize-aware';
 import RoundCheckbox from './RoundCheckbox';
-import Markdown from '../../Fields/Markdown';
+import Markdown from '../Markdown';
 
 const BooleanOption = ({
   classes,

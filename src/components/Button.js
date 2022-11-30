@@ -24,7 +24,6 @@ const renderButtonIcon = ({ icon, iconPosition }) => {
   return iconElement;
 };
 
-
 class Button extends PureComponent {
   render() {
     const {

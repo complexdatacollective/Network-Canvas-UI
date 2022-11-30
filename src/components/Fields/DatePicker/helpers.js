@@ -1,5 +1,10 @@
 import { DateTime, Info } from 'luxon';
-import { difference, intersection, isEqual, get } from 'lodash';
+import {
+  difference,
+  intersection,
+  isEqual,
+  get,
+} from 'lodash';
 
 export const now = () => DateTime.local();
 
