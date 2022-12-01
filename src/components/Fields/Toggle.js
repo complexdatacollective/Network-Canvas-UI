@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { isBoolean } from 'lodash';
-import uuid from 'uuid/v4';
+import { v4 as uuid } from 'uuid';
 import Icon from '../Icon';
 import MarkdownLabel from './MarkdownLabel';
 

@@ -1,6 +1,6 @@
 /* eslint-disable react/button-has-type */
 import React, { useState, useRef } from 'react';
-import uuid from 'uuid/v4';
+import { v4 as uuid } from 'uuid';
 import { action } from '@storybook/addon-actions';
 import Modal from '../src/components/Modal';
 import '../src/styles/_all.scss';
