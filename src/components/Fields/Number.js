@@ -11,18 +11,14 @@ const toInt = (value) => {
 
 const NumberInput = ({
   placeholder = 'Enter a number...',
-  input: {
-    onChange,
-    onBlur
-  },
   ...rest
 }) => (
   <TextInput
     type="number"
     placeholder={placeholder}
     input={{
-      onChange: (e) => onChange(toInt(e.target.value)),
-      onBlur: (e) => onBlur(toInt(e.target.value)),
+      onChange: (e) => rest.input.onChange(toInt(e.target.value)),
+      onBlur: (e) => rest.input.onBlur(toInt(e.target.value)),
       ...rest.input,
     }}
     // eslint-disable-next-line react/jsx-props-no-spreading

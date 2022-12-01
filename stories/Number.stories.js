@@ -3,7 +3,7 @@ import Number from '../src/components/Fields/Number';
 import '../src/styles/_all.scss';
 
 export default {
-  title: 'Components/Number',
+  title: 'Fields/Number',
   args: {
     value: 0,
     error: 'Something was not right about the input',

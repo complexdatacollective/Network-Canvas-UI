@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { AnimatePresence } from 'framer-motion';
 import Toast from './Toast';
-import { usePortal } from '../../hooks';
+import { usePortal } from '../../hooks/index.ts';
 
 const ToastManager = ({
   toasts,

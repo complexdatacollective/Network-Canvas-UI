@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import PropTypes from 'prop-types';
 import Drop from './Transitions/Drop';
 import { getCSSVariableAsNumber } from '../utils/CSSVariables';
-import { usePortal } from '../hooks';
+import usePortal from '../hooks/usePortal.tsx';
 
 const Modal = (props) => {
   const {
