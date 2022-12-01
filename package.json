@@ -1,6 +1,6 @@
 {
   "name": "@codaco/ui",
-  "version": "6.0.0-alpha.4",
+  "version": "6.0.0-alpha.5",
   "description": "Styles and React components for the Network Canvas project",
   "license": "GPL-3.0-or-later",
   "main": "lib/index.js",
@@ -35,7 +35,6 @@
     "react-markdown": "^6.0.2",
     "react-resize-aware": "^3.0.1",
     "react-transition-group": "^4.3.0",
-    "recompose": "^0.30.0",
     "rehype-raw": "^5.1.0",
     "rehype-sanitize": "^4.0.0",
     "remark": "^13.0.0",
@@ -76,6 +75,7 @@
     "@storybook/theming": "^6.5.13",
     "@svgr/rollup": "^6.5.1",
     "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.9",
     "css-loader": "^6.7.2",
     "enzyme": "^3.7.0",
     "eslint": "^7.21.0",
