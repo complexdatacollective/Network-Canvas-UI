@@ -1,6 +1,11 @@
 name: Publish package to GitHub Packages
 on:
-  push
+  # the 1st condition
+  workflow_run:
+    workflows: ["preflight"]
+    types:
+      - completed
+
 jobs:
   publish:
     needs: preflight
