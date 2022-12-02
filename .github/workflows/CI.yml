@@ -44,7 +44,7 @@ jobs:
           node-version: '18.12.1'
       - run: npm ci
       - run: npm run build
-      - uses: complexdatacollective/npm-publish@v1
+      - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_AUTH_TOKEN }}
 
