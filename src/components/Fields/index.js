@@ -1,9 +1,8 @@
-export * from './Boolean';
-export * from './DatePicker';
-export * from './RichText';
-
+export { default as Boolean } from './Boolean/Boolean';
+export { default as BooleanOption } from './Boolean/BooleanOption';
 export { default as Checkbox } from './Checkbox';
 export { default as CheckboxGroup } from './CheckboxGroup';
+export { default as DatePicker } from './DatePicker';
 export { default as LikertScale } from './LikertScale';
 export { default as Markdown } from './Markdown';
 export { default as MarkdownLabel } from './MarkdownLabel';
@@ -11,6 +10,7 @@ export { default as Number } from './Number';
 export { default as Radio } from './Radio';
 export { default as RadioGroup } from './RadioGroup';
 export { default as RelativeDatePicker } from './RelativeDatePicker';
+export { default as RichText } from './RichText';
 export { default as Search } from './Search';
 export { default as Slider } from './Slider';
 export { default as Text } from './Text';

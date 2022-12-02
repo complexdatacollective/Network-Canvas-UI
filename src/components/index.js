@@ -7,6 +7,9 @@ export * from './Toast';
 export * from './Transitions';
 export * from './Wizard';
 
+// Special named export just for Fields to allow Interviewer to import all fields without names.
+export * as Fields from './Fields';
+
 export { default as ActionButton } from './ActionButton';
 export { default as Button } from './Button';
 export { default as CloseButton } from './CloseButton';

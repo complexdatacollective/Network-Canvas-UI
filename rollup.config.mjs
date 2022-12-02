@@ -1,4 +1,5 @@
 import { babel } from '@rollup/plugin-babel';
+import del from 'rollup-plugin-delete';
 import external from 'rollup-plugin-peer-deps-external';
 import nodeExternals from 'rollup-plugin-node-externals';
 import resolve from '@rollup/plugin-node-resolve';
@@ -14,16 +15,16 @@ export default [
     input: './src/index.ts',
     output: [
       {
-        file: 'lib/index.js',
-        format: 'cjs',
-      },
-      {
         file: 'lib/index.es.js',
         format: 'es',
         exports: 'named',
+        sourcemap: true,
       },
     ],
     plugins: [
+      del({
+        targets: 'lib/*',
+      }),
       babel({
         babelHelpers: 'runtime',
         exclude: 'node_modules/**',
@@ -34,6 +35,7 @@ export default [
         output: true,
         failOnError: true,
         outputStyle: 'compressed',
+        sourceMap: true,
       }),
       nodeExternals(),
       external(),
@@ -41,22 +43,22 @@ export default [
       svgr(),
       json(),
       commonjs({
-        namedExports: {
-          'node_modules/lodash/lodash.js': [
-            'noop',
-            'get',
-            'unionBy',
-            'union',
-            'reduce',
-            'find',
-            'forEach',
-            'includes',
-            'endsWith'
-          ]
-        }
+        // namedExports: {
+        //   'node_modules/lodash/lodash.js': [
+        //     'noop',
+        //     'get',
+        //     'unionBy',
+        //     'union',
+        //     'reduce',
+        //     'find',
+        //     'forEach',
+        //     'includes',
+        //     'endsWith',
+        //   ],
+        // },
       }),
       typescript(),
-      // terser(),
+      terser(),
     ],
   },
 ];
