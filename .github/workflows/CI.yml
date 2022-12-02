@@ -11,14 +11,14 @@ jobs:
   preflight:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       # Set node version
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: '18.12.1'
 
       # Cache node_modules
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         env:
           cache-name: cache-node-modules
         with:
@@ -26,7 +26,25 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install node modules
-        run: npm install
+        run: npm ci
 
       - name: Preflight
         run: npm run preflight
+  publish:
+    needs: [CI]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v3
+      # Setup .npmrc file to publish to GitHub Packages
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18.12.1'
+      - run: npm ci
+      - run: npm run build
+      - uses: complexdatacollective/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_AUTH_TOKEN }}
+
