@@ -1,0 +1,19 @@
+name: Publish package to GitHub Packages
+on:
+  push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v3
+      # Setup .npmrc file to publish to GitHub Packages
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18.12.1'
+      - run: npm ci
+      - uses: codaco/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_AUTH_TOKEN }}
