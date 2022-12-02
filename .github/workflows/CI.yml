@@ -31,7 +31,7 @@ jobs:
       - name: Preflight
         run: npm run preflight
   publish:
-    needs: [CI]
+    needs: [preflight]
     runs-on: ubuntu-latest
     permissions:
       contents: read
