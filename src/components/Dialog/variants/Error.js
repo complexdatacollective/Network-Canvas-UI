@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
-import Dialog from './Dialog';
-import Button from '../Button';
+import Dialog from '../Dialog';
+import Button from '../../Button';
 
 const getErrorMessage = (error) => !!error
   && (error.friendlyMessage ? error.friendlyMessage : error.toString());

@@ -1,7 +1,7 @@
 import React from 'react';
 import { noop } from 'lodash';
 import PropTypes from 'prop-types';
-import * as muiIcons from '@material-ui/icons';
+import * as muiIcons from '@mui/icons-material';
 import ActionButton from '../src/components/ActionButton';
 import colors from './helpers/Colors';
 import '../src/styles/_all.scss';

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { action } from '@storybook/addon-actions';
 import Harness from './helpers/Harness';
-import Boolean from '../src/components/Fields/Boolean';
+import Boolean from '../src/components/Fields/Boolean/Field';
 import '../src/styles/_all.scss';
 
 import './Boolean.stories.scss';

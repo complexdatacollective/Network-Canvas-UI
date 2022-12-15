@@ -1,4 +1,4 @@
-import * as muiIcons from '@material-ui/icons';
+import * as muiIcons from '@mui/icons-material';
 import icons from '../assets/img/icons';
 
 const getMUIIcon = (name) => {

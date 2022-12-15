@@ -1,7 +1,7 @@
 import React from 'react';
 import { get } from 'lodash';
-import SearchIcon from '@material-ui/icons/SearchRounded';
-import ClearIcon from '@material-ui/icons/ClearRounded';
+import SearchIcon from '@mui/icons-material/SearchRounded';
+import ClearIcon from '@mui/icons-material/ClearRounded';
 import Text from '../src/components/Fields/Text';
 import '../src/styles/_all.scss';
 

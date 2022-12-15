@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
+import Icon from './Icon';
 
 const renderButtonIcon = ({ icon, iconPosition }) => {
   const iconClassNames = cx({
@@ -12,7 +13,6 @@ const renderButtonIcon = ({ icon, iconPosition }) => {
   if (icon) {
     if (typeof icon === 'string') {
       // eslint-disable-next-line
-      const Icon = require('./Icon').default;
       iconElement = <Icon name={icon} className={iconClassNames} />;
     } else {
       iconElement = React.cloneElement(
@@ -95,7 +95,7 @@ Button.defaultProps = {
   size: '',
   color: '',
   type: 'button',
-  onClick: () => {},
+  onClick: () => { },
   disabled: false,
 };
 

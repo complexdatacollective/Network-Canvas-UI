@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import useResizeAware from 'react-resize-aware';
 import RoundCheckbox from './RoundCheckbox';
-import Markdown from '../Fields/Markdown';
+import Markdown from '../Markdown';
 
 const BooleanOption = ({
   classes,
@@ -34,7 +34,7 @@ const BooleanOption = ({
   return (
     <div className={classNames} onClick={onClick} style={{ position: 'relative' }}>
       {resizeListener}
-      { customIcon || <RoundCheckbox checked={selected} negative={negative} />}
+      {customIcon || <RoundCheckbox checked={selected} negative={negative} />}
       {renderLabel()}
     </div>
   );
@@ -55,7 +55,7 @@ BooleanOption.propTypes = {
 BooleanOption.defaultProps = {
   classes: null,
   selected: false,
-  onClick: () => {},
+  onClick: () => { },
   customIcon: null,
   negative: false,
 };

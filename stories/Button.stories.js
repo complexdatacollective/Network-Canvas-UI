@@ -15,8 +15,6 @@ const requiredProps = {
 
 export default { title: 'Components/Button' };
 
-console.log(icons.default);
-
 export const basic = () => (
   <Harness
     requiredProps={requiredProps}
