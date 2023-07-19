@@ -1,6 +1,6 @@
 {
   "name": "@codaco/ui",
-  "version": "5.8.3",
+  "version": "5.8.4",
   "description": "Styles and React components for the Network Canvas project",
   "main": "lib/components/index.js",
   "license": "GPL-3.0-or-later",
@@ -28,7 +28,6 @@
     "animejs": "^2.2.0",
     "classnames": "^2.2.6",
     "emoji-dictionary": "^1.0.11",
-    "framer-motion": "^2.9.1",
     "lodash": "^4.17.20",
     "luxon": "^1.21.3",
     "prop-types": "^15.6.2",
@@ -52,7 +51,8 @@
   },
   "peerDependencies": {
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "framer-motion": "^2.9.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.1",
