@@ -33,7 +33,7 @@ class DatePickerField extends Component {
     const anyLabel = fieldLabel || label;
     return (
       <div className="form-field-container" hidden={hidden} ref={this.ref}>
-        { anyLabel
+        {anyLabel
           && <MarkdownLabel label={anyLabel} />}
         <div className={formFieldClasses} name={input.name}>
           <DatePicker
@@ -46,12 +46,12 @@ class DatePickerField extends Component {
           />
           {invalid && touched
             && (
-            <div className="form-field-date-picker__error">
-              <div className="form-field-date-picker__error-message">
-                <Icon name="warning" />
-                {error}
+              <div className="form-field-date-picker__error">
+                <div className="form-field-date-picker__error-message">
+                  <Icon name="warning" />
+                  {error}
+                </div>
               </div>
-            </div>
             )}
         </div>
 

@@ -1,6 +1,6 @@
 {
   "name": "@codaco/ui",
-  "version": "5.8.1",
+  "version": "5.8.3",
   "description": "Styles and React components for the Network Canvas project",
   "main": "lib/components/index.js",
   "license": "GPL-3.0-or-later",
@@ -77,9 +77,9 @@
     "faker": "^4.1.0",
     "mkdirp": "^0.5.1",
     "ncp": "^2.0.0",
-    "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "sass": "^1.56.1",
     "sass-lint": "^1.13.1",
     "sass-loader": "^8.0.2"
   }
