@@ -12,9 +12,7 @@ const renderIcon = ({ icon }) => {
       const Icon = require('./Icon').default;
       iconElement = <Icon name={icon} />;
     } else {
-      iconElement = React.cloneElement(
-        icon,
-      );
+      iconElement = React.cloneElement(icon);
     }
   }
   return iconElement;
@@ -29,6 +27,12 @@ const ActionButton = React.memo((props) => {
     title = 'Add',
   } = props;
 
+  const handleClick = () => {
+    if (!disabled) {
+      onClick();
+    }
+  };
+
   const classes = cx({
     'action-button': true,
     'action-button--disabled': disabled,
@@ -39,10 +43,11 @@ const ActionButton = React.memo((props) => {
   return (
     <button
       type="button"
-      onClick={onClick}
+      onClick={handleClick}
       className={classes}
       title={title}
       tabIndex="0"
+      disabled={disabled}
     >
       <div className="icon-container">
         {renderIcon({ icon })}
