@@ -53,7 +53,7 @@ class ToggleButtonGroup extends PureComponent {
           onChange: this.handleClickOption,
         }}
         label={optionLabel}
-        color={`cat-color-seq-${index + 1}`}
+        color={`cat-color-seq-${index}`}
       />
     );
   };
