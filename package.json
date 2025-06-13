@@ -65,7 +65,7 @@
     "@storybook/addon-essentials": "^6.3.3",
     "@storybook/addon-links": "^6.3.3",
     "@storybook/addons": "^6.3.3",
-    "@storybook/react": "^6.3.3",
+    "@storybook/react": "^7.4.6",
     "babel-loader": "^8.1.0",
     "core-js": "^3.6.5",
     "enzyme": "^3.7.0",
